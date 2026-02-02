@@ -119,14 +119,22 @@ h_v^{(k)} = f^{(k)}\Big(W^{(k)} \cdot \text{AGG}_{u\in\mathcal{N}(v)}(h_u^{(k-1)
 
 ---
 
-## Interaction patterns (if we implement web visuals)
 
-Distill’s feel comes from treating visuals as part of the explanation, not decoration.
+## Interaction patterns (Interactive Traits)
+
+Distill’s feel comes from treating visuals as part of the explanation, not decoration. A very important trait for a distill blog is the **interactive feature** which makes learning data science easier.
+
+See examples:
+- [Bayesian Optimization](https://distill.pub/2020/bayesian-optimization/)
+- [Paths Perspective on Value Learning](https://distill.pub/2019/paths-perspective-on-value-learning/)
+
+### Core Interaction Types
 
 - **Hover to reveal structure**: highlight a node and its neighborhood; show the corresponding term(s) in the equation.
-- **Sliders for coefficients**: let users change \(w_i\), attention temperature, or normalization choice and immediately see outputs.
+- **Sliders for coefficients**: let users change \(w_i\), attention temperature, or learning rates, and immediately see outputs.
 - **Tabs for model variants**: keep the panel identical; only swap the differing term.
 - **“Show me what changed” diffs**: when switching variants, visually emphasize the changed sub-expression.
+- **Simulation Playgrounds**: Allow users to run a small simulation (e.g. gradient descent steps) directly in the browser to build intuition.
 
 If interactivity is not available (plain Markdown), emulate it with:
 
