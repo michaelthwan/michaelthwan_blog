@@ -273,70 +273,56 @@ The Transformer follows the encoder-decoder structure, but built entirely from
 attention and feed-forward layers.
 
 <figure class="d-figure">
-    <div class="d-figure-content">
-        <div class="arch-diagram">
-            <!-- Encoder -->
-            <div class="arch-column">
-                <div class="arch-title">Encoder</div>
-                <div class="arch-stack">
-                    <div class="arch-layer">
-                        <div class="arch-component attn">Multi-Head<br>Self-Attention</div>
-                        <div class="arch-norm">Add & Norm</div>
-                        <div class="arch-component ffn">Feed Forward</div>
-                        <div class="arch-norm">Add & Norm</div>
-                    </div>
-                    <span class="arch-repeat">×6</span>
-                </div>
-                <div class="arch-embed">
-                    <div class="arch-embed-box">Input Embedding</div>
-                    <span>+</span>
-                    <div class="arch-embed-box pos">Positional Encoding</div>
-                </div>
-                <div class="arch-input-label">Inputs</div>
-            </div>
-
-            <!-- Arrow -->
-            <div class="arch-arrow">
-                <svg viewBox="0 0 50 20">
-                    <defs>
-                        <marker id="arrowhead" markerWidth="10" markerHeight="7"
-                                refX="9" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
-                        </marker>
-                    </defs>
-                    <line x1="0" y1="10" x2="40" y2="10" stroke="#666"
-                          stroke-width="2" marker-end="url(#arrowhead)"/>
-                </svg>
-                <span class="arch-arrow-label">K, V</span>
-            </div>
-
-            <!-- Decoder -->
-            <div class="arch-column">
-                <div class="arch-title">Decoder</div>
-                <div class="arch-stack">
-                    <div class="arch-layer">
-                        <div class="arch-component attn-masked">Masked Multi-Head<br>Self-Attention</div>
-                        <div class="arch-norm">Add & Norm</div>
-                        <div class="arch-component attn-cross">Multi-Head<br>Cross-Attention</div>
-                        <div class="arch-norm">Add & Norm</div>
-                        <div class="arch-component ffn">Feed Forward</div>
-                        <div class="arch-norm">Add & Norm</div>
-                    </div>
-                    <span class="arch-repeat">×6</span>
-                </div>
-                <div class="arch-embed">
-                    <div class="arch-embed-box">Output Embedding</div>
-                    <span>+</span>
-                    <div class="arch-embed-box pos">Positional Encoding</div>
-                </div>
-                <div class="arch-input-label">Outputs (shifted right)</div>
-            </div>
-        </div>
-    </div>
-    <figcaption class="d-figure-caption">
-        The Transformer architecture. The encoder (left) processes the input sequence.
-        The decoder (right) generates the output, attending to both itself and the encoder output.
-    </figcaption>
+<div class="d-figure-content">
+<div class="arch-diagram">
+<div class="arch-column">
+<div class="arch-title">Encoder</div>
+<div class="arch-stack">
+<div class="arch-layer">
+<div class="arch-component attn">Multi-Head<br/>Self-Attention</div>
+<div class="arch-norm">Add & Norm</div>
+<div class="arch-component ffn">Feed Forward</div>
+<div class="arch-norm">Add & Norm</div>
+</div>
+<span class="arch-repeat">×6</span>
+</div>
+<div class="arch-embed">
+<div class="arch-embed-box">Input Embedding</div>
+<span>+</span>
+<div class="arch-embed-box pos">Positional Encoding</div>
+</div>
+<div class="arch-input-label">Inputs</div>
+</div>
+<div class="arch-arrow">
+<svg viewBox="0 0 50 20"><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#666"/></marker></defs><line x1="0" y1="10" x2="40" y2="10" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/></svg>
+<span class="arch-arrow-label">K, V</span>
+</div>
+<div class="arch-column">
+<div class="arch-title">Decoder</div>
+<div class="arch-stack">
+<div class="arch-layer">
+<div class="arch-component attn-masked">Masked Multi-Head<br/>Self-Attention</div>
+<div class="arch-norm">Add & Norm</div>
+<div class="arch-component attn-cross">Multi-Head<br/>Cross-Attention</div>
+<div class="arch-norm">Add & Norm</div>
+<div class="arch-component ffn">Feed Forward</div>
+<div class="arch-norm">Add & Norm</div>
+</div>
+<span class="arch-repeat">×6</span>
+</div>
+<div class="arch-embed">
+<div class="arch-embed-box">Output Embedding</div>
+<span>+</span>
+<div class="arch-embed-box pos">Positional Encoding</div>
+</div>
+<div class="arch-input-label">Outputs (shifted right)</div>
+</div>
+</div>
+</div>
+<figcaption class="d-figure-caption">
+The Transformer architecture. The encoder (left) processes the input sequence.
+The decoder (right) generates the output, attending to both itself and the encoder output.
+</figcaption>
 </figure>
 
 ### Encoder
@@ -371,17 +357,12 @@ $$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
 </div>
 
 <figure class="d-figure">
-    <div class="d-figure-content">
-        <div class="pos-viz">
-            <div class="pos-grid" id="pos-encoding-grid"></div>
-            <div class="pos-axis-labels">
-                <span>Position →</span>
-                <span>Dimension →</span>
-            </div>
-        </div>
+    <div class="d-figure-content pe-interactive-wrapper">
+        <div id="pos-encoding-interactive"></div>
     </div>
     <figcaption class="d-figure-caption">
-        Positional encoding visualization. Each row is a position, each column is a dimension.
+        <strong>Interactive:</strong> Drag the slider or click on the grid to explore how positional encodings change.
+        Each row is a position, each column is a dimension. Orange = sin (even dims), blue = cos (odd dims).
         Lower dimensions vary slowly; higher dimensions vary quickly.
     </figcaption>
 </figure>
