@@ -1,0 +1,116 @@
+---
+import Header from '../components/Header.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { post, headings } = Astro.props;
+const { title, subtitle, authors, affiliations, published, doi, doiUrl } = post.data;
+
+// Build TOC from headings (h2 and h3)
+const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+
+    <meta name="description" content={subtitle}>
+
+    <!-- Fonts: Inter + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <Header />
+
+    <!-- Title Section -->
+    <header class="d-title-section">
+        <h1 class="d-title">{title}</h1>
+        <p class="d-subtitle">{subtitle}</p>
+
+        <!-- Byline Grid -->
+        <div class="d-byline">
+            <div class="d-byline-column">
+                <div class="d-byline-heading">Authors</div>
+                <div class="d-byline-content">
+                    {authors.map((author, i) => (
+                        <Fragment>
+                            {author}{i < authors.length - 1 && <br />}
+                        </Fragment>
+                    ))}
+                </div>
+            </div>
+            <div class="d-byline-column">
+                <div class="d-byline-heading">Affiliations</div>
+                <div class="d-byline-content">
+                    {affiliations.map((affiliation, i) => (
+                        <Fragment>
+                            {affiliation}{i < affiliations.length - 1 && <br />}
+                        </Fragment>
+                    ))}
+                </div>
+            </div>
+            <div class="d-byline-column">
+                <div class="d-byline-heading">Published</div>
+                <div class="d-byline-content">
+                    {published}
+                </div>
+            </div>
+            {doi && (
+                <div class="d-byline-column">
+                    <div class="d-byline-heading">DOI</div>
+                    <div class="d-byline-content">
+                        <a href={doiUrl || `https://arxiv.org/abs/${doi}`}>{doi}</a>
+                    </div>
+                </div>
+            )}
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="d-article-container">
+        <!-- Table of Contents -->
+        <nav class="d-toc">
+            <div class="d-toc-sticky">
+                <h2 class="d-toc-title">Contents</h2>
+                <ul class="d-toc-list">
+                    {tocItems.map(item => (
+                        <li class:list={[{ 'toc-indent': item.depth === 3 }]}>
+                            <a href={`#${item.slug}`}>{item.text}</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Article Content -->
+        <article class="d-article">
+            <slot />
+        </article>
+    </div>
+
+    <script is:inline src="/script.js"></script>
+</body>
+</html>
