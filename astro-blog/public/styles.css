@@ -1206,37 +1206,41 @@ pre code {
 .legend-box {
     width: 14px;
     height: 14px;
+    min-width: 14px;
+    min-height: 14px;
     border-radius: 3px;
-    border: 1px solid;
+    border: 2px solid #ccc;
+    display: inline-block;
+    flex-shrink: 0;
 }
 
 .legend-box.masked {
-    background: #fff3e0;
+    background: #ffe0b2;
     border-color: #e07b39;
 }
 
 .legend-box.random {
-    background: #fce4ec;
+    background: #f8bbd9;
     border-color: #c2185b;
 }
 
 .legend-box.unchanged {
-    background: #e8f5e9;
+    background: #c8e6c9;
     border-color: #4caf50;
 }
 
 .legend-box.special {
-    background: #f3e5f5;
+    background: #e1bee7;
     border-color: #7b1fa2;
 }
 
 .legend-box.segment-a {
-    background: #e3f2fd;
+    background: #bbdefb;
     border-color: #1976d2;
 }
 
 .legend-box.segment-b {
-    background: #fff8e1;
+    background: #ffe082;
     border-color: #ffa000;
 }
 
