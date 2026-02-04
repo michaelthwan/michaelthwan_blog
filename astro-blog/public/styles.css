@@ -1421,6 +1421,287 @@ pre code {
 }
 
 /* ============================================
+   BIO / PORTFOLIO PAGE
+   ============================================ */
+
+/* Hero */
+.bio-hero {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding-top: 32px;
+}
+
+.bio-avatar-wrap {
+    flex-shrink: 0;
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.bio-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bio-info {
+    flex: 1;
+    min-width: 0;
+    padding-top: 6px;
+}
+
+.bio-name {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 2px 0;
+    letter-spacing: -0.02em;
+}
+
+.bio-tagline {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-gray);
+    margin: 0 0 10px 0;
+}
+
+.bio-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin: 0 0 18px 0;
+    max-width: 520px;
+}
+
+/* Bio action buttons */
+.bio-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+}
+
+.bio-btn:hover {
+    opacity: 0.72;
+}
+
+.bio-btn-primary {
+    background: var(--color-text);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.bio-btn-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 9px;
+    padding: 0 5px;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 17px;
+    height: 17px;
+}
+
+.bio-btn-icon {
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    background: #f0f0f0;
+    border-radius: 6px;
+    color: var(--color-text);
+}
+
+/* Timeline */
+.bio-timeline {
+    border-top: 1px solid var(--color-border);
+    padding-top: 40px;
+    padding-bottom: 64px;
+    margin-top: 36px;
+}
+
+.timeline-entry {
+    display: grid;
+    grid-template-columns: 48px 16px 1fr;
+    gap: 0 18px;
+}
+
+.timeline-left {
+    text-align: right;
+    padding-top: 3px;
+}
+
+.timeline-year {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-gray);
+}
+
+.timeline-mid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--color-text);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.timeline-line {
+    width: 1px;
+    flex: 1;
+    background: var(--color-border);
+    min-height: 24px;
+}
+
+.timeline-entry:last-child .timeline-line {
+    display: none;
+}
+
+.timeline-content {
+    padding-bottom: 36px;
+}
+
+.timeline-entry:last-child .timeline-content {
+    padding-bottom: 0;
+}
+
+/* Company badge + role */
+.timeline-header {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.timeline-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.timeline-role {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 2px 0;
+}
+
+.timeline-company {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--color-gray);
+    margin: 0;
+}
+
+/* Achievements list */
+.timeline-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin: 0;
+    margin-left: 54px;
+}
+
+.timeline-achievements {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 54px;
+}
+
+.timeline-achievements li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    margin-bottom: 6px;
+    padding-left: 14px;
+    position: relative;
+}
+
+.timeline-achievements li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--color-gray-light);
+    font-weight: 700;
+}
+
+/* Bio responsive */
+@media (max-width: 600px) {
+    .bio-hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bio-desc {
+        max-width: none;
+    }
+
+    .bio-links {
+        justify-content: center;
+    }
+
+    .timeline-entry {
+        grid-template-columns: 1fr;
+        gap: 4px 0;
+    }
+
+    .timeline-left {
+        text-align: left;
+    }
+
+    .timeline-mid {
+        display: none;
+    }
+
+    .timeline-achievements,
+    .timeline-desc {
+        margin-left: 0;
+    }
+}
+
+/* ============================================
    WORKFLOW LOOP DIAGRAM (claude-code post)
    ============================================ */
 .wf-loop {
