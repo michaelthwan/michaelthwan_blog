@@ -1132,7 +1132,7 @@ pre code {
 .logo-icon {
     width: 24px;
     height: 24px;
-    fill: var(--color-text);
+    object-fit: contain;
 }
 
 .header-nav {
