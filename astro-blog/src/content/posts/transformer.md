@@ -15,6 +15,7 @@ doiUrl: "https://arxiv.org/abs/1706.03762"
 abstract: "Understanding the building blocks and design choices of the Transformer architecture that powers GPT, BERT, and modern language models."
 tags:
   - "explainer"
+category: "ml"
 ---
 
 <p class="d-note">

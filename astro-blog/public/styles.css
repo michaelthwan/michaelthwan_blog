@@ -1158,6 +1158,95 @@ pre code {
     background: var(--color-bg);
 }
 
+/* Two-column index layout */
+.index-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding-top: 32px;
+    padding-bottom: 64px;
+}
+
+.index-column {
+    min-width: 0;
+}
+
+.column-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.column-header h2 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: var(--color-text);
+}
+
+.ml-column .column-header {
+    border-bottom-color: #1565c0;
+}
+
+.dev-column .column-header {
+    border-bottom-color: #e65100;
+}
+
+.column-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-gray);
+    margin: 0;
+}
+
+.empty-column {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-gray-light);
+    font-style: italic;
+}
+
+/* Two-column post cards - more compact */
+.index-column .post-preview {
+    margin-bottom: 32px;
+}
+
+.index-column .post-link {
+    flex-direction: column;
+    gap: 12px;
+}
+
+.index-column .post-thumbnail {
+    width: 100%;
+    height: 140px;
+}
+
+.index-column .post-title {
+    font-size: 17px;
+}
+
+.index-column .post-authors {
+    font-size: 13px;
+}
+
+.index-column .post-abstract {
+    font-size: 14px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Responsive: stack columns on mobile */
+@media (max-width: 768px) {
+    .index-columns {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+}
+
 .posts-list {
     padding-top: 16px;
     padding-bottom: 64px;
@@ -1329,6 +1418,105 @@ pre code {
 
 .footer-links a:hover {
     color: var(--color-text);
+}
+
+/* ============================================
+   WORKFLOW LOOP DIAGRAM (claude-code post)
+   ============================================ */
+.wf-loop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 8px 8px;
+    width: 100%;
+}
+
+.wf-phase {
+    flex: 1;
+    max-width: 170px;
+    min-width: 0;
+}
+
+.wf-phase-header {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 7px 10px;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+}
+
+.wf-phase.wf-plan .wf-phase-header {
+    background: #fff3e0;
+    color: #c35a00;
+    border: 1px solid #e07b39;
+    border-bottom: none;
+}
+
+.wf-phase.wf-execute .wf-phase-header {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #4a90a4;
+    border-bottom: none;
+}
+
+.wf-phase.wf-verify .wf-phase-header {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+    border-bottom: none;
+}
+
+.wf-phase-body {
+    padding: 10px 12px;
+    border-radius: 0 0 4px 4px;
+}
+
+.wf-phase.wf-plan .wf-phase-body {
+    border: 1px solid #e07b39;
+    background: #fffbf5;
+}
+
+.wf-phase.wf-execute .wf-phase-body {
+    border: 1px solid #4a90a4;
+    background: #f0f8ff;
+}
+
+.wf-phase.wf-verify .wf-phase-body {
+    border: 1px solid #4caf50;
+    background: #f2faf2;
+}
+
+.wf-step {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--color-text-light);
+    padding: 5px 0;
+    line-height: 1.4;
+}
+
+.wf-step + .wf-step {
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.wf-arrow {
+    font-size: 18px;
+    color: var(--color-gray);
+    align-self: center;
+    padding-top: 28px;
+    flex-shrink: 0;
+}
+
+.wf-feedback {
+    text-align: center;
+    margin-top: 10px;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--color-gray-light);
+    font-style: italic;
 }
 
 /* ============================================
