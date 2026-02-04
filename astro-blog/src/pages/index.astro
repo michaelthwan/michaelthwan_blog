@@ -13,7 +13,7 @@ const masterDuration = [yrs && `${yrs} yr${yrs > 1 ? 's' : ''}`, mos && `${mos} 
 ---
 
 <Base title="Michael Wan" isHomepage={true}>
-    <Header />
+    <Header logoText="Michael Wan" />
 
     <!-- Bio Hero -->
     <section class="bio-hero l-page">
@@ -35,7 +35,6 @@ const masterDuration = [yrs && `${yrs} yr${yrs > 1 ? 's' : ''}`, mos && `${mos} 
                         <path d="M4.5 5.5h7M4.5 8h7M4.5 10.5h4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
                     </svg>
                     Blog
-                    <span class="bio-btn-badge">0</span>
                 </a>
                 <a href="https://github.com/michaelthwan" target="_blank" rel="noopener noreferrer" class="bio-btn bio-btn-icon" aria-label="GitHub">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +70,9 @@ const masterDuration = [yrs && `${yrs} yr${yrs > 1 ? 's' : ''}`, mos && `${mos} 
                         <p class="timeline-company">Mastercard · Vancouver, BC · Nov 2024 – Present · {masterDuration}</p>
                     </div>
                 </div>
-                <p class="timeline-desc">Leading AI initiatives focused on enterprise cost optimization and productivity through deep learning and large language model solutions.</p>
+                <ul class="timeline-achievements">
+                    <li>Engineered <strong>Decision Intelligence Pro (DI Pro)</strong> fraud detection platform for credit and debit transactions. Optimized the Databricks ML pipeline and infrastructure, accelerating model training by 3x while significantly reducing operational costs.</li>
+                </ul>
             </div>
         </div>
 

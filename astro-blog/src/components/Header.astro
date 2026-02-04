@@ -1,16 +1,15 @@
 ---
-// Site Header Component
+interface Props {
+    logoText?: string;
+}
+const { logoText = 'Michael Wan Interactive Insights' } = Astro.props;
 ---
 
 <header class="site-header">
     <div class="header-content l-page">
         <a href="/" class="logo">
             <img src="/img/mw-black.png" alt="MW" class="logo-icon" />
-            Michael Wan Interactive Insights
+            {logoText}
         </a>
-        <nav class="header-nav">
-            <a href="#">About</a>
-            <a href="#">Archive</a>
-        </nav>
     </div>
 </header>
