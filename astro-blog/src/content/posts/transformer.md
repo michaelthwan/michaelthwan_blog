@@ -234,6 +234,15 @@ For large $d_k$, the dot products $q \cdot k$ tend to have large magnitude (vari
 roughly $d_k$). This pushes softmax into saturated regions where gradients vanish.
 Scaling by $\sqrt{d_k}$ keeps the variance at 1.
 
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/transformer/fig2a-scaled-dotproduct-attn.png" alt="Scaled Dot-Product Attention" style="max-width: 340px; width: 100%; height: auto; margin: 0 auto; display: block;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 2 (left) from the paper:</strong> The Scaled Dot-Product Attention computation. Queries and Keys are dot-product scored, optionally masked, softmax-normalized, and used to weight the Values.
+    </figcaption>
+</figure>
+
 ## Multi-Head Attention
 
 A single attention function can only focus on one type of relationship at a time.
@@ -266,6 +275,15 @@ Each head can learn to attend to different things:
 - Another might focus on **semantically similar words**
 
 The paper uses $h = 8$ heads with $d_k = d_v = 64$ (for $d_{\text{model}} = 512$).
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/transformer/fig2b-multihead-attn.png" alt="Multi-Head Attention" style="max-width: 420px; width: 100%; height: auto; margin: 0 auto; display: block;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 2 (right) from the paper:</strong> Multi-Head Attention runs multiple single-head attentions in parallel, each with its own learned projections, then concatenates and linearly projects the outputs.
+    </figcaption>
+</figure>
 
 ## The Transformer Architecture
 
@@ -320,9 +338,18 @@ attention and feed-forward layers.
 </div>
 </div>
 <figcaption class="d-figure-caption">
-The Transformer architecture. The encoder (left) processes the input sequence.
+The Transformer architecture (simplified). The encoder (left) processes the input sequence.
 The decoder (right) generates the output, attending to both itself and the encoder output.
 </figcaption>
+</figure>
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/transformer/fig1-architecture.png" alt="Transformer Architecture — original paper figure" style="max-width: 520px; width: 100%; height: auto; margin: 0 auto; display: block;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 1 from the paper:</strong> The full Transformer architecture as presented in Vaswani et al. The left side is the encoder stack; the right side is the decoder, which includes both masked self-attention and cross-attention to the encoder output.
+    </figcaption>
 </figure>
 
 ### Encoder
@@ -413,6 +440,39 @@ making long-range dependencies easier to learn.
     <strong>Trade-off:</strong> Self-attention has $O(n^2)$ memory complexity. For
     very long sequences, this can become prohibitive.
 </div>
+
+## What Attention Heads Learn
+
+The paper visualizes what individual attention heads learn in a trained Transformer. Different heads spontaneously specialize for different linguistic patterns—none of this structure is hard-coded.
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/transformer/fig3-long-range-attn.png" alt="Long-range attention dependency" style="max-width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 3 from the paper:</strong> Self-attention following a long-distance dependency in encoder layer 5. The word "it" attends strongly to "The animal," resolving the coreference across the sentence.
+    </figcaption>
+</figure>
+
+<figure class="d-figure">
+    <div class="d-figure-content" style="display: flex; gap: 1rem; width: 100%; overflow: hidden;">
+        <img src="/img/transformer/fig4-anaphora-1.png" alt="Anaphora resolution head 1" style="flex: 1; min-width: 0; width: 100%; height: auto;">
+        <img src="/img/transformer/fig4-anaphora-2.png" alt="Anaphora resolution head 2" style="flex: 1; min-width: 0; width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 4 from the paper:</strong> Two attention heads in layer 5 that appear to perform anaphora resolution—linking pronouns back to the nouns they refer to.
+    </figcaption>
+</figure>
+
+<figure class="d-figure">
+    <div class="d-figure-content" style="display: flex; gap: 1rem; width: 100%; overflow: hidden;">
+        <img src="/img/transformer/fig5-sentence-structure-1.png" alt="Sentence structure attention 1" style="flex: 1; min-width: 0; width: 100%; height: auto;">
+        <img src="/img/transformer/fig5-sentence-structure-2.png" alt="Sentence structure attention 2" style="flex: 1; min-width: 0; width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 5 from the paper:</strong> Attention heads exhibiting behaviour related to sentence structure. Different heads learn to attend to different syntactic roles and positional patterns.
+    </figcaption>
+</figure>
 
 ## Training and Results
 

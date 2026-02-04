@@ -33,6 +33,15 @@ Previous approaches fell into two camps:
 
 BERT unified and improved both: a single pre-trained model that could be fine-tuned for almost any NLP task, while capturing context from *both directions*.
 
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/bert/fig1-pretraining-finetuning.png" alt="BERT pre-training and fine-tuning overview" style="max-width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 1 from the paper:</strong> The overall pre-training and fine-tuning procedures for BERT. Apart from the output layers, the same architecture is used in both stages.
+    </figcaption>
+</figure>
+
 ## The Directionality Problem
 
 ### Why direction matters
@@ -54,6 +63,15 @@ A left-to-right language model can't use the right context when processing "bank
 **ELMo** trained two separate LSTMs—one left-to-right, one right-to-left—and concatenated their outputs. This captures both directions, but the two directions don't interact during training. Each direction is learned independently.
 
 **GPT** used a Transformer decoder, but it's autoregressive: each position can only attend to positions on its left. It's powerful, but still unidirectional.
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/bert/fig3-model-architectures.png" alt="Pre-training architecture comparison: BERT, GPT, ELMo" style="max-width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 3 from the paper:</strong> The three pre-training approaches side by side. BERT uses a bidirectional Transformer. GPT uses a left-to-right Transformer. ELMo uses two separate unidirectional LSTMs.
+    </figcaption>
+</figure>
 
 <div class="d-callout">
     <strong>Key question:</strong> Can we train a single model where every position attends to every other position—truly bidirectional?
@@ -274,6 +292,15 @@ $$\text{Input} = E_{\text{token}} + E_{\text{segment}} + E_{\text{position}}$$
 - **Segment embedding**: Which sentence (A or B) this token belongs to
 - **Position embedding**: Learned (not sinusoidal like the original Transformer)
 
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/bert/fig2-input-representation.png" alt="BERT input representation" style="max-width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 2 from the paper:</strong> BERT's input representation. The final input embedding is the element-wise sum of the token, segment, and position embeddings.
+    </figcaption>
+</figure>
+
 ### The computation
 
 Stack of $L$ identical layers, each containing:
@@ -351,7 +378,16 @@ The breakthrough of BERT is how simple fine-tuning becomes. For most tasks:
         </div>
     </div>
     <figcaption class="d-figure-caption">
-        BERT fine-tuning patterns. The same pre-trained model adapts to different tasks with minimal architecture changes.
+        BERT fine-tuning patterns (simplified). The same pre-trained model adapts to different tasks with minimal architecture changes.
+    </figcaption>
+</figure>
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/bert/fig4-finetuning-tasks.png" alt="BERT fine-tuning on downstream tasks" style="max-width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 4 from the paper:</strong> How BERT is adapted to four representative downstream tasks: (a) sequence classification, (b) sentence-pair classification, (c) question answering, and (d) named entity recognition.
     </figcaption>
 </figure>
 

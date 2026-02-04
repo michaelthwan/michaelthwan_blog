@@ -10,7 +10,11 @@
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
       "Bash(npm run dev)",
-      "Bash(npm run preview:*)"
+      "Bash(npm run preview:*)",
+      "Bash(dir:*)",
+      "WebFetch(domain:ar5iv.labs.arxiv.org)",
+      "Bash(curl:*)",
+      "Bash(npx astro preview --host)"
     ]
   }
 }
