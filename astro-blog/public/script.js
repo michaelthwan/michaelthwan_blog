@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initTOCHighlighting();
     initPositionalEncodingViz();
+    initNormDistributionViz();
 });
 
 /**
@@ -283,4 +284,194 @@ function valueToColor(value) {
     }
 
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+/**
+ * Interactive Norm Distribution Visualization for ViT Registers post
+ */
+function initNormDistributionViz() {
+    const container = document.getElementById('norm-distribution-interactive');
+    if (!container) return;
+
+    // Simulate bimodal distribution data (based on paper's findings)
+    const numSamples = 500;
+    const data = generateBimodalNormData(numSamples);
+    let threshold = 150;
+
+    // Create UI
+    container.innerHTML = `
+        <div class="norm-controls">
+            <div class="norm-slider-group">
+                <label>Outlier threshold:</label>
+                <input type="range" id="norm-threshold-slider" min="50" max="250" value="${threshold}">
+                <span class="norm-threshold-value" id="norm-threshold-display">${threshold}</span>
+            </div>
+            <div class="norm-stats">
+                <div class="norm-stat">
+                    <span class="dot normal"></span>
+                    <span>Normal: <strong id="normal-count">0</strong> (<span id="normal-pct">0</span>%)</span>
+                </div>
+                <div class="norm-stat">
+                    <span class="dot outlier"></span>
+                    <span>Outliers: <strong id="outlier-count">0</strong> (<span id="outlier-pct">0</span>%)</span>
+                </div>
+            </div>
+        </div>
+        <div class="norm-chart-container">
+            <canvas id="norm-chart-canvas" width="600" height="200"></canvas>
+        </div>
+    `;
+
+    const slider = document.getElementById('norm-threshold-slider');
+    const thresholdDisplay = document.getElementById('norm-threshold-display');
+    const canvas = document.getElementById('norm-chart-canvas');
+    const normalCountEl = document.getElementById('normal-count');
+    const outlierCountEl = document.getElementById('outlier-count');
+    const normalPctEl = document.getElementById('normal-pct');
+    const outlierPctEl = document.getElementById('outlier-pct');
+
+    slider.addEventListener('input', (e) => {
+        threshold = parseInt(e.target.value);
+        thresholdDisplay.textContent = threshold;
+        drawChart();
+    });
+
+    function drawChart() {
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const padding = { top: 20, right: 20, bottom: 40, left: 50 };
+        const chartWidth = width - padding.left - padding.right;
+        const chartHeight = height - padding.top - padding.bottom;
+
+        // Clear
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, width, height);
+
+        // Create histogram bins
+        const binWidth = 10;
+        const maxNorm = 300;
+        const numBins = maxNorm / binWidth;
+        const bins = new Array(numBins).fill(0);
+
+        data.forEach(norm => {
+            const binIndex = Math.min(Math.floor(norm / binWidth), numBins - 1);
+            bins[binIndex]++;
+        });
+
+        const maxBinCount = Math.max(...bins);
+
+        // Draw axes
+        ctx.strokeStyle = '#ccc';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, padding.top);
+        ctx.lineTo(padding.left, height - padding.bottom);
+        ctx.lineTo(width - padding.right, height - padding.bottom);
+        ctx.stroke();
+
+        // Draw threshold line
+        const thresholdX = padding.left + (threshold / maxNorm) * chartWidth;
+        ctx.strokeStyle = '#c62828';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(thresholdX, padding.top);
+        ctx.lineTo(thresholdX, height - padding.bottom);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Draw threshold label
+        ctx.fillStyle = '#c62828';
+        ctx.font = '11px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`threshold = ${threshold}`, thresholdX, padding.top - 5);
+
+        // Draw bars
+        const barWidth = chartWidth / numBins;
+        let normalCount = 0;
+        let outlierCount = 0;
+
+        bins.forEach((count, i) => {
+            const binStart = i * binWidth;
+            const binEnd = (i + 1) * binWidth;
+            const x = padding.left + i * barWidth;
+            const barHeight = (count / maxBinCount) * chartHeight;
+            const y = height - padding.bottom - barHeight;
+
+            // Color based on threshold
+            const isOutlier = binStart >= threshold;
+            ctx.fillStyle = isOutlier ? '#ef5350' : '#66bb6a';
+
+            ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
+
+            // Count
+            if (isOutlier) {
+                outlierCount += count;
+            } else {
+                normalCount += count;
+            }
+        });
+
+        // Update stats
+        const total = normalCount + outlierCount;
+        normalCountEl.textContent = normalCount;
+        outlierCountEl.textContent = outlierCount;
+        normalPctEl.textContent = ((normalCount / total) * 100).toFixed(1);
+        outlierPctEl.textContent = ((outlierCount / total) * 100).toFixed(1);
+
+        // X-axis labels
+        ctx.fillStyle = '#666';
+        ctx.font = '11px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        for (let i = 0; i <= maxNorm; i += 50) {
+            const x = padding.left + (i / maxNorm) * chartWidth;
+            ctx.fillText(i.toString(), x, height - padding.bottom + 15);
+        }
+
+        // X-axis title
+        ctx.fillText('Token Norm', padding.left + chartWidth / 2, height - 5);
+
+        // Y-axis title
+        ctx.save();
+        ctx.translate(15, padding.top + chartHeight / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.textAlign = 'center';
+        ctx.fillText('Count', 0, 0);
+        ctx.restore();
+    }
+
+    // Initial draw
+    drawChart();
+}
+
+/**
+ * Generate bimodal distribution mimicking ViT norm distribution
+ * ~97% normal tokens (centered around 50), ~3% outliers (centered around 180)
+ */
+function generateBimodalNormData(n) {
+    const data = [];
+    const outlierRatio = 0.025; // ~2.5% outliers as per paper
+
+    for (let i = 0; i < n; i++) {
+        if (Math.random() < outlierRatio) {
+            // Outlier distribution: centered around 180, std ~30
+            data.push(gaussianRandom(180, 30));
+        } else {
+            // Normal distribution: centered around 50, std ~20
+            data.push(gaussianRandom(50, 20));
+        }
+    }
+
+    return data.map(v => Math.max(0, Math.min(300, v))); // Clamp to [0, 300]
+}
+
+/**
+ * Generate Gaussian random number using Box-Muller transform
+ */
+function gaussianRandom(mean, std) {
+    const u1 = Math.random();
+    const u2 = Math.random();
+    const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+    return mean + z * std;
 }

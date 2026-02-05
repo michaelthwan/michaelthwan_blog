@@ -24,7 +24,10 @@
       "Bash(vercel whoami:*)",
       "Bash(vercel:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebFetch(domain:arxiv.org)",
+      "WebSearch",
+      "Bash(ls -la \"C:\\\\github\\\\mw_knowledge_blog\\\\astro-blog\\\\public\\\\img\\\\vit-registers\"\" 2>&1 || echo \"Folder empty or missing \")"
     ]
   }
 }

@@ -2186,3 +2186,310 @@ pre code {
     border-color: #7b1fa2;
     color: #7b1fa2;
 }
+
+/* ============================================
+   VIT REGISTERS - Artifact Location Viz
+   ============================================ */
+.artifact-location-viz {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.location-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+}
+
+.location-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--color-text-light);
+}
+
+.location-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+
+.location-icon.high-similarity {
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+    border: 1px solid #ccc;
+}
+
+.location-icon.low-similarity {
+    background: linear-gradient(135deg, #4a90a4 0%, #e07b39 50%, #7cb342 100%);
+    border: 1px solid #888;
+}
+
+.location-icon.high-norm {
+    background: #ef5350;
+    border: 2px solid #c62828;
+    box-shadow: 0 0 8px rgba(239, 83, 80, 0.5);
+}
+
+.location-icon.normal {
+    background: #66bb6a;
+    border: 1px solid #43a047;
+}
+
+.location-arrow {
+    font-size: 20px;
+    color: var(--color-gray);
+}
+
+/* ============================================
+   VIT REGISTERS - Info Comparison Bars
+   ============================================ */
+.info-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+}
+
+.info-bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.info-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info-bar {
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    min-width: 120px;
+}
+
+.info-bar.normal {
+    background: linear-gradient(90deg, #66bb6a 0%, #43a047 100%);
+}
+
+.info-bar.outlier {
+    background: linear-gradient(90deg, #ef5350 0%, #c62828 100%);
+}
+
+/* ============================================
+   VIT REGISTERS - Register Diagram
+   ============================================ */
+.register-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.register-stage {
+    text-align: center;
+}
+
+.stage-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.token-sequence {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.register-diagram .token {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid;
+}
+
+.register-diagram .token.cls {
+    background: #e8f5e9;
+    border-color: #4caf50;
+    color: #2e7d32;
+}
+
+.register-diagram .token.reg {
+    background: #fff3e0;
+    border-color: #ff9800;
+    color: #e65100;
+}
+
+.register-diagram .token.patch {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    color: #1565c0;
+}
+
+.register-diagram .token.discarded {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.register-diagram .token.used {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.register-arrow {
+    font-size: 14px;
+    color: var(--color-gray);
+    padding: 8px 0;
+}
+
+.register-legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+.register-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-gray);
+}
+
+.register-legend .box {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.register-legend .box.used {
+    background: #e3f2fd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.register-legend .box.discarded {
+    background: #f5f5f5;
+    opacity: 0.5;
+}
+
+/* ============================================
+   VIT REGISTERS - Norm Distribution Interactive
+   ============================================ */
+.norm-explorer-wrapper {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#norm-distribution-interactive {
+    width: 100%;
+}
+
+.norm-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.norm-slider-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.norm-slider-group label {
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+.norm-slider-group input[type="range"] {
+    width: 200px;
+}
+
+.norm-threshold-value {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: #c62828;
+    min-width: 40px;
+}
+
+.norm-stats {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+}
+
+.norm-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.norm-stat .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.norm-stat .dot.normal {
+    background: #66bb6a;
+}
+
+.norm-stat .dot.outlier {
+    background: #ef5350;
+}
+
+.norm-chart-container {
+    position: relative;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+#norm-chart-canvas {
+    width: 100%;
+    height: 200px;
+}
+
+/* Legend dots for equation panels */
+.d-legend-dot.cls {
+    background: #4caf50;
+}
+
+.d-legend-dot.register {
+    background: #ff9800;
+}
+
+.d-legend-dot.patch {
+    background: #2196f3;
+}
