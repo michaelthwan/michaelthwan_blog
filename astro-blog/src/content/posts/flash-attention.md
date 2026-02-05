@@ -50,37 +50,43 @@ To understand FlashAttention, we need to understand how GPU memory works.
 
 <figure class="d-figure">
     <div class="d-figure-content">
-        <div class="mem-hierarchy-diagram">
-            <div class="mem-hierarchy-row">
-                <div class="mem-box sram">
-                    <div class="mem-box-label">SRAM</div>
-                    <div class="mem-box-size">~20 MB</div>
+        <div class="mem-flow-diagram">
+            <div class="mem-flow-item">
+                <div class="mem-flow-box hbm">
+                    <div class="mem-flow-label">HBM</div>
+                    <div class="mem-flow-spec">40-80 GB</div>
                 </div>
-                <div class="mem-arrow">
-                    <span class="arrow-label">19 TB/s</span>
-                    <span class="arrow-icon">⟷</span>
-                </div>
-                <div class="mem-box compute">
-                    <div class="mem-box-label">Compute</div>
-                    <div class="mem-box-size">312 TFLOPS</div>
-                </div>
+                <div class="mem-flow-desc">Main memory<br/>(Q, K, V, O)</div>
             </div>
-            <div class="mem-hierarchy-connector">
-                <span class="connector-bandwidth">1.5 TB/s</span>
-                <span class="connector-label">(~10× slower)</span>
+            <div class="mem-flow-arrow slow">
+                <span class="mem-flow-bw">1.5 TB/s</span>
+                <span class="mem-flow-icon">→</span>
+                <span class="mem-flow-note">bottleneck</span>
             </div>
-            <div class="mem-hierarchy-row">
-                <div class="mem-box hbm">
-                    <div class="mem-box-label">HBM</div>
-                    <div class="mem-box-size">40-80 GB</div>
-                    <div class="mem-box-note">Q, K, V, Output</div>
+            <div class="mem-flow-item">
+                <div class="mem-flow-box sram">
+                    <div class="mem-flow-label">SRAM</div>
+                    <div class="mem-flow-spec">~20 MB</div>
                 </div>
+                <div class="mem-flow-desc">On-chip cache</div>
+            </div>
+            <div class="mem-flow-arrow fast">
+                <span class="mem-flow-bw">19 TB/s</span>
+                <span class="mem-flow-icon">→</span>
+                <span class="mem-flow-note">10× faster</span>
+            </div>
+            <div class="mem-flow-item">
+                <div class="mem-flow-box compute">
+                    <div class="mem-flow-label">Compute</div>
+                    <div class="mem-flow-spec">312 TFLOPS</div>
+                </div>
+                <div class="mem-flow-desc">Tensor cores</div>
             </div>
         </div>
     </div>
     <figcaption class="d-figure-caption">
-        GPU memory hierarchy on A100. SRAM is ~10× faster but ~1000× smaller than HBM.
-        The bottleneck is moving data between HBM and SRAM, not computation.
+        GPU memory hierarchy on A100. Data must flow through SRAM to reach compute.
+        The HBM→SRAM transfer is the bottleneck—not the computation itself.
     </figcaption>
 </figure>
 
@@ -240,10 +246,19 @@ The key insight: when we see a new block with a larger maximum, we can **rescale
 
 <figure class="d-figure">
     <div class="d-figure-content">
-        <img src="/img/flash-attention/flash_algorithm_schematic.png" alt="FlashAttention algorithm loop structure" style="max-width: 580px; width: 100%; height: auto; margin: 0 auto; display: block;">
+        <img src="/img/flash-attention/flash_algorithm_schematic.png" alt="FlashAttention algorithm loop structure" style="max-width: 520px; width: 100%; height: auto; margin: 0 auto; display: block;">
     </div>
     <figcaption class="d-figure-caption">
-        <strong>FlashAttention loop structure.</strong> The outer loop iterates over K,V blocks (copying to SRAM). The inner loop iterates over Q blocks, computing attention on SRAM and writing output to HBM. The N×N attention matrix QK<sup>T</sup> is never fully materialized.
+        <strong>FlashAttention loop structure.</strong> The outer loop (orange) iterates over K,V blocks, loading them to SRAM. The inner loop (blue) iterates over Q blocks, computing attention in SRAM and writing output to HBM.
+    </figcaption>
+</figure>
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <div id="flash-algorithm-interactive"></div>
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Interactive:</strong> Step through the algorithm to see data flow between HBM and SRAM. Press Play or use Step to advance.
     </figcaption>
 </figure>
 
@@ -252,24 +267,31 @@ Here's the FlashAttention forward pass:
 <div class="algo-box">
 <div class="algo-title">FlashAttention Forward Pass</div>
 
-**Input:** Q, K, V in HBM, block sizes $B_r$, $B_c$
+**Input:** Matrices $Q, K, V \in \mathbb{R}^{N \times d}$ in HBM, block sizes $B_r, B_c$
 
-**Output:** O (attention output)
+**Output:** $O \in \mathbb{R}^{N \times d}$
 
-1. Divide Q into $T_r = \lceil N/B_r \rceil$ blocks, K,V into $T_c = \lceil N/B_c \rceil$ blocks
-2. Initialize O = 0, ℓ = 0, m = -∞ in HBM
+1. Divide $Q$ into $T\_r = \lceil N/B\_r \rceil$ blocks, $K, V$ into $T\_c = \lceil N/B\_c \rceil$ blocks
 
-3. **For** each K,V block j = 1, ..., $T_c$:
-   - Load $K_j$, $V_j$ from HBM to SRAM
+2. Initialize $O = 0$, $\ell = 0$, $m = -\infty$ in HBM
 
-4. &nbsp;&nbsp;&nbsp;&nbsp;**For** each Q block i = 1, ..., $T_r$:
-   - Load $Q_i$, $O_i$, $\ell_i$, $m_i$ from HBM to SRAM
-   - Compute $S_{ij} = Q_i K_j^T$ (in SRAM)
-   - Compute $\tilde{m}_{ij} = \text{rowmax}(S_{ij})$, $\tilde{P}_{ij} = \exp(S_{ij} - \tilde{m}_{ij})$, $\tilde{\ell}_{ij} = \text{rowsum}(\tilde{P}_{ij})$
-   - Update $m_i^{new}$, $\ell_i^{new}$, $O_i$ using online softmax rules
-   - Write $O_i$, $\ell_i$, $m_i$ to HBM
+3. **For** $j = 1, \ldots, T\_c$ (outer loop over K, V):
 
-5. Return O
+   - Load $K\_j, V\_j$ from HBM to SRAM
+
+4. **For** $i = 1, \ldots, T\_r$ (inner loop over Q):
+
+   - Load $Q\_i, O\_i, \ell\_i, m\_i$ from HBM to SRAM
+   - On chip, compute $S\_{ij} = Q\_i K\_j^T \in \mathbb{R}^{B\_r \times B\_c}$
+   - On chip, compute:
+     - $\tilde{m}\_{ij} = \text{rowmax}(S\_{ij}) \in \mathbb{R}^{B\_r}$
+     - $\tilde{P}\_{ij} = \exp(S\_{ij} - \tilde{m}\_{ij}) \in \mathbb{R}^{B\_r \times B\_c}$
+     - $\tilde{\ell}\_{ij} = \text{rowsum}(\tilde{P}\_{ij}) \in \mathbb{R}^{B\_r}$
+   - Update $m\_i^{\text{new}}, \ell\_i^{\text{new}}, O\_i$ using online softmax
+   - Write $O\_i, \ell\_i, m\_i$ to HBM
+
+5. Return $O$
+
 </div>
 
 The critical property: the $N \times N$ attention matrix $S$ is **never fully materialized** in HBM. Each block $S_{ij}$ exists only briefly in SRAM.

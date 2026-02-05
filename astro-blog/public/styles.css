@@ -2498,108 +2498,111 @@ pre code {
    FLASHATTENTION STYLES
    ============================================ */
 
-/* Memory Hierarchy Diagram */
-.mem-hierarchy-diagram {
+/* Memory Flow Diagram */
+.mem-flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 10px;
+    flex-wrap: wrap;
+}
+
+.mem-flow-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 24px;
+    gap: 6px;
 }
 
-.mem-hierarchy-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.mem-box {
-    padding: 16px 24px;
+.mem-flow-box {
+    padding: 14px 20px;
     border-radius: 8px;
     text-align: center;
-    min-width: 100px;
+    min-width: 90px;
 }
 
-.mem-box.sram {
+.mem-flow-box.hbm {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 2px solid #2196f3;
+}
+
+.mem-flow-box.sram {
     background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
     border: 2px solid #4caf50;
 }
 
-.mem-box.compute {
+.mem-flow-box.compute {
     background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
     border: 2px solid #ff9800;
 }
 
-.mem-box.hbm {
-    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-    border: 2px solid #2196f3;
-    min-width: 200px;
-}
-
-.mem-box-label {
+.mem-flow-label {
     font-family: var(--font-heading);
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 4px;
 }
 
-.mem-box-size {
+.mem-flow-spec {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 12px;
     color: var(--color-gray);
 }
 
-.mem-box-note {
+.mem-flow-desc {
     font-size: 11px;
     color: var(--color-gray-light);
-    margin-top: 4px;
+    text-align: center;
 }
 
-.mem-arrow {
+.mem-flow-arrow {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    padding: 0 4px;
 }
 
-.arrow-label {
+.mem-flow-bw {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: #2e7d32;
     font-weight: 600;
 }
 
-.arrow-icon {
+.mem-flow-icon {
     font-size: 20px;
-    color: #4caf50;
+    line-height: 1;
 }
 
-.mem-hierarchy-connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px 0;
+.mem-flow-note {
+    font-size: 10px;
 }
 
-.mem-hierarchy-connector::before {
-    content: '';
-    width: 2px;
-    height: 20px;
-    background: #2196f3;
-}
-
-.connector-bandwidth {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: #1565c0;
-    font-weight: 600;
-    margin-top: 4px;
-}
-
-.connector-label {
-    font-size: 11px;
+.mem-flow-arrow.slow .mem-flow-bw,
+.mem-flow-arrow.slow .mem-flow-icon {
     color: #c62828;
-    font-weight: 500;
+}
+
+.mem-flow-arrow.slow .mem-flow-note {
+    color: #c62828;
+    font-weight: 600;
+}
+
+.mem-flow-arrow.fast .mem-flow-bw,
+.mem-flow-arrow.fast .mem-flow-icon {
+    color: #2e7d32;
+}
+
+.mem-flow-arrow.fast .mem-flow-note {
+    color: #2e7d32;
+}
+
+@media (max-width: 500px) {
+    .mem-flow-diagram {
+        flex-direction: column;
+    }
+    .mem-flow-arrow {
+        transform: rotate(90deg);
+    }
 }
 
 /* Algorithm Steps */
@@ -2868,4 +2871,319 @@ pre code {
 .takeaway-content {
     font-size: 14px;
     line-height: 1.6;
+}
+
+/* FlashAttention Algorithm Interactive */
+#flash-algorithm-interactive {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.flash-algo-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.flash-algo-btn {
+    padding: 6px 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.flash-algo-btn:hover {
+    background: #f0f0f0;
+}
+
+.flash-algo-status {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-gray);
+    padding: 4px 10px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.flash-algo-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.flash-algo-hbm {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 2px solid #2196f3;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.flash-algo-hbm-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    color: #1565c0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+.flash-algo-matrices {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.flash-algo-matrix-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.flash-algo-matrix-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.flash-algo-matrix {
+    display: flex;
+    gap: 3px;
+    padding: 6px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #90caf9;
+}
+
+.flash-algo-block {
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    border: 1px solid #bdbdbd;
+    transition: all 0.2s;
+}
+
+.flash-algo-block.loading {
+    background: #fff59d;
+    border-color: #fbc02d;
+    animation: pulse-yellow 0.5s ease-in-out;
+}
+
+.flash-algo-block.in-sram {
+    background: #a5d6a7;
+    border-color: #4caf50;
+}
+
+.flash-algo-block.active {
+    background: #81c784;
+    border-color: #388e3c;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+.flash-algo-block.computed {
+    background: #90caf9;
+    border-color: #1976d2;
+}
+
+@keyframes pulse-yellow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.flash-algo-transfer {
+    display: flex;
+    justify-content: center;
+    min-height: 30px;
+}
+
+.transfer-arrow {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 4px;
+    animation: bounce 0.4s ease-in-out infinite alternate;
+}
+
+.transfer-arrow.down {
+    color: #e65100;
+    background: #fff3e0;
+}
+
+.transfer-arrow.up {
+    color: #1565c0;
+    background: #e3f2fd;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(-2px); }
+    100% { transform: translateY(2px); }
+}
+
+.flash-algo-sram {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.flash-algo-sram-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    color: #2e7d32;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+.flash-algo-sram-content {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    min-height: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sram-empty {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #81c784;
+    font-style: italic;
+}
+
+.sram-block {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: white;
+    border: 2px solid #81c784;
+    color: #2e7d32;
+}
+
+.sram-block.loading {
+    border-color: #fbc02d;
+    background: #fffde7;
+    color: #f57f17;
+}
+
+.sram-block.active {
+    border-color: #388e3c;
+    background: #e8f5e9;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.3);
+}
+
+.sram-block.fading {
+    opacity: 0.6;
+    border-style: dashed;
+}
+
+.flash-algo-compute {
+    margin-top: 10px;
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.compute-op {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 12px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #81c784;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compute-op.step2 {
+    background: #f1f8e9;
+}
+
+.compute-op.done {
+    color: #2e7d32;
+    border-color: #4caf50;
+}
+
+.compute-done {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.compute-formula {
+    color: var(--color-text);
+}
+
+.compute-arrow {
+    color: #66bb6a;
+}
+
+.flash-algo-loops {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.flash-algo-loop {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.flash-algo-loop.outer-loop {
+    background: #fff3e0;
+    border: 1px solid #ff9800;
+}
+
+.flash-algo-loop.inner-loop {
+    background: #e8eaf6;
+    border: 1px solid #5c6bc0;
+}
+
+.loop-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.loop-value {
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+.outer-loop .loop-value {
+    color: #e65100;
+}
+
+.inner-loop .loop-value {
+    color: #3949ab;
+}
+
+.loop-desc {
+    color: var(--color-gray);
+    font-size: 11px;
 }

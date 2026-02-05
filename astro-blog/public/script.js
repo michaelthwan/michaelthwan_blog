@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPositionalEncodingViz();
     initNormDistributionViz();
     initTilingInteractive();
+    initFlashAlgorithmInteractive();
 });
 
 /**
@@ -654,5 +655,279 @@ function initTilingInteractive() {
     });
 
     // Initial render
+    updateVisualization(0);
+}
+
+/**
+ * FlashAttention Algorithm Interactive - Shows nested loop structure
+ */
+function initFlashAlgorithmInteractive() {
+    const container = document.getElementById('flash-algorithm-interactive');
+    if (!container) return;
+
+    const config = {
+        numBlocks: 4,  // 4x4 blocks
+        currentOuter: -1,
+        currentInner: -1,
+        phase: 'idle', // idle, load_kv, load_q, compute, write_o
+        step: 0,
+        maxSteps: 80
+    };
+
+    container.innerHTML = `
+        <div class="flash-algo-controls">
+            <button id="flash-algo-play" class="flash-algo-btn">▶ Play</button>
+            <button id="flash-algo-step" class="flash-algo-btn">Step</button>
+            <button id="flash-algo-reset" class="flash-algo-btn">Reset</button>
+            <span class="flash-algo-status" id="flash-algo-status">Ready</span>
+        </div>
+        <div class="flash-algo-layout">
+            <div class="flash-algo-hbm">
+                <div class="flash-algo-hbm-label">HBM (Slow)</div>
+                <div class="flash-algo-matrices">
+                    <div class="flash-algo-matrix-wrap">
+                        <div class="flash-algo-matrix-label">Q</div>
+                        <div class="flash-algo-matrix q-matrix" id="q-matrix"></div>
+                    </div>
+                    <div class="flash-algo-matrix-wrap">
+                        <div class="flash-algo-matrix-label">K<sup>T</sup></div>
+                        <div class="flash-algo-matrix k-matrix" id="k-matrix"></div>
+                    </div>
+                    <div class="flash-algo-matrix-wrap">
+                        <div class="flash-algo-matrix-label">V</div>
+                        <div class="flash-algo-matrix v-matrix" id="v-matrix"></div>
+                    </div>
+                    <div class="flash-algo-matrix-wrap">
+                        <div class="flash-algo-matrix-label">Output</div>
+                        <div class="flash-algo-matrix o-matrix" id="o-matrix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flash-algo-transfer" id="flash-algo-transfer"></div>
+            <div class="flash-algo-sram">
+                <div class="flash-algo-sram-label">SRAM (Fast)</div>
+                <div class="flash-algo-sram-content" id="sram-content">
+                    <div class="sram-empty">Empty</div>
+                </div>
+                <div class="flash-algo-compute" id="compute-area"></div>
+            </div>
+        </div>
+        <div class="flash-algo-loops">
+            <div class="flash-algo-loop outer-loop">
+                <span class="loop-label">Outer loop (j):</span>
+                <span class="loop-value" id="outer-loop-val">—</span>
+                <span class="loop-desc">K, V blocks</span>
+            </div>
+            <div class="flash-algo-loop inner-loop">
+                <span class="loop-label">Inner loop (i):</span>
+                <span class="loop-value" id="inner-loop-val">—</span>
+                <span class="loop-desc">Q blocks</span>
+            </div>
+        </div>
+    `;
+
+    // Build matrices
+    const qMatrix = document.getElementById('q-matrix');
+    const kMatrix = document.getElementById('k-matrix');
+    const vMatrix = document.getElementById('v-matrix');
+    const oMatrix = document.getElementById('o-matrix');
+    const sramContent = document.getElementById('sram-content');
+    const computeArea = document.getElementById('compute-area');
+    const transferArea = document.getElementById('flash-algo-transfer');
+    const statusEl = document.getElementById('flash-algo-status');
+    const outerLoopVal = document.getElementById('outer-loop-val');
+    const innerLoopVal = document.getElementById('inner-loop-val');
+
+    function buildMatrix(container, id, isVertical) {
+        container.innerHTML = '';
+        for (let i = 0; i < config.numBlocks; i++) {
+            const block = document.createElement('div');
+            block.className = 'flash-algo-block';
+            block.dataset.index = i;
+            block.dataset.matrix = id;
+            container.appendChild(block);
+        }
+        container.style.flexDirection = isVertical ? 'column' : 'row';
+    }
+
+    buildMatrix(qMatrix, 'q', true);
+    buildMatrix(kMatrix, 'k', false);
+    buildMatrix(vMatrix, 'v', true);
+    buildMatrix(oMatrix, 'o', true);
+
+    let isPlaying = false;
+    let playInterval = null;
+
+    const playBtn = document.getElementById('flash-algo-play');
+    const stepBtn = document.getElementById('flash-algo-step');
+    const resetBtn = document.getElementById('flash-algo-reset');
+
+    function getPhaseForStep(step) {
+        // Each block pair takes 4 phases: load_kv, load_q, compute, write_o
+        // Total iterations: numBlocks (outer) * numBlocks (inner) = 16
+        // Each iteration has 4 phases = 64 steps total + some setup
+
+        if (step === 0) return { phase: 'idle', outer: -1, inner: -1 };
+
+        const iterStep = step - 1;
+        const iteration = Math.floor(iterStep / 5);
+        const phaseInIter = iterStep % 5;
+
+        const outer = Math.floor(iteration / config.numBlocks);
+        const inner = iteration % config.numBlocks;
+
+        if (outer >= config.numBlocks) {
+            return { phase: 'done', outer: config.numBlocks - 1, inner: config.numBlocks - 1 };
+        }
+
+        const phases = ['load_kv', 'load_q', 'compute', 'compute2', 'write_o'];
+        return { phase: phases[phaseInIter], outer, inner };
+    }
+
+    function updateVisualization(step) {
+        const state = getPhaseForStep(step);
+        config.phase = state.phase;
+        config.currentOuter = state.outer;
+        config.currentInner = state.inner;
+
+        // Reset all blocks
+        document.querySelectorAll('.flash-algo-block').forEach(b => {
+            b.classList.remove('active', 'in-sram', 'computed', 'loading');
+        });
+
+        // Update loop indicators
+        outerLoopVal.textContent = state.outer >= 0 ? `j = ${state.outer}` : '—';
+        innerLoopVal.textContent = state.inner >= 0 ? `i = ${state.inner}` : '—';
+
+        // Highlight active blocks based on phase
+        if (state.phase === 'idle') {
+            statusEl.textContent = 'Ready - Press Play';
+            sramContent.innerHTML = '<div class="sram-empty">Empty</div>';
+            computeArea.innerHTML = '';
+            transferArea.innerHTML = '';
+        } else if (state.phase === 'done') {
+            statusEl.textContent = 'Complete!';
+            // Mark all output as computed
+            oMatrix.querySelectorAll('.flash-algo-block').forEach(b => b.classList.add('computed'));
+            sramContent.innerHTML = '<div class="sram-empty">Empty</div>';
+            computeArea.innerHTML = '<div class="compute-done">✓ All blocks processed</div>';
+            transferArea.innerHTML = '';
+        } else {
+            // Mark K, V blocks for current outer loop
+            const kBlock = kMatrix.querySelector(`[data-index="${state.outer}"]`);
+            const vBlock = vMatrix.querySelector(`[data-index="${state.outer}"]`);
+
+            // Mark Q block for current inner loop
+            const qBlock = qMatrix.querySelector(`[data-index="${state.inner}"]`);
+
+            // Mark completed output blocks
+            for (let o = 0; o < state.outer; o++) {
+                oMatrix.querySelectorAll('.flash-algo-block').forEach(b => b.classList.add('computed'));
+            }
+            for (let i = 0; i < state.inner; i++) {
+                const oBlock = oMatrix.querySelector(`[data-index="${i}"]`);
+                if (oBlock) oBlock.classList.add('computed');
+            }
+
+            if (state.phase === 'load_kv') {
+                statusEl.textContent = `Loading K[${state.outer}], V[${state.outer}] to SRAM`;
+                if (kBlock) kBlock.classList.add('loading');
+                if (vBlock) vBlock.classList.add('loading');
+                transferArea.innerHTML = '<div class="transfer-arrow down">↓ K, V</div>';
+                sramContent.innerHTML = `
+                    <div class="sram-block loading">K<sub>${state.outer}</sub></div>
+                    <div class="sram-block loading">V<sub>${state.outer}</sub></div>
+                `;
+                computeArea.innerHTML = '';
+            } else if (state.phase === 'load_q') {
+                statusEl.textContent = `Loading Q[${state.inner}] to SRAM`;
+                if (kBlock) kBlock.classList.add('in-sram');
+                if (vBlock) vBlock.classList.add('in-sram');
+                if (qBlock) qBlock.classList.add('loading');
+                transferArea.innerHTML = '<div class="transfer-arrow down">↓ Q</div>';
+                sramContent.innerHTML = `
+                    <div class="sram-block active">K<sub>${state.outer}</sub></div>
+                    <div class="sram-block active">V<sub>${state.outer}</sub></div>
+                    <div class="sram-block loading">Q<sub>${state.inner}</sub></div>
+                `;
+                computeArea.innerHTML = '';
+            } else if (state.phase === 'compute' || state.phase === 'compute2') {
+                statusEl.textContent = `Computing S = Q[${state.inner}]·K[${state.outer}]ᵀ, then softmax·V`;
+                if (kBlock) kBlock.classList.add('in-sram');
+                if (vBlock) vBlock.classList.add('in-sram');
+                if (qBlock) qBlock.classList.add('in-sram');
+                transferArea.innerHTML = '';
+                sramContent.innerHTML = `
+                    <div class="sram-block active">K<sub>${state.outer}</sub></div>
+                    <div class="sram-block active">V<sub>${state.outer}</sub></div>
+                    <div class="sram-block active">Q<sub>${state.inner}</sub></div>
+                `;
+                computeArea.innerHTML = `
+                    <div class="compute-op ${state.phase === 'compute2' ? 'step2' : ''}">
+                        <span class="compute-formula">S<sub>${state.inner}${state.outer}</sub> = Q<sub>${state.inner}</sub>·K<sub>${state.outer}</sub><sup>T</sup></span>
+                        <span class="compute-arrow">→</span>
+                        <span class="compute-formula">O<sub>${state.inner}</sub> += softmax(S)·V<sub>${state.outer}</sub></span>
+                    </div>
+                `;
+            } else if (state.phase === 'write_o') {
+                statusEl.textContent = `Writing O[${state.inner}] to HBM`;
+                if (kBlock) kBlock.classList.add('in-sram');
+                if (vBlock) vBlock.classList.add('in-sram');
+                const oBlock = oMatrix.querySelector(`[data-index="${state.inner}"]`);
+                if (oBlock) oBlock.classList.add('loading');
+                transferArea.innerHTML = '<div class="transfer-arrow up">↑ O</div>';
+                sramContent.innerHTML = `
+                    <div class="sram-block active">K<sub>${state.outer}</sub></div>
+                    <div class="sram-block active">V<sub>${state.outer}</sub></div>
+                    <div class="sram-block fading">O<sub>${state.inner}</sub></div>
+                `;
+                computeArea.innerHTML = '<div class="compute-op done">✓ Block complete</div>';
+            }
+        }
+    }
+
+    function advanceStep() {
+        config.step++;
+        if (config.step > config.maxSteps) {
+            config.step = config.maxSteps;
+            stopPlaying();
+        }
+        updateVisualization(config.step);
+    }
+
+    function stopPlaying() {
+        if (playInterval) {
+            clearInterval(playInterval);
+            playInterval = null;
+        }
+        isPlaying = false;
+        playBtn.textContent = '▶ Play';
+    }
+
+    playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            stopPlaying();
+        } else {
+            if (config.step >= config.maxSteps) {
+                config.step = 0;
+            }
+            isPlaying = true;
+            playBtn.textContent = '⏸ Pause';
+            playInterval = setInterval(advanceStep, 400);
+        }
+    });
+
+    stepBtn.addEventListener('click', () => {
+        stopPlaying();
+        advanceStep();
+    });
+
+    resetBtn.addEventListener('click', () => {
+        stopPlaying();
+        config.step = 0;
+        updateVisualization(0);
+    });
+
+    // Initial state
     updateVisualization(0);
 }
