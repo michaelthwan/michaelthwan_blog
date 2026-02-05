@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTOCHighlighting();
     initPositionalEncodingViz();
     initNormDistributionViz();
+    initTilingInteractive();
 });
 
 /**
@@ -474,4 +475,184 @@ function gaussianRandom(mean, std) {
     const u2 = Math.random();
     const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
     return mean + z * std;
+}
+
+/**
+ * FlashAttention - Tiling Interactive Visualization
+ */
+function initTilingInteractive() {
+    const container = document.getElementById('tiling-interactive');
+    if (!container) return;
+
+    const config = {
+        matrixSize: 16,
+        blockSize: 4,
+        currentStep: 0,
+        maxSteps: 20
+    };
+
+    // Create UI
+    container.innerHTML = `
+        <div class="tiling-controls">
+            <div class="tiling-slider-group">
+                <label>Step:</label>
+                <input type="range" id="tiling-step-slider" min="0" max="${config.maxSteps}" value="0">
+                <span class="tiling-step-label" id="tiling-step-label">Start</span>
+            </div>
+            <button id="tiling-play-btn" style="padding: 6px 16px; border-radius: 4px; border: 1px solid #ccc; background: white; cursor: pointer;">
+                ▶ Play
+            </button>
+        </div>
+        <div class="tiling-comparison">
+            <div class="tiling-panel">
+                <div class="tiling-panel-title standard">Standard Attention</div>
+                <div class="matrix-viz" id="standard-matrix"></div>
+                <div class="tiling-stats" id="standard-stats"></div>
+            </div>
+            <div class="tiling-panel">
+                <div class="tiling-panel-title flash">FlashAttention</div>
+                <div class="matrix-viz" id="flash-matrix"></div>
+                <div class="tiling-stats" id="flash-stats"></div>
+            </div>
+        </div>
+        <div class="tiling-description" id="tiling-desc"></div>
+    `;
+
+    const slider = document.getElementById('tiling-step-slider');
+    const stepLabel = document.getElementById('tiling-step-label');
+    const playBtn = document.getElementById('tiling-play-btn');
+    const standardMatrix = document.getElementById('standard-matrix');
+    const flashMatrix = document.getElementById('flash-matrix');
+    const standardStats = document.getElementById('standard-stats');
+    const flashStats = document.getElementById('flash-stats');
+    const descEl = document.getElementById('tiling-desc');
+
+    let isPlaying = false;
+    let playInterval = null;
+
+    function createMatrixGrid(container, size) {
+        container.innerHTML = '';
+        const grid = document.createElement('div');
+        grid.className = 'matrix-grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+        for (let i = 0; i < size * size; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'matrix-cell empty';
+            cell.dataset.index = i;
+            grid.appendChild(cell);
+        }
+        container.appendChild(grid);
+        return grid;
+    }
+
+    const standardGrid = createMatrixGrid(standardMatrix, config.matrixSize);
+    const flashGrid = createMatrixGrid(flashMatrix, config.matrixSize);
+
+    function updateVisualization(step) {
+        const cells = config.matrixSize * config.matrixSize;
+        const progress = step / config.maxSteps;
+
+        // Standard attention: fills entire matrix, keeps it all in HBM
+        const standardCells = standardGrid.querySelectorAll('.matrix-cell');
+        const standardFilled = Math.floor(progress * cells);
+
+        standardCells.forEach((cell, i) => {
+            if (i < standardFilled) {
+                cell.className = 'matrix-cell in-hbm';
+            } else if (i === standardFilled && step > 0) {
+                cell.className = 'matrix-cell current';
+            } else {
+                cell.className = 'matrix-cell empty';
+            }
+        });
+
+        // FlashAttention: processes in blocks, only current block in SRAM
+        const flashCells = flashGrid.querySelectorAll('.matrix-cell');
+        const blocksPerRow = config.matrixSize / config.blockSize;
+        const totalBlocks = blocksPerRow * blocksPerRow;
+        const currentBlock = Math.floor(progress * totalBlocks);
+
+        flashCells.forEach((cell, i) => {
+            const row = Math.floor(i / config.matrixSize);
+            const col = i % config.matrixSize;
+            const blockRow = Math.floor(row / config.blockSize);
+            const blockCol = Math.floor(col / config.blockSize);
+            const blockIndex = blockRow * blocksPerRow + blockCol;
+
+            if (blockIndex < currentBlock) {
+                cell.className = 'matrix-cell computed';
+            } else if (blockIndex === currentBlock && step > 0) {
+                cell.className = 'matrix-cell in-sram';
+            } else {
+                cell.className = 'matrix-cell empty';
+            }
+        });
+
+        // Update stats
+        const hbmUsedStandard = standardFilled > 0 ? `${standardFilled} cells` : '0';
+        const hbmUsedFlash = currentBlock > 0 ? `${config.blockSize * config.blockSize} cells` : '0';
+
+        standardStats.innerHTML = `HBM usage: <span class="bad">${hbmUsedStandard}</span> (grows with N²)`;
+        flashStats.innerHTML = `SRAM usage: <span class="good">${hbmUsedFlash}</span> (constant block size)`;
+
+        // Update description
+        const descriptions = [
+            'Start: Both methods need to compute the N×N attention matrix.',
+            'Standard attention computes and stores the entire matrix in HBM...',
+            'Each cell computed is written to slow HBM memory.',
+            'The full matrix grows quadratically with sequence length.',
+            'FlashAttention processes one block at a time in fast SRAM.',
+            'Only the current block needs to fit in SRAM.',
+            'Previous blocks are processed and discarded from SRAM.',
+            'Output is accumulated incrementally using online softmax.',
+            'Memory usage stays constant regardless of sequence length!',
+            'Standard attention: O(N²) memory. FlashAttention: O(block size).'
+        ];
+
+        const descIndex = Math.min(Math.floor(step / 2), descriptions.length - 1);
+        descEl.textContent = descriptions[descIndex];
+
+        // Update label
+        if (step === 0) {
+            stepLabel.textContent = 'Start';
+        } else if (step === config.maxSteps) {
+            stepLabel.textContent = 'Done';
+        } else {
+            stepLabel.textContent = `Step ${step}`;
+        }
+    }
+
+    slider.addEventListener('input', (e) => {
+        config.currentStep = parseInt(e.target.value);
+        updateVisualization(config.currentStep);
+    });
+
+    playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            clearInterval(playInterval);
+            playBtn.textContent = '▶ Play';
+            isPlaying = false;
+        } else {
+            if (config.currentStep >= config.maxSteps) {
+                config.currentStep = 0;
+                slider.value = 0;
+            }
+            isPlaying = true;
+            playBtn.textContent = '⏸ Pause';
+            playInterval = setInterval(() => {
+                config.currentStep++;
+                slider.value = config.currentStep;
+                updateVisualization(config.currentStep);
+                if (config.currentStep >= config.maxSteps) {
+                    clearInterval(playInterval);
+                    playBtn.textContent = '▶ Play';
+                    isPlaying = false;
+                }
+            }, 300);
+        }
+    });
+
+    // Initial render
+    updateVisualization(0);
 }

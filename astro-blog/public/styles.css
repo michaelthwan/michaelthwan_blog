@@ -2493,3 +2493,379 @@ pre code {
 .d-legend-dot.patch {
     background: #2196f3;
 }
+
+/* ============================================
+   FLASHATTENTION STYLES
+   ============================================ */
+
+/* Memory Hierarchy Diagram */
+.mem-hierarchy-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px;
+}
+
+.mem-hierarchy-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mem-box {
+    padding: 16px 24px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.mem-box.sram {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 2px solid #4caf50;
+}
+
+.mem-box.compute {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px solid #ff9800;
+}
+
+.mem-box.hbm {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 2px solid #2196f3;
+    min-width: 200px;
+}
+
+.mem-box-label {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.mem-box-size {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-gray);
+}
+
+.mem-box-note {
+    font-size: 11px;
+    color: var(--color-gray-light);
+    margin-top: 4px;
+}
+
+.mem-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.arrow-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.arrow-icon {
+    font-size: 20px;
+    color: #4caf50;
+}
+
+.mem-hierarchy-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.mem-hierarchy-connector::before {
+    content: '';
+    width: 2px;
+    height: 20px;
+    background: #2196f3;
+}
+
+.connector-bandwidth {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #1565c0;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.connector-label {
+    font-size: 11px;
+    color: #c62828;
+    font-weight: 500;
+}
+
+/* Algorithm Steps */
+.algo-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.algo-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #e0e0e0;
+}
+
+.algo-step.bad {
+    background: #fff5f5;
+    border-left-color: #ef5350;
+}
+
+.step-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.algo-step.bad .step-num {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+.step-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.mem-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.mem-tag.hbm {
+    background: #e8eaf6;
+    color: #3949ab;
+}
+
+.mem-tag.compute {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Tiling Interactive */
+#tiling-interactive {
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.tiling-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tiling-slider-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tiling-slider-group label {
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+.tiling-slider-group input[type="range"] {
+    width: 200px;
+}
+
+.tiling-step-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-link);
+    min-width: 80px;
+}
+
+.tiling-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 600px) {
+    .tiling-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tiling-panel {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.tiling-panel-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.tiling-panel-title.standard {
+    color: #c62828;
+}
+
+.tiling-panel-title.flash {
+    color: #2e7d32;
+}
+
+.matrix-viz {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.matrix-grid {
+    display: grid;
+    gap: 2px;
+}
+
+.matrix-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    transition: background-color 0.15s, transform 0.15s;
+}
+
+.matrix-cell.empty {
+    background: #f0f0f0;
+}
+
+.matrix-cell.computed {
+    background: #ffcdd2;
+}
+
+.matrix-cell.in-hbm {
+    background: #ef5350;
+}
+
+.matrix-cell.in-sram {
+    background: #66bb6a;
+    transform: scale(1.1);
+}
+
+.matrix-cell.current {
+    background: #26a69a;
+    transform: scale(1.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.tiling-stats {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-gray);
+    text-align: center;
+}
+
+.tiling-stats .bad {
+    color: #c62828;
+}
+
+.tiling-stats .good {
+    color: #2e7d32;
+}
+
+.tiling-description {
+    margin-top: 16px;
+    padding: 12px;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--color-text-light);
+    text-align: center;
+}
+
+/* Algorithm Box */
+.algo-box {
+    background: #f8f9fa;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.algo-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.algo-box ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.algo-box li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Takeaways */
+.takeaways {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.takeaway {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: #f0f7ff;
+    border-radius: 8px;
+    border-left: 4px solid #1976d2;
+}
+
+.takeaway-num {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: #1976d2;
+    flex-shrink: 0;
+}
+
+.takeaway-content {
+    font-size: 14px;
+    line-height: 1.6;
+}

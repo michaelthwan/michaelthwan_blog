@@ -27,7 +27,13 @@
       "Bash(git commit:*)",
       "WebFetch(domain:arxiv.org)",
       "WebSearch",
-      "Bash(ls -la \"C:\\\\github\\\\mw_knowledge_blog\\\\astro-blog\\\\public\\\\img\\\\vit-registers\"\" 2>&1 || echo \"Folder empty or missing \")"
+      "Bash(ls -la \"C:\\\\github\\\\mw_knowledge_blog\\\\astro-blog\\\\public\\\\img\\\\vit-registers\"\" 2>&1 || echo \"Folder empty or missing \")",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:crfm.stanford.edu)",
+      "WebFetch(domain:www.digitalocean.com)",
+      "Bash(del \"C:\\\\github\\\\mw_knowledge_blog\\\\astro-blog\\\\public\\\\img\\\\flash-attention\\\\thumbnail.png\")",
+      "WebFetch(domain:gordicaleksa.medium.com)",
+      "WebFetch(domain:shreyansh26.github.io)"
     ]
   }
 }
