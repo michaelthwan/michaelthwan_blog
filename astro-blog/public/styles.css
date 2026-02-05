@@ -1607,13 +1607,46 @@ pre code {
     height: 40px;
     border-radius: 8px;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid var(--color-border);
+}
+
+/* Section headings (Experience / Education) */
+.timeline-section-title {
     font-family: var(--font-heading);
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 20px 0;
+}
+
+/* Education degree line */
+.timeline-edu-degree {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-light);
+    margin: 2px 0 0 0;
+}
+
+/* Skill tags */
+.timeline-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    margin-left: 54px;
+}
+
+.timeline-skill-tag {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--color-gray);
+    background: #f4f4f4;
+    border: 1px solid var(--color-border);
+    padding: 3px 10px;
+    border-radius: 14px;
 }
 
 .timeline-role {
@@ -1696,7 +1729,8 @@ pre code {
     }
 
     .timeline-achievements,
-    .timeline-desc {
+    .timeline-desc,
+    .timeline-skills {
         margin-left: 0;
     }
 }

@@ -15,6 +15,7 @@ abstract: "Pre-training deep bidirectional representations for language understa
 tags:
   - "explainer"
 category: "ml"
+thumbnail: "/img/bert/fig1-pretraining-finetuning.png"
 ---
 
 <p class="d-note">

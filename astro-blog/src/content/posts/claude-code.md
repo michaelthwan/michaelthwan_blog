@@ -10,6 +10,7 @@ abstract: "How parallelism, plan-first thinking, and verification loops combine 
 tags:
   - "explainer"
 category: "dev"
+thumbnail: "/img/claude-code/plan-mode.png"
 ---
 
 <p class="d-note">

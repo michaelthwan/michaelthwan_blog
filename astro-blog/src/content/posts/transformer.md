@@ -16,6 +16,7 @@ abstract: "Understanding the building blocks and design choices of the Transform
 tags:
   - "explainer"
 category: "ml"
+thumbnail: "/img/transformer/fig1-architecture.png"
 ---
 
 <p class="d-note">
