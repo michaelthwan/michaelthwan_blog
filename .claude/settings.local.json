@@ -19,7 +19,10 @@
       "Bash(\"C:\\\\Users\\\\MW\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\python.exe\" --version)",
       "Bash(\"C:\\\\Users\\\\MW\\\\miniconda3\\\\python.exe\" --version)",
       "Bash(\"C:\\\\Users\\\\MW\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\python.exe\" -c \"\nimport importlib\nfor mod in [''pdfplumber'',''PyPDF2'',''pdf2image'',''PIL'',''fitz'']:\n    try:\n        importlib.import_module\\(mod\\)\n        print\\(f''{mod}: available''\\)\n    except:\n        print\\(f''{mod}: missing''\\)\n\")",
-      "Bash(conda create:*)"
+      "Bash(conda create:*)",
+      "Bash(vercel --version:*)",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel:*)"
     ]
   }
 }
