@@ -83,7 +83,7 @@ LEVELS = ["Entry", "Mid", "Senior", "Staff"]
 LEVEL_YOE = {"Entry": (0, 2), "Mid": (3, 5), "Senior": (5, 10), "Staff": (10, 20)}
 SAMPLES_PER_CELL = {"Entry": 80, "Mid": 120, "Senior": 100, "Staff": 50}
 
-BIN_WIDTH = 25000
+BIN_WIDTH = 12500
 
 
 def gauss(mean, std):

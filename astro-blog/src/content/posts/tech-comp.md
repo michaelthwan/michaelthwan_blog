@@ -1,5 +1,5 @@
 ---
-title: "The Trimodal Nature of Tech Compensation"
+title: "The Trimodal Nature of Tech Compensation in 2026"
 subtitle: "Why the tech salary market has three distinct tiers, and what drives the gaps."
 authors:
   - "Michael Wan"
