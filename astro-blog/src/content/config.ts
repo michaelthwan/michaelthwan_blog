@@ -13,7 +13,7 @@ const posts = defineCollection({
     abstract: z.string(),
     tags: z.array(z.string()).default(['explainer']),
     thumbnail: z.string().optional(),
-    category: z.enum(['ml', 'dev']).default('ml'),
+    category: z.enum(['ml', 'dev', 'business']).default('ml'),
   }),
 });
 

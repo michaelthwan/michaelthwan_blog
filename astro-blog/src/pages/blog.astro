@@ -13,6 +13,7 @@ const allPosts = (await getCollection('posts')).sort((a, b) => {
 // Split by category
 const mlPosts = allPosts.filter(post => post.data.category === 'ml');
 const devPosts = allPosts.filter(post => post.data.category === 'dev');
+const businessPosts = allPosts.filter(post => post.data.category === 'business');
 
 // Format date for display
 function formatDate(dateStr: string): string {
@@ -24,6 +25,7 @@ function formatDate(dateStr: string): string {
 const columns = [
     { posts: mlPosts, className: 'ml-column', title: 'Machine Learning', desc: 'Paper explainers, architectures, and the math behind modern AI' },
     { posts: devPosts, className: 'dev-column', title: 'Development', desc: 'Tools, workflows, and practical engineering insights' },
+    { posts: businessPosts, className: 'business-column', title: 'Business & Industry', desc: 'Compensation, industry trends, and career strategy through data' },
 ];
 ---
 

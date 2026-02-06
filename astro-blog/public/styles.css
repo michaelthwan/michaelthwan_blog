@@ -1130,13 +1130,14 @@ pre code {
     background: var(--color-bg);
 }
 
-/* Two-column index layout */
+/* Three-column index layout */
 .index-columns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 36px;
     padding-top: 32px;
     padding-bottom: 64px;
+    max-width: 1100px;
 }
 
 .index-column {
@@ -1163,6 +1164,10 @@ pre code {
 
 .dev-column .column-header {
     border-bottom-color: #e65100;
+}
+
+.business-column .column-header {
+    border-bottom-color: #7b1fa2;
 }
 
 .column-desc {
@@ -1211,8 +1216,15 @@ pre code {
     overflow: hidden;
 }
 
-/* Responsive: stack columns on mobile */
-@media (max-width: 768px) {
+/* Responsive: stack columns on tablet/mobile */
+@media (max-width: 960px) {
+    .index-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 640px) {
     .index-columns {
         grid-template-columns: 1fr;
         gap: 48px;
@@ -3159,4 +3171,223 @@ pre code {
 .loop-desc {
     color: var(--color-gray);
     font-size: 11px;
+}
+
+/* ============================================
+   COMPENSATION CHARTS & INTERACTIVE
+   ============================================ */
+
+/* Static chart canvases */
+.comp-chart-canvas {
+    width: 100%;
+    height: 280px;
+    display: block;
+}
+
+.comp-chart-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+}
+
+@media (max-width: 600px) {
+    .comp-chart-pair {
+        grid-template-columns: 1fr;
+    }
+}
+
+.comp-chart-pair canvas {
+    width: 100%;
+    height: 240px;
+}
+
+.comp-chart-label {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--color-text);
+}
+
+/* Tier Explorer Interactive */
+#comp-tier-explorer {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.comp-explorer-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.comp-select-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comp-select-group label {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.comp-select-group select {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+}
+
+.comp-explorer-legend {
+    display: flex;
+    gap: 14px;
+    margin-left: auto;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--color-gray);
+}
+
+.comp-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.comp-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.comp-canvas-wrap {
+    position: relative;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.comp-canvas-wrap canvas {
+    width: 100%;
+    height: 280px;
+    display: block;
+}
+
+.comp-tooltip {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.comp-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 500px) {
+    .comp-stats-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.comp-stat-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+}
+
+.comp-stat-tier {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.comp-stat-name {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    color: var(--color-gray);
+    margin-bottom: 8px;
+}
+
+.comp-stat-median {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 4px;
+}
+
+.comp-stat-range {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-gray);
+    margin-bottom: 4px;
+}
+
+.comp-stat-count {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    color: var(--color-gray-light);
+}
+
+/* Comparison table for US vs Canada */
+.comp-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+.comp-comparison-table th,
+.comp-comparison-table td {
+    padding: 10px 12px;
+    text-align: right;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.comp-comparison-table th {
+    font-weight: 600;
+    color: var(--color-gray);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.comp-comparison-table th:first-child,
+.comp-comparison-table td:first-child {
+    text-align: left;
+}
+
+.comp-comparison-table .tier-label {
+    font-weight: 600;
 }
