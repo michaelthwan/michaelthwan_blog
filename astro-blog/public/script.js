@@ -10,20 +10,50 @@ document.addEventListener('DOMContentLoaded', () => {
     initFlashAlgorithmInteractive();
 });
 
+/* ============================================
+   CANVAS UTILITIES
+   ============================================ */
+
 /**
- * Table of Contents - Active Section Highlighting
+ * Clear canvas with a background color and draw L-shaped axes
  */
+function clearAndDrawAxes(ctx, width, height, padding, opts = {}) {
+    const { bgColor = '#fafafa', axisColor = '#ccc' } = opts;
+
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.strokeStyle = axisColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, padding.top);
+    ctx.lineTo(padding.left, height - padding.bottom);
+    ctx.lineTo(width - padding.right, height - padding.bottom);
+    ctx.stroke();
+}
+
+/**
+ * Draw evenly spaced labels along the X axis
+ */
+function drawXLabels(ctx, labels, positions, y, opts = {}) {
+    const { color = '#999', font = '11px Inter, sans-serif', align = 'center' } = opts;
+    ctx.fillStyle = color;
+    ctx.font = font;
+    ctx.textAlign = align;
+    labels.forEach((label, i) => {
+        ctx.fillText(label, positions[i], y);
+    });
+}
+
+/* ============================================
+   TABLE OF CONTENTS - Active Section Highlighting
+   ============================================ */
+
 function initTOCHighlighting() {
     const tocLinks = document.querySelectorAll('.d-toc-list a');
     const sections = document.querySelectorAll('section[id]');
 
     if (!tocLinks.length || !sections.length) return;
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '-100px 0px -70% 0px',
-        threshold: 0
-    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -37,31 +67,38 @@ function initTOCHighlighting() {
                 }
             }
         });
-    }, observerOptions);
+    }, {
+        root: null,
+        rootMargin: '-100px 0px -70% 0px',
+        threshold: 0
+    });
 
     sections.forEach(section => observer.observe(section));
 }
 
-/**
- * Interactive Positional Encoding Visualization
- */
+/* ============================================
+   POSITIONAL ENCODING VISUALIZATION
+   ============================================ */
+
+const PE_CONFIG = {
+    numPositions: 30,
+    numDimensions: 32,
+    dModel: 64,
+    sampleDims: [0, 1, 2, 3, 14, 15, 30, 31],
+    xLabelStep: 8
+};
+
 function initPositionalEncodingViz() {
     const container = document.getElementById('pos-encoding-interactive');
     if (!container) return;
 
-    const config = {
-        numPositions: 30,
-        numDimensions: 32,
-        dModel: 64,
-        selectedPosition: 0
-    };
+    let selectedPosition = 0;
 
-    // Create the UI
     container.innerHTML = `
         <div class="pe-controls">
             <div class="pe-slider-group">
                 <label for="pe-position-slider">Position: <span id="pe-position-value">0</span></label>
-                <input type="range" id="pe-position-slider" min="0" max="${config.numPositions - 1}" value="0">
+                <input type="range" id="pe-position-slider" min="0" max="${PE_CONFIG.numPositions - 1}" value="0">
             </div>
             <div class="pe-info">
                 <span class="pe-info-item"><span class="pe-dot pe-sin"></span> sin (even dims)</span>
@@ -96,23 +133,21 @@ function initPositionalEncodingViz() {
     const valuesContainer = document.getElementById('pe-values');
 
     // Build the grid
-    grid.style.gridTemplateColumns = `repeat(${config.numDimensions}, 1fr)`;
+    grid.style.gridTemplateColumns = `repeat(${PE_CONFIG.numDimensions}, 1fr)`;
 
     const cells = [];
-    for (let pos = 0; pos < config.numPositions; pos++) {
+    for (let pos = 0; pos < PE_CONFIG.numPositions; pos++) {
         const row = [];
-        for (let dim = 0; dim < config.numDimensions; dim++) {
+        for (let dim = 0; dim < PE_CONFIG.numDimensions; dim++) {
             const cell = document.createElement('div');
             cell.className = 'pe-cell';
             cell.dataset.pos = pos;
             cell.dataset.dim = dim;
 
-            const value = computePE(pos, dim, config.dModel);
-            const normalizedValue = (value + 1) / 2;
-            cell.style.backgroundColor = valueToColor(normalizedValue);
+            const value = computePE(pos, dim, PE_CONFIG.dModel);
+            cell.style.backgroundColor = valueToColor((value + 1) / 2);
             cell.title = `pos=${pos}, dim=${dim}\nvalue=${value.toFixed(4)}`;
 
-            // Click to select position
             cell.addEventListener('click', () => {
                 slider.value = pos;
                 updateSelection(pos);
@@ -124,52 +159,35 @@ function initPositionalEncodingViz() {
         cells.push(row);
     }
 
-    // Slider interaction
     slider.addEventListener('input', (e) => {
         updateSelection(parseInt(e.target.value));
     });
 
     function updateSelection(pos) {
-        config.selectedPosition = pos;
+        selectedPosition = pos;
         positionLabel.textContent = pos;
         waveLabel.textContent = pos;
 
-        // Highlight selected row
         cells.forEach((row, rowIdx) => {
             row.forEach(cell => {
                 cell.classList.toggle('pe-cell-selected', rowIdx === pos);
             });
         });
 
-        // Draw wave chart
-        drawWaveChart(canvas, pos, config);
-
-        // Show values
-        showValues(valuesContainer, pos, config);
+        drawWaveChart(canvas, pos);
+        showValues(valuesContainer, pos);
     }
 
-    // Initial render
     updateSelection(0);
 }
 
-/**
- * Compute positional encoding value
- */
 function computePE(pos, dim, dModel) {
     const i = Math.floor(dim / 2);
     const wavelength = Math.pow(10000, (2 * i) / dModel);
-
-    if (dim % 2 === 0) {
-        return Math.sin(pos / wavelength);
-    } else {
-        return Math.cos(pos / wavelength);
-    }
+    return dim % 2 === 0 ? Math.sin(pos / wavelength) : Math.cos(pos / wavelength);
 }
 
-/**
- * Draw the wave chart for a given position
- */
-function drawWaveChart(canvas, pos, config) {
+function drawWaveChart(canvas, pos) {
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
@@ -177,24 +195,13 @@ function drawWaveChart(canvas, pos, config) {
     const chartWidth = width - padding.left - padding.right;
     const chartHeight = height - padding.top - padding.bottom;
 
-    // Clear
-    ctx.fillStyle = '#fafafa';
-    ctx.fillRect(0, 0, width, height);
-
-    // Draw axes
-    ctx.strokeStyle = '#ccc';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(padding.left, padding.top);
-    ctx.lineTo(padding.left, height - padding.bottom);
-    ctx.lineTo(width - padding.right, height - padding.bottom);
-    ctx.stroke();
+    clearAndDrawAxes(ctx, width, height, padding);
 
     // Draw zero line
+    const zeroY = padding.top + chartHeight / 2;
     ctx.strokeStyle = '#ddd';
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
-    const zeroY = padding.top + chartHeight / 2;
     ctx.moveTo(padding.left, zeroY);
     ctx.lineTo(width - padding.right, zeroY);
     ctx.stroke();
@@ -208,47 +215,39 @@ function drawWaveChart(canvas, pos, config) {
     ctx.fillText('0', padding.left - 5, zeroY + 3);
     ctx.fillText('-1', padding.left - 5, height - padding.bottom);
 
-    // Compute values
-    const values = [];
-    for (let dim = 0; dim < config.numDimensions; dim++) {
-        values.push(computePE(pos, dim, config.dModel));
-    }
+    // Compute values and draw bars
+    const barWidth = chartWidth / PE_CONFIG.numDimensions;
 
-    // Draw bars
-    const barWidth = chartWidth / config.numDimensions;
-
-    values.forEach((val, dim) => {
+    for (let dim = 0; dim < PE_CONFIG.numDimensions; dim++) {
+        const val = computePE(pos, dim, PE_CONFIG.dModel);
         const x = padding.left + dim * barWidth;
-        const barHeight = (val / 2) * chartHeight; // Scale -1..1 to chart height
-        const y = zeroY - barHeight;
+        const barHeight = (val / 2) * chartHeight;
 
-        // Color based on sin/cos
         ctx.fillStyle = dim % 2 === 0 ? '#e07b39' : '#4a90a4';
 
         if (val >= 0) {
-            ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
+            ctx.fillRect(x + 1, zeroY - barHeight, barWidth - 2, barHeight);
         } else {
             ctx.fillRect(x + 1, zeroY, barWidth - 2, -barHeight);
         }
-    });
+    }
 
     // X-axis labels
-    ctx.fillStyle = '#999';
-    ctx.textAlign = 'center';
-    for (let i = 0; i < config.numDimensions; i += 8) {
-        ctx.fillText(i.toString(), padding.left + i * barWidth + barWidth / 2, height - padding.bottom + 15);
+    const labels = [];
+    const positions = [];
+    for (let i = 0; i < PE_CONFIG.numDimensions; i += PE_CONFIG.xLabelStep) {
+        labels.push(i.toString());
+        positions.push(padding.left + i * barWidth + barWidth / 2);
     }
+    drawXLabels(ctx, labels, positions, height - padding.bottom + 15, { font: '10px Inter, sans-serif' });
 }
 
-/**
- * Show sample values
- */
-function showValues(container, pos, config) {
-    const samples = [0, 1, 2, 3, 14, 15, 30, 31].filter(d => d < config.numDimensions);
+function showValues(container, pos) {
+    const samples = PE_CONFIG.sampleDims.filter(d => d < PE_CONFIG.numDimensions);
 
     let html = '<div class="pe-values-grid">';
     samples.forEach(dim => {
-        const val = computePE(pos, dim, config.dModel);
+        const val = computePE(pos, dim, PE_CONFIG.dModel);
         const type = dim % 2 === 0 ? 'sin' : 'cos';
         const typeClass = dim % 2 === 0 ? 'pe-val-sin' : 'pe-val-cos';
         html += `
@@ -263,44 +262,48 @@ function showValues(container, pos, config) {
 }
 
 /**
- * Map value [0, 1] to diverging color scale
+ * Map value [0, 1] to diverging color scale (Blue -> White -> Orange)
  */
 function valueToColor(value) {
-    // Blue -> White -> Orange
     const blue = { r: 66, g: 133, b: 244 };
     const white = { r: 255, g: 255, b: 255 };
     const orange = { r: 234, g: 88, b: 12 };
 
-    let r, g, b;
-
+    let from, to, t;
     if (value < 0.5) {
-        const t = value * 2;
-        r = Math.round(blue.r + (white.r - blue.r) * t);
-        g = Math.round(blue.g + (white.g - blue.g) * t);
-        b = Math.round(blue.b + (white.b - blue.b) * t);
+        from = blue; to = white; t = value * 2;
     } else {
-        const t = (value - 0.5) * 2;
-        r = Math.round(white.r + (orange.r - white.r) * t);
-        g = Math.round(white.g + (orange.g - white.g) * t);
-        b = Math.round(white.b + (orange.b - white.b) * t);
+        from = white; to = orange; t = (value - 0.5) * 2;
     }
 
+    const r = Math.round(from.r + (to.r - from.r) * t);
+    const g = Math.round(from.g + (to.g - from.g) * t);
+    const b = Math.round(from.b + (to.b - from.b) * t);
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-/**
- * Interactive Norm Distribution Visualization for ViT Registers post
- */
+/* ============================================
+   NORM DISTRIBUTION VISUALIZATION
+   ============================================ */
+
+const NORM_CONFIG = {
+    numSamples: 500,
+    outlierRatio: 0.025,
+    normalMean: 50, normalStd: 20,
+    outlierMean: 180, outlierStd: 30,
+    binWidth: 10,
+    maxNorm: 300,
+    defaultThreshold: 150,
+    xLabelStep: 50
+};
+
 function initNormDistributionViz() {
     const container = document.getElementById('norm-distribution-interactive');
     if (!container) return;
 
-    // Simulate bimodal distribution data (based on paper's findings)
-    const numSamples = 500;
-    const data = generateBimodalNormData(numSamples);
-    let threshold = 150;
+    const data = generateBimodalNormData();
+    let threshold = NORM_CONFIG.defaultThreshold;
 
-    // Create UI
     container.innerHTML = `
         <div class="norm-controls">
             <div class="norm-slider-group">
@@ -346,34 +349,21 @@ function initNormDistributionViz() {
         const chartWidth = width - padding.left - padding.right;
         const chartHeight = height - padding.top - padding.bottom;
 
-        // Clear
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0, 0, width, height);
+        clearAndDrawAxes(ctx, width, height, padding, { bgColor: '#fff' });
 
         // Create histogram bins
-        const binWidth = 10;
-        const maxNorm = 300;
-        const numBins = maxNorm / binWidth;
+        const numBins = NORM_CONFIG.maxNorm / NORM_CONFIG.binWidth;
         const bins = new Array(numBins).fill(0);
 
         data.forEach(norm => {
-            const binIndex = Math.min(Math.floor(norm / binWidth), numBins - 1);
+            const binIndex = Math.min(Math.floor(norm / NORM_CONFIG.binWidth), numBins - 1);
             bins[binIndex]++;
         });
 
         const maxBinCount = Math.max(...bins);
 
-        // Draw axes
-        ctx.strokeStyle = '#ccc';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(padding.left, padding.top);
-        ctx.lineTo(padding.left, height - padding.bottom);
-        ctx.lineTo(width - padding.right, height - padding.bottom);
-        ctx.stroke();
-
         // Draw threshold line
-        const thresholdX = padding.left + (threshold / maxNorm) * chartWidth;
+        const thresholdX = padding.left + (threshold / NORM_CONFIG.maxNorm) * chartWidth;
         ctx.strokeStyle = '#c62828';
         ctx.lineWidth = 2;
         ctx.setLineDash([5, 5]);
@@ -395,24 +385,17 @@ function initNormDistributionViz() {
         let outlierCount = 0;
 
         bins.forEach((count, i) => {
-            const binStart = i * binWidth;
-            const binEnd = (i + 1) * binWidth;
+            const binStart = i * NORM_CONFIG.binWidth;
             const x = padding.left + i * barWidth;
             const barHeight = (count / maxBinCount) * chartHeight;
             const y = height - padding.bottom - barHeight;
 
-            // Color based on threshold
             const isOutlier = binStart >= threshold;
             ctx.fillStyle = isOutlier ? '#ef5350' : '#66bb6a';
-
             ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
 
-            // Count
-            if (isOutlier) {
-                outlierCount += count;
-            } else {
-                normalCount += count;
-            }
+            if (isOutlier) outlierCount += count;
+            else normalCount += count;
         });
 
         // Update stats
@@ -423,15 +406,18 @@ function initNormDistributionViz() {
         outlierPctEl.textContent = ((outlierCount / total) * 100).toFixed(1);
 
         // X-axis labels
+        const labels = [];
+        const positions = [];
+        for (let i = 0; i <= NORM_CONFIG.maxNorm; i += NORM_CONFIG.xLabelStep) {
+            labels.push(i.toString());
+            positions.push(padding.left + (i / NORM_CONFIG.maxNorm) * chartWidth);
+        }
+        drawXLabels(ctx, labels, positions, height - padding.bottom + 15);
+
+        // X-axis title
         ctx.fillStyle = '#666';
         ctx.font = '11px Inter, sans-serif';
         ctx.textAlign = 'center';
-        for (let i = 0; i <= maxNorm; i += 50) {
-            const x = padding.left + (i / maxNorm) * chartWidth;
-            ctx.fillText(i.toString(), x, height - padding.bottom + 15);
-        }
-
-        // X-axis title
         ctx.fillText('Token Norm', padding.left + chartWidth / 2, height - 5);
 
         // Y-axis title
@@ -443,34 +429,21 @@ function initNormDistributionViz() {
         ctx.restore();
     }
 
-    // Initial draw
     drawChart();
 }
 
-/**
- * Generate bimodal distribution mimicking ViT norm distribution
- * ~97% normal tokens (centered around 50), ~3% outliers (centered around 180)
- */
-function generateBimodalNormData(n) {
+function generateBimodalNormData() {
     const data = [];
-    const outlierRatio = 0.025; // ~2.5% outliers as per paper
-
-    for (let i = 0; i < n; i++) {
-        if (Math.random() < outlierRatio) {
-            // Outlier distribution: centered around 180, std ~30
-            data.push(gaussianRandom(180, 30));
+    for (let i = 0; i < NORM_CONFIG.numSamples; i++) {
+        if (Math.random() < NORM_CONFIG.outlierRatio) {
+            data.push(gaussianRandom(NORM_CONFIG.outlierMean, NORM_CONFIG.outlierStd));
         } else {
-            // Normal distribution: centered around 50, std ~20
-            data.push(gaussianRandom(50, 20));
+            data.push(gaussianRandom(NORM_CONFIG.normalMean, NORM_CONFIG.normalStd));
         }
     }
-
-    return data.map(v => Math.max(0, Math.min(300, v))); // Clamp to [0, 300]
+    return data.map(v => Math.max(0, Math.min(NORM_CONFIG.maxNorm, v)));
 }
 
-/**
- * Generate Gaussian random number using Box-Muller transform
- */
 function gaussianRandom(mean, std) {
     const u1 = Math.random();
     const u2 = Math.random();
@@ -478,31 +451,45 @@ function gaussianRandom(mean, std) {
     return mean + z * std;
 }
 
-/**
- * FlashAttention - Tiling Interactive Visualization
- */
+/* ============================================
+   FLASHATTENTION - TILING INTERACTIVE
+   ============================================ */
+
+const TILING_CONFIG = {
+    matrixSize: 16,
+    blockSize: 4,
+    maxSteps: 20,
+    playSpeed: 300,
+    descriptions: [
+        'Start: Both methods need to compute the N×N attention matrix.',
+        'Standard attention computes and stores the entire matrix in HBM...',
+        'Each cell computed is written to slow HBM memory.',
+        'The full matrix grows quadratically with sequence length.',
+        'FlashAttention processes one block at a time in fast SRAM.',
+        'Only the current block needs to fit in SRAM.',
+        'Previous blocks are processed and discarded from SRAM.',
+        'Output is accumulated incrementally using online softmax.',
+        'Memory usage stays constant regardless of sequence length!',
+        'Standard attention: O(N²) memory. FlashAttention: O(block size).'
+    ]
+};
+
 function initTilingInteractive() {
     const container = document.getElementById('tiling-interactive');
     if (!container) return;
 
-    const config = {
-        matrixSize: 16,
-        blockSize: 4,
-        currentStep: 0,
-        maxSteps: 20
-    };
+    let currentStep = 0;
+    let isPlaying = false;
+    let playInterval = null;
 
-    // Create UI
     container.innerHTML = `
         <div class="tiling-controls">
             <div class="tiling-slider-group">
                 <label>Step:</label>
-                <input type="range" id="tiling-step-slider" min="0" max="${config.maxSteps}" value="0">
+                <input type="range" id="tiling-step-slider" min="0" max="${TILING_CONFIG.maxSteps}" value="0">
                 <span class="tiling-step-label" id="tiling-step-label">Start</span>
             </div>
-            <button id="tiling-play-btn" style="padding: 6px 16px; border-radius: 4px; border: 1px solid #ccc; background: white; cursor: pointer;">
-                ▶ Play
-            </button>
+            <button id="tiling-play-btn" class="tiling-play-btn">▶ Play</button>
         </div>
         <div class="tiling-comparison">
             <div class="tiling-panel">
@@ -528,9 +515,6 @@ function initTilingInteractive() {
     const flashStats = document.getElementById('flash-stats');
     const descEl = document.getElementById('tiling-desc');
 
-    let isPlaying = false;
-    let playInterval = null;
-
     function createMatrixGrid(container, size) {
         container.innerHTML = '';
         const grid = document.createElement('div');
@@ -547,12 +531,12 @@ function initTilingInteractive() {
         return grid;
     }
 
-    const standardGrid = createMatrixGrid(standardMatrix, config.matrixSize);
-    const flashGrid = createMatrixGrid(flashMatrix, config.matrixSize);
+    const standardGrid = createMatrixGrid(standardMatrix, TILING_CONFIG.matrixSize);
+    const flashGrid = createMatrixGrid(flashMatrix, TILING_CONFIG.matrixSize);
 
     function updateVisualization(step) {
-        const cells = config.matrixSize * config.matrixSize;
-        const progress = step / config.maxSteps;
+        const cells = TILING_CONFIG.matrixSize * TILING_CONFIG.matrixSize;
+        const progress = step / TILING_CONFIG.maxSteps;
 
         // Standard attention: fills entire matrix, keeps it all in HBM
         const standardCells = standardGrid.querySelectorAll('.matrix-cell');
@@ -570,15 +554,15 @@ function initTilingInteractive() {
 
         // FlashAttention: processes in blocks, only current block in SRAM
         const flashCells = flashGrid.querySelectorAll('.matrix-cell');
-        const blocksPerRow = config.matrixSize / config.blockSize;
+        const blocksPerRow = TILING_CONFIG.matrixSize / TILING_CONFIG.blockSize;
         const totalBlocks = blocksPerRow * blocksPerRow;
         const currentBlock = Math.floor(progress * totalBlocks);
 
         flashCells.forEach((cell, i) => {
-            const row = Math.floor(i / config.matrixSize);
-            const col = i % config.matrixSize;
-            const blockRow = Math.floor(row / config.blockSize);
-            const blockCol = Math.floor(col / config.blockSize);
+            const row = Math.floor(i / TILING_CONFIG.matrixSize);
+            const col = i % TILING_CONFIG.matrixSize;
+            const blockRow = Math.floor(row / TILING_CONFIG.blockSize);
+            const blockCol = Math.floor(col / TILING_CONFIG.blockSize);
             const blockIndex = blockRow * blocksPerRow + blockCol;
 
             if (blockIndex < currentBlock) {
@@ -592,41 +576,24 @@ function initTilingInteractive() {
 
         // Update stats
         const hbmUsedStandard = standardFilled > 0 ? `${standardFilled} cells` : '0';
-        const hbmUsedFlash = currentBlock > 0 ? `${config.blockSize * config.blockSize} cells` : '0';
+        const hbmUsedFlash = currentBlock > 0 ? `${TILING_CONFIG.blockSize * TILING_CONFIG.blockSize} cells` : '0';
 
         standardStats.innerHTML = `HBM usage: <span class="bad">${hbmUsedStandard}</span> (grows with N²)`;
         flashStats.innerHTML = `SRAM usage: <span class="good">${hbmUsedFlash}</span> (constant block size)`;
 
         // Update description
-        const descriptions = [
-            'Start: Both methods need to compute the N×N attention matrix.',
-            'Standard attention computes and stores the entire matrix in HBM...',
-            'Each cell computed is written to slow HBM memory.',
-            'The full matrix grows quadratically with sequence length.',
-            'FlashAttention processes one block at a time in fast SRAM.',
-            'Only the current block needs to fit in SRAM.',
-            'Previous blocks are processed and discarded from SRAM.',
-            'Output is accumulated incrementally using online softmax.',
-            'Memory usage stays constant regardless of sequence length!',
-            'Standard attention: O(N²) memory. FlashAttention: O(block size).'
-        ];
-
-        const descIndex = Math.min(Math.floor(step / 2), descriptions.length - 1);
-        descEl.textContent = descriptions[descIndex];
+        const descIndex = Math.min(Math.floor(step / 2), TILING_CONFIG.descriptions.length - 1);
+        descEl.textContent = TILING_CONFIG.descriptions[descIndex];
 
         // Update label
-        if (step === 0) {
-            stepLabel.textContent = 'Start';
-        } else if (step === config.maxSteps) {
-            stepLabel.textContent = 'Done';
-        } else {
-            stepLabel.textContent = `Step ${step}`;
-        }
+        if (step === 0) stepLabel.textContent = 'Start';
+        else if (step === TILING_CONFIG.maxSteps) stepLabel.textContent = 'Done';
+        else stepLabel.textContent = `Step ${step}`;
     }
 
     slider.addEventListener('input', (e) => {
-        config.currentStep = parseInt(e.target.value);
-        updateVisualization(config.currentStep);
+        currentStep = parseInt(e.target.value);
+        updateVisualization(currentStep);
     });
 
     playBtn.addEventListener('click', () => {
@@ -635,44 +602,47 @@ function initTilingInteractive() {
             playBtn.textContent = '▶ Play';
             isPlaying = false;
         } else {
-            if (config.currentStep >= config.maxSteps) {
-                config.currentStep = 0;
+            if (currentStep >= TILING_CONFIG.maxSteps) {
+                currentStep = 0;
                 slider.value = 0;
             }
             isPlaying = true;
             playBtn.textContent = '⏸ Pause';
             playInterval = setInterval(() => {
-                config.currentStep++;
-                slider.value = config.currentStep;
-                updateVisualization(config.currentStep);
-                if (config.currentStep >= config.maxSteps) {
+                currentStep++;
+                slider.value = currentStep;
+                updateVisualization(currentStep);
+                if (currentStep >= TILING_CONFIG.maxSteps) {
                     clearInterval(playInterval);
                     playBtn.textContent = '▶ Play';
                     isPlaying = false;
                 }
-            }, 300);
+            }, TILING_CONFIG.playSpeed);
         }
     });
 
-    // Initial render
     updateVisualization(0);
 }
 
-/**
- * FlashAttention Algorithm Interactive - Shows nested loop structure
- */
+/* ============================================
+   FLASHATTENTION ALGORITHM INTERACTIVE
+   ============================================ */
+
+const FLASH_ALGO_CONFIG = {
+    numBlocks: 4,
+    maxSteps: 80,
+    playSpeed: 400,
+    phasesPerIter: 5,
+    phases: ['load_kv', 'load_q', 'compute', 'compute2', 'write_o']
+};
+
 function initFlashAlgorithmInteractive() {
     const container = document.getElementById('flash-algorithm-interactive');
     if (!container) return;
 
-    const config = {
-        numBlocks: 4,  // 4x4 blocks
-        currentOuter: -1,
-        currentInner: -1,
-        phase: 'idle', // idle, load_kv, load_q, compute, write_o
-        step: 0,
-        maxSteps: 80
-    };
+    let step = 0;
+    let isPlaying = false;
+    let playInterval = null;
 
     container.innerHTML = `
         <div class="flash-algo-controls">
@@ -726,7 +696,6 @@ function initFlashAlgorithmInteractive() {
         </div>
     `;
 
-    // Build matrices
     const qMatrix = document.getElementById('q-matrix');
     const kMatrix = document.getElementById('k-matrix');
     const vMatrix = document.getElementById('v-matrix');
@@ -740,7 +709,7 @@ function initFlashAlgorithmInteractive() {
 
     function buildMatrix(container, id, isVertical) {
         container.innerHTML = '';
-        for (let i = 0; i < config.numBlocks; i++) {
+        for (let i = 0; i < FLASH_ALGO_CONFIG.numBlocks; i++) {
             const block = document.createElement('div');
             block.className = 'flash-algo-block';
             block.dataset.index = i;
@@ -755,40 +724,29 @@ function initFlashAlgorithmInteractive() {
     buildMatrix(vMatrix, 'v', true);
     buildMatrix(oMatrix, 'o', true);
 
-    let isPlaying = false;
-    let playInterval = null;
-
     const playBtn = document.getElementById('flash-algo-play');
     const stepBtn = document.getElementById('flash-algo-step');
     const resetBtn = document.getElementById('flash-algo-reset');
 
-    function getPhaseForStep(step) {
-        // Each block pair takes 4 phases: load_kv, load_q, compute, write_o
-        // Total iterations: numBlocks (outer) * numBlocks (inner) = 16
-        // Each iteration has 4 phases = 64 steps total + some setup
+    function getPhaseForStep(s) {
+        if (s === 0) return { phase: 'idle', outer: -1, inner: -1 };
 
-        if (step === 0) return { phase: 'idle', outer: -1, inner: -1 };
+        const iterStep = s - 1;
+        const iteration = Math.floor(iterStep / FLASH_ALGO_CONFIG.phasesPerIter);
+        const phaseInIter = iterStep % FLASH_ALGO_CONFIG.phasesPerIter;
 
-        const iterStep = step - 1;
-        const iteration = Math.floor(iterStep / 5);
-        const phaseInIter = iterStep % 5;
+        const outer = Math.floor(iteration / FLASH_ALGO_CONFIG.numBlocks);
+        const inner = iteration % FLASH_ALGO_CONFIG.numBlocks;
 
-        const outer = Math.floor(iteration / config.numBlocks);
-        const inner = iteration % config.numBlocks;
-
-        if (outer >= config.numBlocks) {
-            return { phase: 'done', outer: config.numBlocks - 1, inner: config.numBlocks - 1 };
+        if (outer >= FLASH_ALGO_CONFIG.numBlocks) {
+            return { phase: 'done', outer: FLASH_ALGO_CONFIG.numBlocks - 1, inner: FLASH_ALGO_CONFIG.numBlocks - 1 };
         }
 
-        const phases = ['load_kv', 'load_q', 'compute', 'compute2', 'write_o'];
-        return { phase: phases[phaseInIter], outer, inner };
+        return { phase: FLASH_ALGO_CONFIG.phases[phaseInIter], outer, inner };
     }
 
-    function updateVisualization(step) {
-        const state = getPhaseForStep(step);
-        config.phase = state.phase;
-        config.currentOuter = state.outer;
-        config.currentInner = state.inner;
+    function updateVisualization(s) {
+        const state = getPhaseForStep(s);
 
         // Reset all blocks
         document.querySelectorAll('.flash-algo-block').forEach(b => {
@@ -799,7 +757,6 @@ function initFlashAlgorithmInteractive() {
         outerLoopVal.textContent = state.outer >= 0 ? `j = ${state.outer}` : '—';
         innerLoopVal.textContent = state.inner >= 0 ? `i = ${state.inner}` : '—';
 
-        // Highlight active blocks based on phase
         if (state.phase === 'idle') {
             statusEl.textContent = 'Ready - Press Play';
             sramContent.innerHTML = '<div class="sram-empty">Empty</div>';
@@ -807,17 +764,13 @@ function initFlashAlgorithmInteractive() {
             transferArea.innerHTML = '';
         } else if (state.phase === 'done') {
             statusEl.textContent = 'Complete!';
-            // Mark all output as computed
             oMatrix.querySelectorAll('.flash-algo-block').forEach(b => b.classList.add('computed'));
             sramContent.innerHTML = '<div class="sram-empty">Empty</div>';
             computeArea.innerHTML = '<div class="compute-done">✓ All blocks processed</div>';
             transferArea.innerHTML = '';
         } else {
-            // Mark K, V blocks for current outer loop
             const kBlock = kMatrix.querySelector(`[data-index="${state.outer}"]`);
             const vBlock = vMatrix.querySelector(`[data-index="${state.outer}"]`);
-
-            // Mark Q block for current inner loop
             const qBlock = qMatrix.querySelector(`[data-index="${state.inner}"]`);
 
             // Mark completed output blocks
@@ -887,12 +840,12 @@ function initFlashAlgorithmInteractive() {
     }
 
     function advanceStep() {
-        config.step++;
-        if (config.step > config.maxSteps) {
-            config.step = config.maxSteps;
+        step++;
+        if (step > FLASH_ALGO_CONFIG.maxSteps) {
+            step = FLASH_ALGO_CONFIG.maxSteps;
             stopPlaying();
         }
-        updateVisualization(config.step);
+        updateVisualization(step);
     }
 
     function stopPlaying() {
@@ -908,12 +861,10 @@ function initFlashAlgorithmInteractive() {
         if (isPlaying) {
             stopPlaying();
         } else {
-            if (config.step >= config.maxSteps) {
-                config.step = 0;
-            }
+            if (step >= FLASH_ALGO_CONFIG.maxSteps) step = 0;
             isPlaying = true;
             playBtn.textContent = '⏸ Pause';
-            playInterval = setInterval(advanceStep, 400);
+            playInterval = setInterval(advanceStep, FLASH_ALGO_CONFIG.playSpeed);
         }
     });
 
@@ -924,10 +875,9 @@ function initFlashAlgorithmInteractive() {
 
     resetBtn.addEventListener('click', () => {
         stopPlaying();
-        config.step = 0;
+        step = 0;
         updateVisualization(0);
     });
 
-    // Initial state
     updateVisualization(0);
 }

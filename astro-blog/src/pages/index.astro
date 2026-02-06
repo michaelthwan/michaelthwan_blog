@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import TimelineEntry from '../components/TimelineEntry.astro';
 
 // Dynamic duration for current role (started Nov 2024)
 const startDate = new Date(2024, 10); // month is 0-indexed
@@ -10,6 +11,70 @@ const totalMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.ge
 const yrs = Math.floor(totalMonths / 12);
 const mos = totalMonths % 12;
 const masterDuration = [yrs && `${yrs} yr${yrs > 1 ? 's' : ''}`, mos && `${mos} mo${mos > 1 ? 's' : ''}`].filter(Boolean).join(' ');
+
+const experience = [
+    {
+        year: '2024', logoSrc: '/img/front-page/mastercard_logo.jpg', logoAlt: 'Mastercard',
+        role: 'Lead Data Scientist',
+        company: `Mastercard · Vancouver, BC · Nov 2024 – Present · ${masterDuration}`,
+        achievements: [
+            'Engineered <strong>Decision Intelligence Pro (DI Pro)</strong> fraud detection platform for credit and debit transactions. Optimized the Databricks ML pipeline and infrastructure, accelerating model training by 3x while significantly reducing operational costs.',
+        ],
+    },
+    {
+        year: '2021', logoSrc: '/img/front-page/oocl_logo.jpg', logoAlt: 'OOCL',
+        role: 'Senior Data Scientist',
+        company: 'OOCL · Hong Kong · Aug 2021 – Sep 2023 · 2 yrs 2 mos',
+        achievements: [
+            'Led <strong>Customer Service Automation</strong> — LLM + RAG with LangChain, cutting email reply time from 5–10 min to seconds.',
+            'Built <strong>EDI AI Developer</strong> for GenAI-driven API migration across 20k+ customers — 82% accuracy, 8,000+ human-days saved.',
+            'Developed <strong>Shipment Assignment Optimization</strong> via CPLEX — <strong>$200M annual profit increase</strong> on Trans-Pacific and Asia-Europe routes.',
+            'Built <strong>Customer Demand &amp; Profit Forecast</strong> with hierarchical ML (LightGBM / PyTorch).',
+            'Led 3 concurrent projects with a team of 12 data scientists.',
+        ],
+    },
+    {
+        year: '2018', logoSrc: '/img/front-page/oocl_logo.jpg', logoAlt: 'OOCL',
+        role: 'Data Scientist',
+        company: 'OOCL · Hong Kong · Sep 2018 – Aug 2021 · 3 yrs',
+        achievements: [
+            'Collaborated with <strong>Microsoft Research Asia</strong> on empty repositioning — replaced linear programming with reinforcement and supervised learning.',
+            'Built <strong>Network Optimization Engine</strong> using genetic algorithms for container disruption recovery, improving accuracy from 75% to 87%.',
+        ],
+    },
+    {
+        year: '2017', logoSrc: '/img/front-page/oocl_logo.jpg', logoAlt: 'OOCL',
+        role: 'Software Engineer (ML)',
+        company: 'OOCL · Hong Kong · Apr 2017 – Sep 2018 · 1 yr 6 mos',
+        achievements: [
+            'Built <strong>Empty Repositioning Optimization</strong> engine with linear programming — <strong>reduced $36M in annual equipment costs</strong> (4% of $900M).',
+        ],
+    },
+    {
+        year: '2014', logoSrc: '/img/front-page/oocl_logo.jpg', logoAlt: 'OOCL',
+        role: 'Software Engineer (Full-stack)',
+        company: 'OOCL · Hong Kong · Jun 2014 – Apr 2017 · 2 yrs 11 mos',
+        achievements: [
+            'Built core ERP components and customer-facing systems on J2EE/Oracle and MEAN stacks, supporting billion-scale shipping operations.',
+            'Delivered route cost calculator and sailing schedule search engine processing 30M+ routes.',
+        ],
+    },
+];
+
+const education = [
+    {
+        year: '2020', logoSrc: '/img/front-page/cuhk_logo.jpg', logoAlt: 'The Chinese University of Hong Kong',
+        role: 'The Chinese University of Hong Kong',
+        degree: 'Master of Science — Data Science and Business Statistics',
+        company: '2020 – 2022',
+    },
+    {
+        year: '2011', logoSrc: '/img/front-page/cuhk_logo.jpg', logoAlt: 'The Chinese University of Hong Kong',
+        role: 'The Chinese University of Hong Kong',
+        degree: 'Bachelor of Engineering — System Engineering & Engineering Management, Information Technology',
+        company: '2011 – 2014',
+    },
+];
 ---
 
 <Base title="Michael Wan" isHomepage={true}>
@@ -53,175 +118,13 @@ const masterDuration = [yrs && `${yrs} yr${yrs > 1 ? 's' : ''}`, mos && `${mos} 
     <!-- Career Timeline -->
     <section class="bio-timeline l-page">
         <h2 class="timeline-section-title">Experience</h2>
-
-        <!-- Mastercard -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2024</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/mastercard_logo.jpg" alt="Mastercard" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">Lead Data Scientist</h3>
-                        <p class="timeline-company">Mastercard · Vancouver, BC · Nov 2024 – Present · {masterDuration}</p>
-                    </div>
-                </div>
-                <ul class="timeline-achievements">
-                    <li>Engineered <strong>Decision Intelligence Pro (DI Pro)</strong> fraud detection platform for credit and debit transactions. Optimized the Databricks ML pipeline and infrastructure, accelerating model training by 3x while significantly reducing operational costs.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- OOCL — Senior Data Scientist -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2021</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/oocl_logo.jpg" alt="OOCL" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">Senior Data Scientist</h3>
-                        <p class="timeline-company">OOCL · Hong Kong · Aug 2021 – Sep 2023 · 2 yrs 2 mos</p>
-                    </div>
-                </div>
-                <ul class="timeline-achievements">
-                    <li>Led <strong>Customer Service Automation</strong> — LLM + RAG with LangChain, cutting email reply time from 5–10 min to seconds.</li>
-                    <li>Built <strong>EDI AI Developer</strong> for GenAI-driven API migration across 20k+ customers — 82% accuracy, 8,000+ human-days saved.</li>
-                    <li>Developed <strong>Shipment Assignment Optimization</strong> via CPLEX — <strong>$200M annual profit increase</strong> on Trans-Pacific and Asia-Europe routes.</li>
-                    <li>Built <strong>Customer Demand & Profit Forecast</strong> with hierarchical ML (LightGBM / PyTorch).</li>
-                    <li>Led 3 concurrent projects with a team of 12 data scientists.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- OOCL — Data Scientist -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2018</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/oocl_logo.jpg" alt="OOCL" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">Data Scientist</h3>
-                        <p class="timeline-company">OOCL · Hong Kong · Sep 2018 – Aug 2021 · 3 yrs</p>
-                    </div>
-                </div>
-                <ul class="timeline-achievements">
-                    <li>Collaborated with <strong>Microsoft Research Asia</strong> on empty repositioning — replaced linear programming with reinforcement and supervised learning.</li>
-                    <li>Built <strong>Network Optimization Engine</strong> using genetic algorithms for container disruption recovery, improving accuracy from 75% to 87%.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- OOCL — Software Engineer (ML) -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2017</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/oocl_logo.jpg" alt="OOCL" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">Software Engineer (ML)</h3>
-                        <p class="timeline-company">OOCL · Hong Kong · Apr 2017 – Sep 2018 · 1 yr 6 mos</p>
-                    </div>
-                </div>
-                <ul class="timeline-achievements">
-                    <li>Built <strong>Empty Repositioning Optimization</strong> engine with linear programming — <strong>reduced $36M in annual equipment costs</strong> (4% of $900M).</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- OOCL — Software Engineer (Full-stack) -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2014</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/oocl_logo.jpg" alt="OOCL" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">Software Engineer (Full-stack)</h3>
-                        <p class="timeline-company">OOCL · Hong Kong · Jun 2014 – Apr 2017 · 2 yrs 11 mos</p>
-                    </div>
-                </div>
-                <ul class="timeline-achievements">
-                    <li>Built core ERP components and customer-facing systems on J2EE/Oracle and MEAN stacks, supporting billion-scale shipping operations.</li>
-                    <li>Delivered route cost calculator and sailing schedule search engine processing 30M+ routes.</li>
-                </ul>
-            </div>
-        </div>
-
+        {experience.map(entry => <TimelineEntry {...entry} />)}
     </section>
 
     <!-- Education -->
     <section class="bio-timeline l-page">
         <h2 class="timeline-section-title">Education</h2>
-
-        <!-- MSc -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2020</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/cuhk_logo.jpg" alt="The Chinese University of Hong Kong" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">The Chinese University of Hong Kong</h3>
-                        <p class="timeline-edu-degree">Master of Science — Data Science and Business Statistics</p>
-                        <p class="timeline-company">2020 – 2022</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BEng -->
-        <div class="timeline-entry">
-            <div class="timeline-left">
-                <span class="timeline-year">2011</span>
-            </div>
-            <div class="timeline-mid">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-                <div class="timeline-header">
-                    <img src="/img/front-page/cuhk_logo.jpg" alt="The Chinese University of Hong Kong" class="timeline-badge" />
-                    <div>
-                        <h3 class="timeline-role">The Chinese University of Hong Kong</h3>
-                        <p class="timeline-edu-degree">Bachelor of Engineering — System Engineering & Engineering Management, Information Technology</p>
-                        <p class="timeline-company">2011 – 2014</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {education.map(entry => <TimelineEntry {...entry} />)}
     </section>
 
     <Footer />

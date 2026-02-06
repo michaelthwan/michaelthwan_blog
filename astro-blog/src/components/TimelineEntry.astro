@@ -1,0 +1,40 @@
+---
+interface Props {
+    year: string;
+    logoSrc: string;
+    logoAlt: string;
+    role: string;
+    company?: string;
+    degree?: string;
+    achievements?: string[];
+}
+
+const { year, logoSrc, logoAlt, role, company, degree, achievements } = Astro.props;
+---
+
+<div class="timeline-entry">
+    <div class="timeline-left">
+        <span class="timeline-year">{year}</span>
+    </div>
+    <div class="timeline-mid">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+    </div>
+    <div class="timeline-content">
+        <div class="timeline-header">
+            <img src={logoSrc} alt={logoAlt} class="timeline-badge" />
+            <div>
+                <h3 class="timeline-role">{role}</h3>
+                {degree && <p class="timeline-edu-degree">{degree}</p>}
+                {company && <p class="timeline-company">{company}</p>}
+            </div>
+        </div>
+        {achievements && achievements.length > 0 && (
+            <ul class="timeline-achievements">
+                {achievements.map(item => (
+                    <li set:html={item} />
+                ))}
+            </ul>
+        )}
+    </div>
+</div>
