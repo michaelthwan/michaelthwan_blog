@@ -39,7 +39,9 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(python scripts/generate_comp_data.py:*)",
       "Bash(python scripts/generate_thumbnail.py:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "WebFetch(domain:www.sensiblefinancial.com)",
+      "WebFetch(domain:localhost)"
     ]
   }
 }

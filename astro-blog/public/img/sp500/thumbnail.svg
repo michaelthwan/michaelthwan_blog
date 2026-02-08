@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+  <rect width="400" height="240" fill="#fafafa"/>
+
+  <!-- Grid lines -->
+  <g stroke="#e8e8e8" stroke-width="0.5">
+    <line x1="40" y1="30" x2="380" y2="30"/>
+    <line x1="40" y1="70" x2="380" y2="70"/>
+    <line x1="40" y1="110" x2="380" y2="110"/>
+    <line x1="40" y1="150" x2="380" y2="150"/>
+    <line x1="40" y1="190" x2="380" y2="190"/>
+  </g>
+
+  <!-- Y-axis labels -->
+  <g fill="#999" font-family="Inter, system-ui, sans-serif" font-size="9" text-anchor="end">
+    <text x="36" y="33">5,000</text>
+    <text x="36" y="73">1,000</text>
+    <text x="36" y="113">200</text>
+    <text x="36" y="153">50</text>
+    <text x="36" y="193">10</text>
+  </g>
+
+  <!-- X-axis labels -->
+  <g fill="#999" font-family="Inter, system-ui, sans-serif" font-size="9" text-anchor="middle">
+    <text x="55" y="210">1926</text>
+    <text x="120" y="210">1945</text>
+    <text x="190" y="210">1965</text>
+    <text x="260" y="210">1985</text>
+    <text x="330" y="210">2005</text>
+    <text x="375" y="210">2024</text>
+  </g>
+
+  <!-- S&P 500 line (stylized log-scale) -->
+  <defs>
+    <linearGradient id="spFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1565c0" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#1565c0" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Filled area -->
+  <path d="M55,185 L62,178 L68,182 L75,190 L82,195 L86,187 L92,183 L100,185 L110,180 L120,172 L130,168 L140,165 L155,160 L162,158 L168,164 L172,156 L180,152 L188,155 L195,153 L200,148 L208,150 L215,142 L225,130 L235,125 L240,132 L245,120 L255,105 L265,92 L272,100 L275,85 L278,97 L285,80 L295,68 L305,55 L310,62 L315,48 L320,56 L330,42 L340,38 L348,45 L355,36 L365,30 L375,25 L375,198 L55,198 Z"
+        fill="url(#spFill)"/>
+
+  <!-- Price line -->
+  <path d="M55,185 L62,178 L68,182 L75,190 L82,195 L86,187 L92,183 L100,185 L110,180 L120,172 L130,168 L140,165 L155,160 L162,158 L168,164 L172,156 L180,152 L188,155 L195,153 L200,148 L208,150 L215,142 L225,130 L235,125 L240,132 L245,120 L255,105 L265,92 L272,100 L275,85 L278,97 L285,80 L295,68 L305,55 L310,62 L315,48 L320,56 L330,42 L340,38 L348,45 L355,36 L365,30 L375,25"
+        fill="none" stroke="#1565c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Event markers -->
+  <!-- Great Depression -->
+  <circle cx="82" cy="195" r="3" fill="#c62828"/>
+  <line x1="82" y1="195" x2="82" y2="198" stroke="#ef5350" stroke-width="0.8" stroke-dasharray="2,1"/>
+
+  <!-- Black Monday -->
+  <circle cx="240" cy="132" r="3" fill="#c62828"/>
+
+  <!-- Dot-com -->
+  <circle cx="275" cy="85" r="3" fill="#c62828"/>
+
+  <!-- GFC -->
+  <circle cx="305" cy="55" r="3" fill="#c62828"/>
+  <circle cx="310" cy="62" r="3" fill="#c62828"/>
+
+  <!-- COVID -->
+  <circle cx="348" cy="45" r="3" fill="#c62828"/>
+
+  <!-- Title -->
+  <text x="200" y="18" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">S&amp;P 500: 98 Years of History</text>
+</svg>

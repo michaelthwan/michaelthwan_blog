@@ -3391,3 +3391,72 @@ pre code {
 .comp-comparison-table .tier-label {
     font-weight: 600;
 }
+
+/* ============================================
+   S&P 500 HISTORY CHARTS
+   ============================================ */
+
+.sp500-chart-wrap {
+    position: relative;
+    background: #fff;
+    padding: 12px 8px 8px;
+    border-radius: 4px;
+    height: 420px;
+}
+
+.sp500-stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 0 0 20px;
+}
+
+.sp500-stats-table th,
+.sp500-stats-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sp500-stats-table thead th {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.sp500-bull-header {
+    color: #1b5e20;
+    border-bottom: 3px solid #4caf50 !important;
+}
+
+.sp500-bear-header {
+    color: #b71c1c;
+    border-bottom: 3px solid #ef5350 !important;
+}
+
+.sp500-gain {
+    color: #1b5e20;
+    font-weight: 600;
+}
+
+.sp500-loss {
+    color: #b71c1c;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .sp500-chart-wrap {
+        height: 300px;
+        padding: 8px 4px 4px;
+    }
+
+    .sp500-stats-table {
+        font-size: 12px;
+    }
+
+    .sp500-stats-table th,
+    .sp500-stats-table td {
+        padding: 8px 8px;
+    }
+}
