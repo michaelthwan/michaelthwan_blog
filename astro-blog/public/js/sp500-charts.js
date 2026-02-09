@@ -170,29 +170,29 @@ const EVENTS_ERA1 = [
     { year: 1935.0, price: 10.0, label: 'New Deal +105%', type: 'bull', dy: -40 },
     { year: 1936.5, price: 15.5, label: 'GD Recovery +135%', type: 'bull', dy: -30 },
     { year: 1939.0, price: 12.5, label: 'GD Recovery II +65%', type: 'bull', dy: -28 },
-    { year: 1945.5, price: 17.5, label: 'End of WW2 +210%', type: 'bull', dy: -38 },
+    { year: 1945.6, price: 17.5, label: 'End of WW2 +210%', type: 'bull', dy: -38 },
     { year: 1955.0, price: 36.8, label: 'Post WW2 Bull +495%', type: 'bull', dy: -40 },
-    { year: 1958.5, price: 47.5, label: 'Eisenhower Recession -15%', type: 'bear', dy: 22, dx: 30 },
+    { year: 1957.8, price: 39.0, label: 'Eisenhower Recession -15%', type: 'bear', dy: 22, dx: 30 },
     { year: 1930.5, price: 22.0, label: 'Great Depression -83%', type: 'bear', dy: 35 },
     { year: 1933.0, price: 8.5, label: '1932-33 Bear -30%', type: 'bear', dy: 28 },
     { year: 1934.5, price: 9.4, label: '1934 Bear -21%', type: 'bear', dy: 24 },
-    { year: 1937.8, price: 12.5, label: 'Roosevelt Recession -50%', type: 'bear', dy: 26 },
-    { year: 1942.0, price: 7.5, label: 'Start of WW2 -30%', type: 'bear', dy: 24 },
+    { year: 1938.2, price: 8.5, label: 'Roosevelt Recession -50%', type: 'bear', dy: 26 },
+    { year: 1942.3, price: 7.5, label: 'Start of WW2 -30%', type: 'bear', dy: 24 },
     { year: 1946.5, price: 15.7, label: 'Post WW2 Bear -22%', type: 'bear', dy: 26 },
 ];
 
 const EVENTS_ERA2 = [
     { year: 1960.5, price: 55.5, label: 'Cold War +105%', type: 'bull', dy: -36 },
     { year: 1964.0, price: 75.0, label: '1962-65 Bull +90%', type: 'bull', dy: -32 },
-    { year: 1967.5, price: 92.0, label: 'Go-Go Years +52%', type: 'bull', dy: -32 },
+    { year: 1967.6, price: 92.0, label: 'Go-Go Years +52%', type: 'bull', dy: -32 },
     { year: 1972.5, price: 110.0, label: 'Nifty Fifty +76%', type: 'bull', dy: -36 },
     { year: 1979.5, price: 103.0, label: 'Oil Shock Recovery +198%', type: 'bull', dy: -36 },
     { year: 1986.0, price: 211.3, label: 'Reaganomics +282%', type: 'bull', dy: -40 },
-    { year: 1989.5, price: 340.0, label: 'Black Monday Recovery +71%', type: 'bull', dy: -36 },
-    { year: 1961.0, price: 59.5, label: 'Kennedy Slide -22%', type: 'bear', dy: 30 },
+    { year: 1989.6, price: 340.0, label: 'Black Monday Recovery +71%', type: 'bull', dy: -36 },
+    { year: 1962.5, price: 52.3, label: 'Kennedy Slide -22%', type: 'bear', dy: 30 },
     { year: 1966.5, price: 83.5, label: '1966 Bear -16%', type: 'bear', dy: 26 },
-    { year: 1970.0, price: 69.3, label: 'Vietnam & Inflation -29%', type: 'bear', dy: 28 },
-    { year: 1974.5, price: 62.3, label: 'Oil Shock -43%', type: 'bear', dy: 26 },
+    { year: 1970.4, price: 69.3, label: 'Vietnam & Inflation -29%', type: 'bear', dy: 28 },
+    { year: 1974.8, price: 62.3, label: 'Oil Shock -43%', type: 'bear', dy: 26 },
     { year: 1980.2, price: 102.1, label: 'Volcker Disinflation -17%', type: 'bear', dy: 26 },
     { year: 1987.75, price: 224.8, label: 'Black Monday -30%', type: 'bear', dy: 28 },
     { year: 1990.8, price: 295.5, label: 'Gulf War -15%', type: 'bear', dy: 24, dx: 20 },
@@ -206,12 +206,12 @@ const EVENTS_ERA3 = [
     { year: 2017.0, price: 2238.8, label: 'GR Recovery II +240%', type: 'bull', dy: -38 },
     { year: 2021.0, price: 3756.1, label: 'Pandemic Rally +90%', type: 'bull', dy: -36 },
     { year: 2024.5, price: 5350.0, label: 'Post Pandemic +38%', type: 'bull', dy: -34 },
-    { year: 1998.5, price: 957.3, label: 'Asian Crisis -15%', type: 'bear', dy: 28 },
+    { year: 1998.6, price: 957.3, label: 'Asian Crisis -15%', type: 'bear', dy: 28 },
     { year: 2001.5, price: 1200.0, label: 'Dot-com Bubble -43%', type: 'bear', dy: 28 },
-    { year: 2009.0, price: 666.8, label: 'Great Recession -51%', type: 'bear', dy: 28 },
-    { year: 2011.7, price: 1099.2, label: '2011 Bear -16%', type: 'bear', dy: 26 },
+    { year: 2009.2, price: 666.8, label: 'Great Recession -51%', type: 'bear', dy: 28 },
+    { year: 2011.8, price: 1099.2, label: '2011 Bear -16%', type: 'bear', dy: 26 },
     { year: 2020.22, price: 2237.4, label: 'Covid -20%', type: 'bear', dy: 24, dx: -25 },
-    { year: 2022.5, price: 3900.0, label: 'Ukraine & Inflation -24%', type: 'bear', dy: 28, dx: 20 },
+    { year: 2022.8, price: 3577.0, label: 'Ukraine & Inflation -24%', type: 'bear', dy: 28, dx: 20 },
 ];
 
 /* ============================================
@@ -228,10 +228,24 @@ const eventAnnotationPlugin = {
         const { ctx } = chart;
         const xScale = chart.scales.x;
         const yScale = chart.scales.y;
+        const meta = chart.getDatasetMeta(0);
+        const renderedPoints = meta.data;
+        const dataset = chart.data.datasets[0].data;
 
         events.forEach(event => {
-            const xPixel = xScale.getPixelForValue(event.year);
-            const yPixel = yScale.getPixelForValue(event.price);
+            // Snap dot to the actual rendered line by finding nearest data point
+            let nearestIdx = 0;
+            let minDist = Infinity;
+            for (let i = 0; i < dataset.length; i++) {
+                const dist = Math.abs(dataset[i].x - event.year);
+                if (dist < minDist) {
+                    minDist = dist;
+                    nearestIdx = i;
+                }
+            }
+            // Use the rendered pixel position so the dot sits exactly on the line
+            const xPixel = renderedPoints[nearestIdx].x;
+            const yPixel = renderedPoints[nearestIdx].y;
             const isBull = event.type === 'bull';
 
             const textColor = isBull ? '#1b5e20' : '#b71c1c';

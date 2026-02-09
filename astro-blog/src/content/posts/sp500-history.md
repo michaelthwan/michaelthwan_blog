@@ -281,4 +281,4 @@ The trend is toward **faster recoveries**, likely because modern central banks i
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-<script src="/js/sp500-charts.js"></script>
+<script src="/js/sp500-charts.js?v=2"></script>

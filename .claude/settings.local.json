@@ -41,7 +41,8 @@
       "Bash(python scripts/generate_thumbnail.py:*)",
       "Bash(python:*)",
       "WebFetch(domain:www.sensiblefinancial.com)",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "Bash(npx astro dev:*)"
     ]
   }
 }
