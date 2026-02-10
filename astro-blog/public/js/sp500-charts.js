@@ -159,6 +159,43 @@ const SP500_DATA = [
 ];
 
 /* ============================================
+   SHILLER PE RATIO (CAPE) DATA
+   Annual data points (year-end), 1926–2024.
+   Source: Robert Shiller's dataset / multpl.com
+   Format: [year, cape_value]
+   ============================================ */
+
+const CAPE_DATA = [
+    [1926, 11.3], [1927, 13.2], [1928, 18.8], [1929, 27.1],
+    [1930, 18.1], [1931, 10.2], [1932, 9.3],  [1933, 13.5],
+    [1934, 13.0], [1935, 16.5], [1936, 21.1], [1937, 13.5],
+    [1938, 13.5], [1939, 15.8], [1940, 13.4], [1941, 10.8],
+    [1942, 8.9],  [1943, 10.3], [1944, 11.5], [1945, 13.4],
+    [1946, 11.4], [1947, 9.6],  [1948, 9.1],  [1949, 9.1],
+    [1950, 11.0], [1951, 11.4], [1952, 12.5], [1953, 11.3],
+    [1954, 13.1], [1955, 17.0], [1956, 16.7], [1957, 13.0],
+    [1958, 18.3], [1959, 18.9], [1960, 17.1], [1961, 21.2],
+    [1962, 18.6], [1963, 21.0], [1964, 22.7], [1965, 23.3],
+    [1966, 19.5], [1967, 22.0], [1968, 21.8], [1969, 18.6],
+    [1970, 16.5], [1971, 17.8], [1972, 18.7], [1973, 13.5],
+    [1974, 8.3],  [1975, 10.5], [1976, 11.8], [1977, 9.3],
+    [1978, 8.3],  [1979, 9.0],  [1980, 9.2],  [1981, 7.4],
+    [1982, 8.0],  [1983, 9.9],  [1984, 9.9],  [1985, 12.3],
+    [1986, 15.8], [1987, 14.1], [1988, 14.6], [1989, 17.1],
+    [1990, 14.8], [1991, 19.3], [1992, 19.5], [1993, 20.3],
+    [1994, 19.5], [1995, 24.7], [1996, 27.7], [1997, 32.9],
+    [1998, 38.9], [1999, 44.2], [2000, 36.6], [2001, 30.3],
+    [2002, 22.9], [2003, 27.7], [2004, 27.2], [2005, 26.5],
+    [2006, 27.2], [2007, 27.3], [2008, 15.2], [2009, 20.5],
+    [2010, 22.4], [2011, 21.2], [2012, 21.9], [2013, 25.5],
+    [2014, 27.2], [2015, 26.1], [2016, 28.1], [2017, 33.3],
+    [2018, 28.3], [2019, 30.3], [2020, 33.7], [2021, 38.3],
+    [2022, 28.1], [2023, 31.3], [2024, 37.9]
+];
+
+const CAPE_LONG_TERM_AVG = 17.1;
+
+/* ============================================
    EVENT ANNOTATIONS
    Each event has: year, price (on the line), label text, type (bull/bear),
    and dy (pixel offset: negative=above, positive=below)
@@ -564,6 +601,217 @@ function createOverviewChart(canvasId) {
 }
 
 /* ============================================
+   CAPE CHART — Shiller PE Ratio
+   ============================================ */
+
+const capeAvgLinePlugin = {
+    id: 'capeAvgLine',
+    afterDraw(chart) {
+        const avgValue = chart.config.options.plugins.capeAvgLine;
+        if (!avgValue) return;
+
+        const { ctx } = chart;
+        const yScale = chart.scales.yCape;
+        const xScale = chart.scales.x;
+        if (!yScale) return;
+        const yPixel = yScale.getPixelForValue(avgValue);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.setLineDash([6, 4]);
+        ctx.moveTo(xScale.left, yPixel);
+        ctx.lineTo(xScale.right, yPixel);
+        ctx.strokeStyle = 'rgba(180, 100, 0, 0.4)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Label
+        ctx.font = '600 10px Inter, system-ui, sans-serif';
+        ctx.fillStyle = '#b06000';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(`CAPE avg: ${avgValue}`, xScale.right - 4, yPixel - 4);
+
+        ctx.restore();
+    }
+};
+
+function createCapeChart(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    // Annual S&P 500 data — take one value per year (closest to year start)
+    const sp500Annual = [];
+    for (let yr = 1926; yr <= 2024; yr++) {
+        let best = null, bestDist = Infinity;
+        for (const d of SP500_DATA) {
+            const dist = Math.abs(d[0] - yr);
+            if (dist < bestDist) { bestDist = dist; best = d; }
+        }
+        if (best) sp500Annual.push({ x: yr, y: best[1] });
+    }
+
+    const capeData = CAPE_DATA.map(d => ({ x: d[0], y: d[1] }));
+
+    const capeEvents = [
+        { year: 1929, price: 27.1, label: '1929 Peak: 27', type: 'bear', dy: -32 },
+        { year: 1932, price: 9.3,  label: '1932 Trough: 9', type: 'bull', dy: 22 },
+        { year: 1966, price: 23.3, label: '1966: 24', type: 'bear', dy: -30, dx: -15 },
+        { year: 1982, price: 8.0,  label: '1982 Trough: 7', type: 'bull', dy: 22 },
+        { year: 1999, price: 44.2, label: '2000 Peak: 44', type: 'bear', dy: -32 },
+        { year: 2009, price: 20.5, label: '2009: 15', type: 'bull', dy: 24 },
+        { year: 2024, price: 37.9, label: '2024: 38', type: 'bear', dy: -30 },
+    ];
+
+    Chart.register(capeAvgLinePlugin);
+    Chart.register(eventAnnotationPlugin);
+
+    new Chart(canvas, {
+        type: 'line',
+        data: {
+            datasets: [
+                {
+                    label: 'CAPE',
+                    data: capeData,
+                    borderColor: '#e65100',
+                    backgroundColor: 'rgba(230, 81, 0, 0.06)',
+                    borderWidth: 2,
+                    fill: true,
+                    pointRadius: 0,
+                    pointHitRadius: 8,
+                    tension: 0.3,
+                    yAxisID: 'yCape',
+                },
+                {
+                    label: 'S&P 500',
+                    data: sp500Annual,
+                    borderColor: 'rgba(21, 101, 192, 0.5)',
+                    backgroundColor: 'rgba(21, 101, 192, 0.03)',
+                    borderWidth: 1.5,
+                    fill: true,
+                    pointRadius: 0,
+                    pointHitRadius: 8,
+                    tension: 0.3,
+                    yAxisID: 'ySP',
+                    borderDash: [4, 2],
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    align: 'end',
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'line',
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
+                        color: '#666',
+                        padding: 16,
+                        boxWidth: 24,
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'S&P 500 vs. Shiller PE Ratio (CAPE): 1926 — 2024',
+                    font: { size: 15, family: 'Inter, system-ui, sans-serif', weight: '600' },
+                    color: '#333',
+                    padding: { bottom: 4 }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255,255,255,0.95)',
+                    titleColor: '#333',
+                    bodyColor: '#555',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    displayColors: true,
+                    titleFont: { family: 'Inter, system-ui, sans-serif', weight: '600' },
+                    bodyFont: { family: 'Inter, system-ui, sans-serif' },
+                    cornerRadius: 4,
+                    padding: 10,
+                    callbacks: {
+                        title(items) {
+                            return `${Math.round(items[0].parsed.x)}`;
+                        },
+                        label(item) {
+                            if (item.datasetIndex === 0) {
+                                return ` CAPE: ${item.parsed.y.toFixed(1)}`;
+                            }
+                            return ` S&P 500: ${item.parsed.y.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
+                        }
+                    }
+                },
+                capeAvgLine: CAPE_LONG_TERM_AVG,
+                eventAnnotations: capeEvents
+            },
+            scales: {
+                x: {
+                    type: 'linear',
+                    min: 1926,
+                    max: 2025,
+                    title: {
+                        display: true,
+                        text: 'Year',
+                        font: { size: 12, family: 'Inter, system-ui, sans-serif' },
+                        color: '#777'
+                    },
+                    ticks: {
+                        stepSize: 5,
+                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
+                        color: '#999',
+                        callback: v => v % 10 === 0 ? v : ''
+                    },
+                    grid: { color: 'rgba(0,0,0,0.04)' }
+                },
+                yCape: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'CAPE Ratio',
+                        font: { size: 12, family: 'Inter, system-ui, sans-serif' },
+                        color: '#e65100'
+                    },
+                    min: 0,
+                    max: 50,
+                    grid: { color: 'rgba(0,0,0,0.04)' },
+                    ticks: {
+                        stepSize: 5,
+                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
+                        color: '#e65100'
+                    }
+                },
+                ySP: {
+                    type: 'logarithmic',
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'S&P 500 (Log)',
+                        font: { size: 12, family: 'Inter, system-ui, sans-serif' },
+                        color: '#1565c0'
+                    },
+                    grid: { drawOnChartArea: false },
+                    ticks: {
+                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
+                        color: '#1565c0',
+                        callback: function(value) {
+                            const vals = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000];
+                            if (vals.includes(value)) return value.toLocaleString();
+                            return '';
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+/* ============================================
    INITIALIZATION
    ============================================ */
 
@@ -572,6 +820,7 @@ function initSP500Charts() {
     createEraChart('sp500-era1', 1926, 1959, EVENTS_ERA1, 'S&P 500 Performance: 1926 — 1958');
     createEraChart('sp500-era2', 1959, 1992, EVENTS_ERA2, 'S&P 500 Performance: 1959 — 1991');
     createEraChart('sp500-era3', 1992, 2025, EVENTS_ERA3, 'S&P 500 Performance: 1992 — 2024');
+    createCapeChart('sp500-cape');
 }
 
 // Initialize when DOM is ready

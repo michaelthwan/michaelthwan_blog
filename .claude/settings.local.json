@@ -42,7 +42,8 @@
       "Bash(python:*)",
       "WebFetch(domain:www.sensiblefinancial.com)",
       "WebFetch(domain:localhost)",
-      "Bash(npx astro dev:*)"
+      "Bash(npx astro dev:*)",
+      "WebFetch(domain:www.multpl.com)"
     ]
   }
 }

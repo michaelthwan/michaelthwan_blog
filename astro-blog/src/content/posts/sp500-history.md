@@ -240,6 +240,23 @@ How long does it take to recover from a crash? The answer varies enormously:
 
 The trend is toward **faster recoveries**, likely because modern central banks intervene more aggressively than their predecessors. The Federal Reserve's toolkit has expanded dramatically since the 1930s.
 
+## Valuation Through the Decades
+
+Price alone doesn't tell you whether the market is cheap or expensive. For that, we need a valuation metric. The **Shiller PE Ratio** (also called **CAPE** — Cyclically Adjusted Price-to-Earnings) divides the S&P 500's price by the average of the past 10 years of inflation-adjusted earnings. By smoothing out short-term profit swings, it provides a more stable read on whether stocks are historically cheap or overpriced.
+
+<div class="d-figure">
+    <div class="d-figure-content sp500-chart-wrap">
+        <canvas id="sp500-cape"></canvas>
+    </div>
+    <div class="d-figure-caption">
+        <strong>Figure 5.</strong> S&P 500 (blue dashed, right axis, log scale) overlaid with the Shiller PE Ratio (CAPE, orange, left axis). The dashed horizontal line marks the CAPE long-term average of ~17. Notice how CAPE peaks preceded or coincided with major market inflection points.
+    </div>
+</div>
+
+The pattern is striking. The two highest CAPE readings in history — **44 in late 1999** and **38 in 2021** — both preceded significant drawdowns. The lowest readings — single digits in 1932, 1942, and 1982 — marked the starting points of some of the greatest bull markets ever. In 1982, with CAPE at just 7, the next 18 years would deliver a **15-fold increase** in the S&P 500.
+
+But CAPE is not a timing tool. The ratio hit 27 in 1997 — already "expensive" by historical standards — and the market **doubled** over the next three years before the dot-com crash. Today's CAPE of ~38 is well above the long-term average, suggesting muted 10-year forward returns. History shows that high CAPE doesn't predict *when* crashes happen, but it strongly predicts **lower future 10-year returns**. It measures the price you pay for earnings — and higher prices mean lower future yields, just as they do with bonds.
+
 ## Key Takeaways
 
 <div class="takeaways">
@@ -281,4 +298,4 @@ The trend is toward **faster recoveries**, likely because modern central banks i
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-<script src="/js/sp500-charts.js?v=2"></script>
+<script src="/js/sp500-charts.js?v=4"></script>
