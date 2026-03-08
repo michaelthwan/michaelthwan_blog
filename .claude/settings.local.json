@@ -43,7 +43,30 @@
       "WebFetch(domain:www.sensiblefinancial.com)",
       "WebFetch(domain:localhost)",
       "Bash(npx astro dev:*)",
-      "WebFetch(domain:www.multpl.com)"
+      "WebFetch(domain:www.multpl.com)",
+      "WebFetch(domain:research.google)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:pi.math.cornell.edu)",
+      "WebFetch(domain:infolab.stanford.edu)",
+      "WebFetch(domain:hippocampus-garden.com)",
+      "WebFetch(domain:snap-stanford.github.io)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:bilawal.ai)",
+      "WebFetch(domain:supadata.ai)",
+      "WebFetch(domain:www.spatialintelligence.ai)",
+      "WebFetch(domain:www.scrapingdog.com)",
+      "WebFetch(domain:x.com)",
+      "WebFetch(domain:tactiq.io)",
+      "WebFetch(domain:youtubetotranscript.com)",
+      "WebFetch(domain:youtubetranscript.com)",
+      "WebFetch(domain:www.searchbetter.com)",
+      "WebFetch(domain:kome.ai)",
+      "WebFetch(domain:yt.lemnoslife.com)",
+      "WebFetch(domain:tubetranscript.com)",
+      "WebFetch(domain:notegpt.io)",
+      "WebFetch(domain:decopy.ai)",
+      "WebFetch(domain:claptools.com)"
     ]
   }
 }
