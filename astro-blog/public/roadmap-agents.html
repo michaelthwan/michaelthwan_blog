@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent-First Engineering Roadmap</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #fff;
+      color: #0F172A;
+    }
+
+    /* ─── HEADER ─── */
+    .rm-header {
+      background: #0F172A;
+      color: #fff;
+      padding: 48px 60px 40px;
+    }
+    .rm-header h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .rm-header .subtitle { color: #94A3B8; font-size: 1rem; margin-bottom: 6px; }
+    .rm-header .sources { color: #475569; font-size: 0.82rem; }
+    .rm-header .sources span { color: #64748B; margin-right: 12px; }
+
+    /* ─── CONTAINER ─── */
+    .rm-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 72px 24px 100px;
+      position: relative;
+    }
+
+    /* Vertical spine */
+    .rm-spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #2563EB;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    /* Top label */
+    .rm-top-label {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 52px;
+    }
+    .rm-top-label span {
+      background: #fff;
+      border: 2px solid #2563EB;
+      color: #2563EB;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 9px 28px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── SECTION ─── */
+    .rm-section { position: relative; z-index: 1; margin-bottom: 64px; }
+
+    /* Chapter node */
+    .rm-chapter {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .rm-chapter-box {
+      background: #F5C842;
+      border: 2.5px solid #000;
+      padding: 10px 30px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      min-width: 240px;
+      text-align: center;
+    }
+
+    /* Branch row: LEFT | SPINE | RIGHT */
+    .rm-branches {
+      display: grid;
+      grid-template-columns: 1fr 0px 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    /* Horizontal dotted bar behind the branch row */
+    .rm-branches::before {
+      content: '';
+      position: absolute;
+      left: 30%;
+      right: 30%;
+      top: 17px;
+      border-top: 2px dashed #93C5FD;
+      z-index: 0;
+    }
+
+    .rm-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 7px;
+      padding-right: 40px;
+    }
+
+    .rm-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      padding-left: 40px;
+    }
+
+    /* Spine dot */
+    .rm-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 11px;
+    }
+    .rm-dot {
+      width: 13px;
+      height: 13px;
+      background: #2563EB;
+      border-radius: 50%;
+      position: relative;
+      z-index: 3;
+      flex-shrink: 0;
+    }
+
+    /* Cluster label */
+    .rm-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #64748B;
+      margin-bottom: 2px;
+      margin-top: 10px;
+      padding: 0 2px;
+    }
+    .rm-label:first-child { margin-top: 0; }
+
+    /* ─── BOXES ─── */
+    .rm-box {
+      background: #FEFCE8;
+      border: 1.5px solid #CA8A04;
+      padding: 7px 13px;
+      font-size: 0.875rem;
+      line-height: 1.4;
+      cursor: default;
+      transition: background 0.12s;
+      width: 100%;
+      max-width: 290px;
+    }
+    .rm-box:hover { background: #FEF08A; }
+
+    .rm-box.blue { background: #EFF6FF; border-color: #3B82F6; }
+    .rm-box.blue:hover { background: #DBEAFE; }
+
+    .rm-box.green { background: #F0FDF4; border-color: #16A34A; }
+    .rm-box.green:hover { background: #DCFCE7; }
+
+    /* ─── LEGEND ─── */
+    .rm-legend {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 28px;
+      margin-top: 56px;
+      justify-content: center;
+      flex-wrap: wrap;
+      border-top: 1px solid #E2E8F0;
+      padding-top: 24px;
+    }
+    .rm-legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #64748B; }
+    .rm-swatch { width: 28px; height: 15px; border: 1.5px solid #CA8A04; background: #FEFCE8; }
+    .rm-swatch.chapter { background: #F5C842; border-color: #000; border-width: 2px; }
+    .rm-swatch.blue { background: #EFF6FF; border-color: #3B82F6; }
+    .rm-swatch.green { background: #F0FDF4; border-color: #16A34A; }
+    .rm-swatch.spine { background: #2563EB; border: none; height: 3px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+<div class="rm-header">
+  <h1>AI Agent-First Engineering</h1>
+  <p class="subtitle">Step-by-step guide from agent non-determinism to production agent systems</p>
+  <p class="sources">
+    <span>↗ Claude Code Skills</span>
+    <span>↗ The Messy World of Deterministic Agents</span>
+    <span>↗ OpenAI Harness Engineering</span>
+    <span>↗ Everything-Claude-Code</span>
+  </p>
+</div>
+
+<div class="rm-wrap">
+  <div class="rm-spine"></div>
+
+  <div class="rm-top-label">
+    <span>AI Agent-First Engineering</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       1. FOUNDATIONS
+  ══════════════════════════════════════ -->
+  <div class="rm-section">
+    <div class="rm-chapter">
+      <div class="rm-chapter-box">1. Foundations</div>
+    </div>
+    <div class="rm-branches">
+      <div class="rm-left">
+        <div class="rm-label">Core Concepts</div>
+        <div class="rm-box">What is an Agent?</div>
+        <div class="rm-box">The Agentic Loop</div>
+        <div class="rm-box">LLM + Tool Calling</div>
+        <div class="rm-box">Humans steer · Agents execute</div>
+      </div>
+      <div class="rm-dot-col"><div class="rm-dot"></div></div>
+      <div class="rm-right">
+        <div class="rm-label">The Problem</div>
+        <div class="rm-box">Non-Determinism</div>
+        <div class="rm-box">Trust &amp; Reliability Gap</div>
+        <div class="rm-box">Agents don't retain skills</div>
+        <div class="rm-box">Repeatable task failures</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       2. DETERMINISM STRATEGIES
+  ══════════════════════════════════════ -->
+  <div class="rm-section">
+    <div class="rm-chapter">
+      <div class="rm-chapter-box">2. Determinism Strategies</div>
+    </div>
+    <div class="rm-branches">
+      <div class="rm-left">
+        <div class="rm-label">Prompt &amp; Memory</div>
+        <div class="rm-box">Workflow Builders (n8n)</div>
+        <div class="rm-box">Context Engineering / RAG</div>
+        <div class="rm-box">Explicit Skills (pre-built SOPs)</div>
+        <div class="rm-box">Learned Skills (Cursor Memory)</div>
+        <div class="rm-box">Letta Sleep-Time Agents</div>
+      </div>
+      <div class="rm-dot-col"><div class="rm-dot"></div></div>
+      <div class="rm-right">
+        <div class="rm-label">Code &amp; Architecture</div>
+        <div class="rm-box">Code Generation (Cloudflare / Browser Use)</div>
+        <div class="rm-box">Meta-Tools (Voyager paper)</div>
+        <div class="rm-box">Script-Agent Fallback</div>
+        <div class="rm-box">Response Caching (Butter.dev)</div>
+        <div class="rm-box">Action Models &amp; RL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       3. CLAUDE CODE SKILLS
+  ══════════════════════════════════════ -->
+  <div class="rm-section">
+    <div class="rm-chapter">
+      <div class="rm-chapter-box">3. Claude Code Skills</div>
+    </div>
+    <div class="rm-branches">
+      <div class="rm-left">
+        <div class="rm-label">Core Mechanics</div>
+        <div class="rm-box">SKILL.md — entrypoint file</div>
+        <div class="rm-box">YAML frontmatter fields</div>
+        <div class="rm-box">$ARGUMENTS substitution</div>
+        <div class="rm-box">Supporting files directory</div>
+        <div class="rm-label">Bundled Skills</div>
+        <div class="rm-box blue">/simplify — 3-agent parallel review</div>
+        <div class="rm-box blue">/batch — parallel codebase changes</div>
+        <div class="rm-box blue">/loop — scheduled recurring prompts</div>
+        <div class="rm-box blue">/debug, /claude-api</div>
+      </div>
+      <div class="rm-dot-col"><div class="rm-dot"></div></div>
+      <div class="rm-right">
+        <div class="rm-label">Invocation Control</div>
+        <div class="rm-box">disable-model-invocation: true</div>
+        <div class="rm-box">user-invocable: false</div>
+        <div class="rm-box">allowed-tools restriction</div>
+        <div class="rm-box">Personal / Project / Plugin scope</div>
+        <div class="rm-label">Advanced Patterns</div>
+        <div class="rm-box">context: fork → isolated subagent</div>
+        <div class="rm-box">!`cmd` dynamic context injection</div>
+        <div class="rm-box">agentskills.io open standard</div>
+        <div class="rm-box">Skills auto-discovery in monorepos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       4. HARNESS ENGINEERING
+  ══════════════════════════════════════ -->
+  <div class="rm-section">
+    <div class="rm-chapter">
+      <div class="rm-chapter-box">4. Harness Engineering</div>
+    </div>
+    <div class="rm-branches">
+      <div class="rm-left">
+        <div class="rm-label">Context Architecture</div>
+        <div class="rm-box">AGENTS.md as table of contents (~100 lines)</div>
+        <div class="rm-box">docs/ as versioned knowledge base</div>
+        <div class="rm-box">Progressive disclosure pattern</div>
+        <div class="rm-box">Agent legibility over human taste</div>
+        <div class="rm-box">All knowledge must be in-repo</div>
+        <div class="rm-box">Exec plans checked into version control</div>
+      </div>
+      <div class="rm-dot-col"><div class="rm-dot"></div></div>
+      <div class="rm-right">
+        <div class="rm-label">Quality Systems</div>
+        <div class="rm-box">Layered domain architecture (Types→Service→UI)</div>
+        <div class="rm-box">Custom linters (agent-generated)</div>
+        <div class="rm-box">Golden principles encoded as rules</div>
+        <div class="rm-box">Chrome DevTools + observability for agents</div>
+        <div class="rm-box">Garbage collection via doc-gardening agents</div>
+        <div class="rm-box">Corrections are cheap — waiting is expensive</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       5. PRODUCTION AGENT SYSTEMS
+  ══════════════════════════════════════ -->
+  <div class="rm-section">
+    <div class="rm-chapter">
+      <div class="rm-chapter-box">5. Production Agent Systems</div>
+    </div>
+    <div class="rm-branches">
+      <div class="rm-left">
+        <div class="rm-label">Everything-Claude-Code</div>
+        <div class="rm-box">65 skills / 40 commands / 16 agents</div>
+        <div class="rm-box">Hooks (session, memory, auto-format)</div>
+        <div class="rm-box">Cross-platform: Cursor, Codex, OpenCode</div>
+        <div class="rm-box">AgentShield — 102 security rules</div>
+        <div class="rm-label">Token Optimization</div>
+        <div class="rm-box blue">Use sonnet by default (60% cost reduction)</div>
+        <div class="rm-box blue">MAX_THINKING_TOKENS=10000</div>
+        <div class="rm-box blue">Strategic /compact at milestones</div>
+        <div class="rm-box blue">/clear between unrelated tasks</div>
+      </div>
+      <div class="rm-dot-col"><div class="rm-dot"></div></div>
+      <div class="rm-right">
+        <div class="rm-label">Continuous Learning</div>
+        <div class="rm-box green">Instinct extraction from sessions</div>
+        <div class="rm-box green">/learn — extract patterns mid-session</div>
+        <div class="rm-box green">/evolve — cluster instincts into skills</div>
+        <div class="rm-box green">Confidence scoring &amp; import/export</div>
+        <div class="rm-label">Security</div>
+        <div class="rm-box">npx ecc-agentshield scan</div>
+        <div class="rm-box">Red-team / blue-team Opus pipeline</div>
+        <div class="rm-box">Secrets detection (14 patterns)</div>
+        <div class="rm-box">Permission auditing &amp; hook injection scan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── LEGEND ─── -->
+  <div class="rm-legend">
+    <div class="rm-legend-item"><div class="rm-swatch chapter"></div><span>Chapter milestone</span></div>
+    <div class="rm-legend-item"><div class="rm-swatch"></div><span>Core concept</span></div>
+    <div class="rm-legend-item"><div class="rm-swatch blue"></div><span>Tool / Command</span></div>
+    <div class="rm-legend-item"><div class="rm-swatch green"></div><span>Learning / Automation</span></div>
+    <div class="rm-legend-item"><div class="rm-swatch spine"></div><span>Learning path</span></div>
+  </div>
+</div>
+
+</body>
+</html>

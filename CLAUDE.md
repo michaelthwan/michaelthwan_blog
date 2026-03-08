@@ -1,26 +1,11 @@
-# Project Instructions for Claude
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## User Preferences
 
-- **Always ask for confirmation before running destructive commands** (e.g., `rm`, `git reset`, `git clean`, etc.)
+- **Always ask for confirmation before running destructive commands** (e.g., `rm`, `git reset`, `git clean`)
 - User wants to review all bash commands before execution
-
-## Project Structure
-
-This is a Distill-style knowledge blog built with Astro.
-
-- Blog posts: `astro-blog/src/content/posts/*.md`
-- Styles: `astro-blog/public/styles.css`
-- Scripts: `astro-blog/public/script.js`
-
-## Images & Interactives
-
-- Images go in `astro-blog/public/img/<post-name>/` (e.g. `public/img/transformer/`)
-- When adding a new blog post, selectively pick images for parts that are genuinely complex enough to warrant them — don't illustrate everything
-- Reserve interactive modules for the **core mechanics** that benefit from hands-on exploration (e.g. attention computation, positional encoding)
-- Static paper figures are best used as **supporting context**, not as a replacement for interactivity
-- Tall/portrait paper figures need an explicit `max-width` + `margin: 0 auto; display: block;` to avoid dominating the page
-- Side-by-side image pairs in flexbox require `min-width: 0` on each `<img>` and `overflow: hidden` on the flex container, or they overflow
 
 ## Commands
 
@@ -30,3 +15,70 @@ npm run dev      # Start dev server at localhost:4321
 npm run build    # Build for production
 npm run preview  # Preview production build
 ```
+
+## Architecture Overview
+
+Distill-style knowledge blog built with **Astro** (static site generator). All source lives under `astro-blog/`.
+
+### Routing & Pages
+- `src/pages/index.astro` — Homepage (bio/portfolio). Avatar, career timeline, education.
+- `src/pages/blog.astro` — Three-column listing (ML | Dev | Business & Industry), fetched via `getCollection('posts')`.
+- `src/pages/posts/[...slug].astro` — Dynamic post pages; renders each `.md` file through `Article.astro`.
+
+### Content Collection
+Posts live in `src/content/posts/*.md`. The Zod schema (`src/content/config.ts`) requires these frontmatter fields:
+
+```yaml
+title: string
+subtitle: string
+authors: string[]
+affiliations: string[]
+published: string        # display date string
+abstract: string
+category: ml | dev | business   # controls which column on blog.astro
+tags: string[]           # default: ['explainer']
+thumbnail: string        # optional, path from /public (e.g. /img/post/thumb.png)
+doi: string              # optional
+doiUrl: string           # optional
+```
+
+### Layouts & Components
+- `src/layouts/Article.astro` — Full article shell. Loads KaTeX (CDN), `styles.css`, and `script.js`. Auto-generates a TOC from h2/h3 headings in the post.
+- `src/layouts/Base.astro` — Bare HTML shell used by non-article pages. Loads Inter + JetBrains Mono fonts and `styles.css`.
+- `src/components/Header.astro` — Logo + site name. Accepts `logoText` prop (default: "Michael Wan Interactive Insights"). Homepage passes `logoText="Michael Wan"`.
+- `src/components/PostPreview.astro` — Card used on blog.astro. Shows thumbnail, date, tags, title, authors (truncated at 3 + "et al."), and abstract excerpt.
+- `src/components/TimelineEntry.astro` — Used on the homepage timeline.
+
+### Styles
+Single stylesheet: `public/styles.css`. Organized by labeled comment sections:
+- `CSS Variables` — colors, fonts, layout widths (`--l-page: 900px`, `--content-width: 648px`)
+- `DISTILL HEADER` — `.d-title`, `.d-subtitle`, `.d-byline` (article title area)
+- `SITE HEADER` — `.site-header`, `.logo`
+- `HOMEPAGE - POSTS LIST` — `.index-columns` (3-col grid), `.post-preview` cards
+- `BIO / PORTFOLIO PAGE` — `.bio-hero`, timeline, education, skills
+- `COMPENSATION CHARTS & INTERACTIVE` — styles for the tech-comp post
+- `WORKFLOW LOOP DIAGRAM` — styles for the claude-code post interactive
+- Positional encoding interactive styles
+
+### Scripts
+- `public/script.js` — Global client-side JS loaded by `Article.astro` on every post. Contains interactives for attention computation and positional encoding.
+- `public/js/<post>.js` — Post-specific scripts loaded via `<script>` tags inside the post markdown. Example: `public/js/sp500-charts.js` uses Chart.js loaded from CDN within the post itself.
+
+## Adding a New Blog Post
+
+1. Create `src/content/posts/<slug>.md` with required frontmatter (see schema above).
+2. Add images to `public/img/<slug>/`.
+3. If using Chart.js or other heavy libraries, load them via CDN `<script>` tags inside the markdown (not in `script.js`). Put post-specific JS in `public/js/<slug>.js`.
+4. Post automatically appears in the correct column on blog.astro based on `category`.
+
+## Images & Interactives
+
+- Selectively add images — only where content is genuinely complex enough to warrant them.
+- Reserve interactive modules for **core mechanics** that benefit from hands-on exploration.
+- Tall/portrait figures need an explicit `max-width` + `margin: 0 auto; display: block;` to avoid dominating the page.
+- Side-by-side images in flexbox require `min-width: 0` on each `<img>` and `overflow: hidden` on the container, or they overflow.
+
+## Math Formulas
+
+- Use LaTeX (`$...$` inline, `$$...$$` display) — KaTeX is loaded on all article pages.
+- Inside HTML `<div>` containers, escape underscores as `\_` to prevent markdown interpreting them as italics before KaTeX renders (e.g. `$S\_{ij}$`).
