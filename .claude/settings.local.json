@@ -69,7 +69,9 @@
       "WebFetch(domain:claptools.com)",
       "WebFetch(domain:blog.butter.dev)",
       "WebFetch(domain:openai.com)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "WebFetch(domain:ccu.galdoron.com)",
+      "WebFetch(domain:alex000kim.com)"
     ]
   }
 }

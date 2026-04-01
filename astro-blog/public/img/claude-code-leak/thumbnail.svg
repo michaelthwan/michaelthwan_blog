@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.1"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="420" fill="url(#bg)"/>
+
+  <!-- Glow circles -->
+  <circle cx="200" cy="210" r="180" fill="url(#glow)" filter="url(#blur)" opacity="0.6"/>
+  <circle cx="600" cy="210" r="150" fill="#3b82f6" opacity="0.05" filter="url(#blur)"/>
+
+  <!-- Code lines background -->
+  <g opacity="0.08" font-family="monospace" font-size="11" fill="#94a3b8">
+    <text x="460" y="60">KAIROS.ts · daemon.ts · undercover.ts</text>
+    <text x="480" y="82">function heartbeat() &#123; autoEval(); &#125;</text>
+    <text x="500" y="104">// ANTI_DISTILLATION_CC: true</text>
+    <text x="460" y="126">const buddy = generatePet(userId);</text>
+    <text x="490" y="148">session: 'Daemon' | 'Interactive'</text>
+    <text x="470" y="170">// Undercover mode: hide AI identity</text>
+    <text x="460" y="192">autoDream.consolidateMemory();</text>
+    <text x="480" y="214">tengu_kairos_assistant_mode: true</text>
+    <text x="500" y="236">udsInbox.broadcast(message);</text>
+    <text x="460" y="258">// 44 feature flags, 79 hidden</text>
+  </g>
+
+  <!-- Lock icon (broken) -->
+  <g transform="translate(100, 120)">
+    <!-- Lock body -->
+    <rect x="30" y="55" width="90" height="75" rx="8" fill="none" stroke="#ef4444" stroke-width="3"/>
+    <!-- Lock shackle (broken open) -->
+    <path d="M 50 55 L 50 30 Q 75 10 100 30 L 100 45" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+    <!-- Crack line -->
+    <path d="M 75 75 L 68 95 L 82 95 L 72 118" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Keyhole -->
+    <circle cx="75" cy="88" r="8" fill="#ef4444" opacity="0.4"/>
+  </g>
+
+  <!-- Drip lines suggesting leak -->
+  <g opacity="0.6">
+    <line x1="165" y1="195" x2="162" y2="230" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <circle cx="162" cy="234" r="3" fill="#ef4444"/>
+    <line x1="185" y1="195" x2="190" y2="240" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <circle cx="190" cy="244" r="3" fill="#f97316"/>
+    <line x1="145" y1="195" x2="138" y2="222" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,4" opacity="0.5"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="400" y="155" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="42" font-weight="800" fill="#f1f5f9" letter-spacing="-1">Claude Code Leak</text>
+
+  <!-- Subtitle -->
+  <text x="400" y="195" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="17" fill="#94a3b8" letter-spacing="0.5">What 512,000 Lines of Source Code Revealed</text>
+
+  <!-- Red badge -->
+  <rect x="292" y="220" width="216" height="30" rx="15" fill="#ef4444" opacity="0.15"/>
+  <rect x="292" y="220" width="216" height="30" rx="15" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
+  <text x="400" y="240" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#fca5a5" letter-spacing="1">March 31, 2026 · NPM v2.1.88</text>
+
+  <!-- Feature pills -->
+  <g font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">
+    <!-- KAIROS -->
+    <rect x="60" y="300" width="74" height="24" rx="12" fill="#1e40af" opacity="0.5"/>
+    <text x="97" y="316" text-anchor="middle" fill="#93c5fd">KAIROS</text>
+    <!-- Daemon -->
+    <rect x="144" y="300" width="70" height="24" rx="12" fill="#065f46" opacity="0.5"/>
+    <text x="179" y="316" text-anchor="middle" fill="#6ee7b7">Daemon</text>
+    <!-- Undercover -->
+    <rect x="224" y="300" width="90" height="24" rx="12" fill="#4c1d95" opacity="0.5"/>
+    <text x="269" y="316" text-anchor="middle" fill="#c4b5fd">Undercover</text>
+    <!-- Buddy -->
+    <rect x="324" y="300" width="60" height="24" rx="12" fill="#7c2d12" opacity="0.5"/>
+    <text x="354" y="316" text-anchor="middle" fill="#fdba74">Buddy</text>
+    <!-- AutoDream -->
+    <rect x="394" y="300" width="88" height="24" rx="12" fill="#164e63" opacity="0.5"/>
+    <text x="438" y="316" text-anchor="middle" fill="#67e8f9">AutoDream</text>
+    <!-- SuperPlan -->
+    <rect x="492" y="300" width="84" height="24" rx="12" fill="#14532d" opacity="0.5"/>
+    <text x="534" y="316" text-anchor="middle" fill="#86efac">SuperPlan</text>
+    <!-- Anti-Distill -->
+    <rect x="586" y="300" width="104" height="24" rx="12" fill="#7f1d1d" opacity="0.5"/>
+    <text x="638" y="316" text-anchor="middle" fill="#fca5a5">Anti-Distill</text>
+  </g>
+
+  <!-- Bottom label -->
+  <text x="400" y="390" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#475569">Michael Wan Interactive Insights</text>
+</svg>
