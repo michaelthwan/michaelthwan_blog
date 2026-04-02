@@ -1408,6 +1408,9 @@ pre code {
     gap: 40px;
     align-items: flex-start;
     padding-top: 32px;
+    max-width: calc(var(--toc-width) + var(--content-width) + 24px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .bio-avatar-wrap {
@@ -1518,6 +1521,9 @@ pre code {
     padding-top: 40px;
     padding-bottom: 64px;
     margin-top: 36px;
+    max-width: calc(var(--toc-width) + var(--content-width) + 24px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .timeline-entry {
