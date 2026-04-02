@@ -1,96 +1,92 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f172a"/>
-      <stop offset="100%" style="stop-color:#1e1b4b"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.1"/>
-    </linearGradient>
-    <filter id="blur">
-      <feGaussianBlur stdDeviation="20"/>
-    </filter>
-  </defs>
-
   <!-- Background -->
-  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="420" fill="#0f172a"/>
 
-  <!-- Glow circles -->
-  <circle cx="200" cy="210" r="180" fill="url(#glow)" filter="url(#blur)" opacity="0.6"/>
-  <circle cx="600" cy="210" r="150" fill="#3b82f6" opacity="0.05" filter="url(#blur)"/>
-
-  <!-- Code lines background -->
-  <g opacity="0.08" font-family="monospace" font-size="11" fill="#94a3b8">
-    <text x="460" y="60">KAIROS.ts · daemon.ts · undercover.ts</text>
-    <text x="480" y="82">function heartbeat() &#123; autoEval(); &#125;</text>
-    <text x="500" y="104">// ANTI_DISTILLATION_CC: true</text>
-    <text x="460" y="126">const buddy = generatePet(userId);</text>
-    <text x="490" y="148">session: 'Daemon' | 'Interactive'</text>
-    <text x="470" y="170">// Undercover mode: hide AI identity</text>
-    <text x="460" y="192">autoDream.consolidateMemory();</text>
-    <text x="480" y="214">tengu_kairos_assistant_mode: true</text>
-    <text x="500" y="236">udsInbox.broadcast(message);</text>
-    <text x="460" y="258">// 44 feature flags, 79 hidden</text>
+  <!-- Subtle grid lines -->
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="0" y1="60" x2="800" y2="60"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="133" y1="0" x2="133" y2="420"/>
+    <line x1="266" y1="0" x2="266" y2="420"/>
+    <line x1="400" y1="0" x2="400" y2="420"/>
+    <line x1="533" y1="0" x2="533" y2="420"/>
+    <line x1="666" y1="0" x2="666" y2="420"/>
   </g>
 
-  <!-- Lock icon (broken) -->
-  <g transform="translate(100, 120)">
-    <!-- Lock body -->
-    <rect x="30" y="55" width="90" height="75" rx="8" fill="none" stroke="#ef4444" stroke-width="3"/>
-    <!-- Lock shackle (broken open) -->
-    <path d="M 50 55 L 50 30 Q 75 10 100 30 L 100 45" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-    <!-- Crack line -->
-    <path d="M 75 75 L 68 95 L 82 95 L 72 118" stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <!-- Keyhole -->
-    <circle cx="75" cy="88" r="8" fill="#ef4444" opacity="0.4"/>
-  </g>
+  <!-- Red glow blob -->
+  <ellipse cx="160" cy="210" rx="160" ry="120" fill="#ef4444" opacity="0.08"/>
+  <ellipse cx="640" cy="210" rx="120" ry="100" fill="#3b82f6" opacity="0.06"/>
 
-  <!-- Drip lines suggesting leak -->
-  <g opacity="0.6">
-    <line x1="165" y1="195" x2="162" y2="230" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
-    <circle cx="162" cy="234" r="3" fill="#ef4444"/>
-    <line x1="185" y1="195" x2="190" y2="240" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
-    <circle cx="190" cy="244" r="3" fill="#f97316"/>
-    <line x1="145" y1="195" x2="138" y2="222" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,4" opacity="0.5"/>
+  <!-- Broken lock icon -->
+  <g transform="translate(88, 130)">
+    <rect x="0" y="48" width="76" height="62" rx="8" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+    <!-- open shackle -->
+    <path d="M14 48 L14 24 Q38 4 62 24 L62 40" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- keyhole -->
+    <circle cx="38" cy="76" r="8" fill="#ef4444" opacity="0.5"/>
+    <rect x="34" y="76" width="8" height="14" rx="2" fill="#ef4444" opacity="0.5"/>
+    <!-- crack -->
+    <polyline points="38,55 32,68 44,72 36,88" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
   <!-- Main title -->
-  <text x="400" y="155" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="42" font-weight="800" fill="#f1f5f9" letter-spacing="-1">Claude Code Leak</text>
+  <text x="400" y="158" text-anchor="middle"
+        font-family="Inter, -apple-system, sans-serif"
+        font-size="46" font-weight="800" fill="#f1f5f9" letter-spacing="-1">Claude Code Leak</text>
 
   <!-- Subtitle -->
-  <text x="400" y="195" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="17" fill="#94a3b8" letter-spacing="0.5">What 512,000 Lines of Source Code Revealed</text>
+  <text x="400" y="196" text-anchor="middle"
+        font-family="Inter, -apple-system, sans-serif"
+        font-size="16" fill="#64748b" letter-spacing="0.3">What 512,000 lines of source code revealed</text>
 
-  <!-- Red badge -->
-  <rect x="292" y="220" width="216" height="30" rx="15" fill="#ef4444" opacity="0.15"/>
-  <rect x="292" y="220" width="216" height="30" rx="15" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
-  <text x="400" y="240" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#fca5a5" letter-spacing="1">March 31, 2026 · NPM v2.1.88</text>
+  <!-- Red pill badge -->
+  <rect x="300" y="216" width="200" height="28" rx="14" fill="#ef4444" opacity="0.12"/>
+  <rect x="300" y="216" width="200" height="28" rx="14" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.35"/>
+  <text x="400" y="235" text-anchor="middle"
+        font-family="Inter, -apple-system, sans-serif"
+        font-size="12" font-weight="600" fill="#fca5a5" letter-spacing="0.8">March 31, 2026 · npm v2.1.88</text>
 
-  <!-- Feature pills -->
-  <g font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="500">
+  <!-- Feature tags row -->
+  <g font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="500">
     <!-- KAIROS -->
-    <rect x="60" y="300" width="74" height="24" rx="12" fill="#1e40af" opacity="0.5"/>
-    <text x="97" y="316" text-anchor="middle" fill="#93c5fd">KAIROS</text>
+    <rect x="52" y="278" width="72" height="22" rx="11" fill="#1e3a8a" opacity="0.7"/>
+    <text x="88" y="293" text-anchor="middle" fill="#93c5fd">KAIROS</text>
     <!-- Daemon -->
-    <rect x="144" y="300" width="70" height="24" rx="12" fill="#065f46" opacity="0.5"/>
-    <text x="179" y="316" text-anchor="middle" fill="#6ee7b7">Daemon</text>
+    <rect x="132" y="278" width="68" height="22" rx="11" fill="#064e3b" opacity="0.7"/>
+    <text x="166" y="293" text-anchor="middle" fill="#6ee7b7">Daemon</text>
     <!-- Undercover -->
-    <rect x="224" y="300" width="90" height="24" rx="12" fill="#4c1d95" opacity="0.5"/>
-    <text x="269" y="316" text-anchor="middle" fill="#c4b5fd">Undercover</text>
+    <rect x="208" y="278" width="88" height="22" rx="11" fill="#3b0764" opacity="0.7"/>
+    <text x="252" y="293" text-anchor="middle" fill="#d8b4fe">Undercover</text>
     <!-- Buddy -->
-    <rect x="324" y="300" width="60" height="24" rx="12" fill="#7c2d12" opacity="0.5"/>
-    <text x="354" y="316" text-anchor="middle" fill="#fdba74">Buddy</text>
+    <rect x="304" y="278" width="58" height="22" rx="11" fill="#431407" opacity="0.7"/>
+    <text x="333" y="293" text-anchor="middle" fill="#fdba74">Buddy</text>
     <!-- AutoDream -->
-    <rect x="394" y="300" width="88" height="24" rx="12" fill="#164e63" opacity="0.5"/>
-    <text x="438" y="316" text-anchor="middle" fill="#67e8f9">AutoDream</text>
+    <rect x="370" y="278" width="86" height="22" rx="11" fill="#083344" opacity="0.7"/>
+    <text x="413" y="293" text-anchor="middle" fill="#67e8f9">AutoDream</text>
     <!-- SuperPlan -->
-    <rect x="492" y="300" width="84" height="24" rx="12" fill="#14532d" opacity="0.5"/>
-    <text x="534" y="316" text-anchor="middle" fill="#86efac">SuperPlan</text>
+    <rect x="464" y="278" width="80" height="22" rx="11" fill="#052e16" opacity="0.7"/>
+    <text x="504" y="293" text-anchor="middle" fill="#86efac">SuperPlan</text>
     <!-- Anti-Distill -->
-    <rect x="586" y="300" width="104" height="24" rx="12" fill="#7f1d1d" opacity="0.5"/>
-    <text x="638" y="316" text-anchor="middle" fill="#fca5a5">Anti-Distill</text>
+    <rect x="552" y="278" width="96" height="22" rx="11" fill="#450a0a" opacity="0.7"/>
+    <text x="600" y="293" text-anchor="middle" fill="#fca5a5">Anti-Distill</text>
+    <!-- ReAct -->
+    <rect x="656" y="278" width="60" height="22" rx="11" fill="#1e1b4b" opacity="0.7"/>
+    <text x="686" y="293" text-anchor="middle" fill="#a5b4fc">ReAct</text>
   </g>
 
-  <!-- Bottom label -->
-  <text x="400" y="390" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#475569">Michael Wan Interactive Insights</text>
+  <!-- Code lines decoration -->
+  <g font-family="monospace" font-size="10" fill="#334155" opacity="0.5">
+    <text x="52" y="336">// cur-session.ts · query.ts · undercover.ts</text>
+    <text x="52" y="352">const kairos = await heartbeat.evaluate();</text>
+    <text x="52" y="368">daemon.persist({ cron: '0 * * * *' });</text>
+  </g>
+
+  <!-- Bottom byline -->
+  <text x="400" y="404" text-anchor="middle"
+        font-family="Inter, -apple-system, sans-serif"
+        font-size="11" fill="#334155" letter-spacing="0.3">Michael Wan Interactive Insights</text>
 </svg>

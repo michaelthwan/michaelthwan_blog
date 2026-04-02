@@ -10,6 +10,7 @@ abstract: "A structured learning path synthesizing four key resources: Claude Co
 tags:
   - "explainer"
 category: "dev"
+thumbnail: "/img/agent-engineering-roadmap/thumbnail.svg"
 ---
 
 <p class="d-note">
