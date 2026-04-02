@@ -42,6 +42,190 @@
 }
 
 /* ============================================
+   DARK MODE
+   ============================================ */
+[data-theme="dark"] {
+    --color-bg: #0f172a;
+    --color-text: #f1f5f9;
+    --color-text-light: #cbd5e1;
+    --color-gray: #94a3b8;
+    --color-gray-light: #64748b;
+    --color-border: #1e293b;
+    --color-surface: #1e293b;
+    --color-surface-border: #334155;
+    --color-link: #60a5fa;
+    --color-link-hover: #93c5fd;
+    --color-orange-bg: #1c1008;
+    --color-blue-bg: #0c1a2e;
+    --color-green-bg: #0a1f0f;
+}
+
+[data-theme="dark"] body {
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+[data-theme="dark"] .site-header {
+    background: var(--color-bg);
+    border-bottom-color: var(--color-surface);
+}
+
+
+[data-theme="dark"] .d-byline {
+    border-color: var(--color-border);
+}
+
+[data-theme="dark"] .d-toc a {
+    color: var(--color-gray);
+}
+
+[data-theme="dark"] .d-toc a:hover,
+[data-theme="dark"] .d-toc a.active {
+    color: var(--color-text);
+}
+
+[data-theme="dark"] code,
+[data-theme="dark"] pre {
+    background: var(--color-surface);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] blockquote {
+    border-left-color: var(--color-surface-border);
+    color: var(--color-gray);
+}
+
+[data-theme="dark"] .d-note {
+    background: var(--color-surface);
+    border-color: var(--color-surface-border);
+}
+
+[data-theme="dark"] .d-callout {
+    background: var(--color-surface);
+    border-color: var(--color-surface-border);
+}
+
+[data-theme="dark"] .post-preview {
+    background: #0f172a;
+    border-color: var(--color-surface);
+}
+
+[data-theme="dark"] .post-preview:hover {
+    border-color: var(--color-surface-border);
+}
+
+[data-theme="dark"] .post-title,
+[data-theme="dark"] .post-abstract {
+    color: var(--color-text-light);
+}
+
+[data-theme="dark"] .column-header h2 {
+    color: var(--color-text);
+}
+
+[data-theme="dark"] .column-desc {
+    color: var(--color-gray);
+}
+
+[data-theme="dark"] .bio-hero,
+[data-theme="dark"] .bio-timeline {
+    color: var(--color-text);
+}
+
+[data-theme="dark"] .timeline-role,
+[data-theme="dark"] .timeline-company {
+    color: var(--color-text-light);
+}
+
+[data-theme="dark"] .thumbnail-placeholder {
+    background: var(--color-surface);
+}
+
+[data-theme="dark"] .logo {
+    color: var(--color-text);
+}
+
+[data-theme="dark"] .logo-icon {
+    filter: invert(1);
+}
+
+[data-theme="dark"] .bio-btn-icon {
+    background: var(--color-surface);
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .bio-btn-primary {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+[data-theme="dark"] .theme-icon-sun { display: none; }
+[data-theme="dark"] .theme-icon-moon { display: block; }
+
+/* ── claude-code-leak post ── */
+[data-theme="dark"] .lk-stat {
+    background: var(--color-surface);
+    border-color: var(--color-surface-border);
+}
+[data-theme="dark"] .lk-stat-val { color: #f1f5f9; }
+[data-theme="dark"] .lk-card {
+    background: var(--color-surface);
+    border-color: var(--color-surface-border);
+}
+[data-theme="dark"] .lk-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
+[data-theme="dark"] .lk-card h3 { color: #f1f5f9; }
+[data-theme="dark"] .lk-card p  { color: #94a3b8; }
+[data-theme="dark"] .lt-desc    { color: #94a3b8; }
+[data-theme="dark"] .react-loop { border-color: var(--color-surface-border); }
+[data-theme="dark"] .rl-phase   { border-bottom-color: var(--color-surface); }
+[data-theme="dark"] .rl-num     { background: var(--color-surface); border-right-color: var(--color-surface-border); color: #64748b; }
+[data-theme="dark"] .rl-num span { color: #f1f5f9; }
+[data-theme="dark"] .rl-body strong { color: #f1f5f9; }
+[data-theme="dark"] .rl-body p  { color: #94a3b8; }
+[data-theme="dark"] .rs-1 { background: #2d0f10; color: #fca5a5; }
+[data-theme="dark"] .rs-2 { background: #2d1a08; color: #fdba74; }
+[data-theme="dark"] .rs-3 { background: #2a1f05; color: #fde68a; }
+[data-theme="dark"] .rs-4 { background: #052e16; color: #86efac; }
+[data-theme="dark"] .rs-5 { background: #0c1a2e; color: #93c5fd; }
+[data-theme="dark"] .rs-6 { background: #1e1040; color: #c4b5fd; }
+[data-theme="dark"] .rs-7 { background: #2d0a3a; color: #e879f9; }
+[data-theme="dark"] .eng-card {
+    background: var(--color-surface);
+    border-color: var(--color-surface-border);
+}
+[data-theme="dark"] .eng-card h4 { color: #f1f5f9; }
+[data-theme="dark"] .eng-card p  { color: #94a3b8; }
+[data-theme="dark"] .flag-table th {
+    background: var(--color-surface);
+    color: #cbd5e1;
+    border-bottom-color: var(--color-surface-border);
+}
+[data-theme="dark"] .flag-table td { border-bottom-color: var(--color-surface); color: #94a3b8; }
+[data-theme="dark"] .flag-table td:first-child { color: #60a5fa; }
+[data-theme="dark"] .section-marker-label { color: var(--color-text-light); }
+[data-theme="dark"] .section-marker-line  { background: var(--color-surface); }
+[data-theme="dark"] .tag-agent    { background: #1e3a8a; color: #93c5fd; }
+[data-theme="dark"] .tag-security { background: #450a0a; color: #fca5a5; }
+[data-theme="dark"] .tag-memory   { background: #052e16; color: #6ee7b7; }
+[data-theme="dark"] .tag-ux       { background: #2e1065; color: #c4b5fd; }
+[data-theme="dark"] .tag-infra    { background: #431407; color: #fdba74; }
+[data-theme="dark"] .tag-arch     { background: #0c2a4a; color: #7dd3fc; }
+
+/* ── agent-engineering-roadmap post ── */
+[data-theme="dark"] .rm-box.b  { background: #0c1a2e; border-color: #3b82f6; }
+[data-theme="dark"] .rm-box.b:hover { background: #0f2a4a; }
+[data-theme="dark"] .rm-box.g  { background: #052e16; border-color: #16a34a; }
+[data-theme="dark"] .rm-box.g:hover { background: #073d1e; }
+[data-theme="dark"] .rm-title span { background: var(--color-surface); }
+[data-theme="dark"] .rm-box    { color: #f1f5f9; }
+[data-theme="dark"] .rm-panel  { background: #0f172a; color: #e2e8f0; }
+
+/* ── general post components (d-note, d-callout, tables, code) ── */
+[data-theme="dark"] table th { background: var(--color-surface); color: #cbd5e1; border-color: var(--color-surface-border); }
+[data-theme="dark"] table td { border-color: var(--color-surface); color: #94a3b8; }
+[data-theme="dark"] .timeline-section-title { color: #94a3b8; }
+
+/* ============================================
    RESET & BASE
    ============================================ */
 *, *::before, *::after {
@@ -1096,6 +1280,26 @@ pre code {
     padding: 16px 0;
     margin-bottom: 32px;
 }
+
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 6px 8px;
+    cursor: pointer;
+    color: var(--color-gray);
+    display: flex;
+    align-items: center;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-gray);
+    color: var(--color-text);
+}
+
+.theme-icon-sun  { display: block; }
+.theme-icon-moon { display: none; }
 
 .header-content {
     display: flex;

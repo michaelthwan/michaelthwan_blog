@@ -72,15 +72,15 @@ thumbnail: "/img/claude-code-leak/thumbnail.svg"
   }
   .rl-num span { font-size: 1rem; font-weight: 900; color: #111827; }
   .rl-body { padding: 13px 15px; }
-  .rl-body strong { font-size: 0.84rem; color: #111827; display: block; margin-bottom: 3px; }
-  .rl-body p { font-size: 0.8rem; color: #6b7280; margin: 0; line-height: 1.5; }
+  .rl-body strong { font-size: 0.95rem; color: #111827; display: block; margin-bottom: 4px; }
+  .rl-body p { font-size: 0.9rem; color: #6b7280; margin: 0; line-height: 1.55; }
 
   /* ── Recovery stack ── */
   .recovery-stack { margin: 20px 0; display: flex; flex-direction: column; gap: 5px; }
   .rs-layer { display: flex; align-items: center; gap: 10px; padding: 9px 13px; border-radius: 6px; border-left: 3px solid; }
-  .rs-layer-num { font-size: 0.68rem; font-weight: 800; min-width: 16px; text-align: center; opacity: 0.55; }
-  .rs-layer-label { font-size: 0.82rem; font-weight: 600; flex: 1; }
-  .rs-layer-desc  { font-size: 0.75rem; opacity: 0.65; text-align: right; }
+  .rs-layer-num { font-size: 0.75rem; font-weight: 800; min-width: 16px; text-align: center; opacity: 0.55; }
+  .rs-layer-label { font-size: 0.95rem; font-weight: 600; flex: 1; }
+  .rs-layer-desc  { font-size: 0.85rem; opacity: 0.65; text-align: right; }
   .rs-1 { background: #fff1f2; border-color: #ef4444; color: #7f1d1d; }
   .rs-2 { background: #fff7ed; border-color: #f97316; color: #7c2d12; }
   .rs-3 { background: #fefce8; border-color: #eab308; color: #713f12; }
@@ -92,12 +92,12 @@ thumbnail: "/img/claude-code-leak/thumbnail.svg"
   /* ── Eng highlights ── */
   .eng-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin: 24px 0; }
   .eng-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; background: #fff; }
-  .eng-card h4 { font-size: 0.85rem; font-weight: 700; margin: 0 0 5px 0; color: #111827; }
-  .eng-card p  { font-size: 0.79rem; color: #6b7280; margin: 0; line-height: 1.5; }
+  .eng-card h4 { font-size: 0.95rem; font-weight: 700; margin: 0 0 6px 0; color: #111827; }
+  .eng-card p  { font-size: 0.88rem; color: #6b7280; margin: 0; line-height: 1.55; }
   .eng-icon    { font-size: 1.1rem; margin-bottom: 5px; display: block; }
 
   /* ── Flag table ── */
-  .flag-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; margin: 18px 0; }
+  .flag-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 18px 0; }
   .flag-table th { background: #f3f4f6; padding: 8px 11px; text-align: left; font-weight: 600; color: #374151; border-bottom: 2px solid #e5e7eb; }
   .flag-table td { padding: 8px 11px; border-bottom: 1px solid #f3f4f6; color: #6b7280; vertical-align: top; }
   .flag-table td:first-child { font-family: monospace; color: #1d4ed8; font-size: 0.77rem; white-space: nowrap; }
@@ -109,7 +109,7 @@ thumbnail: "/img/claude-code-leak/thumbnail.svg"
     margin: 52px 0 28px; color: #9ca3af;
   }
   .section-marker-line { flex: 1; height: 1px; background: #e5e7eb; }
-  .section-marker-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
+  .section-marker-label { font-size: 2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
 
   @media (max-width: 600px) {
     .lk-grid, .eng-grid { grid-template-columns: 1fr; }
