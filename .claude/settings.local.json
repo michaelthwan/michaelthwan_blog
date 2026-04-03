@@ -71,7 +71,9 @@
       "WebFetch(domain:openai.com)",
       "Bash(npm run:*)",
       "WebFetch(domain:ccu.galdoron.com)",
-      "WebFetch(domain:alex000kim.com)"
+      "WebFetch(domain:alex000kim.com)",
+      "Bash(ls -lh c:/github/mw_knowledge_blog/astro-blog/public/img/deepseek-mhc/*.png)",
+      "Bash(ls -lh \"c:/github/mw_knowledge_blog/astro-blog/public/img/deepseek-mhc/\"*.png)"
     ]
   }
 }

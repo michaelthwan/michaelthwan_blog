@@ -121,11 +121,13 @@ Their idea, called **Hyperconnections (HC)**, replaces the single residual strea
 
 <figure class="d-figure">
     <div class="d-figure-content">
-        <img src="/img/deepseek-mhc/diagram-hc-streams.svg" alt="Three parallel streams routed through a learned n-by-n weight matrix W, with crossing arrows showing inter-stream mixing" style="max-width:400px;width:100%;height:auto;display:block;margin:0 auto">
+        <img src="/img/deepseek-mhc/fig1-architecture.png" alt="Figure 1 from the paper: three-panel comparison of (a) Residual Connection, (b) Hyper-Connections with orange Res/Pre/Post mapping boxes, (c) mHC with green manifold-projected mapping boxes" style="max-width:570px;width:100%;height:auto;display:block;margin:0 auto">
     </div>
     <figcaption class="d-figure-caption">
-        Hyperconnections route $n$ parallel streams through a learned $n \times n$ weight
-        matrix $W$. Every stream can draw from every other stream.
+        <strong>Figure 1 from the paper.</strong> (a) Standard residual connection. (b) Hyper-Connections
+        wrap each layer with three learned linear mappings (Res, Pre, Post — orange), enabling $n$ parallel
+        streams to mix. (c) mHC applies a manifold projection $\mathcal{P}_\mathcal{M}$ (green) to each
+        mapping, enforcing the doubly stochastic constraint.
     </figcaption>
 </figure>
 
@@ -135,15 +137,15 @@ The update for stream $i$ at layer $l$ is:
 $$h_l^{(i)} = \sum_{j=1}^{n} w_{ij} \cdot F_j\!\left(h_{l-1}^{(j)}\right) + h_{l-1}^{(i)}$$
 </div>
 
-This allows different parts of the representation to specialize independently — bypassing the seesaw between Post-LN and Pre-LN. ByteDance found a **1.8× convergence speedup** over standard residual baselines. The idea works.
+This allows different parts of the representation to specialize independently — bypassing the seesaw between Post-LN and Pre-LN. The idea works.
 
 But there's a fatal flaw.
 
 <div class="d-callout" style="border-left-color: #e57373;">
     <strong>The instability problem:</strong> In HC, the weight matrix $W$ is unconstrained.
-    As layers stack, matrix multiplications compound. By layer 60, activation amplitudes
-    can spike to <strong>3,000×</strong> their original magnitude. Training becomes numerically
-    catastrophic.
+    As layers stack, matrix multiplications compound. The paper measures the <em>Amax Gain Magnitude</em>
+    — the maximum amplification across streams — and finds it peaks at <strong>3,000</strong> by
+    layer 60. Training becomes numerically catastrophic.
 </div>
 
 ## The Birkhoff Polytope
@@ -222,6 +224,21 @@ This follows from the Perron-Frobenius theorem: doubly stochastic matrices have 
     a spectral contraction ($\|W\|_2 \leq 1$). Stack as many layers as you want — the routing
     matrix can never amplify signals. Stability is a mathematical guarantee, not a tuning choice.
 </div>
+
+The contrast in practice is striking. Figure 8 from the paper shows the actual learned weight matrices at individual layers and their cumulative product across 60 layers:
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/deepseek-mhc/fig8-mappings.png" alt="Figure 8: HC weight matrices contain large unbounded values (row sums ±18 at layer 1, reaching ±265 in the 60-layer composite), while mHC matrices are doubly stochastic (all sums ≈ 1) and converge to a near-uniform distribution" style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 8 from the paper.</strong> Each matrix is averaged over all tokens in a selected sequence.
+        Row labels (y-axis) show forward signal gain (row sum); column labels (x-axis) show backward gradient
+        gain (column sum). HC's residual mapping has row sums reaching ±18 at layer 1 — and after 60 layers
+        the cumulative product explodes to ±265. mHC's projected mapping is doubly stochastic at every layer
+        (all sums ≈ 1.00), and the 60-layer composite converges to a stable, near-uniform distribution.
+    </figcaption>
+</figure>
 
 ## The Sinkhorn-Knopp Algorithm
 
@@ -326,55 +343,58 @@ The difference from vanilla Hyperconnections is exactly one word: **$W \in \math
 
 ## Training Dynamics and Results
 
-DeepSeek evaluated mHC at 1.3B and 7B parameter scales, comparing against the Pre-LN baseline and vanilla Hyperconnections.
+DeepSeek evaluated mHC at 3B, 9B, and 27B parameter scales using a MoE architecture based on DeepSeek-V3, with expansion rate $n = 4$ and Sinkhorn-Knopp iterations capped at $t_\text{max} = 20$.
 
-**Convergence:** mHC reaches Pre-LN's final validation loss using **1.8× fewer training tokens** — the same speedup as vanilla HC, without the instability. Vanilla HC diverges or produces degenerate outputs beyond ~60 layers due to amplitude spikes; mHC trains stably to much greater depth.
+**Training stability (27B model).** Figure 5 from the paper shows loss gap and gradient norm over 50K training steps:
 
-**Benchmark results:**
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/deepseek-mhc/fig5-training.png" alt="Figure 5: left plot shows mHC achieving 0.021 lower loss than baseline; right plot shows HC gradient norm spiking erratically while mHC tracks the stable baseline" style="max-width:560px;width:100%;height:auto;display:block;margin:0 auto">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 5 from the paper.</strong> Training stability of the 27B model. (Left) Absolute training
+        loss gap relative to the Pre-LN baseline: mHC achieves a final loss reduction of <strong>0.021</strong>.
+        (Right) Gradient norm over training: HC exhibits large erratic spikes throughout; mHC maintains a stable
+        profile comparable to the baseline.
+    </figcaption>
+</figure>
+
+**Benchmark results (27B model, same token budget):**
 
 <div class="d-table-wrapper">
 <table class="d-table">
 <thead>
 <tr>
-    <th>Scale</th>
-    <th>Method</th>
-    <th>MMLU</th>
-    <th>HellaSwag</th>
-    <th>ARC-C</th>
-    <th>BBH</th>
+    <th>Benchmark</th>
+    <th>Baseline</th>
+    <th>HC</th>
+    <th>mHC</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-    <td>1.3B</td><td>Pre-LN (baseline)</td><td>27.4</td><td>46.3</td><td>27.0</td><td>27.8</td>
-</tr>
-<tr>
-    <td>1.3B</td><td>HC</td><td class="bad">unstable</td><td class="bad">—</td><td class="bad">—</td><td class="bad">—</td>
-</tr>
-<tr class="highlight-row">
-    <td>1.3B</td><td><strong>mHC (ours)</strong></td><td class="good"><strong>30.1</strong></td><td class="good"><strong>50.9</strong></td><td class="good"><strong>29.3</strong></td><td class="good"><strong>30.2</strong></td>
-</tr>
-<tr>
-    <td>7B</td><td>Pre-LN (baseline)</td><td>56.3</td><td>75.8</td><td>46.5</td><td>42.7</td>
-</tr>
-<tr class="highlight-row">
-    <td>7B</td><td><strong>mHC (ours)</strong></td><td class="good"><strong>58.8</strong></td><td class="good"><strong>77.4</strong></td><td class="good"><strong>48.9</strong></td><td class="good"><strong>45.1</strong></td>
-</tr>
+<tr><td>BBH (EM)</td><td>43.8</td><td>48.9</td><td class="good highlight-row"><strong>51.0</strong></td></tr>
+<tr><td>DROP (F1)</td><td>47.0</td><td>51.6</td><td class="good highlight-row"><strong>53.9</strong></td></tr>
+<tr><td>GSM8K (EM)</td><td>46.7</td><td>53.2</td><td class="good highlight-row"><strong>53.8</strong></td></tr>
+<tr><td>HellaSwag (Acc.)</td><td>73.7</td><td>74.3</td><td class="good highlight-row"><strong>74.7</strong></td></tr>
+<tr><td>MATH (EM)</td><td>22.0</td><td>26.4</td><td class="good highlight-row"><strong>26.0</strong></td></tr>
+<tr><td>MMLU (Acc.)</td><td>59.0</td><td>63.0</td><td class="good highlight-row"><strong>63.4</strong></td></tr>
+<tr><td>PIQA (Acc.)</td><td>78.5</td><td>79.9</td><td class="good highlight-row"><strong>80.5</strong></td></tr>
+<tr><td>TriviaQA (EM)</td><td>54.3</td><td>56.3</td><td class="good highlight-row"><strong>57.6</strong></td></tr>
 </tbody>
 </table>
 </div>
 
 <div class="d-callout">
-    <strong>Same tokens, better results:</strong> At both 1.3B and 7B, mHC outperforms the Pre-LN
-    baseline on every benchmark — with no increase in model size or training compute.
-    The gain comes entirely from more efficient use of the same capacity.
+    <strong>Same tokens, better results.</strong> mHC outperforms the Pre-LN baseline on every benchmark
+    with no increase in model size or training compute. The Sinkhorn-Knopp projection adds only
+    <strong>6.7% training time overhead</strong> at $n = 4$ — a small price for consistent gains.
 </div>
 
 ## Key Takeaways
 
 **1. Depth needs highways.** Residual connections are not an optional convenience — they're what makes deep networks trainable. Without a bypass path, gradients vanish and early layers stop learning.
 
-**2. Hyperconnections generalize the residual.** Routing $n$ parallel streams through a learned mixing matrix solves representation collapse and unlocks 1.8× faster convergence. The idea is sound.
+**2. Hyperconnections generalize the residual.** Three learned mappings (Res, Pre, Post) around each layer allow $n$ parallel streams to mix information flexibly, escaping the Post-LN / Pre-LN tradeoff. The idea is sound.
 
 **3. The Birkhoff polytope is the right constraint.** Doubly stochastic matrices conserve signal magnitude ($\|W\|_2 \leq 1$) by construction. This turns a beautiful object from combinatorics into a practical stability guarantee for deep learning.
 
