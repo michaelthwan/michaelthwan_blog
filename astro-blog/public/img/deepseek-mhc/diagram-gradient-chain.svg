@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 100">
+  <!-- Layer boxes -->
+  <rect x="10" y="30" width="56" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="38" y="49" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">h&#x2080;</text>
+  <rect x="100" y="30" width="56" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="128" y="49" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">h&#x2081;</text>
+  <rect x="190" y="30" width="56" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="218" y="49" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">h&#x2082;</text>
+  <rect x="280" y="30" width="56" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="308" y="49" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">h&#x2083;</text>
+  <rect x="370" y="30" width="56" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="398" y="49" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">&#x22ef;</text>
+  <rect x="460" y="30" width="56" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="488" y="49" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">h&#x2097;</text>
+
+  <!-- Forward arrows -->
+  <defs>
+    <marker id="fwd" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#b0c4de"/></marker>
+    <marker id="bwd" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto"><path d="M5,0 L5,5 L0,2.5 z" fill="#e57373"/></marker>
+  </defs>
+  <line x1="66" y1="45" x2="98" y2="45" stroke="#b0c4de" stroke-width="1.5" marker-end="url(#fwd)"/>
+  <line x1="156" y1="45" x2="188" y2="45" stroke="#b0c4de" stroke-width="1.5" marker-end="url(#fwd)"/>
+  <line x1="246" y1="45" x2="278" y2="45" stroke="#b0c4de" stroke-width="1.5" marker-end="url(#fwd)"/>
+  <line x1="336" y1="45" x2="368" y2="45" stroke="#b0c4de" stroke-width="1.5" marker-end="url(#fwd)"/>
+  <line x1="426" y1="45" x2="458" y2="45" stroke="#b0c4de" stroke-width="1.5" marker-end="url(#fwd)"/>
+
+  <!-- Gradient arrows (backward), getting thinner -->
+  <line x1="98" y1="70" x2="66" y2="70" stroke="#e57373" stroke-width="4.5" marker-end="url(#bwd)"/>
+  <line x1="188" y1="72" x2="156" y2="72" stroke="#e57373" stroke-width="3" marker-end="url(#bwd)"/>
+  <line x1="278" y1="74" x2="246" y2="74" stroke="#e57373" stroke-width="1.8" marker-end="url(#bwd)"/>
+  <line x1="368" y1="76" x2="336" y2="76" stroke="#e57373" stroke-width="0.9" marker-end="url(#bwd)"/>
+  <line x1="458" y1="77" x2="426" y2="77" stroke="#e57373" stroke-width="0.4" marker-end="url(#bwd)"/>
+
+  <!-- Labels -->
+  <text x="10" y="95" font-family="Inter,system-ui,sans-serif" font-size="9" fill="#c62828">&#x2190; gradient (vanishing toward input)</text>
+  <text x="420" y="95" font-family="Inter,system-ui,sans-serif" font-size="9" fill="#888" text-anchor="end">forward pass &#x2192;</text>
+</svg>

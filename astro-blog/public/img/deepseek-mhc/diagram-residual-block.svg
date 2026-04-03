@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 130">
+  <defs>
+    <marker id="a1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#b0c4de"/></marker>
+    <marker id="a2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#ffb74d"/></marker>
+    <marker id="a3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#555"/></marker>
+    <marker id="a4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#b0c4de"/></marker>
+  </defs>
+
+  <!-- Input box -->
+  <rect x="10" y="50" width="64" height="30" rx="4" fill="#e3eaf5" stroke="#b0c4de" stroke-width="1.2"/>
+  <text x="42" y="69" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a3a6b">h&#x2097;&#x208B;&#x2081;</text>
+
+  <!-- F box -->
+  <rect x="124" y="50" width="64" height="30" rx="4" fill="#fff3e0" stroke="#ffb74d" stroke-width="1.2"/>
+  <text x="156" y="69" font-family="Inter,system-ui,sans-serif" font-size="13" text-anchor="middle" fill="#e65100">F(&#xB7;)</text>
+
+  <!-- Add circle -->
+  <circle cx="258" cy="65" r="16" fill="none" stroke="#555" stroke-width="1.5"/>
+  <text x="258" y="70" font-family="Inter,system-ui,sans-serif" font-size="15" text-anchor="middle" fill="#333">&#x2295;</text>
+
+  <!-- Output box -->
+  <rect x="288" y="50" width="44" height="30" rx="4" fill="#e8f4ec" stroke="#a0cdb0" stroke-width="1.2"/>
+  <text x="310" y="69" font-family="Inter,system-ui,sans-serif" font-size="11" text-anchor="middle" fill="#1a5c30">h&#x2097;</text>
+
+  <!-- Main path arrows -->
+  <line x1="74" y1="65" x2="122" y2="65" stroke="#b0c4de" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="188" y1="65" x2="240" y2="65" stroke="#ffb74d" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="274" y1="65" x2="286" y2="65" stroke="#555" stroke-width="1.5" marker-end="url(#a3)"/>
+
+  <!-- Skip connection arc -->
+  <path d="M74,58 Q156,14 240,58" fill="none" stroke="#b0c4de" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a4)"/>
+  <text x="156" y="20" font-family="Inter,system-ui,sans-serif" font-size="9" text-anchor="middle" fill="#888">identity shortcut</text>
+
+  <!-- Labels -->
+  <text x="156" y="100" font-family="Inter,system-ui,sans-serif" font-size="9" text-anchor="middle" fill="#888">learned transformation</text>
+  <text x="258" y="96" font-family="Inter,system-ui,sans-serif" font-size="9" text-anchor="middle" fill="#555">add</text>
+</svg>
