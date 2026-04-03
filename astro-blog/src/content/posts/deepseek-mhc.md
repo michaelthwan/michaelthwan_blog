@@ -120,8 +120,8 @@ In late 2024, researchers at ByteDance proposed a different approach. Instead of
 Their idea, called **Hyperconnections (HC)**, replaces the single residual stream with $n$ parallel sub-streams. Each stream can receive contributions from all other streams, gated by a learned $n \times n$ weight matrix $W$:
 
 <figure class="d-figure">
-    <div class="d-figure-content">
-        <img src="/img/deepseek-mhc/fig1-architecture.png" alt="Figure 1 from the paper: three-panel comparison of (a) Residual Connection, (b) Hyper-Connections with orange Res/Pre/Post mapping boxes, (c) mHC with green manifold-projected mapping boxes" style="max-width:570px;width:100%;height:auto;display:block;margin:0 auto">
+    <div class="d-figure-content" style="padding:0">
+        <img src="/img/deepseek-mhc/fig1-architecture.png" alt="Figure 1 from the paper: three-panel comparison of (a) Residual Connection, (b) Hyper-Connections with orange Res/Pre/Post mapping boxes, (c) mHC with green manifold-projected mapping boxes" style="width:100%;height:auto;display:block">
     </div>
     <figcaption class="d-figure-caption">
         <strong>Figure 1 from the paper.</strong> (a) Standard residual connection. (b) Hyper-Connections
@@ -228,8 +228,8 @@ This follows from the Perron-Frobenius theorem: doubly stochastic matrices have 
 The contrast in practice is striking. Figure 8 from the paper shows the actual learned weight matrices at individual layers and their cumulative product across 60 layers:
 
 <figure class="d-figure">
-    <div class="d-figure-content">
-        <img src="/img/deepseek-mhc/fig8-mappings.png" alt="Figure 8: HC weight matrices contain large unbounded values (row sums ±18 at layer 1, reaching ±265 in the 60-layer composite), while mHC matrices are doubly stochastic (all sums ≈ 1) and converge to a near-uniform distribution" style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto">
+    <div class="d-figure-content" style="padding:0">
+        <img src="/img/deepseek-mhc/fig8-mappings.png" alt="Figure 8: HC weight matrices contain large unbounded values (row sums ±18 at layer 1, reaching ±265 in the 60-layer composite), while mHC matrices are doubly stochastic (all sums ≈ 1) and converge to a near-uniform distribution" style="width:100%;height:auto;display:block">
     </div>
     <figcaption class="d-figure-caption">
         <strong>Figure 8 from the paper.</strong> Each matrix is averaged over all tokens in a selected sequence.
@@ -348,8 +348,8 @@ DeepSeek evaluated mHC at 3B, 9B, and 27B parameter scales using a MoE architect
 **Training stability (27B model).** Figure 5 from the paper shows loss gap and gradient norm over 50K training steps:
 
 <figure class="d-figure">
-    <div class="d-figure-content">
-        <img src="/img/deepseek-mhc/fig5-training.png" alt="Figure 5: left plot shows mHC achieving 0.021 lower loss than baseline; right plot shows HC gradient norm spiking erratically while mHC tracks the stable baseline" style="max-width:560px;width:100%;height:auto;display:block;margin:0 auto">
+    <div class="d-figure-content" style="padding:0">
+        <img src="/img/deepseek-mhc/fig5-training.png" alt="Figure 5: left plot shows mHC achieving 0.021 lower loss than baseline; right plot shows HC gradient norm spiking erratically while mHC tracks the stable baseline" style="width:100%;height:auto;display:block">
     </div>
     <figcaption class="d-figure-caption">
         <strong>Figure 5 from the paper.</strong> Training stability of the 27B model. (Left) Absolute training
