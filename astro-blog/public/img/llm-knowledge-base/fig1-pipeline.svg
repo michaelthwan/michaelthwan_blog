@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" font-family="Inter, system-ui, sans-serif">
+  <rect width="900" height="340" fill="#f9fafb" rx="12"/>
+
+  <!-- Stage 1: Raw -->
+  <rect x="20" y="60" width="140" height="220" rx="8" fill="#fff" stroke="#dbeafe" stroke-width="2"/>
+  <rect x="20" y="60" width="140" height="38" rx="8" fill="#dbeafe"/>
+  <rect x="20" y="84" width="140" height="14" fill="#dbeafe"/>
+  <text x="90" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">① RAW</text>
+  <text x="90" y="116" text-anchor="middle" font-size="10" fill="#374151">Web Articles (.md)</text>
+  <text x="90" y="134" text-anchor="middle" font-size="10" fill="#374151">PDFs / Papers</text>
+  <text x="90" y="152" text-anchor="middle" font-size="10" fill="#374151">GitHub Repos</text>
+  <text x="90" y="170" text-anchor="middle" font-size="10" fill="#374151">Images / Screenshots</text>
+  <text x="90" y="188" text-anchor="middle" font-size="10" fill="#374151">Datasets / CSVs</text>
+  <text x="90" y="206" text-anchor="middle" font-size="10" fill="#374151">Video transcripts</text>
+  <line x1="40" y1="225" x2="150" y2="225" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="90" y="244" text-anchor="middle" font-size="9.5" fill="#9ca3af">raw/ directory</text>
+  <text x="90" y="260" text-anchor="middle" font-size="9.5" fill="#9ca3af">read-only originals</text>
+
+  <!-- Arrow 1 -->
+  <path d="M163,170 L195,170" stroke="#9ca3af" stroke-width="2" fill="none" marker-end="url(#a)"/>
+  <text x="179" y="163" text-anchor="middle" font-size="9" fill="#6b7280">LLM</text>
+
+  <!-- Stage 2: Compile -->
+  <rect x="198" y="60" width="148" height="220" rx="8" fill="#fff" stroke="#d1fae5" stroke-width="2"/>
+  <rect x="198" y="60" width="148" height="38" rx="8" fill="#d1fae5"/>
+  <rect x="198" y="84" width="148" height="14" fill="#d1fae5"/>
+  <text x="272" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">② COMPILE</text>
+  <text x="272" y="116" text-anchor="middle" font-size="10" fill="#374151">Summarize each doc</text>
+  <text x="272" y="134" text-anchor="middle" font-size="10" fill="#374151">Extract concepts</text>
+  <text x="272" y="152" text-anchor="middle" font-size="10" fill="#374151">Write concept articles</text>
+  <text x="272" y="170" text-anchor="middle" font-size="10" fill="#374151">Cross-link articles</text>
+  <text x="272" y="188" text-anchor="middle" font-size="10" fill="#374151">Build master index</text>
+  <text x="272" y="206" text-anchor="middle" font-size="10" fill="#374151">Incremental updates</text>
+  <line x1="218" y1="225" x2="336" y2="225" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="272" y="244" text-anchor="middle" font-size="9.5" fill="#9ca3af">LLM prompt chain</text>
+  <text x="272" y="260" text-anchor="middle" font-size="9.5" fill="#9ca3af">runs incrementally</text>
+
+  <!-- Arrow 2 -->
+  <path d="M349,170 L381,170" stroke="#9ca3af" stroke-width="2" fill="none" marker-end="url(#a)"/>
+
+  <!-- Stage 3: Wiki -->
+  <rect x="384" y="60" width="148" height="220" rx="8" fill="#fff" stroke="#ede9fe" stroke-width="2"/>
+  <rect x="384" y="60" width="148" height="38" rx="8" fill="#ede9fe"/>
+  <rect x="384" y="84" width="148" height="14" fill="#ede9fe"/>
+  <text x="458" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">③ WIKI</text>
+  <text x="458" y="116" text-anchor="middle" font-size="10" fill="#374151">concepts/*.md</text>
+  <text x="458" y="134" text-anchor="middle" font-size="10" fill="#374151">summaries/*.md</text>
+  <text x="458" y="152" text-anchor="middle" font-size="10" fill="#374151">index.md</text>
+  <text x="458" y="170" text-anchor="middle" font-size="10" fill="#374151">visualizations/</text>
+  <text x="458" y="188" text-anchor="middle" font-size="10" fill="#374151">outputs/</text>
+  <text x="458" y="206" text-anchor="middle" font-size="10" fill="#374151">[[backlinks]]</text>
+  <line x1="404" y1="225" x2="522" y2="225" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="458" y="244" text-anchor="middle" font-size="9.5" fill="#9ca3af">~100 articles</text>
+  <text x="458" y="260" text-anchor="middle" font-size="9.5" fill="#9ca3af">~400K words</text>
+
+  <!-- Arrow 3 -->
+  <path d="M535,170 L567,170" stroke="#9ca3af" stroke-width="2" fill="none" marker-end="url(#a)"/>
+  <text x="551" y="163" text-anchor="middle" font-size="9" fill="#6b7280">LLM</text>
+
+  <!-- Stage 4: Q&A -->
+  <rect x="570" y="60" width="148" height="220" rx="8" fill="#fff" stroke="#fde68a" stroke-width="2"/>
+  <rect x="570" y="60" width="148" height="38" rx="8" fill="#fef3c7"/>
+  <rect x="570" y="84" width="148" height="14" fill="#fef3c7"/>
+  <text x="644" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">④ Q&amp;A</text>
+  <text x="644" y="116" text-anchor="middle" font-size="10" fill="#374151">Complex queries</text>
+  <text x="644" y="134" text-anchor="middle" font-size="10" fill="#374151">Cross-doc synthesis</text>
+  <text x="644" y="152" text-anchor="middle" font-size="10" fill="#374151">Health checks</text>
+  <text x="644" y="170" text-anchor="middle" font-size="10" fill="#374151">Gap finding</text>
+  <text x="644" y="188" text-anchor="middle" font-size="10" fill="#374151">New article seeds</text>
+  <text x="644" y="206" text-anchor="middle" font-size="10" fill="#374151">Search tool CLI</text>
+  <line x1="590" y1="225" x2="708" y2="225" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="644" y="244" text-anchor="middle" font-size="9.5" fill="#9ca3af">index-guided</text>
+  <text x="644" y="260" text-anchor="middle" font-size="9.5" fill="#9ca3af">no RAG needed</text>
+
+  <!-- Arrow 4 -->
+  <path d="M721,170 L753,170" stroke="#9ca3af" stroke-width="2" fill="none" marker-end="url(#a)"/>
+
+  <!-- Stage 5: Output -->
+  <rect x="756" y="60" width="130" height="220" rx="8" fill="#fff" stroke="#fecaca" stroke-width="2"/>
+  <rect x="756" y="60" width="130" height="38" rx="8" fill="#fee2e2"/>
+  <rect x="756" y="84" width="130" height="14" fill="#fee2e2"/>
+  <text x="821" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">⑤ OUTPUT</text>
+  <text x="821" y="116" text-anchor="middle" font-size="10" fill="#374151">Markdown reports</text>
+  <text x="821" y="134" text-anchor="middle" font-size="10" fill="#374151">Marp slideshows</text>
+  <text x="821" y="152" text-anchor="middle" font-size="10" fill="#374151">matplotlib charts</text>
+  <text x="821" y="170" text-anchor="middle" font-size="10" fill="#374151">HTML dashboards</text>
+  <text x="821" y="188" text-anchor="middle" font-size="10" fill="#374151">CSV exports</text>
+  <text x="821" y="206" text-anchor="middle" font-size="10" fill="#374151">→ filed back</text>
+  <line x1="776" y1="225" x2="876" y2="225" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="821" y="244" text-anchor="middle" font-size="9.5" fill="#9ca3af">all viewable in</text>
+  <text x="821" y="260" text-anchor="middle" font-size="9.5" fill="#9ca3af">Obsidian</text>
+
+  <!-- Feedback loop arc -->
+  <path d="M821,285 Q458,320 90,285" stroke="#9ca3af" stroke-width="1.5" fill="none" stroke-dasharray="5,4" marker-end="url(#a)"/>
+  <text x="458" y="315" text-anchor="middle" font-size="10" fill="#9ca3af">outputs filed back → wiki grows over time</text>
+
+  <defs>
+    <marker id="a" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L7,3.5 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>

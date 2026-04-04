@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" font-family="Inter, system-ui, sans-serif">
+  <rect width="800" height="420" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="400" y="48" text-anchor="middle" font-size="22" font-weight="800" fill="#111827">LLM Knowledge Base</text>
+  <text x="400" y="72" text-anchor="middle" font-size="13" fill="#6b7280">Raw Sources → Compiled Wiki → Intelligent Q&amp;A</text>
+
+  <!-- Stage boxes -->
+  <!-- Raw Data -->
+  <rect x="30" y="110" width="130" height="200" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="30" y="110" width="130" height="36" rx="10" fill="#dbeafe"/>
+  <rect x="30" y="128" width="130" height="18" fill="#dbeafe"/>
+  <text x="95" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">RAW DATA</text>
+  <text x="95" y="165" text-anchor="middle" font-size="10" fill="#374151">📄 Articles</text>
+  <text x="95" y="183" text-anchor="middle" font-size="10" fill="#374151">📑 Papers</text>
+  <text x="95" y="201" text-anchor="middle" font-size="10" fill="#374151">🖼 Images</text>
+  <text x="95" y="219" text-anchor="middle" font-size="10" fill="#374151">📂 Repos</text>
+  <text x="95" y="237" text-anchor="middle" font-size="10" fill="#374151">🌐 Web clips</text>
+  <text x="95" y="255" text-anchor="middle" font-size="10" fill="#374151">📊 Datasets</text>
+  <text x="95" y="285" text-anchor="middle" font-size="9" fill="#9ca3af">raw/ directory</text>
+
+  <!-- Arrow 1 -->
+  <line x1="160" y1="210" x2="195" y2="210" stroke="#d1d5db" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="162" y="196" width="36" height="18" rx="4" fill="#f3f4f6"/>
+  <text x="180" y="207" text-anchor="middle" font-size="9" fill="#6b7280">LLM</text>
+
+  <!-- LLM Compiler -->
+  <rect x="195" y="140" width="140" height="140" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="195" y="140" width="140" height="36" rx="10" fill="#d1fae5"/>
+  <rect x="195" y="158" width="140" height="18" fill="#d1fae5"/>
+  <text x="265" y="163" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">COMPILER</text>
+  <text x="265" y="190" text-anchor="middle" font-size="9.5" fill="#374151">Summarise docs</text>
+  <text x="265" y="206" text-anchor="middle" font-size="9.5" fill="#374151">Extract concepts</text>
+  <text x="265" y="222" text-anchor="middle" font-size="9.5" fill="#374151">Write articles</text>
+  <text x="265" y="238" text-anchor="middle" font-size="9.5" fill="#374151">Build backlinks</text>
+  <text x="265" y="254" text-anchor="middle" font-size="9.5" fill="#374151">Maintain index</text>
+  <text x="265" y="270" text-anchor="middle" font-size="9" fill="#9ca3af">incremental</text>
+
+  <!-- Arrow 2 -->
+  <line x1="335" y1="210" x2="370" y2="210" stroke="#d1d5db" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Wiki -->
+  <rect x="370" y="110" width="130" height="200" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="370" y="110" width="130" height="36" rx="10" fill="#ede9fe"/>
+  <rect x="370" y="128" width="130" height="18" fill="#ede9fe"/>
+  <text x="435" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#5b21b6">WIKI</text>
+  <text x="435" y="160" text-anchor="middle" font-size="9.5" fill="#374151">concepts/</text>
+  <text x="435" y="176" text-anchor="middle" font-size="9.5" fill="#374151">  ├─ topic-a.md</text>
+  <text x="435" y="192" text-anchor="middle" font-size="9.5" fill="#374151">  ├─ topic-b.md</text>
+  <text x="435" y="208" text-anchor="middle" font-size="9.5" fill="#374151">summaries/</text>
+  <text x="435" y="224" text-anchor="middle" font-size="9.5" fill="#374151">  ├─ src-1.md</text>
+  <text x="435" y="240" text-anchor="middle" font-size="9.5" fill="#374151">index.md</text>
+  <text x="435" y="280" text-anchor="middle" font-size="9" fill="#9ca3af">~400K words</text>
+
+  <!-- Arrow 3 -->
+  <line x1="500" y1="210" x2="535" y2="210" stroke="#d1d5db" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="502" y="196" width="36" height="18" rx="4" fill="#f3f4f6"/>
+  <text x="520" y="207" text-anchor="middle" font-size="9" fill="#6b7280">LLM</text>
+
+  <!-- Q&A + Output -->
+  <rect x="535" y="110" width="240" height="200" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="535" y="110" width="240" height="36" rx="10" fill="#fef3c7"/>
+  <rect x="535" y="128" width="240" height="18" fill="#fef3c7"/>
+  <text x="655" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">Q&amp;A + OUTPUT</text>
+  <text x="655" y="162" text-anchor="middle" font-size="10" fill="#374151">Complex research queries</text>
+  <text x="655" y="178" text-anchor="middle" font-size="10" fill="#374151">Inconsistency detection</text>
+  <text x="655" y="194" text-anchor="middle" font-size="10" fill="#374151">Gap imputation</text>
+  <text x="600" y="216" text-anchor="middle" font-size="9.5" fill="#6b7280">Outputs:</text>
+  <rect x="538" y="224" width="68" height="22" rx="5" fill="#fef9c3" stroke="#fde68a"/>
+  <text x="572" y="239" text-anchor="middle" font-size="9" fill="#92400e">📝 Markdown</text>
+  <rect x="612" y="224" width="68" height="22" rx="5" fill="#ede9fe" stroke="#c4b5fd"/>
+  <text x="646" y="239" text-anchor="middle" font-size="9" fill="#5b21b6">📊 Slides</text>
+  <rect x="686" y="224" width="80" height="22" rx="5" fill="#d1fae5" stroke="#6ee7b7"/>
+  <text x="726" y="239" text-anchor="middle" font-size="9" fill="#065f46">📈 matplotlib</text>
+  <text x="655" y="275" text-anchor="middle" font-size="9.5" fill="#374151">Filed back → wiki</text>
+  <text x="655" y="289" text-anchor="middle" font-size="9" fill="#9ca3af">compounding knowledge</text>
+
+  <!-- Viewed in Obsidian label -->
+  <text x="400" y="342" text-anchor="middle" font-size="11" fill="#9ca3af">Viewed &amp; navigated in Obsidian</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>

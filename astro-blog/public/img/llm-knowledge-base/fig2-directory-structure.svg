@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 360" width="820" height="360" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12">
+  <rect width="820" height="360" fill="#1e1e2e" rx="12"/>
+
+  <!-- Window chrome -->
+  <circle cx="28" cy="22" r="6" fill="#ff5f57"/>
+  <circle cx="48" cy="22" r="6" fill="#febc2e"/>
+  <circle cx="68" cy="22" r="6" fill="#28c840"/>
+  <text x="410" y="27" text-anchor="middle" font-size="11" fill="#6c7086" font-family="Inter, system-ui">knowledge-base/</text>
+  <line x1="0" y1="40" x2="820" y2="40" stroke="#313244" stroke-width="1"/>
+
+  <!-- Left panel: RAW -->
+  <text x="30" y="68" fill="#89b4fa" font-weight="700" font-size="11">raw/</text>
+  <text x="48" y="88" fill="#a6e3a1">├─ articles/</text>
+  <text x="66" y="106" fill="#cdd6f4">│  ├─ arxiv-2024-01.md</text>
+  <text x="66" y="122" fill="#cdd6f4">│  ├─ blog-post-foo.md</text>
+  <text x="66" y="138" fill="#cdd6f4">│  └─ hn-thread.md</text>
+  <text x="48" y="156" fill="#a6e3a1">├─ papers/</text>
+  <text x="66" y="172" fill="#cdd6f4">│  ├─ paper-a.pdf</text>
+  <text x="66" y="188" fill="#cdd6f4">│  └─ paper-b.md</text>
+  <text x="48" y="206" fill="#a6e3a1">├─ images/</text>
+  <text x="66" y="222" fill="#cdd6f4">│  ├─ fig1.png</text>
+  <text x="66" y="238" fill="#cdd6f4">│  └─ diagram.png</text>
+  <text x="48" y="256" fill="#a6e3a1">└─ repos/</text>
+  <text x="66" y="272" fill="#cdd6f4">   └─ codebase-notes.md</text>
+  <text x="30" y="310" fill="#6c7086" font-size="10">Read-only originals.</text>
+  <text x="30" y="326" fill="#6c7086" font-size="10">Never edited by LLM.</text>
+
+  <!-- Divider -->
+  <line x1="280" y1="48" x2="280" y2="348" stroke="#313244" stroke-width="1"/>
+
+  <!-- Middle panel: WIKI -->
+  <text x="300" y="68" fill="#89b4fa" font-weight="700" font-size="11">wiki/</text>
+  <text x="318" y="88" fill="#cba6f7">├─ index.md</text>
+  <text x="318" y="106" fill="#a6e3a1">├─ concepts/</text>
+  <text x="336" y="122" fill="#cdd6f4">│  ├─ topic-alpha.md</text>
+  <text x="336" y="138" fill="#cdd6f4">│  ├─ topic-beta.md</text>
+  <text x="336" y="154" fill="#cdd6f4">│  └─ topic-gamma.md</text>
+  <text x="318" y="172" fill="#a6e3a1">├─ summaries/</text>
+  <text x="336" y="188" fill="#cdd6f4">│  ├─ arxiv-2024-01.md</text>
+  <text x="336" y="204" fill="#cdd6f4">│  ├─ blog-post-foo.md</text>
+  <text x="336" y="220" fill="#cdd6f4">│  └─ paper-a.md</text>
+  <text x="318" y="238" fill="#a6e3a1">├─ visualizations/</text>
+  <text x="336" y="254" fill="#cdd6f4">│  └─ timeline.png</text>
+  <text x="318" y="272" fill="#a6e3a1">└─ outputs/</text>
+  <text x="336" y="288" fill="#cdd6f4">   ├─ query-2024-03.md</text>
+  <text x="336" y="304" fill="#cdd6f4">   └─ comparison.md</text>
+  <text x="300" y="335" fill="#6c7086" font-size="10">LLM-maintained. ~100 articles.</text>
+
+  <!-- Divider -->
+  <line x1="558" y1="48" x2="558" y2="348" stroke="#313244" stroke-width="1"/>
+
+  <!-- Right panel: TOOLS -->
+  <text x="578" y="68" fill="#89b4fa" font-weight="700" font-size="11">tools/</text>
+  <text x="596" y="88" fill="#f38ba8">├─ compile.py</text>
+  <text x="596" y="106" fill="#f38ba8">├─ query.py</text>
+  <text x="596" y="124" fill="#f38ba8">├─ lint.py</text>
+  <text x="596" y="142" fill="#f38ba8">└─ search/</text>
+  <text x="614" y="160" fill="#f38ba8">   ├─ app.py</text>
+  <text x="614" y="178" fill="#f38ba8">   └─ index.json</text>
+  <text x="578" y="210" fill="#89b4fa" font-weight="700" font-size="11">prompts/</text>
+  <text x="596" y="230" fill="#fab387">├─ summarize.md</text>
+  <text x="596" y="248" fill="#fab387">├─ compile-wiki.md</text>
+  <text x="596" y="266" fill="#fab387">├─ health-check.md</text>
+  <text x="596" y="284" fill="#fab387">└─ query.md</text>
+  <text x="578" y="320" fill="#6c7086" font-size="10">Scripts + reusable</text>
+  <text x="578" y="336" fill="#6c7086" font-size="10">prompt templates.</text>
+</svg>
