@@ -3570,6 +3570,226 @@ pre code {
     margin-bottom: 4px;
 }
 
+/* ============================================
+   DEEPSEEK V4 INTERACTIVE
+   ============================================ */
+
+#v4-attention-explorer {
+    margin: 2rem 0;
+}
+
+.v4-explorer-shell {
+    background: #fafafa;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 22px;
+}
+
+.v4-explorer-header {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.v4-explorer-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+
+.v4-explorer-subtitle {
+    margin: 0;
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    max-width: 58ch;
+}
+
+.v4-mode-toggle {
+    display: inline-flex;
+    border: 1px solid #d6dbe1;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.v4-mode-btn {
+    border: 0;
+    background: transparent;
+    padding: 8px 14px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-gray);
+    cursor: pointer;
+}
+
+.v4-mode-btn.active {
+    background: #edf3ff;
+    color: #2857d6;
+}
+
+.v4-control-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 18px;
+}
+
+.v4-control {
+    min-width: 0;
+}
+
+.v4-control label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--color-text);
+}
+
+.v4-control input[type="range"] {
+    width: 100%;
+}
+
+.v4-control-value {
+    margin-top: 6px;
+    color: var(--color-gray);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.v4-hidden {
+    display: none;
+}
+
+.v4-explorer-copy {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-left: 3px solid #8aa3ff;
+    background: #f3f6fb;
+    color: var(--color-text);
+    font-size: 0.95rem;
+}
+
+.v4-stat-grid {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.v4-stat-card {
+    background: #fff;
+    border: 1px solid #e3e7eb;
+    border-radius: 6px;
+    padding: 14px;
+}
+
+.v4-stat-label {
+    font-size: 12px;
+    color: var(--color-gray);
+    margin-bottom: 8px;
+}
+
+.v4-stat-value {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.v4-bars {
+    margin-top: 18px;
+    display: grid;
+    gap: 16px;
+}
+
+.v4-bar-block {
+    background: #fff;
+    border: 1px solid #e3e7eb;
+    border-radius: 6px;
+    padding: 14px;
+}
+
+.v4-bar-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+    flex-wrap: wrap;
+}
+
+.v4-bar-header span:last-child {
+    color: var(--color-gray);
+    font-weight: 500;
+}
+
+.v4-bar-track {
+    display: grid;
+    grid-template-columns: repeat(48, minmax(0, 1fr));
+    gap: 3px;
+}
+
+.v4-bar-cell {
+    aspect-ratio: 1 / 1;
+    border-radius: 2px;
+    background: #e7ebf0;
+}
+
+.v4-bar-track-dense .v4-bar-cell {
+    background: #d8dde4;
+}
+
+.v4-bar-cell.global {
+    background: #7f99f5;
+}
+
+.v4-bar-cell.window {
+    background: #e3a04f;
+}
+
+.v4-bar-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    color: var(--color-gray);
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+
+.v4-legend-swatch {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 2px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.v4-legend-window {
+    background: #e3a04f;
+}
+
+.v4-legend-global {
+    background: #7f99f5;
+}
+
+@media (max-width: 720px) {
+    .v4-control-grid,
+    .v4-stat-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .comp-stat-count {
     font-family: var(--font-heading);
     font-size: 11px;
