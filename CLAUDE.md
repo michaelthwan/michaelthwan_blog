@@ -60,6 +60,11 @@ Single stylesheet: `public/styles.css`. Organized by labeled comment sections:
 - `WORKFLOW LOOP DIAGRAM` — styles for the claude-code post interactive
 - Positional encoding interactive styles
 
+### Style Guide
+- `DISTILL_STYLE_GUIDE.md` is the design and writing reference for this site.
+- Use it for narrative pacing, article structure, math presentation, and visual choices.
+- Core direction: calm grayscale-first pages, 2â3 semantic accent colors, clear signposting, short declarative prose, and TOC-driven two-column articles.
+
 ### Scripts
 - `public/script.js` — Global client-side JS loaded by `Article.astro` on every post. Contains interactives for attention computation and positional encoding.
 - `public/js/<post>.js` — Post-specific scripts loaded via `<script>` tags inside the post markdown. Example: `public/js/sp500-charts.js` uses Chart.js loaded from CDN within the post itself.
@@ -82,3 +87,15 @@ Single stylesheet: `public/styles.css`. Organized by labeled comment sections:
 
 - Use LaTeX (`$...$` inline, `$$...$$` display) — KaTeX is loaded on all article pages.
 - Inside HTML `<div>` containers, escape underscores as `\_` to prevent markdown interpreting them as italics before KaTeX renders (e.g. `$S\_{ij}$`).
+
+## Codex Working Notes
+
+- Treat `astro-blog/` as the actual app root for source, build, and runtime changes.
+- `src/content/posts/*.md` is the source of truth for article content and homepage/blog listings.
+- `src/pages/blog.astro` and `src/pages/posts/[...slug].astro` are the main data-driven routing surfaces.
+- `src/layouts/Article.astro` is the common article shell; it handles KaTeX, the TOC, and the shared client script.
+- `public/script.js` is shared runtime for article interactives; `public/js/*.js` is per-post interactive logic.
+- `public/styles.css` is the single global stylesheet, including dark-mode and post-specific sections.
+- `DISTILL_STYLE_GUIDE.md` should be consulted before changing article narrative, visuals, or interaction patterns.
+- `src/components/Header.astro` owns the theme toggle and `localStorage` persistence.
+- When making changes, prefer understanding the existing structure before editing, and keep posts/content-driven behavior aligned with the current schema.
