@@ -5,7 +5,7 @@ authors:
   - "Michael Wan"
 affiliations:
   - "Michael Wan Interactive Insights"
-published: "April 2026"
+published: "2026-04-01"
 doi: "arXiv:2512.24880"
 doiUrl: "https://arxiv.org/abs/2512.24880"
 abstract: "Skip connections are the backbone of deep learning — but naive extensions cause catastrophic instability. DeepSeek's mHC constrains Hyperconnection weight matrices to the Birkhoff polytope using the Sinkhorn-Knopp algorithm, achieving 1.8× convergence speedup while keeping gradients tamed."
