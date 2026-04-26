@@ -82,6 +82,8 @@ Single stylesheet: `public/styles.css`. Organized by labeled comment sections:
 - Reserve interactive modules for **core mechanics** that benefit from hands-on exploration.
 - Tall/portrait figures need an explicit `max-width` + `margin: 0 auto; display: block;` to avoid dominating the page.
 - Side-by-side images in flexbox require `min-width: 0` on each `<img>` and `overflow: hidden` on the container, or they overflow.
+- When covering a paper or cited work, prefer the original author's figures for architecture diagrams, results, and key visuals whenever possible.
+- Use Distill-style interactives to explain or reinforce the original material, not to replace the source figure when the source figure is the canonical reference.
 
 ## Math Formulas
 
