@@ -5,7 +5,7 @@ authors:
   - "Michael Wan"
 affiliations:
   - "Michael Wan Interactive Insights"
-published: "April 2026"
+published: "2026-04-24"
 abstract: "DeepSeek V4 matters because it makes ultra-long-context reasoning much cheaper, then couples that with a stronger agent-training stack. This article walks through the official paper's architecture figures, explains CSA and HCA visually, and asks what V4 reveals about the secret sauce of closed frontier models."
 category: "ml"
 tags:
