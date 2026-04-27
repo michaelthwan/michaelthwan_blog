@@ -12,11 +12,6 @@ const { post, formatDate } = Astro.props;
 <article class="post-preview">
     <div class="post-meta">
         <span class="post-date">{formatDate(post.data.published)}</span>
-        <div class="post-tags">
-            {post.data.tags.map(tag => (
-                <span class={`tag ${tag}`}>{tag.charAt(0).toUpperCase() + tag.slice(1)}</span>
-            ))}
-        </div>
     </div>
     <a href={`/posts/${post.slug}`} class="post-link">
         <div class="post-thumbnail">

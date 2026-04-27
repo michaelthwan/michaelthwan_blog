@@ -169,6 +169,13 @@ If interactivity is not available (plain Markdown), emulate it with:
 - **Figures**: each figure answers a specific question posed in the text.
 - **Trade-offs**: every method includes limitations and when to use it.
 
+### Figure asset check
+
+- Before touching layout CSS, open the raw exported figure file itself and verify it is not already cropped incorrectly.
+- For paper figures extracted from PDFs, keep a full-page render or page-preview copy nearby while editing so you can recover from a bad crop quickly.
+- Prefer slightly looser figure crops with a bit of white margin over aggressive tight crops that risk clipping labels, legends, or right-edge panels.
+- If the source figure is the important object, fix the asset first and use CSS only to size and place it cleanly in the article column.
+
 ---
 
 ## Distill-like article skeleton (HTML / content structure)
