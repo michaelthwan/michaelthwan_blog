@@ -12,7 +12,7 @@ tags:
   - "explainer"
   - "llm"
   - "deepseek"
-thumbnail: "/img/deepseek-v4/thumbnail.png"
+thumbnail: "/img/deepseek-v4/thumbnail.png?v=2"
 ---
 
 <p class="d-note">
@@ -33,7 +33,7 @@ That changes the way we should read the release. V4 is not just a bigger open mo
 
 <figure class="d-figure">
     <div class="d-figure-content" style="padding: 10px 10px 0;">
-        <img src="/img/deepseek-v4/fig1-overview.png" alt="Overview figure from the DeepSeek V4 paper showing benchmark performance on the left and inference FLOPs plus KV cache savings on the right" style="max-width:100%;height:auto;display:block;margin:0 auto">
+        <img src="/img/deepseek-v4/fig1-overview.png?v=2" alt="Overview figure from the DeepSeek V4 paper showing benchmark performance on the left and inference FLOPs plus KV cache savings on the right" style="max-width:100%;height:auto;display:block;margin:0 auto">
     </div>
     <figcaption class="d-figure-caption">
         <strong>Figure from the DeepSeek-V4 paper.</strong> Left: V4-Pro-Max against recent frontier models on knowledge, reasoning, and agentic benchmarks. Right: why the paper is strategically interesting at all — much cheaper long-context inference and KV-cache usage than V3.2.
@@ -54,7 +54,7 @@ Before we zoom into the long-context mechanism, it helps to see the whole block 
 
 <figure class="d-figure">
     <div class="d-figure-content" style="padding: 10px;">
-        <img src="/img/deepseek-v4/fig2-architecture.png" alt="Overall DeepSeek V4 architecture with MTP modules, prediction head, residual mixing, pre-block and post-block mixing, CSA or HCA attention, and DeepSeekMoE" style="max-width:100%;height:auto;display:block;margin:0 auto">
+        <img src="/img/deepseek-v4/fig2-architecture.png?v=2" alt="Overall DeepSeek V4 architecture with MTP modules, prediction head, residual mixing, pre-block and post-block mixing, CSA or HCA attention, and DeepSeekMoE" style="max-width:100%;height:auto;display:block;margin:0 auto">
     </div>
     <figcaption class="d-figure-caption">
         <strong>Overall architecture from the paper.</strong> The block has three ideas that matter for the rest of this article: hybrid attention (`CSA / HCA`), stronger residual routing (`mHC` via the residual mixing path), and a large MoE feed-forward stack (`DeepSeekMoE`).
@@ -101,7 +101,7 @@ CSA compresses the KV cache first, then uses a sparse selection step to choose w
 
 <figure class="d-figure">
     <div class="d-figure-content" style="padding: 10px;">
-        <img src="/img/deepseek-v4/fig3-csa.png" alt="CSA diagram from the DeepSeek V4 paper showing token-level compression, Lightning Indexer, top-k selector, and sliding window KV entries" style="max-width:100%;height:auto;display:block;margin:0 auto">
+        <img src="/img/deepseek-v4/fig3-csa.png?v=2" alt="CSA diagram from the DeepSeek V4 paper showing token-level compression, Lightning Indexer, top-k selector, and sliding window KV entries" style="max-width:100%;height:auto;display:block;margin:0 auto">
     </div>
     <figcaption class="d-figure-caption">
         <strong>CSA from the paper.</strong> The key pieces are the token-level compressor, the Lightning Indexer, the top-<em>k</em> selector, and the local sliding window. V4 does not pay full attention cost everywhere. It compresses first, then spends detail selectively.
@@ -126,7 +126,7 @@ HCA makes a different trade. It compresses the KV cache much more aggressively a
 
 <figure class="d-figure">
     <div class="d-figure-content" style="padding: 10px;">
-        <img src="/img/deepseek-v4/fig4-hca.png" alt="HCA diagram from the DeepSeek V4 paper showing heavier KV compression plus a local sliding window" style="max-width:100%;height:auto;display:block;margin:0 auto">
+        <img src="/img/deepseek-v4/fig4-hca.png?v=2" alt="HCA diagram from the DeepSeek V4 paper showing heavier KV compression plus a local sliding window" style="max-width:100%;height:auto;display:block;margin:0 auto">
     </div>
     <figcaption class="d-figure-caption">
         <strong>HCA from the paper.</strong> Same high-level idea as CSA, but the compression is much stronger and the global memory is much coarser. This is where V4 gets a large part of its million-token efficiency.
@@ -217,7 +217,7 @@ One more figure from the paper is useful because it shows the new shape of model
 
 <figure class="d-figure">
     <div class="d-figure-content" style="padding: 10px;">
-        <img src="/img/deepseek-v4/fig10-reasoning-effort.png" alt="Figure comparing HLE and TerminalBench 2.0 performance versus token usage across different reasoning effort settings" style="max-width:100%;height:auto;display:block;margin:0 auto">
+        <img src="/img/deepseek-v4/fig10-reasoning-effort.png?v=2" alt="Figure comparing HLE and TerminalBench 2.0 performance versus token usage across different reasoning effort settings" style="max-width:100%;height:auto;display:block;margin:0 auto">
     </div>
     <figcaption class="d-figure-caption">
         <strong>Reasoning effort from the paper.</strong> V4 is not a single point on a benchmark chart. The model is explicitly designed to trade more tokens for better outcomes. That is exactly the test-time scaling story the paper frames as the next frontier.
