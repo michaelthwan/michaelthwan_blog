@@ -10,10 +10,19 @@ const allPosts = (await getCollection('posts')).sort((a, b) => {
   return new Date(b.data.published).getTime() - new Date(a.data.published).getTime();
 });
 
-// Split by category
-const mlPosts = allPosts.filter(post => post.data.category === 'ml');
-const devPosts = allPosts.filter(post => post.data.category === 'dev');
-const businessPosts = allPosts.filter(post => post.data.category === 'business');
+const categoryTitles: Record<string, string> = {
+    ml: 'Machine Learning, AI & Agents',
+    dev: 'Development',
+    business: 'Business & Industry',
+};
+
+// Featured: most recent post overall, shown large; excluded from its column
+const featured = allPosts[0];
+const rest = allPosts.slice(1);
+
+const mlPosts = rest.filter(post => post.data.category === 'ml');
+const devPosts = rest.filter(post => post.data.category === 'dev');
+const businessPosts = rest.filter(post => post.data.category === 'business');
 
 // Format date for display
 function formatDate(dateStr: string): string {
@@ -23,33 +32,45 @@ function formatDate(dateStr: string): string {
 }
 
 const columns = [
-    { posts: mlPosts, className: 'ml-column', title: 'Machine Learning, AI & Agents', desc: 'Paper explainers, model architectures, agent systems, and the mechanics behind modern AI' },
-    { posts: devPosts, className: 'dev-column', title: 'Development', desc: 'Tools, workflows, and practical engineering insights' },
-    { posts: businessPosts, className: 'business-column', title: 'Business & Industry', desc: 'Compensation, industry trends, and career strategy through data' },
+    { posts: mlPosts, className: 'ml-column', title: categoryTitles.ml, desc: 'Paper explainers, model architectures, agent systems, and the mechanics behind modern AI' },
+    { posts: devPosts, className: 'dev-column', title: categoryTitles.dev, desc: 'Tools, workflows, and practical engineering insights' },
+    { posts: businessPosts, className: 'business-column', title: categoryTitles.business, desc: 'Compensation, industry trends, and career strategy through data' },
 ];
 ---
 
 <Base title="Michael Wan Interactive Insights" isHomepage={true}>
     <Header />
 
-    <!-- Two Column Layout -->
-    <main class="index-columns l-page">
-        {columns.map(col => (
-            <section class={`index-column ${col.className}`}>
-                <div class="column-header">
-                    <h2>{col.title}</h2>
-                    <p class="column-desc">{col.desc}</p>
-                </div>
-                <div class="posts-list">
-                    {col.posts.map(post => (
-                        <PostPreview post={post} formatDate={formatDate} />
-                    ))}
-                    {col.posts.length === 0 && (
-                        <p class="empty-column">No articles yet</p>
-                    )}
-                </div>
+    <main class="journal l-page">
+        {featured && (
+            <section class="featured-section">
+                <PostPreview
+                    post={featured}
+                    formatDate={formatDate}
+                    featured={true}
+                    categoryLabel={categoryTitles[featured.data.category]}
+                />
             </section>
-        ))}
+        )}
+
+        <div class="index-columns">
+            {columns.map(col => (
+                <section class={`index-column ${col.className}`}>
+                    <div class="column-header">
+                        <h2>{col.title}</h2>
+                        <p class="column-desc">{col.desc}</p>
+                    </div>
+                    <div class="posts-list">
+                        {col.posts.map(post => (
+                            <PostPreview post={post} formatDate={formatDate} />
+                        ))}
+                        {col.posts.length === 0 && (
+                            <p class="empty-column">No articles yet</p>
+                        )}
+                    </div>
+                </section>
+            ))}
+        </div>
     </main>
 
     <Footer />
