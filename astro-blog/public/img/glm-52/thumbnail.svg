@@ -1,0 +1,23 @@
+<svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
+  <rect width="480" height="300" fill="#faf9f5"/>
+  <!-- layer stack illustrating IndexShare: first of each group filled -->
+  <g transform="translate(40,70)">
+    <g>
+      <rect x="0"   y="0" width="60" height="32" rx="5" fill="#98342a"/>
+      <rect x="72"  y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
+      <rect x="144" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
+      <rect x="216" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
+    </g>
+    <g transform="translate(0,46)">
+      <rect x="0"   y="0" width="60" height="32" rx="5" fill="#98342a"/>
+      <rect x="72"  y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
+      <rect x="144" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
+      <rect x="216" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
+    </g>
+    <text x="0" y="118" font-size="13" fill="#6e675b">⌕ compute index&#160;&#160;&#160;↺ reuse</text>
+  </g>
+  <text x="40" y="44" font-size="34" font-weight="700" fill="#1f1c17">GLM-5.2</text>
+  <text x="300" y="44" font-size="13" font-weight="600" fill="#98342a">MIT · 1M ctx</text>
+  <text x="40" y="248" font-size="16" font-weight="600" fill="#3a352d">IndexShare: long-context, cheaply</text>
+  <text x="40" y="272" font-size="13" fill="#6e675b">744B MoE · 40B active · ~2.9× fewer FLOPs</text>
+</svg>
