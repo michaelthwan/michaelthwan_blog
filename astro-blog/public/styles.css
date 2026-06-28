@@ -6,39 +6,45 @@
 :root {
     /* Layout widths */
     --l-page: 1280px;
-    /* Editorial journal palette: warm paper, ink, one accent */
-    --color-bg: #faf9f5;
-    --color-text: #1f1c17;
-    --color-text-light: #3a352d;
-    --color-gray: #6e675b;
-    --color-gray-light: #9c9484;
-    --color-border: #e4dfd3;
-    --color-surface: #f2efe7;
-    --color-surface-border: #e0dacb;
-    --color-accent: #98342a;
-    --color-link: #98342a;
-    --color-link-hover: #6e2218;
+    /* GitHub Primer — light */
+    --color-bg: #ffffff;
+    --color-canvas-subtle: #f6f8fa;
+    --color-text: #1f2328;
+    --color-text-light: #1f2328;
+    --color-gray: #59636e;          /* fg muted */
+    --color-gray-light: #818b98;    /* fg subtle */
+    --color-border: #d1d9e0;
+    --color-surface: #f6f8fa;
+    --color-surface-border: #d1d9e0;
+    --color-accent: #0969da;
+    --color-accent-emphasis: #0969da;
+    --color-link: #0969da;
+    --color-link-hover: #0969da;
+    --color-success: #1a7f37;
+    --color-btn-primary: #1f883d;
+    --color-btn-primary-hover: #1a7f37;
+    --color-neutral-muted: rgba(175,184,193,0.2);
 
-    /* Semantic colors */
-    --color-orange: #e07b39;
-    --color-orange-dark: #c35a00;
-    --color-orange-bg: #fff3e0;
-    --color-blue: #4a90a4;
-    --color-blue-dark: #1565c0;
-    --color-blue-bg: #e3f2fd;
-    --color-purple: #7b68a6;
-    --color-green: #5a9f68;
-    --color-green-dark: #2e7d32;
-    --color-green-bg: #e8f5e9;
-    --color-red: #c62828;
-    --color-red-light: #ef5350;
+    /* Semantic colors — Primer accents */
+    --color-orange: #bc4c00;
+    --color-orange-dark: #bc4c00;
+    --color-orange-bg: #fff1e5;
+    --color-blue: #0969da;
+    --color-blue-dark: #0969da;
+    --color-blue-bg: #ddf4ff;
+    --color-purple: #8250df;
+    --color-green: #1a7f37;
+    --color-green-dark: #1a7f37;
+    --color-green-bg: #dafbe1;
+    --color-red: #cf222e;
+    --color-red-light: #fa4549;
 
-    /* Typography - Fraunces (display) + Source Serif 4 (prose) + IBM Plex Sans (UI) + JetBrains Mono */
-    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-heading: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-    --font-mono: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', monospace;
+    /* Typography — Readex Pro for titles, GitHub system stack for body/UI */
+    --font-display: 'Readex Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
     /* Layout */
     --content-width: 760px;
@@ -50,20 +56,38 @@
    DARK MODE
    ============================================ */
 [data-theme="dark"] {
-    --color-bg: #0f172a;
-    --color-text: #f1f5f9;
-    --color-text-light: #cbd5e1;
-    --color-gray: #94a3b8;
-    --color-gray-light: #64748b;
-    --color-border: #1e293b;
-    --color-surface: #1e293b;
-    --color-surface-border: #334155;
-    --color-accent: #d6907b;
-    --color-link: #d6907b;
-    --color-link-hover: #e7b4a4;
-    --color-orange-bg: #1c1008;
-    --color-blue-bg: #0c1a2e;
-    --color-green-bg: #0a1f0f;
+    /* GitHub Primer — dark (default) */
+    --color-bg: #0d1117;
+    --color-canvas-subtle: #161b22;
+    --color-text: #e6edf3;
+    --color-text-light: #e6edf3;
+    --color-gray: #8b949e;          /* fg muted */
+    --color-gray-light: #6e7681;    /* fg subtle */
+    --color-border: #30363d;
+    --color-surface: #161b22;
+    --color-surface-border: #30363d;
+    --color-accent: #4493f8;
+    --color-accent-emphasis: #1f6feb;
+    --color-link: #4493f8;
+    --color-link-hover: #6cb6ff;
+    --color-success: #3fb950;
+    --color-btn-primary: #238636;
+    --color-btn-primary-hover: #2ea043;
+    --color-neutral-muted: rgba(110,118,129,0.4);
+
+    /* Semantic accents — Primer dark */
+    --color-orange: #db6d28;
+    --color-orange-dark: #db6d28;
+    --color-orange-bg: #2d1907;
+    --color-blue: #4493f8;
+    --color-blue-dark: #4493f8;
+    --color-blue-bg: #0c2d6b;
+    --color-purple: #bc8cff;
+    --color-green: #3fb950;
+    --color-green-dark: #3fb950;
+    --color-green-bg: #0f2d18;
+    --color-red: #f85149;
+    --color-red-light: #ff7b72;
 }
 
 [data-theme="dark"] body {
@@ -92,7 +116,7 @@
 [data-theme="dark"] code,
 [data-theme="dark"] pre {
     background: var(--color-surface);
-    color: #e2e8f0;
+    color: var(--color-text);
 }
 
 [data-theme="dark"] blockquote {
@@ -111,7 +135,7 @@
 }
 
 [data-theme="dark"] .post-preview {
-    background: #0f172a;
+    background: var(--color-bg);
     border-color: var(--color-surface);
 }
 
@@ -119,9 +143,8 @@
     border-color: var(--color-surface-border);
 }
 
-[data-theme="dark"] .post-title,
 [data-theme="dark"] .post-abstract {
-    color: var(--color-text-light);
+    color: var(--color-gray);
 }
 
 [data-theme="dark"] .column-header h2 {
@@ -152,13 +175,9 @@
 }
 
 [data-theme="dark"] .bio-btn-icon {
-    background: var(--color-surface);
-    color: #f1f5f9;
-}
-
-[data-theme="dark"] .bio-btn-primary {
-    background: #f1f5f9;
-    color: #0f172a;
+    background: var(--color-canvas-subtle);
+    border-color: var(--color-border);
+    color: var(--color-text);
 }
 
 [data-theme="dark"] .theme-icon-sun { display: none; }
@@ -169,21 +188,21 @@
     background: var(--color-surface);
     border-color: var(--color-surface-border);
 }
-[data-theme="dark"] .lk-stat-val { color: #f1f5f9; }
+[data-theme="dark"] .lk-stat-val { color: var(--color-text); }
 [data-theme="dark"] .lk-card {
     background: var(--color-surface);
     border-color: var(--color-surface-border);
 }
 [data-theme="dark"] .lk-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
-[data-theme="dark"] .lk-card h3 { color: #f1f5f9; }
-[data-theme="dark"] .lk-card p  { color: #94a3b8; }
-[data-theme="dark"] .lt-desc    { color: #94a3b8; }
+[data-theme="dark"] .lk-card h3 { color: var(--color-text); }
+[data-theme="dark"] .lk-card p  { color: var(--color-gray); }
+[data-theme="dark"] .lt-desc    { color: var(--color-gray); }
 [data-theme="dark"] .react-loop { border-color: var(--color-surface-border); }
 [data-theme="dark"] .rl-phase   { border-bottom-color: var(--color-surface); }
-[data-theme="dark"] .rl-num     { background: var(--color-surface); border-right-color: var(--color-surface-border); color: #64748b; }
-[data-theme="dark"] .rl-num span { color: #f1f5f9; }
-[data-theme="dark"] .rl-body strong { color: #f1f5f9; }
-[data-theme="dark"] .rl-body p  { color: #94a3b8; }
+[data-theme="dark"] .rl-num     { background: var(--color-surface); border-right-color: var(--color-surface-border); color: var(--color-gray-light); }
+[data-theme="dark"] .rl-num span { color: var(--color-text); }
+[data-theme="dark"] .rl-body strong { color: var(--color-text); }
+[data-theme="dark"] .rl-body p  { color: var(--color-gray); }
 [data-theme="dark"] .rs-1 { background: #2d0f10; color: #fca5a5; }
 [data-theme="dark"] .rs-2 { background: #2d1a08; color: #fdba74; }
 [data-theme="dark"] .rs-3 { background: #2a1f05; color: #fde68a; }
@@ -195,15 +214,15 @@
     background: var(--color-surface);
     border-color: var(--color-surface-border);
 }
-[data-theme="dark"] .eng-card h4 { color: #f1f5f9; }
-[data-theme="dark"] .eng-card p  { color: #94a3b8; }
+[data-theme="dark"] .eng-card h4 { color: var(--color-text); }
+[data-theme="dark"] .eng-card p  { color: var(--color-gray); }
 [data-theme="dark"] .flag-table th {
     background: var(--color-surface);
-    color: #cbd5e1;
+    color: var(--color-text);
     border-bottom-color: var(--color-surface-border);
 }
-[data-theme="dark"] .flag-table td { border-bottom-color: var(--color-surface); color: #94a3b8; }
-[data-theme="dark"] .flag-table td:first-child { color: #60a5fa; }
+[data-theme="dark"] .flag-table td { border-bottom-color: var(--color-surface); color: var(--color-gray); }
+[data-theme="dark"] .flag-table td:first-child { color: var(--color-accent); }
 [data-theme="dark"] .section-marker-label { color: var(--color-text-light); }
 [data-theme="dark"] .section-marker-line  { background: var(--color-surface); }
 [data-theme="dark"] .tag-agent    { background: #1e3a8a; color: #93c5fd; }
@@ -219,13 +238,13 @@
 [data-theme="dark"] .rm-box.g  { background: #052e16; border-color: #16a34a; }
 [data-theme="dark"] .rm-box.g:hover { background: #073d1e; }
 [data-theme="dark"] .rm-title span { background: var(--color-surface); }
-[data-theme="dark"] .rm-box    { color: #f1f5f9; }
-[data-theme="dark"] .rm-panel  { background: #0f172a; color: #e2e8f0; }
+[data-theme="dark"] .rm-box    { color: var(--color-text); }
+[data-theme="dark"] .rm-panel  { background: var(--color-surface); color: var(--color-text); }
 
 /* ── general post components (d-note, d-callout, tables, code) ── */
-[data-theme="dark"] table th { background: var(--color-surface); color: #cbd5e1; border-color: var(--color-surface-border); }
-[data-theme="dark"] table td { border-color: var(--color-surface); color: #94a3b8; }
-[data-theme="dark"] .timeline-section-title { color: #94a3b8; }
+[data-theme="dark"] table th { background: var(--color-surface); color: var(--color-text); border-color: var(--color-surface-border); }
+[data-theme="dark"] table td { border-color: var(--color-surface); color: var(--color-gray); }
+[data-theme="dark"] .timeline-section-title { color: var(--color-gray); }
 
 /* ============================================
    RESET & BASE
@@ -242,9 +261,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--color-text-light);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text);
     background: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -291,21 +310,20 @@ body {
 
 .d-title {
     font-family: var(--font-display);
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 600;
-    line-height: 1.12;
-    margin: 0 0 16px 0;
+    line-height: 1.25;
+    margin: 0 0 8px 0;
     color: var(--color-text);
     letter-spacing: -0.01em;
 }
 
 .d-subtitle {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 19px;
+    font-family: var(--font-body);
+    font-size: 16px;
     font-weight: 400;
-    line-height: 1.55;
-    margin: 0 0 28px 0;
+    line-height: 1.5;
+    margin: 0 0 24px 0;
     color: var(--color-gray);
 }
 
@@ -457,53 +475,49 @@ body {
 /* ============================================
    TYPOGRAPHY
    ============================================ */
+/* GitHub markdown headings: semibold, bottom hairline on h2 */
 .d-article h2 {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 1.25;
-    margin: 56px 0 18px 0;
-    padding-top: 24px;
-    border-top: 1px solid var(--color-border);
+    margin: 40px 0 16px 0;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--color-border);
     color: var(--color-text);
 }
 
 .d-article h2:first-of-type {
     margin-top: 0;
-    border-top: none;
-    padding-top: 0;
 }
 
 .d-article h3 {
     font-family: var(--font-display);
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 1.35;
-    margin: 36px 0 12px 0;
+    line-height: 1.3;
+    margin: 28px 0 12px 0;
     color: var(--color-text);
 }
 
 .d-article h4 {
     font-family: var(--font-heading);
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     line-height: 1.4;
-    margin: 28px 0 10px 0;
+    margin: 24px 0 10px 0;
     color: var(--color-text);
 }
 
-/* Serif for reading prose (Distill pattern: serif prose, sans apparatus).
-   Direct-child selectors keep nested <p> inside interactive widgets in Inter. */
+/* Body prose — GitHub markdown rhythm */
 .d-article > p,
 .d-article > ul,
 .d-article > ol,
 .d-article > blockquote,
 .d-article > .d-note {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.65;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .d-article p {
@@ -511,7 +525,7 @@ body {
 }
 
 .d-article strong {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-text);
 }
 
@@ -519,18 +533,14 @@ body {
     font-style: italic;
 }
 
+/* GitHub links: blue, underline on hover only */
 .d-article a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    transition: color 0.15s, text-decoration-color 0.15s;
+    color: var(--color-link);
+    text-decoration: none;
 }
 
 .d-article a:hover {
-    color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
+    text-decoration: underline;
 }
 
 /* ============================================
@@ -1292,20 +1302,21 @@ body {
    ============================================ */
 code {
     font-family: var(--font-mono);
-    font-size: 0.9em;
-    background: var(--color-surface);
-    padding: 0.15em 0.4em;
-    border-radius: 3px;
+    font-size: 0.85em;
+    background: var(--color-neutral-muted);
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
 }
 
 pre {
     font-family: var(--font-mono);
     font-size: 0.85em;
-    background: var(--color-surface);
+    background: var(--color-canvas-subtle);
+    border: 1px solid var(--color-border);
     padding: 16px;
     overflow-x: auto;
-    border-radius: 4px;
-    line-height: 1.5;
+    border-radius: 6px;
+    line-height: 1.45;
 }
 
 pre code {
@@ -1329,68 +1340,60 @@ pre code {
 /* ============================================
    SITE HEADER (for all pages)
    ============================================ */
-/* Accent rule across the very top of every page — the journal's signature */
-body::before {
-    content: '';
-    display: block;
-    height: 3px;
-    background: var(--color-accent);
-}
-
 .site-header {
     background: var(--color-bg);
-    border-bottom: 2px solid var(--color-text);
-    padding: 18px 0;
-    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 0;
+    margin-bottom: 32px;
 }
 
 .site-nav {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 8px;
 }
 
 .site-nav-link {
     font-family: var(--font-heading);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-gray);
+    color: var(--color-text);
     text-decoration: none;
-    padding: 4px 0;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s;
 }
 
 .site-nav-link:hover {
-    color: var(--color-text);
+    background: var(--color-canvas-subtle);
 }
 
 .site-nav-link.active {
     color: var(--color-text);
-    border-bottom-color: var(--color-accent);
+    font-weight: 600;
+    background: var(--color-neutral-muted);
 }
 
 .site-nav-link:focus-visible {
     outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
+    outline-offset: 2px;
 }
 
 .theme-toggle {
-    background: none;
+    background: var(--color-bg);
     border: 1px solid var(--color-border);
-    border-radius: 2px;
+    border-radius: 6px;
     padding: 6px 8px;
     cursor: pointer;
     color: var(--color-gray);
     display: flex;
     align-items: center;
-    transition: border-color 0.15s, color 0.15s;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .theme-toggle:hover {
-    border-color: var(--color-gray);
+    background: var(--color-canvas-subtle);
+    border-color: var(--color-gray-light);
     color: var(--color-text);
 }
 
@@ -1412,11 +1415,11 @@ body::before {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 0;
+    letter-spacing: -0.01em;
     color: var(--color-text);
     text-decoration: none;
 }
@@ -1448,14 +1451,24 @@ body::before {
 .featured-section {
     padding-bottom: 40px;
     margin-bottom: 40px;
-    border-bottom: 2px solid var(--color-text);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .post-featured .post-link {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    gap: 40px;
+    gap: 32px;
     align-items: center;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-bg);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.post-featured .post-link:hover {
+    border-color: var(--color-gray-light);
+    box-shadow: 0 1px 3px rgba(31,35,40,0.06);
 }
 
 .post-featured .post-thumbnail {
@@ -1463,15 +1476,15 @@ body::before {
 }
 
 .post-featured .post-title {
-    font-size: 34px;
-    line-height: 1.15;
-    margin: 0 0 14px 0;
+    font-size: 24px;
+    line-height: 1.25;
+    margin: 0 0 12px 0;
 }
 
 .post-featured .post-abstract {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
@@ -1479,12 +1492,12 @@ body::before {
 }
 
 .post-kicker {
+    display: inline-flex;
+    align-items: center;
     font-family: var(--font-heading);
     font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-accent);
+    font-weight: 500;
+    color: var(--color-success);
 }
 
 @media (max-width: 820px) {
@@ -1512,25 +1525,22 @@ body::before {
 }
 
 .column-header {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--color-text);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .column-header h2 {
-    font-family: var(--font-heading);
-    font-size: 13px;
+    font-family: var(--font-display);
+    font-size: 16px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin: 0 0 8px 0;
+    margin: 0 0 4px 0;
     color: var(--color-text);
 }
 
 .column-desc {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
     line-height: 1.5;
     color: var(--color-gray);
     margin: 0;
@@ -1540,22 +1550,16 @@ body::before {
     font-family: var(--font-body);
     font-size: 14px;
     color: var(--color-gray-light);
-    font-style: italic;
 }
 
 /* Stacked post cards inside category columns */
 .index-column .post-preview {
-    margin-bottom: 36px;
-    padding-bottom: 36px;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.index-column .post-preview:last-child {
-    border-bottom: none;
+    margin-bottom: 16px;
+    padding-bottom: 0;
 }
 
 .index-column .post-title {
-    font-size: 19px;
+    font-size: 16px;
 }
 
 .index-column .post-abstract {
@@ -1596,20 +1600,22 @@ body::before {
 }
 
 .post-date {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-gray-light);
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-gray);
 }
 
+/* GitHub-style Label pill */
 .post-tag-label {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-accent);
+    line-height: 18px;
+    padding: 0 7px;
+    border: 1px solid var(--color-border);
+    border-radius: 2em;
+    color: var(--color-gray);
+    background: var(--color-bg);
 }
 
 .post-tags {
@@ -1619,12 +1625,12 @@ body::before {
 
 .tag {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    line-height: 18px;
+    padding: 0 7px;
+    border-radius: 2em;
+    border: 1px solid transparent;
     background: var(--tag-bg);
     color: var(--tag-color);
 }
@@ -1643,25 +1649,36 @@ body::before {
     border-radius: 6px;
 }
 
-.post-link:hover .post-title {
-    color: var(--color-accent);
+/* Column cards = GitHub bordered boxes */
+.index-column .post-link {
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-bg);
+    transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.post-link:hover .post-thumbnail img {
-    transform: scale(1.02);
+.index-column .post-link:hover {
+    border-color: var(--color-gray-light);
+    box-shadow: 0 1px 3px rgba(31,35,40,0.06);
+}
+
+.post-link:hover .post-title {
+    text-decoration: underline;
 }
 
 .post-link:focus-visible {
-    outline: 2px solid var(--color-link);
-    outline-offset: 4px;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .post-thumbnail {
     width: 100%;
     aspect-ratio: 5 / 3;
-    background: var(--color-surface);
+    background: var(--color-canvas-subtle);
     border: 1px solid var(--color-border);
-    border-radius: 2px;
+    border-radius: 6px;
     overflow: hidden;
     padding: 10px;
 }
@@ -1697,67 +1714,60 @@ body::before {
 
 .post-title {
     font-family: var(--font-display);
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 600;
-    line-height: 1.25;
-    margin: 0 0 8px 0;
-    color: var(--color-text);
-    transition: color 0.15s;
+    line-height: 1.3;
+    margin: 0 0 6px 0;
+    color: var(--color-link);
 }
 
 .post-authors {
     font-family: var(--font-heading);
     font-size: 12px;
-    letter-spacing: 0.02em;
-    color: var(--color-gray-light);
+    color: var(--color-gray);
     margin: 0;
 }
 
 .post-abstract {
-    font-family: var(--font-serif);
-    font-size: 15px;
-    line-height: 1.55;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
     color: var(--color-gray);
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
 }
 
 /* ============================================
    SITE FOOTER
    ============================================ */
 .site-footer {
-    border-top: 2px solid var(--color-text);
-    padding: 36px 24px 40px;
+    border-top: 1px solid var(--color-border);
+    padding: 32px 24px 40px;
     text-align: center;
-    margin-top: 24px;
+    margin-top: 40px;
 }
 
 .site-footer p {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 15px;
+    font-family: var(--font-body);
+    font-size: 13px;
     color: var(--color-gray);
-    margin: 0 0 16px 0;
+    margin: 0 0 12px 0;
 }
 
 .footer-links {
     display: flex;
     justify-content: center;
-    gap: 28px;
+    gap: 20px;
 }
 
 .footer-links a {
     font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-gray);
+    font-size: 12px;
+    color: var(--color-link);
     text-decoration: none;
 }
 
 .footer-links a:hover,
 .footer-links a:focus-visible {
-    color: var(--color-text);
     text-decoration: underline;
 }
 
@@ -1804,28 +1814,26 @@ body::before {
 
 .bio-name {
     font-family: var(--font-display);
-    font-size: 38px;
+    font-size: 26px;
     font-weight: 600;
     color: var(--color-text);
-    margin: 0 0 6px 0;
+    margin: 0 0 2px 0;
     letter-spacing: -0.01em;
 }
 
 .bio-tagline {
     font-family: var(--font-heading);
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-accent);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-gray);
     margin: 0 0 14px 0;
 }
 
 .bio-desc {
-    font-family: var(--font-serif);
-    font-size: 17px;
+    font-family: var(--font-body);
+    font-size: 16px;
     line-height: 1.6;
-    color: var(--color-text-light);
+    color: var(--color-text);
     margin: 0 0 20px 0;
     max-width: 560px;
 }
@@ -1840,17 +1848,14 @@ body::before {
 .bio-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     text-decoration: none;
     font-family: var(--font-heading);
     font-size: 14px;
     font-weight: 500;
-    border-radius: 2px;
-    transition: opacity 0.15s;
-}
-
-.bio-btn:hover {
-    opacity: 0.72;
+    border-radius: 6px;
+    border: 1px solid;
+    transition: background-color 0.15s, border-color 0.15s;
 }
 
 .bio-btn:focus-visible,
@@ -1859,10 +1864,17 @@ body::before {
     outline-offset: 2px;
 }
 
+/* Primary = GitHub green button */
 .bio-btn-primary {
-    background: var(--color-text);
-    color: var(--color-bg);
-    padding: 8px 16px;
+    background: var(--color-btn-primary);
+    border-color: rgba(31,35,40,0.15);
+    color: #ffffff;
+    padding: 7px 16px;
+    box-shadow: 0 1px 0 rgba(31,35,40,0.04);
+}
+
+.bio-btn-primary:hover {
+    background: var(--color-btn-primary-hover);
 }
 
 .bio-btn-badge {
@@ -1878,13 +1890,19 @@ body::before {
     height: 17px;
 }
 
+/* Icon button = GitHub default (white/border) button */
 .bio-btn-icon {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     justify-content: center;
-    background: transparent;
-    border: 1px solid var(--color-border);
+    background: var(--color-canvas-subtle);
+    border-color: var(--color-border);
     color: var(--color-text);
+}
+
+.bio-btn-icon:hover {
+    background: var(--color-neutral-muted);
+    border-color: var(--color-gray-light);
 }
 
 /* Timeline */
@@ -1923,10 +1941,11 @@ body::before {
 }
 
 .timeline-dot {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: var(--color-accent);
+    background: var(--color-bg);
+    border: 2px solid var(--color-gray-light);
     flex-shrink: 0;
     margin-top: 3px;
 }
@@ -1961,7 +1980,7 @@ body::before {
 .timeline-badge {
     width: 40px;
     height: 40px;
-    border-radius: 2px;
+    border-radius: 6px;
     flex-shrink: 0;
     object-fit: contain;
     background: #fff;
@@ -1970,15 +1989,13 @@ body::before {
 
 /* Section headings (Experience / Education) */
 .timeline-section-title {
-    font-family: var(--font-heading);
-    font-size: 13px;
+    font-family: var(--font-display);
+    font-size: 16px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
     color: var(--color-text);
-    margin: 0 0 28px 0;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--color-text);
+    margin: 0 0 24px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 /* Education degree line */
@@ -2002,16 +2019,17 @@ body::before {
 .timeline-skill-tag {
     font-family: var(--font-heading);
     font-size: 12px;
+    line-height: 18px;
     color: var(--color-gray);
-    background: transparent;
+    background: var(--color-canvas-subtle);
     border: 1px solid var(--color-border);
-    padding: 3px 10px;
-    border-radius: 2px;
+    padding: 1px 10px;
+    border-radius: 2em;
 }
 
 .timeline-role {
     font-family: var(--font-display);
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 600;
     color: var(--color-text);
     margin: 0 0 2px 0;
@@ -2047,16 +2065,21 @@ body::before {
     line-height: 1.6;
     color: var(--color-text-light);
     margin-bottom: 6px;
-    padding-left: 14px;
+    padding-left: 24px;
     position: relative;
 }
 
+/* GitHub green check octicon (masked so it follows the theme's success color) */
 .timeline-achievements li::before {
-    content: '·';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--color-gray-light);
-    font-weight: 700;
+    top: 4px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-success);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 /* Bio responsive */
