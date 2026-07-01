@@ -47,13 +47,13 @@ Nearly every dollar on the map is ultimately pulled toward one of two labs.
 
 The compute layer is where the biggest absolute numbers live. Stargate — the **$500B** venture owned by SoftBank, OpenAI, Oracle, and MGX — plans roughly 7 GW of capacity across the US, UAE, Norway, and Argentina. Oracle, a founding equity partner, is also its lead builder, and OpenAI's **$300B** contract transformed Oracle's cloud business overnight.
 
-The strangest compute story is Colossus. After SpaceX absorbed xAI in February 2026, it began renting out its Memphis supercomputer like real estate: the entire 300 MW, 220,000-GPU Colossus 1 site went to *Anthropic* — a direct competitor of xAI's Grok — while Google signed up for **$920M** per month of capacity through 2029. Even the fiercest rivals in the model layer are customers of each other one layer down.
+The strangest compute story is Colossus. After SpaceX absorbed xAI in February 2026, it began renting out its Memphis supercomputer like real estate: the entire 300 MW, 220,000-GPU Colossus 1 site went to *Anthropic* — a direct competitor of xAI's Grok — for **$1.25B** a month, while Google signed up for **$920M** per month of capacity through 2029. Even the fiercest rivals in the model layer are customers of each other one layer down.
 
 ## The silicon layer: Nvidia's money boomerang
 
 Nvidia sits at the bottom of the map and touches nearly every arrow above it. Its investment portfolio — up to **$100B** in OpenAI, ~**$10B** in Anthropic, **$2B** in xAI, **$5B** in Intel — reads like a list of its own largest customers. Money leaves Nvidia as equity and returns as GPU purchase orders.
 
-The counterweight is Broadcom, the quiet winner of the war. It co-designs Google's TPUs (a contract estimated near **$46B** for 2026), builds Meta's custom accelerators through 2029, and is producing 10 GW of custom chips for OpenAI. Every hyperscaler's plan to *reduce* Nvidia dependence runs through Broadcom.
+The counterweight is Broadcom, the quiet winner of the war. It co-designs Google's TPUs (a long-term agreement running through 2031), builds Meta's custom accelerators through 2029, and is producing 10 GW of custom chips for OpenAI. Its overall AI revenue is projected near **$46B** for 2026. Every hyperscaler's plan to *reduce* Nvidia dependence runs through Broadcom.
 
 ## The circularity problem
 
@@ -80,8 +80,9 @@ Revenue is real at every step, but a meaningful share of the industry's growth i
 | Anthropic → AWS | Compute | $100B+ / decade |
 | Microsoft + Nvidia → Anthropic | Equity | ≈$15B |
 | OpenAI ↔ AMD | Supply + equity | 6 GW; warrants ≈10% of AMD |
+| Anthropic → SpaceX (Colossus 1) | Compute | $1.25B / month |
 | Google → SpaceX (Colossus) | Compute | $920M / month |
-| Meta capex 2026 | Infrastructure | $115–135B |
+| Meta capex 2026 | Infrastructure | $125–145B |
 
 *Figures reflect public reporting as of July 2026. Committed amounts are multi-year and often milestone-contingent — treat them as order-of-magnitude, not booked revenue.*
 
