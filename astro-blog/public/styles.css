@@ -2069,17 +2069,15 @@ pre code {
     position: relative;
 }
 
-/* GitHub green check octicon (masked so it follows the theme's success color) */
+/* Bullet point marker */
 .timeline-achievements li::before {
-    content: '';
+    content: '\2022';
     position: absolute;
-    left: 0;
-    top: 4px;
-    width: 15px;
-    height: 15px;
-    background-color: var(--color-success);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    left: 4px;
+    top: 0;
+    color: var(--color-text-light);
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 /* Bio responsive */
