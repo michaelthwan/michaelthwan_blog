@@ -1,8 +1,9 @@
 // ── AI Investment War map ──
 // Data-driven SVG diagram: company nodes across four industry layers,
-// with equity (purple) and commercial (green) deal arrows. All coordinates
-// live in a fixed 1120x700 viewBox; paths are hand-routed polylines.
-// Columns are 126px wide with 20px gaps used as vertical routing channels.
+// with equity (purple) and commercial (green) deal arrows. Each node shows
+// its market cap / private valuation; each arrow carries a compact dollar
+// label. All coordinates live in a fixed 1120x700 viewBox; paths are
+// hand-routed polylines. Columns are 126px wide with 20px routing gaps.
 (function () {
   const mount = document.getElementById('aiw-diagram');
   if (!mount) return;
@@ -33,14 +34,15 @@
 
   // ── Nodes ──
   // kind: 'company' (tall card), 'sub' (block inside a company card), 'solo'
+  // mcap = market cap (public) or private valuation as of mid-2026.
   const NODES = [
-    { id: 'ms', label: 'Microsoft', cap: 'hyperscaler', x: 90, y: 40, w: 126, h: 455, kind: 'company' },
-    { id: 'openai', label: 'OpenAI', cap: '≈$500B val (Oct ’25)', x: 236, y: 40, w: 126, h: 265, kind: 'company' },
-    { id: 'anthropic', label: 'Anthropic', cap: '$965B Series H', x: 382, y: 40, w: 126, h: 265, kind: 'company' },
-    { id: 'google', label: 'Google', cap: 'the full-stack player', x: 528, y: 40, w: 126, h: 615, kind: 'company' },
-    { id: 'amazon', label: 'Amazon', cap: 'hyperscaler', x: 674, y: 40, w: 126, h: 615, kind: 'company' },
-    { id: 'meta', label: 'Meta', cap: '$115–135B capex ’26', x: 820, y: 40, w: 126, h: 265, kind: 'company' },
-    { id: 'spacex', label: 'SpaceX · xAI', cap: '$1.25T combined', x: 966, y: 40, w: 126, h: 455, kind: 'company' },
+    { id: 'ms', label: 'Microsoft', cap: 'hyperscaler', mcap: '$3.1T', x: 90, y: 40, w: 126, h: 455, kind: 'company' },
+    { id: 'openai', label: 'OpenAI', cap: 'private lab', mcap: '$852B', x: 236, y: 40, w: 126, h: 265, kind: 'company' },
+    { id: 'anthropic', label: 'Anthropic', cap: 'private lab', mcap: '$965B', x: 382, y: 40, w: 126, h: 265, kind: 'company' },
+    { id: 'google', label: 'Google', cap: 'full-stack', mcap: '$4.6T', x: 528, y: 40, w: 126, h: 615, kind: 'company' },
+    { id: 'amazon', label: 'Amazon', cap: 'hyperscaler', mcap: '$2.9T', x: 674, y: 40, w: 126, h: 615, kind: 'company' },
+    { id: 'meta', label: 'Meta', cap: 'open-weights', mcap: '$1.7T', x: 820, y: 40, w: 126, h: 265, kind: 'company' },
+    { id: 'spacex', label: 'SpaceX · xAI', cap: 'public · Jun ’26', mcap: '$2.0T', x: 966, y: 40, w: 126, h: 455, kind: 'company' },
 
     { id: 'azure', parent: 'ms', label: 'Azure', cap: 'cloud', x: 98, y: 325, w: 110, h: 160, kind: 'sub' },
     { id: 'chatgpt', parent: 'openai', label: 'ChatGPT', cap: 'GPT models', x: 244, y: 165, w: 110, h: 130, kind: 'sub' },
@@ -54,58 +56,58 @@
     { id: 'grok', parent: 'spacex', label: 'Grok', cap: 'models', x: 974, y: 165, w: 110, h: 130, kind: 'sub' },
     { id: 'colossus', parent: 'spacex', label: 'Colossus', cap: 'Memphis DC', x: 974, y: 325, w: 110, h: 160, kind: 'sub' },
 
-    { id: 'oracle', label: 'Oracle', cap: 'OCI', x: 236, y: 325, w: 126, h: 75, kind: 'solo' },
+    { id: 'oracle', label: 'Oracle', cap: '', mcap: '$422B', x: 236, y: 325, w: 126, h: 75, kind: 'solo' },
     { id: 'stargate', label: 'Stargate', cap: '$500B project', x: 236, y: 412, w: 126, h: 73, kind: 'solo' },
-    { id: 'nvidia', label: 'NVIDIA', cap: 'sells to everyone', x: 90, y: 515, w: 272, h: 130, kind: 'solo' },
-    { id: 'broadcom', label: 'Broadcom', cap: 'custom ASICs', x: 382, y: 515, w: 126, h: 130, kind: 'solo' },
-    { id: 'amd', label: 'AMD', cap: 'Instinct GPUs', x: 820, y: 515, w: 126, h: 130, kind: 'solo' },
-    { id: 'intel', label: 'Intel', cap: 'foundry wildcard', x: 966, y: 515, w: 126, h: 130, kind: 'solo' },
+    { id: 'nvidia', label: 'NVIDIA', cap: 'sells to everyone', mcap: '$5.2T', x: 90, y: 515, w: 272, h: 130, kind: 'solo' },
+    { id: 'broadcom', label: 'Broadcom', cap: 'custom ASICs', mcap: '$1.8T', x: 382, y: 515, w: 126, h: 130, kind: 'solo' },
+    { id: 'amd', label: 'AMD', cap: 'Instinct GPUs', mcap: '$950B', x: 820, y: 515, w: 126, h: 130, kind: 'solo' },
+    { id: 'intel', label: 'Intel', cap: 'foundry wildcard', mcap: '$700B', x: 966, y: 515, w: 126, h: 130, kind: 'solo' },
   ];
 
   const NODE_INFO = {
-    ms: 'Anchor investor in OpenAI since 2019 — and, since January 2026, an Anthropic shareholder too. Microsoft hedges across both frontier labs while Azure sells the compute underneath them.',
-    openai: 'The center of gravity. OpenAI raised from Microsoft, Nvidia and SoftBank while committing well over a trillion dollars to Oracle, Microsoft, AMD and Broadcom for compute.',
-    anthropic: 'The maker of Claude is the only lab funded by three rival hyperscalers — Amazon, Google and Microsoft — and it buys cloud capacity from all of them.',
-    google: 'The only player that owns every layer: Gemini models, Google Cloud, and TPUs co-designed with Broadcom. It also holds up to $40B of Anthropic.',
-    amazon: 'Anthropic’s biggest early backer. AWS plus Trainium is the most credible alternative stack to Nvidia for frontier training.',
-    meta: 'Buys from everyone — Nvidia GPUs, Broadcom custom chips, even Google TPUs are in talks — to feed open-weight Llama. 2026 capex guidance: $115–135B.',
-    spacex: 'After absorbing xAI in February 2026, SpaceX rents Colossus supercomputer capacity to Google — and even to rival Anthropic.',
-    nvidia: 'The kingmaker. Stakes in OpenAI, Anthropic, xAI and Intel — money that largely returns as GPU purchase orders.',
-    oracle: 'Stargate founding partner. A single $300B OpenAI contract turned Oracle Cloud Infrastructure into a hyperscaler overnight.',
+    ms: 'Anchor investor in OpenAI since 2019 — and, since early 2026, an Anthropic shareholder too. Microsoft hedges across both frontier labs while Azure sells the compute underneath them. Market cap ≈ $3.1T.',
+    openai: 'The center of gravity. OpenAI raised from Microsoft, Nvidia, Amazon and SoftBank while committing well over a trillion dollars to Oracle, Microsoft, AMD and Broadcom for compute. Last private valuation ≈ $852B.',
+    anthropic: 'The maker of Claude is the only lab funded by three rival hyperscalers — Amazon, Google and Microsoft — and it buys cloud capacity from all of them. Series H valuation ≈ $965B.',
+    google: 'The only player that owns every layer: Gemini models, Google Cloud, and TPUs co-designed with Broadcom. It also holds up to $40B of Anthropic. Market cap ≈ $4.6T.',
+    amazon: 'Anthropic’s biggest early backer. AWS plus Trainium is the most credible alternative stack to Nvidia for frontier training. Market cap ≈ $2.9T.',
+    meta: 'Buys from everyone — Nvidia GPUs, Broadcom custom chips, even Google TPUs are in talks — to feed open-weight Llama. 2026 capex guidance: $125–145B. Market cap ≈ $1.7T.',
+    spacex: 'After absorbing xAI in February 2026 and going public in June, SpaceX rents Colossus supercomputer capacity to Google — and even to rival Anthropic. Market cap ≈ $2.0T.',
+    nvidia: 'The kingmaker, and the world’s most valuable company at ≈ $5.2T. Stakes in OpenAI, Anthropic, xAI and Intel — money that largely returns as GPU purchase orders.',
+    oracle: 'Stargate founding partner. A single $300B OpenAI contract turned Oracle Cloud Infrastructure into a hyperscaler overnight. Market cap ≈ $422B.',
     stargate: 'The $500B AI-infrastructure venture of SoftBank, OpenAI, Oracle and MGX. Roughly 7 GW planned, expanding to the UAE, Norway and Argentina.',
-    broadcom: 'The quiet winner: it co-designs custom accelerators for Google, Meta and OpenAI, and powers Anthropic’s TPU ramp.',
-    amd: 'Its 6 GW OpenAI supply deal is paid partly in AMD’s own equity — warrants for roughly 10% of the company.',
-    intel: 'Took $5B from Nvidia in September 2025 alongside a US government stake. The foundry wildcard of the map.',
+    broadcom: 'The quiet winner at ≈ $1.8T: it co-designs custom accelerators for Google, Meta and OpenAI, and powers Anthropic’s TPU ramp. Its overall AI revenue is projected near $46B in 2026.',
+    amd: 'Its 6 GW OpenAI supply deal is paid partly in AMD’s own equity — warrants for roughly 10% of the company. Market cap ≈ $950B.',
+    intel: 'Took $5B from Nvidia in September 2025 alongside a US government stake. The foundry wildcard of the map. Market cap ≈ $700B.',
   };
 
   // ── Deals ──
   // type 'eq' (equity: A holds a stake in B) or 'co' (commercial: A pays B).
-  // pts: hand-routed polyline in viewBox coordinates, arrowhead at the end.
+  // lbl = compact figure drawn on the arrow. pts = hand-routed polyline.
   const DEALS = [
     // Equity
-    { id: 'e-ms-openai', from: 'ms', to: 'openai', type: 'eq', amount: '27% stake', title: 'Microsoft → OpenAI', body: 'Roughly $13.8B invested since 2019 converted into a 27% stake (≈$135B) when OpenAI became a public benefit corporation in October 2025. Microsoft keeps IP access through 2032, but the April 2026 deal ended exclusivity and revenue sharing.', pts: [[216, 88], [236, 88]] },
-    { id: 'e-nvda-openai', from: 'nvidia', to: 'openai', type: 'eq', amount: 'up to $100B', title: 'Nvidia → OpenAI', body: 'Nvidia invests progressively as each of 10 GW of Nvidia systems is deployed. The largest of the "circular" deals: Nvidia’s cash comes back as GPU orders.', pts: [[232, 515], [232, 150], [236, 150]] },
-    { id: 'e-amzn-anthropic', from: 'amazon', to: 'anthropic', type: 'eq', amount: '$13B + $20B pledged', title: 'Amazon → Anthropic', body: '$13B invested, another $20B pledged on commercial milestones. A large share of Amazon’s recent "blowout" AI earnings came from marking up this stake.', pts: [[726, 40], [726, 16], [426, 16], [426, 40]] },
-    { id: 'e-goog-anthropic', from: 'google', to: 'anthropic', type: 'eq', amount: 'up to $40B', title: 'Google → Anthropic', body: 'The largest single commitment to an AI lab outside Microsoft–OpenAI. Google holds a minority, non-controlling stake.', pts: [[528, 88], [508, 88]] },
-    { id: 'e-ms-anthropic', from: 'ms', to: 'anthropic', type: 'eq', amount: '≈$5B', title: 'Microsoft → Anthropic', body: 'January 2026: Microsoft invests in its flagship partner’s biggest rival, as part of a ~$15B round with Nvidia at a $350B valuation, tied to Anthropic buying Azure capacity.', pts: [[140, 40], [140, 31], [402, 31], [402, 40]] },
-    { id: 'e-nvda-anthropic', from: 'nvidia', to: 'anthropic', type: 'eq', amount: '≈$10B', title: 'Nvidia → Anthropic', body: 'Same January 2026 round. In parallel, Anthropic committed roughly $30B of Azure capacity running Nvidia systems — investor, supplier and beneficiary at once.', pts: [[352, 515], [352, 506], [374, 506], [374, 200], [382, 200]] },
-    { id: 'e-openai-amd', from: 'openai', to: 'amd', type: 'eq', amount: 'warrants ≈10%', title: 'OpenAI → AMD', body: 'AMD supplies 6 GW of Instinct GPUs — and granted OpenAI warrants for up to ~160M shares (≈10% of AMD), vesting on deployment milestones. The supplier pays its customer in equity.', pts: [[344, 40], [344, 26], [804, 26], [804, 560], [820, 560]] },
-    { id: 'e-nvda-intel', from: 'nvidia', to: 'intel', type: 'eq', amount: '$5B', title: 'Nvidia → Intel', body: 'September 2025 stake, plus co-development of x86 CPUs with NVLink for AI data centers.', pts: [[300, 645], [300, 660], [1000, 660], [1000, 645]] },
-    { id: 'e-nvda-xai', from: 'nvidia', to: 'spacex', type: 'eq', amount: '$2B', title: 'Nvidia → xAI', body: 'Nvidia joined xAI’s $20B Series E (January 2026, $230B valuation). Weeks later SpaceX absorbed xAI in an all-stock deal valuing the pair at $1.25T.', pts: [[200, 645], [200, 672], [1104, 672], [1104, 250], [1092, 250]] },
-    { id: 'e-openai-stargate', from: 'openai', to: 'stargate', type: 'eq', amount: 'founding equity', title: 'OpenAI → Stargate', body: 'Stargate LLC is owned by SoftBank, OpenAI, Oracle and MGX, targeting $500B of AI infrastructure over four years.', pts: [[236, 270], [222, 270], [222, 448], [236, 448]] },
-    { id: 'e-oracle-stargate', from: 'oracle', to: 'stargate', type: 'eq', amount: 'founding equity', title: 'Oracle → Stargate', body: 'Oracle is both an equity partner in Stargate and its lead infrastructure builder.', pts: [[320, 400], [320, 412]] },
+    { id: 'e-ms-openai', from: 'ms', to: 'openai', type: 'eq', amount: '27% stake', lbl: '27%', title: 'Microsoft → OpenAI', body: 'Roughly $13.8B invested since 2019 converted into a 27% stake (≈$135B) when OpenAI became a public benefit corporation in October 2025. Microsoft keeps IP access through 2032, but the April 2026 deal ended exclusivity and revenue sharing.', pts: [[216, 88], [236, 88]] },
+    { id: 'e-nvda-openai', from: 'nvidia', to: 'openai', type: 'eq', amount: 'up to $100B', lbl: '≤$100B', lpos: [232, 192], title: 'Nvidia → OpenAI', body: 'Nvidia invests progressively as each of 10 GW of Nvidia systems is deployed. The largest of the "circular" deals: Nvidia’s cash comes back as GPU orders.', pts: [[232, 515], [232, 150], [236, 150]] },
+    { id: 'e-amzn-anthropic', from: 'amazon', to: 'anthropic', type: 'eq', amount: '$13B + $20B pledged', lbl: '$13B+$20B', lpos: [462, 16], title: 'Amazon → Anthropic', body: '$13B invested, another $20B pledged on commercial milestones. A large share of Amazon’s recent "blowout" AI earnings came from marking up this stake.', pts: [[726, 40], [726, 16], [426, 16], [426, 40]] },
+    { id: 'e-goog-anthropic', from: 'google', to: 'anthropic', type: 'eq', amount: 'up to $40B', lbl: '≤$40B', title: 'Google → Anthropic', body: 'The largest single commitment to an AI lab outside Microsoft–OpenAI. Google holds a minority, non-controlling stake, with $10B in now and the rest milestone-based.', pts: [[528, 88], [508, 88]] },
+    { id: 'e-ms-anthropic', from: 'ms', to: 'anthropic', type: 'eq', amount: '≈$5B', lbl: '$5B', title: 'Microsoft → Anthropic', body: 'Early 2026: Microsoft invests in its flagship partner’s biggest rival, as part of a ~$15B round with Nvidia at a $350B valuation, tied to Anthropic buying Azure capacity.', pts: [[140, 40], [140, 31], [402, 31], [402, 40]] },
+    { id: 'e-nvda-anthropic', from: 'nvidia', to: 'anthropic', type: 'eq', amount: '≈$10B', lbl: '$10B', title: 'Nvidia → Anthropic', body: 'Same early-2026 round. In parallel, Anthropic committed roughly $30B of Azure capacity running Nvidia systems — investor, supplier and beneficiary at once.', pts: [[352, 515], [352, 506], [374, 506], [374, 200], [382, 200]] },
+    { id: 'e-openai-amd', from: 'openai', to: 'amd', type: 'eq', amount: 'warrants ≈10%', lbl: '≈10%', lpos: [762, 26], title: 'OpenAI → AMD', body: 'AMD supplies 6 GW of Instinct GPUs — and granted OpenAI warrants for up to ~160M shares (≈10% of AMD), vesting on deployment milestones. The supplier pays its customer in equity.', pts: [[344, 40], [344, 26], [804, 26], [804, 560], [820, 560]] },
+    { id: 'e-nvda-intel', from: 'nvidia', to: 'intel', type: 'eq', amount: '$5B', lbl: '$5B', lpos: [870, 660], title: 'Nvidia → Intel', body: 'September 2025 stake, plus co-development of x86 CPUs with NVLink for AI data centers.', pts: [[300, 645], [300, 660], [1000, 660], [1000, 645]] },
+    { id: 'e-nvda-xai', from: 'nvidia', to: 'spacex', type: 'eq', amount: '$2B', lbl: '$2B', title: 'Nvidia → xAI', body: 'Nvidia joined xAI’s $20B Series E (January 2026, $230B valuation). Weeks later SpaceX absorbed xAI in an all-stock deal valuing the pair at $1.25T.', pts: [[200, 645], [200, 672], [1104, 672], [1104, 250], [1092, 250]] },
+    { id: 'e-openai-stargate', from: 'openai', to: 'stargate', type: 'eq', amount: 'founding equity', lbl: 'equity', title: 'OpenAI → Stargate', body: 'Stargate LLC is owned by SoftBank, OpenAI, Oracle and MGX, targeting $500B of AI infrastructure over four years.', pts: [[236, 270], [222, 270], [222, 448], [236, 448]] },
+    { id: 'e-oracle-stargate', from: 'oracle', to: 'stargate', type: 'eq', amount: 'founding equity', lbl: 'equity', title: 'Oracle → Stargate', body: 'Oracle is both an equity partner in Stargate and its lead infrastructure builder.', pts: [[320, 400], [320, 412]] },
     // Commercial (payer → payee)
-    { id: 'c-openai-oracle', from: 'openai', to: 'oracle', type: 'co', amount: '$300B / 5 yrs', title: 'OpenAI pays Oracle', body: 'Confirmed September 2025: OpenAI buys $300B of Oracle Cloud compute over five years. Oracle’s backlog exploded — and so did its borrowing to build the data centers.', pts: [[270, 305], [270, 325]] },
-    { id: 'c-openai-azure', from: 'openai', to: 'azure', type: 'co', amount: '$250B Azure', title: 'OpenAI pays Microsoft', body: 'Part of the October 2025 restructuring: a $250B Azure commitment. In exchange, Microsoft gave up its right of first refusal on OpenAI’s compute.', pts: [[236, 120], [227, 120], [227, 380], [208, 380]] },
-    { id: 'c-anthropic-aws', from: 'anthropic', to: 'aws', type: 'co', amount: '$100B / decade', title: 'Anthropic pays Amazon', body: 'AWS is Anthropic’s primary training partner — over $100B committed to Amazon chips and cloud, including the Trainium-powered Project Rainier cluster.', pts: [[452, 40], [452, 21], [664, 21], [664, 400], [682, 400]] },
-    { id: 'c-anthropic-gcloud', from: 'anthropic', to: 'gcloud', type: 'co', amount: '$200B / 5 yrs', title: 'Anthropic pays Google', body: '$200B of Google Cloud over five years, plus up to 5 GW of next-generation TPUs (built with Broadcom) starting 2027.', pts: [[508, 270], [518, 270], [518, 380], [536, 380]] },
-    { id: 'c-anthropic-azure', from: 'anthropic', to: 'azure', type: 'co', amount: '≈$30B', title: 'Anthropic pays Microsoft', body: 'Bought alongside the Microsoft/Nvidia investment. Claude now runs on all three hyperscalers.', pts: [[382, 312], [218, 312], [218, 335], [208, 335]] },
-    { id: 'c-openai-broadcom', from: 'openai', to: 'broadcom', type: 'co', amount: '10 GW custom chips', title: 'OpenAI pays Broadcom', body: 'Co-designed accelerators at 10 GW scale — OpenAI’s hedge against Nvidia dependence.', pts: [[346, 305], [346, 318], [370, 318], [370, 502], [390, 502], [390, 515]] },
-    { id: 'c-google-broadcom', from: 'google', to: 'broadcom', type: 'co', amount: 'TPU co-design', title: 'Google pays Broadcom', body: 'Broadcom has co-developed every TPU generation; 2026 contract scale is estimated around $46B as Google ramps external TPU sales.', pts: [[536, 580], [508, 580]] },
-    { id: 'c-meta-broadcom', from: 'meta', to: 'broadcom', type: 'co', amount: 'multi-GW to 2029', title: 'Meta pays Broadcom', body: 'Custom AI silicon partnership extended through 2029, starting above one gigawatt of accelerators.', pts: [[820, 280], [808, 280], [808, 654], [450, 654], [450, 645]] },
-    { id: 'c-meta-nvidia', from: 'meta', to: 'nvidia', type: 'co', amount: '“millions” of GPUs', title: 'Meta pays Nvidia', body: 'February 2026 expansion covering Grace Blackwell and future Vera Rubin platforms — reportedly worth tens of billions.', pts: [[820, 180], [812, 180], [812, 666], [150, 666], [150, 645]] },
-    { id: 'c-anthropic-spacex', from: 'anthropic', to: 'spacex', type: 'co', amount: 'Colossus 1 lease', title: 'Anthropic pays SpaceX', body: 'May 2026: SpaceX leased the entire 300 MW, 220,000-GPU Colossus 1 site in Memphis to Anthropic — Musk renting his supercomputer to a direct rival.', pts: [[478, 40], [478, 11], [1032, 11], [1032, 40]] },
-    { id: 'c-google-spacex', from: 'google', to: 'spacex', type: 'co', amount: '$920M / month', title: 'Google pays SpaceX', body: 'October 2026 through June 2029: about 110,000 Nvidia GPUs of Colossus capacity for Google.', pts: [[620, 40], [620, 6], [1060, 6], [1060, 40]] },
+    { id: 'c-openai-oracle', from: 'openai', to: 'oracle', type: 'co', amount: '$300B / 5 yrs', lbl: '$300B', title: 'OpenAI pays Oracle', body: 'Confirmed September 2025: OpenAI buys $300B of Oracle Cloud compute over five years. Oracle’s backlog exploded — and so did its borrowing to build the data centers.', pts: [[270, 305], [270, 325]] },
+    { id: 'c-openai-azure', from: 'openai', to: 'azure', type: 'co', amount: '$250B Azure', lbl: '$250B', title: 'OpenAI pays Microsoft', body: 'Part of the October 2025 restructuring: a $250B Azure commitment. In exchange, Microsoft gave up its right of first refusal on OpenAI’s compute.', pts: [[236, 120], [227, 120], [227, 380], [208, 380]] },
+    { id: 'c-anthropic-aws', from: 'anthropic', to: 'aws', type: 'co', amount: '$100B / decade', lbl: '$100B', lpos: [614, 21], title: 'Anthropic pays Amazon', body: 'AWS is Anthropic’s primary training partner — over $100B committed to Amazon chips and cloud, including the Trainium-powered Project Rainier cluster.', pts: [[452, 40], [452, 21], [664, 21], [664, 400], [682, 400]] },
+    { id: 'c-anthropic-gcloud', from: 'anthropic', to: 'gcloud', type: 'co', amount: '$200B / 5 yrs', lbl: '$200B', title: 'Anthropic pays Google', body: '$200B of Google Cloud over five years, plus up to 1 million TPUs and 5 GW of next-generation capacity (built with Broadcom) starting 2027.', pts: [[508, 270], [518, 270], [518, 380], [536, 380]] },
+    { id: 'c-anthropic-azure', from: 'anthropic', to: 'azure', type: 'co', amount: '≈$30B', lbl: '$30B', lpos: [222, 322], title: 'Anthropic pays Microsoft', body: 'Bought alongside the Microsoft/Nvidia investment. Claude now runs on all three hyperscalers.', pts: [[382, 312], [218, 312], [218, 335], [208, 335]] },
+    { id: 'c-openai-broadcom', from: 'openai', to: 'broadcom', type: 'co', amount: '10 GW custom chips', lbl: '10 GW', title: 'OpenAI pays Broadcom', body: 'Co-designed accelerators at 10 GW scale — OpenAI’s hedge against Nvidia dependence.', pts: [[346, 305], [346, 318], [370, 318], [370, 502], [390, 502], [390, 515]] },
+    { id: 'c-google-broadcom', from: 'google', to: 'broadcom', type: 'co', amount: 'TPU co-design', lbl: 'TPUs', title: 'Google pays Broadcom', body: 'Broadcom has co-developed every TPU generation; the current agreement runs through 2031. Broadcom’s overall AI revenue is projected near $46B in 2026.', pts: [[536, 580], [508, 580]] },
+    { id: 'c-meta-broadcom', from: 'meta', to: 'broadcom', type: 'co', amount: 'multi-GW to 2029', lbl: 'multi-GW', lpos: [560, 654], title: 'Meta pays Broadcom', body: 'Custom AI silicon partnership extended through 2029, starting above one gigawatt of accelerators.', pts: [[820, 280], [808, 280], [808, 654], [450, 654], [450, 645]] },
+    { id: 'c-meta-nvidia', from: 'meta', to: 'nvidia', type: 'co', amount: '“millions” of GPUs', lbl: '10s of $B', title: 'Meta pays Nvidia', body: 'February 2026 expansion covering Grace Blackwell and future Vera Rubin platforms — reportedly worth tens of billions.', pts: [[820, 180], [812, 180], [812, 666], [150, 666], [150, 645]] },
+    { id: 'c-anthropic-spacex', from: 'anthropic', to: 'spacex', type: 'co', amount: '$1.25B / month', lbl: '$1.25B/mo', title: 'Anthropic pays SpaceX', body: 'May 2026: SpaceX leased the entire 300 MW, 220,000-GPU Colossus 1 site in Memphis to Anthropic for $1.25B/month through 2029 — Musk renting his supercomputer to a direct rival.', pts: [[478, 40], [478, 11], [1032, 11], [1032, 40]] },
+    { id: 'c-google-spacex', from: 'google', to: 'spacex', type: 'co', amount: '$920M / month', lbl: '$920M/mo', title: 'Google pays SpaceX', body: 'October 2026 through June 2029: about 110,000 Nvidia GPUs of Colossus capacity for Google, worth roughly $30B over its life.', pts: [[620, 40], [620, 6], [1060, 6], [1060, 40]] },
   ];
 
   const nodeById = {};
@@ -114,6 +116,19 @@
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const icon = (id, cx, y, size) =>
     ICONS[id] ? `<path class="aiw-icon" transform="translate(${cx - size / 2},${y}) scale(${size / 24})" d="${ICONS[id]}"/>` : '';
+
+  // Pick the clearest point on a polyline for its label: the midpoint of the
+  // longest horizontal run if one is long enough, otherwise the longest segment.
+  function labelPos(pts) {
+    let best = null, bestLen = -1, bestH = null, bestHLen = -1;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const len = Math.hypot(x2 - x1, y2 - y1);
+      if (len > bestLen) { bestLen = len; best = [(x1 + x2) / 2, (y1 + y2) / 2]; }
+      if (y1 === y2 && len > bestHLen) { bestHLen = len; bestH = [(x1 + x2) / 2, (y1 + y2) / 2]; }
+    }
+    return (bestH && bestHLen >= 26) ? bestH : best;
+  }
 
   // ── Build SVG ──
   let svg = '<svg viewBox="0 0 1120 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of AI investment and commercial deals">';
@@ -137,17 +152,19 @@
     svg += `<rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="8"/>`;
     const cx = n.x + n.w / 2;
     if (n.kind === 'company') {
-      svg += icon(n.id, cx, 52, 24);
-      svg += `<text x="${cx}" y="100" class="aiw-name" text-anchor="middle">${esc(n.label)}</text>`;
-      if (n.cap) svg += `<text x="${cx}" y="118" class="aiw-cap" text-anchor="middle">${esc(n.cap)}</text>`;
+      svg += icon(n.id, cx, 50, 22);
+      svg += `<text x="${cx}" y="92" class="aiw-name" text-anchor="middle">${esc(n.label)}</text>`;
+      if (n.mcap) svg += `<text x="${cx}" y="111" class="aiw-mcap" text-anchor="middle">${esc(n.mcap)}</text>`;
+      if (n.cap) svg += `<text x="${cx}" y="127" class="aiw-cap" text-anchor="middle">${esc(n.cap)}</text>`;
     } else if (n.kind === 'solo' && ICONS[n.id] && n.h >= 100) {
-      svg += icon(n.id, cx, n.y + 20, 22);
-      svg += `<text x="${cx}" y="${n.y + 76}" class="aiw-name" text-anchor="middle">${esc(n.label)}</text>`;
-      if (n.cap) svg += `<text x="${cx}" y="${n.y + 94}" class="aiw-cap" text-anchor="middle">${esc(n.cap)}</text>`;
+      svg += icon(n.id, cx, n.y + 16, 22);
+      svg += `<text x="${cx}" y="${n.y + 72}" class="aiw-name" text-anchor="middle">${esc(n.label)}</text>`;
+      if (n.mcap) svg += `<text x="${cx}" y="${n.y + 91}" class="aiw-mcap" text-anchor="middle">${esc(n.mcap)}</text>`;
+      if (n.cap) svg += `<text x="${cx}" y="${n.y + 107}" class="aiw-cap" text-anchor="middle">${esc(n.cap)}</text>`;
     } else if (n.kind === 'solo' && ICONS[n.id]) {
-      svg += icon(n.id, cx, n.y + 9, 15);
-      svg += `<text x="${cx}" y="${n.y + 44}" class="aiw-name sm" text-anchor="middle">${esc(n.label)}</text>`;
-      if (n.cap) svg += `<text x="${cx}" y="${n.y + 60}" class="aiw-cap" text-anchor="middle">${esc(n.cap)}</text>`;
+      svg += icon(n.id, cx, n.y + 8, 14);
+      svg += `<text x="${cx}" y="${n.y + 41}" class="aiw-name sm" text-anchor="middle">${esc(n.label)}</text>`;
+      if (n.mcap) svg += `<text x="${cx}" y="${n.y + 60}" class="aiw-mcap" text-anchor="middle">${esc(n.mcap)}</text>`;
     } else {
       const cy = n.y + n.h / 2 + (n.cap ? -3 : 4);
       svg += `<text x="${cx}" y="${cy}" class="aiw-name ${n.kind === 'sub' ? 'sm' : ''}" text-anchor="middle">${esc(n.label)}</text>`;
@@ -156,12 +173,22 @@
     svg += '</g>';
   });
 
-  // Deal edges (drawn above nodes)
+  // Deal edges
   DEALS.forEach(d => {
     const pline = d.pts.map(p => p.join(',')).join(' ');
     svg += `<g class="aiw-edge aiw-${d.type}" data-deal="${d.id}">`
       + `<polyline points="${pline}" class="aiw-edge-line" marker-end="url(#aiw-arr-${d.type})"/>`
       + `<polyline points="${pline}" class="aiw-edge-hit"/>`
+      + '</g>';
+  });
+
+  // Deal amount labels (drawn on top of edges so they stay legible)
+  DEALS.forEach(d => {
+    const [lx, ly] = d.lpos || labelPos(d.pts);
+    const w = d.lbl.length * 5.4 + 10;
+    svg += `<g class="aiw-lbl aiw-${d.type}" data-deal="${d.id}">`
+      + `<rect x="${(lx - w / 2).toFixed(1)}" y="${(ly - 7).toFixed(1)}" width="${w.toFixed(1)}" height="14" rx="3"/>`
+      + `<text x="${lx.toFixed(1)}" y="${(ly + 3).toFixed(1)}" text-anchor="middle">${esc(d.lbl)}</text>`
       + '</g>';
   });
 
@@ -175,7 +202,7 @@
   controls.innerHTML =
     `<button type="button" class="aiw-toggle aiw-toggle-eq on" data-type="eq"><span class="aiw-swatch eq"></span>Equity investment (${nEq})</button>`
     + `<button type="button" class="aiw-toggle aiw-toggle-co on" data-type="co"><span class="aiw-swatch co"></span>Commercial deal (${nCo})</button>`
-    + '<span class="aiw-hint">Arrows follow the money · click a company or an arrow</span>';
+    + '<span class="aiw-hint">Node = market cap · arrow = deal size · click for detail</span>';
 
   const panel = document.getElementById('aiw-panel');
   const svgEl = mount.querySelector('svg');
@@ -200,7 +227,7 @@
       const id = selected.id;
       const n = nodeById[id];
       const list = dealsOf(id).filter(d => filters[d.type]);
-      let html = `<h4 class="aiw-panel-title">${esc(n.label)}</h4>`;
+      let html = `<h4 class="aiw-panel-title">${esc(n.label)}${n.mcap ? ` <span class="aiw-panel-mcap">${esc(n.mcap)}</span>` : ''}</h4>`;
       if (NODE_INFO[id]) html += `<p class="aiw-panel-desc">${NODE_INFO[id]}</p>`;
       html += list.map(d =>
         `<button type="button" class="aiw-deal-row" data-deal="${d.id}">`
@@ -224,8 +251,8 @@
   }
 
   function applyState() {
-    // filters
-    svgEl.querySelectorAll('.aiw-edge').forEach(g => {
+    // filters (edges + labels)
+    svgEl.querySelectorAll('.aiw-edge, .aiw-lbl').forEach(g => {
       const d = DEALS.find(x => x.id === g.dataset.deal);
       g.classList.toggle('aiw-off', !filters[d.type]);
     });
@@ -251,7 +278,7 @@
       g.classList.toggle('aiw-dim', !!selected && !active.has(g.dataset.node));
       g.classList.toggle('aiw-active', !!selected && active.has(g.dataset.node));
     });
-    svgEl.querySelectorAll('.aiw-edge').forEach(g => {
+    svgEl.querySelectorAll('.aiw-edge, .aiw-lbl').forEach(g => {
       g.classList.toggle('aiw-dim', !!selected && !active.has(g.dataset.deal));
       g.classList.toggle('aiw-sel', !!selected && active.has(g.dataset.deal));
     });
@@ -270,7 +297,7 @@
       select({ kind: 'node', id: companyOf(g.dataset.node) });
     });
   });
-  svgEl.querySelectorAll('.aiw-edge').forEach(g => {
+  svgEl.querySelectorAll('.aiw-edge, .aiw-lbl').forEach(g => {
     g.addEventListener('click', e => {
       e.stopPropagation();
       select({ kind: 'deal', id: g.dataset.deal });
