@@ -4313,3 +4313,232 @@ pre code {
     .glm-bench-row { grid-template-columns: 110px 1fr; gap: 10px; }
     .glm-readout-big { font-size: 32px; }
 }
+
+/* ============================================
+   AI INVESTMENT WAR MAP
+   ============================================ */
+
+:root {
+    --aiw-equity: #8250df;
+    --aiw-coop: #1a7f37;
+}
+[data-theme="dark"] {
+    --aiw-equity: #a371f7;
+    --aiw-coop: #3fb950;
+}
+
+.aiw-wrap {
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 28px 0;
+}
+
+/* Controls / legend */
+.aiw-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.aiw-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-gray);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    opacity: 0.55;
+}
+.aiw-toggle.on {
+    color: var(--color-text);
+    opacity: 1;
+}
+.aiw-swatch {
+    display: inline-block;
+    width: 18px;
+    height: 0;
+    border-top: 2.5px solid;
+    position: relative;
+}
+.aiw-swatch.eq { border-color: var(--aiw-equity); }
+.aiw-swatch.co { border-color: var(--aiw-coop); }
+.aiw-hint {
+    font-size: 12px;
+    color: var(--color-gray-light);
+    margin-left: auto;
+}
+
+/* Diagram */
+.aiw-scroll { overflow-x: auto; }
+.aiw-diagram { min-width: 700px; }
+.aiw-diagram svg { display: block; width: 100%; height: auto; }
+
+.aiw-band { fill: transparent; }
+.aiw-band.alt { fill: var(--color-neutral-muted); fill-opacity: 0.35; }
+.aiw-band-line {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    stroke-dasharray: 4 5;
+}
+.aiw-band-label {
+    fill: var(--color-gray-light);
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.aiw-node { cursor: pointer; }
+.aiw-node rect {
+    fill: var(--color-bg);
+    stroke: var(--color-border);
+    stroke-width: 1.25;
+    transition: stroke 0.15s ease, opacity 0.15s ease;
+}
+.aiw-node.aiw-sub rect {
+    fill: var(--color-surface);
+    stroke-dasharray: 3 3;
+}
+.aiw-node:hover rect { stroke: var(--color-gray); }
+.aiw-node.aiw-active rect { stroke: var(--color-text); stroke-width: 1.75; }
+.aiw-node.aiw-dim { opacity: 0.3; }
+.aiw-name {
+    fill: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+}
+.aiw-name.sm { font-size: 13.5px; }
+.aiw-cap {
+    fill: var(--color-gray);
+    font-family: var(--font-heading);
+    font-size: 10.5px;
+}
+.aiw-node text { pointer-events: none; }
+
+/* Edges */
+.aiw-edge { cursor: pointer; transition: opacity 0.15s ease; }
+.aiw-edge-line {
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linejoin: round;
+}
+.aiw-eq .aiw-edge-line { stroke: var(--aiw-equity); }
+.aiw-co .aiw-edge-line { stroke: var(--aiw-coop); }
+.aiw-arrhead-eq { fill: var(--aiw-equity); }
+.aiw-arrhead-co { fill: var(--aiw-coop); }
+.aiw-edge-hit {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 13;
+}
+.aiw-edge:hover .aiw-edge-line,
+.aiw-edge.aiw-sel .aiw-edge-line { stroke-width: 3; }
+.aiw-edge.aiw-dim { opacity: 0.12; }
+.aiw-edge.aiw-off { display: none; }
+
+/* Detail panel */
+.aiw-panel {
+    margin-top: 16px;
+    padding: 16px 18px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    min-height: 72px;
+}
+.aiw-panel-hint {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--color-gray);
+    line-height: 1.55;
+}
+.aiw-panel-title {
+    margin: 0 0 6px;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+.aiw-panel-desc {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+.aiw-panel-route {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+.aiw-panel-amt {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+.aiw-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin-right: 6px;
+    color: #fff;
+}
+.aiw-badge.eq { background: var(--aiw-equity); }
+.aiw-badge.co { background: var(--aiw-coop); }
+.aiw-deal-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--color-border);
+    padding: 8px 2px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 13.5px;
+    color: var(--color-text);
+}
+.aiw-deal-row:hover { background: var(--color-neutral-muted); }
+.aiw-dot {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    align-self: center;
+}
+.aiw-dot.eq { background: var(--aiw-equity); }
+.aiw-dot.co { background: var(--aiw-coop); }
+.aiw-deal-title { flex: 1; }
+.aiw-deal-amt {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-gray);
+    white-space: nowrap;
+}
+
+/* Inline legend words in prose */
+.aiw-inline-eq { color: var(--aiw-equity); font-weight: 600; }
+.aiw-inline-co { color: var(--aiw-coop); font-weight: 600; }
+
+@media (max-width: 600px) {
+    .aiw-wrap { padding: 12px; }
+    .aiw-hint { display: none; }
+}
