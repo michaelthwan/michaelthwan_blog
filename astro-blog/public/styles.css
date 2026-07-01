@@ -4424,6 +4424,11 @@ pre code {
     font-size: 10.5px;
 }
 .aiw-node text { pointer-events: none; }
+.aiw-icon {
+    fill: var(--color-text);
+    opacity: 0.88;
+    pointer-events: none;
+}
 
 /* Edges */
 .aiw-edge { cursor: pointer; transition: opacity 0.15s ease; }

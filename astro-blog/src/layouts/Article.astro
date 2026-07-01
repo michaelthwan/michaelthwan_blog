@@ -32,12 +32,54 @@ const tocItems = headings.filter(h => h.depth === 2 || h.depth === 3);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
+        onload="renderArticleMath();"></script>
+    <script is:inline>
+        // Single-dollar delimiters clash with currency amounts: a text node like
+        // "get $200K/year ... get $400K+" would render the span between the two
+        // dollars as inline math. Before auto-render runs, mask every "$" that is
+        // not part of a valid math pair (valid = closing "$" not preceded by
+        // whitespace and not followed by a digit — the Pandoc rule), then restore
+        // the masked dollars afterwards.
+        function renderArticleMath() {
+            var MASK = String.fromCharCode(0xE000); // private-use char, never appears in content
+            var MATH_RE = /\$\$[\s\S]+?\$\$|\$(?:[^\s$](?:[^$]*?[^\s$])?)\$(?!\d)/g;
+
+            function textNodes() {
+                var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+                var nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+                return nodes;
+            }
+
+            textNodes().forEach(function (node) {
+                var text = node.nodeValue;
+                if (text.indexOf('$') === -1) return;
+                var result = '';
+                var last = 0;
+                var match;
+                MATH_RE.lastIndex = 0;
+                while ((match = MATH_RE.exec(text)) !== null) {
+                    result += text.slice(last, match.index).split('$').join(MASK) + match[0];
+                    last = match.index + match[0].length;
+                }
+                result += text.slice(last).split('$').join(MASK);
+                if (result !== text) node.nodeValue = result;
+            });
+
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });
+
+            textNodes().forEach(function (node) {
+                if (node.nodeValue.indexOf(MASK) !== -1) {
+                    node.nodeValue = node.nodeValue.split(MASK).join('$');
+                }
+            });
+        }
+    </script>
 
     <link rel="stylesheet" href="/styles.css">
 </head>
