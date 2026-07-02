@@ -4089,10 +4089,111 @@ pre code {
     font-weight: 600;
 }
 
+/* Milestone timeline strip under each chart. Hovering a chip
+   spotlights the matching annotation on the chart above. */
+.sp500-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    margin: 10px 0 4px;
+    padding: 0 4px;
+}
+
+.sp500-tl-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 3px 10px 3px 8px;
+    font-family: inherit;
+    font-size: 11.5px;
+    line-height: 1.5;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+.sp500-tl-item::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    align-self: center;
+    flex: none;
+}
+
+.sp500-tl-item.is-bull::before { background: #2e7d32; }
+.sp500-tl-item.is-bear::before { background: #c62828; }
+
+.sp500-tl-year {
+    font-weight: 600;
+    font-size: 10.5px;
+    color: #999;
+}
+
+.sp500-tl-item:hover,
+.sp500-tl-item:focus-visible {
+    transform: translateY(-1px);
+}
+
+.sp500-tl-item.is-bull:hover,
+.sp500-tl-item.is-bull:focus-visible {
+    border-color: #2e7d32;
+    background: #e8f5e9;
+    color: #0d3f12;
+}
+
+.sp500-tl-item.is-bear:hover,
+.sp500-tl-item.is-bear:focus-visible {
+    border-color: #c62828;
+    background: #ffe7e8;
+    color: #7f1010;
+}
+
+/* Headings linked to a chart event */
+.sp500-linked-heading {
+    cursor: default;
+    transition: color 0.12s ease;
+}
+
+.sp500-linked-heading:hover {
+    color: #1565c0;
+}
+
+[data-theme="dark"] .sp500-tl-item {
+    border-color: #3a3a3a;
+    color: #aaa;
+}
+
+[data-theme="dark"] .sp500-tl-item.is-bull:hover,
+[data-theme="dark"] .sp500-tl-item.is-bull:focus-visible {
+    border-color: #66bb6a;
+    background: #1b3f20;
+    color: #c8e6c9;
+}
+
+[data-theme="dark"] .sp500-tl-item.is-bear:hover,
+[data-theme="dark"] .sp500-tl-item.is-bear:focus-visible {
+    border-color: #ef5350;
+    background: #4a1616;
+    color: #ffcdd2;
+}
+
 @media (max-width: 600px) {
     .sp500-chart-wrap {
         height: 300px;
         padding: 8px 4px 4px;
+    }
+
+    .sp500-timeline {
+        gap: 4px 6px;
+    }
+
+    .sp500-tl-item {
+        font-size: 10.5px;
+        padding: 2px 8px 2px 6px;
     }
 
     .sp500-stats-table {
