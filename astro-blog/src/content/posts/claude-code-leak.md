@@ -111,6 +111,23 @@ thumbnail: "/img/claude-code-leak/thumbnail.svg"
   .section-marker-line { flex: 1; height: 1px; background: #e5e7eb; }
   .section-marker-label { font-size: 2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
 
+  /* ── Callouts & badges ── */
+  .cl-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 15px; margin: 24px 0; font-size: 0.9rem; line-height: 1.55;
+  }
+  .cl-callout-key  { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  .cl-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .cl-callout code { background: rgba(0,0,0,0.06); padding: 0 3px; border-radius: 3px; }
+  .cl-badge {
+    display: inline-block; font-size: 0.65rem; font-weight: 700;
+    padding: 2px 7px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
+  }
+  .cl-badge-red    { background: #fee2e2; color: #b91c1c; }
+  .cl-badge-yellow { background: #fef3c7; color: #92400e; }
+  .cl-badge-gray   { background: #e5e7eb; color: #374151; }
+  .eng-icon svg { display: block; width: 20px; height: 20px; stroke: #6b7280; }
+
   @media (max-width: 600px) {
     .lk-grid, .eng-grid { grid-template-columns: 1fr; }
     .lk-stats { gap: 8px; }
@@ -139,6 +156,10 @@ Anthropic confirmed the breach, pulled the package, and issued DMCA takedowns. T
   <div class="lk-stat"><div class="lk-stat-val">70K ★</div><div class="lk-stat-label">Stars on clone</div></div>
   <div class="lk-stat"><div class="lk-stat-val">42+</div><div class="lk-stat-label">Built-in tools</div></div>
   <div class="lk-stat"><div class="lk-stat-val">123+</div><div class="lk-stat-label">Feature flags</div></div>
+</div>
+
+<div class="cl-callout cl-callout-key">
+    <strong>Read the rest of this post through one lens: Claude Code is being built to outlive the terminal session it runs in.</strong> Almost every hidden feature and architectural choice below points the same way—an agent that persists, coordinates, and acts on its own. The leak is interesting for the drama. It matters because it exposes that thesis in source.
 </div>
 
 ### Timeline
@@ -172,7 +193,7 @@ Anthropic confirmed the breach, pulled the package, and issued DMCA takedowns. T
 
 ## 10 Unreleased Features
 
-Researchers found 20 fully-built features hidden behind internal flags. Here are the ten most significant.
+Researchers found 20 fully-built features hidden behind internal flags. Here are the ten most significant. Watch the pattern as you read: the first five all extend Claude Code's reach in <em>time</em> (persist overnight, act unprompted, plan in the cloud) or across <em>instances</em>—the terminal is no longer the boundary of the agent.
 
 <div class="lk-grid">
 
@@ -243,13 +264,13 @@ Researchers found 20 fully-built features hidden behind internal flags. Here are
 <table class="flag-table">
   <thead><tr><th>Flag</th><th>Controls</th><th>Status</th></tr></thead>
   <tbody>
-    <tr><td>tengu_kairos_assistant_mode</td><td>KAIROS proactive background agent</td><td>Internal only</td></tr>
-    <tr><td>tengu_anti_distill_fake_tool_injection</td><td>Training data poison injection</td><td>Gated</td></tr>
-    <tr><td>tengu_harbor</td><td>Plugin marketplace</td><td>Unreleased</td></tr>
-    <tr><td>tengu_thinkback</td><td>"Year in Review"</td><td>Unreleased</td></tr>
-    <tr><td>ANTI_DISTILLATION_CC</td><td>Thought chain encryption</td><td>Gated</td></tr>
-    <tr><td>BUDDY (system)</td><td>Virtual pet companion</td><td>Built, unreleased</td></tr>
-    <tr><td>ULTRAPLAN</td><td>30-min cloud planning via Opus</td><td>Built, unreleased</td></tr>
+    <tr><td>tengu_kairos_assistant_mode</td><td>KAIROS proactive background agent</td><td><span class="cl-badge cl-badge-red">Internal only</span></td></tr>
+    <tr><td>tengu_anti_distill_fake_tool_injection</td><td>Training data poison injection</td><td><span class="cl-badge cl-badge-yellow">Gated</span></td></tr>
+    <tr><td>tengu_harbor</td><td>Plugin marketplace</td><td><span class="cl-badge cl-badge-gray">Unreleased</span></td></tr>
+    <tr><td>tengu_thinkback</td><td>"Year in Review"</td><td><span class="cl-badge cl-badge-gray">Unreleased</span></td></tr>
+    <tr><td>ANTI_DISTILLATION_CC</td><td>Thought chain encryption</td><td><span class="cl-badge cl-badge-yellow">Gated</span></td></tr>
+    <tr><td>BUDDY (system)</td><td>Virtual pet companion</td><td><span class="cl-badge cl-badge-gray">Built, unreleased</span></td></tr>
+    <tr><td>ULTRAPLAN</td><td>30-min cloud planning via Opus</td><td><span class="cl-badge cl-badge-gray">Built, unreleased</span></td></tr>
   </tbody>
 </table>
 
@@ -317,36 +338,40 @@ Seven layers absorb everything from network jitter to extended API outages — w
   <div class="rs-layer rs-7"><div class="rs-layer-num">7</div><div class="rs-layer-label">Unattended Persistent Retry</div><div class="rs-layer-desc">Max backoff 5 min · reset ceiling 6 hours</div></div>
 </div>
 
+<div class="cl-callout cl-callout-key">
+    <strong>Layer 7 is the tell.</strong> A chatbot does not need a retry path that backs off for five minutes and keeps trying for six hours—a human is sitting there watching. That layer only makes sense for an agent expected to run <em>unattended</em>, through outages, with no one to click "retry." The recovery stack is infrastructure-grade reliability, and it points at the same thesis as KAIROS and Daemon mode.
+</div>
+
 ### Engineering Highlights
 
 <div class="eng-grid">
   <div class="eng-card">
-    <span class="eng-icon">✂️</span>
+    <span class="eng-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
     <h4>Prompt Cache Splitting</h4>
     <p>System prompt is split at a boundary: static half (identity, philosophy) is globally cached; dynamic half (memory, environment) is never cached. Maximizes Anthropic API cache hits and minimizes per-call cost.</p>
   </div>
   <div class="eng-card">
-    <span class="eng-icon">📦</span>
+    <span class="eng-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
     <h4>4-Level Context Compression</h4>
     <p>Snippet (quantized trim) → Micro-compact (time/API compression) → Auto-compact (AI-generated summary) → Reactive Compact (emergency 413 response). Each level has a corresponding recovery path.</p>
   </div>
   <div class="eng-card">
-    <span class="eng-icon">⚡</span>
+    <span class="eng-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
     <h4>Speculative Execution</h4>
     <p>Changes are executed in a Copy-on-Write overlay filesystem before you confirm. Approve → copied to real filesystem. Reject → overlay discarded. Zero latency on confirmation; zero side effects on rejection.</p>
   </div>
   <div class="eng-card">
-    <span class="eng-icon">🔒</span>
+    <span class="eng-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
     <h4>20-Point Bash Safety</h4>
     <p>20 checks before any shell command: incomplete commands, function injection, newline attacks, Unicode whitespace disguise, and more. Auto mode adds an interpreter blacklist requiring explicit user confirmation.</p>
   </div>
   <div class="eng-card">
-    <span class="eng-icon">🪝</span>
+    <span class="eng-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9a4 4 0 1 1-4-4"/><circle cx="12" cy="3" r="1.4" fill="currentColor" stroke="none"/></svg></span>
     <h4>Hook System</h4>
     <p>6 hook types across 24 events (Command, Prompt, Agent, HTTP, Callback, Function). Enterprises can intercept tool calls — e.g., trigger a security audit before any file write — without modifying source.</p>
   </div>
   <div class="eng-card">
-    <span class="eng-icon">🖥️</span>
+    <span class="eng-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
     <h4>Custom Terminal Renderer</h4>
     <p>TSX + React Ink with a custom Zustand-style store that only re-renders on changed fields. Achieves ~50× reduction in <code>stringWidth()</code> calls through batching — game-engine rendering discipline applied to a CLI.</p>
   </div>

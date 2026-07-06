@@ -13,6 +13,29 @@ category: "ml"
 thumbnail: "/img/glm-52/thumbnail.svg"
 ---
 
+<style>
+  /* Scoped styles for the GLM-5.2 post (prefix: g52-) */
+  .g52-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 15px; margin: 22px 0; font-size: 0.92rem; line-height: 1.6;
+  }
+  .g52-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .g52-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .g52-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  [data-theme="dark"] .g52-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  [data-theme="dark"] .g52-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  [data-theme="dark"] .g52-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+
+  .g52-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 8px;
+    border-radius: 4px; white-space: nowrap; }
+  .g52-badge-lead  { background: #d1fae5; color: #065f46; }
+  .g52-badge-close { background: #fef3c7; color: #92400e; }
+  .g52-badge-behind{ background: #fee2e2; color: #b91c1c; }
+  [data-theme="dark"] .g52-badge-lead  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  [data-theme="dark"] .g52-badge-close { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  [data-theme="dark"] .g52-badge-behind{ background: rgba(239,68,68,0.18); color: #fca5a5; }
+</style>
+
 <p class="d-note">
     This article covers <a href="https://z.ai/blog/glm-5.2">GLM-5.2</a>, released by Zhipu AI (Z.ai) under a
     permissive MIT license. Figures are from the <a href="https://z.ai/blog/glm-5.2">official Z.ai announcement</a>;
@@ -137,7 +160,7 @@ At a 1M-token context with ~90 layers, that indexer becomes the dominant cost. Y
 
 GLM-5.2's insight is almost embarrassingly simple: **the set of relevant tokens doesn't change much from one layer to the next.** So why recompute it every layer?
 
-<div class="d-callout">
+<div class="g52-callout g52-callout-note">
     <strong>IndexShare in one sentence:</strong> run the full top-k indexer only once every <em>four</em> layers,
     and let the next three layers reuse the same selected token indices.
 </div>
@@ -182,14 +205,18 @@ Concretely, layers are grouped in fours. The first layer of each group computes 
 
 How much does this save? Let $D$ be the per-layer compute that is roughly independent of context length (the MLA projections and the MoE feed-forward), and let the indexer cost scale with context length $n$. For a model of $L$ layers with index groups of size $g$, the per-token compute is:
 
+<div class="d-math-block">
 $$
 \text{Standard} = L\,(D + \alpha n), \qquad
 \text{IndexShare} = L\,D + \frac{L}{g}\,\alpha n
 $$
+</div>
 
 The reduction factor is therefore $\dfrac{D + \alpha n}{D + \alpha n / g}$. When the context $n$ is small, the indexer is negligible and the two are basically equal. But as $n$ grows, the $\alpha n$ term dominates and the ratio approaches $g$. At a 1M-token context with $g = 4$, GLM-5.2 reports a **2.9× reduction in per-token FLOPs** — most of the way to the theoretical 4× ceiling.
 
-The trade-off is *staleness*: a layer reusing indices from three layers back might miss a token that just became relevant. GLM-5.2's answer is empirical — it trains with IndexShare from mid-training (at a 128K sequence length) so the model *learns* to work within the constraint, and the result actually **outperforms** the previous version on long-context benchmarks while using less compute.
+<div class="g52-callout g52-callout-warn">
+    <strong>The cost of sharing is staleness.</strong> A layer reusing indices from three layers back can miss a token that only just became relevant. GLM-5.2's answer is empirical: it trains with IndexShare from mid-training (at a 128K sequence length) so the model <em>learns</em> to work within the constraint. The result still <strong>outperforms</strong> the previous version on long-context benchmarks while using less compute.
+</div>
 
 ## Interactive: The IndexShare FLOPs Visualizer
 
@@ -266,6 +293,22 @@ These tricks compound. Because GLM-5.1 simply runs out of context past 200K, the
 
 Across eight standard LLM benchmarks evaluated at maximum thinking effort, GLM-5.2 improves on GLM-5.1 by a wide margin and closes much of the gap to the closed-source frontier. The clearest single jump is on **Terminal-Bench 2.1 (81.0 vs. 63.5)**, landing within a few points of Claude Opus 4.8 (85.0). On **SWE-bench Pro** it scores 62.1 (vs. 58.4 for GLM-5.1), and it leads the comparison set on **MCP-Atlas (77.0)**.
 
+<div class="d-table-wrapper" style="max-width:620px;margin:1.4em auto">
+<table class="d-table" style="text-align:left">
+<thead>
+<tr><th>Benchmark</th><th>GLM-5.2</th><th>Key comparison</th><th>Where it lands</th></tr>
+</thead>
+<tbody>
+<tr><td>Terminal-Bench 2.1</td><td>81.0</td><td>Opus 4.8: 85.0</td><td><span class="g52-badge g52-badge-close">Within ~4</span></td></tr>
+<tr><td>MCP-Atlas</td><td>77.0</td><td>Leads the set</td><td><span class="g52-badge g52-badge-lead">Best</span></td></tr>
+<tr><td>SWE-bench Pro</td><td>62.1</td><td>GLM-5.1: 58.4</td><td><span class="g52-badge g52-badge-lead">Beats prior</span></td></tr>
+<tr><td>FrontierSWE (20h)</td><td>74.4</td><td>GPT-5.5: 72.6 · Opus 4.8: 75.1</td><td><span class="g52-badge g52-badge-close">Beats GPT-5.5</span></td></tr>
+<tr><td>PostTrainBench</td><td>34.3</td><td>GPT-5.5: 25.0</td><td><span class="g52-badge g52-badge-lead">Beats GPT-5.5</span></td></tr>
+<tr><td>SWE-Marathon</td><td>13.0</td><td>GPT-5.5: 12.0</td><td><span class="g52-badge g52-badge-close">Edges GPT-5.5</span></td></tr>
+</tbody>
+</table>
+</div>
+
 <figure class="d-figure">
     <div class="d-figure-content">
         <img src="/img/glm-52/fig-llm-benchmarks.png" alt="LLM performance across 8 benchmarks: GLM-5.2 vs GLM-5.1, Claude Opus 4.8, GPT-5.5, Gemini 3.1 Pro" style="max-width: 100%; height: auto;">
@@ -277,7 +320,11 @@ Across eight standard LLM benchmarks evaluated at maximum thinking effort, GLM-5
     </figcaption>
 </figure>
 
-The more telling test is **long-horizon coding** — multi-step tasks, run over many hours, where the model must plan, write, run, and revise across very long sequences. This is the regime the 1M context and IndexShare were built for, and it's where GLM-5.2 separates itself from the open field and **beats GPT-5.5**.
+Why do these long-horizon numbers matter more than the standard benchmarks? The more telling test is **long-horizon coding** — multi-step tasks, run over many hours, where the model must plan, write, run, and revise across very long sequences. This is the regime the 1M context and IndexShare were built for, and it's where GLM-5.2 separates itself from the open field and **beats GPT-5.5**.
+
+<div class="g52-callout g52-callout-tip">
+    <strong>The architecture and the scores tell one story.</strong> IndexShare and KVShare exist to make million-token context cheap; long-horizon coding is the task that actually needs million-token context. The efficiency work is not a side quest — it is what turns a high leaderboard score into a model you can run for twenty hours on one problem.
+</div>
 
 <figure class="d-figure">
     <div class="d-figure-content">

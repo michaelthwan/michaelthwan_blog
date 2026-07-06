@@ -20,13 +20,37 @@ thumbnail: "/img/claude-code/plan-mode.png"
     They're the actual setup the team uses every day.
 </p>
 
+<style>
+  .cc-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 14px; margin: 22px 0; font-size: 0.92rem; line-height: 1.55;
+  }
+  .cc-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .cc-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .cc-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  .cc-callout code { background: rgba(0,0,0,0.05); padding: 0 3px; border-radius: 3px; }
+  .cc-badge {
+    display: inline-block; font-size: 0.65rem; font-weight: 700;
+    padding: 2px 7px; border-radius: 4px; letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .cc-badge-green  { background: #d1fae5; color: #065f46; }
+  .cc-badge-yellow { background: #fef3c7; color: #92400e; }
+  .cc-badge-red    { background: #fee2e2; color: #b91c1c; }
+</style>
+
 ## The Mindset Shift
 
-Claude Code is not a chatbot that happens to write code. It's an **agent**: it reads files, runs commands, writes tests, and iterates autonomously. The practices that make it powerful are fundamentally different from prompt engineering for a chat model.
+Claude Code is not a chatbot that happens to write code. It's an **agent**: it reads files, runs commands, writes tests, and iterates on its own. The practices that make it powerful have little to do with prompt engineering for a chat model.
 
-The single biggest shift: **stop thinking sequentially.** The highest-leverage tips all cluster around three ideas—do more in parallel, plan before executing, and give Claude a way to verify its own work. Everything else is configuration and habit.
+One idea sits underneath all of them. **The loop is the product—everything else just configures the loop.** Claude runs the same cycle on every task: plan the change, execute it, verify the result. Parallelism runs more loops at once. `CLAUDE.md`, skills, and hooks shape what happens inside each phase. Once you see the loop, every tip below has an obvious place to live.
+
+<div class="cc-callout cc-callout-note">
+    <strong>Read every section as an answer to "which phase does this configure?"</strong> Parallelism scales the whole loop. Plan mode and specs feed the <em>plan</em> phase. Hooks, permissions, and MCP smooth the <em>execute</em> phase. Tests, typecheck, and the Chrome extension power the <em>verify</em> phase. Nothing here is a standalone trick.
+</div>
 
 ## Parallelism: The Biggest Unlock
+
+If the loop is the product, the fastest way to get more done is to run more loops. That is the whole idea here.
 
 The top tip from the team, unanimously: **run multiple Claude sessions at once.** 3–5 is the baseline. Boris himself runs 5 locally and 5–10 on the web simultaneously.
 
@@ -47,6 +71,10 @@ cd ../proj-fix  && claude
 ```
 
 Some engineers name their worktrees and set up shell aliases (`za`, `zb`, `zc`) to hop between them in one keystroke. Others keep a dedicated "analysis" worktree that's read-only: logs, queries, no code changes.
+
+<div class="cc-callout cc-callout-warn">
+    <strong>More sessions is not always more throughput—you become the bottleneck.</strong> Parallelism wins when tasks are <em>independent</em> (separate features, unrelated bugs). It backfires when tasks touch the same files, because you spend the saved time reconciling conflicts, or when reviewing five plans at once means you review none of them well. Rule of thumb: parallelize across worktrees, stay sequential within one.
+</div>
 
 <div class="d-callout">
     <strong>Worktrees vs. branches:</strong> Branches share a working directory. Two Claude sessions editing the same file will collide. Worktrees give each session its own filesystem state—the reason the Claude Code team built native worktree support into Claude Desktop.
@@ -120,6 +148,16 @@ Two patterns from the team:
 - **Two-Claude review:** One Claude writes the plan. A second Claude reviews it—playing the role of a staff engineer. Only then does execution begin.
 - **Re-plan on friction:** The moment something goes sideways, don't keep pushing. Switch back to plan mode and re-plan. Explicitly tell Claude to enter plan mode for verification steps, not just the build.
 
+What a plan-first session actually looks like:
+
+<div class="d-example-box">
+"Plan mode: add rate limiting to the <code>/upload</code> endpoint. Read <code>middleware/</code> and the existing auth guard first. Propose where the limiter lives, the storage backend, and the failure response. Do not write code yet."
+</div>
+
+<div class="cc-callout cc-callout-warn">
+    <strong>Plan mode is overhead, and overhead only pays off above a size threshold.</strong> For a one-line copy fix or an obvious rename, planning first is slower than just doing it. Reserve the plan → review ceremony for changes that span multiple files, touch shared state, or have a design decision worth getting wrong cheaply on paper instead of expensively in code.
+</div>
+
 <figure class="d-figure">
     <img src="/img/claude-code/plan-mode.png" alt="Claude Code plan mode interface" style="max-width: 520px; display: block; margin: 0 auto;">
     <figcaption class="d-figure-caption">
@@ -133,36 +171,42 @@ Two patterns from the team:
     <strong>Boris Cherny:</strong> "Probably the most important thing to get great results out of Claude Code—give Claude a way to verify its work. If Claude has that feedback loop, it will 2–3x the quality of the final result."
 </div>
 
-Verification looks different per domain:
+Verification looks different per domain. The **speed** column matters: run the cheap checks first so Claude fails fast and often.
 
 <div class="d-table-wrapper">
     <table class="d-table">
         <thead>
             <tr>
                 <th>Domain</th>
+                <th>Speed</th>
                 <th>How to verify</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Type safety</td>
-                <td><code>bun run typecheck</code> — fast, run first</td>
-            </tr>
-            <tr>
-                <td>Unit / integration</td>
-                <td><code>bun run test</code> or target specific suites</td>
+                <td><span class="cc-badge cc-badge-green">Seconds</span></td>
+                <td><code>bun run typecheck</code> — run first</td>
             </tr>
             <tr>
                 <td>Style</td>
+                <td><span class="cc-badge cc-badge-green">Seconds</span></td>
                 <td><code>bun run lint</code> or a PostToolUse hook (see below)</td>
             </tr>
-            <tr class="highlight-row">
-                <td>Frontend</td>
-                <td>Claude Chrome extension: opens a real browser, tests the UI, iterates</td>
+            <tr>
+                <td>Unit / integration</td>
+                <td><span class="cc-badge cc-badge-yellow">Seconds–min</span></td>
+                <td><code>bun run test</code> or target specific suites</td>
             </tr>
             <tr>
                 <td>Distributed systems</td>
+                <td><span class="cc-badge cc-badge-yellow">Minutes</span></td>
                 <td>Point Claude at docker logs</td>
+            </tr>
+            <tr class="highlight-row">
+                <td>Frontend</td>
+                <td><span class="cc-badge cc-badge-red">Slowest</span></td>
+                <td>Claude Chrome extension: opens a real browser, tests the UI, iterates</td>
             </tr>
         </tbody>
     </table>
@@ -183,6 +227,10 @@ After every correction you make to Claude's output, end with:
 </div>
 
 Claude is surprisingly good at writing rules for itself. The cycle is tight: Claude makes a mistake, you correct it, you ask Claude to update CLAUDE.md. Next session, the mistake doesn't recur. Ruthlessly edit and trim over time—keep iterating until the mistake rate measurably drops.
+
+<div class="cc-callout cc-callout-warn">
+    <strong>Every line in CLAUDE.md is re-read on every turn, so bloat has a running cost.</strong> A file that grows to hundreds of stale rules dilutes the ten that matter and burns context Claude could spend on your code. Treat it like a hot config, not a changelog: keep the rules that still catch real mistakes, delete the rest.
+</div>
 
 <div class="d-callout">
     <strong>Two levels:</strong> <code>~/.claude/CLAUDE.md</code> holds your global preferences (~76 tokens). The repo-level <code>CLAUDE.md</code> is project-specific (~4k tokens). Both are loaded every session. The repo-level one is checked into git and shared with the team.
@@ -225,7 +273,7 @@ One engineer goes further: Claude maintains a `notes/` directory for every task 
 
 ## Skills & Slash Commands
 
-If you do something more than once a day, turn it into a skill or command. Skills and slash commands are versioned, checked into git, and shared across the team.
+How do you stop re-typing the same instructions every session? You freeze them into the loop. If you do something more than once a day, turn it into a skill or command. Skills and slash commands are versioned, checked into git, and shared across the team.
 
 ### Slash commands
 
@@ -298,7 +346,7 @@ Write detailed specs and reduce ambiguity *before* handing work off. The more sp
 
 ## The Plumbing: Hooks, Permissions, MCP
 
-These are the configuration layer that makes everything run smoothly without constant manual intervention.
+The last layer removes friction from the execute phase so Claude runs without stopping to ask you the same questions. Hooks, permissions, and MCP are what let a session run for minutes untouched instead of pausing every few seconds.
 
 ### PostToolUse hooks
 
@@ -366,6 +414,10 @@ A recurring theme across the tips: Claude fixes most bugs by itself, if you let 
 - Point Claude at docker logs for distributed systems—it's surprisingly capable.
 
 The key is not prescribing the solution. Give Claude the problem and the ability to verify. It will find the fix.
+
+<div class="cc-callout cc-callout-tip">
+    <strong>Every practice in this article reduces to configuring one loop: plan, execute, verify.</strong> Parallelism runs more loops. Specs and plan mode sharpen the plan. Hooks, permissions, and MCP clear friction from execution. Tests and the Chrome extension close the verify step. Get the loop right and the rest is dials.
+</div>
 
 <section class="d-bibliography">
 

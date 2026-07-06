@@ -26,16 +26,46 @@ thumbnail: "/img/transformer/fig1-architecture.png"
     that powers GPT, BERT, and nearly every modern language model.
 </p>
 
+<style>
+  .tf-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 14px; margin: 20px 0; font-size: 0.92rem; line-height: 1.55;
+  }
+  .tf-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .tf-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .tf-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  .tf-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.02em; }
+  .tf-badge-green  { background: #d1fae5; color: #065f46; }
+  .tf-badge-yellow { background: #fef3c7; color: #92400e; }
+  .tf-badge-red    { background: #fee2e2; color: #b91c1c; }
+  .tf-worked { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 18px; margin: 22px 0; background: #fafafa; font-size: 0.9rem; }
+  .tf-worked h4 { margin: 0 0 10px; font-size: 0.95rem; }
+  .tf-worked table { width: 100%; border-collapse: collapse; margin: 8px 0; font-variant-numeric: tabular-nums; }
+  .tf-worked td, .tf-worked th { padding: 4px 8px; text-align: center; border-bottom: 1px solid #eee; }
+  .tf-worked th:first-child, .tf-worked td:first-child { text-align: left; }
+  @media (prefers-color-scheme: dark) {
+    .tf-callout-tip  { background: #052e21; color: #6ee7b7; }
+    .tf-callout-warn { background: #2e2205; color: #fcd34d; }
+    .tf-callout-note { background: #1e1b4b; color: #c7d2fe; }
+    .tf-worked { background: #18181b; border-color: #333; }
+    .tf-worked td, .tf-worked th { border-color: #2a2a2a; }
+  }
+</style>
+
 ## Introduction
 
-The dominant sequence transduction models are based on complex recurrent or
-convolutional neural networks that include an encoder and a decoder. The best
-performing models also connect the encoder and decoder through an attention mechanism.
+How do you teach a model to relate any two words in a sentence, no matter how far
+apart they sit? For years the answer was to walk the sentence left to right and hope
+the signal survived the trip. The Transformer threw that assumption out.
 
-The Transformer is a new architecture based solely on attention mechanisms,
-dispensing with recurrence and convolutions entirely. Experiments show these
-models to be superior in quality while being more parallelizable and requiring
-significantly less time to train.
+Earlier sequence models—for translation, language modeling, generation—were built on
+recurrent or convolutional networks, usually with an encoder, a decoder, and an
+attention link between them. **The Transformer keeps the attention link and discards
+everything else: no recurrence, no convolution.** The result is a model that trains
+faster, parallelizes cleanly, and reaches higher quality.
+
+The rest of this article builds the architecture one constraint at a time: first *why*
+sequential models hurt, then attention as the fix, then the full encoder-decoder stack.
 
 ## The Sequential Bottleneck
 
@@ -50,7 +80,9 @@ $t$, you need the hidden state at position $t-1$:
 $$h_t = f(h_{t-1}, x_t)$$
 </div>
 
-This creates two fundamental problems:
+Read it plainly: the state at position $t$ is a function of the *previous* state and
+the current token. Position $t$ cannot start until position $t-1$ finishes. This creates
+two fundamental problems:
 
 ### Lack of Parallelization
 
@@ -236,6 +268,30 @@ For large $d_k$, the dot products $q \cdot k$ tend to have large magnitude (vari
 roughly $d_k$). This pushes softmax into saturated regions where gradients vanish.
 Scaling by $\sqrt{d_k}$ keeps the variance at 1.
 
+### A worked example with real numbers
+
+Abstractions land cold, so let one query attend over three tokens with $d_k = 2$.
+The query is $q = [1,\ 0]$, and the three keys and values are:
+
+<div class="tf-worked">
+<h4>One attention step, three tokens</h4>
+<table>
+<thead><tr><th>Token</th><th>Key $k\_j$</th><th>$q\cdot k\_j$</th><th>÷ $\sqrt{2}$</th><th>softmax</th><th>Value $v\_j$</th></tr></thead>
+<tbody>
+<tr><td>the</td><td>[1, 0]</td><td>1.00</td><td>0.71</td><td><strong>0.51</strong></td><td>[2, 0]</td></tr>
+<tr><td>cat</td><td>[0.5, 1]</td><td>0.50</td><td>0.35</td><td>0.36</td><td>[0, 3]</td></tr>
+<tr><td>sat</td><td>[-1, 0.5]</td><td>-1.00</td><td>-0.71</td><td>0.13</td><td>[1, 1]</td></tr>
+</tbody>
+</table>
+<p style="margin:8px 0 0;">Weighted sum of values:
+$0.51\,[2,0] + 0.36\,[0,3] + 0.13\,[1,1] = [1.15,\ 1.21]$.</p>
+</div>
+
+The query matched "the" most strongly, so its value dominates the output—but every
+token still contributes. **Attention is a soft blend, not a hard pick.** Swap in a
+query that points toward "cat" and the second row would dominate instead. That is the
+entire mechanism; multi-head attention and the full stack just repeat it at scale.
+
 <figure class="d-figure">
     <div class="d-figure-content">
         <img src="/img/transformer/fig2a-scaled-dotproduct-attn.png" alt="Scaled Dot-Product Attention" style="max-width: 340px; width: 100%; height: auto; margin: 0 auto; display: block;">
@@ -277,6 +333,15 @@ Each head can learn to attend to different things:
 - Another might focus on **semantically similar words**
 
 The paper uses $h = 8$ heads with $d_k = d_v = 64$ (for $d_{\text{model}} = 512$).
+Each head works in a smaller 64-dimensional subspace, so eight heads cost about the
+same as one full-width head—**the model gets several views of the sequence for the
+price of one.**
+
+<div class="tf-callout tf-callout-note">
+    <strong>Heads are not assigned roles; they discover them.</strong> Nothing tells head 3
+    to track syntax or head 7 to resolve pronouns. The projections $W\_i^Q, W\_i^K, W\_i^V$ are
+    learned, and the division of labor emerges from training—shown in the attention maps later.
+</div>
 
 <figure class="d-figure">
     <div class="d-figure-content">
@@ -365,7 +430,13 @@ Each encoder layer has two sub-layers:
 $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 </div>
 
-Residual connections and layer normalization wrap each sub-layer.
+In words: project each position up to a wider hidden size, apply a ReLU, project back
+down. Attention mixes information *across* positions; the feed-forward network then
+transforms each position *on its own*. **The two sub-layers split the work: attention
+routes, the FFN thinks.**
+
+Residual connections and layer normalization wrap each sub-layer, which keeps gradients
+flowing through the deep stack.
 
 ### Decoder
 
@@ -377,13 +448,20 @@ Each decoder layer has three sub-layers:
 
 ## Positional Encoding
 
-Self-attention is permutation-equivariant—it has no notion of position.
-The Transformer adds **positional encodings** to the input embeddings.
+Attention treats its input as a *set*: shuffle the tokens and the output shuffles with
+them, unchanged. That is a problem—"dog bites man" and "man bites dog" would look
+identical. So before the first layer, the Transformer adds **positional encodings** to
+the input embeddings, giving each position a distinct fingerprint.
 
 <div class="d-math-block">
 $$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
 $$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)$$
 </div>
+
+Each dimension $i$ is a sine or cosine wave of a different wavelength. Low dimensions
+oscillate slowly (they encode coarse position); high dimensions oscillate quickly (fine
+position). Together the waves form a unique code for every position—like the digits of a
+binary clock, but continuous.
 
 <figure class="d-figure">
     <div class="d-figure-content pe-interactive-wrapper">
@@ -415,20 +493,20 @@ $PE_{pos}$. This allows the model to learn to attend by relative position.
             <tr class="highlight-row">
                 <td>Self-Attention</td>
                 <td>$O(n^2 \cdot d)$</td>
-                <td class="good">$O(1)$</td>
-                <td class="good">$O(1)$</td>
+                <td><span class="tf-badge tf-badge-green">$O(1)$</span></td>
+                <td><span class="tf-badge tf-badge-green">$O(1)$</span></td>
             </tr>
             <tr>
                 <td>Recurrent</td>
                 <td>$O(n \cdot d^2)$</td>
-                <td class="bad">$O(n)$</td>
-                <td class="bad">$O(n)$</td>
+                <td><span class="tf-badge tf-badge-red">$O(n)$</span></td>
+                <td><span class="tf-badge tf-badge-red">$O(n)$</span></td>
             </tr>
             <tr>
                 <td>Convolutional</td>
                 <td>$O(k \cdot n \cdot d^2)$</td>
-                <td class="good">$O(1)$</td>
-                <td>$O(\log_k n)$</td>
+                <td><span class="tf-badge tf-badge-green">$O(1)$</span></td>
+                <td><span class="tf-badge tf-badge-yellow">$O(\log_k n)$</span></td>
             </tr>
         </tbody>
     </table>
@@ -511,6 +589,57 @@ The paper visualizes what individual attention heads learn in a trained Transfor
 </div>
 
 The Transformer achieves state-of-the-art results at a fraction of the training cost.
+
+## The Lineage: One Block, Three Descendants
+
+The paper shipped a full encoder-decoder for translation. What followed took the stack
+apart. The single self-attention block turned out to be reusable on its own, and the
+field split along the seam between encoder and decoder.
+
+<div class="d-table-wrapper">
+    <table class="d-table">
+        <thead>
+            <tr>
+                <th>Family</th>
+                <th>Uses</th>
+                <th>Attention</th>
+                <th>Best at</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Encoder-only</strong> (BERT)</td>
+                <td>Encoder stack</td>
+                <td><span class="tf-badge tf-badge-green">Bidirectional</span></td>
+                <td>Understanding: embeddings, retrieval, rerankers, classification</td>
+            </tr>
+            <tr>
+                <td><strong>Decoder-only</strong> (GPT)</td>
+                <td>Decoder stack</td>
+                <td><span class="tf-badge tf-badge-yellow">Causal (masked)</span></td>
+                <td>Generation: chat, code, autocompletion</td>
+            </tr>
+            <tr>
+                <td><strong>Encoder-decoder</strong> (T5, original)</td>
+                <td>Both</td>
+                <td><span class="tf-badge tf-badge-green">Bi + causal</span></td>
+                <td>Sequence-to-sequence: translation, summarization</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+**The masking rule is the whole difference.** Remove the causal mask and every position
+sees the full sentence—that is BERT, tuned for understanding. Keep the mask so each
+position sees only its past, and you can generate one token at a time—that is GPT. Same
+block, one flag flipped.
+
+<div class="tf-callout tf-callout-tip">
+    <strong>Encoders never went away.</strong> Even in the age of large decoder-only chat
+    models, encoder-style Transformers remain the workhorse for producing text embeddings
+    and for reranking search results—jobs that need one strong bidirectional read, not
+    token-by-token generation.
+</div>
 
 <section class="d-bibliography">
 

@@ -13,6 +13,20 @@ category: "business"
 thumbnail: "/img/sp500/thumbnail.svg"
 ---
 
+<style>
+  /* ── SP500 essay accents (scoped, prefix sp-) ── */
+  .sp-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 12px 15px; margin: 22px 0; font-size: 0.92rem; line-height: 1.6;
+  }
+  .sp-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .sp-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  .sp-callout-key  { border-color: #1b5e20; background: #eefaf0; color: #1b4d20; }
+
+  .sp-takeaway { font-size: 0.9rem; color: #4b5563; line-height: 1.6; margin: 10px 0 26px; padding-left: 12px; border-left: 2px solid #e5e7eb; }
+  .sp-takeaway strong { color: #111827; }
+</style>
+
 <p class="d-note">
     Charts plot Robert Shiller's S&P Composite monthly-average series (1926–2024).
     Bull and bear markets are segmented with a 15% reversal threshold on monthly averages,
@@ -24,9 +38,9 @@ thumbnail: "/img/sp500/thumbnail.svg"
 
 ## The Big Picture
 
-A hundred dollars invested in the S&P 500 on January 1, 1926, with dividends reinvested, would have grown to approximately **$1.48 million** by 2024 — a compounded annual growth rate of **10.3%**. That single number masks a century of crashes, wars, pandemics, and policy experiments.
+A hundred dollars invested in the S&P 500 on January 1, 1926, with dividends reinvested, would have grown to approximately **$1.48 million** by 2024 — a compounded annual growth rate of **10.3%**. That single number masks a century of crashes, wars, pandemics, and policy experiments. The theme of this whole article lives in that tension: **every crash felt terminal while it was happening, and the system compounded anyway.**
 
-The chart below shows the full journey. On a logarithmic scale, the long-term trend is unmistakable: **an upward march punctuated by sharp but temporary setbacks.** Hover over the line to see exact values at any point.
+How does a line survive an 85% collapse and still end up at $1.48 million? The chart below shows the full journey. On a logarithmic scale, the long-term trend is unmistakable: **an upward march punctuated by sharp but temporary setbacks.** Hover over the line to see exact values at any point.
 
 <div class="d-figure">
     <div class="d-figure-content sp500-chart-wrap">
@@ -39,7 +53,11 @@ The chart below shows the full journey. On a logarithmic scale, the long-term tr
 
 Over these 98 years, the market experienced **22 bull runs** and **21 corrections of 15% or more** (measured on monthly averages). Each crash felt unprecedented at the time. Each recovery seemed improbable. And yet the line kept climbing.
 
-Let's walk through the three major eras.
+<div class="sp-callout sp-callout-warn">
+  <strong>Three caveats before you extrapolate.</strong> First, these are <em>nominal</em> figures — in inflation-adjusted terms the $1.48M is closer to $80K of 1926 purchasing power, and the real CAGR is nearer 7%. Second, this is the story of the market that <em>survived</em>: an investor in 1926 could just as easily have picked Germany, Japan, or Russia, where equity holders were wiped out or nearly so — survivorship bias flatters every long-run US chart. Third, monthly averages smooth the terror: daily drawdowns were consistently deeper than the numbers labeled here.
+</div>
+
+With those caveats on the table, let's walk through the three major eras — watching, in each one, how the crash-of-the-decade felt like the end of the system, and wasn't.
 
 ---
 
@@ -76,9 +94,13 @@ The outbreak of World War II sent markets into a long slide, down 39% to a botto
 
 The longest bull market of this era stretched from mid-1949 to mid-1956 — seven years of growth driven by suburbanization, consumer spending, the baby boom, and America's emergence as the world's dominant industrial power, lifting the index 249%. The Eisenhower Recession of 1957 (-17%) was a brief interruption in an extraordinary run.
 
+<p class="sp-takeaway"><strong>Era I in one line:</strong> the worst crash in history took 25 years to repair — and the investor who kept reinvesting dividends through it still came out far ahead. Terminal-feeling, not terminal.</p>
+
 ---
 
 ## Era II: Cold War, Oil, and Reaganomics (1959–1991)
+
+Era I's lesson was about surviving one giant collapse. Era II poses a different question: what happens when the market doesn't crash spectacularly, but simply *goes nowhere* for a decade?
 
 <div class="d-figure">
     <div class="d-figure-content sp500-chart-wrap">
@@ -103,6 +125,10 @@ Then the world changed. The Vietnam War's economic cost, Nixon's wage-price cont
 
 What followed was even more painful: a "lost decade" of **stagflation** — simultaneous high inflation and stagnant growth. From 1968 to 1982, the S&P 500 went essentially nowhere in real (inflation-adjusted) terms. An investor who bought at the 1968 peak didn't see a real return for over 14 years.
 
+<div class="sp-callout sp-callout-note">
+  <strong>Nominal charts hide the 1970s.</strong> On the price chart above, 1968–1982 looks like a sideways wobble. In purchasing-power terms it was a slow-motion 60%+ loss — inflation did the damage that no single crash label captures. This is the strongest argument for reading long-run market history in real terms, not just nominal.
+</div>
+
 ### Volcker's Shock Therapy (-19%)
 
 In 1980, Federal Reserve Chairman Paul Volcker raised interest rates to **19%** to kill inflation. The short-term pain was severe — a 19% market decline and a deep recession — but it worked. Inflation fell from 14% to under 4% by 1983, setting the stage for the great bull market of the 1980s.
@@ -115,9 +141,13 @@ Tax cuts, deregulation, and falling interest rates fueled a spectacular five-yea
 
 On October 19, 1987, the market crashed **22.6% in a single day** — the largest single-day percentage drop in history. Program trading and portfolio insurance strategies amplified the selling; peak to trough, monthly averages fell 27%. But unlike the Great Depression, the recovery was swift. By July 1989 — under two years — the market had set new highs. The lesson: not all crashes lead to prolonged bear markets.
 
+<p class="sp-takeaway"><strong>Era II in one line:</strong> the enemy changed — from collapse to inflation — but the pattern held. The decade that felt permanently stuck ended with the launch pad for the biggest bull market ever.</p>
+
 ---
 
 ## Era III: The Modern Market (1992–2024)
+
+By the 1990s the players had learned Era I's lesson: central banks now intervene fast and hard. Era III tests whether that changes the crash-recovery pattern — and it does, in one specific way: **the crashes stay violent, but the recoveries keep getting shorter.**
 
 <div class="d-figure">
     <div class="d-figure-content sp500-chart-wrap">
@@ -156,11 +186,13 @@ The pandemic crash of March 2020 was the **fastest 30% decline ever** — it too
 
 Russia's invasion of Ukraine in 2022, combined with post-pandemic inflation and aggressive Fed rate hikes, produced a **25% decline** in daily closes over 10 months (20% on monthly averages). By late 2023, the market had recovered again, driven by the AI boom and resilient corporate earnings.
 
+<p class="sp-takeaway"><strong>Era III in one line:</strong> three 30-50% crashes in three decades, each recovered faster than the last — 7 years, 5.4 years, 6 months. The system didn't stop crashing; it got faster at absorbing crashes.</p>
+
 ---
 
 ## Bull vs. Bear: By the Numbers
 
-Over 98 years, the pattern is clear: **bull markets are longer and larger than bear markets.** Measured on monthly averages with a 15% reversal threshold, the average bull run gains 115% over 3.3 years. The average decline loses 30% over 1.2 years.
+Three eras of anecdotes invite a statistical question: across all 43 swings, are the ups actually bigger than the downs — or does it just feel that way in hindsight? The answer is unambiguous: **bull markets are longer and larger than bear markets.** Measured on monthly averages with a 15% reversal threshold, the average bull run gains 115% over 3.3 years. The average decline loses 30% over 1.2 years.
 
 <div class="d-table-wrapper">
 <table class="sp500-stats-table">
@@ -230,6 +262,10 @@ Over 98 years, the pattern is clear: **bull markets are longer and larger than b
 
 The asymmetry is striking. **Markets spend far more time going up than going down.** But bear markets are psychologically devastating precisely because they are concentrated and violent. A 50% decline requires a 100% gain to recover — which is why crashes feel so much worse than rallies feel good.
 
+<div class="sp-callout sp-callout-key">
+  <strong>This asymmetry is the whole compounding engine.</strong> +115% average gain over 3.3 years versus -30% average loss over 1.2 years means each full cycle nets out positive. The investor doesn't need to dodge the bears; they need to still be holding when the next bull starts — which, historically, has begun while the news was still terrible.
+</div>
+
 ## Recovery Times
 
 How long does it take to recover from a crash? The answer varies enormously:
@@ -244,7 +280,7 @@ The trend is toward **faster recoveries**, likely because modern central banks i
 
 ## Valuation Through the Decades
 
-Price alone doesn't tell you whether the market is cheap or expensive. For that, we need a valuation metric. The **Shiller PE Ratio** (also called **CAPE** — Cyclically Adjusted Price-to-Earnings) divides the S&P 500's price by the average of the past 10 years of inflation-adjusted earnings. By smoothing out short-term profit swings, it provides a more stable read on whether stocks are historically cheap or overpriced.
+If crashes can't be timed, is there *anything* in the data that says something about the future? Price alone doesn't tell you whether the market is cheap or expensive. For that, we need a valuation metric. The **Shiller PE Ratio** (also called **CAPE** — Cyclically Adjusted Price-to-Earnings) divides the S&P 500's price by the average of the past 10 years of inflation-adjusted earnings. By smoothing out short-term profit swings, it provides a more stable read on whether stocks are historically cheap or overpriced.
 
 <div class="d-figure">
     <div class="d-figure-content sp500-chart-wrap">
@@ -257,7 +293,11 @@ Price alone doesn't tell you whether the market is cheap or expensive. For that,
 
 The pattern is striking. The two highest CAPE readings in history — **44 in late 1999** and **39 in late 2021** — both preceded significant drawdowns. The lowest readings — single digits in 1932, 1942, and 1982 — marked the starting points of some of the greatest bull markets ever. In mid-1982, with CAPE below 7, the next 18 years would deliver a **more than 13-fold increase** in the S&P 500.
 
-But CAPE is not a timing tool. By late 1996 the ratio had surpassed its 1929 peak of 27 — already "expensive" by historical standards — and the market still **doubled** over the following three years before the dot-com crash. Today's CAPE of ~38 is well above the long-term average, suggesting muted 10-year forward returns. History shows that high CAPE doesn't predict *when* crashes happen, but it strongly predicts **lower future 10-year returns**. It measures the price you pay for earnings — and higher prices mean lower future yields, just as they do with bonds.
+But CAPE is not a timing tool. By late 1996 the ratio had surpassed its 1929 peak of 27 — already "expensive" by historical standards — and the market still **doubled** over the following three years before the dot-com crash.
+
+<div class="sp-callout sp-callout-note">
+  <strong>Read CAPE as a yield, not an alarm.</strong> High CAPE doesn't predict <em>when</em> crashes happen — 1996 proved that expensively. What it does predict, fairly reliably, is <strong>lower average returns over the following decade</strong>. It measures the price you pay for a dollar of earnings, and higher prices mean lower future yields, just as with bonds. Today's CAPE of ~38, well above the ~17 long-term average, says "expect less," not "sell now."
+</div>
 
 ## Key Takeaways
 
@@ -265,7 +305,7 @@ But CAPE is not a timing tool. By late 1996 the ratio had surpassed its 1929 pea
     <div class="takeaway">
         <span class="takeaway-num">1</span>
         <div class="takeaway-content">
-            <strong>The long-term trend is relentlessly upward.</strong> Despite two world wars, a global depression, oil crises, terrorist attacks, a pandemic, and countless recessions, $100 invested in 1926 became $1.48 million. The market's compounding engine is extraordinarily resilient.
+            <strong>The long-term trend is relentlessly upward.</strong> Despite two world wars, a global depression, oil crises, terrorist attacks, a pandemic, and countless recessions, $100 invested in 1926 became $1.48 million (nominal — roughly a 7% annual return after inflation). The market's compounding engine is extraordinarily resilient — with the survivorship caveat that this is the one big market where it never broke.
         </div>
     </div>
     <div class="takeaway">

@@ -13,6 +13,26 @@ category: "business"
 thumbnail: "/img/tech-comp/trimodal-thumbnail.svg"
 ---
 
+<style>
+  /* ── Tech-comp essay accents (scoped, prefix tc-) ── */
+  .tc-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 12px 15px; margin: 22px 0; font-size: 0.92rem; line-height: 1.6;
+  }
+  .tc-callout-key  { border-color: #7e57c2; background: #f4f0fb; color: #4527a0; }
+  .tc-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .tc-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+
+  .tc-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .tc-badge-t1 { background: #eceff1; color: #455a64; }
+  .tc-badge-t2 { background: #fdecd7; color: #b45309; }
+  .tc-badge-t3 { background: #dcf0e1; color: #1b5e3f; }
+  .tc-badge-t4 { background: #ece3f8; color: #5b3a9e; }
+
+  .tc-takeaway { font-size: 0.9rem; color: #4b5563; line-height: 1.6; margin: 10px 0 26px; padding-left: 12px; border-left: 2px solid #e5e7eb; }
+  .tc-takeaway strong { color: #111827; }
+</style>
+
 <p class="d-note">
     This article is inspired by Gergely Orosz's
     <a href="https://newsletter.pragmaticengineer.com/p/trimodal">Pragmatic Engineer</a>
@@ -21,11 +41,15 @@ thumbnail: "/img/tech-comp/trimodal-thumbnail.svg"
     levels.fyi 2025 year-end report. Refreshed July 2026.
 </p>
 
+<div class="tc-callout tc-callout-key">
+  <strong>The one idea to hold onto: your pay is set by which market you are in, not how good you are.</strong> Two engineers with identical skill can earn 4x apart because their employers benchmark against different labor markets. Everything below is a tour of those markets — and how, in 2026, a fourth one opened above the rest.
+</div>
+
 ## The Salary Gap is Real
 
 Two software engineers with the same title, same years of experience, and similar technical skills can earn wildly different amounts — sometimes 4x apart. This isn't noise or negotiation luck. It's **structural**.
 
-When you plot total compensation data for thousands of software engineers, you don't see a single bell curve. You see **three overlapping distributions** — a trimodal pattern that reflects three fundamentally different labor markets operating side by side. And as of 2026, a fourth, smaller spike has appeared above all of them.
+What does "structural" look like in data? Plot total compensation for thousands of software engineers and you don't see a single bell curve. You see **three overlapping distributions** — a trimodal pattern that reflects three separate labor markets operating side by side. And as of 2026, a fourth, smaller spike has appeared above all of them.
 
 <div class="d-figure">
     <div class="d-figure-content" style="background: white; padding: 8px;">
@@ -38,9 +62,11 @@ When you plot total compensation data for thousands of software engineers, you d
 
 The left cluster (blue-gray) peaks around **$100-140K**. The middle cluster (orange) peaks around **$200-260K**. The green mass centers near **$340K** with a long tail. And the violet spike — frontier AI labs — starts where Big Tech tops out and runs past **$1M**. Same job title. Same country. Completely different compensation realities.
 
+So what *are* these markets, and how do you tell which one an employer belongs to?
+
 ## The Three Tiers (Plus One)
 
-Following Gergely Orosz's taxonomy, we can classify the tech labor market into three tiers, defined less by prestige than by **who a company benchmarks its pay against**:
+Following Gergely Orosz's taxonomy, we can classify the tech labor market into three tiers, defined less by prestige than by **who a company benchmarks its pay against**. That single question — "whose offers does this company try to match?" — sorts almost every employer cleanly:
 
 ### Tier 1 — Traditional / Local Tech
 
@@ -77,9 +103,13 @@ This is the new development. Orosz's framework is still officially trimodal, but
 
 The median Tier 3 engineer earns **$339K** — roughly **2.6x** the median Tier 1 engineer at **$132K**. Tier 2 at **$253K** is nearly double Tier 1. And the AI-lab spike at **$579K** median sits another 70% above Tier 3. These aren't small differences.
 
+<div class="tc-callout tc-callout-note">
+  <strong>Caveat: medians hide the overlap.</strong> The tiers are distributions, not walls. A strong Tier 2 offer can beat a weak Tier 3 one, and the P25 whiskers in Figure 2 overlap the next tier down at every boundary. The tier tells you the <em>market</em> a company bids in, not the exact number you'll get.
+</div>
+
 ## What Creates the Gap: Equity
 
-The biggest single driver of the gap isn't base salary — it's **equity compensation**. At Tier 1, equity is essentially nonexistent. At Tier 4, it's the majority of the package.
+What mechanism produces a 2.6x gap between markets for the same work? Not base salary — bases differ by maybe 40%. The driver is **equity compensation**. At Tier 1, equity is essentially nonexistent. At Tier 4, it's the majority of the package.
 
 <div class="d-figure">
     <div class="d-figure-content" style="background: white; padding: 8px;">
@@ -90,11 +120,15 @@ The biggest single driver of the gap isn't base salary — it's **equity compens
     </div>
 </div>
 
-This is the key structural insight: **Tier 1 companies pay salaries. Tier 3 and 4 companies pay ownership stakes.** When the stock appreciates, the gap widens further; when it drops, upper-tier engineers feel it more acutely. The Tier 4 version comes with an extra catch — much of it is *private* equity, so the headline number depends on a valuation you can't sell into.
+This is the key structural insight: **Tier 1 companies pay salaries. Tier 3 and 4 companies pay ownership stakes.** When the stock appreciates, the gap widens further; when it drops, upper-tier engineers feel it more acutely.
+
+<div class="tc-callout tc-callout-warn">
+  <strong>The Tier 4 catch: the biggest slice is paper you can't sell.</strong> Most AI-lab equity is <em>private</em> stock, valued at the last funding round and only occasionally liquid through tender offers. An $800K "total" that is 60% private equity is a $320K salary plus a bet on the next round. Discount accordingly when comparing offers.
+</div>
 
 ## Compensation by Level
 
-The gap between tiers doesn't stay constant — it **widens dramatically** at senior levels. An entry-level engineer at Tier 3 makes roughly 2.4x a Tier 1 counterpart. At staff level the multiple is over **3x** — and against Tier 4 it's **4x**.
+Does the gap stay constant as you climb? No — it **widens dramatically** at senior levels. An entry-level engineer at Tier 3 makes roughly 2.4x a Tier 1 counterpart. At staff level the multiple is over **3x** — and against Tier 4 it's **4x**.
 
 <div class="d-figure">
     <div class="d-figure-content" style="background: white; padding: 8px;">
@@ -105,13 +139,13 @@ The gap between tiers doesn't stay constant — it **widens dramatically** at se
     </div>
 </div>
 
-Why does the gap widen? Because equity grants at the top scale superlinearly with level. A senior engineer at a Tier 3 company might get $200K/year in RSUs; a staff engineer $300-400K. Meanwhile, the Tier 1 equivalent gets a modest raise in base salary.
+Why does the gap widen? Because **equity grants at the top scale superlinearly with level**. A senior engineer at a Tier 3 company might get $200K/year in RSUs; a staff engineer $300-400K. Meanwhile, the Tier 1 equivalent gets a modest raise in base salary. Same mechanism as before — the tiers that pay in ownership can scale ownership; the tiers that pay in salary cannot.
 
 The market data confirms the widening is *accelerating*: in the levels.fyi 2025 year-end report, Staff-level pay rose **+7.5%** year over year while Entry-level rose just **+1.6%**. The top of the curve is pulling away from the bottom even before you count the AI labs.
 
 ## US vs Canada
 
-Canada has the same tiers, compressed downward. The overall shape is similar — still multimodal — but with lower absolute numbers across the board.
+Is this an American artifact, or does the market structure travel? Canada is the cleanest comparison: same companies, same roles, different country. The answer: **the same tiers appear, compressed downward** — still multimodal, just with lower absolute numbers across the board.
 
 <div class="comp-chart-pair">
     <div>
@@ -123,6 +157,8 @@ Canada has the same tiers, compressed downward. The overall shape is similar —
         <canvas id="comp-canada-histogram"></canvas>
     </div>
 </div>
+
+<p class="tc-takeaway"><strong>Takeaway:</strong> the tier structure survives the border — what changes is the exchange rate on it, roughly a 25% discount everywhere except the AI labs.</p>
 
 <div class="d-table-wrapper">
 <table class="comp-comparison-table">
@@ -136,25 +172,25 @@ Canada has the same tiers, compressed downward. The overall shape is similar —
     </thead>
     <tbody>
         <tr>
-            <td class="tier-label" style="color: #78909c;">Tier 1 — Traditional</td>
+            <td class="tier-label"><span class="tc-badge tc-badge-t1">Tier 1</span> Traditional</td>
             <td>$132K</td>
             <td>$98K</td>
             <td>74%</td>
         </tr>
         <tr>
-            <td class="tier-label" style="color: #e07b39;">Tier 2 — Competitive</td>
+            <td class="tier-label"><span class="tc-badge tc-badge-t2">Tier 2</span> Competitive</td>
             <td>$253K</td>
             <td>$194K</td>
             <td>76%</td>
         </tr>
         <tr>
-            <td class="tier-label" style="color: #5a9f68;">Tier 3 — Big Tech+</td>
+            <td class="tier-label"><span class="tc-badge tc-badge-t3">Tier 3</span> Big Tech+</td>
             <td>$339K</td>
             <td>$254K</td>
             <td>75%</td>
         </tr>
         <tr>
-            <td class="tier-label" style="color: #7e57c2;">Tier 4 — AI Labs</td>
+            <td class="tier-label"><span class="tc-badge tc-badge-t4">Tier 4</span> AI Labs</td>
             <td>$579K</td>
             <td>$494K</td>
             <td>85%</td>
@@ -163,7 +199,7 @@ Canada has the same tiers, compressed downward. The overall shape is similar —
 </table>
 </div>
 
-The discount is roughly 24-26% for the three classic tiers, aligning with exchange rate and cost-of-living adjustments. The AI-lab tier is the exception: frontier labs benchmark globally rather than locally, so the Canada discount shrinks — a Toronto offer from a frontier lab (or homegrown Cohere) is much closer to US parity than a Toronto offer from a bank.
+The discount is roughly 24-26% for the three classic tiers, aligning with exchange rate and cost-of-living adjustments. The AI-lab tier is the exception: **frontier labs benchmark globally rather than locally**, so the Canada discount shrinks — a Toronto offer from a frontier lab (or homegrown Cohere) is much closer to US parity than a Toronto offer from a bank. Which market you're in even determines how much your *country* matters.
 
 ## Interactive: Salary Tier Explorer
 
@@ -175,7 +211,7 @@ Try clicking **Tier 3** — you'll see the quant firms (Citadel, Jane Street) an
 
 ## What Changed in 2025-26
 
-Four shifts define this refresh:
+Why does the trimodal picture need a 2026 refresh at all? Because four shifts changed the shape of the curve, not just its height:
 
 1. **The AI talent war created the fourth spike.** Frontier labs now pay 2-3x Big Tech medians, with a 56% wage premium for AI skills (up from 25% a year earlier). The headlines are wilder still — Sam Altman publicly claimed Meta dangled "$100M signing bonuses" at OpenAI staff, and one reported Meta package totaled ~$1.5B over six years. Read the fine print: these are heavily back-weighted with retention vests and performance gates, not guaranteed cash.
 

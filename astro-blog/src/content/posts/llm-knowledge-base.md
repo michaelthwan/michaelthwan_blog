@@ -83,7 +83,7 @@ The dominant mental model for using LLMs is _conversational_: you ask a question
 
 Think of it like this. A traditional compiler takes human-readable source code and produces machine-executable output. An LLM-compiled knowledge base takes a collection of raw source documents — papers, articles, repos, images — and produces a structured wiki: concept articles, cross-links, summaries, an index. Then, instead of querying a database with SQL, you query with natural language against the wiki you just compiled.
 
-The pipeline is surprisingly simple, the tooling is already mature, and the results compound over time as you add more sources and file more query outputs back into the wiki.
+The pipeline is surprisingly simple, the tooling is already mature, and the results compound over time as you add more sources and file more query outputs back into the wiki. But keep the analogy honest: **a compiler is only as good as its inputs and its rules.** Feed it sloppy sources or vague instructions and it produces confident, well-formatted nonsense — at scale. The rest of this article is both the pipeline and the discipline that keeps it trustworthy.
 
 <div class="kb-stats">
   <div class="kb-stat"><div class="kb-stat-val">~100</div><div class="kb-stat-label">Concept articles</div></div>
@@ -158,7 +158,7 @@ cat repo/README.md repo/ARCHITECTURE.md >> raw/repos/repo-overview.md
 
 ## Stage 2: Wiki Compilation
 
-This is the core of the system. An LLM reads raw documents and writes a structured wiki. The key insight is to do this **incrementally**: maintain a log of compiled files and only process new or updated sources.
+Raw files are inert. A folder of clipped articles is a pile, not a knowledge base — so how does the pile become a wiki? This is the compile step, and it is the core of the system. An LLM reads raw documents and writes a structured wiki. The key insight is to do this **incrementally**: maintain a log of compiled files and only process new or updated sources, so cost scales with what changed, not with the whole corpus.
 
 ### The Two-Pass Approach
 
@@ -192,6 +192,12 @@ date: 2024-03-15
 **Pass 2 — Concept synthesis.** The LLM reads all new summaries and updates (or creates) concept articles. It reads `wiki/index.md` first to understand existing concepts, then decides where new information belongs. Entirely new concepts get new files; existing concepts get updated sections.
 
 This two-pass structure keeps each LLM call focused and context-efficient. Pass 1 contexts contain one raw document at a time. Pass 2 contexts contain several summaries and the index — much smaller than raw sources.
+
+The trade-off is where errors hide. Pass 2 is **synthesis**, and synthesis is where an LLM can quietly invent — merging a claim from paper A with a caveat from paper B into a sentence neither source actually supports. Guard against it with the rule below.
+
+<div class="kb-callout kb-callout-warn">
+  <strong>Make every synthesized claim traceable.</strong> Require each concept-article bullet to cite the summary it came from — <code>(source: [[summaries/paper-a]])</code>. This turns silent synthesis errors into checkable ones: if a claim has no source, it is a hallucination candidate, and a linting pass (Stage 4) can flag it automatically.
+</div>
 
 ### The Master Index
 
@@ -434,6 +440,14 @@ After a few weeks of active use on a research area, the wiki develops a quality 
 
 <div class="kb-callout kb-callout-tip">
   <strong>The filing discipline is the whole system.</strong> The temptation is to take query outputs as terminal answers and move on. Resist this. Filing every output — even rough notes and partial analyses — back into <code>wiki/outputs/</code> is what separates a wiki that grows in value from one that stays flat.
+</div>
+
+### When this is the wrong tool
+
+The compounding effect is real, but so is the setup cost, and this approach is not always worth it. Compilation spends LLM calls on every source and every pass, which is money and time before you ask a single question. It pays off when the corpus is large, stable, and revisited often — a research area you will work in for months. It is the wrong tool in three cases.
+
+<div class="kb-callout kb-callout-note">
+  <strong>Skip the wiki when:</strong> the corpus is small enough to paste into one context (just ask directly — no pipeline needed); the facts move faster than you can recompile (live prices, breaking news — the wiki is stale on arrival); or you need a guaranteed-faithful quote rather than synthesis (go to <code>raw/</code>, because the compile step can paraphrase away the exact wording). Match the machinery to the corpus, not the other way around.
 </div>
 
 ## Future Direction: Synthetic Data and Fine-tuning

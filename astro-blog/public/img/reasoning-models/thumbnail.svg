@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Group-relative advantage: reward bars above and below a mean line">
+  <rect width="800" height="600" fill="#ffffff"/>
+  <rect x="0" y="0" width="800" height="600" fill="#fafafa"/>
+
+  <!-- baseline / group mean -->
+  <line x1="90" y1="330" x2="710" y2="330" stroke="#9ca3af" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="90" y="315" font-family="Georgia, serif" font-size="22" fill="#6b7280" font-style="italic">group mean reward</text>
+
+  <!-- bars: 6 sampled responses, deviation from mean -->
+  <!-- positive (above mean) = accent indigo; negative (below) = neutral gray -->
+  <g>
+    <rect x="120" y="200" width="60" height="130" rx="4" fill="#4f46e5"/>
+    <rect x="215" y="255" width="60" height="75"  rx="4" fill="#4f46e5"/>
+    <rect x="310" y="330" width="60" height="70"  rx="4" fill="#cbd5e1"/>
+    <rect x="405" y="150" width="60" height="180" rx="4" fill="#4f46e5"/>
+    <rect x="500" y="330" width="60" height="120" rx="4" fill="#cbd5e1"/>
+    <rect x="595" y="330" width="60" height="45"  rx="4" fill="#cbd5e1"/>
+  </g>
+
+  <!-- small up/down markers -->
+  <g fill="#4f46e5" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">
+    <text x="150" y="185">+</text>
+    <text x="245" y="240">+</text>
+    <text x="435" y="135">+</text>
+  </g>
+  <g fill="#94a3b8" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">
+    <text x="340" y="425">&#8722;</text>
+    <text x="530" y="475">&#8722;</text>
+    <text x="625" y="400">&#8722;</text>
+  </g>
+
+  <!-- title -->
+  <text x="400" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#1f2937" font-weight="700">Reinforcement learning for reasoning</text>
+  <text x="400" y="565" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#6b7280">group-relative advantage &#183; verifiable rewards</text>
+</svg>

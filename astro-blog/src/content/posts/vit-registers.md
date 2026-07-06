@@ -26,6 +26,21 @@ thumbnail: "/img/vit-registers/fig1-attention-comparison.png"
     and proposed an elegantly simple fix.
 </p>
 
+<style>
+  .vr-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 14px; margin: 20px 0; font-size: 0.92rem; line-height: 1.55;
+  }
+  .vr-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .vr-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .vr-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  .vr-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+  .vr-badge-green { background: #d1fae5; color: #065f46; }
+  .vr-badge-red   { background: #fee2e2; color: #b91c1c; }
+</style>
+
+One idea holds this whole story together: **the artifacts are the model asking for scratch space.** A large ViT needs somewhere to stash global information mid-computation, has no dedicated slot for it, and so hijacks the least useful patch tokens. The fix is to simply hand it the scratch space it was improvising. Everything below is that arc — the symptom, the diagnosis, the one-line cure.
+
 ## The Mystery: Artifacts in Vision Transformers
 
 Something strange happens in large Vision Transformers. When you visualize their attention maps or feature norms, you see scattered "spikes"—patches with abnormally high values appearing in seemingly random locations, mostly in uniform background regions.
@@ -62,8 +77,8 @@ The artifacts correspond to tokens whose output feature vectors have roughly **1
     </figcaption>
 </figure>
 
-<div class="d-callout">
-    <strong>Key observation:</strong> About 2-3% of tokens become "outliers" with norms exceeding 150, while normal tokens stay below 100.
+<div class="vr-callout vr-callout-note">
+    <strong>The population splits cleanly in two.</strong> About 2-3% of tokens become "outliers" with norms exceeding 150, while normal tokens stay below 100. A clean bimodal split like this is a signature of two distinct roles, not one noisy population — the first hint that the outliers are doing a different job.
 </div>
 
 ### They Appear in Low-Information Regions
@@ -128,27 +143,27 @@ The artifacts don't exist from the start. They develop under specific conditions
         <tbody>
             <tr>
                 <td>Early layers (1-10)</td>
-                <td class="neutral">No</td>
+                <td><span class="vr-badge vr-badge-green">None</span></td>
             </tr>
             <tr>
                 <td>Middle layers (15+)</td>
-                <td class="bad">Yes</td>
+                <td><span class="vr-badge vr-badge-red">Present</span></td>
             </tr>
             <tr>
                 <td>Early training (&lt;33%)</td>
-                <td class="neutral">No</td>
+                <td><span class="vr-badge vr-badge-green">None</span></td>
             </tr>
             <tr>
                 <td>Late training (&gt;33%)</td>
-                <td class="bad">Yes</td>
+                <td><span class="vr-badge vr-badge-red">Present</span></td>
             </tr>
             <tr>
                 <td>Small models (ViT-S/B)</td>
-                <td class="neutral">No</td>
+                <td><span class="vr-badge vr-badge-green">None</span></td>
             </tr>
             <tr>
                 <td>Large models (ViT-L/H/g)</td>
-                <td class="bad">Yes</td>
+                <td><span class="vr-badge vr-badge-red">Present</span></td>
             </tr>
         </tbody>
     </table>
@@ -160,8 +175,8 @@ This pattern suggests the artifacts are an *emergent* behavior—something the m
 
 Why would a model create these strange high-norm tokens? The paper proposes a compelling explanation:
 
-<div class="d-callout">
-    <strong>Hypothesis:</strong> Large, well-trained ViTs learn to identify low-information patches and repurpose them as internal "registers" for storing and computing global image information.
+<div class="vr-callout vr-callout-warn">
+    <strong>Hypothesis: the artifacts are improvised scratch space.</strong> Large, well-trained ViTs learn to identify low-information patches and repurpose them as internal "registers" for storing and computing global image information. The model is not malfunctioning — it is solving a real need with the only resource it has: your input tokens.
 </div>
 
 ### Evidence: What Do Outlier Tokens Encode?
@@ -209,7 +224,7 @@ The authors probe what information these tokens contain:
     </figcaption>
 </figure>
 
-The outliers have *discarded* their local patch information and instead store *global* image features. They're functioning as informal registers—but they're doing it by hijacking patches that "shouldn't matter."
+Read the numbers as a swap. The outlier tokens got **worse** at their original job — reporting where they are and what pixels they cover (position accuracy drops 41.7% → 22.8%). They got **better** at a job that was never theirs: summarizing the whole image (classification 65.8% → 69.0%). **The model overwrote a local patch with a global summary.** They are functioning as informal registers, built by hijacking patches that "shouldn't matter."
 
 ## The Problem: Why This Matters
 
@@ -271,6 +286,8 @@ The fix is remarkably simple: **give the model dedicated tokens for internal com
         </div>
     </div>
 </div>
+
+In words: prepend a handful of extra tokens that are not patches and not the class token. They have no pixels behind them and no output job. They exist only to give attention heads a legitimate place to read and write global information — the scratch pad the model was previously carving out of the background.
 
 ### How Registers Work
 
@@ -346,25 +363,25 @@ The fix is remarkably simple: **give the model dedicated tokens for internal com
         <tbody>
             <tr>
                 <td>0</td>
-                <td class="bad">Present</td>
+                <td><span class="vr-badge vr-badge-red">Present</span></td>
                 <td>Baseline</td>
                 <td>0%</td>
             </tr>
             <tr>
                 <td>1</td>
-                <td class="good">Eliminated</td>
+                <td><span class="vr-badge vr-badge-green">Eliminated</span></td>
                 <td>Slight drop</td>
                 <td>~0.5%</td>
             </tr>
             <tr class="highlight-row">
                 <td><strong>4</strong></td>
-                <td class="good"><strong>Eliminated</strong></td>
+                <td><span class="vr-badge vr-badge-green">Eliminated</span></td>
                 <td class="good"><strong>Optimal</strong></td>
                 <td><strong>&lt;2%</strong></td>
             </tr>
             <tr>
                 <td>16</td>
-                <td class="good">Eliminated</td>
+                <td><span class="vr-badge vr-badge-green">Eliminated</span></td>
                 <td>Saturated</td>
                 <td>~6%</td>
             </tr>
@@ -373,6 +390,8 @@ The fix is remarkably simple: **give the model dedicated tokens for internal com
 </div>
 
 **The sweet spot is 4 registers**: artifacts completely gone, optimal downstream performance, and less than 2% computational overhead.
+
+The one real cost is not compute — it is that **registers must be present from the start of training**. You cannot bolt them onto a pretrained checkpoint and expect the artifacts to migrate; the model learned its hijacking behavior during pretraining. Fixing an existing model means retraining it, which for a DINOv2-scale run is the actual price of this "free" fix.
 
 ## Results: Registers Fix Everything
 
@@ -457,8 +476,8 @@ The most dramatic improvement comes from object discovery methods like LOST:
     </table>
 </div>
 
-<div class="d-callout">
-    <strong>+20 points on VOC 2007!</strong> Registers enable large models to work with object discovery methods that previously only worked with smaller models.
+<div class="vr-callout vr-callout-tip">
+    <strong>+20 points on VOC 2007.</strong> Registers let large models work with object discovery methods that previously only worked on smaller models. The capability was there all along — the artifacts were burying it.
 </div>
 
 ## What Do Registers Learn?
@@ -518,8 +537,8 @@ This paper reveals something fundamental about how Transformers process informat
 
 3. **Simple fixes for complex problems**: The solution isn't architectural surgery—it's just adding 4 tokens. Sometimes the best interventions are minimal.
 
-<div class="d-callout warning">
-    <strong>Connection to LLMs:</strong> Similar phenomena have been observed in language models, where certain tokens become "sink" tokens for attention. The register concept may generalize beyond vision.
+<div class="vr-callout vr-callout-note">
+    <strong>The same story plays out in language models as "attention sinks."</strong> LLMs dump a large share of their attention onto a few tokens — usually the first token or an early newline — that carry little semantic meaning. Xiao et al. (2023) showed these sinks are load-bearing: evict them from the KV cache and streaming generation falls apart. The mechanism matches the ViT artifacts exactly. A softmax attention head must send its weights <em>somewhere</em> even when it wants to attend to nothing, so the model designates a throwaway token as the dumping ground. Registers are the vision-side fix; the language-side echo is <strong>learnable "sink tokens"</strong> deliberately added so real tokens stop being commandeered. Same disease, same cure: give the model explicit scratch space instead of letting it steal some.
 </div>
 
 ## Takeaways
@@ -551,6 +570,8 @@ The paper demonstrates that understanding *why* neural networks develop certain 
 4. Radford, A., et al. (2021). Learning Transferable Visual Models From Natural Language Supervision (CLIP).
 
 5. Siméoni, O., et al. (2021). Localizing Objects with Self-Supervised Transformers and no Labels (LOST).
+
+6. Xiao, G., Tian, Y., Chen, B., Han, S., & Lewis, M. (2023). [Efficient Streaming Language Models with Attention Sinks](https://arxiv.org/abs/2309.17453).
 
 </section>
 

@@ -15,6 +15,23 @@ tags:
 thumbnail: "/img/deepseek-mhc/thumbnail.svg"
 ---
 
+<style>
+  /* Scoped styles for the mHC post (prefix: mhc-) */
+  .mhc-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 15px; margin: 22px 0; font-size: 0.92rem; line-height: 1.6;
+  }
+  .mhc-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .mhc-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  [data-theme="dark"] .mhc-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  [data-theme="dark"] .mhc-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+
+  .mhc-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 7px;
+    border-radius: 4px; }
+  .mhc-badge-win { background: #d1fae5; color: #065f46; }
+  [data-theme="dark"] .mhc-badge-win { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+</style>
+
 <p class="d-note">
     This article explains <a href="https://arxiv.org/abs/2512.24880">mHC: Manifold-Constrained Hyper-Connections</a>
     by Zhenda Xie, Yixuan Wei, Huanqi Cao et al. at DeepSeek (arXiv:2512.24880, December 2024).
@@ -369,17 +386,18 @@ DeepSeek evaluated mHC at 3B, 9B, and 27B parameter scales using a MoE architect
     <th>Baseline</th>
     <th>HC</th>
     <th>mHC</th>
+    <th>&Delta; vs base</th>
 </tr>
 </thead>
 <tbody>
-<tr><td>BBH (EM)</td><td>43.8</td><td>48.9</td><td class="good highlight-row"><strong>51.0</strong></td></tr>
-<tr><td>DROP (F1)</td><td>47.0</td><td>51.6</td><td class="good highlight-row"><strong>53.9</strong></td></tr>
-<tr><td>GSM8K (EM)</td><td>46.7</td><td>53.2</td><td class="good highlight-row"><strong>53.8</strong></td></tr>
-<tr><td>HellaSwag (Acc.)</td><td>73.7</td><td>74.3</td><td class="good highlight-row"><strong>74.7</strong></td></tr>
-<tr><td>MATH (EM)</td><td>22.0</td><td>26.4</td><td class="good highlight-row"><strong>26.0</strong></td></tr>
-<tr><td>MMLU (Acc.)</td><td>59.0</td><td>63.0</td><td class="good highlight-row"><strong>63.4</strong></td></tr>
-<tr><td>PIQA (Acc.)</td><td>78.5</td><td>79.9</td><td class="good highlight-row"><strong>80.5</strong></td></tr>
-<tr><td>TriviaQA (EM)</td><td>54.3</td><td>56.3</td><td class="good highlight-row"><strong>57.6</strong></td></tr>
+<tr><td>BBH (EM)</td><td>43.8</td><td>48.9</td><td class="good highlight-row"><strong>51.0</strong></td><td><span class="mhc-badge mhc-badge-win">+7.2</span></td></tr>
+<tr><td>DROP (F1)</td><td>47.0</td><td>51.6</td><td class="good highlight-row"><strong>53.9</strong></td><td><span class="mhc-badge mhc-badge-win">+6.9</span></td></tr>
+<tr><td>GSM8K (EM)</td><td>46.7</td><td>53.2</td><td class="good highlight-row"><strong>53.8</strong></td><td><span class="mhc-badge mhc-badge-win">+7.1</span></td></tr>
+<tr><td>HellaSwag (Acc.)</td><td>73.7</td><td>74.3</td><td class="good highlight-row"><strong>74.7</strong></td><td><span class="mhc-badge mhc-badge-win">+1.0</span></td></tr>
+<tr><td>MATH (EM)</td><td>22.0</td><td>26.4</td><td class="good highlight-row"><strong>26.0</strong></td><td><span class="mhc-badge mhc-badge-win">+4.0</span></td></tr>
+<tr><td>MMLU (Acc.)</td><td>59.0</td><td>63.0</td><td class="good highlight-row"><strong>63.4</strong></td><td><span class="mhc-badge mhc-badge-win">+4.4</span></td></tr>
+<tr><td>PIQA (Acc.)</td><td>78.5</td><td>79.9</td><td class="good highlight-row"><strong>80.5</strong></td><td><span class="mhc-badge mhc-badge-win">+2.0</span></td></tr>
+<tr><td>TriviaQA (EM)</td><td>54.3</td><td>56.3</td><td class="good highlight-row"><strong>57.6</strong></td><td><span class="mhc-badge mhc-badge-win">+3.3</span></td></tr>
 </tbody>
 </table>
 </div>

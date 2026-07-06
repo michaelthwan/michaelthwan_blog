@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-label="Average response length of DeepSeek-R1-Zero growing over RL training steps from a few hundred to several thousand tokens">
+  <rect width="720" height="420" fill="#ffffff"/>
+
+  <text x="360" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#1f2937" font-weight="700">Average response length during RL training (R1-Zero)</text>
+
+  <!-- axes -->
+  <line x1="80" y1="360" x2="680" y2="360" stroke="#374151" stroke-width="1.5"/>
+  <line x1="80" y1="40"  x2="80"  y2="360" stroke="#374151" stroke-width="1.5"/>
+
+  <!-- y gridlines + labels (0..12000 tokens) -->
+  <g font-family="Arial, sans-serif" font-size="12" fill="#6b7280">
+    <line x1="80" y1="360" x2="680" y2="360" stroke="#e5e7eb" stroke-width="1"/>
+    <line x1="80" y1="280" x2="680" y2="280" stroke="#e5e7eb" stroke-width="1"/>
+    <line x1="80" y1="200" x2="680" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+    <line x1="80" y1="120" x2="680" y2="120" stroke="#e5e7eb" stroke-width="1"/>
+    <line x1="80" y1="40"  x2="680" y2="40"  stroke="#e5e7eb" stroke-width="1"/>
+    <text x="72" y="364" text-anchor="end">0</text>
+    <text x="72" y="284" text-anchor="end">3k</text>
+    <text x="72" y="204" text-anchor="end">6k</text>
+    <text x="72" y="124" text-anchor="end">9k</text>
+    <text x="72" y="44"  text-anchor="end">12k</text>
+  </g>
+
+  <!-- length curve (accent indigo) -->
+  <polyline fill="none" stroke="#4f46e5" stroke-width="2.6" stroke-linejoin="round"
+    points="80,349 155,339 230,320 305,291 380,253 455,213 530,173 605,141 680,107"/>
+
+  <circle cx="80"  cy="349" r="4" fill="#4f46e5"/>
+  <circle cx="680" cy="107" r="4" fill="#4f46e5"/>
+  <text x="92"  y="345" font-family="Arial, sans-serif" font-size="12" fill="#4338ca" font-weight="700">~500 tokens</text>
+  <text x="676" y="99" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#4338ca" font-weight="700">~9,000+ tokens</text>
+
+  <!-- x labels -->
+  <g font-family="Arial, sans-serif" font-size="12" fill="#6b7280">
+    <text x="80"  y="380" text-anchor="middle">0</text>
+    <text x="230" y="380" text-anchor="middle">2000</text>
+    <text x="380" y="380" text-anchor="middle">4000</text>
+    <text x="530" y="380" text-anchor="middle">6000</text>
+    <text x="680" y="380" text-anchor="middle">8000</text>
+    <text x="380" y="404" text-anchor="middle" fill="#374151">RL training steps</text>
+  </g>
+</svg>

@@ -15,6 +15,30 @@ tags:
 thumbnail: "/img/deepseek-v4/thumbnail.png?v=2"
 ---
 
+<style>
+  /* Scoped styles for the DeepSeek V4 post (prefix: dv4-) */
+  .dv4-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 15px; margin: 22px 0; font-size: 0.92rem; line-height: 1.6;
+  }
+  .dv4-callout strong { font-weight: 700; }
+  .dv4-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .dv4-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .dv4-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  [data-theme="dark"] .dv4-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  [data-theme="dark"] .dv4-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  [data-theme="dark"] .dv4-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+
+  .dv4-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 8px;
+    border-radius: 4px; letter-spacing: 0.02em; white-space: nowrap; }
+  .dv4-badge-detail { background: #dbeafe; color: #1e40af; }
+  .dv4-badge-cheap  { background: #d1fae5; color: #065f46; }
+  .dv4-badge-mid    { background: #fef3c7; color: #92400e; }
+  [data-theme="dark"] .dv4-badge-detail { background: rgba(59,130,246,0.20); color: #93c5fd; }
+  [data-theme="dark"] .dv4-badge-cheap  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  [data-theme="dark"] .dv4-badge-mid    { background: rgba(245,158,11,0.18); color: #fcd34d; }
+</style>
+
 <p class="d-note">
     This article is based on the official
     <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/resolve/main/DeepSeek_V4.pdf">DeepSeek-V4 technical report</a>
@@ -120,6 +144,10 @@ This is a nice design because it preserves two kinds of structure at once:
 - **local precision** for nearby dependencies
 - **cheap global reach** for faraway dependencies
 
+<div class="dv4-callout dv4-callout-tip">
+    <strong>What CSA buys, and what it costs.</strong> You get near-lossless detail for the tokens that matter, because the top-<em>k</em> selector can still reach any compressed region. The cost is the extra indexer pass that scores regions before retrieving — CSA is the more expensive of the two modes.
+</div>
+
 ### HCA: go much cheaper on long-range memory
 
 HCA makes a different trade. It compresses the KV cache much more aggressively and uses that compressed memory as a cheap global scaffold.
@@ -135,7 +163,46 @@ HCA makes a different trade. It compresses the KV cache much more aggressively a
 
 Where CSA says "compress, then retrieve precisely," HCA says "compress harder, then use the compressed stream itself as the global memory."
 
-That is why the two belong together. CSA is the higher-detail mode. HCA is the cheaper long-range mode.
+<div class="dv4-callout dv4-callout-warn">
+    <strong>What HCA buys, and what it costs.</strong> Dropping the selection step makes long-range memory dramatically cheaper — this is where most of the million-token savings come from. The cost is resolution: the compressed stream is coarse, so fine long-range detail is blurred. HCA trusts the local window to catch what precision it loses.
+</div>
+
+That is why the two belong together, interleaved across layers. **CSA is the higher-detail mode; HCA is the cheaper long-range mode.** Because they alternate, the model never pays one uniform attention cost everywhere.
+
+<div class="d-table-wrapper" style="max-width:560px;margin:1.4em auto">
+<table class="d-table" style="text-align:left">
+<thead>
+<tr><th>Property</th><th>CSA</th><th>HCA</th></tr>
+</thead>
+<tbody>
+<tr>
+    <td>Long-range detail</td>
+    <td><span class="dv4-badge dv4-badge-detail">High</span></td>
+    <td><span class="dv4-badge dv4-badge-mid">Coarse</span></td>
+</tr>
+<tr>
+    <td>Compression</td>
+    <td>Light, then select</td>
+    <td>Heavy, no select</td>
+</tr>
+<tr>
+    <td>Selection step</td>
+    <td>Yes (top-<em>k</em> indexer)</td>
+    <td>No</td>
+</tr>
+<tr>
+    <td>Per-query cost</td>
+    <td><span class="dv4-badge dv4-badge-mid">Medium</span></td>
+    <td><span class="dv4-badge dv4-badge-cheap">Low</span></td>
+</tr>
+<tr>
+    <td>Role in the stack</td>
+    <td>Precise retrieval</td>
+    <td>Cheap global scaffold</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 ### An intuition builder
 
@@ -183,7 +250,11 @@ That is the architectural side. On the training side, V4 also switches to a more
 - specialist models are trained for math, code, agent work, and instruction following
 - those specialists are merged back into a general model with **On-Policy Distillation**
 
-This is just as revealing as the attention change. The capability gap is no longer explained by pretraining alone.
+<div class="dv4-callout dv4-callout-note">
+    <strong>Why distill from specialists instead of training one generalist?</strong> A narrow specialist can be pushed harder on its own domain than a single model juggling every skill at once. On-policy distillation then transfers those sharpened behaviors into the shared model, so the general model inherits specialist-grade math, code, and agent skills without the interference of training them together.
+</div>
+
+This is just as revealing as the attention change. **The capability gap is no longer explained by pretraining alone.**
 
 ## Two other upgrades that matter
 

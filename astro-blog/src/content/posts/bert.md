@@ -24,16 +24,40 @@ thumbnail: "/img/bert/fig1-pretraining-finetuning.png"
     by Devlin et al. (2018), which introduced a new paradigm for NLP: pre-train once, fine-tune everywhere.
 </p>
 
+<style>
+  .bt-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 14px; margin: 20px 0; font-size: 0.92rem; line-height: 1.55;
+  }
+  .bt-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .bt-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .bt-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  .bt-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.02em; }
+  .bt-badge-green  { background: #d1fae5; color: #065f46; }
+  .bt-badge-yellow { background: #fef3c7; color: #92400e; }
+  .bt-badge-red    { background: #fee2e2; color: #b91c1c; }
+  @media (prefers-color-scheme: dark) {
+    .bt-callout-tip  { background: #052e21; color: #6ee7b7; }
+    .bt-callout-warn { background: #2e2205; color: #fcd34d; }
+    .bt-callout-note { background: #1e1b4b; color: #c7d2fe; }
+  }
+</style>
+
 ## Introduction
 
-In 2018, NLP faced a dilemma. Deep learning had revolutionized computer vision with ImageNet pre-training—train a big model on millions of images, then fine-tune for your specific task. But language didn't have an equivalent.
+By 2018, computer vision had a recipe everyone used: train a big model on ImageNet,
+then fine-tune it for your task. Language had no equivalent. Every new NLP problem still
+meant designing a new architecture and training it from scratch.
 
-Previous approaches fell into two camps:
+Two approaches were circling the answer:
 
-- **Feature-based** (ELMo): Pre-train embeddings, freeze them, add task-specific architecture on top
-- **Fine-tuning** (GPT): Pre-train a language model, fine-tune the whole thing—but only looking left-to-right
+- **Feature-based** (ELMo): pre-train embeddings, freeze them, bolt a task-specific model on top
+- **Fine-tuning** (GPT): pre-train one language model, fine-tune the whole thing—but reading only left to right
 
-BERT unified and improved both: a single pre-trained model that could be fine-tuned for almost any NLP task, while capturing context from *both directions*.
+**BERT took the best of both and removed their shared weakness.** One pre-trained model,
+fine-tuned end to end for almost any task, reading context from *both directions at once*.
+The rest of this article is about why "both directions" was the hard part—and the trick
+that made it work.
 
 <figure class="d-figure">
     <div class="d-figure-content">
@@ -89,11 +113,20 @@ In a standard language model, you predict the next word given previous words:
 $$P(w_t | w_1, w_2, \ldots, w_{t-1})$$
 </div>
 
-This is well-defined. Each word is predicted from context that doesn't include itself.
+Read it as: the probability of word $w_t$ given everything *before* it. The target word
+is never part of its own context, so the task stays honest.
 
-But if you allow bidirectional attention, each word can "see itself" through the other words. The model could trivially learn to copy. The training objective breaks down.
+But turn on bidirectional attention and that guarantee is gone. If word $w_t$ can attend
+to $w_{t+1}$, and $w_{t+1}$ can attend back to $w_t$, then predicting $w_t$ lets it peek
+at itself through its neighbors. The model would learn to copy instead of understand.
 
-**BERT's insight:** Don't predict the next word. Predict *masked* words.
+<div class="bt-callout bt-callout-warn">
+    <strong>This is the leakage problem, and it is why you can't just "make GPT bidirectional."</strong>
+    A bidirectional model that predicts the next word has already seen the answer. The objective
+    has to change, not just the attention mask.
+</div>
+
+**BERT's insight:** don't predict the next word. Hide some words, then predict the ones you hid.
 
 ## Masked Language Modeling (MLM)
 
@@ -157,9 +190,16 @@ The core pre-training objective of BERT is the **Masked Language Model**.
 
 ### Why the 80/10/10 split?
 
-If we always used `[MASK]`, the model would never see real words in those positions during pre-training, but during fine-tuning there are no `[MASK]` tokens. This creates a mismatch.
+If we always used `[MASK]`, the model would never see real words in those positions during pre-training—but during fine-tuning there are no `[MASK]` tokens at all. The model would be tuned for an input distribution it never meets in production.
 
-The 10% random replacement teaches the model that it can't just trust every token it sees. The 10% unchanged teaches the model to use context even when the token looks "normal."
+The 10% random replacement teaches the model that it can't just trust every token it sees. The 10% unchanged teaches it to keep reasoning from context even when a token looks perfectly normal.
+
+<div class="bt-callout bt-callout-note">
+    <strong>The split is a hedge against a train/serve mismatch.</strong> Because the model never
+    knows whether a given position was masked, replaced, or left alone, it has to build a rich
+    representation of <em>every</em> token from its neighbors—which is exactly the behavior you
+    want at fine-tuning time.
+</div>
 
 ### The equation
 
@@ -185,6 +225,28 @@ For each masked position $i$, BERT outputs a distribution over the vocabulary:
         </div>
     </div>
 </div>
+
+In words: take the hidden state $h_i$ that BERT computed for the masked slot—a vector
+that has already absorbed the whole sentence through self-attention—project it onto the
+30,000-word vocabulary, and softmax to get a probability for each candidate word. Training
+nudges those probabilities toward the word that was actually hidden.
+
+### Try it: mask a word and watch BERT guess
+
+Click any word below to hide it. The bars show what a bidirectional model predicts for
+the blank, using context from **both sides** of the gap.
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <div id="bt-mask-demo" class="bt-mask-demo"></div>
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Interactive:</strong> Masked-language-model prediction. Predictions are illustrative,
+        chosen to show how left and right context together pin down the missing word. The true word
+        is marked in green.
+    </figcaption>
+</figure>
+<script src="/js/bert.js"></script>
 
 ## Next Sentence Prediction (NSP)
 
@@ -241,6 +303,13 @@ BERT packs both sentences into a single sequence:
 </figure>
 
 The `[CLS]` token's output becomes the aggregate sequence representation, used for sentence-level predictions.
+
+<div class="bt-callout bt-callout-warn">
+    <strong>NSP did not survive scrutiny.</strong> A year later, RoBERTa dropped Next Sentence
+    Prediction entirely and matched or beat BERT. The signal NSP provided was largely already
+    present in masked language modeling over long spans. It is included here because it is part
+    of the original design—but treat it as the paper's weakest load-bearing piece.
+</div>
 
 ## BERT Architecture
 
@@ -520,18 +589,72 @@ BERT can't generate text autoregressively like GPT. It's designed for understand
 
 ## Legacy
 
-BERT sparked an explosion of research:
+BERT sparked an explosion of research. Each successor kept the encoder-plus-pretraining
+core and pushed on one axis:
 
-- **RoBERTa** (2019): More data, no NSP, better hyperparameters
-- **ALBERT** (2019): Parameter sharing for efficiency
-- **DistilBERT** (2019): Smaller, faster, retains 97% of performance
-- **XLNet** (2019): Permutation language modeling
-- **ELECTRA** (2020): Replaced token detection instead of MLM
-- **DeBERTa** (2020): Disentangled attention
+<div class="d-table-wrapper">
+    <table class="d-table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Pushed on</th>
+                <th>Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>RoBERTa</strong></td>
+                <td>2019</td>
+                <td><span class="bt-badge bt-badge-green">Training recipe</span></td>
+                <td>More data, no NSP, longer training</td>
+            </tr>
+            <tr>
+                <td><strong>ALBERT</strong></td>
+                <td>2019</td>
+                <td><span class="bt-badge bt-badge-yellow">Efficiency</span></td>
+                <td>Parameter sharing across layers</td>
+            </tr>
+            <tr>
+                <td><strong>DistilBERT</strong></td>
+                <td>2019</td>
+                <td><span class="bt-badge bt-badge-yellow">Efficiency</span></td>
+                <td>Distilled, 40% smaller, ~97% of performance</td>
+            </tr>
+            <tr>
+                <td><strong>XLNet</strong></td>
+                <td>2019</td>
+                <td><span class="bt-badge bt-badge-red">Objective</span></td>
+                <td>Permutation LM, removes the [MASK] mismatch</td>
+            </tr>
+            <tr>
+                <td><strong>ELECTRA</strong></td>
+                <td>2020</td>
+                <td><span class="bt-badge bt-badge-red">Objective</span></td>
+                <td>Replaced-token detection instead of MLM</td>
+            </tr>
+            <tr>
+                <td><strong>DeBERTa</strong></td>
+                <td>2020</td>
+                <td><span class="bt-badge bt-badge-green">Architecture</span></td>
+                <td>Disentangled content and position attention</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-And the broader paradigm—**pre-train, then fine-tune**—became the default approach for NLP, eventually extending to GPT-3's few-shot learning and beyond.
+And the broader paradigm—**pre-train, then fine-tune**—became the default for NLP, later
+extending to GPT-3's few-shot prompting and today's large language models.
 
-BERT showed that with enough pre-training, a single model architecture could master almost any NLP task. That insight changed the field.
+<div class="bt-callout bt-callout-tip">
+    <strong>BERT's descendants still run in production every day.</strong> When you type a search
+    query, a BERT-style encoder likely ranks the results; when a RAG system retrieves documents,
+    an encoder produces the embeddings it searches over. Decoder-only models write the answers,
+    but encoders are what let machines <em>find</em> and <em>compare</em> text at scale.
+</div>
+
+BERT showed that with enough pre-training, a single architecture could master almost any
+NLP task. That insight changed the field.
 
 <section class="d-bibliography">
 

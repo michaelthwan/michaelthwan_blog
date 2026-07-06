@@ -95,6 +95,57 @@ Every ML post must have one interactive module targeting the **core mechanic** �
 
 Put all JS in `public/js/<slug>.js`. Keep it self-contained — query selectors on IDs defined in the markdown.
 
+## Callouts, badges & emphasis
+
+Plain walls of text are hard to scan. Use colorful, semantic elements to make key points pop — reference implementation: `src/content/posts/llm-knowledge-base.md`.
+
+### Colored callout boxes
+
+Use for tips, warnings, and design notes. Color carries meaning (green = tip/do-this, yellow = warning/trade-off, indigo = note/aside). Each callout starts with a **bold lead-in sentence** stating the point, followed by 1–3 sentences of explanation.
+
+```html
+<style>
+  .kb-callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 11px 14px; margin: 20px 0; font-size: 0.92rem; line-height: 1.55;
+  }
+  .kb-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
+  .kb-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+  .kb-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+</style>
+
+<div class="kb-callout kb-callout-warn">
+  <strong>Concept granularity is a real design decision.</strong> Too fine-grained and you get fragmentation; too coarse and articles bloat.
+</div>
+```
+
+Rename the `kb-` prefix per post (e.g. `fa-` for flash-attention) to avoid collisions. Aim for 2–5 callouts per post — one per major section where there's a genuine trade-off or gotcha, not decoration.
+
+### Colored badge pills in tables
+
+When a table column expresses a status/tier/category, render it as a colored pill instead of plain text — readers can scan the color gradient (green → yellow → red) without reading:
+
+```html
+<style>
+  .kb-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+  .kb-badge-green  { background: #d1fae5; color: #065f46; }
+  .kb-badge-yellow { background: #fef3c7; color: #92400e; }
+  .kb-badge-red    { background: #fee2e2; color: #b91c1c; }
+</style>
+
+<td><span class="kb-badge kb-badge-green">Full context</span></td>
+<td><span class="kb-badge kb-badge-yellow">Index + search tool</span></td>
+<td><span class="kb-badge kb-badge-red">RAG required</span></td>
+```
+
+### Bold & highlight in body text
+
+- **Bold the load-bearing phrase** of a paragraph — the claim a skimmer must not miss (`**interactive insights**`, `**one distinct idea**`). One bold phrase per paragraph max; bolding everything bolds nothing.
+- Bold lead-in sentences inside callouts (see above) — the bold part alone should convey the message.
+- Use `<code>` for file paths, identifiers, and commands inline — the gray chip visually separates them from prose.
+- For inline highlight of a phrase (rare), use `<mark style="background:#fef3c7; padding:0 3px; border-radius:3px;">...</mark>` — same yellow family as the warn callout.
+- Beyond these, keep the page grayscale-first per `DISTILL_STYLE_GUIDE.md`: 2–3 accent colors total, only where they carry meaning.
+
 ## Math
 
 - Use LaTeX: `$...$` inline, `$$...$$` display — KaTeX is loaded on all article pages
@@ -115,5 +166,6 @@ Before finishing, confirm:
 - [ ] All major paper figures referenced in the text are included
 - [ ] The interactive module actually runs and responds to user input
 - [ ] Math is rendered correctly (check KaTeX escaping inside divs)
+- [ ] Key trade-offs/gotchas are surfaced in colored callouts; status-like table columns use badge pills; each paragraph's key claim is bolded
 - [ ] Thumbnail image exists at the path in frontmatter
 - [ ] Post appears in the correct column on `/blog` (category: ml)
