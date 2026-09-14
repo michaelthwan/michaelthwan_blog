@@ -1,0 +1,213 @@
+{
+  "_meta": {
+    "goal": "B - Inflammation / skin - figure and results-text enrichment pass",
+    "source_file": "docs/superpowers/research/goal-b-inflammation-skin.json",
+    "extracted": "2026-09-13",
+    "method": "NCBI PMC ID Converter (DOI to PMCID) + direct PMC article page fetch for license and figure extraction; NCBI eutils esearch/efetch against pubmed for abstracts of papers not in PMC or not openly licensed. Figure image URLs verified with curl -sIL for image/* content-type before download; downloaded files verified for non-empty size and valid JPEG/WEBP magic bytes.",
+    "papers_total": 16,
+    "papers_in_pmc": 8,
+    "papers_open_access_with_reusable_licence": 7,
+    "papers_open_access_but_restrictive_licence": 1,
+    "papers_not_open_access": 8,
+    "figures_downloaded_and_verified": 7,
+    "notes": [
+      "10.1016/j.ijcrp.2026.200695 (smoking, PMC13476467) is open access on PMC but licensed CC BY-NC-ND 4.0. ND (no-derivatives) makes unmodified reuse of a figure ambiguous, so no figure was downloaded for it; only a results passage is provided. open_access is recorded true (freely readable) with the licence spelled out so the UI can decide how to treat it.",
+      "10.1016/j.biopsych.2015.05.014 (Irwin 2016 sleep disturbance, PMC4666828) is deposited in PMC as an NIH-funded author manuscript (NIHMS) with a standard PMC copyright notice, not a Creative Commons licence. Treated as not open access for reuse purposes; no figure downloaded.",
+      "8 of 16 papers were not found in PMC at all (Elsevier ScienceDirect, Wiley Phytotherapy Research, JAMA/Archives, and Taylor & Francis venues that do not deposit in PMC for these articles). These are treated as open_access: false; results_passage is drawn from the freely available PubMed abstract, which is not under a reuse-restrictive full-text paywall.",
+      "PMC12856123 (sleep deprivation, jsr.70099): the CRP forest plot for the shipped multi-night edge is embedded as a row image inside 'Table 2' of the article (labelled panel 2c in the text: 'Forest plot is reported in Table 2c'), not as a numbered Figure. The image was matched to the exact edge by checking the surrounding results text (k=5, d=0.76, 95% CI 0.09-1.43, p=0.027) against the JSON's shipped effect (d=0.76, CI 0.09-1.43, p=0.03) before download."
+    ]
+  },
+  "by_doi": {
+    "10.1016/j.intimp.2022.109104": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright Elsevier B.V. All rights reserved (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/35914448/",
+      "results_passage": "Overall, 32 meta-analyses were qualified in this umbrella meta-analysis. Our findings demonstrated that the n-3 PUFA supplementation significantly reduced serum C-reactive protein (CRP) (ES = -0.40; 95% CI: -0.56, -0.24, p < 0.001; I2 = 89.5%, p < 0.001), Tumour necrosis factor alpha (TNFalpha) (ES = -0.23; 95% CI: -0.37, -0.08, p = 0.002; I2 = 60.1%, p < 0.001), and interleukin 6 (IL-6) concentrations (ES = -0.22; 95% CI: -0.39, -0.05, p = 0.010; I2 = 66.2%, p < 0.001). The current umbrella meta-analysis found that supplementation of n-3 PUFAs in adults can improve CRP, TNF-alpha, and IL-6 concentrations under various health conditions. n-3 PUFAs can be recommended as adjuvant anti-inflammatory agents.",
+      "figures": []
+    },
+
+    "10.1002/ptr.7284": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright 2021 John Wiley & Sons Ltd (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/34586711/",
+      "results_passage": "Nine studies were found evaluating the effect of curcumin on CRP levels, while 23 studies were identified for hs-CRP. CRP concentration was decreased significantly compared to the placebo (WMD = -3.67 mg/L, 95% CI = -6.96 to -0.38, p = 0.02). There was a significant effect of curcumin at dose <=1,000 mg/day on the CRP concentration. CRP concentration significantly decreased after >10-week intervention compared with placebo. hs-CRP concentration in the intervention group was significantly lower than that of placebo group. Curcumin consumption resulted in a reduction of hs-CRP in a non-linear fashion with stronger effects with less than 2000 mg curcumin per day. Curcumin seems to be beneficial in decreasing the hs-CRP and CRP levels in proinflammatory settings.",
+      "figures": []
+    },
+
+    "10.3390/antiox10071015": {
+      "pmcid": "PMC8300831",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8300831/",
+      "results_passage": "Nano-curcumin supplementation was associated with improvements in the glycemic profile by decreasing fasting blood glucose, insulin, and HOMA-IR. Nano-curcumin supplementation also showed favorable anti-inflammatory effects by decreasing C-reactive protein (CRP) (WMD: -1.29 mg/L; 95% CI: -2.15 to -0.44; p = 0.003) and interleukin-6 (IL-6) (WMD: -2.78 mg/dL; 95% CI: -3.76 to -1.79; p < 0.001). In conclusion, our meta-analysis suggests that nano-curcumin supplementation may decline cardiovascular disease risk by improving glycemic and lipid profiles, inflammation, and SBP. Future large-scale investigations with longer durations are needed to expand on our findings.",
+      "figures": [
+        {
+          "label": "Figure 4A",
+          "local_path": "/img/health-evidence/PMC8300831-fig4a.jpg",
+          "caption": "Forest plot of the random-effects meta-analysis of the effect of nano-curcumin on CRP.",
+          "shows": "Forest plot of individual-trial and pooled effect sizes for nano-curcumin's effect on CRP, the exact result shipped in the curcumin_nano -> hs_crp edge."
+        }
+      ]
+    },
+
+    "10.1002/fsn3.70588": {
+      "pmcid": "PMC12257354",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12257354/",
+      "results_passage": "The pooled analysis of 18 RCTs showed that Cur + Pip significantly reduced AST (WMD: -2.29 IU, p = 0.019) and IL-6 (WMD: -5.59, p < 0.001), whereas changes in ALT (WMD: -3.88 IU, p = 0.053), ALP (WMD: -15.74 IU, p = 0.095), CRP (WMD: -1.53 mg/dL, p = 0.222), and TNF-alpha (WMD: -0.77, p = 0.314) were not statistically significant. The observed reduction in IL-6 supports their potential anti-inflammatory properties, although no significant effects were seen for CRP or TNF-alpha. These findings suggest therapeutic promise in specific populations, but further large-scale, long-duration trials are necessary to confirm efficacy and establish clinical significance.",
+      "figures": [
+        {
+          "label": "Figure 3",
+          "local_path": "/img/health-evidence/PMC12257354-fig3.jpg",
+          "caption": "Forest plot demonstrating mean difference (MD) and 95% confidence interval (CIs) for the effect of curcuminoids plus piperine co-supplementation on (A) C-reactive protein (CRP), (B) interleukin-6 (IL-6), (C), and tumor necrosis factor-alpha (TNF-alpha).",
+          "shows": "Single combined forest-plot figure covering both shipped edges: panel A shows the null CRP result, panel B shows the significant IL-6 reduction, for curcuminoids plus piperine."
+        }
+      ]
+    },
+
+    "10.3389/fmed.2026.1889076": {
+      "pmcid": "PMC13489912",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13489912/",
+      "results_passage": "Fifty-four randomized controlled trials enrolling 2,836 participants aged >=60 years were included. NMA suggested modality-specific anti-inflammatory patterns: AE (aerobic exercise) retained the most favorable ranking for CRP reduction (SUCRA = 0.89; SMD = -0.83, 95% CrI: -1.42 to -0.24). MBNMAdose suggested non-linear dose-response patterns, but Hellinger distances indicated substantial posterior divergence between common-effect and random-effects models. Exercise interventions are associated with improvements in inflammatory biomarkers among older adults, with effects varying by modality and dose. AE showed the most consistent signal for CRP reduction. Dose-response findings suggest a probable moderate-dose benefit region, but credible-interval uncertainty and substantial Bayesian heterogeneity indicate that dose regions should be interpreted cautiously rather than as fixed clinical thresholds.",
+      "figures": [
+        {
+          "label": "Figure 3",
+          "local_path": "/img/health-evidence/PMC13489912-fig3.webp",
+          "caption": "Dose-response relationship between overall physical activity levels and changes in CRP among older adults.",
+          "shows": "Dose-response curve of exercise dose (MET-min/week) against modelled CRP change, supporting the aerobic_exercise -> hs_crp edge's conditional_on note about a probable moderate-dose region."
+        }
+      ]
+    },
+
+    "10.1111/jsr.70099": {
+      "pmcid": "PMC12856123",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12856123/",
+      "results_passage": "Of the 2264 articles retrieved, we included 35 studies reporting on 887 participants. Compared to normal sleep, multiple nights of experimental partial sleep deprivation (sleep duration reduced to ~4.30 h for 3+ nights) were associated with a significant increase of interleukin-6 [IL-6, k = 5, d = 0.42, 95% CI = 0.11 to 0.73, p < 0.01] and C-reactive protein [CRP, k = 5, d = 0.76, 95% CI = 0.09 to 1.43, p = 0.03] in blood. A single night of total or partial sleep deprivation was not associated with changes in inflammation. Results suggest that the upregulation of inflammatory proteins in blood may only manifest following persistent periods of partial sleep deprivation.",
+      "figures": [
+        {
+          "label": "Table 2c",
+          "local_path": "/img/health-evidence/PMC12856123-table2c.jpg",
+          "caption": "Forest plots showing individual study and global effect size estimates for different types of sleep deprivation on CRP, IL-6, TNF-alpha, IL-1beta, IL-8. Results are reported as Cohen's d and 95% confidence intervals. [Panel c, per in-text reference 'Forest plot is reported in Table 2c': multiple nights of partial sleep deprivation on CRP, k = 5, d = 0.76, 95% CI 0.09 to 1.43, p = 0.027 after excluding one outlier study.]",
+          "shows": "Forest plot of the five studies contributing to the multi-night sleep-deprivation CRP increase, the exact result shipped in the sleep_deprivation_multinight -> hs_crp edge."
+        }
+      ]
+    },
+
+    "10.1016/j.biopsych.2015.05.014": {
+      "pmcid": "PMC4666828",
+      "open_access": false,
+      "license": "PMC author manuscript (NIHMS), standard PMC copyright notice - no Creative Commons or other reuse licence found",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4666828/",
+      "results_passage": "A total of 72 studies (n > 50,000) were analyzed with assessment of C-reactive protein (CRP), interleukin-6 (IL-6), and tumor necrosis factor alpha (TNFalpha). Sleep disturbance was associated with higher levels of CRP (ES .12; 95% CI = .05-.19) and IL-6 (ES .20; 95% CI = .08-.31). The extreme of long sleep duration was associated with higher levels of CRP (ES .17; 95% CI = .01-.34) and IL-6 (ES .11; 95% CI = .02-.20). Neither experimental sleep deprivation nor sleep restriction was associated with CRP, IL-6, or TNFalpha. Sleep disturbance and long sleep duration, but not short sleep duration, are associated with increases in markers of systemic inflammation.",
+      "figures": []
+    },
+
+    "10.1016/j.ijcrp.2026.200695": {
+      "pmcid": "PMC13476467",
+      "open_access": true,
+      "license": "CC BY-NC-ND 4.0 (open access to read; ND term makes unmodified figure reuse ambiguous, so no figure is included here)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13476467/",
+      "results_passage": "A total of 55 studies comprising 116,147 participants were included. Meta-analysis revealed that smoking was associated with significant increases in CK-MB levels, E-selectin, ICAM-1, NT-proBNP, hsCRP, P-selectin, TnI, and TnT. Subgroup analysis showed that current smokers had widespread biomarker elevations, whereas former smokers showed significant changes only in hsCRP and P-selectin. By health status, smoking elevated six biomarkers in healthy individuals but only ICAM-1 and hsCRP in those with cardiopulmonary disease. This study confirms that smoking promotes a pro-inflammatory state and subclinical heart damage, as shown by a distinct biomarker profile.",
+      "figures": []
+    },
+
+    "10.1001/archinte.167.1.31": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright JAMA/Archives of Internal Medicine (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/17210875/",
+      "results_passage": "Weight loss was associated with a decline in CRP level. Across all studies (lifestyle and surgical interventions), we found that for each 1 kg of weight loss, the mean change in CRP level was -0.13 mg/L (weighted Pearson correlation, r = 0.85). The weighted correlation for weight and change in CRP level in the lifestyle interventions alone was 0.30 (slope, 0.06). The association appeared roughly linear. Our results suggest that weight loss may be an effective nonpharmacologic strategy for lowering CRP level.",
+      "figures": []
+    },
+
+    "10.3389/fnut.2025.1458353": {
+      "pmcid": "PMC11864931",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11864931/",
+      "results_passage": "This meta-analysis included six randomized controlled trials involving 192 participants with a mean age of 52.5 years. The results suggested that LoGI diets decrease HOMA-IR scores to a greater extent than HiGI diets (estimate: 0.31; 95% confidence interval [CI], 0.01-0.61; p < 0.001) in individuals without diabetes mellitus. This association remained significant (estimate: 0.16; 95% CI, 0.01-0.31) after excluding one study with a short follow-up time (7 days). In conclusion, LoGI diets lower HOMA-IR scores to a greater extent than HiGI diets in adults without diabetes mellitus.",
+      "figures": [
+        {
+          "label": "Figure 3",
+          "local_path": "/img/health-evidence/PMC11864931-fig3.jpg",
+          "caption": "Forest plot of standardized mean differences in HOMA-IR scores between high GI and low-GI diets in the six included randomized controlled trials. For each study, the shaded square indicates the estimated effect of the intervention. A horizontal line connects the lowest and highest points of the 95% CIs for these effects. The size of the shaded square indicates the influence of the study in the overall meta-analysis. At the bottom of the graph, the diamond represents the combined weighted standardized mean difference of HOMA-IR and the 95% CI for the five included studies. CI, confidence interval; GI, glycemic index; HOMA-IR, homeostatic model assessment for insulin resistance.",
+          "shows": "Forest plot of the low-GI vs high-GI trials driving the low_gi_diet -> homa_ir edge."
+        }
+      ]
+    },
+
+    "10.1080/09637480903150114": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright Taylor & Francis (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19746296/",
+      "results_passage": "Fifteen cross-sectional studies and eight randomized controlled trials were finally identified. Ten cross-sectional studies showed statistically positive correlation between milk consumption and the circulating IGF-I level. Randomized controlled trials indicated that the circulating IGF-I level was significantly higher in the milk intervention group. After meta-analysis, the weighted mean difference of the circulating IGF-I level was 13.8 ng/ml (95% confidence interval: 6.1-21.5 ng/ml) comparing the intervention group with the control group. The current evidence suggests that milk consumption may increase the circulating IGF-I level.",
+      "figures": []
+    },
+
+    "10.1016/j.jaad.2007.01.046": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright Elsevier / American Academy of Dermatology (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/17448569/",
+      "results_passage": "A total of 43 male patients with acne completed a 12-week, parallel, dietary intervention study with investigator-masked dermatology assessments. At 12 weeks, total lesion counts had decreased more in the experimental group (-21.9 [95% confidence interval, -26.8 to -19.0]) compared with the control group (-13.8 [-19.1 to -8.5], P = .01). The experimental diet also reduced weight (P = .001), reduced the free androgen index (P = .04), and increased insulin-like growth factor binding protein-1 (P = .001) when compared with a high glycemic-load diet. We could not preclude the role of weight loss in the overall treatment effect. This suggests nutrition-related lifestyle factors play a role in acne pathogenesis. However, these preliminary findings should be confirmed by similar studies.",
+      "figures": []
+    },
+
+    "10.3390/nu10081049": {
+      "pmcid": "PMC6115795",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6115795/",
+      "results_passage": "We included 14 studies (n = 78,529; 23,046 acne-cases/55,483 controls) aged 7-30 years. ORs for acne were 1.25 (95% CI: 1.15-1.36; p = 6.13x10^-8) for any dairy, 1.28 (1.13-1.44; p = 8.23x10^-5) for any milk, 1.32 (1.16-1.52; p = 4.33x10^-5) for low-fat/skim milk, 1.22 (1.06-1.41; p = 6.66x10^-3) for whole milk, 1.36 (1.05-1.77; p = 2.21x10^-2) for yogurt, and 1.22 (1.00-1.50; p = 5.21x10^-2) for cheese, compared to no intake. Adjusted results were attenuated compared to unadjusted. There was publication bias (p = 4.71x10^-3), and heterogeneity in the meta-analyses were explained by dairy and study characteristics. In conclusion, any dairy, such as milk, yogurt, and cheese, was associated with an increased OR for acne in individuals aged 7-30 years. However, results should be interpreted with caution due to heterogeneity and bias across studies.",
+      "figures": [
+        {
+          "label": "Figure 2",
+          "local_path": "/img/health-evidence/PMC6115795-fig2.jpg",
+          "caption": "Meta-analysis of dairy intake and acne vulgaris: individual studies. The figure shows the individual studies and the unadjusted pooled random effect estimate from the meta-analysis of dairy intake and acne vulgaris. I2 (%): I-square heterogeneity expressed as percentage. p-value(het): p-value from Cochran's Q-statistic assessing heterogeneity. D+L: DerSimonian and Laird pooled random effects estimates. See Table 1 for references.",
+          "shows": "Forest plot of the individual studies pooled into the any-dairy OR = 1.25 result driving the dairy -> acne_severity edge."
+        },
+        {
+          "label": "Figure 3",
+          "local_path": "/img/health-evidence/PMC6115795-fig3.jpg",
+          "caption": "Meta-analyses of dairy intake and acne vulgaris: summary estimates. The figure shows the unadjusted pooled random effects estimates from each of the meta-analyses, which can be found in the supplementary material. I2 (%): I-square heterogeneity expressed as percentage. p-value(het): p-value from Cochran's Q-statistic assessing heterogeneity.",
+          "shows": "Forest-plot-style summary comparing the odds ratios across dairy subtypes (any dairy, milk, whole milk, skim milk, cheese, yogurt) referenced in the edge's effect string."
+        }
+      ]
+    },
+
+    "10.1001/archderm.139.7.897": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright JAMA/Archives of Dermatology (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/12873885/",
+      "results_passage": "Subjects had a higher mean grade of acne severity and mean perceived stress score (P<.01 for both) during examinations. Using regression analysis and adjusting for the effects of confounding variables, such as changes in sleep hours, sleep quality, diet quality, and number of meals per day, increased acne severity was significantly associated with increased stress levels (r = 0.61, P<.01), while self-assessed change in diet quality was the only other significant association (P=.02). Patients with acne may experience worsening of the disease during examinations. Furthermore, changes in acne severity correlate highly with increasing stress, suggesting that emotional stress from external sources may have a significant influence on acne.",
+      "figures": []
+    },
+
+    "10.2340/00015555-0231": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright Acta Dermato-Venereologica (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/17340019/",
+      "results_passage": "Ninety-four secondary school students in Singapore (mean age 14.9 years) were enrolled in this prospective cohort study. Sebum measurements did not differ significantly between the high stress and low stress conditions. For the study population as a whole, we observed a statistically significant positive correlation (r=0.23, p=0.029) between stress levels and severity of acne papulopustulosa. In adolescents, psychological stress does not appear to affect the quantity of sebum production. The study suggests a significant association between stress and severity of acne papulopustulosa, especially in males. Increased acne severity associated with stress may result from factors other than sebum quantity.",
+      "figures": []
+    },
+
+    "10.2340/00015555-1346": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Copyright Acta Dermato-Venereologica (not in PMC, no reuse licence found)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/22678562/",
+      "results_passage": "A total of 32 patients with mild to moderate acne were randomly assigned to either a low glycaemic load diet or a control group diet, and completed a 10-week, parallel dietary intervention trial. Subjects within the low glycaemic group demonstrated significant clinical improvement in the number of both non-inflammatory and inflammatory acne lesions. Histopathological examination of skin samples revealed several characteristics, including reduced size of sebaceous glands, decreased inflammation, and reduced expression of sterol regulatory element-binding protein-1, and interleukin-8 in the low glycaemic load group. A reduction in glycaemic load of the diet for 10 weeks resulted in improvements in acne.",
+      "figures": []
+    }
+  }
+}

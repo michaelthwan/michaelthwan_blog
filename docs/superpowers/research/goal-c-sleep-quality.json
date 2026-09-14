@@ -1,0 +1,276 @@
+{
+  "goal": {
+    "id": "goal_c_sleep_quality",
+    "name": "Sleep quality",
+    "definition": "Composite of circadian alignment (melatonin phase / DLMO), sleep continuity (onset latency), sleep architecture (slow-wave and REM proportion), and subjective sleep quality (PSQI/ISI)."
+  },
+  "nodes": {
+    "behaviors": [
+      { "id": "b_morning_light", "name": "Morning bright light exposure", "category": "environment", "dose_or_intensity": "~5000 lux, 0.5-2 h upon waking" },
+      { "id": "b_evening_blue_light", "name": "Evening blue/short-wavelength light exposure (screens/devices)", "category": "environment", "dose_or_intensity": "~2 h pre-sleep device use, unfiltered vs blue-blocked" },
+      { "id": "b_caffeine_timing", "name": "Caffeine consumption timing relative to bedtime", "category": "diet", "dose_or_intensity": "typical dietary doses (~100-220 mg), variable timing pre-bed" },
+      { "id": "b_exercise_timing", "name": "Evening exercise (acute, by intensity)", "category": "exercise", "dose_or_intensity": "low/moderate/high intensity, performed in the evening before bed" },
+      { "id": "b_exogenous_melatonin", "name": "Exogenous melatonin supplementation", "category": "supplement", "dose_or_intensity": "0.5-5 mg, dose-response peaks near 4 mg/day" },
+      { "id": "b_alcohol", "name": "Alcohol consumption before bed", "category": "diet", "dose_or_intensity": "low dose <=0.50 g/kg (~2 drinks) vs high dose >=0.85 g/kg (~5 drinks)" },
+      { "id": "b_exercise_general", "name": "Regular/acute exercise (general, not timing-specific)", "category": "exercise", "dose_or_intensity": "varies across 66 pooled studies; not moderated by intensity per meta-analysis" },
+      { "id": "b_cbti", "name": "Cognitive behavioral therapy for insomnia (CBT-I)", "category": "habit", "dose_or_intensity": "face-to-face delivered, standard multi-session protocol" },
+      { "id": "b_magnesium", "name": "Magnesium supplementation", "category": "supplement", "dose_or_intensity": "250 mg elemental magnesium/day (bisglycinate form)" }
+    ],
+    "markers": [
+      { "id": "m_dlmo", "name": "Melatonin phase (DLMO) / melatonin secretion", "unit": "hours phase shift, or melatonin level", "goal_ids": ["goal_c_sleep_quality"] },
+      { "id": "m_sol", "name": "Sleep onset latency", "unit": "minutes", "goal_ids": ["goal_c_sleep_quality"] },
+      { "id": "m_sws_rem", "name": "Deep sleep (SWS) / REM sleep share", "unit": "minutes or % of total sleep time", "goal_ids": ["goal_c_sleep_quality"] },
+      { "id": "m_psqi", "name": "Subjective sleep quality (PSQI / ISI)", "unit": "PSQI or ISI score (points, lower = better)", "goal_ids": ["goal_c_sleep_quality"] }
+    ]
+  },
+  "edges": [
+    {
+      "id": "e1_morninglight_dlmo",
+      "behavior_id": "b_morning_light",
+      "marker_id": "m_dlmo",
+      "direction": "+",
+      "effect": "0.5-h morning bright light produced a phase advance of 1.8 +/- 0.8 h vs 2.4 +/- 0.8 h for 2-h light exposure (75% of the full 2-h effect)",
+      "effect_normalized": "~1.8 h phase advance (75% of maximal 2.4 h shift)",
+      "normalization_method": "raw hours (continuous outcome, single RCT; no SMD computed)",
+      "evidence_tier": "B",
+      "population": "healthy adults, n=50 (27 male), mean age 25.9 +/- 5.1 y",
+      "conditional_on": "Combined with afternoon 0.5 mg exogenous melatonin (dosed progressively earlier) and a gradually advancing sleep/dark schedule (1 h/day x 3 days). Light-only effect is not isolated in this design.",
+      "paper": {
+        "doi": "10.1016/j.sleep.2014.12.004",
+        "title": "Phase advancing human circadian rhythms with morning bright light, afternoon melatonin, and gradually shifted sleep: can we reduce morning bright-light duration?",
+        "year": 2015,
+        "design": "randomized 3-arm comparison (within-subject light-dose conditions)",
+        "n": 50
+      },
+      "verbatim": "Compared to the 2-h group (phase shift = 2.4 +/- 0.8 h), smaller phase-advance shifts were seen in the 1-h (1.7 +/- 0.7 h) and 0.5-h (1.8 +/- 0.8 h) groups... the single 30-min bright-light exposure was as effective as 1 h of bright light spread over 3.25 h, and it produced 75% of the phase shift observed with 2 h of bright light.",
+      "figure": "https://doi.org/10.1016/j.sleep.2014.12.004 (see Fig. 2, phase-shift bar chart)",
+      "caveats": "Confounded with concurrent melatonin administration and an advancing sleep schedule; cannot isolate light-only contribution. Small n=50, healthy young adults with normal sleep, not a clinical DSPD population."
+    },
+    {
+      "id": "e2_bluelight_melatonin",
+      "behavior_id": "b_evening_blue_light",
+      "marker_id": "m_dlmo",
+      "direction": "-",
+      "effect": "Overnight melatonin secretion significantly higher (p<0.05) after wearing a blue-light shield than control eyewear during 2 h of pre-sleep device use, i.e. unfiltered blue light suppressed melatonin",
+      "effect_normalized": "directional only; no effect size reported (small crossover trial)",
+      "normalization_method": "none reported",
+      "evidence_tier": "D",
+      "population": "12 healthy adults using self-luminous portable devices 2 h before sleep",
+      "conditional_on": "Effect inferred from blocking blue light (proxy for blue-light exposure being harmful). Contradicted in a larger, more recent RCT in male schoolchildren (n=39) where blue-light-blocking glasses advanced sleep phase and improved behavior but did NOT alter salivary melatonin.",
+      "paper": {
+        "doi": "10.3109/07420528.2015.1119158",
+        "title": "Protective effect of blue-light shield eyewear for adults against light pollution from self-luminous devices used at night",
+        "year": 2016,
+        "design": "randomized crossover trial",
+        "n": 12
+      },
+      "verbatim": "Overnight melatonin secretion was significantly higher after using the blue-light shield (P < 0.05) than with the control eyewear. Sleep efficacy and sleep latency were significantly superior for wearers of the blue-light shield (P < 0.05 for both).",
+      "figure": "https://doi.org/10.3109/07420528.2015.1119158",
+      "caveats": "Very small n=12, no effect size reported. Directly contradicted by a 2025 PLOS One RCT (DOI 10.1371/journal.pone.0332877, n=39 schoolchildren): 'While blue light blocking glasses did not influence salivary melatonin levels, they significantly advanced the sleep phase' -- suggesting the sleep-phase benefit of blocking blue light may not always run through melatonin secretion."
+    },
+    {
+      "id": "e3_bluelight_psqi",
+      "behavior_id": "b_evening_blue_light",
+      "marker_id": "m_psqi",
+      "direction": "-",
+      "effect": "Interventions reducing evening blue-light exposure improved PSQI with a large combined effect size: Hedge's g = -1.25 (95% CI -2.39 to -0.11)",
+      "effect_normalized": "g = -1.25 (large, per Cohen's conventions)",
+      "normalization_method": "SMD (Hedge's g)",
+      "evidence_tier": "A",
+      "population": "mixed healthy adults/adolescents and clinical populations (insomnia, major depressive disorder, delayed sleep phase syndrome, ADHD, bipolar disorder) across 12 pooled studies, 6-21 participants each",
+      "conditional_on": "PSQI result drawn from only the subset of the 12 included studies that reported PSQI; objective measures (sleep efficiency g=0.31, total sleep time g=0.32) showed only small-to-medium effects in the same review, so the large PSQI effect may partly reflect subjective/expectation bias rather than physiological change alone.",
+      "paper": {
+        "doi": "10.1093/sleepadvances/zpaa002",
+        "title": "Interventions to reduce short-wavelength (\"blue\") light exposure at night and their effects on sleep: A systematic review and meta-analysis",
+        "year": 2020,
+        "design": "systematic review and meta-analysis, 12 studies (8 RCT + 4 before-after)",
+        "n": "~144 total (6-21 per study)"
+      },
+      "verbatim": "large magnitude combined effects size (Hedge's g = -1.25; 95% CI: -2.39, -0.11)",
+      "figure": "https://doi.org/10.1093/sleepadvances/zpaa002",
+      "caveats": "Wide confidence interval (crosses near zero at one bound), small per-study samples, heterogeneous designs and populations (healthy + clinical mixed)."
+    },
+    {
+      "id": "e4_caffeine_sol",
+      "behavior_id": "b_caffeine_timing",
+      "marker_id": "m_sol",
+      "direction": "+",
+      "effect": "Caffeine consumption increased sleep onset latency by 9 minutes on average",
+      "effect_normalized": "+9 min pooled mean difference",
+      "normalization_method": "pooled mean difference across included studies",
+      "evidence_tier": "A",
+      "population": "healthy adults, variable caffeine doses (e.g. 107 mg coffee, 217.5 mg pre-workout) and timings, 24 pooled studies",
+      "conditional_on": "In this pooled model the SOL increase was NOT significantly moderated by the amount or timing of the final caffeine dose; a separate dose-response model from the same research group estimated coffee should be consumed >=8.8 h and pre-workout supplements >=13.2 h before a 10pm bedtime to avoid reductions in total sleep time.",
+      "paper": {
+        "doi": "10.1016/j.smrv.2023.101764",
+        "title": "The effect of caffeine on subsequent sleep: A systematic review and meta-analysis",
+        "year": 2023,
+        "design": "systematic review and meta-analysis, 24 studies",
+        "n": "24 studies pooled"
+      },
+      "verbatim": "Caffeine consumption reduced total sleep time by 45 min and sleep efficiency by 7%, with an increase in sleep onset latency of 9 min and wake after sleep onset of 12 min.",
+      "figure": "https://doi.org/10.1016/j.smrv.2023.101764",
+      "caveats": "Heterogeneous doses/timings pooled into one estimate. Deep sleep (N3/N4) duration also fell by 11.4 min and light sleep rose, so the 9-min SOL change is only part of a broader architecture shift."
+    },
+    {
+      "id": "e5_exercisetiming_sol",
+      "behavior_id": "b_exercise_timing",
+      "marker_id": "m_sol",
+      "direction": "-",
+      "effect": "Low-intensity evening exercise showed the greatest tendency (best rank) to shorten sleep onset latency vs no exercise in a network meta-analysis; no intensity significantly disrupted sleep overall",
+      "effect_normalized": "not quantified as a pooled point estimate in the abstract; ranking-based (SUCRA-style) network meta-analysis result",
+      "normalization_method": "n/a (ranking/network meta-analysis, no single SMD reported)",
+      "evidence_tier": "A",
+      "population": "healthy adults with good sleep, 28 pooled studies, n=325",
+      "conditional_on": "Intensity-dependent: low-intensity exercise best for shortening SOL; moderate-intensity best for WASO/sleep efficiency/SWS; high-intensity within 1 h of bedtime reduced REM sleep instead. Findings apply to healthy good sleepers, not clinical insomnia populations.",
+      "paper": {
+        "doi": "10.2147/nss.s388863",
+        "title": "Different Intensities of Evening Exercise on Sleep in Healthy Adults: A Systematic Review and Network Meta-Analysis",
+        "year": 2022,
+        "design": "systematic review and network meta-analysis, 28 studies",
+        "n": 325
+      },
+      "verbatim": "low-intensity exercise displayed the greatest tendency to shorten sleep onset latency... regardless of intensity, acute evening exercise completed before bedtime does not disrupt subsequent sleep in healthy young and middle-aged adults.",
+      "figure": "https://doi.org/10.2147/nss.s388863",
+      "caveats": "No numeric SOL point estimate available in the abstract (network meta-analysis ranking only); studied only in healthy good sleepers."
+    },
+    {
+      "id": "e6_melatonin_sol",
+      "behavior_id": "b_exogenous_melatonin",
+      "marker_id": "m_sol",
+      "direction": "-",
+      "effect": "Melatonin reduced sleep onset latency by 7.06 minutes vs placebo",
+      "effect_normalized": "WMD = -7.06 min [95% CI -9.75 to -4.37]",
+      "normalization_method": "weighted mean difference",
+      "evidence_tier": "A",
+      "population": "adults and children with primary sleep disorders (predominantly insomnia, some delayed sleep phase syndrome and REM sleep behavior disorder), 19 studies, n=1683",
+      "conditional_on": "This headline WMD averages across insomnia and delayed sleep phase syndrome subgroups; other dose-response meta-analyses in the same literature report the effect on SOL is generally larger in delayed-phase/circadian populations than in general insomnia, and peaks near a 4 mg/day dose -- this pooled paper does not itself break out that subgroup split numerically.",
+      "paper": {
+        "doi": "10.1371/journal.pone.0063773",
+        "title": "Meta-Analysis: Melatonin for the Treatment of Primary Sleep Disorders",
+        "year": 2013,
+        "design": "meta-analysis of randomized, placebo-controlled trials, 19 studies",
+        "n": 1683
+      },
+      "verbatim": "Subjects randomly assigned to melatonin fell asleep 7 minutes earlier on average than subjects receiving placebo (weighted mean difference (WMD) = 7.06 minutes [95% CI: 4.37 to 9.75])",
+      "figure": "https://doi.org/10.1371/journal.pone.0063773",
+      "caveats": "Absolute effect is modest (~7 minutes) despite melatonin's popularity as a sleep aid; total sleep time effect was similarly modest (WMD = 8.25 min)."
+    },
+    {
+      "id": "e7_alcohol_sol",
+      "behavior_id": "b_alcohol",
+      "marker_id": "m_sol",
+      "direction": "-",
+      "effect": "Sleep onset latency and latency to deep sleep (N3) reduced, but ONLY at high alcohol dose (>=0.85 g/kg, ~5 standard drinks)",
+      "effect_normalized": "dose-threshold effect; not pooled as a single SMD in the abstract",
+      "normalization_method": "n/a - dose-response/threshold description",
+      "evidence_tier": "A",
+      "population": "healthy adults aged 18-70y, controlled experimental alcohol-dosing studies, 27 pooled studies",
+      "conditional_on": "High dose only (>=0.85 g/kg). At low-to-moderate doses no significant SOL-shortening effect was established. This SOL-shortening at high dose co-occurs with, and likely drives, worse subsequent REM sleep disruption (see e8).",
+      "paper": {
+        "doi": "10.1016/j.smrv.2024.102030",
+        "title": "The effect of alcohol on subsequent sleep in healthy adults: A systematic review and meta-analysis",
+        "year": 2024,
+        "design": "systematic review and meta-analysis, 27 studies",
+        "n": "27 studies pooled"
+      },
+      "verbatim": "Reductions in sleep onset latency and latency to deep sleep (i.e., non-rapid eye movement stage three (N3)) were only observed following the consumption of a high dose of alcohol (>=0.85 g kg-1 or approximately five standard drinks)... It appears that high doses of alcohol may shorten sleep onset latency, however this likely exacerbates subsequent REM sleep disruption.",
+      "figure": "https://doi.org/10.1016/j.smrv.2024.102030",
+      "caveats": "Effects on total sleep time, sleep efficiency, and wake-after-sleep-onset were too uncertain to pool (large heterogeneity) in this review, even though qualitative literature widely reports second-half-of-night fragmentation."
+    },
+    {
+      "id": "e8_alcohol_rem",
+      "behavior_id": "b_alcohol",
+      "marker_id": "m_sws_rem",
+      "direction": "-",
+      "effect": "REM sleep onset delayed and REM duration reduced, occurring even at LOW alcohol dose (<=0.50 g/kg, ~2 standard drinks), worsening progressively with higher doses",
+      "effect_normalized": "dose-response gradient; no single pooled SMD reported in the abstract",
+      "normalization_method": "n/a - dose-response description",
+      "evidence_tier": "A",
+      "population": "healthy adults aged 18-70y, 27 pooled studies",
+      "conditional_on": "Occurs at LOW dose, unlike the SOL-shortening effect which requires HIGH dose -- this is the key subjective/objective dissociation: a couple of drinks can make falling asleep feel unchanged or easier while already suppressing REM.",
+      "paper": {
+        "doi": "10.1016/j.smrv.2024.102030",
+        "title": "The effect of alcohol on subsequent sleep in healthy adults: A systematic review and meta-analysis",
+        "year": 2024,
+        "design": "systematic review and meta-analysis, 27 studies",
+        "n": "27 studies pooled"
+      },
+      "verbatim": "Changes in sleep architecture were observed, including a delay in the onset of rapid eye movement (REM) sleep and a reduction in the duration of REM sleep. A dose-response relationship was identified such that disruptions to REM sleep occurred following consumption of a low dose of alcohol (<=0.50 g.kg-1 or approximately two standard drinks) and progressively worsened with increasing doses of alcohol.",
+      "figure": "https://doi.org/10.1016/j.smrv.2024.102030",
+      "caveats": "This is a distinct, separately-dosed effect from e7 (SOL) -- recorded as its own edge per the alcohol subjective/objective dissociation, not averaged together."
+    },
+    {
+      "id": "e9_exercise_swsrem",
+      "behavior_id": "b_exercise_general",
+      "marker_id": "m_sws_rem",
+      "direction": "+",
+      "effect": "Acute exercise: small beneficial effect on slow-wave sleep, small effect on REM sleep. Regular exercise: moderate beneficial effect on overall sleep quality.",
+      "effect_normalized": "qualitative Cohen's-scale categories as reported (small / small-to-medium / moderate); exact numeric g not given in the abstract",
+      "normalization_method": "SMD (categorical description only; precise value not extractable from abstract)",
+      "evidence_tier": "A",
+      "population": "mixed healthy and clinical adult samples, 66 pooled studies through May 2013",
+      "conditional_on": "Moderated by sex, age, baseline physical-activity level, exercise type, time of day, duration, and adherence. NOT significantly moderated by exercise intensity or aerobic/anaerobic classification.",
+      "paper": {
+        "doi": "10.1007/s10865-015-9617-6",
+        "title": "The effects of physical activity on sleep: a meta-analytic review",
+        "year": 2015,
+        "design": "meta-analytic review, 66 studies",
+        "n": "66 studies pooled"
+      },
+      "verbatim": "Analyses reveal that acute exercise has small beneficial effects on total sleep time, sleep onset latency, sleep efficiency, stage 1 sleep, and slow wave sleep, a moderate beneficial effect on wake time after sleep onset, and a small effect on rapid eye movement sleep.",
+      "figure": "https://doi.org/10.1007/s10865-015-9617-6",
+      "caveats": "The publicly retrievable abstract reports only qualitative effect-size labels (small/moderate), not the exact numeric g values from the paper's tables -- flagged rather than estimated, per the no-assertion-from-memory rule."
+    },
+    {
+      "id": "e10_cbti_psqi",
+      "behavior_id": "b_cbti",
+      "marker_id": "m_psqi",
+      "direction": "-",
+      "effect": "PSQI total score reduced by 3.13 points vs control; large standardized effect",
+      "effect_normalized": "SMD = -0.96 [95% CI -1.25 to -0.68]",
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "adults >18y with a diagnosed insomnia disorder, 31 pooled RCTs, n=2449 (1107 intervention / 1342 control)",
+      "conditional_on": "Face-to-face delivered CBT-I specifically. Digital/internet-delivered CBT-I shows somewhat smaller but still large effects in other meta-analyses (SMD roughly -0.71 to -0.85 on insomnia severity).",
+      "paper": {
+        "doi": "10.3389/fpsyt.2021.798453",
+        "title": "Efficacy of Face-to-Face Delivered Cognitive Behavioral Therapy in Improving Health Status of Patients With Insomnia: A Meta-Analysis",
+        "year": 2021,
+        "design": "meta-analysis of randomized controlled trials, 31 studies",
+        "n": 2449
+      },
+      "verbatim": "significant improvement in sleep quality measured by Pittsburgh Sleep Quality Index in the intervention group (mean difference = -3.13, 95% CI -3.71 to -2.56, p < 0.001, I2 = 0.00) in comparison with the control group, with large effect size (SMD = -0.96, 95% CI -1.25 to -0.68, p < 0.001)",
+      "figure": "https://doi.org/10.3389/fpsyt.2021.798453",
+      "caveats": "Low heterogeneity (I2=0.00) supports robustness. This is the largest effect size in the entire dataset -- the intended contrast with supplement-based interventions."
+    },
+    {
+      "id": "e11_magnesium_psqi",
+      "behavior_id": "b_magnesium",
+      "marker_id": "m_psqi",
+      "direction": "-",
+      "effect": "ISI score reduced by 3.9 points (magnesium) vs 2.3 points (placebo) from baseline to week 4; borderline significant, small effect",
+      "effect_normalized": "Cohen's d = 0.20 (small)",
+      "normalization_method": "Cohen's d",
+      "evidence_tier": "B",
+      "population": "healthy adults 18-65y with self-reported poor sleep quality for >4 weeks, n=153 (77 magnesium / 76 placebo), 250 mg elemental magnesium bisglycinate/day",
+      "conditional_on": "Measured via Insomnia Severity Index (ISI), not PSQI directly, mapped here to the PSQI/subjective-sleep-quality marker as the closest available self-report outcome. Exploratory subgroup analysis suggested a larger benefit in participants with lower baseline dietary magnesium intake, but this was hypothesis-generating only, not a pre-registered confirmed subgroup effect.",
+      "paper": {
+        "doi": "10.2147/NSS.S524348",
+        "title": "Magnesium Bisglycinate Supplementation in Healthy Adults Reporting Poor Sleep: A Randomized, Placebo-Controlled Trial",
+        "year": 2025,
+        "design": "randomized, double-blind, placebo-controlled trial",
+        "n": 153
+      },
+      "verbatim": "The magnesium bisglycinate group showed a significantly greater reduction in ISI scores compared to the placebo group from baseline to Week 4 (-3.9 [95% CI: -5.8 to -2.0] vs -2.3 [95% CI: -4.1 to -0.4], respectively; p = 0.049). The effect size was small (Cohen's d = 0.2)",
+      "figure": "https://doi.org/10.2147/NSS.S524348",
+      "caveats": "This is the newest and best-powered magnesium RCT identified, yet the result is only borderline significant (p=0.049) with a small effect size. A prior systematic review of 5 magnesium RCTs for sleep found 2 of 5 showed NO improvement over placebo, with most studies rated low-to-fair quality and small sample sizes. Overall RCT evidence for magnesium and sleep quality should be read as a weak, unsettled signal -- not an established effect -- which is why it is retained here rather than dropped: this weak-but-real signal is itself the finding."
+    }
+  ],
+  "cut_edges": [
+    {
+      "candidate": "Ambient room temperature -> Sleep onset latency",
+      "reason": "Could not obtain a verbatim, numerically-quantified result sentence from a resolvable-DOI primary source directly linking ambient/bedroom temperature to sleep onset latency in minutes. The one systematic review located with a clean DOI (Bennett et al. 2024, Sleep Medicine Reviews, DOI 10.1016/j.smrv.2024.101915, 'A systematic review of ambient heat and sleep in a warming climate') confirms only a directional association ('higher outdoor or indoor temperatures are generally associated with degraded sleep quality and quantity') with no minute-level quantification in its abstract. Other specific numeric claims surfaced during search (e.g. '5C increase -> ~2 min SOL increase', '+0.04 min per degF from 3.75 million nights') traced only to secondary AI-generated summaries or an unpublished conference abstract (SLEEP supplement) without a verifiable, resolvable-DOI verbatim sentence backing the exact number. Per the no-assertion-from-memory rule, this edge is cut rather than shipped with an unverifiable number."
+    }
+  ]
+}

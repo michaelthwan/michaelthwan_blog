@@ -1,0 +1,64 @@
+{
+  "_note": "Findings from independent verification agents that reviewed the extracted data but were forbidden from editing it. Applied at merge time so the page shows them, rather than being silently corrected in the source files. Each entry names the report it came from.",
+  "overrides": [
+    {
+      "behavior_id": "sedentary_time",
+      "marker_id": "cancer_incidence_mortality",
+      "flags": {
+        "quote_elided": true
+      },
+      "quote_note": "This quote splices two non-adjacent sentences from the abstract, in reversed order, with no ellipsis marking the join. The scientific content is correct, but it is not one continuous sentence from the paper.",
+      "source": "_verification-efgh.md"
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "fat_mass",
+      "coi_note": "A co-author of the source trial is an employee of Novo Nordisk, which manufactures the drug studied. Disclosed in the paper's own conflict-of-interest statement.",
+      "source": "_verification-efgh.md"
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "max_strength",
+      "coi_note": "A co-author of the source trial is an employee of Novo Nordisk, which manufactures the drug studied. Disclosed in the paper's own conflict-of-interest statement.",
+      "source": "_verification-efgh.md"
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "rmr",
+      "coi_note": "A co-author of the source trial is an employee of Novo Nordisk, which manufactures the drug studied. Disclosed in the paper's own conflict-of-interest statement.",
+      "source": "_verification-efgh.md"
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "episodic_memory",
+      "quote_note": "The source paper carries a Corrigendum that could not be retrieved. What it corrects is unknown, so this row may be superseded.",
+      "source": "_verification-efgh.md"
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "processing_speed",
+      "quote_note": "The source paper carries a Corrigendum that could not be retrieved. What it corrects is unknown, so this row may be superseded.",
+      "source": "_verification-efgh.md"
+    },
+    {
+      "behavior_id": "alcohol",
+      "marker_id": "serum_testosterone",
+      "evidence_tier": "C",
+      "tier_note": "Downgraded from A. The pooled studies compare habitual drinkers with non-drinkers, an exposure that cannot be randomised, so this is pooled observational evidence rather than a meta-analysis of trials. The dataset applies this reasoning correctly to one smoking edge and missed it here.",
+      "source": "_verification-abcd.md"
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "triglycerides",
+      "evidence_tier": "D",
+      "tier_note": "Downgraded from C. The source is a cross-sectional smoker-versus-non-smoker comparison, not a prospective cohort.",
+      "source": "_verification-abcd.md"
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "hs_crp_il6",
+      "quote_note": "The stated figure is the pooled all-smokers statistic, but the row describes it as current smokers versus non-smokers. The current-smoker-only value in the paper is 0.06, not 0.05.",
+      "source": "_verification-abcd.md"
+    }
+  ]
+}

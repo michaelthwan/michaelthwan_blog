@@ -1,0 +1,430 @@
+{
+ "_meta": {
+  "goal": "Batch 2 - lipids/metabolic/exercise/cognition figure and results-text enrichment pass",
+  "source_file": "docs/superpowers/research/_pending_figures_batch2.json",
+  "extracted": "2026-09-13",
+  "method": "NCBI PMC ID Converter (DOI to PMCID, batched) + direct PMC article page fetch for license and figure extraction; NCBI eutils esearch/efetch against pubmed for abstracts of papers not in PMC or not openly licensed; Frontiers article page metadata for the one 2026 paper not yet indexed in PubMed. Figure image URLs verified with curl -sIL for image/* content-type before download; downloaded files verified for non-empty size and valid JPEG magic bytes.",
+  "papers_total": 41
+ },
+ "by_doi": {
+  "10.3390/nu17203279": {
+   "pmcid": "PMC12567179",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12567179/",
+   "results_passage": "Twenty-one RCTs (n ≈ 1950) were included. For triglycerides, the largest reductions occurred in the high-dose long-term (-56.78 mg/dL) and short-term (-50.873 mg/dL) groups, showing that the beneficial effect of high-dose omega-3 on reducing triglycerides was more prominent in long-term and short-term treatment than medium-term duration. In LDL cholesterol, an increase in the low-dose short-term group (+7.04 mg/dL) and low-dose long-term group (+35.525 mg/dL) was observed. Marine-derived omega-3 supplementation produces substantial triglyceride reductions, especially at doses >2000 mg/day for ≥8 weeks, while HDL cholesterol and blood pressure benefits are not consistent and LDL cholesterol may increase, especially at low doses.",
+   "figures": [
+    {
+     "label": "Figure 4",
+     "local_path": "/img/health-evidence/PMC12567179-fig4.jpg",
+     "caption": "Forest plots of the effect of marine omega-3 supplementation on metabolic syndrome (MetS) parameters and other MetS-related biochemical markers. Each trial is shown with study name, effect size (MD in native units or SMD where required), and 95% CI; square size reflects inverse-variance weight. The red dotted line indicates Zero. Abbreviations: SBP: systolic blood pressure. DBP: diastolic blood pressure. FBS: fasting blood sugar.",
+     "shows": "Forest plot of individual-trial and pooled effect sizes for marine omega-3 supplementation on metabolic syndrome markers such as triglycerides, LDL cholesterol and blood pressure."
+    }
+   ]
+  },
+  "10.1007/s11695-013-1160-3": {
+   "pmcid": "PMC3916703",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3916703/",
+   "results_passage": "In a meta-analysis of 16 studies (5 RCTs) with 6,131 patients and mean 17.3-month follow-up, bariatric surgery was significantly more effective than conventional medical therapy in achieving weight loss, HbA1C and fasting plasma glucose reduction, and diabetes remission. The overall T2DM remission rate for surgery vs conventional group was 63.5 vs 15.6% (p < 0.001). The odds of bariatric surgery patients reaching T2DM remission ranged from 9.8 to 15.8 times the odds of patients treated with conventional therapy. Of the included studies, 94.0% demonstrated a significant statistical advantage favoring surgery.",
+   "figures": [
+    {
+     "label": "Fig. 4",
+     "local_path": "/img/health-evidence/PMC3916703-fig4.jpg",
+     "caption": "The first three tables and corresponding forest plots summarize meta-analyses of the relative effects of bariatric surgery vs conventional therapy on body mass index (BMI), glycated hemoglobin (HbA1C), and fasting plasma glucose (FPG). Each study contributing to a particular meta-analysis is represented by a single darkened square contained on the forest plot; the size of the square being proportional to the amount of weight the study was given during the calculation of the pooled summary estimate. The pooled estimate in the first three analyses is expressed as the weighted mean difference (WMD) and is represented by the diamond shape at the base of each forest plot. Two additional diamonds in each forest plot represent independent summary estimates for observational studies and randomized controlled trials. Negative WMD values indicate a treatment effect favoring surgical intervention. The fourth table (and forest plot) represents an analysis of the relative effects of surgery vs conventional therapy on T2DM remission. In this case, the summary estimate of effect is given by the pooled odds ratio (POR). Results favor surgery over conventional therapy when odds ratio values are greater than one.",
+     "shows": "Forest plots of bariatric surgery vs conventional therapy on BMI, HbA1C, fasting plasma glucose, and type 2 diabetes remission odds."
+    }
+   ]
+  },
+  "10.1001/jamanetworkopen.2024.52185": {
+   "pmcid": "PMC11672165",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11672165/",
+   "results_passage": "In total, 116 randomized clinical trials involving 6880 participants with overweight or obesity were included. Each 30 minutes per week of aerobic exercise was associated with reduced body weight by 0.52 kg, waist circumference by 0.56 cm, and body fat percentage by 0.37%. Dose-response meta-analyses indicated that body weight, waist circumference, and body fat measures decreased linearly or monotonically with increasing duration of aerobic exercise up to 300 minutes per week, with 150 minutes per week at moderate to vigorous intensities producing clinically important reductions. Engaging in 30 minutes of aerobic exercise per week was associated with modest reductions in body weight, waist circumference, and body fat, but aerobic training exceeding 150 minutes per week at moderate intensity or greater may be needed to achieve clinically important reductions.",
+   "figures": [
+    {
+     "label": "Figure 1",
+     "local_path": "/img/health-evidence/PMC11672165-fig1.jpg",
+     "caption": "Dose-Response Association of Aerobic Exercise With Body Weight Among Adults With Overweight or Obesity. Solid lines represent the dose-response lines, and lines above and below are 95% CIs. Circles represent relative risk point estimates for aerobic exercise from each study, with circle size proportional to the inverse of standard error. The vertical orange lines represent the baseline aerobic exercise dose across studies.",
+     "shows": "Dose-response curve of weekly aerobic exercise minutes against body weight reduction, the primary quantitative finding of the meta-analysis."
+    }
+   ]
+  },
+  "10.1186/s11556-025-00392-9": {
+   "pmcid": "PMC12752335",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12752335/",
+   "results_passage": "Eight RCTs (n = 482 participants) were included, assessing lean tissue mass, chest press, and leg press strength. Compared to placebo plus resistance training, creatine plus resistance training significantly improved lower limb strength (SMD = 0.29) and lean tissue mass (SMD = 0.27), but did not show significant improvements in upper extremity muscle strength. Subgroup analysis revealed intervention duration effects: interventions lasting ≤32 weeks showed better upper limb strength gains (SMD = 0.45) and increases in lean tissue mass (SMD = 0.57). Creatine plus resistance training can significantly increase muscle strength and lean tissue mass in older adults, particularly in interventions lasting up to 32 weeks.",
+   "figures": [
+    {
+     "label": "Fig. 3",
+     "local_path": "/img/health-evidence/PMC12752335-fig3.jpg",
+     "caption": "Forest plot for analysis of muscle strength of the upper body during the bench press or chest press exercise, separated by subgroups according to study duration (up to 32 weeks and ≥ 52 weeks).",
+     "shows": "Forest plot of individual-trial and pooled effects of creatine plus resistance training on upper-body strength, split by intervention duration."
+    }
+   ]
+  },
+  "10.1038/s41366-026-02118-y": {
+   "pmcid": "PMC13461373",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13461373/",
+   "results_passage": "Seven studies (821 patients) were included in the analysis. GLP-1 receptor agonists significantly improved lean mass as a proportion of total weight, with an observed increase of 1.81%. However, a significant decrease was observed in the absolute change in lean mass (-1.74 kg) and in the percentage of lean mass (-3.06%), with semaglutide showing the most significant reduction in absolute lean mass (-5.44 kg). There is an improvement in body composition due to an increase in lean mass as a proportion of total weight, an effect that could be amplified with semaglutide use, and lean mass loss should not be considered a limitation for the use of these drugs in patients with obesity provided treatment is accompanied by nutritional and exercise interventions.",
+   "figures": [
+    {
+     "label": "Fig. 2",
+     "local_path": "/img/health-evidence/PMC13461373-fig2.jpg",
+     "caption": "Forest plot of changes in lean body mass relative to total body weight following GLP-1 receptor agonist treatment.",
+     "shows": "Forest plot of individual-trial and pooled effects of GLP-1 receptor agonist treatment on lean mass as a proportion of total body weight."
+    }
+   ]
+  },
+  "10.1111/dom.70141": {
+   "pmcid": "PMC12673431",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12673431/",
+   "results_passage": "A total of 106 patients (68.9% female; mean BMI 46.3 kg/m2) completed the SEMALEAN study. Weight loss was significant, with mean reductions of 10% at 7 months and 13% at 12 months; 59% of patients achieved ≥10% weight loss. Total fat mass decreased by 14% at 7 months and 18% at 12 months, while lean mass initially declined (-3 kg at 7 months) but stabilised thereafter, and handgrip strength improved significantly (+4.5 kg at 12 months). The SEMALEAN study highlights the significant impact of semaglutide 2.4 mg on weight loss, fat mass reduction, and muscle function improvement, with preserved lean mass and metabolic efficiency.",
+   "figures": [
+    {
+     "label": "Figure 1",
+     "local_path": "/img/health-evidence/PMC12673431-fig1.jpg",
+     "caption": "Effects of Semaglutide treatment on body weight. Effects of Semaglutide treatment over 12 months on body weight (A), change in body weight (B) and percentage of patients who met weight loss goals (C). Values are means ± sem in panels (A) and (B). In panel (C), the values above the bars indicate the number of patients. **, p <0.01; ****, p <0.0001.",
+     "shows": "Time-course of body weight and weight-loss-goal attainment over 12 months of semaglutide treatment, the trial's primary outcome."
+    }
+   ]
+  },
+  "10.3390/nu12051523": {
+   "pmcid": "PMC7285233",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7285233/",
+   "results_passage": "Fourteen studies fit the inclusion criteria; however, 11 were analyzed after data extraction and funnel plot analysis exclusion, covering 302 participants for body mass and composition analysis and 248 for strength analysis. A significant effect was found on total body mass, but there were no significant effects for fat-free mass, fat mass, or strength outcomes. HMB produces a small effect on total body mass gain, but this effect does not translate into significantly greater increases in fat-free mass, strength, or decreases in fat mass during resistance exercise training. The findings do not support the use of HMB aiming at improvement of body composition or strength with resistance training.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC7285233-fig2.jpg",
+     "caption": "Forest plot of a random-effects meta-analysis for the effect of HMB supplementation on changes in TBM (9 studies, 10 trials), lean body mass (9 studies, 10 trials) and fat mass (10 studies, 9 trials). Results are presented as mean difference between HMB supplemented (Experimental) and Placebo group with 95% CIs. HMB, β-hydroxy-β-methylbutyrate; CIs, Confidence intervals.",
+     "shows": "Forest plot of individual-trial and pooled mean differences for HMB's effect on total body mass, lean body mass, and fat mass."
+    }
+   ]
+  },
+  "10.3390/nu18081192": {
+   "pmcid": "PMC13119191",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13119191/",
+   "results_passage": "Twenty-nine healthy subjects performed cognitive tests at evening baseline and 3, 5.5, and 7.5 hours after a single dose of creatine monohydrate (0.2 g/kg) or placebo during 21 hours of sleep deprivation. The results show a mitigating effect of creatine on sleep-deprivation-induced deterioration in logical and numerical tasks, language-related processing speed, and the Psychomotor Vigilance Test. Compared to males, females benefit more in logic, PVT, and processing speed in language and logic tasks. A dose of 0.2 g/kg creatine is associated with reduced deterioration in cognitive performance during sleep deprivation; although the effect is less pronounced than with a high dose of 0.35 g/kg, there is still an improvement of up to 12%.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC13119191-fig3.jpg",
+     "caption": "Baseline (6 pm)-related percentage changes in cognitive performance during sleep deprivation under placebo (gray), creatine (red, hatched) and creatine versus placebo, when pooled at all 3 time points (12 am, 2 am, 4 am). Improvements in task performance are shown as positive values and deteriorations as negative values. Shown are language, logic, numeric ability, forward digit span (SPAN), word memory tasks (WMTs), N-Back and Psychomotor Vigilance Test (PVT, reaction time (RT), reaction time dispersion (RTD) for creatine vs. placebo). Bars represent standard errors (SE).",
+     "shows": "Percentage change in cognitive task performance under creatine versus placebo across the sleep-deprivation night, the trial's central result."
+    }
+   ]
+  },
+  "10.1177/1745691616635612": {
+   "pmcid": "PMC4968033",
+   "open_access": true,
+   "license": "CC BY-NC 3.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4968033/",
+   "results_passage": "This meta-analysis of working memory training studies (87 publications, 145 experimental comparisons) found reliable improvements on measures of intermediate transfer (verbal and visuospatial working memory) immediately following training. For measures of far transfer (nonverbal ability, verbal ability, word decoding, reading comprehension, arithmetic) there was no convincing evidence of any reliable improvement when working memory training was compared with a treated control condition. The degree of improvement on working memory measures was not related to the magnitude of far-transfer effects found, and analysis of publication bias shows no evidential value from the studies using treated controls. Working memory training programs appear to produce short-term, specific training effects that do not generalize to measures of real-world cognitive skills.",
+   "figures": [
+    {
+     "label": "Fig. 2",
+     "local_path": "/img/health-evidence/PMC4968033-fig2.jpg",
+     "caption": "Mean effects (g) on the transfer measures for studies with treated and untreated controls (k = number of studies)",
+     "shows": "Effect sizes for working memory training's transfer to other cognitive measures, comparing treated versus untreated control designs."
+    }
+   ]
+  },
+  "10.3389/fnut.2024.1424972": {
+   "pmcid": "PMC11275561",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11275561/",
+   "results_passage": "Sixteen RCTs involving 492 participants aged 20.8-76.4 years were selected. Creatine supplementation showed significant positive effects on memory (SMD = 0.31) and attention time (SMD = -0.31), and significantly improved processing speed time (SMD = -0.51). However, no significant improvements were found on overall cognitive function or executive function, and subgroup analyses revealed creatine was more beneficial in individuals with diseases, those aged 18-60 years, and females. Current evidence suggests that creatine monohydrate supplementation may confer beneficial effects on cognitive function in adults, particularly in the domains of memory, attention time, and information processing speed, though larger robust clinical trials are warranted.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC11275561-fig3.jpg",
+     "caption": "Meta-analysis forest plot of the effect of creatine supplementation on overall cognitive function.",
+     "shows": "Forest plot of individual-trial and pooled effect sizes for creatine supplementation's effect on overall cognitive function."
+    }
+   ]
+  },
+  "10.1038/s43856-022-00079-7": {
+   "pmcid": "PMC9053291",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9053291/",
+   "results_passage": "Thirty-six studies met inclusion criteria, representing data from 2750 participants. Aerobic exercise interventions are effective at improving episodic memory (Hedges' g = 0.28; p = 0.002), with subgroup analyses revealing a moderating effect of age (p = 0.027) - a significant effect for studies with a mean age between 55-68 but not 69-85. Mixed-effects analyses demonstrated a positive effect on episodic memory among studies with a high percentage of females, participants with normal cognition, and studies prescribing more than 3900 total minutes of activity. Aerobic exercise positively influences episodic memory among adults 55 years and older without dementia, highlighting it as an accessible, non-pharmaceutical intervention to improve episodic memory in late adulthood.",
+   "figures": [
+    {
+     "label": "Fig. 2",
+     "local_path": "/img/health-evidence/PMC9053291-fig2.jpg",
+     "caption": "Forest plot of individual studies (n = 36) and pooled effects of aerobic exercise interventions on episodic memory. Hedges' g, denoted as a diamond or a square, reflect improvements in episodic memory among those in the aerobic exercise group relative to the control group when the value is positive. A random-effects model was used. Error bars stand for 95% CI.",
+     "shows": "Forest plot of individual-trial and pooled Hedges' g effect sizes for aerobic exercise's effect on episodic memory in late adulthood."
+    }
+   ]
+  },
+  "10.1038/s41366-026-02030-5": {
+   "pmcid": "PMC13287011",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13287011/",
+   "results_passage": "In a population-based cohort of 5,761 men and women from the Oxford Biobank who underwent a DXA-scan, alcohol consumption remained dose-dependently associated with visceral fat mass (VFM) after adjustment for age, smoking, height, physical activity, socio-economic status, and total fat mass, in males (β = 1.104, p < 0.001) and females (β = 1.102, p = 0.006). The mean visceral fat mass percentage in the highest alcohol consumption quartile was over 10% greater, relative to the mean in the adjacent lower quartile, in both males (median 24 vs 12 units/week) and females (median 14 vs 7 units/week). Elevated visceral fat mass among heavier drinkers may contribute to poorer cardiovascular and metabolic health and is relevant in the search for mechanisms of regional fat repositioning.",
+   "figures": [
+    {
+     "label": "Fig. 1",
+     "local_path": "/img/health-evidence/PMC13287011-fig1.jpg",
+     "caption": "Percentage of visceral fat mass to total body fat mass in quartiles of alcohol consumption in men and women. Results of ANCOVA to analyse for significant differences in the adjusted %VFM (mean + 95% CI) in males (A) and females (B) across alcohol consumption quartiles. Male adjusted means: Q1 (4.401), Q2 (4.365), Q3 (4.515), Q4 (4.997). Female adjusted means: Q1 (1.502), Q2 (1.431), Q3 (1.386), Q4 (1.623). *=significantly different to Q1-3 (p < 0.001); **=significantly different to Q3 (p < 0.001); ^^=significantly different to Q2 (p = 0.005).",
+     "shows": "Dose-response bar chart of adjusted visceral fat mass percentage across alcohol-consumption quartiles in men and women, the study's primary finding."
+    }
+   ]
+  },
+  "10.1001/jamanetworkopen.2019.13733": {
+   "pmcid": "PMC6824325",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6824325/",
+   "results_passage": "A total of 101 postmenopausal women were recruited in the TEMPO Diet Trial. Compared with the moderate energy restriction group at 12 months, the severe restriction group lost more weight (effect size, -6.6 kg) and more whole-body lean mass (effect size, -1.2 kg), but decreases in whole-body lean mass were proportional to total weight loss and there was no difference in handgrip strength between groups. Whole-body fat mass loss (effect size, -5.5 kg) and visceral adipose tissue loss (effect size, -1389 cm3) were also greater for the severe group, though total hip bone mineral density loss was significantly greater with severe restriction. Severe energy restriction had no greater adverse effect on relative whole-body lean mass or handgrip strength compared with moderate energy restriction and was associated with 2-fold greater weight and fat loss over 12 months, though caution is necessary regarding bone mineral density, particularly in women with osteopenia or osteoporosis.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC6824325-fig2.jpg",
+     "caption": "Weight Changes in Postmenopausal Women With Obesity During the Type of Energy Manipulation for Promoting Optimum Metabolic Health and Body Composition in Obesity (TEMPO) Diet Trial. A, Weight data presented as estimated marginal means, ie, group means after controlling for covariates. B, Weight change at 12 months as percentage change from baseline for each participant in the severe and moderate groups. The dotted line indicates 10% weight loss. For both panels, the severe intervention included 50 participants and the moderate intervention, 51. aP < .001 vs baseline value within group. bP < .05 vs the moderate group at that point.",
+     "shows": "Time-course of weight loss over 12 months comparing severe versus moderate energy restriction in the TEMPO trial, the study's primary outcome."
+    }
+   ]
+  },
+  "10.3389/fnut.2025.1664412": {
+   "pmcid": "PMC12479299",
+   "open_access": true,
+   "license": "CC BY",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12479299/",
+   "results_passage": "Thirteen RCTs involving 612 participants were included. Time-restricted eating (TRE) significantly reduced body weight (WMD = -1.927 kg, p = 0.032) and fasting insulin levels (WMD = -2.120 μU/mL, p = 0.043), but showed no significant effects on BMI, fat mass, fat-free mass, visceral fat, blood lipids, glucose, HOMA-IR, or blood pressure. Subgroup analysis revealed greater weight reduction with TRE compared to conventional diets, but not versus calorie restriction alone, and no lean mass loss was observed. TRE is effective in reducing body weight and lowering fasting insulin in overweight and obese women, without negatively affecting lean body mass, and does not yield superior weight loss compared with traditional calorie-restricted diets, suggesting comparable efficacy with a favorable safety profile.",
+   "figures": []
+  },
+  "10.1016/j.toxrep.2023.03.001": {
+   "pmcid": "PMC10011683",
+   "open_access": true,
+   "license": "CC BY-NC-ND 4.0 (ND term blocks figure reuse)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10011683/",
+   "results_passage": "The meta-analysis identified 169 and 21 studies evaluating the effects of smoking and smoking cessation, respectively, on triglyceride levels. Triglyceride levels were 0.50 mmol/L higher in smokers than non-smokers, but the effect differed widely across studies. No statistically significant effect was observed on triglyceride levels between baseline and 6 weeks, 2 months, 3 months, or 1 year after quitting, though a slightly significant decrease was observed at 1 month after cessation. The results provide a basis for understanding the effects of smoking and smoking cessation on triglyceride levels, with potential implications for public health.",
+   "figures": []
+  },
+  "10.1249/MSS.0000000000002585": {
+   "pmcid": "PMC8126497",
+   "open_access": true,
+   "license": "CC BY-NC-ND 4.0 (ND term blocks figure reuse)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8126497/",
+   "results_passage": "Twenty-eight studies involving 747 healthy adults were included. No differences in muscle hypertrophy between resistance-training loads were found overall, though greater effects were observed in untrained participants and participants with some training background who undertook more sessions. Muscle strength improvement was superior for both high-load and moderate-load compared with low-load resistance training in overall and subgroup analysis (SMD, 0.60-0.63 and 0.34-0.35, respectively), with a nonsignificant but superior effect for high versus moderate load. Muscle hypertrophy improvements seem to be load independent, but increases in muscle strength are superior in high-load resistance-training programs, and untrained participants exhibit greater hypertrophy.",
+   "figures": []
+  },
+  "10.1037/a0018883": {
+   "pmcid": "PMC3290659",
+   "open_access": false,
+   "license": "PMC copyright notice (NIH author-manuscript deposit, not a CC licence)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/20438143/",
+   "results_passage": "Seventy articles containing 147 cognitive tests were found that met inclusion criteria for this meta-analysis of short-term (<48 hr) total sleep deprivation. Effect sizes ranged from small and nonsignificant (reasoning accuracy: g = -0.125) to large (lapses in simple attention: g = -0.776, p < .001). Across cognitive domains, significant differences were observed for both speed and accuracy, though only time awake was a significant predictor of between-studies variability, and only for accuracy measures. The findings suggest heterogeneity in test characteristics may account for a significant amount of the remaining between-studies variance in how sleep deprivation affects cognition.",
+   "figures": []
+  },
+  "10.1007/s00213-010-1848-1": {
+   "pmcid": "PMC3151730",
+   "open_access": false,
+   "license": "PMC copyright notice (NIH author-manuscript deposit, not a CC licence)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/20414766/",
+   "results_passage": "This meta-analysis of 41 double-blind, placebo-controlled laboratory studies found sufficient effect size data to conduct analyses on nine performance domains, including motor abilities, alerting and orienting attention, and episodic and working memory. Significant positive effects of nicotine or smoking were found on six domains: fine motor, alerting attention-accuracy and response time, orienting attention-response time, short-term episodic memory-accuracy, and working memory-response time (effect size range = 0.16 to 0.44). The significant effects of nicotine on motor abilities, attention, and memory likely represent true performance enhancement because they are not confounded by withdrawal relief. The beneficial cognitive effects of nicotine have implications for initiation of smoking and maintenance of tobacco dependence.",
+   "figures": []
+  },
+  "10.1080/17437199.2023.2248222": {
+   "pmcid": "PMC10902202",
+   "open_access": false,
+   "license": "PMC copyright notice (NIH author-manuscript deposit, not a CC licence)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/37578065/",
+   "results_passage": "One-hundred-and-eleven RCTs (n = 9,538) met eligibility criteria for this meta-analysis of mindfulness-based interventions (MBIs). MBIs had small-to-moderate significant effects on global cognition, executive attention, working memory accuracy, inhibition accuracy, shifting accuracy, sustained attention, and subjective cognitive functioning, but did not impact executive functioning latency indices, verbal fluency, processing speed, episodic memory, or cognitive error. Treatment effects were stronger for those with elevated psychiatric symptoms versus healthy controls, and for medical samples, studies with complete-case analysis, and face-to-face delivery. MBIs consistently yielded small-to-moderate yet practically meaningful effect sizes on global cognition and six cognitive subdomains capturing accuracy versus latency-based indices of executive function and sustained accuracy.",
+   "figures": []
+  },
+  "10.1002/alz.12767": {
+   "pmcid": "PMC10011015",
+   "open_access": false,
+   "license": "PMC copyright notice (NIH author-manuscript deposit, not a CC licence)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/36102337/",
+   "results_passage": "A total of 2262 participants were enrolled in the COSMOS-Mind trial (mean age = 73y; 60% women). Cocoa extract had no effect on global cognition (mean z-score = 0.03; P = .28). Daily multivitamin-mineral supplementation, relative to placebo, resulted in a statistically significant benefit on global cognition (mean z = 0.07; P = .007), an effect most pronounced in participants with a history of cardiovascular disease, with benefits also observed for memory and executive function. Cocoa extract did not benefit cognition, but COSMOS-Mind provides the first evidence from a large, long-term, pragmatic trial to support the potential efficacy of a multivitamin-mineral to improve cognition in older adults.",
+   "figures": []
+  },
+  "10.1002/14651858.CD013661.pub2": {
+   "pmcid": "PMC12875036",
+   "open_access": false,
+   "license": "Cochrane Collaboration copyright notice, not a CC licence",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875036/",
+   "results_passage": "This Cochrane review included 82 studies with 10,613 participants; 72 studies with 9783 participants provided extractable data on Ginkgo biloba versus placebo. In people with dementia, low-certainty evidence suggests people taking ginkgo may have better global clinical status, better cognition, and slightly better activities of daily living at six months. In people with mild cognitive impairment, ginkgo probably has little to no effect on global status, cognition, or activities of daily living at six months, and in people with subjective cognitive complaints or multiple sclerosis-related impairment the evidence for benefit is uncertain or shows little to no effect. There may be small to moderate benefits of ginkgo at six months for people with dementia, but the authors remain unsure whether it improves outcomes in people with milder cognitive complaints, and there is probably little or no difference in adverse events at up to 12 months.",
+   "figures": []
+  },
+  "10.1002/14651858.CD005379.pub3": {
+   "pmcid": "PMC11830470",
+   "open_access": false,
+   "license": "Cochrane Collaboration copyright notice, not a CC licence",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11830470/",
+   "results_passage": "This Cochrane review found information on cognitive function at the start of the study for 4080 participants randomised across three trials of omega-3 PUFA supplementation for six to 40 months. In two studies involving 3221 participants there was no difference between the omega-3 and placebo group in mini-mental state examination score at final follow-up, and in two studies involving 1043 participants, other tests of cognitive function such as word learning, digit span and verbal fluency showed no beneficial effect of omega-3 PUFA supplementation. None of the studies examined the effect of omega-3 PUFA on incident dementia, and participants in both intervention and control groups experienced either small or no cognitive declines during the studies. The available trials showed no benefit of omega-3 PUFA supplementation on cognitive function in cognitively healthy older people, though omega-3 PUFA supplementation is generally well tolerated, with mild gastrointestinal problems the most commonly reported side effect.",
+   "figures": []
+  },
+  "10.1001/jama.2018.21442": {
+   "pmcid": "PMC6439590",
+   "open_access": false,
+   "license": "PMC copyright notice (not a CC licence)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6439590/",
+   "results_passage": "Among 9361 randomized participants, 8563 (91.5%) completed at least 1 follow-up cognitive assessment in this trial of intensive versus standard blood pressure control. Adjudicated probable dementia occurred in 149 participants in the intensive treatment group versus 176 in the standard treatment group (hazard ratio, 0.83; 95% CI, 0.67-1.04). Intensive blood pressure control significantly reduced the risk of mild cognitive impairment (hazard ratio, 0.81) and the combined rate of mild cognitive impairment or probable dementia (hazard ratio, 0.85). Among ambulatory adults with hypertension, treating to a systolic blood pressure goal of less than 120 mm Hg compared with a goal of less than 140 mm Hg did not result in a significant reduction in the risk of probable dementia, though the study may have been underpowered for this end point because of early termination and fewer than expected dementia cases.",
+   "figures": []
+  },
+  "10.1017/S000711451600341X": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Cambridge University Press (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/27724985/",
+   "results_passage": "In total, fifty-eight trials (n 3974) were included in this systematic review and meta-analysis of oat β-glucan. A median dose of 3.5 g/d of oat β-glucan significantly lowered LDL-cholesterol (-0.19 mmol/l), non-HDL-cholesterol (-0.20 mmol/l) and apoB (-0.03 g/l) compared with control interventions. There was evidence for considerable unexplained heterogeneity in the analysis of LDL-cholesterol and non-HDL-cholesterol. Pooled analyses showed that oat β-glucan has a lowering effect on LDL-cholesterol, non-HDL-cholesterol and apoB, and inclusion of oat-containing foods may be a strategy for achieving targets in CVD reduction.",
+   "figures": []
+  },
+  "10.1016/j.atherosclerosis.2013.08.012": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Elsevier (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/24075766/",
+   "results_passage": "The meta-analysis included data from 41 studies (55 strata) with a total of 2084 subjects on plant sterol (PS)-enriched foods. Plasma sitosterol and campesterol concentrations were increased by on average 2.24 μmol/L (31%) and 5.00 μmol/L (37%), respectively, compared to control, while total- and LDL-cholesterol were reduced by on average 0.36 mmol/L (5.9%) and 0.33 mmol/L (8.5%), respectively. The increase in sitosterol and campesterol was impacted by the dose of PS, the baseline PS concentration and the PS composition of the test products, with the highest dose category (2.0-3.2 g/d) showing increases of 3.56 and 7.64 μmol/L. Intake of PS-enriched foods increases plasma sitosterol and campesterol concentrations, although total plant sterols remain below 1% of total sterols circulating in the blood.",
+   "figures": []
+  },
+  "10.1016/j.numecd.2025.104433": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Elsevier (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/41381307/",
+   "results_passage": "Nine RCTs (n = 1337 participants) met the inclusion criteria for this systematic review and meta-analysis of Mediterranean diet interventions. Compared with control diets, Mediterranean diet interventions significantly reduced glycated hemoglobin (mean difference -0.18), LDL cholesterol (-0.10), and triglycerides (-0.20), with no significant effects observed on fasting glucose, insulin, HOMA-IR, total cholesterol, or HDL cholesterol. A qualitative gut-microbiota analysis showed increased alpha-diversity and enrichment of health-related taxa, including Akkermansia muciniphila and Roseburia spp. Mediterranean diet interventions improve HbA1c, LDL cholesterol, and triglycerides, and promote beneficial gut-microbiota changes that may contribute to the metabolic benefits of the diet.",
+   "figures": []
+  },
+  "10.1016/j.numecd.2020.12.032": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Elsevier (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/33762150/",
+   "results_passage": "A total of 37 guidelines, 108 systematic reviews, and 20 RCTs were included in this review of foods and LDL cholesterol. With high evidence, foods high in unsaturated and low in saturated and trans fatty acids, with added plant sterols/stanols, and high in soluble fiber (e.g. oats, barley, and psyllium) caused at least moderate (0.20-0.40 mmol/L) reductions in LDL cholesterol, while unfiltered coffee caused a moderate to large increase. With moderate evidence, avocados and turmeric caused moderate to large reductions, and pulses, hazelnuts, walnuts, high-fiber/wholegrain foods, and green tea caused small to moderate reductions, whereas sugar caused a small increase. Several foods distinctly modify LDL cholesterol levels, and the results may aid future guidelines and dietary advice for hypercholesterolemia.",
+   "figures": []
+  },
+  "10.1093/aje/153.4.353": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Oxford University Press (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/11207153/",
+   "results_passage": "Fourteen published trials of coffee consumption were identified and pooled using a random-effects model. A dose-response relation between coffee consumption and both total cholesterol and LDL cholesterol was identified (p < 0.01), with increases in serum lipids greater in studies of patients with hyperlipidemia and in trials of caffeinated or boiled coffee. Trials using filtered coffee demonstrated very little increase in serum cholesterol. Consumption of unfiltered, but not filtered, coffee increases serum levels of total and LDL cholesterol.",
+   "figures": []
+  },
+  "10.1210/jc.2009-2430": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright The Endocrine Society (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/20371664/",
+   "results_passage": "Nine healthy subjects were studied once after a night of normal sleep duration and once after a night of 4 hours of sleep, using hyperinsulinemic euglycemic clamp studies to measure insulin sensitivity. Sleep restriction resulted in increased endogenous glucose production during the clamp study compared to the unrestricted night, indicating hepatic insulin resistance, and decreased the glucose disposal rate during the clamp, reflecting decreased peripheral insulin sensitivity. Sleep restriction decreased the rate of glucose infusion by approximately 25% and increased plasma nonesterified fatty acid levels during the clamp study. Partial sleep deprivation during only a single night induces insulin resistance in multiple metabolic pathways in healthy subjects, a finding that may be relevant for variations in glucoregulation in patients with type 1 and type 2 diabetes.",
+   "figures": []
+  },
+  "10.1007/s40279-015-0365-0": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Springer (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/26243014/",
+   "results_passage": "Twenty-eight studies with 723 participants met the inclusion criteria for this meta-analysis comparing high-intensity interval training (HIT) and endurance training on VO2max. The meta-analysed effect of endurance training on VO2max was a possibly large beneficial effect (4.9 mL/kg/min) compared with no-exercise controls, and there was likely a large beneficial effect of HIT (5.5 mL/kg/min) compared with no-exercise controls. When compared with endurance training, there was a possibly small beneficial effect for HIT (1.2 mL/kg/min), with additional improvements for typically longer HIT repetitions, older subjects, and interventions of longer duration. Endurance training and HIT both elicit large improvements in the VO2max of healthy, young to middle-aged adults, with the gains being greater following HIT when compared with endurance training.",
+   "figures": []
+  },
+  "10.1152/japplphysiol.00322.2023": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright American Physiological Society (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/37650138/",
+   "results_passage": "Forty-one adults with stable coronary artery disease were randomized to 8 weeks of Finnish sauna use or a control intervention. After the sauna intervention, resting core temperature was lower and sweat rate during sauna exposure was greater, but the change in brachial artery flow-mediated dilation did not differ between interventions. The change in central arterial stiffness, systolic, and diastolic blood pressure also did not differ between interventions. Four sessions of Finnish sauna bathing per week for 8 weeks does not improve markers of vascular health (endothelial function, microvascular function, arterial stiffness, or blood pressure) in adults with stable coronary artery disease, despite evidence of heat acclimation.",
+   "figures": []
+  },
+  "10.1007/s40279-021-01562-2": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Springer (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/34536199/",
+   "results_passage": "From 11,981 records, 58 studies were included in this systematic review, with 54 providing data for meta-analysis of resistance training and body composition. Compared to control, resistance training reduced body fat percentage by -1.46%, body fat mass by -0.55 kg, and visceral fat by a standardised mean difference of -0.49. Measurement type was a significant moderator in body fat percentage and body fat mass, but sex was not, and training volume and training components were not associated with effect size. Resistance training reduces body fat percentage, body fat mass and visceral fat in healthy adults.",
+   "figures": []
+  },
+  "10.1080/02640414.2020.1754716": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Taylor & Francis (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/32397898/",
+   "results_passage": "Of 1669 articles identified, 22 were included in the qualitative analysis and 18 were meta-analysed for this review of exercise and resting metabolic rate (RMR). Exercise interventions (aerobic and resistance exercise combined) did not increase resting metabolic rate (mean difference: 74.6 kCal/day, P = 0.10), and there was no effect of aerobic exercise alone on RMR (mean difference: 81.65 kCal/day, P = 0.25). However, resistance exercise increased RMR compared to controls (mean difference: 96.17 kCal/day, P = 0.0002). This systematic review effectively synthesises the effect of exercise interventions on RMR in comparison to controls, despite heterogenous methodologies and high risk of bias within included studies.",
+   "figures": []
+  },
+  "10.3945/ajcn.115.119339": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright American Society for Nutrition (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/26817506/",
+   "results_passage": "Young men were randomly assigned to a lower-protein (1.2 g/kg/d) or higher-protein (2.4 g/kg/d) diet during a 4-week marked energy deficit combined with intense exercise training. Lean body mass increased in the higher-protein group (1.2 kg) and to a greater extent compared with the lower-protein group (0.1 kg), and the higher-protein group had a greater loss of fat mass (-4.8 kg vs -3.5 kg). All measures of exercise performance improved similarly in both groups with no effect of protein supplementation. Consumption of a diet containing 2.4 g protein/kg/d was more effective than 1.2 g protein/kg/d in promoting increases in lean body mass and losses of fat mass when combined with a high volume of resistance and anaerobic exercise.",
+   "figures": []
+  },
+  "10.1016/j.numecd.2024.103805": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Elsevier (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/39732588/",
+   "results_passage": "Twenty RCTs were included in this systematic review and meta-analysis comparing isocaloric intermittent fasting (IF) and caloric restriction (CR). IF groups had significant reductions in fat mass (kg) and interleukin-6 in the short term, and fat mass (%), waist circumference, fasting blood insulin and HOMA-IR in the long term, while CR groups had significantly lower hunger, fatigue, and triglycerides. IF may be an effective alternative to CR but is not superior to CR in enhancing human health. Due to the low number of long-term studies, future studies should focus on longitudinal randomized trials comparing IF and CR in different populations, age groups, and IF patterns.",
+   "figures": []
+  },
+  "10.7326/0003-4819-153-7-201010050-00006": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright American College of Physicians (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/20921542/",
+   "results_passage": "Ten overweight adults underwent 14 days of moderate caloric restriction with either 8.5 or 5.5 hours of nighttime sleep opportunity in a randomized crossover study. Sleep curtailment decreased the proportion of weight lost as fat by 55% (1.4 vs. 0.6 kg with 8.5 vs. 5.5 hours of sleep) and increased the loss of fat-free body mass by 60% (1.5 vs. 2.4 kg; P = 0.002). This was accompanied by markers of enhanced neuroendocrine adaptation to caloric restriction, increased hunger, and a shift in relative substrate utilization toward oxidation of less fat. The amount of human sleep contributes to the maintenance of fat-free body mass at times of decreased energy intake, and lack of sufficient sleep may compromise the efficacy of typical dietary interventions for weight loss and related metabolic risk reduction.",
+   "figures": []
+  },
+  "10.1016/j.archger.2025.106063": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Elsevier (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/41202431/",
+   "results_passage": "Twelve randomized trials (n = 459) were included in this meta-analysis of branched-chain amino acid (BCAA) supplements combined with resistance training in sarcopenic older adults. Only skeletal muscle index significantly improved with the combined intervention versus control (SMD = 0.337, p = 0.029). No significant differences were found in hand grip strength, 30-second chair stand, Short Physical Performance Battery, walking speed, knee extension strength, total lean mass, or fat mass. BCAA supplementation post-resistance training only increased skeletal muscle index in older adults, without improving other functional or body composition outcomes.",
+   "figures": []
+  },
+  "10.3389/fnut.2026.1893033": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Frontiers Media (not in PMC, no reuse licence found)",
+   "source_url": "https://doi.org/10.3389/fnut.2026.1893033",
+   "results_passage": "Seven randomized, double-blind, placebo-controlled studies were included in this meta-analysis of acute caffeine supplementation in military personnel under sleep loss. Compared with placebo, caffeine significantly improved vigilance and response performance under conditions of sleep deprivation or sleep restriction (SMD = 0.73), complex cognitive performance (SMD = 0.54), and military task performance (SMD = 0.45). The ergogenic effects of caffeine were most consistent for vigilance and response performance, showed stable beneficial effects on complex cognitive performance, and were primarily reflected in improved task-execution speed and operational efficiency for military task performance. The available evidence suggests that acute caffeine supplementation improves vigilance and response performance during sleep loss in military personnel, with additional benefits for complex cognitive and military task performance, supporting caffeine as a practical short-term adjunct to fatigue management during military operations.",
+   "figures": []
+  },
+  "10.1179/147683010X12611460764840": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Taylor & Francis (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/21040626/",
+   "results_passage": "The combination of 97 mg L-theanine and 40 mg caffeine was compared to placebo on cognitive performance, alertness, blood pressure, and heart rate in a sample of 44 young adults. The combination of moderate levels of L-theanine and caffeine significantly improved accuracy during task switching and self-reported alertness (both P < 0.01) and reduced self-reported tiredness (P < 0.05). There were no significant effects on other cognitive tasks, such as visual search, choice reaction times, or mental rotation. The results suggest that 97 mg of L-theanine in combination with 40 mg of caffeine helps to focus attention during a demanding cognitive task.",
+   "figures": []
+  },
+  "10.1002/hup.2259": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright John Wiley & Sons (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/23001963/",
+   "results_passage": "This meta-analysis identified randomised controlled trials with data on memory (K = 13), executive function (K = 7) and attention (K = 8) testing whether Ginkgo biloba enhances cognitive function in healthy individuals. Effect sizes were non-significant and close to zero for memory (d = -0.04), executive function (d = -0.05) and attention (d = -0.08). Meta-regressions showed that effect sizes were not related to participant age, duration of the trial, daily dose, total dose or sample size. Ginkgo biloba had no ascertainable positive effects on a range of targeted cognitive functions in healthy individuals.",
+   "figures": []
+  },
+  "10.1111/psyp.12736": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Copyright Wiley/Society for Psychophysiological Research (not in PMC, no reuse licence found)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/27556572/",
+   "results_passage": "Based on data from 40 experimental studies, this meta-analysis confirmed a small effect of aerobic exercise on time-dependent measures (g = .35) and accuracy (g = .22) in executive function tasks. Preadolescent children (g = .54) and older adults (g = .67) benefited more from aerobic exercise than other age groups when reaction time was considered as the dependent variable, whereas aerobic fitness and the executive function component had no influence on the obtained effect sizes. High aerobic fitness is no prerequisite for temporary improvements of the executive control system, and low- as well as high-fit individuals seem to benefit from exercise in a similar way. Preadolescent children and older adults in particular might strategically use a single aerobic exercise session to prepare for a situation demanding high executive control.",
+   "figures": []
+  }
+ }
+}

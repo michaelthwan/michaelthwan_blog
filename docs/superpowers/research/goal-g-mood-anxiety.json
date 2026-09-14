@@ -1,0 +1,751 @@
+{
+  "goal": {
+    "id": "goal_g_mood_anxiety",
+    "name": "Mood and anxiety",
+    "definition": "Depressive symptom severity (PHQ-9, BDI, HAM-D), anxiety symptom severity (GAD-7, STAI, HAM-A, BAI), perceived stress (PSS), and cortisol (salivary, diurnal slope) as the mechanistic stress-axis link. Named-instrument evidence only; mortality and quality-of-life-years outcomes are out of scope."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_g_mood_anxiety",
+        "name": "Mood and anxiety",
+        "definition": "Depressive symptom severity (PHQ-9, BDI, HAM-D), anxiety symptom severity (GAD-7, STAI, HAM-A, BAI), perceived stress (PSS), and cortisol (salivary, diurnal slope) as the mechanistic stress-axis link. Named-instrument evidence only; mortality and quality-of-life-years outcomes are out of scope."
+      }
+    ],
+    "markers": [
+      {
+        "id": "depressive_symptoms",
+        "name": "Depressive symptoms (PHQ-9, BDI, HAM-D)",
+        "unit": "instrument points (pre-post or between-group mean difference) or SMD/Hedges' g/WMD as pooled by source",
+        "goal_ids": ["goal_g_mood_anxiety"]
+      },
+      {
+        "id": "anxiety_symptoms",
+        "name": "Anxiety symptoms (GAD-7, STAI, HAM-A, BAI)",
+        "unit": "instrument points or SMD/Hedges' g/WMD as pooled by source",
+        "goal_ids": ["goal_g_mood_anxiety"]
+      },
+      {
+        "id": "perceived_stress",
+        "name": "Perceived stress (PSS)",
+        "unit": "PSS points, SMD as pooled by source",
+        "goal_ids": ["goal_g_mood_anxiety"]
+      },
+      {
+        "id": "cortisol",
+        "name": "Cortisol (salivary, diurnal slope / awakening response)",
+        "unit": "Hedges' g / SMD (blood, saliva, or hair cortisol as pooled by source)",
+        "goal_ids": ["goal_g_mood_anxiety"]
+      }
+    ],
+    "behaviors": [
+      { "id": "aerobic_exercise", "name": "Aerobic exercise (walking, jogging, mixed aerobic)", "category": "exercise", "dose_or_intensity": "Structured aerobic sessions; effects proportional to prescribed intensity per network meta-analysis" },
+      { "id": "resistance_training", "name": "Resistance / strength training", "category": "exercise", "dose_or_intensity": "Structured resistance exercise programs, typically 2-3x/week, 6-24 weeks across pooled trials" },
+      { "id": "mindfulness_based_interventions", "name": "Mindfulness-based stress reduction / mindfulness-based interventions", "category": "habit", "dose_or_intensity": "8-week MBSR protocol or shorter mindfulness-based programs, group format, RCTs 2018-2023" },
+      { "id": "cbt", "name": "Cognitive behavioral therapy", "category": "habit", "dose_or_intensity": "Individual or group CBT, typically 8-20 sessions, compared with waitlist/care-as-usual or other psychotherapies" },
+      { "id": "bright_light_therapy", "name": "Bright light therapy", "category": "environment", "dose_or_intensity": "Light box or visor, >=1,000 lux, daily sessions; compared with dim light (<=400 lux) or sham placebo" },
+      { "id": "omega3_epa", "name": "Omega-3 (EPA-dominant supplementation)", "category": "supplement", "dose_or_intensity": "EPA-pure or EPA-major (>=60% EPA) formulations, dose <=1 g/day showing largest effect" },
+      { "id": "omega3_dha", "name": "Omega-3 (DHA-dominant supplementation)", "category": "supplement", "dose_or_intensity": "DHA-pure or DHA-major formulations, doses as used in pooled RCTs" },
+      { "id": "vitamin_d", "name": "Vitamin D3 supplementation", "category": "supplement", "dose_or_intensity": "Per-1000 IU/day dose-response; strongest effects at short follow-up (<=24 weeks)" },
+      { "id": "st_johns_wort", "name": "St John's wort (Hypericum perforatum extract)", "category": "supplement", "dose_or_intensity": "Standardized hypericum extracts vs placebo or standard antidepressants, RCTs pooled 1979-2007" },
+      { "id": "saffron", "name": "Saffron (Crocus sativus) supplementation", "category": "supplement", "dose_or_intensity": "Saffron extract, >=4 week interventions, vs placebo" },
+      { "id": "probiotics_psychobiotics", "name": "Probiotics / psychobiotics", "category": "supplement", "dose_or_intensity": "Probiotic, prebiotic, or synbiotic supplementation, various strains and durations" },
+      { "id": "loneliness_social_isolation", "name": "Loneliness / social isolation", "category": "habit", "dose_or_intensity": "Self-reported frequent loneliness vs not-often-lonely, longitudinal cohorts" },
+      { "id": "alcohol_use_disorder", "name": "Alcohol use disorder / heavy alcohol intake", "category": "habit", "dose_or_intensity": "Clinical AUD diagnosis or heavy intake (>168 g/week or >48 g/day at least weekly) vs non-heavy/abstinent" },
+      { "id": "sleep_deprivation", "name": "Sleep deprivation (experimental, total or partial)", "category": "habit", "dose_or_intensity": "Experimental total sleep deprivation, partial restriction, or fragmentation in healthy populations" },
+      { "id": "time_in_nature", "name": "Time in nature / nature-based outdoor activity", "category": "environment", "dose_or_intensity": "Structured outdoor nature-based interventions (gardening, green exercise, nature-based therapy), 20-90 min sessions over 8-12 weeks" }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "Hedges' g -0.62 (95% credible interval -0.80 to -0.45) for walking or jogging vs active controls",
+      "effect_normalized": -0.62,
+      "normalization_method": "Hedges' g, standardized mean change from baseline vs active control, pooled across validated depression scales (e.g. BDI-II, Hamilton Depression Rating Scale) via NICE standardization method",
+      "evidence_tier": "A",
+      "population": "Adults meeting clinical cut-offs for major depressive disorder (clinician-diagnosed or self-report exceeding threshold, e.g. >13 on BDI-II); 218 unique studies, 495 arms, 14,170 participants",
+      "conditional_on": "Effect measured against active controls (usual care, placebo tablet, stretching, educational control, social support), not waitlist; effects were proportional to prescribed intensity; only one included study met Cochrane criteria for low risk of bias, so confidence per CINeMA was rated low for walking/jogging and very low for other modalities",
+      "paper": {
+        "doi": "10.1136/bmj-2023-075847",
+        "title": "Effect of exercise for depression: systematic review and network meta-analysis of randomised controlled trials",
+        "year": 2024,
+        "design": "network meta-analysis of RCTs (Bayesian arm-based)",
+        "n": 14170
+      },
+      "verbatim": "Compared with active controls (eg, usual care, placebo tablet), moderate reductions in depression were found for walking or jogging (n=1210, κ=51, Hedges' g -0.62, 95% credible interval -0.80 to -0.45), yoga (n=1047, κ=33, g -0.55, -0.73 to -0.36), strength training (n=643, κ=22, g -0.49, -0.69 to -0.29), mixed aerobic exercises (n=1286, κ=51, g -0.43, -0.61 to -0.24), and tai chi or qigong (n=343, κ=12, g -0.42, -0.65 to -0.21).",
+      "key_results": "218 unique studies with a total of 495 arms and 14,170 participants were included. Compared with active controls, moderate reductions in depression were found for walking or jogging (g -0.62), yoga (g -0.55), and strength training (g -0.49). The effects of exercise were proportional to the intensity prescribed. Exercise is an effective treatment for depression, with walking or jogging, yoga, and strength training more effective than other exercises, particularly when intense. These forms of exercise could be considered alongside psychotherapy and antidepressants as core treatments for depression.",
+      "figure": null,
+      "caveats": "Confidence in the evidence (CINeMA) was low for walking/jogging and very low for other modalities because only one of 218 included studies met the Cochrane criteria for low risk of bias; participants and staff were unblinded in essentially all trials, so expectancy effects likely inflate the pooled estimates."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "Hedges' g -0.49 (95% credible interval -0.69 to -0.29) for strength training vs active controls",
+      "effect_normalized": -0.49,
+      "normalization_method": "Hedges' g, standardized mean change from baseline vs active control, pooled across validated depression scales via NICE standardization method",
+      "evidence_tier": "A",
+      "population": "Adults meeting clinical cut-offs for major depressive disorder; same network as walking/jogging edge above (218 studies, 14,170 participants)",
+      "conditional_on": "Strength training and yoga were the best-tolerated modalities (lowest dropout); effect measured against active, not waitlist, controls; low-to-very-low CINeMA confidence due to near-universal high risk of bias in the underlying trials",
+      "paper": {
+        "doi": "10.1136/bmj-2023-075847",
+        "title": "Effect of exercise for depression: systematic review and network meta-analysis of randomised controlled trials",
+        "year": 2024,
+        "design": "network meta-analysis of RCTs (Bayesian arm-based)",
+        "n": 14170
+      },
+      "verbatim": "Compared with active controls (eg, usual care, placebo tablet), moderate reductions in depression were found for walking or jogging (n=1210, κ=51, Hedges' g -0.62, 95% credible interval -0.80 to -0.45), yoga (n=1047, κ=33, g -0.55, -0.73 to -0.36), strength training (n=643, κ=22, g -0.49, -0.69 to -0.29), mixed aerobic exercises (n=1286, κ=51, g -0.43, -0.61 to -0.24), and tai chi or qigong (n=343, κ=12, g -0.42, -0.65 to -0.21).",
+      "key_results": "Strength training and yoga appeared to be the most acceptable modalities (highest completion). Strength training produced a moderate reduction in depression (g -0.49) against active controls. Exercise appeared equally effective for people with and without comorbidities and across different baseline levels of depression. Results appeared robust to publication bias, but only one study met Cochrane criteria for low risk of bias, so confidence in accordance with CINeMA was very low for strength training.",
+      "figure": null,
+      "caveats": "Very low CINeMA confidence for strength training specifically; small number of dedicated resistance-training-only trials (κ=22) relative to walking/jogging (κ=51)."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "SMD -0.61 (95% CI -0.69 to -0.54)",
+      "effect_normalized": -0.61,
+      "normalization_method": "SMD, meta-meta-analysis of 63 underlying meta-analyses",
+      "evidence_tier": "A",
+      "population": "Mixed population (children and adults, both clinically diagnosed and subclinical symptoms), excluding chronic physiological conditions; 63 studies, 81 meta-analyses, 1,079 component studies, 79,551 participants",
+      "conditional_on": "Aerobic exercise showed the most substantial impact among exercise modalities; greatest benefits seen in emerging adults (18-30) and postnatal women; greater reductions associated with group and supervised settings",
+      "paper": {
+        "doi": "10.1136/bjsports-2025-110301",
+        "title": "Effect of exercise on depression and anxiety symptoms: systematic umbrella review with meta-meta-analysis",
+        "year": 2026,
+        "design": "umbrella review / meta-meta-analysis (PRIOR framework) of meta-analyses of RCTs",
+        "n": 79551
+      },
+      "verbatim": "Exercise reduced depression (standardised mean difference (SMD)=-0.61, 95% CI -0.69 to -0.54) and anxiety (SMD=-0.47, 95% CI -0.59 to -0.36) symptoms, with aerobic exercise demonstrating the most substantial impact on both depression and anxiety symptoms.",
+      "key_results": "63 studies (81 meta-analyses, 1079 component studies and 79,551 participants) were included. Exercise reduced depression (SMD=-0.61) and anxiety (SMD=-0.47) symptoms, with aerobic exercise demonstrating the most substantial impact on both. The greatest benefits by population group for depression were seen in emerging adults aged 18-30 and postnatal women. Greater reductions in depression were associated with exercise in group and supervised settings.",
+      "figure": null,
+      "caveats": "Umbrella review pools heterogeneous underlying meta-analyses across mixed clinical and subclinical populations, which is broader and less conservative than the MDD-only Noetel 2024 estimate above (g -0.62); the abstract does not report an aerobic-only quantified sub-estimate separate from the pooled 'exercise' figure, so this edge represents pooled exercise with aerobic flagged qualitatively as the strongest modality."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "SMD -0.47 (95% CI -0.59 to -0.36)",
+      "effect_normalized": -0.47,
+      "normalization_method": "SMD, meta-meta-analysis of 63 underlying meta-analyses",
+      "evidence_tier": "A",
+      "population": "Mixed population (children and adults, clinically diagnosed and subclinical), excluding chronic physiological conditions; 49 studies contributing anxiety outcomes",
+      "conditional_on": "Exercise of shorter duration and lower intensity was most strongly associated with anxiety reduction (opposite dose pattern to the depression outcome, where effects tracked intensity in the Noetel MDD-only network meta-analysis)",
+      "paper": {
+        "doi": "10.1136/bjsports-2025-110301",
+        "title": "Effect of exercise on depression and anxiety symptoms: systematic umbrella review with meta-meta-analysis",
+        "year": 2026,
+        "design": "umbrella review / meta-meta-analysis (PRIOR framework) of meta-analyses of RCTs",
+        "n": 79551
+      },
+      "verbatim": "Exercise reduced depression (standardised mean difference (SMD)=-0.61, 95% CI -0.69 to -0.54) and anxiety (SMD=-0.47, 95% CI -0.59 to -0.36) symptoms, with aerobic exercise demonstrating the most substantial impact on both depression and anxiety symptoms.",
+      "key_results": "Exercise reduced anxiety symptoms (SMD=-0.47) across the pooled evidence base. Exercise of shorter duration and at lower intensity was most strongly associated with anxiety reduction. The findings support that exercise-based interventions, in all formats and parameters, can help mitigate anxiety symptoms across population categories.",
+      "figure": null,
+      "caveats": "Same heterogeneity/pooling caveat as the depression edge above; aerobic-specific numeric sub-estimate not separately reported in the abstract."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "Δ = 0.31 (95% CI 0.17-0.44); healthy participants Δ = 0.50 (95% CI 0.22-0.78) vs participants with physical/mental illness Δ = 0.19 (95% CI 0.06-0.31)",
+      "effect_normalized": -0.31,
+      "normalization_method": "Hedges' d (reported as positive improvement magnitude in source; recorded here as a reduction in anxiety, i.e. negative direction on our marker scale)",
+      "evidence_tier": "A",
+      "population": "922 participants (mean age 43 ± 21, 68% female), pooled across trials in both healthy volunteers and those with physical or mental illness",
+      "conditional_on": "Effect nearly 2.6x larger in healthy participants (Δ=0.50) than in those with physical or mental illness (Δ=0.19); not moderated by sex, age, program length, session duration, frequency, intensity, or whether strength significantly improved",
+      "paper": {
+        "doi": "10.1007/s40279-017-0769-0",
+        "title": "The Effects of Resistance Exercise Training on Anxiety: A Meta-Analysis and Meta-Regression Analysis of Randomized Controlled Trials",
+        "year": 2017,
+        "design": "meta-analysis and meta-regression of RCTs",
+        "n": 922
+      },
+      "verbatim": "RET significantly reduced anxiety symptoms (Δ = 0.31, 95% CI 0.17-0.44; z = 4.43; p < 0.001). Larger effects were found among healthy participants (Δ = 0.50, 95% CI 0.22-0.78) compared to participants with a physical or mental illness (Δ = 0.19, 95% CI 0.06-0.31, z = 2.16, p < 0.04).",
+      "key_results": "Thirty-one effects were derived from 16 articles, trials involving 922 participants and a validated anxiety outcome measured at baseline, mid-, and/or post-intervention. RET significantly reduced anxiety symptoms (Δ = 0.31). Larger effects were found among healthy participants (Δ = 0.50) compared to participants with a physical or mental illness (Δ = 0.19). Sampling error accounted for 77.7% of observed variance, and no significant heterogeneity was indicated. RET significantly improves anxiety symptoms among both healthy participants and participants with a physical or mental illness.",
+      "figure": null,
+      "caveats": "Source reports Δ as a positive improvement magnitude, not a signed SMD on a raw anxiety scale; we record it here as direction '-' (anxiety reduced) per the paper's stated conclusion. Anxiety outcome measure was 'a validated anxiety outcome' generically, not a single named instrument, across the 16 pooled articles."
+    },
+    {
+      "behavior_id": "mindfulness_based_interventions",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "SMD = -0.33 (95% CI: -0.44, -0.22), p < 0.00001, I2 = 29%",
+      "effect_normalized": -0.33,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "University students (11 RCTs, 1,824 participants), largely healthy/subclinical",
+      "conditional_on": "Depression measured by BDI, PHQ-9, QIDS, HDRS, PROMIS, HADS, or DASS depending on trial; young, largely subclinical population, not clinically depressed adults",
+      "paper": {
+        "doi": "10.3389/fpubh.2023.1259250",
+        "title": "The efficacy of mindfulness-based interventions on mental health among university students: a systematic review and meta-analysis",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 1824
+      },
+      "verbatim": "All these studies demonstrated positive effects of mindfulness therapy on depression (SMD = -0.33, 95% CI: [-0.44, -0.22], p < 0.00001, I2 = 29%), anxiety (SMD = -0.35, 95% CI: [-0.46, -0.25], p < 0.00001, I2 = 40%), stress (SMD = -0.39, 95% CI: [-0.48, -0.29], p < 0.00001, I2 = 69%) and sleep quality scores (SMD = -0.81, 95% CI: [-1.54, -0.09], p = 0.03, I2 = 0%).",
+      "key_results": "11 randomized controlled trials involving 1,824 participants were ultimately included. Mindfulness therapy reduced depression (SMD=-0.33), measured by scales including BDI, PHQ-9, and HDRS. Effects were also significant for anxiety and stress. There was no significant difference in mindfulness scores between groups, suggesting the mechanism of benefit may not be captured by self-reported mindfulness alone.",
+      "figure": null,
+      "caveats": "Small evidence base (11 RCTs); population is university students, not clinically depressed adults; heterogeneity moderate (I2=29%)."
+    },
+    {
+      "behavior_id": "mindfulness_based_interventions",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "SMD = -0.35 (95% CI: -0.46, -0.25), p < 0.00001, I2 = 40%",
+      "effect_normalized": -0.35,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "University students (11 RCTs, 1,824 participants)",
+      "conditional_on": "Anxiety measured by BAI, PROMIS, DASS, or GAD-7 depending on trial; subclinical/healthy young-adult population",
+      "paper": {
+        "doi": "10.3389/fpubh.2023.1259250",
+        "title": "The efficacy of mindfulness-based interventions on mental health among university students: a systematic review and meta-analysis",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 1824
+      },
+      "verbatim": "All these studies demonstrated positive effects of mindfulness therapy on depression (SMD = -0.33, 95% CI: [-0.44, -0.22], p < 0.00001, I2 = 29%), anxiety (SMD = -0.35, 95% CI: [-0.46, -0.25], p < 0.00001, I2 = 40%), stress (SMD = -0.39, 95% CI: [-0.48, -0.29], p < 0.00001, I2 = 69%) and sleep quality scores (SMD = -0.81, 95% CI: [-1.54, -0.09], p = 0.03, I2 = 0%).",
+      "key_results": "Mindfulness therapy significantly reduced anxiety (SMD=-0.35, I2=40%) as measured across BAI, PROMIS, DASS, and GAD-7 instruments in the pooled trials. In future studies, it is necessary to consider whether improving adherence and fidelity to the mindfulness protocol can further improve the outcomes in mental health.",
+      "figure": null,
+      "caveats": "Same small-evidence-base caveat as the depression edge from this paper; anxiety instrument varies by trial rather than being a single named scale."
+    },
+    {
+      "behavior_id": "mindfulness_based_interventions",
+      "marker_id": "perceived_stress",
+      "direction": "-",
+      "effect": "SMD = -0.39 (95% CI: -0.48, -0.29), p < 0.00001, I2 = 69%",
+      "effect_normalized": -0.39,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "University students (11 RCTs, 1,824 participants)",
+      "conditional_on": "Stress measured specifically by the Perceived Stress Scale (PSS) among other instruments (DASS, GAD-7) depending on trial",
+      "paper": {
+        "doi": "10.3389/fpubh.2023.1259250",
+        "title": "The efficacy of mindfulness-based interventions on mental health among university students: a systematic review and meta-analysis",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 1824
+      },
+      "verbatim": "We performed a meta-analysis to determine the effect of mindfulness therapy on depression, anxiety, and stress, which was measured by the Perceived Stress Scale (PSS), DASS, and GAD-7. All these studies demonstrated positive effects of mindfulness therapy on stress (SMD = -0.39, 95% CI: [-0.48, -0.29], p < 0.00001, I2 = 69%).",
+      "key_results": "Stress was measured by the Perceived Stress Scale (PSS), DASS, and GAD-7 across the 11 included RCTs. Mindfulness therapy significantly reduced perceived stress (SMD=-0.39). This outcome carried the highest heterogeneity of the four mental-health outcomes assessed (I2=69%), which the authors attribute to differences in study design, protocol, and outcome measures used.",
+      "figure": null,
+      "caveats": "Highest heterogeneity (I2=69%) of the four outcomes in this paper, not fully explained by subgroup analysis; PSS is pooled together with DASS and GAD-7 stress subscales rather than isolated on its own."
+    },
+    {
+      "behavior_id": "mindfulness_based_interventions",
+      "marker_id": "cortisol",
+      "direction": "-",
+      "effect": "Hedges' g = 0. 345 (mindfulness and meditation interventions; spacing as printed in source abstract), reported in a benefit-positive convention where a positive g indicates lower cortisol relative to control",
+      "effect_normalized": 0.345,
+      "normalization_method": "Hedges' g, benefit-positive convention (positive = intervention reduced cortisol relative to control), pooled blood/saliva/hair cortisol",
+      "evidence_tier": "A",
+      "population": "Non-patient (healthy) adult groups, 58 studies, N=3,508",
+      "conditional_on": "Cortisol awakening response measures showed a larger effect (g=0.644) than diurnal cortisol measures (g=0.255); mindfulness/meditation (g=0.345) and relaxation (g=0.347) were the most effective intervention types, versus mind-body therapies (g=0.129, non-significant) and talking therapies (g=0.107, non-significant)",
+      "paper": {
+        "doi": "10.1016/j.psyneuen.2023.106415",
+        "title": "Effectiveness of stress management interventions to change cortisol levels: a systematic review and meta-analysis",
+        "year": 2024,
+        "design": "meta-analysis of RCTs",
+        "n": 3508
+      },
+      "verbatim": "Mindfulness and meditation (g = 0. 345) and relaxation (g = 0. 347) interventions were most effective at changing cortisol levels, while mind body therapies (g = 0. 129) and talking therapies (g = 0.107) were shown to have smaller and non-significant effect sizes.",
+      "key_results": "Six databases were searched with 58 studies (combined N=3508) included in the meta-analysis on non-patient groups. A random effects meta-analysis on cortisol as measured in blood, saliva, or hair found that stress management interventions outperformed pooled control conditions with a medium positive effect size (g=0.282). Mindfulness and meditation interventions (g=0.345) were among the most effective at changing cortisol levels. There was no evidence of publication bias. The current findings confirm that stress management interventions can positively influence cortisol levels.",
+      "figure": null,
+      "caveats": "This edge pools 'mindfulness and meditation' broadly, not MBSR specifically; the source's benefit-positive sign convention for g differs from a raw signed mean difference, so the sign should not be read as 'cortisol increased'."
+    },
+    {
+      "behavior_id": "cbt",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "Hedges g = 0.71 (95% CI 0.62 to 0.79) unadjusted; g = 0.53 after adjustment for publication bias",
+      "effect_normalized": -0.53,
+      "normalization_method": "Hedges' g vs control groups; adjusted estimate preferred over the unadjusted 0.71 given documented publication bias",
+      "evidence_tier": "A",
+      "population": "Adults with depression, 115 studies, 94 comparisons from 75 studies for the CBT-vs-control estimate",
+      "conditional_on": "Effect size of higher-quality studies (g=0.53) was significantly lower than lower-quality studies (g=0.90); difference remained significant after adjusting for other study characteristics in multivariate meta-regression; no evidence CBT was more or less effective than other psychotherapies or pharmacotherapy",
+      "paper": {
+        "doi": "10.1177/070674371305800702",
+        "title": "A meta-analysis of cognitive-behavioural therapy for adult depression, alone and in comparison with other treatments",
+        "year": 2013,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "The mean effect size (ES) of 94 comparisons from 75 studies of CBT and control groups was Hedges g = 0.71 (95% CI 0.62 to 0.79), which corresponds with a number needed to treat of 2.6. However, this may be an overestimation of the true ES as we found strong indications for publication bias (ES after adjustment for bias was g = 0.53), and because the ES of higher-quality studies was significantly lower (g = 0.53) than for lower-quality studies (g = 0.90).",
+      "key_results": "A total of 115 studies met inclusion criteria. The mean effect size of CBT vs control groups was g=0.71, corresponding to a number needed to treat of 2.6. This may be an overestimation of the true effect: strong indications of publication bias were found, with the bias-adjusted effect size at g=0.53. The effect size of higher-quality studies (g=0.53) was significantly lower than for lower-quality studies (g=0.90), and this difference remained significant after adjusting for other study characteristics. There is no doubt that CBT is an effective treatment for adult depression, although the effects may have been overestimated until now.",
+      "figure": null,
+      "caveats": "Landmark example of publication-bias shrinkage: unadjusted g=0.71 drops to g=0.53 after bias adjustment, and drops further to match the g=0.53 seen only in higher-quality trials versus g=0.90 in lower-quality trials. The bias-adjusted, higher-quality-study estimate (g=0.53, reported here as effect_normalized -0.53) is used as the primary number rather than the inflated 0.71 headline figure."
+    },
+    {
+      "behavior_id": "cbt",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "SMD -0.74 (95% CI -1.09 to -0.38) vs treatment as usual, acute; SMD -0.60 (95% CI -0.99 to -0.21) at 3-12 months follow-up",
+      "effect_normalized": -0.74,
+      "normalization_method": "SMD, network meta-analysis vs treatment as usual",
+      "evidence_tier": "A",
+      "population": "Adults (≥18 years) with a primary diagnosis of generalized anxiety disorder (GAD); 65 RCTs, 5,048 participants, mean age 42.2",
+      "conditional_on": "Only CBT (not relaxation therapy or third-wave CBT) remained significantly more effective than treatment as usual at 3-12 month follow-up, and only CBT retained its effect when excluding studies at high risk of bias; relaxation therapy lost its superiority over treatment as usual once high-risk-of-bias studies were excluded (SMD -0.47, 95% CI -1.18 to 0.23, no longer significant)",
+      "paper": {
+        "doi": "10.1001/jamapsychiatry.2023.3971",
+        "title": "Psychotherapies for Generalized Anxiety Disorder in Adults: A Systematic Review and Network Meta-Analysis of Randomized Clinical Trials",
+        "year": 2024,
+        "design": "network meta-analysis of RCTs",
+        "n": 5048
+      },
+      "verbatim": "third-wave cognitive behavior therapies (CBTs) (SMD, -0.76 [95% CI, -1.15 to -0.36]; certainty, moderate), CBT (SMD, -0.74 [95% CI, -1.09 to -0.38]; certainty, moderate), and relaxation therapy (SMD, -0.59 [95% CI, -1.07 to -0.11]; certainty, low) were associated with reduced GAD symptoms vs treatment as usual. When considering anxiety severity at 3 to 12 months after completion of the intervention, only CBT remained significantly associated with greater effectiveness than treatment as usual (SMD, -0.60; 95% CI, -0.99 to -0.21).",
+      "key_results": "Data from 65 RCTs were included, with effect size estimates on data from 5,048 participants. CBT was associated with reduced GAD symptoms vs treatment as usual (SMD -0.74) with moderate certainty. When excluding studies at high risk of bias, relaxation therapy lost its superiority over treatment as usual, but CBT's effect persisted. At 3-12 months follow-up, only CBT remained significantly associated with greater effectiveness than treatment as usual (SMD -0.60). CBT may represent the first-line therapy of GAD given evidence for both acute and long-term effectiveness.",
+      "figure": null,
+      "caveats": "Effect size shrinks about 19% from acute (-0.74) to 3-12 month follow-up (-0.60), and this network meta-analysis explicitly demonstrates that a competing therapy (relaxation) loses significance once high-risk-of-bias trials are excluded — CBT is highlighted as robust to that same sensitivity check."
+    },
+    {
+      "behavior_id": "bright_light_therapy",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "SMD -0.37 (95% CI -0.63 to -0.12) for depression ratings vs placebo",
+      "effect_normalized": -0.37,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "Adults with seasonal affective disorder (SAD); 19 studies, 18 studies/610 patients for the depression-rating outcome",
+      "conditional_on": "Seasonal affective disorder specifically (not non-seasonal depression, see paired edge below); light box or visor >=1,000 lx vs dim light <=400 lx or sham",
+      "paper": {
+        "doi": "10.1159/000502891",
+        "title": "The Efficacy of Light Therapy in the Treatment of Seasonal Affective Disorder: A Meta-Analysis of Randomized Controlled Trials",
+        "year": 2020,
+        "design": "meta-analysis of RCTs",
+        "n": 610
+      },
+      "verbatim": "BLT was superior over placebo with a standardized mean difference of -0.37 (95% CI: -0.63 to -0.12) for depression ratings (18 studies, 610 patients) and a risk ratio of 1.42 (95% CI: 1.08-1.85) for response to active treatment (16 studies, 559 patients). We found no evidence for a publication bias, but moderate heterogeneity of the studies and a moderate-to-high risk of bias.",
+      "key_results": "A total of 19 studies met inclusion criteria. BLT was superior to placebo with SMD -0.37 for depression ratings and RR 1.42 for treatment response. No evidence of publication bias was found, but the studies showed moderate heterogeneity and moderate-to-high risk of bias. BLT can be regarded as an effective treatment for SAD, but larger high-quality trials are needed given the small-to-medium sample sizes of the included studies.",
+      "figure": null,
+      "caveats": "Authors explicitly checked for and found no publication bias, which is why this is used as the primary seasonal-depression light-therapy estimate; risk of bias in individual trials was moderate-to-high."
+    },
+    {
+      "behavior_id": "bright_light_therapy",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "SMD -0.41 (95% CI -0.64 to -0.18) in depression score vs comparator",
+      "effect_normalized": -0.41,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "Adults with non-seasonal depressive disorder; 20 RCTs, 881 participants",
+      "conditional_on": "Non-seasonal depression specifically, distinct from the SAD-specific edge above; high risk of bias in included trials substantially limits interpretation",
+      "paper": {
+        "doi": "10.1192/bjpo.bp.115.001610",
+        "title": "Light therapy for non-seasonal depression: systematic review and meta-analysis",
+        "year": 2016,
+        "design": "meta-analysis of RCTs",
+        "n": 881
+      },
+      "verbatim": "A meta-analysis including 881 participants from 20 RCTs demonstrated a beneficial effect of light therapy in non-seasonal depression (standardised mean difference in depression score -0.41 (95% CI -0.64 to -0.18)). This estimate was associated with significant heterogeneity (I2=60%, P=0.0003) that was not sufficiently explained by subgroup analyses. There was also high risk of bias in the included trials limiting the study interpretation.",
+      "key_results": "A meta-analysis including 881 participants from 20 RCTs demonstrated a beneficial effect of light therapy in non-seasonal depression (SMD -0.41). This estimate was associated with significant heterogeneity (I2=60%) not sufficiently explained by subgroup analyses. There was high risk of bias in the included trials limiting the study interpretation. Light therapy may be effective for patients with non-seasonal depression and can be a helpful additional therapeutic intervention, but overall quality of evidence is poor.",
+      "figure": null,
+      "caveats": "Authors explicitly state 'the overall quality of evidence is poor due to high risk of bias and inconsistency'; effect size (-0.41) is similar in magnitude to the seasonal-depression estimate (-0.37) despite the very different underlying condition, which is itself a notable, likely bias-driven convergence."
+    },
+    {
+      "behavior_id": "omega3_epa",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "EPA-pure (100% EPA) formulations: SMD = -0.50, P = 0.003; EPA-major (>=60% EPA) formulations at dosage <=1 g/d: SMD = -1.03, P = 0.03",
+      "effect_normalized": -0.5,
+      "normalization_method": "SMD vs placebo",
+      "evidence_tier": "A",
+      "population": "Adults with depression, double-blind randomized placebo-controlled trials; 26 studies, 2,160 participants overall (EPA-pure and EPA-major subgroups are smaller subsets)",
+      "conditional_on": "Benefit specific to EPA-pure or EPA-major (>=60% EPA) formulations at a dosage of <=1 g/day; DHA-pure and DHA-major formulations did not show benefit (see paired null edge below)",
+      "paper": {
+        "doi": "10.1038/s41398-019-0515-5",
+        "title": "Efficacy of omega-3 PUFAs in depression: A meta-analysis",
+        "year": 2019,
+        "design": "meta-analysis of double-blind, randomized, placebo-controlled trials",
+        "n": 2160
+      },
+      "verbatim": "Compared with placebo, EPA-pure (=100% EPA) and EPA-major formulations (≥60% EPA) demonstrated clinical benefits with an EPA dosage ≤1 g/d (SMD = -0.50, P = 0.003, and SMD = -1.03, P = 0.03, respectively), whereas DHA-pure and DHA-major formulations did not exhibit such benefits.",
+      "key_results": "The search resulted in 180 articles; 26 studies with 2,160 participants were analyzed. The meta-analysis showed an overall beneficial effect of omega-3 PUFAs on depression symptoms (SMD = -0.28, P = 0.004). Compared with placebo, EPA-pure and EPA-major formulations demonstrated clinical benefits at an EPA dosage of <=1 g/d, whereas DHA-pure and DHA-major formulations did not exhibit such benefits. Current evidence supports the finding that omega-3 PUFAs with EPA >=60% at a dosage of <=1 g/d would have beneficial effects on depression.",
+      "figure": null,
+      "caveats": "An earlier, smaller 2009 meta-analysis (Martins, DOI 10.1080/07315724.2009.10719785, 28 RCTs) reached the same EPA-vs-DHA conclusion (EPA-major SMD -0.446, P=0.005) but flagged a significant inverse association between efficacy and study methodological quality, sample size, and duration — i.e. smaller/lower-quality trials showed larger EPA effects, a small-study-effects warning that should be carried over to this more recent, corroborating estimate."
+    },
+    {
+      "behavior_id": "omega3_dha",
+      "marker_id": "depressive_symptoms",
+      "direction": null,
+      "effect": "DHA-pure and DHA-major formulations did not exhibit such benefits (no pooled SMD given for this subgroup in the abstract)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Adults with depression, double-blind randomized placebo-controlled trials",
+      "conditional_on": "DHA-dominant formulations specifically, contrasted directly with EPA-dominant formulations from the same trial pool (see omega3_epa edge above); this is the null half of the EPA-vs-DHA distinction",
+      "paper": {
+        "doi": "10.1038/s41398-019-0515-5",
+        "title": "Efficacy of omega-3 PUFAs in depression: A meta-analysis",
+        "year": 2019,
+        "design": "meta-analysis of double-blind, randomized, placebo-controlled trials",
+        "n": 2160
+      },
+      "verbatim": "Compared with placebo, EPA-pure (=100% EPA) and EPA-major formulations (≥60% EPA) demonstrated clinical benefits with an EPA dosage ≤1 g/d (SMD = -0.50, P = 0.003, and SMD = -1.03, P = 0.03, respectively), whereas DHA-pure and DHA-major formulations did not exhibit such benefits.",
+      "key_results": "The meta-analysis showed an overall beneficial effect of omega-3 PUFAs on depression (SMD=-0.28), but DHA-pure and DHA-major formulations did not exhibit such benefits, in contrast to EPA-pure and EPA-major formulations. Current evidence supports the finding that omega-3 PUFAs need an EPA content >=60% to be beneficial for depression. This directly contradicts the intuitive assumption that 'omega-3' as a single supplement category is uniformly effective.",
+      "figure": null,
+      "caveats": "The 2019 abstract does not give a standalone quantified SMD for the DHA subgroup, only 'did not exhibit such benefits'; the quantified null (SMD=0.001, p=0.997) comes from the earlier, smaller 2009 Martins meta-analysis (DOI 10.1080/07315724.2009.10719785) on 3 pure-DHA studies, cited here as corroborating context rather than as this edge's primary source."
+    },
+    {
+      "behavior_id": "vitamin_d",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "Each 1000 IU/day: SMD -0.32 (95% CI -0.43 to -0.22) in individuals with and without depression; SMD -0.57 (95% CI -0.69 to -0.44) in those with depressive symptoms specifically",
+      "effect_normalized": -0.57,
+      "normalization_method": "SMD per 1000 IU/day vitamin D3, dose-response meta-analysis",
+      "evidence_tier": "A",
+      "population": "Adults, 31 RCTs, 24,189 participants; subgroup with depressive symptoms n=15 trials",
+      "conditional_on": "Effect markedly larger in those with depressive symptoms (-0.57) vs the whole mixed population (-0.32); strongly duration-dependent — effects were strong at <=8 weeks (-0.45) and 8-24 weeks (-0.47) follow-up but shrank to non-significant at 24-52 weeks (-0.13) and reversed direction at >52 weeks (+0.14, ns)",
+      "paper": {
+        "doi": "10.1017/S0033291724001697",
+        "title": "The effect of vitamin D supplementation on depression: a systematic review and dose-response meta-analysis of randomized controlled trials",
+        "year": 2024,
+        "design": "dose-response meta-analysis of RCTs",
+        "n": 24189
+      },
+      "verbatim": "Each 1000 IU/day vitamin D3 supplementation slightly reduced depressive symptoms in individuals with and without depression (SMD: -0.32, 95% CI -0.43 to -0.22; GEADE = moderate). The effect was more pronounced in those with depressive symptoms (SMD: -0.57, 95% CI -0.69 to -0.44; n = 15). The greatest reduction occurred at 8000 IU/day (SMD: -2.04, 95% CI -3.77 to -0.31). Trials with follow-up ⩽8 weeks (SMD: -0.45, 95% CI -0.70 to -0.20; n = 8) and 8 to ⩽24 weeks (SMD: -0.47, 95% CI -0.70 to -0.24; n = 15) showed stronger effects compared to those lasting 24 to ⩽52 weeks (SMD: -0.13, 95% CI -0.28 to 0.02; n = 5) or longer than 52 weeks (SMD: 0.14, 95% CI -0.16 to 0.44; n = 3) (p group difference <0.001).",
+      "key_results": "This analysis included 31 trials with 24,189 participants. Each 1000 IU/day vitamin D3 supplementation slightly reduced depressive symptoms overall (SMD -0.32), more pronounced in those with depressive symptoms (SMD -0.57). Trials with follow-up of 24 weeks or less showed much stronger effects than longer trials, with the effect becoming non-significant by 24-52 weeks and reversing direction (non-significantly) beyond 52 weeks. This study suggests that vitamin D3 supplementation may effectively reduce depressive symptoms in the short term, but further high-quality trials are warranted for a conclusive long-term assessment.",
+      "figure": null,
+      "caveats": "Effect size is strongly time-dependent and vanishes (then nominally reverses) with longer follow-up — a textbook case where reporting only the short-term headline number would overstate durable benefit; the 8000 IU/day 'greatest reduction' figure (-2.04) has a very wide CI (-3.77 to -0.31) suggesting a single or few small high-dose trials driving it, and is not used as this edge's primary number."
+    },
+    {
+      "behavior_id": "vitamin_d",
+      "marker_id": "anxiety_symptoms",
+      "direction": null,
+      "effect": "No significant effect reported for anxiety symptoms",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Adults, same 31-RCT dose-response meta-analysis as the depressive-symptoms edge above",
+      "conditional_on": "Contrasts directly with the significant depressive-symptoms finding from the same trial pool and same supplement; illustrates that vitamin D's putative mood benefit, where real, is depression-specific rather than a general anxiolytic effect",
+      "paper": {
+        "doi": "10.1017/S0033291724001697",
+        "title": "The effect of vitamin D supplementation on depression: a systematic review and dose-response meta-analysis of randomized controlled trials",
+        "year": 2024,
+        "design": "dose-response meta-analysis of RCTs",
+        "n": 24189
+      },
+      "verbatim": "Vitamin D3 supplementation had no significant effects on anxiety symptoms. In summary, this study suggests that vitamin D3 supplementation may effectively reduce depressive symptoms in short term. Further high-quality trials are warranted for a conclusive assessment of its impact on anxiety.",
+      "key_results": "The same dose-response meta-analysis that found short-term depressive-symptom benefit found vitamin D3 supplementation had no significant effects on anxiety symptoms. Further high-quality trials are warranted for a conclusive assessment of its impact on anxiety. This null result for anxiety, alongside the positive but duration-limited depression result, indicates the two mood markers should not be assumed to move together under the same intervention.",
+      "figure": null,
+      "caveats": "No effect size or CI given for the anxiety null result in the abstract, only the qualitative statement of no significant effect."
+    },
+    {
+      "behavior_id": "st_johns_wort",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "Response rate ratio (RR) vs placebo: 1.28 (95% CI 1.10 to 1.49) from 9 larger trials; RR 1.87 (95% CI 1.22 to 2.87) from 9 smaller trials",
+      "effect_normalized": 1.28,
+      "normalization_method": "responder rate ratio (RR) vs placebo, larger-trial subgroup preferred as the less biased estimate",
+      "evidence_tier": "A",
+      "population": "Adults with major depression; 29 trials (5,489 patients), 18 placebo-controlled comparisons",
+      "conditional_on": "Effect nearly halves going from small trials (RR 1.87) to larger trials (RR 1.28), a textbook small-study effect; trials from German-speaking countries reported more favorable findings than trials from other countries, in both the placebo-controlled and active-comparator analyses",
+      "paper": {
+        "doi": "10.1002/14651858.CD000448.pub3",
+        "title": "St John's wort for major depression",
+        "year": 2008,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 5489
+      },
+      "verbatim": "In nine larger trials the combined response rate ratio (RR) for hypericum extracts compared with placebo was 1.28 (95% confidence interval (CI), 1.10 to 1.49) and from nine smaller trials was 1.87 (95% CI, 1.22 to 2.87).",
+      "key_results": "A total of 29 trials (5,489 patients) including 18 comparisons with placebo and 17 comparisons with synthetic standard antidepressants met inclusion criteria. Results of placebo-controlled trials showed marked heterogeneity, with larger trials showing a smaller effect (RR 1.28) than smaller trials (RR 1.87). Compared with standard antidepressants, response rate ratios were 1.02 (vs tri-/tetracyclics) and 1.00 (vs SSRIs), i.e. no significant difference. Patients given hypericum extracts dropped out due to adverse effects less frequently than those given older antidepressants or SSRIs. The available evidence suggests hypericum extracts are superior to placebo in patients with major depression, though effects appear inflated in smaller trials.",
+      "figure": null,
+      "caveats": "Directly demonstrates a small-study/publication-bias-type shrinkage pattern (RR 1.87 in small trials vs 1.28 in large trials); country-of-origin effect (German-speaking countries reporting more favorable results in both placebo- and active-comparator trials) is a further, distinct bias signal noted by the review authors; review is from 2008, the last full update of this Cochrane title identified in this search."
+    },
+    {
+      "behavior_id": "saffron",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "BDI: WMD = -4.39 (95% CI: -6.64 to -2.15), p < 0.001, I2 = 92.3%",
+      "effect_normalized": -4.39,
+      "normalization_method": "WMD, BDI points, original scale",
+      "evidence_tier": "A",
+      "population": "Adults, 14 RCTs / 817 participants for the BDI (self-report) outcome",
+      "conditional_on": "Significant only for the self-reported BDI instrument; the clinician-rated HDRS showed no significant effect in the same paper (see paired null edge below), so this benefit is specific to self-report symptom scales",
+      "paper": {
+        "doi": "10.1080/1028415X.2025.2602153",
+        "title": "Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs (GRADE-assessed)",
+        "n": 817
+      },
+      "verbatim": "Saffron supplementation significantly reduced scores on BDI (14 trials; 817 participants; WMD = -4.39, 95% CI: -6.64 to -2.15, p < 0.001, I2 = 92.3%) and the BAI (6 trials; 339 participants; WMD = -5.06, 95% CI: -8.44 to -1.68, p = 0.003, I2 = 94.8%). No significant effects were observed for the HDRS, HARS, or POMS.",
+      "key_results": "A total of 34 RCTs comprising 1,769 participants were included. Saffron supplementation significantly reduced scores on the self-reported BDI. No significant effects were observed for the clinician-rated HDRS, HARS, or POMS. The certainty of evidence was rated as moderate according to GRADE. The findings suggest saffron may be an effective complementary intervention for reducing self-reported depressive symptoms, but the lack of clinician-rated effects underscores the need for high-quality trials.",
+      "figure": null,
+      "caveats": "Very high heterogeneity (I2=92.3%); effect is significant only on the self-report BDI and not on the clinician-rated HDRS in the same meta-analysis — a self-report/clinician-rated divergence pattern that is itself informative (see paired null edge) and consistent with an expectancy/placebo-inflation concern for an unblinded-taste supplement."
+    },
+    {
+      "behavior_id": "saffron",
+      "marker_id": "depressive_symptoms",
+      "direction": null,
+      "effect": "No significant effect on the clinician-rated Hamilton Depression Rating Scale (HDRS)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Adults, subset of the same 34 RCTs reporting HDRS as the outcome",
+      "conditional_on": "Clinician-rated instrument specifically, contrasted with the significant self-reported BDI result above from the same meta-analysis and same behavior",
+      "paper": {
+        "doi": "10.1080/1028415X.2025.2602153",
+        "title": "Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs (GRADE-assessed)",
+        "n": null
+      },
+      "verbatim": "No significant effects were observed for the HDRS, HARS, or POMS.",
+      "key_results": "The same meta-analysis of 34 RCTs found no significant effects for the clinician-rated HDRS, alongside no effect for the clinician-rated HARS or the Profile of Mood States (POMS). This null result is recorded per the design principle that null results on named instruments are content, not missing data. The divergence between the significant self-report finding and this null clinician-rated finding is the more informative fact than either number alone.",
+      "figure": null,
+      "caveats": "Abstract does not report a specific WMD or CI for the HDRS null result, only the qualitative statement of non-significance."
+    },
+    {
+      "behavior_id": "saffron",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "BAI: WMD = -5.06 (95% CI: -8.44 to -1.68), p = 0.003, I2 = 94.8%",
+      "effect_normalized": -5.06,
+      "normalization_method": "WMD, BAI points, original scale",
+      "evidence_tier": "A",
+      "population": "Adults, 6 RCTs / 339 participants for the BAI (self-report) outcome",
+      "conditional_on": "Significant only for the self-reported BAI instrument; the clinician-rated HARS showed no significant effect in the same paper (see paired null edge below)",
+      "paper": {
+        "doi": "10.1080/1028415X.2025.2602153",
+        "title": "Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs (GRADE-assessed)",
+        "n": 339
+      },
+      "verbatim": "Saffron supplementation significantly reduced scores on BDI (14 trials; 817 participants; WMD = -4.39, 95% CI: -6.64 to -2.15, p < 0.001, I2 = 92.3%) and the BAI (6 trials; 339 participants; WMD = -5.06, 95% CI: -8.44 to -1.68, p = 0.003, I2 = 94.8%). No significant effects were observed for the HDRS, HARS, or POMS.",
+      "key_results": "Saffron supplementation significantly reduced scores on the self-reported BAI (6 trials, 339 participants). No significant effects were observed for the clinician-rated HARS in the same analysis. The certainty of evidence was rated as moderate according to GRADE. Findings suggest saffron may be an effective complementary intervention for reducing self-reported anxiety symptoms specifically.",
+      "figure": null,
+      "caveats": "Only 6 trials / 339 participants underlie this estimate, with very high heterogeneity (I2=94.8%); same self-report/clinician-rated divergence caveat as the depression edges from this paper."
+    },
+    {
+      "behavior_id": "saffron",
+      "marker_id": "anxiety_symptoms",
+      "direction": null,
+      "effect": "No significant effect on the clinician-rated Hamilton Anxiety Rating Scale (HARS)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Adults, subset of the same 34 RCTs reporting HARS as the outcome",
+      "conditional_on": "Clinician-rated instrument specifically, contrasted with the significant self-reported BAI result above",
+      "paper": {
+        "doi": "10.1080/1028415X.2025.2602153",
+        "title": "Effect of saffron on depression, anxiety and mood disorder: a GRADE assessed systematic review and meta-analysis of 34 randomized controlled trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs (GRADE-assessed)",
+        "n": null
+      },
+      "verbatim": "No significant effects were observed for the HDRS, HARS, or POMS.",
+      "key_results": "The same meta-analysis found no significant effect on the clinician-rated HARS, in contrast to the significant self-reported BAI finding. Lack of clinician-rated effects underscores the need for high-quality trials before treating saffron's anxiolytic effect as established.",
+      "figure": null,
+      "caveats": "No specific WMD or CI reported for the HARS null result in the abstract."
+    },
+    {
+      "behavior_id": "probiotics_psychobiotics",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "SMD = -0.53 (95% CI: -0.67 to -0.39), Z = 7.33, p < 0.001",
+      "effect_normalized": -0.53,
+      "normalization_method": "SMD vs placebo",
+      "evidence_tier": "A",
+      "population": "Mixed: individuals with anxiety/depression disorders, chronic-disease patients, and healthy populations with depressive or anxiety symptoms; 63 studies, 2,880 intervention and 2,493 control participants for the depression outcome",
+      "conditional_on": "Pools probiotics, prebiotics, and synbiotics together (subgroup analyses indicated each independently alleviated depression); effect varied by population, intervention duration, and probiotic strain/type; contrasts with the null finding in clinically diagnosed MDD patients specifically (see paired null edge below)",
+      "paper": {
+        "doi": "10.1186/s12888-025-07644-z",
+        "title": "The efficacy of probiotics, prebiotics, and synbiotics on anxiety, depression, and sleep: a systematic review and meta-analysis of randomized controlled trials",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 2880
+      },
+      "verbatim": "The meta-analysis demonstrated significant reductions compared to placebo in depression (SMD = - 0.53, 95% CI: -0.67 to - 0.39, Z = 7.33, P < 0.001) and anxiety (SMD = - 0.44, 95% CI: -0.59 to - 0.28, P < 0.001).",
+      "key_results": "A total of 72 RCTs were included (3,319 intervention and 2,778 control participants), with 63 studies examining depression. The meta-analysis demonstrated significant reductions compared to placebo in depression (SMD=-0.53). Subgroup analyses indicated that probiotics, prebiotics, and synbiotics each independently alleviated depression. The impact varied by population, intervention duration, and probiotic types. Given the high heterogeneity and limited methodological quality of the included studies, further large-scale and high-quality RCTs with long-term follow-up are needed.",
+      "figure": null,
+      "caveats": "High heterogeneity and limited methodological quality across included studies per the authors' own conclusion; pools a mixed population that is broader (and likely more responsive) than clinically diagnosed MDD alone, where the He 2023 meta-analysis below found no significant effect."
+    },
+    {
+      "behavior_id": "probiotics_psychobiotics",
+      "marker_id": "depressive_symptoms",
+      "direction": null,
+      "effect": "Overall effect on depressive symptoms was negligible and not statistically significant (no pooled effect size reported)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Patients with major depressive disorder specifically; 4 RCTs, assessment periods of 1-2 months, primarily female",
+      "conditional_on": "Clinically diagnosed MDD population specifically, contrasted with the significant mixed-population finding above from a much larger evidence base (63 studies vs 4 studies)",
+      "paper": {
+        "doi": "10.1097/MD.0000000000036005",
+        "title": "Effect of probiotic supplementation on cognition and depressive symptoms in patients with depression: A systematic review and meta-analysis",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Concerning cognitive outcomes, a statistically significant moderate improvement was found with probiotic supplementation, based on the mean difference and its 95% confidence interval. However, for depressive symptoms, the overall effect was negligible and not statistically significant.",
+      "key_results": "Of 635 records initially identified, 4 studies were ultimately included, conducted across diverse regions, primarily involving females, with assessment periods of 1-2 months. For depressive symptoms specifically, the overall effect was negligible and not statistically significant, while cognitive outcomes showed significant improvement. A heterogeneity test indicated consistent findings across studies (I2=0%). Egger's test suggested no significant publication bias, though caution is advised given the limited number of studies.",
+      "figure": null,
+      "caveats": "Very small evidence base (only 4 RCTs) specific to clinically diagnosed MDD patients; illustrates that the positive pooled probiotics-depression effect seen in mixed/subclinical populations (Zhang 2025 above) does not clearly replicate in a small, clinically-diagnosed-only sample, though the small n here limits how much weight this null should carry on its own."
+    },
+    {
+      "behavior_id": "probiotics_psychobiotics",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "SMD = -0.44 (95% CI: -0.59 to -0.28), p < 0.001",
+      "effect_normalized": -0.44,
+      "normalization_method": "SMD vs placebo",
+      "evidence_tier": "A",
+      "population": "Mixed: individuals with anxiety/depression disorders, chronic-disease patients, and healthy populations with anxiety symptoms; 49 studies, 2,124 intervention and 1,788 control participants",
+      "conditional_on": "Pools probiotics, prebiotics, and synbiotics together; subgroup analyses indicated each independently alleviated anxiety; effect varied by population, duration, and strain",
+      "paper": {
+        "doi": "10.1186/s12888-025-07644-z",
+        "title": "The efficacy of probiotics, prebiotics, and synbiotics on anxiety, depression, and sleep: a systematic review and meta-analysis of randomized controlled trials",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 2124
+      },
+      "verbatim": "The meta-analysis demonstrated significant reductions compared to placebo in depression (SMD = - 0.53, 95% CI: -0.67 to - 0.39, Z = 7.33, P < 0.001) and anxiety (SMD = - 0.44, 95% CI: -0.59 to - 0.28, P < 0.001).",
+      "key_results": "49 studies (2,124 intervention and 1,788 control participants) examined anxiety using probiotic/prebiotic/synbiotic interventions. The meta-analysis demonstrated a significant reduction compared to placebo in anxiety (SMD=-0.44). Both probiotics, prebiotics, and synbiotics independently alleviated anxiety in subgroup analyses. Given high heterogeneity and limited methodological quality, further large-scale, high-quality RCTs with long-term follow-up are needed to validate these outcomes.",
+      "figure": null,
+      "caveats": "Same heterogeneity/methodological-quality caveat as the depression edge from this paper."
+    },
+    {
+      "behavior_id": "loneliness_social_isolation",
+      "marker_id": "depressive_symptoms",
+      "direction": "+",
+      "effect": "Pooled adjusted odds ratio 2.33 (95% CI 1.62-3.34) for new-onset depression in adults who were often lonely vs not often lonely",
+      "effect_normalized": 2.33,
+      "normalization_method": "pooled adjusted odds ratio, longitudinal cohort meta-analysis",
+      "evidence_tier": "C",
+      "population": "General population adults, longitudinal cohorts; meta-analysis of 8 independent cohorts within a broader narrative synthesis of 32 studies",
+      "conditional_on": "Outcome is new-onset clinical/diagnostic depression (not a continuous symptom-scale score), which is a coarser marker than the PHQ-9/BDI/HAM-D instruments used elsewhere in this dataset; should be interpreted with caution given noted heterogeneity across the 8 pooled cohorts",
+      "paper": {
+        "doi": "10.1007/s00127-022-02261-7",
+        "title": "Loneliness and the onset of new mental health problems in the general population",
+        "year": 2022,
+        "design": "systematic review and meta-analysis of longitudinal cohort studies",
+        "n": null
+      },
+      "verbatim": "Our meta-analysis found a pooled adjusted odds ratio of 2.33 (95% CI 1.62-3.34) for risk of new onset depression in adults who were often lonely compared with people who were not often lonely. This should be interpreted with caution given evidence of heterogeneity.",
+      "key_results": "32 studies were included, most focusing on depression; a meta-analysis of eight independent cohorts and a narrative synthesis of the remaining studies were conducted. Most studies show loneliness at baseline is associated with subsequent new-onset depression. The pooled adjusted odds ratio was 2.33 for new-onset depression in adults who were often lonely. This should be interpreted with caution given evidence of heterogeneity. Loneliness is a growing public mental health issue associated with the onset of depression and other common mental health problems.",
+      "figure": null,
+      "caveats": "As an observational, longitudinal-cohort design, causality cannot be established (reverse causation — incipient depression causing withdrawal and perceived loneliness — is plausible and not fully ruled out by baseline-loneliness-predicts-later-depression designs); this marker (new-onset depression diagnosis) is coarser than the continuous PHQ-9/BDI/HAM-D scales used for other edges in this dataset."
+    },
+    {
+      "behavior_id": "alcohol_use_disorder",
+      "marker_id": "depressive_symptoms",
+      "direction": "+",
+      "effect": "Relative risk (RR) = 1.57 (95% CI 1.41-1.76) for subsequent depressive symptoms in those with alcohol use disorder",
+      "effect_normalized": 1.57,
+      "normalization_method": "pooled relative risk, cohort meta-analysis",
+      "evidence_tier": "C",
+      "population": "338,426 participants from 42 cohort studies, follow-up 1-40 years, mixed sex",
+      "conditional_on": "This RR applies to clinically diagnosed alcohol use disorder (AUD) specifically, not to alcohol intake generally; dose-response and categorical analyses in the same paper found a J-shaped relationship where light-to-moderate drinking was associated with decreased risk of depressive symptoms relative to abstinence, while heavy drinking's elevated risk (RR 1.13 vs non-heavy drinkers) became non-significant once publication bias and confounding were accounted for",
+      "paper": {
+        "doi": "10.1111/add.14935",
+        "title": "Effect of alcohol use disorders and alcohol intake on the risk of subsequent depressive symptoms: a systematic review and meta-analysis of cohort studies",
+        "year": 2020,
+        "design": "meta-analysis of cohort studies",
+        "n": 338426
+      },
+      "verbatim": "AUD was associated with significantly increased risk of subsequent depressive symptoms [relative risk (RR) = 1.57, 95% confidence interval (CI) = 1.41-1.76]. Regarding alcohol intake, heavy drinking had an increased risk of depressive symptoms; however, the association was only significant when controls were limited to non-heavy drinkers (RR = 1.13, 95% CI = 1.05-1.22). Taking into consideration the possibility of publication bias and confounding factors made the association non-significant.",
+      "key_results": "42 studies with 338,426 participants and follow-up of 1-40 years were analyzed. AUD was associated with significantly increased risk of subsequent depressive symptoms (RR=1.57). Heavy drinking's association with depressive symptoms was significant only versus non-heavy drinkers and became non-significant once publication bias and confounding were considered. A J-shaped association was observed in both categorical and dose-response analyses: light-to-moderate drinking had significantly decreased risk of depression, while heavy drinking did not show a significant association compared with non-drinkers once bias was accounted for.",
+      "figure": null,
+      "caveats": "The relationship is J-shaped, not monotonic: this edge captures only the clinically diagnosed AUD estimate (RR=1.57, robust), while the heavy-drinking-vs-non-heavy-drinker estimate (RR=1.13) became non-significant after accounting for publication bias and confounding, and light-to-moderate intake showed a protective association in the same paper. As in Goal B's alcohol/CRP handling, this non-monotonic curve is not compressed into a single number; only the robust AUD-specific estimate is shipped as a quantified edge."
+    },
+    {
+      "behavior_id": "sleep_deprivation",
+      "marker_id": "anxiety_symptoms",
+      "direction": "+",
+      "effect": "SMD range 0.57 to 0.63 across sleep-loss types",
+      "effect_normalized": 0.57,
+      "normalization_method": "SMD range, meta-analysis of experimental studies",
+      "evidence_tier": "A",
+      "population": "Healthy populations in experimental sleep-loss studies (total sleep deprivation, partial sleep restriction, or sleep fragmentation); 154 studies, 1,338 effect sizes, N=5,717, ages 7-79",
+      "conditional_on": "Applies to experimentally induced sleep loss (not naturalistic short sleep) in otherwise healthy participants; nonlinear effects were detected for the amount of sleep loss and differed by which sleep stage (REM vs slow-wave) was restricted",
+      "paper": {
+        "doi": "10.1037/bul0000410",
+        "title": "Sleep loss and emotion: A systematic review and meta-analysis of over 50 years of experimental research",
+        "year": 2024,
+        "design": "meta-analysis of experimental (randomized/controlled) sleep-loss studies",
+        "n": 5717
+      },
+      "verbatim": "Random effects models were conducted, and all forms of sleep loss resulted in reduced positive affect (standardized mean difference [SMD] = -0.27 to -1.14), increased anxiety symptoms (SMD = 0.57-0.63), and blunted arousal in response to emotional stimuli (SMD = -0.20 to -0.53).",
+      "key_results": "1,338 effect sizes across 154 studies were included (N=5,717; ages 7-79). All forms of sleep loss resulted in increased anxiety symptoms (SMD=0.57-0.63) and reduced positive affect. Findings for negative affect and depressive symptoms were mixed and depended on the type of sleep loss. Nonlinear effects for the amount of sleep loss, and differences based on which sleep stage was restricted, were also detected. This provides strong evidence that extended wakefulness, shortened sleep duration, and nighttime awakenings adversely influence human emotional functioning.",
+      "figure": null,
+      "caveats": "The 0.57-0.63 figure is a range across different sleep-loss manipulation types (total deprivation, partial restriction, fragmentation) rather than one single pooled estimate; population is predominantly healthy volunteers under experimental (not naturalistic chronic) conditions."
+    },
+    {
+      "behavior_id": "sleep_deprivation",
+      "marker_id": "depressive_symptoms",
+      "direction": null,
+      "effect": "Findings for depressive symptoms were mixed and depended on the type of sleep loss (no single pooled effect size reported)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - mixed/null result",
+      "evidence_tier": "A",
+      "population": "Healthy populations in experimental sleep-loss studies, same 154-study evidence base as the anxiety edge above",
+      "conditional_on": "Unlike anxiety symptoms and positive affect, which moved consistently across all sleep-loss types, depressive-symptom findings depended on which type of sleep loss (total deprivation vs partial restriction vs fragmentation) was used",
+      "paper": {
+        "doi": "10.1037/bul0000410",
+        "title": "Sleep loss and emotion: A systematic review and meta-analysis of over 50 years of experimental research",
+        "year": 2024,
+        "design": "meta-analysis of experimental (randomized/controlled) sleep-loss studies",
+        "n": 5717
+      },
+      "verbatim": "Findings for negative affect, reports of emotional valence in response to emotional stimuli, and depressive symptoms were mixed and depended on the type of sleep loss.",
+      "key_results": "In the same comprehensive meta-analysis of 154 experimental sleep-loss studies, findings for depressive symptoms were mixed and depended on the type of sleep loss, unlike the more consistent anxiety-symptom and positive-affect findings. This divergence between anxiety and depressive symptom responses to sleep loss is recorded as a genuine null/mixed result rather than folded into the anxiety estimate.",
+      "figure": null,
+      "caveats": "No quantified effect size is given for depressive symptoms in the abstract; recorded per design-spec section 5.3 as a null/mixed result rather than omitted."
+    },
+    {
+      "behavior_id": "time_in_nature",
+      "marker_id": "depressive_symptoms",
+      "direction": "-",
+      "effect": "-0.64 (95% CI: 1.05 to -0.23, as printed in source abstract) for improving depressive mood, RCTs only",
+      "effect_normalized": -0.64,
+      "normalization_method": "SMD/Hedges-type effect size vs control, random-effects meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Community-based adults (>=18 years), with or without pre-existing mental/physical health problems; 16 RCTs within a 50-study systematic review",
+      "conditional_on": "Most effective interventions were offered for 8-12 weeks at an optimal dose of 20-90 minutes per session; specific modalities identified as effective were gardening, green exercise, and nature-based therapy",
+      "paper": {
+        "doi": "10.1016/j.ssmph.2021.100934",
+        "title": "Nature-based outdoor activities for mental and physical health: Systematic review and meta-analysis",
+        "year": 2021,
+        "design": "systematic review and meta-analysis of RCTs, controlled, and uncontrolled studies (RCT subset used here)",
+        "n": null
+      },
+      "verbatim": "Random effects meta-analysis of RCTs showed that NBIs were effective for improving depressive mood -0.64 (95% CI: 1.05 to -0.23), reducing anxiety -0.94 (95% CI: 0.94 to -0.01), improving positive affect 0.95 (95% CI: 0.59 to 1.31), and reducing negative affect -0.52 (95% CI: 0.77 to -0.26).",
+      "key_results": "50 studies were included: 16 RCTs, 18 controlled studies, and 16 uncontrolled before-and-after studies. Random effects meta-analysis of RCTs showed that nature-based interventions were effective for improving depressive mood (-0.64) and reducing anxiety (-0.94). Results from controlled and uncontrolled studies largely reflected the RCT findings. The most effective interventions were offered for 8-12 weeks at an optimal dose of 20-90 minutes. Nature-based interventions, specifically gardening, green exercise, and nature-based therapy, are effective for improving mental health outcomes in adults, including those with pre-existing mental health problems.",
+      "figure": null,
+      "caveats": "The source abstract prints the confidence interval as '1.05 to -0.23' without a leading minus sign on the lower/upper bound; given the point estimate of -0.64 and the identical pattern in the paired anxiety CI ('0.94 to -0.01') in the same sentence, this is treated as a dropped minus sign in the abstract's typesetting (i.e. the interval is read as -1.05 to -0.23) rather than as an asymmetric or positive bound; the effect field intentionally reproduces the abstract's own printed form rather than silently 'correcting' it. Risk of bias for the RCT subset was rated low-to-moderate (better than the controlled/uncontrolled subsets, which were moderate-to-high); a 2026 network meta-analysis of green exercise specifically (DOI 10.3389/fpubh.2026.1831073, 15 RCTs, SMD -0.96 vs control on a composite depression/anxiety/distress measure) corroborates the direction with a larger point estimate, though on a composite rather than a depression-only outcome."
+    },
+    {
+      "behavior_id": "time_in_nature",
+      "marker_id": "anxiety_symptoms",
+      "direction": "-",
+      "effect": "-0.94 (95% CI: 0.94 to -0.01, as printed in source abstract) for reducing anxiety, RCTs only",
+      "effect_normalized": -0.94,
+      "normalization_method": "SMD/Hedges-type effect size vs control, random-effects meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Community-based adults, with or without pre-existing mental/physical health problems; 16 RCTs within a 50-study systematic review",
+      "conditional_on": "Same dose/format conditions as the depressive-mood edge above (8-12 week interventions, 20-90 min sessions, gardening/green exercise/nature-based therapy most effective)",
+      "paper": {
+        "doi": "10.1016/j.ssmph.2021.100934",
+        "title": "Nature-based outdoor activities for mental and physical health: Systematic review and meta-analysis",
+        "year": 2021,
+        "design": "systematic review and meta-analysis of RCTs, controlled, and uncontrolled studies (RCT subset used here)",
+        "n": null
+      },
+      "verbatim": "Random effects meta-analysis of RCTs showed that NBIs were effective for improving depressive mood -0.64 (95% CI: 1.05 to -0.23), reducing anxiety -0.94 (95% CI: 0.94 to -0.01), improving positive affect 0.95 (95% CI: 0.59 to 1.31), and reducing negative affect -0.52 (95% CI: 0.77 to -0.26).",
+      "key_results": "The RCT subset (16 trials) of this 50-study review found nature-based interventions reduced anxiety with an effect size of -0.94, the largest of the four mental-health outcomes assessed. There was less evidence that nature-based interventions improved physical health outcomes specifically. The most effective interventions ran 8-12 weeks with 20-90 minute sessions.",
+      "figure": null,
+      "caveats": "The source abstract prints this CI as '0.94 to -0.01' without a leading minus sign on the first bound (the same dropped-sign pattern appears in the paired depressive-mood CI in the same sentence, '1.05 to -0.23'); read literally this makes the CI unusually wide and imprecise, nearly touching the null boundary, though the true lower bound may be intended as more negative. The effect field reproduces the abstract's own printed form rather than silently 'correcting' it; likely driven by a small number of RCTs reporting anxiety outcomes specifically."
+    }
+  ],
+  "cut_candidates": [
+    { "candidate": "Alcohol -> anxiety_symptoms", "reason": "No meta-analysis was found within the research budget that reports a clean, quantified pooled effect size for alcohol/AUD on a named anxiety instrument (GAD-7/STAI/HAM-A) with a verbatim-derivable number; available hits were either off-topic (PTSD neuroimaging papers matched by keyword overlap) or lacked a quantified anxiety-specific estimate." },
+    { "candidate": "D-aspartic acid / Tribulus terrestris (expected null)", "reason": "Not part of this goal's candidate list (these were Goal A/testosterone candidates); no mood-specific trials of either were identified as worth pursuing under the mood/anxiety goal, so they were not investigated here." },
+    { "candidate": "St John's wort -> anxiety_symptoms", "reason": "The literature on Hypericum focuses almost exclusively on depression outcomes; no dedicated meta-analysis isolating an anxiety-symptom instrument for St John's wort (as opposed to depression trials that happen to report an anxiety subscale) was found." },
+    { "candidate": "Aerobic/resistance exercise -> cortisol (diurnal slope)", "reason": "Pascoe 2017 (DOI 10.1016/j.psyneuen.2017.08.008) reports yoga/MBSR practices were associated with 'reduced evening cortisol, waking cortisol' but gives no quantified effect size or CI in the abstract, so no verbatim-derivable number could be extracted; the cortisol marker is instead covered via the mindfulness-based-interventions behavior using Rogerson et al 2024, which does report a quantified estimate." },
+    { "candidate": "Loneliness-reduction intervention (e.g. befriending, social prescribing) -> depressive_symptoms as an RCT effect", "reason": "Search effort found only observational/longitudinal-cohort evidence for the loneliness-depression relationship (Mann et al 2022, used above); no RCT meta-analysis of a loneliness-reduction intervention with a quantified depressive-symptom effect size was located within the research budget, so the behavior is represented only via the risk-factor direction, not an interventional reversal." },
+    { "candidate": "Time in nature -> cortisol", "reason": "Candidate searches for nature exposure and cortisol/HPA-axis outcomes returned disaster-exposure and natural-hazard mental health reviews (keyword collision on 'nature') rather than green-space/forest-bathing cortisol trials with a quantified pooled estimate; not pursued further given time budget." }
+  ]
+}

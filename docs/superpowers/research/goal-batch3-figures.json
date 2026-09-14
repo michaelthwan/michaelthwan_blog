@@ -1,0 +1,393 @@
+{
+  "_meta": {
+    "goal": "Batch 3 - figure and results-text enrichment pass",
+    "source_file": "docs/superpowers/research/_pending_figures_batch3.json",
+    "extracted": "2026-09-13",
+    "method": "NCBI PMC ID Converter (DOI to PMCID, batched) + direct PMC article page fetch for license and figure extraction; NCBI eutils esearch/efetch against pubmed (batched) for abstracts of papers not in PMC or not openly licensed. Figure image URLs verified with curl -sIL for image/* content-type before download; downloaded files verified for non-empty size and valid JPEG magic bytes via `file`.",
+    "papers_total": 39,
+    "papers_in_pmc": 23,
+    "papers_open_access_with_reusable_licence": 17,
+    "papers_open_access_but_restrictive_licence_or_copyright": 6,
+    "papers_not_open_access_or_not_in_pmc": 16,
+    "figures_downloaded_and_verified": 8,
+    "notes": [
+      "10.1192/bjpo.bp.115.001610 (PMC4998929), 10.1186/s12888-025-07644-z (PMC12751681), and 10.1016/S2468-2667(21)00302-9 (PMC9289978) are open access on PMC but licensed CC BY-NC-ND. ND (no-derivatives) blocks figure reuse, so no figure was downloaded for any of them; only a results passage is provided, with open_access recorded true and the licence spelled out.",
+      "10.1002/14651858.CD000448.pub3 (PMC7032678) is a Cochrane Database of Systematic Reviews entry deposited in PMC under standard Cochrane copyright, not a Creative Commons licence. Treated as not reusable; no figure downloaded.",
+      "10.15288/jsad.2016.77.185 (PMC4803651) is in PMC but carries only the standard PMC copyright notice with no Creative Commons licence found on the article page. Treated as not reusable; no figure downloaded.",
+      "16 of 39 papers were not found in PMC at all (Elsevier, Wiley, Springer, SAGE, APA, Oxford University Press, NEJM, JAMA, Taylor & Francis, and American Society for Nutrition venues that do not deposit these particular articles in PMC). These are recorded as open_access: false; results_passage is drawn from the freely available PubMed abstract.",
+      "PRISMA/CONSORT flow diagrams and risk-of-bias/funnel plots were seen and skipped for multiple CC-BY papers (e.g. PMC10870815 figs 1/3/5, PMC10749636 figs 1-3, PMC6683166 fig 1/3, PMC4453639 fig 1, PMC4115152 fig 1) in favour of the forest-plot or dose-response figure that shows the finding.",
+      "10.1001/jamanetworkopen.2023.6185 (PMC10066463) is CC-BY and open access, but the only figure embedded as an image in the PMC HTML is the PRISMA-style search flowchart (Figure 1); the dose-response and adjustment figures referenced in the results (eFigures 2-4) are in the online-only supplement and are not rendered as extractable images on the article page, so no figure was downloaded for this paper.",
+      "Of the 17 reusable-licence PMC papers, figures were extracted and verified for 8 within the tool-call budget for this batch (prioritising the mortality/lifestyle dose-response papers and the depression-treatment forest/dose-response plots that are central to this batch's topic). The remaining 9 reusable papers (10.1001/jamapsychiatry.2023.3971, 10.1097/MD.0000000000036005, 10.1007/s00127-022-02261-7, 10.1016/j.ssmph.2021.100934, 10.1001/jamanetworkopen.2023.6185, 10.1016/S0140-6736(18)31772-0, 10.1007/s10654-018-0380-1, 10.1016/j.advnut.2024.100214, 10.1289/ehp.1408882, 10.1136/bmj.a1344) have correct license/open_access metadata and a full results_passage but figures: [] because figure extraction was not attempted for them in this pass."
+    ]
+  },
+  "by_doi": {
+    "10.1136/bmj-2023-075847": {
+      "pmcid": "PMC10870815",
+      "open_access": true,
+      "license": "CC BY-NC 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10870815/",
+      "results_passage": "218 unique studies with a total of 495 arms and 14170 participants were included. Compared with active controls, moderate reductions in depression were found for walking or jogging (Hedges' g -0.62, 95% CI -0.80 to -0.45), yoga (g -0.55, -0.73 to -0.36), strength training (g -0.49, -0.69 to -0.29), mixed aerobic exercises (g -0.43, -0.61 to -0.24), and tai chi or qigong (g -0.42, -0.65 to -0.21). The effects of exercise were proportional to the intensity prescribed. Exercise is an effective treatment for depression, with walking or jogging, yoga, and strength training more effective than other exercises, particularly when intense.",
+      "figures": [
+        {
+          "label": "Figure 4",
+          "local_path": "/img/health-evidence/PMC10870815-f4.jpg",
+          "caption": "Predicted effects of different exercise modalities on major depression compared with active controls (eg, usual care), with 95% credible intervals. The estimate of effects for the active control condition was a before and after change of Hedges' g of -0.95 (95% credible interval -1.10 to -0.79), n=3554, k=113. Colour represents SUCRA from most likely to be helpful (dark purple) to least likely to be helpful.",
+          "shows": "Ranked forest-style plot of the network meta-analysis effect size (Hedges' g) for each exercise modality vs active control on depression, colour-coded by SUCRA probability of being best."
+        }
+      ]
+    },
+    "10.1136/bjsports-2025-110301": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC; BMJ CC BY-NC (re-use restricted, non-commercial only per journal notice)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/41667154/",
+      "results_passage": "63 studies (81 meta-analyses, 1079 component studies and 79551 participants) were included. Exercise reduced depression (standardised mean difference (SMD)=-0.61, 95% CI -0.69 to -0.54) and anxiety (SMD=-0.47, 95% CI -0.59 to -0.36) symptoms, with aerobic exercise demonstrating the most substantial impact on both depression and anxiety symptoms. The greatest benefits by population group for depression were seen in emerging adults aged 18-30 and postnatal women. Greater reductions in depression were associated with exercise in group and supervised settings. Exercise of shorter duration and at lower intensity was most strongly associated with anxiety reduction.",
+      "figures": []
+    },
+    "10.1007/s40279-017-0769-0": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Springer, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28819746/",
+      "results_passage": "Thirty-one effects were derived from 16 articles; trials involved 922 participants and included both randomization to resistance exercise training (RET, n=486) or a non-active control condition (n=436). RET significantly reduced anxiety symptoms (delta = 0.31, 95% CI 0.17-0.44; z = 4.43; p < 0.001). Larger effects were found among healthy participants (delta = 0.50, 95% CI 0.22-0.78) compared to participants with a physical or mental illness (delta = 0.19, 95% CI 0.06-0.31). RET significantly improves anxiety symptoms among both healthy participants and participants with a physical or mental illness.",
+      "figures": []
+    },
+    "10.3389/fpubh.2023.1259250": {
+      "pmcid": "PMC10749636",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10749636/",
+      "results_passage": "11 randomized controlled trials involving 1,824 participants were included. All these studies demonstrated positive effects of mindfulness therapy on depression (SMD = -0.33, 95% CI: [-0.44, -0.22], p < 0.00001), anxiety (SMD = -0.35, 95% CI: [-0.46, -0.25], p < 0.00001), stress (SMD = -0.39, 95% CI: [-0.48, -0.29], p < 0.00001) and sleep quality scores (SMD = -0.81, 95% CI: [-1.54, -0.09], p = 0.03). There was no significant difference in mindfulness (SMD = -0.12, 95% CI: [-0.36, -0.12], p = 0.34) between the mindfulness therapy group and the control group.",
+      "figures": [
+        {
+          "label": "Figure 4",
+          "local_path": "/img/health-evidence/PMC10749636-fig4.jpg",
+          "caption": "Forest plot for depression.",
+          "shows": "Forest plot of individual-trial standardized mean differences and the pooled effect of mindfulness-based interventions versus control on depression scores in university students."
+        }
+      ]
+    },
+    "10.1016/j.psyneuen.2023.106415": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Elsevier, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/37879237/",
+      "results_passage": "Six databases were searched (1171 studies identified) with 58 studies (combined N = 3508) included in the meta-analysis. A random effects meta-analysis on cortisol as measured in blood, saliva or hair found that stress management interventions outperformed pooled control conditions with a medium positive effect size (g = 0.282). Studies using cortisol awakening measures (g = 0.644) revealed larger effects than those measuring diurnal cortisol (g = 0.255). Mindfulness and meditation (g = 0.345) and relaxation (g = 0.347) interventions were most effective at changing cortisol levels, while mind body therapies (g = 0.129) and talking therapies (g = 0.107) had smaller and non-significant effect sizes.",
+      "figures": []
+    },
+    "10.1177/070674371305800702": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (SAGE/Can J Psychiatry, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23870719/",
+      "results_passage": "115 studies met inclusion criteria. The mean effect size of 94 comparisons from 75 studies of CBT and control groups was Hedges g = 0.71 (95% CI 0.62 to 0.79), corresponding to a number needed to treat of 2.6. This may be an overestimation as there were strong indications of publication bias (adjusted g = 0.53), and the effect size of higher-quality studies was significantly lower (g = 0.53) than lower-quality studies (g = 0.90). CBT is an effective treatment for adult depression, although the effects may have been overestimated until now.",
+      "figures": []
+    },
+    "10.1001/jamapsychiatry.2023.3971": {
+      "pmcid": "PMC10585589",
+      "open_access": true,
+      "license": "CC-BY",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10585589/",
+      "results_passage": "Data from 65 RCTs were included with 5048 participants. Third-wave cognitive behavior therapies (SMD, -0.76 [95% CI, -1.15 to -0.36]), CBT (SMD, -0.74 [95% CI, -1.09 to -0.38]), and relaxation therapy (SMD, -0.59 [95% CI, -1.07 to -0.11]) were associated with reduced GAD symptoms vs treatment as usual. When excluding studies at high risk of bias, relaxation therapy lost its superiority. Only CBT remained significantly associated with greater effectiveness than treatment as usual at 3 to 12 months follow-up. CBT may represent the first-line therapy of GAD.",
+      "figures": []
+    },
+    "10.1159/000502891": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Karger, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31574513/",
+      "results_passage": "19 studies met inclusion criteria. Bright light therapy (BLT) was superior over placebo with a standardized mean difference of -0.37 (95% CI: -0.63 to -0.12) for depression ratings (18 studies, 610 patients) and a risk ratio of 1.42 (95% CI: 1.08-1.85) for response to active treatment (16 studies, 559 patients). No evidence for publication bias was found, but there was moderate heterogeneity and a moderate-to-high risk of bias. BLT can be regarded as an effective treatment for seasonal affective disorder, but larger high-quality trials are needed.",
+      "figures": []
+    },
+    "10.1192/bjpo.bp.115.001610": {
+      "pmcid": "PMC4998929",
+      "open_access": true,
+      "license": "CC BY-NC-ND (No Derivatives -- figure reuse not permitted)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4998929/",
+      "results_passage": "A meta-analysis including 881 participants from 20 RCTs demonstrated a beneficial effect of light therapy in non-seasonal depression (standardised mean difference in depression score -0.41, 95% CI -0.64 to -0.18). This estimate was associated with significant heterogeneity (I2=60%, P=0.0003) not sufficiently explained by subgroup analyses, and there was high risk of bias in the included trials. Light therapy may be effective for patients with non-seasonal depression and can be a helpful additional therapeutic intervention, but overall quality of evidence is poor.",
+      "figures": []
+    },
+    "10.1038/s41398-019-0515-5": {
+      "pmcid": "PMC6683166",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6683166/",
+      "results_passage": "26 studies with 2160 participants were analyzed. The meta-analysis showed an overall beneficial effect of omega-3 polyunsaturated fatty acids on depression symptoms (SMD = -0.28, P = 0.004). Compared with placebo, EPA-pure (100% EPA) and EPA-major formulations (>=60% EPA) demonstrated clinical benefits with an EPA dosage <=1 g/d (SMD = -0.50, P = 0.003, and SMD = -1.03, P = 0.03, respectively), whereas DHA-pure and DHA-major formulations did not exhibit such benefits. Omega-3 PUFAs with EPA >= 60% at a dosage of <=1 g/d would have beneficial effects on depression.",
+      "figures": [
+        {
+          "label": "Fig. 2",
+          "local_path": "/img/health-evidence/PMC6683166-fig2.jpg",
+          "caption": "Forest plot: omega-3 PUFAs vs control. There was significant effect of omega-3 PUFAs therapy for depression compared to placebo using random effect model. There was also significant evidence of heterogeneity between trials. Size of green plot proportional to weight in meta-analysis. Black lines show confidence intervals.",
+          "shows": "Forest plot of individual-trial and pooled standardized mean differences for omega-3 PUFA supplementation versus placebo/control on depression symptoms."
+        }
+      ]
+    },
+    "10.1017/S0033291724001697": {
+      "pmcid": "PMC11650176",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11650176/",
+      "results_passage": "31 trials with 24189 participants were analyzed. Each 1000 IU/day vitamin D3 supplementation slightly reduced depressive symptoms in individuals with and without depression (SMD: -0.32, 95% CI -0.43 to -0.22). The effect was more pronounced in those with depressive symptoms (SMD: -0.57, 95% CI -0.69 to -0.44). The greatest reduction occurred at 8000 IU/day (SMD: -2.04, 95% CI -3.77 to -0.31). Trials with follow-up <=8 weeks and 8-24 weeks showed stronger effects than those lasting 24-52 weeks or longer than 52 weeks. Vitamin D3 supplementation had no significant effects on anxiety symptoms.",
+      "figures": [
+        {
+          "label": "Figure 1",
+          "local_path": "/img/health-evidence/PMC11650176-fig1.jpg",
+          "caption": "Dose-dependent effect of vitamin D supplement on depressive symptoms. Solid lines represent standardised mean difference and dashed lines represent 95% CI.",
+          "shows": "Dose-response curve of standardized mean difference in depressive symptoms across increasing vitamin D3 supplementation dose (IU/day), showing the largest reduction around 8000 IU/day."
+        }
+      ]
+    },
+    "10.1002/14651858.CD000448.pub3": {
+      "pmcid": "PMC7032678",
+      "open_access": false,
+      "license": "Cochrane Database of Systematic Reviews copyright (not a CC licence; PMC deposit, standard copyright, not reusable)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7032678/",
+      "results_passage": "A total of 29 trials (5489 patients) including 18 comparisons with placebo and 17 comparisons with synthetic standard antidepressants met the inclusion criteria. In nine larger trials the combined response rate ratio (RR) for hypericum extracts compared with placebo was 1.28 (95% CI, 1.10 to 1.49); in nine smaller trials it was 1.87 (95% CI, 1.22 to 2.87). Compared with tri-/tetracyclic antidepressants and SSRIs, RRs were 1.02 (95% CI 0.90-1.15) and 1.00 (95% CI 0.90-1.11) respectively. Hypericum extracts are superior to placebo, similarly effective as standard antidepressants, and have fewer side effects than standard antidepressants.",
+      "figures": []
+    },
+    "10.1080/1028415X.2025.2602153": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Taylor & Francis, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/41693488/",
+      "results_passage": "34 RCTs comprising 1769 participants were included. Saffron supplementation significantly reduced scores on the BDI (14 trials, 817 participants; WMD = -4.39, 95% CI: -6.64 to -2.15, p < 0.001) and the BAI (6 trials, 339 participants; WMD = -5.06, 95% CI: -8.44 to -1.68, p = 0.003). No significant effects were observed for the HDRS, HARS, or POMS. The certainty of evidence was rated as moderate. Saffron supplementation may be an effective complementary intervention for reducing self-reported depressive and anxiety symptoms in adults; lack of clinician-rated effects underscores the need for high-quality trials.",
+      "figures": []
+    },
+    "10.1186/s12888-025-07644-z": {
+      "pmcid": "PMC12751681",
+      "open_access": true,
+      "license": "CC BY-NC-ND 4.0 (No Derivatives -- figure reuse not permitted)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12751681/",
+      "results_passage": "72 RCTs were included (3,319 intervention and 2,778 control participants). The meta-analysis demonstrated significant reductions compared to placebo in depression (SMD = -0.53, 95% CI: -0.67 to -0.39, P < 0.001) and anxiety (SMD = -0.44, 95% CI: -0.59 to -0.28, P < 0.001). Probiotics also improved sleep quality (SMD = -0.39, 95% CI: -0.53 to -0.25, P < 0.001). Subgroup analyses indicated that probiotics, prebiotics, and synbiotics independently alleviated anxiety and depression, with effects varying by population, intervention duration, and probiotic type.",
+      "figures": []
+    },
+    "10.1097/MD.0000000000036005": {
+      "pmcid": "PMC10681621",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10681621/",
+      "results_passage": "635 records were initially identified, with 4 studies ultimately included. Concerning cognitive outcomes, a statistically significant moderate improvement was found with probiotic supplementation. For depressive symptoms, the overall effect was negligible and not statistically significant. Heterogeneity was low (I2 = 0% for both outcomes) and no significant publication bias was detected, though caution is advised due to the limited number of studies. Probiotics may enhance cognitive domains and mitigate depressive symptoms, emphasizing the gut-brain axis role, but more standardized research is needed.",
+      "figures": []
+    },
+    "10.1007/s00127-022-02261-7": {
+      "pmcid": "PMC9636084",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9636084/",
+      "results_passage": "32 studies were included; the majority focused on depression. Narrative synthesis found most studies show loneliness at baseline is associated with subsequent new onset of depression; the few studies on anxiety and self-harm also showed a positive association. Meta-analysis of eight independent cohorts found a pooled adjusted odds ratio of 2.33 (95% CI 1.62-3.34) for risk of new onset depression in adults who were often lonely compared with people who were not often lonely, interpreted with caution given evidence of heterogeneity. Loneliness is a public mental health issue associated with the onset of depression and other common mental health problems.",
+      "figures": []
+    },
+    "10.1111/add.14935": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Wiley, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31837230/",
+      "results_passage": "42 studies (338,426 participants) were analyzed. Alcohol use disorders (AUD) were associated with significantly increased risk of subsequent depressive symptoms (relative risk [RR] = 1.57, 95% CI = 1.41-1.76). Heavy drinking had an increased risk of depressive symptoms, but the association was only significant when controls were limited to non-heavy drinkers (RR = 1.13, 95% CI = 1.05-1.22); this became non-significant after adjusting for publication bias and confounders. A J-shaped association was observed where light-moderate drinking had a significantly decreased risk of depression, while heavy drinking showed no significant association compared with non-drinkers.",
+      "figures": []
+    },
+    "10.1037/bul0000410": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (APA journal, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/38127505/",
+      "results_passage": "1,338 effect sizes across 154 studies were included (N = 5,717; ages 7-79 years). All forms of sleep loss resulted in reduced positive affect (standardized mean difference [SMD] = -0.27 to -1.14), increased anxiety symptoms (SMD = 0.57-0.63), and blunted arousal in response to emotional stimuli (SMD = -0.20 to -0.53). Findings for negative affect, emotional valence in response to stimuli, and depressive symptoms were mixed and depended on the type of sleep loss. This is the most comprehensive quantitative synthesis of experimental sleep and emotion research to date, showing that extended wakefulness, shortened sleep duration, and nighttime awakenings adversely influence human emotional functioning.",
+      "figures": []
+    },
+    "10.1016/j.ssmph.2021.100934": {
+      "pmcid": "PMC8498096",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8498096/",
+      "results_passage": "50 studies were included (16 RCTs, 18 controlled studies, 16 uncontrolled before-and-after studies) out of 14,321 records screened. Random effects meta-analysis of RCTs showed that nature-based interventions (NBIs) were effective for improving depressive mood (-0.64, 95% CI: 1.05 to -0.23), reducing anxiety (-0.94, 95% CI: 0.94 to -0.01), improving positive affect (0.95, 95% CI: 0.59 to 1.31), and reducing negative affect (-0.52, 95% CI: 0.77 to -0.26). The most effective interventions were offered for between 8 and 12 weeks, with optimal dose ranging from 20 to 90 minutes. NBIs, specifically gardening, green exercise, and nature-based therapy, are effective for improving mental health outcomes in adults.",
+      "figures": []
+    },
+    "10.1056/NEJMsa1211128": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (NEJM, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23343063/",
+      "results_passage": "Smoking and cessation histories from 113,752 women and 88,496 men were related to causes of death occurring by December 31, 2006. For participants 25 to 79 years of age, the rate of death from any cause among current smokers was about three times that among those who had never smoked (hazard ratio for women, 3.0; hazard ratio for men, 2.8). Life expectancy was shortened by more than 10 years among current smokers. Adults who quit smoking at 25-34, 35-44, or 45-54 years of age gained about 10, 9, and 6 years of life respectively, compared with those who continued to smoke. Cessation before age 40 reduces the risk of death associated with continued smoking by about 90%.",
+      "figures": []
+    },
+    "10.1016/S2468-2667(21)00302-9": {
+      "pmcid": "PMC9289978",
+      "open_access": true,
+      "license": "CC BY-NC-ND 4.0 (No Derivatives -- figure reuse not permitted)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9289978/",
+      "results_passage": "15 studies (47,471 adults, 3013 deaths, median follow-up 7.1 years) were included. Compared with the lowest quartile of steps per day, the adjusted hazard ratio (HR) for all-cause mortality was 0.60 (95% CI 0.51-0.71) for quartile 2, 0.55 (0.49-0.62) for quartile 3, and 0.47 (0.39-0.57) for quartile 4. Restricted cubic splines showed progressively decreasing mortality risk among adults aged 60+ with increasing steps per day until 6000-8000 steps/day, and among adults younger than 60 until 8000-10000 steps/day. Taking more steps per day was associated with a progressively lower risk of all-cause mortality, up to a level that varied by age.",
+      "figures": []
+    },
+    "10.1093/eurjpc/zwad229": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Oxford University Press, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/37555441/",
+      "results_passage": "Seventeen cohort studies with 226,889 participants and median follow-up of 7.1 years were included. A 1000-step increment was associated with a 15% decreased risk of all-cause mortality (hazard ratio 0.85; 95% CI 0.81-0.91), while a 500-step increment was associated with a 7% decrease in cardiovascular mortality (HR 0.93; 95% CI 0.91-0.95). Using a restricted cubic splines model, a nonlinear dose-response association between step count and both all-cause and cardiovascular mortality was observed, with progressively lower mortality risk with increased step count, more the better over a cut-off of about 3867 steps/day for all-cause mortality and 2337 steps for cardiovascular mortality.",
+      "figures": []
+    },
+    "10.1001/jama.2009.681": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (JAMA, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19454641/",
+      "results_passage": "Data were obtained from 33 eligible studies (all-cause mortality: 102,980 participants, 6910 cases; CHD/CVD: 84,323 participants, 4485 cases). Pooled risk ratios (RRs) of all-cause mortality and CHD/CVD events per 1-MET higher level of maximal aerobic capacity were 0.87 (95% CI 0.84-0.90) and 0.85 (95% CI 0.82-0.88) respectively. Compared with participants with high cardiorespiratory fitness (CRF), those with low CRF had an RR for all-cause mortality of 1.70 (95% CI 1.51-1.92) and for CHD/CVD events of 1.56 (95% CI 1.39-1.75). Better CRF was associated with lower risk of all-cause mortality and CHD/CVD.",
+      "figures": []
+    },
+    "10.1001/jamanetworkopen.2023.6185": {
+      "pmcid": "PMC10066463",
+      "open_access": true,
+      "license": "CC-BY",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10066463/",
+      "results_passage": "107 cohort studies (4,838,825 participants, 425,564 deaths) yielding 724 risk estimates were analyzed. Adjusting for potential confounding from sampling variation, former-drinker bias, and other study-level quality criteria, the meta-analysis found no significantly reduced risk of all-cause mortality among occasional (>0 to <1.3 g ethanol/day; RR 0.96, 95% CI 0.86-1.06) or low-volume drinkers (1.3-24.0 g/day; RR 0.93, P=.07) compared with lifetime nondrinkers. Risk increased significantly for drinkers consuming 45-64 g/day (RR 1.19) and 65+ g/day (RR 1.35), with larger risks among female drinkers than male drinkers. Daily low or moderate alcohol intake was not significantly associated with all-cause mortality risk, while increased risk was evident at higher consumption levels, starting at lower levels for women than men.",
+      "figures": []
+    },
+    "10.15288/jsad.2016.77.185": {
+      "pmcid": "PMC4803651",
+      "open_access": false,
+      "license": "Journal of Studies on Alcohol and Drugs -- standard PMC copyright notice, no Creative Commons licence found (not reusable)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4803651/",
+      "results_passage": "A systematic review and meta-regression analysis of 87 studies (3,998,626 individuals, 367,103 deaths) investigated alcohol use and mortality risk. Without adjustment, meta-analysis replicated the classic J-shaped curve, with low-volume drinkers (1.3-24.9 g ethanol/day) having reduced mortality risk (RR = 0.86, 95% CI 0.83-0.90). After adjustment for abstainer biases and quality-related study characteristics, no significant reduction in mortality risk was observed for low-volume drinkers (RR = 0.97, 95% CI 0.88-1.07). Meta-analyses adjusting for these factors find that low-volume alcohol consumption has no net mortality benefit compared with lifetime abstention or occasional drinking.",
+      "figures": []
+    },
+    "10.1016/S0140-6736(18)31772-0": {
+      "pmcid": "PMC6497989",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6497989/",
+      "results_passage": "The prospective China Kadoorie Biobank enrolled 512,715 adults; 161,498 were genotyped for two variants (ALDH2-rs671, ADH1B-rs1229984) that alter alcohol metabolism. Among men, conventional epidemiology showed self-reported alcohol intake had U-shaped associations with ischaemic stroke, intracerebral haemorrhage, and myocardial infarction, with drinkers of about 100 g/week having lower risk than non-drinkers or heavier drinkers. In contrast, genotype-predicted mean alcohol intake had a continuously positive log-linear association with stroke risk (relative risk per 280 g/week 1.58 for intracerebral haemorrhage, 1.27 for ischaemic stroke) and no U-shaped pattern. Genetic epidemiology shows that the apparently protective effects of moderate alcohol intake against stroke are largely non-causal; alcohol consumption uniformly increases blood pressure and stroke risk.",
+      "figures": []
+    },
+    "10.1038/bjc.2014.579": {
+      "pmcid": "PMC4453639",
+      "open_access": true,
+      "license": "CC BY-NC-SA 3.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4453639/",
+      "results_passage": "572 studies including 486,538 cancer cases were identified across 23 cancer types. Relative risks (RRs) for heavy drinkers compared with nondrinkers/occasional drinkers were 5.13 for oral and pharyngeal cancer, 4.95 for oesophageal squamous cell carcinoma, 1.44 for colorectal, 2.65 for laryngeal, and 1.61 for breast cancer, with a clear dose-risk relationship for these neoplasms. Heavy drinkers also had significantly higher risk of cancer of the stomach (RR 1.21), liver (2.07), gallbladder (2.64), pancreas (1.19), and lung (1.15). Alcohol increases risk of cancer of the oral cavity and pharynx, oesophagus, colorectum, liver, larynx, and female breast.",
+      "figures": [
+        {
+          "label": "Figure 3a",
+          "local_path": "/img/health-evidence/PMC4453639-fig3a.jpg",
+          "caption": "Relative risk functions and corresponding 95% confidence intervals describing the dose-response relationship between alcohol consumption and cancer risk obtained by fitting meta-regression models, by cancer site. Abbreviations: AC=adenocarcinoma; RR=relative risk; SCC=squamous cell carcinoma.",
+          "shows": "Dose-response curves of relative cancer risk versus grams of alcohol consumed per day, plotted separately for multiple cancer sites."
+        }
+      ]
+    },
+    "10.1016/S0140-6736(16)30175-1": {
+      "pmcid": "PMC4995441",
+      "open_access": true,
+      "license": "CC-BY",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4995441/",
+      "results_passage": "Of 10,625,411 participants in 239 prospective studies, 3,951,455 never-smokers without chronic disease at recruitment (385,879 deaths) were analyzed. All-cause mortality was minimal at 20.0-25.0 kg/m2 and increased significantly both below this range (HR 1.51, 95% CI 1.43-1.59 for BMI 15.0-<18.5) and throughout the overweight range (HR 1.20, 95% CI 1.18-1.22 for BMI 27.5-<30.0). The HR for obesity grade 3 (BMI 40.0-<60.0 kg/m2) was 2.76 (95% CI 2.60-2.92). For BMI over 25.0 kg/m2, mortality increased approximately log-linearly with BMI. The associations of both overweight and obesity with higher all-cause mortality were broadly consistent across four continents.",
+      "figures": [
+        {
+          "label": "Figure 1",
+          "local_path": "/img/health-evidence/PMC4995441-fig1.jpg",
+          "caption": "Association of body-mass index with all-cause mortality, by geographical region. Boxes are plotted against the mean BMI in each group. The HR per 5 kg/m2 higher body-mass index (BMI) and its 95% CI are calculated only for BMI more than 25.0 kg/m2. Analyses restricted to never-smokers without pre-existing chronic disease, excluding the first 5 years of follow-up. The reference category is shown with the arrow.",
+          "shows": "Dose-response curve of hazard ratio for all-cause mortality across BMI categories, split by geographical region, showing the minimal-risk range around 20-25 kg/m2 and rising risk on both sides."
+        }
+      ]
+    },
+    "10.1111/j.1463-1318.2009.01766.x": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Wiley, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19207714/",
+      "results_passage": "29 datasets from 28 articles, including 67,361 incident cases, were analysed. Higher BMI was associated with colon (RR 1.24, 95% CI 1.20-1.28) and rectal (1.09, 1.05-1.14) cancers in men, and with colon cancer (1.09, 1.04-1.12) in women, for a 5 kg/m2 increase in BMI. Associations were stronger in men than in women for colon (P < 0.001) and rectal (P = 0.005) cancers, and were generally consistent across geographic populations. Increasing BMI is associated with a modest increased risk of developing colon and rectal cancers, which may translate to large attributable proportions in high-prevalence obese populations.",
+      "figures": []
+    },
+    "10.1007/s10654-018-0380-1": {
+      "pmcid": "PMC6133005",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6133005/",
+      "results_passage": "Thirty-four studies (1,331,468 unique participants) covering 8 exposure-outcome combinations were included. For total sedentary behaviour, the physical-activity-adjusted relationship was non-linear for all-cause mortality (RR per 1 h/day: 1.01 [1.00-1.01] <=8 h/day; 1.04 [1.03-1.05] >8 h/day) and for cardiovascular mortality (1.01 [0.99-1.02] <=6 h/day; 1.04 [1.03-1.04] >6 h/day). Stronger associations were found for TV viewing time: non-linear for all-cause mortality (1.03 [1.01-1.04] <=3.5 h/day; 1.06 [1.05-1.08] >3.5 h/day). A threshold of 6-8 h/day of total sitting and 3-4 h/day of TV viewing was identified, above which risk of major chronic disease outcomes increases.",
+      "figures": []
+    },
+    "10.1136/bmj.g4490": {
+      "pmcid": "PMC4115152",
+      "open_access": true,
+      "license": "CC BY-NC 3.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4115152/",
+      "results_passage": "Sixteen prospective cohort studies (833,234 participants, 56,423 deaths) were eligible. Higher consumption of fruit and vegetables was significantly associated with lower risk of all-cause mortality: pooled hazard ratios were 0.95 (95% CI 0.92 to 0.98) per serving/day of fruit and vegetables combined, 0.94 (0.90 to 0.98) for fruit, and 0.95 (0.92 to 0.99) for vegetables. There was a threshold around five servings of fruit and vegetables a day, after which risk of all-cause mortality did not reduce further. A significant inverse association was also observed for cardiovascular mortality, while fruit and vegetable consumption was not appreciably associated with cancer mortality risk.",
+      "figures": [
+        {
+          "label": "Fig 3",
+          "local_path": "/img/health-evidence/PMC4115152-fig3.jpg",
+          "caption": "Dose-response relation between fruit and vegetable consumption and risk of all cause mortality.",
+          "shows": "Dose-response curve of relative risk of all-cause mortality across increasing servings/day of combined fruit and vegetable consumption, flattening out around five servings/day."
+        }
+      ]
+    },
+    "10.3945/ajcn.117.153148": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (American Society for Nutrition, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28446499/",
+      "results_passage": "A systematic search identified prospective studies on intake of 12 major food groups and risk of all-cause mortality. With increasing intake (per daily serving) of whole grains (RR 0.92), vegetables (RR 0.96), fruits (RR 0.94), nuts (RR 0.76), and fish (RR 0.93), risk of all-cause mortality decreased; higher intake of red meat (RR 1.10) and processed meat (RR 1.23) was associated with increased risk in a linear dose-response meta-analysis. Optimal consumption of risk-decreasing foods results in a 56% reduction of all-cause mortality, whereas consumption of risk-increasing foods is associated with a 2-fold increased risk.",
+      "figures": []
+    },
+    "10.1016/j.foodchem.2021.129697": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Elsevier, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/33838606/",
+      "results_passage": "72 meta-analyses with 20 unique outcomes for red meat and 19 unique outcomes for processed meat were identified. Red meat consumption was associated with increased risk of overall cancer mortality, non-Hodgkin lymphoma, and bladder, breast, colorectal, endometrial, esophageal, gastric, lung, and nasopharyngeal cancer. Processed meat consumption might increase risk of overall cancer mortality and several of the same cancer sites. Dose-response analyses revealed that a 100 g/d increment of red meat and 50 g/d increment of processed meat consumption were associated with 11%-51% and 8%-72% higher risk of multiple cancer outcomes, respectively, with no correlated benefit.",
+      "figures": []
+    },
+    "10.1016/j.advnut.2024.100214": {
+      "pmcid": "PMC11061242",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11061242/",
+      "results_passage": "A dataset of 29 cohorts (23,522,676 person-years) for processed meat and 23 cohorts (17,259,839 person-years) for red meat was compiled from the Global Burden of Disease project's systematic reviews. No significant association was found with 50 g/d red meat consumption using an empirical fit with lower consumption data (RR 0.93, 0.8-1.02) or all consumption levels (1.04, 0.99-1.10), while classical dose-response meta-analysis models showed RRs as high as 1.09 (1.00-1.18) at 50 g/day. Classical model assumptions and inclusion of higher consumption levels influence the association between colorectal cancer and low meat consumption; a no-risk limit of 0 g/d is inconsistent with the evidence.",
+      "figures": []
+    },
+    "10.1161/JAHA.117.005947": {
+      "pmcid": "PMC5634263",
+      "open_access": true,
+      "license": "CC BY-NC 4.0",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5634263/",
+      "results_passage": "Prospective cohort studies were systematically searched, yielding U-shaped associations between sleep duration and risk of all outcomes, with lowest risk at approximately 7 hours of sleep per day. For all-cause mortality, when sleep duration was <7 hours/day, the pooled relative risk (RR) was 1.06 (95% CI 1.04-1.07) per 1-hour reduction; when >7 hours/day, the pooled RR was 1.13 (95% CI 1.11-1.15) per 1-hour increment. Similar U-shaped patterns were found for total cardiovascular disease, coronary heart disease, and stroke. Both short and long sleep duration are associated with increased risk of all-cause mortality and cardiovascular events.",
+      "figures": [
+        {
+          "label": "Figure 2",
+          "local_path": "/img/health-evidence/PMC5634263-fig2.jpg",
+          "caption": "Nonlinear dose-response analyses of sleep duration and risk of all-cause mortality (A), total CVD (B), CHD (C), and stroke (D). CHD indicates coronary heart disease; CVD, cardiovascular disease.",
+          "shows": "U-shaped dose-response curve of relative risk against hours of sleep per day, showing minimum risk around 7 hours and rising risk at both shorter and longer durations."
+        }
+      ]
+    },
+    "10.1177/1745691614568352": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (SAGE, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/25910392/",
+      "results_passage": "A literature search of studies from January 1980 to February 2014 found weighted average effect sizes across studies where confounds were statistically controlled: social isolation odds ratio (OR) = 1.29, loneliness OR = 1.26, and living alone OR = 1.32, corresponding to 29%, 26%, and 32% increased likelihood of mortality respectively. No differences were found between measures of objective and subjective social isolation. Results were consistent across gender, length of follow-up, and world region, but initial health status had an influence. The influence of both objective and subjective social isolation on mortality risk is comparable with well-established risk factors for mortality.",
+      "figures": []
+    },
+    "10.1016/j.cpcardiol.2023.101670": {
+      "pmcid": null,
+      "open_access": false,
+      "license": "Not in PMC (Elsevier, not open access)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/36828043/",
+      "results_passage": "18 prospective studies with 7,300,591 individuals followed for a median of 9 years were included. Compared to low long-term exposure to PM2.5 levels, increased exposure resulted in increased all-cause mortality (HR 1.08, 95% CI 1.05-1.11), increased cardiovascular disease (HR 1.09, 95% CI 1.00-1.18), and increased cardiovascular disease mortality (HR 1.12, 95% CI 1.07-1.18). Increased exposure to PM2.5 is significantly associated with increased risk of all-cause mortality, cardiovascular disease, and cardiovascular disease mortality. Current federal standards are not low enough to prevent these cardiovascular health effects.",
+      "figures": []
+    },
+    "10.1289/ehp.1408882": {
+      "pmcid": "PMC4629738",
+      "open_access": true,
+      "license": "Public domain (Environmental Health Perspectives; without copyright, freely reprintable)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4629738/",
+      "results_passage": "20 studies met inclusion criteria for a random-effects meta-analysis of nitrogen dioxide (NO2)/NOx exposure and lung cancer. The meta-estimate for change in lung cancer associated with a 10 microg/m3 increase in exposure to NO2 was 4% (95% CI: 1%, 8%); for NOx it was 3% (95% CI: 1%, 5%). The NO2 meta-estimate was robust to different confounding adjustment sets and exposure assessment techniques. Forest plots for measures of traffic volume and distance to roadways largely suggest a modest increase in lung cancer risk. There is consistent evidence of a relationship between NO2, as a proxy for traffic-sourced air pollution exposure, and lung cancer.",
+      "figures": []
+    },
+    "10.1136/bmj.a1344": {
+      "pmcid": "PMC2533524",
+      "open_access": true,
+      "license": "CC BY (unrestricted use, distribution, reproduction with citation)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2533524/",
+      "results_passage": "12 studies with a total of 1,574,299 subjects followed for three to 18 years were included. Cumulative analysis among eight cohorts (514,816 subjects, 33,576 deaths) evaluating overall mortality found that a two-point increase in Mediterranean-diet adherence score was significantly associated with reduced risk of mortality (pooled relative risk 0.91, 95% CI 0.89 to 0.94). Analyses also showed benefit for cardiovascular mortality (RR 0.91, 0.87 to 0.95), incidence of or mortality from cancer (0.94, 0.92 to 0.96), and incidence of Parkinson's and Alzheimer's disease (0.87, 0.80 to 0.96). Greater adherence to a Mediterranean diet is associated with significant improvement in health status.",
+      "figures": []
+    }
+  }
+}

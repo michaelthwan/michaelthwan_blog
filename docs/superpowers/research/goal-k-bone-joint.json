@@ -1,0 +1,45 @@
+{
+  "goal": {
+    "id": "goal_k_bone_joint_health",
+    "name": "Bone and joint health",
+    "definition": "Bone mineral density (site-specific: lumbar spine, femoral neck, total hip), fracture incidence, and knee/hip osteoarthritis pain and physical function, as driven by resistance and impact exercise, protein, calcium and vitamin D intake, smoking, alcohol, body weight, sedentary time, collagen peptides, glucosamine/chondroitin, and omega-3."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_k_bone_joint_health",
+        "name": "Bone and joint health",
+        "definition": "Bone mineral density (site-specific: lumbar spine, femoral neck, total hip), fracture incidence, and knee/hip osteoarthritis pain and physical function, as driven by resistance and impact exercise, protein, calcium and vitamin D intake, smoking, alcohol, body weight, sedentary time, collagen peptides, glucosamine/chondroitin, and omega-3."
+      }
+    ],
+    "markers": [
+      {
+        "id": "bmd",
+        "name": "Bone mineral density",
+        "unit": "g/cm2 or % change from baseline; site specified per edge in conditional_on (lumbar spine, femoral neck, or total hip)",
+        "goal_ids": ["goal_k_bone_joint_health"]
+      },
+      {
+        "id": "fracture_incidence",
+        "name": "Fracture incidence",
+        "unit": "relative risk (RR) or hazard ratio (HR)",
+        "goal_ids": ["goal_k_bone_joint_health"]
+      },
+      {
+        "id": "oa_pain",
+        "name": "Knee or hip osteoarthritis pain",
+        "unit": "WOMAC pain subscale or VAS points (0-100 or 0-20 scale as reported)",
+        "goal_ids": ["goal_k_bone_joint_health"]
+      },
+      {
+        "id": "oa_function",
+        "name": "Physical function in osteoarthritis",
+        "unit": "WOMAC physical function subscale points",
+        "goal_ids": ["goal_k_bone_joint_health"]
+      }
+    ],
+    "behaviors": []
+  },
+  "edges": [],
+  "cut_candidates": []
+}

@@ -1,0 +1,45 @@
+{
+  "goal": {
+    "id": "goal_i_liver",
+    "name": "Liver health",
+    "definition": "Liver fat content (hepatic steatosis), liver enzymes (ALT/AST), liver stiffness/fibrosis stage, and hepatic insulin sensitivity as measurable markers of non-alcoholic and alcohol-related fatty liver disease risk and progression."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_i_liver",
+        "name": "Liver health",
+        "definition": "Liver fat content (hepatic steatosis), liver enzymes (ALT/AST), liver stiffness/fibrosis stage, and hepatic insulin sensitivity as measurable markers of non-alcoholic and alcohol-related fatty liver disease risk and progression."
+      }
+    ],
+    "markers": [
+      {
+        "id": "liver_fat_steatosis",
+        "name": "Liver fat / hepatic steatosis",
+        "unit": "MRI-PDFF (%) or ultrasound-graded steatosis",
+        "goal_ids": ["goal_i_liver"]
+      },
+      {
+        "id": "alt_ast",
+        "name": "Alanine/aspartate aminotransferase (ALT/AST)",
+        "unit": "U/L",
+        "goal_ids": ["goal_i_liver"]
+      },
+      {
+        "id": "liver_stiffness_fibrosis",
+        "name": "Liver stiffness / fibrosis stage",
+        "unit": "kPa (elastography) or FIB-4 score (unitless)",
+        "goal_ids": ["goal_i_liver"]
+      },
+      {
+        "id": "hepatic_insulin_sensitivity",
+        "name": "Hepatic insulin sensitivity",
+        "unit": "clamp-derived hepatic insulin sensitivity index / HOMA-IR (unitless)",
+        "goal_ids": ["goal_i_liver"]
+      }
+    ],
+    "behaviors": []
+  },
+  "edges": [],
+  "cut_candidates": []
+}

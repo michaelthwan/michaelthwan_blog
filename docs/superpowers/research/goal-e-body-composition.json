@@ -1,0 +1,836 @@
+{
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_e_body_composition_strength",
+        "name": "Body composition and strength",
+        "definition": "Fat mass / body fat percentage, fat-free (lean) mass, maximal strength (1RM), waist circumference / visceral adipose tissue, and resting metabolic rate, as driven by resistance training, diet composition and structure, sleep, alcohol, and pharmacology (GLP-1 receptor agonists)."
+      }
+    ],
+    "markers": [
+      {
+        "id": "fat_mass",
+        "name": "Fat mass / body fat percentage",
+        "unit": "kg, % body fat, or SMD as reported by source",
+        "goal_ids": [
+          "goal_e_body_composition_strength"
+        ]
+      },
+      {
+        "id": "lean_mass",
+        "name": "Fat-free / lean mass",
+        "unit": "kg, SMD, or % of total body mass as reported by source",
+        "goal_ids": [
+          "goal_e_body_composition_strength"
+        ]
+      },
+      {
+        "id": "max_strength",
+        "name": "Maximal strength (1RM)",
+        "unit": "kg (1RM or handgrip), or SMD as reported by source",
+        "goal_ids": [
+          "goal_e_body_composition_strength"
+        ]
+      },
+      {
+        "id": "waist_vat",
+        "name": "Waist circumference / visceral adipose tissue",
+        "unit": "cm (waist circumference), cm2/cm3 (VAT by CT/MRI/DXA), or SMD as reported by source",
+        "goal_ids": [
+          "goal_e_body_composition_strength"
+        ]
+      },
+      {
+        "id": "rmr",
+        "name": "Resting metabolic rate",
+        "unit": "kcal/day, or REE normalized to lean mass as reported by source",
+        "goal_ids": [
+          "goal_e_body_composition_strength"
+        ]
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "resistance_training",
+        "name": "Resistance training",
+        "category": "exercise",
+        "dose_or_intensity": "Full-body resistance training programs, >=4 weeks, generally performed to volitional failure; load and weekly volume vary by cited study"
+      },
+      {
+        "id": "aerobic_exercise",
+        "name": "Aerobic exercise",
+        "category": "exercise",
+        "dose_or_intensity": "Supervised aerobic training, moderate-to-vigorous intensity, dose-response modeled per 30 min/week increment, trials >=8 weeks"
+      },
+      {
+        "id": "protein_intake",
+        "name": "Protein intake (total and higher-vs-lower during energy deficit)",
+        "category": "diet",
+        "dose_or_intensity": "Total daily protein intake 0.8-3.2 g/kg body mass/day across cited studies; includes both protein supplementation during ad-lib resistance training and higher- (2.4 g/kg/d) vs lower- (1.2 g/kg/d) protein comparisons during a marked energy deficit"
+      },
+      {
+        "id": "creatine_monohydrate",
+        "name": "Creatine monohydrate",
+        "category": "supplement",
+        "dose_or_intensity": "Creatine monohydrate (dosing strategy varies by trial, typically 3-5 g/day or a loading protocol), combined with resistance training, 8-104 weeks"
+      },
+      {
+        "id": "caloric_deficit_magnitude",
+        "name": "Caloric deficit magnitude (severe vs moderate energy restriction)",
+        "category": "diet",
+        "dose_or_intensity": "Severe (65-75% energy deficit, total meal replacement) vs moderate (25-35% energy deficit, food-based) restriction; protein held constant at ~1.0 g/kg/day in both arms"
+      },
+      {
+        "id": "intermittent_fasting_tre",
+        "name": "Intermittent fasting / time-restricted eating (vs matched-calorie continuous restriction)",
+        "category": "diet",
+        "dose_or_intensity": "Time-restricted eating or alternate-day/intermittent fasting protocols compared against isocaloric or otherwise matched continuous calorie restriction"
+      },
+      {
+        "id": "sleep_restriction_during_diet",
+        "name": "Sleep restriction during a diet",
+        "category": "habit",
+        "dose_or_intensity": "Experimental sleep curtailment (5.5 h vs 8.5 h/night) during a matched 14-day moderate caloric restriction"
+      },
+      {
+        "id": "alcohol",
+        "name": "Alcohol consumption",
+        "category": "habit",
+        "dose_or_intensity": "Habitual alcohol consumption, units/week; dose-response, observational exposure rather than a randomized intervention"
+      },
+      {
+        "id": "glp1_receptor_agonists",
+        "name": "GLP-1 receptor agonists (e.g., semaglutide)",
+        "category": "supplement",
+        "dose_or_intensity": "Prescription GLP-1 receptor agonists at doses approved for obesity management (e.g., semaglutide 2.4 mg/week); note: a pharmaceutical, not an over-the-counter supplement - categorized as 'supplement' only because the schema has no drug category"
+      },
+      {
+        "id": "hmb",
+        "name": "HMB (beta-hydroxy-beta-methylbutyrate)",
+        "category": "supplement",
+        "dose_or_intensity": "Calcium HMB, ~3 g/day, combined with resistance exercise training"
+      },
+      {
+        "id": "bcaa",
+        "name": "BCAAs (branched-chain amino acids)",
+        "category": "supplement",
+        "dose_or_intensity": "BCAA-rich nutritional supplements combined with resistance training; dosing varies by trial"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "lean_mass",
+      "direction": "+",
+      "effect": "Muscle hypertrophy improvements were load-independent (no significant difference between low-, moderate-, and high-load RT performed to failure; P=0.113-0.469 overall), with greater hypertrophy in untrained participants (P=0.033)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - this network meta-analysis reports between-load comparisons (SMDs) for the strength outcome, not a pooled RT-vs-no-exercise magnitude for hypertrophy",
+      "evidence_tier": "A",
+      "population": "747 healthy adults, 28 studies, resistance training performed to volitional failure",
+      "conditional_on": "Hypertrophy is present regardless of load, but the magnitude is greater in untrained participants; those with prior training experience benefit more from higher training frequency/volume than from load per se",
+      "paper": {
+        "doi": "10.1249/MSS.0000000000002585",
+        "title": "Resistance Training Load Effects on Muscle Hypertrophy and Strength Gain: Systematic Review and Network Meta-analysis",
+        "year": 2021,
+        "design": "network meta-analysis of RCTs",
+        "n": 747
+      },
+      "verbatim": "Although no differences in muscle hypertrophy between RT loads were found in overall (P = 0.113-0.469) or subgroup analysis (P = 0.871-0.995), greater effects were observed in untrained participants (P = 0.033) and participants with some training background who undertook more RT sessions (P = 0.031-0.045).",
+      "figure": null,
+      "caveats": "This meta-analysis compares RT loads against each other (all to volitional failure), not RT vs a no-exercise control, so it cannot quantify absolute hypertrophy magnitude vs sedentary controls; see the Wewege 2021 edges below for RT-vs-control fat mass/visceral fat effect sizes.",
+      "key_results": "Twenty-eight studies involving 747 healthy adults were included. Although no differences in muscle hypertrophy between RT loads were found in overall (P = 0.113-0.469) or subgroup analysis (P = 0.871-0.995), greater effects were observed in untrained participants (P = 0.033) and participants with some training background who undertook more RT sessions (P = 0.031-0.045). Muscle hypertrophy improvements seem to be load independent. Untrained participants exhibit greater muscle hypertrophy, whereas undertaking more RT sessions provides superior gains in those with previous training experience."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "max_strength",
+      "direction": "+",
+      "effect": "Muscle strength improvement was superior for both high-load and moderate-load RT compared with low-load RT (SMD 0.60-0.63 and 0.34-0.35 respectively, P<0.001-0.003)",
+      "effect_normalized": 0.6,
+      "normalization_method": "SMD, network meta-analysis, high-load vs low-load RT (all sets to volitional failure)",
+      "evidence_tier": "A",
+      "population": "747 healthy adults, 28 studies",
+      "conditional_on": "Comparison is between RT loads (all to volitional failure), not RT vs no training; unlike hypertrophy, maximal strength gains specifically require higher relative loads",
+      "paper": {
+        "doi": "10.1249/MSS.0000000000002585",
+        "title": "Resistance Training Load Effects on Muscle Hypertrophy and Strength Gain: Systematic Review and Network Meta-analysis",
+        "year": 2021,
+        "design": "network meta-analysis of RCTs",
+        "n": 747
+      },
+      "verbatim": "Muscle strength improvement was superior for both high-load and moderate-load compared with low-load RT in overall and subgroup analysis (SMD, 0.60-0.63 and 0.34-0.35, respectively; P < 0.001-0.003), with a nonsignificant but superior effect for high compared with moderate load (SMD, 0.26-0.28, P = 0.068).",
+      "figure": null,
+      "caveats": "Effect sizes are between RT-load conditions, not vs a sedentary control; absolute strength magnitude in kg is not reported in the abstract.",
+      "key_results": "Although muscle hypertrophy improvements seem to be load independent, increases in muscle strength are superior in high-load RT programs. Untrained participants exhibit greater muscle hypertrophy, whereas undertaking more RT sessions provides superior gains in those with previous training experience."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "fat_mass",
+      "direction": "-",
+      "effect": "Resistance training reduced body fat percentage by -1.46% (95% CI -1.78 to -1.14, p<0.0001) and body fat mass by -0.55 kg (95% CI -0.75 to -0.34, p<0.0001) vs no-exercise control",
+      "effect_normalized": -0.55,
+      "normalization_method": "MD (kg), body fat mass, resistance training vs no-exercise control",
+      "evidence_tier": "A",
+      "population": "58 studies in review, 54 providing data for meta-analysis, healthy (non-obese-selected) adults, full-body RT >=4 weeks vs no-exercise control",
+      "conditional_on": "Measurement type (DXA/scan vs non-scan) significantly moderated effect size; sex did not; training volume and training components were not associated with effect size",
+      "paper": {
+        "doi": "10.1007/s40279-021-01562-2",
+        "title": "The Effect of Resistance Training in Healthy Adults on Body Fat Percentage, Fat Mass and Visceral Fat: A Systematic Review and Meta-Analysis",
+        "year": 2021,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Compared to the control, resistance training reduced body fat percentage by - 1.46% (95% confidence interval - 1.78 to - 1.14, p < 0.0001), body fat mass by - 0.55 kg (95% confidence interval - 0.75 to - 0.34, p < 0.0001) and visceral fat by a standardised mean difference of - 0.49 (95% confidence interval - 0.87 to - 0.11, p = 0.0114).",
+      "figure": null,
+      "caveats": "Abstract does not report total pooled participant n, only study counts (58 in review, 54 meta-analyzed); n left null rather than guessed.",
+      "key_results": "From 11,981 records, we included 58 studies in the review, with 54 providing data for a meta-analysis. Resistance training reduced body fat percentage, body fat mass and visceral fat in healthy adults. Measurement type was a significant moderator in body fat percentage and body fat mass, but sex was not. Training volume and training components were not associated with effect size."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "waist_vat",
+      "direction": "-",
+      "effect": "Resistance training reduced visceral fat by a standardised mean difference of -0.49 (95% CI -0.87 to -0.11, p=0.0114) vs no-exercise control",
+      "effect_normalized": -0.49,
+      "normalization_method": "SMD, visceral fat, resistance training vs no-exercise control",
+      "evidence_tier": "A",
+      "population": "58 studies in review, 54 meta-analyzed, healthy adults",
+      "conditional_on": "Same trial set as the fat mass edge above; visceral fat subset likely smaller than the full 54-study set (not broken out in the abstract)",
+      "paper": {
+        "doi": "10.1007/s40279-021-01562-2",
+        "title": "The Effect of Resistance Training in Healthy Adults on Body Fat Percentage, Fat Mass and Visceral Fat: A Systematic Review and Meta-Analysis",
+        "year": 2021,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Compared to the control, resistance training reduced body fat percentage by - 1.46% (95% confidence interval - 1.78 to - 1.14, p < 0.0001), body fat mass by - 0.55 kg (95% confidence interval - 0.75 to - 0.34, p < 0.0001) and visceral fat by a standardised mean difference of - 0.49 (95% confidence interval - 0.87 to - 0.11, p = 0.0114).",
+      "figure": null,
+      "caveats": "Number of studies contributing specifically to the visceral-fat pooled estimate is not given separately in the abstract.",
+      "key_results": "Resistance training reduces body fat percentage, body fat mass and visceral fat in healthy adults. Training volume and training components were not associated with effect size."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "rmr",
+      "direction": "+",
+      "effect": "Resistance exercise increased resting metabolic rate compared to controls (MD 96.17 kcal/day, 95% CI 45.17 to 147.16, P=0.0002); aerobic exercise alone and combined aerobic+resistance training did not significantly increase RMR",
+      "effect_normalized": 96.17,
+      "normalization_method": "MD (kcal/day), RMR, resistance exercise vs control",
+      "evidence_tier": "A",
+      "population": "22 studies in qualitative synthesis, 18 meta-analyzed; RCTs, quasi-RCTs and cohort trials; excluded adults >=65 years and pregnant/lactating/postmenopausal women",
+      "conditional_on": "Effect is specific to resistance exercise alone; combined aerobic+resistance training and aerobic-only interventions did not significantly increase RMR in the same review",
+      "paper": {
+        "doi": "10.1080/02640414.2020.1754716",
+        "title": "The effect of exercise interventions on resting metabolic rate: A systematic review and meta-analysis",
+        "year": 2020,
+        "design": "systematic review and meta-analysis of RCTs/quasi-RCTs/cohort trials",
+        "n": null
+      },
+      "verbatim": "While there was no effect of aerobic exercise on RMR (MD: 81.65 kCal·day-1[95% CI: -57.81, 221.10], P = 0.25), resistance exercise increased RMR compared to controls (MD: 96.17 kCal·day-1[95% CI: 45.17, 147.16], P = 0.0002).",
+      "figure": null,
+      "caveats": "Combined aerobic+resistance interventions (the most common real-world prescription) did not significantly increase RMR (MD 74.6 kcal/day, 95% CI -13.01 to 161.33, P=0.10); the positive finding is specific to resistance-only protocols. High risk of bias and heterogeneous indirect-calorimetry methodology noted by the review authors.",
+      "key_results": "1669 articles were identified; 22 were included in the qualitative analysis and 18 were meta-analysed. Exercise interventions (aerobic and resistance exercise combined) did not increase resting metabolic rate (MD: 74.6 kCal/day [95% CI: -13.01, 161.33], P = 0.10). Resistance exercise increased RMR compared to controls (MD: 96.17 kCal/day [95% CI: 45.17, 147.16], P = 0.0002)."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "fat_mass",
+      "direction": "-",
+      "effect": "Each 30 minutes/week of aerobic exercise was associated with a 0.37% reduction in body fat percentage (95% CI -0.43% to -0.31%, n=65 trials)",
+      "effect_normalized": -0.37,
+      "normalization_method": "dose-response MD per 30 min/week increment, body fat percentage",
+      "evidence_tier": "A",
+      "population": "116 RCTs, 6880 adults with overweight or obesity, supervised aerobic training >=8 weeks",
+      "conditional_on": "Dose-response is linear/monotonic up to 300 min/week; aerobic exercise >=150 min/week at moderate-to-vigorous intensity is needed for clinically important reductions in body fat; population restricted to adults with overweight/obesity",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2024.52185",
+        "title": "Aerobic Exercise and Weight Loss in Adults: A Systematic Review and Dose-Response Meta-Analysis",
+        "year": 2024,
+        "design": "dose-response meta-analysis of RCTs",
+        "n": 6880
+      },
+      "verbatim": "Each 30 minutes per week of aerobic exercise was associated with reduced body weight by 0.52 kg (95% CI, -0.61 to -0.44 kg; n = 109 trials, GRADE = moderate), waist circumference by 0.56 cm (95% CI, -0.67 to -0.45 cm; n = 62 trials, GRADE = high), body fat percentage by 0.37% (95% CI, -0.43% to -0.31%; n = 65 trials, GRADE = moderate), as well as the areas of visceral (mean difference, -1.60 cm2 [95% CI, -2.12 to -1.07 cm2]; n = 26 trials, GRADE = high) and subcutaneous (mean difference, -1.37 cm2 [95% CI, -1.82 to -0.92 cm2]; n = 27 trials, GRADE = moderate) adipose tissues.",
+      "figure": null,
+      "caveats": "Trials required supervised aerobic training of >=8 weeks in adults with overweight/obesity; effect size may not generalize to lean or already-active populations.",
+      "key_results": "In total, 116 randomized clinical trials involving 6880 participants (4199 [61%] female) with overweight or obesity were included. Dose-response meta-analyses indicated that body weight, waist circumference, and body fat measures decreased linearly or monotonically with increasing duration of aerobic exercise to 300 minutes per week, with aerobic exercise lasting 150 minutes per week at moderate to vigorous intensities resulting in clinically important reductions in waist circumference and body fat."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "waist_vat",
+      "direction": "-",
+      "effect": "Each 30 minutes/week of aerobic exercise was associated with reduced waist circumference by 0.56 cm (95% CI -0.67 to -0.45 cm) and visceral adipose tissue area by 1.60 cm2 (95% CI -2.12 to -1.07 cm2)",
+      "effect_normalized": -1.6,
+      "normalization_method": "dose-response MD per 30 min/week increment, VAT area (cm2)",
+      "evidence_tier": "A",
+      "population": "116 RCTs, 6880 adults with overweight or obesity",
+      "conditional_on": "Dose-response linear/monotonic to 300 min/week; >=150 min/week moderate-vigorous intensity needed for clinically important reduction",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2024.52185",
+        "title": "Aerobic Exercise and Weight Loss in Adults: A Systematic Review and Dose-Response Meta-Analysis",
+        "year": 2024,
+        "design": "dose-response meta-analysis of RCTs",
+        "n": 6880
+      },
+      "verbatim": "Each 30 minutes per week of aerobic exercise was associated with reduced body weight by 0.52 kg (95% CI, -0.61 to -0.44 kg; n = 109 trials, GRADE = moderate), waist circumference by 0.56 cm (95% CI, -0.67 to -0.45 cm; n = 62 trials, GRADE = high), body fat percentage by 0.37% (95% CI, -0.43% to -0.31%; n = 65 trials, GRADE = moderate), as well as the areas of visceral (mean difference, -1.60 cm2 [95% CI, -2.12 to -1.07 cm2]; n = 26 trials, GRADE = high) and subcutaneous (mean difference, -1.37 cm2 [95% CI, -1.82 to -0.92 cm2]; n = 27 trials, GRADE = moderate) adipose tissues.",
+      "figure": null,
+      "caveats": "VAT area estimate comes from a smaller subset of 26 trials than the overall pool; imaging modality for VAT not specified in the abstract.",
+      "key_results": "Each 30 minutes per week of aerobic exercise was associated with reduced waist circumference by 0.56 cm (95% CI, -0.67 to -0.45 cm; n = 62 trials) and visceral adipose tissue area by a mean difference of -1.60 cm2 (95% CI, -2.12 to -1.07 cm2; n = 26 trials)."
+    },
+    {
+      "behavior_id": "protein_intake",
+      "marker_id": "lean_mass",
+      "direction": "+",
+      "effect": "Dietary protein supplementation significantly increased fat-free mass by 0.30 kg (95% CI 0.09 to 0.52) during resistance exercise training",
+      "effect_normalized": 0.3,
+      "normalization_method": "MD (kg), FFM change, protein supplementation vs control during RET, meta-regression",
+      "evidence_tier": "A",
+      "population": "49 studies, 1863 participants, healthy adults, resistance exercise training >=6 weeks",
+      "conditional_on": "Effect decreases with increasing age (-0.01 kg per year, p=0.002) and is larger in resistance-trained individuals (+0.75 kg, p=0.03) than in untrained beginners; protein intake beyond ~1.62 g/kg/day produces no further FFM gain",
+      "paper": {
+        "doi": "10.1136/bjsports-2017-097608",
+        "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+        "year": 2018,
+        "design": "meta-analysis and meta-regression of RCTs",
+        "n": 1863
+      },
+      "verbatim": "Data from 49 studies with 1863 participants showed that dietary protein supplementation significantly (all p<0.05) increased changes (means (95% CI)) in: strength-one-repetition-maximum (2.49 kg (0.64, 4.33)), FFM (0.30 kg (0.09, 0.52)) and muscle size-muscle fibre cross-sectional area (CSA; 310 µm2 (51, 570)) and mid-femur CSA (7.2 mm2 (0.20, 14.30)) during periods of prolonged RET.",
+      "figure": null,
+      "caveats": "Effect estimate pools supplementation studies of varying protein type/dose; the underlying dose-response curve plateaus, so the 0.30 kg figure is an average, not a ceiling effect.",
+      "key_results": "The impact of protein supplementation on gains in FFM was reduced with increasing age (-0.01 kg (-0.02,-0.00), p=0.002) and was more effective in resistance-trained individuals (0.75 kg (0.09, 1.40), p=0.03). Protein supplementation beyond total protein intakes of 1.62 g/kg/day resulted in no further RET-induced gains in FFM. Dietary protein supplementation significantly enhanced changes in muscle strength and size during prolonged RET in healthy adults."
+    },
+    {
+      "behavior_id": "protein_intake",
+      "marker_id": "max_strength",
+      "direction": "+",
+      "effect": "Dietary protein supplementation significantly increased one-repetition-maximum strength by 2.49 kg (95% CI 0.64 to 4.33) during resistance exercise training",
+      "effect_normalized": 2.49,
+      "normalization_method": "MD (kg), 1RM change, protein supplementation vs control during RET",
+      "evidence_tier": "A",
+      "population": "49 studies, 1863 participants, healthy adults, RET >=6 weeks",
+      "conditional_on": "Same age- and training-status-dependence as the lean mass edge above (larger effect in trained individuals, smaller with increasing age)",
+      "paper": {
+        "doi": "10.1136/bjsports-2017-097608",
+        "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+        "year": 2018,
+        "design": "meta-analysis and meta-regression of RCTs",
+        "n": 1863
+      },
+      "verbatim": "Data from 49 studies with 1863 participants showed that dietary protein supplementation significantly (all p<0.05) increased changes (means (95% CI)) in: strength-one-repetition-maximum (2.49 kg (0.64, 4.33)), FFM (0.30 kg (0.09, 0.52)) and muscle size-muscle fibre cross-sectional area (CSA; 310 µm2 (51, 570)) and mid-femur CSA (7.2 mm2 (0.20, 14.30)) during periods of prolonged RET.",
+      "figure": null,
+      "caveats": null,
+      "key_results": "Dietary protein supplementation significantly enhanced changes in muscle strength and size during prolonged RET in healthy adults. Increasing age reduces and training experience increases the efficacy of protein supplementation during RET."
+    },
+    {
+      "behavior_id": "protein_intake",
+      "marker_id": "lean_mass",
+      "direction": "+",
+      "effect": "Lean body mass increased more in the higher-protein (2.4 g/kg/day) group (+1.2 +/- 1.0 kg) than the lower-protein (1.2 g/kg/day) group (+0.1 +/- 1.0 kg, P<0.05) during a 4-week, ~40% energy deficit combined with intense exercise",
+      "effect_normalized": 1.1,
+      "normalization_method": "difference in kg LBM change, higher- vs lower-protein group (PRO minus CON)",
+      "evidence_tier": "B",
+      "population": "40 young men (n=20/group), 4-week ~40% energy deficit (33 kcal/kg LBM/day), combined resistance + high-intensity interval training 6 days/week",
+      "conditional_on": "Applies specifically during a marked (~40%) energy deficit combined with high-volume intense exercise in young men; magnitude may not generalize to smaller deficits, untrained individuals, women, or older adults",
+      "paper": {
+        "doi": "10.3945/ajcn.115.119339",
+        "title": "Higher compared with lower dietary protein during an energy deficit combined with intense exercise promotes greater lean mass gain and fat mass loss: a randomized trial",
+        "year": 2016,
+        "design": "single-blind randomized controlled trial",
+        "n": 40
+      },
+      "verbatim": "As a result of the intervention, LBM increased (P < 0.05) in the PRO group (1.2 ± 1.0 kg) and to a greater extent (P < 0.05) compared with the CON group (0.1 ± 1.0 kg).",
+      "figure": null,
+      "caveats": "Small single RCT (n=20/group); this is the same behavior node as the general protein-supplementation edges above but isolates a higher- vs lower-protein comparison specifically under an energy deficit, which is the honest 'high-protein vs standard-protein diet' comparison the candidate list asked for.",
+      "key_results": "A dietary protein intake higher than the Recommended Dietary Allowance during an energy deficit helps to preserve lean body mass (LBM), particularly when combined with exercise. Our results showed that, during a marked energy deficit, consumption of a diet containing 2.4 g protein/kg/d was more effective than consumption of a diet containing 1.2 g protein/kg/d in promoting increases in LBM and losses of fat mass when combined with a high volume of resistance and anaerobic exercise."
+    },
+    {
+      "behavior_id": "protein_intake",
+      "marker_id": "fat_mass",
+      "direction": "-",
+      "effect": "The higher-protein group lost more fat mass than the lower-protein group (-4.8 +/- 1.6 kg vs -3.5 +/- 1.4 kg, P<0.05) during the same 4-week energy deficit",
+      "effect_normalized": -4.8,
+      "normalization_method": "kg fat mass change, higher-protein group (absolute)",
+      "evidence_tier": "B",
+      "population": "40 young men (n=20/group), 4-week ~40% energy deficit",
+      "conditional_on": "Same marked-deficit, intense-exercise context as the lean-mass edge above",
+      "paper": {
+        "doi": "10.3945/ajcn.115.119339",
+        "title": "Higher compared with lower dietary protein during an energy deficit combined with intense exercise promotes greater lean mass gain and fat mass loss: a randomized trial",
+        "year": 2016,
+        "design": "single-blind randomized controlled trial",
+        "n": 40
+      },
+      "verbatim": "The PRO group had a greater loss of fat mass than did the CON group (PRO: -4.8 ± 1.6 kg; CON: -3.5 ± 1.4kg; P < 0.05).",
+      "figure": null,
+      "caveats": "All measures of exercise performance improved similarly in both groups, i.e. the strength benefit of training was not itself protein-dependent in this trial.",
+      "key_results": "All measures of exercise performance improved similarly in the PRO and CON groups as a result of the intervention with no effect of protein supplementation. Changes in serum cortisol during the intervention were associated with changes in body fat (r=0.39, P=0.01) and LBM (r=-0.34, P=0.03), but did not explain much variance in either measure."
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "lean_mass",
+      "direction": "+",
+      "effect": "Creatine + resistance training significantly improved lean tissue mass vs placebo + resistance training (SMD=0.27, 95% CI 0.02-0.53, p=0.03) in older adults; effect was larger in interventions <=32 weeks (SMD=0.57, 95% CI 0.19-0.96, p=0.004)",
+      "effect_normalized": 0.27,
+      "normalization_method": "SMD, lean tissue mass, creatine+RT vs placebo+RT",
+      "evidence_tier": "A",
+      "population": "482 participants, 8 RCTs, older/aged adults, resistance training 2-3 sessions/week for 8-104 weeks",
+      "conditional_on": "Population restricted to older/aged adults already resistance training; effect on lean mass is markedly larger in shorter interventions (<=32 weeks) than in longer ones",
+      "paper": {
+        "doi": "10.1186/s11556-025-00392-9",
+        "title": "The impact of creatine supplementation associated with resistance training on muscular strength and lean tissue mass in the aged: a systematic review and meta-analysis",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 482
+      },
+      "verbatim": "Compared to PL + RT, Cr + RT significantly improved lower limb strength (SMD = 0.29 [95% CI 0.00-0.57]; p = 0.05) and lean tissue mass (SMD = 0.27 [95% CI 0.02–0.53]; p = 0.03), but did not show significant improvements in upper extremity muscle strength.",
+      "figure": null,
+      "caveats": "Evidence base restricted to aged populations; general/young-adult creatine literature is broadly consistent but was not separately re-verified with a quoted verbatim number in this pass.",
+      "key_results": "Subgroup analysis revealed intervention duration effects: interventions lasting <=32 weeks (5 studies) showed better upper limb strength gains (SMD = 0.45 [95% CI 0.14-0.77]; p = 0.005) and increases in lean tissue mass (SMD = 0.57 [95% CI 0.19-0.96]; p = 0.004). Cr + RT can significantly increase muscle strength and lean tissue mass in older adults, particularly in interventions lasting up to 32 weeks."
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "max_strength",
+      "direction": "+",
+      "effect": "Creatine + resistance training significantly improved lower-limb strength vs placebo+RT (SMD=0.29, 95% CI 0.00-0.57, p=0.05); upper-limb strength was not significantly improved overall",
+      "effect_normalized": 0.29,
+      "normalization_method": "SMD, lower-limb strength, creatine+RT vs placebo+RT",
+      "evidence_tier": "A",
+      "population": "482 participants, 8 RCTs, older/aged adults",
+      "conditional_on": "Lower-limb effect reaches only borderline significance (p=0.05); upper-limb strength is null overall but significant in shorter (<=32 week) interventions (SMD 0.45, p=0.005)",
+      "paper": {
+        "doi": "10.1186/s11556-025-00392-9",
+        "title": "The impact of creatine supplementation associated with resistance training on muscular strength and lean tissue mass in the aged: a systematic review and meta-analysis",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 482
+      },
+      "verbatim": "Compared to PL + RT, Cr + RT significantly improved lower limb strength (SMD = 0.29 [95% CI 0.00-0.57]; p = 0.05) and lean tissue mass (SMD = 0.27 [95% CI 0.02–0.53]; p = 0.03), but did not show significant improvements in upper extremity muscle strength.",
+      "figure": null,
+      "caveats": "Critical confounding factors such as age and intervention duration were a specific focus of this review because prior creatine literature had not controlled for them.",
+      "key_results": "These time-dependent effects highlight the importance of intervention duration in nutritional ergogenic strategies for sarcopenia management."
+    },
+    {
+      "behavior_id": "caloric_deficit_magnitude",
+      "marker_id": "lean_mass",
+      "direction": "-",
+      "effect": "Severe energy restriction caused greater whole-body lean mass loss than moderate restriction (effect size -1.2 kg, 95% CI -2.0 to -0.4 kg) at 12 months, but the loss was proportional to total weight loss",
+      "effect_normalized": -1.2,
+      "normalization_method": "MD (kg), lean mass, severe vs moderate energy restriction",
+      "evidence_tier": "B",
+      "population": "101 postmenopausal women with obesity, BMI 30-40, aged 45-65, <3h/week structured activity",
+      "conditional_on": "Severe = 65-75% deficit via total meal replacement for 4 months then moderate for 8 months; moderate = 25-35% deficit, food-based, for 12 months; protein fixed at 1.0 g/kg actual body weight/day in both arms; lean mass loss was proportional to total weight loss and handgrip strength did not differ between groups",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2019.13733",
+        "title": "Effect of Weight Loss via Severe vs Moderate Energy Restriction on Lean Mass and Body Composition Among Postmenopausal Women With Obesity: The TEMPO Diet Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized clinical trial",
+        "n": 101
+      },
+      "verbatim": "Compared with the moderate group at 12 months, the severe group lost more weight (effect size, -6.6 kg; 95% CI, -8.2 to -5.1 kg), lost more whole-body lean mass (effect size, -1.2 kg; 95% CI, -2.0 to -0.4 kg), and lost more thigh muscle area (effect size, -4.2 cm2; 95% CI, -6.5 to -1.9 cm2). However, decreases in whole-body lean mass and thigh muscle area were proportional to total weight loss, and there was no difference in muscle (handgrip) strength between groups.",
+      "figure": null,
+      "caveats": "Single RCT in postmenopausal women with obesity; may not generalize to men, younger adults, or leaner populations. Severe restriction also caused significantly greater loss of hip bone mineral density.",
+      "key_results": "Severe energy restriction had no greater adverse effect on relative whole-body lean mass or handgrip strength compared with moderate energy restriction and was associated with 2-fold greater weight and fat loss over 12 months. However, there was significantly greater loss of total hip bone mineral density with severe vs moderate energy restriction."
+    },
+    {
+      "behavior_id": "caloric_deficit_magnitude",
+      "marker_id": "fat_mass",
+      "direction": "-",
+      "effect": "Whole-body fat mass loss was greater with severe vs moderate energy restriction (effect size -5.5 kg, 95% CI -7.1 to -3.9 kg) at 12 months",
+      "effect_normalized": -5.5,
+      "normalization_method": "MD (kg), fat mass, severe vs moderate energy restriction",
+      "evidence_tier": "B",
+      "population": "101 postmenopausal women with obesity, BMI 30-40, aged 45-65, <3h/week structured activity",
+      "conditional_on": "Severe = 65-75% deficit via total meal replacement for 4 months then moderate for 8 months; moderate = 25-35% deficit, food-based, for 12 months; protein fixed at 1.0 g/kg actual body weight/day in both arms",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2019.13733",
+        "title": "Effect of Weight Loss via Severe vs Moderate Energy Restriction on Lean Mass and Body Composition Among Postmenopausal Women With Obesity: The TEMPO Diet Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized clinical trial",
+        "n": 101
+      },
+      "verbatim": "Total hip bone mineral density (effect size, -0.017 g/cm2; 95% CI, -0.029 to -0.005 g/cm2), whole-body fat mass (effect size, -5.5 kg; 95% CI, -7.1 to -3.9 kg), abdominal subcutaneous adipose tissue (effect size, -1890 cm3; 95% CI, -2560 to -1219 cm3), and visceral adipose tissue (effect size, -1389 cm3; 95% CI, -1748 to -1030 cm3) loss were also greater for the severe group than for the moderate group at 12 months.",
+      "figure": null,
+      "caveats": "Severe restriction produced roughly 2-fold greater fat and weight loss overall, per the paper's conclusion.",
+      "key_results": "Severe energy restriction ... was associated with 2-fold greater weight and fat loss over 12 months."
+    },
+    {
+      "behavior_id": "caloric_deficit_magnitude",
+      "marker_id": "waist_vat",
+      "direction": "-",
+      "effect": "Visceral adipose tissue loss was greater with severe vs moderate energy restriction (effect size -1389 cm3, 95% CI -1748 to -1030 cm3) at 12 months",
+      "effect_normalized": -1389,
+      "normalization_method": "MD (cm3), VAT, severe vs moderate energy restriction",
+      "evidence_tier": "B",
+      "population": "101 postmenopausal women with obesity, BMI 30-40, aged 45-65, <3h/week structured activity",
+      "conditional_on": "Severe = 65-75% deficit via total meal replacement for 4 months then moderate for 8 months; moderate = 25-35% deficit, food-based, for 12 months; protein fixed at 1.0 g/kg actual body weight/day in both arms",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2019.13733",
+        "title": "Effect of Weight Loss via Severe vs Moderate Energy Restriction on Lean Mass and Body Composition Among Postmenopausal Women With Obesity: The TEMPO Diet Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized clinical trial",
+        "n": 101
+      },
+      "verbatim": "Total hip bone mineral density (effect size, -0.017 g/cm2; 95% CI, -0.029 to -0.005 g/cm2), whole-body fat mass (effect size, -5.5 kg; 95% CI, -7.1 to -3.9 kg), abdominal subcutaneous adipose tissue (effect size, -1890 cm3; 95% CI, -2560 to -1219 cm3), and visceral adipose tissue (effect size, -1389 cm3; 95% CI, -1748 to -1030 cm3) loss were also greater for the severe group than for the moderate group at 12 months.",
+      "figure": null,
+      "caveats": "Abdominal subcutaneous adipose tissue loss was also greater with severe restriction (-1890 cm3, 95% CI -2560 to -1219 cm3), i.e. the severe deficit accelerated both fat depots, not VAT selectively.",
+      "key_results": null
+    },
+    {
+      "behavior_id": "caloric_deficit_magnitude",
+      "marker_id": "max_strength",
+      "direction": null,
+      "effect": "No difference in handgrip strength between severe and moderate energy restriction groups at 12 months, despite significantly greater absolute lean-mass loss in the severe group",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no effect size reported for handgrip strength",
+      "evidence_tier": "B",
+      "population": "101 postmenopausal women with obesity, BMI 30-40, aged 45-65, <3h/week structured activity",
+      "conditional_on": "Handgrip strength (not a formal 1RM test) was the strength measure used; the absence of a between-group strength difference despite greater absolute lean-mass loss suggests the extra loss was proportional/largely non-functional over 12 months in this population",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2019.13733",
+        "title": "Effect of Weight Loss via Severe vs Moderate Energy Restriction on Lean Mass and Body Composition Among Postmenopausal Women With Obesity: The TEMPO Diet Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized clinical trial",
+        "n": 101
+      },
+      "verbatim": "Compared with the moderate group at 12 months, the severe group lost more weight (effect size, -6.6 kg; 95% CI, -8.2 to -5.1 kg), lost more whole-body lean mass (effect size, -1.2 kg; 95% CI, -2.0 to -0.4 kg), and lost more thigh muscle area (effect size, -4.2 cm2; 95% CI, -6.5 to -1.9 cm2). However, decreases in whole-body lean mass and thigh muscle area were proportional to total weight loss, and there was no difference in muscle (handgrip) strength between groups.",
+      "figure": null,
+      "caveats": "Single RCT in postmenopausal women with obesity; handgrip is a lower-resolution strength proxy than a true 1RM test.",
+      "key_results": null
+    },
+    {
+      "behavior_id": "intermittent_fasting_tre",
+      "marker_id": "fat_mass",
+      "direction": "-",
+      "effect": "IF groups had significant short-term reductions in fat mass (kg) (P=0.006) versus isocaloric continuous calorie restriction, and significant long-term reductions in fat mass (%) (P=0.0002)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports statistical significance (p-values) for these outcomes, not a pooled mean difference or SMD magnitude",
+      "evidence_tier": "A",
+      "population": "20 RCTs, adults and elderly, isocaloric intermittent fasting vs continuous calorie restriction",
+      "conditional_on": "Comparator is isocaloric (matched-calorie) continuous calorie restriction, not an ad-lib or no-treatment control; short-term fat-mass-in-kg effect and long-term fat-mass-percent effect are two separate findings in the same review; the review's own overall conclusion is that IF is not superior to CR on balance",
+      "paper": {
+        "doi": "10.1016/j.numecd.2024.103805",
+        "title": "Is isocaloric intermittent fasting superior to calorie restriction? A systematic review and meta-analysis of RCTs",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "As a result, 20 RCTs were included in this systematic review and meta-analysis. IF groups had significant reductions in fat mass (kg) (P = 0.006) and Interleukin-6 (P < 0.00001) in the short term and fat mass (%) (P = 0.0002), waist circumference (P = 0.005), fasting blood insulin (P < 0.00001) and HOMA-IR (P = 0.04) in the long term.",
+      "figure": null,
+      "caveats": "Abstract reports only p-values, not mean differences or SMDs, for these fat-mass comparisons, so effect_normalized is left null per the verbatim-number rule. CR groups showed significantly lower hunger, fatigue, and triglycerides than IF groups, and the authors conclude IF is 'not superior to CR in enhancing human health' - this edge should be read alongside the null lean-mass/fat-mass finding in overweight/obese women below (Chen 2025), not as a standalone endorsement of IF.",
+      "key_results": "Intermittent fasting (IF) has been demonstrated to enhance human health through several mechanisms; however, it is still unclear whether those health benefits are independent of caloric restriction (CR)-induced weight loss. IF may be an effective alternative to CR but is not superior to CR in enhancing human health. Due to the low number of long-term studies, future studies should focus on conducting longitudinal randomized trials comparing IF and CR in different populations, age groups, and IF patterns."
+    },
+    {
+      "behavior_id": "intermittent_fasting_tre",
+      "marker_id": "lean_mass",
+      "direction": null,
+      "effect": "Time-restricted eating showed no significant effect on fat-free mass versus comparators (p>0.05); no lean mass loss was observed",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "612 participants, 13 RCTs, overweight/obese women (>=85% female, BMI>=25)",
+      "conditional_on": "TRE with or without added caloric restriction, compared to conventional diets or calorie restriction alone; TRE produced greater weight reduction than conventional diets but was not superior to calorie restriction alone (p=0.295)",
+      "paper": {
+        "doi": "10.3389/fnut.2025.1664412",
+        "title": "Effects of time-restricted eating on body composition and metabolic parameters in overweight and obese women: a systematic review and meta-analysis",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 612
+      },
+      "verbatim": "TRE significantly reduced body weight (WMD = -1.927 kg, 95% CI: -3.688 to -0.166, p = 0.032) and fasting insulin levels (WMD = -2.120 μU/mL, 95% CI: -4.172 to -0.069, p = 0.043), but showed no significant effects on BMI, fat mass, fat-free mass, visceral fat, blood lipids, glucose, HOMA-IR, or blood pressure (p > 0.05).",
+      "figure": null,
+      "caveats": "Population restricted to women; complements the Hamsho 2025 mixed-adult isocaloric comparison above, which found a significant short-term fat-mass effect - the two results together show the IF/TRE-vs-CR comparison is genuinely contested across populations and outcome windows, not a settled finding either way.",
+      "key_results": "TRE is effective in reducing body weight and lowering fasting insulin in overweight and obese women, without negatively affecting lean body mass. Compared with traditional calorie-restricted diets, TRE does not yield superior weight loss, suggesting comparable efficacy. No lean mass loss was observed."
+    },
+    {
+      "behavior_id": "intermittent_fasting_tre",
+      "marker_id": "fat_mass",
+      "direction": null,
+      "effect": "Time-restricted eating showed no significant effect on fat mass versus comparators (p>0.05) in overweight/obese women",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "612 participants, 13 RCTs, overweight/obese women",
+      "conditional_on": "Contrasts with the short-term fat-mass reduction reported for isocaloric IF vs CR in mixed adult/elderly samples (Hamsho 2025, above); here the population is restricted to overweight/obese women and comparators include conventional diets, not only isocaloric CR",
+      "paper": {
+        "doi": "10.3389/fnut.2025.1664412",
+        "title": "Effects of time-restricted eating on body composition and metabolic parameters in overweight and obese women: a systematic review and meta-analysis",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 612
+      },
+      "verbatim": "TRE significantly reduced body weight (WMD = -1.927 kg, 95% CI: -3.688 to -0.166, p = 0.032) and fasting insulin levels (WMD = -2.120 μU/mL, 95% CI: -4.172 to -0.069, p = 0.043), but showed no significant effects on BMI, fat mass, fat-free mass, visceral fat, blood lipids, glucose, HOMA-IR, or blood pressure (p > 0.05).",
+      "figure": null,
+      "caveats": "TRE did reduce body weight and fasting insulin significantly in this same review, so the null result is specific to fat mass/fat-free mass/visceral fat/BMI, not to all outcomes studied.",
+      "key_results": "TRE significantly reduced body weight and fasting insulin levels, but showed no significant effects on BMI, fat mass, fat-free mass, visceral fat, blood lipids, glucose, HOMA-IR, or blood pressure."
+    },
+    {
+      "behavior_id": "sleep_restriction_during_diet",
+      "marker_id": "fat_mass",
+      "direction": "+",
+      "effect": "Sleep curtailment (5.5h vs 8.5h/night) decreased the amount of weight lost as fat by 55% (0.6 vs 1.4 kg fat lost, P=0.043) during a matched 14-day moderate caloric restriction, i.e. less fat was lost with restricted sleep",
+      "effect_normalized": null,
+      "normalization_method": "percent difference in kg of fat lost between sleep conditions, as reported (absolute kg values also given)",
+      "evidence_tier": "B",
+      "population": "10 overweight nonsmoking adults (3 women, 7 men), mean age 41 (SD 5), mean BMI 27.4 (SD 2.0)",
+      "conditional_on": "Total weight loss was matched between the two 14-day moderate-caloric-restriction conditions (only sleep opportunity, 8.5h vs 5.5h/night, differed); effect is on the composition of weight lost, not total weight lost",
+      "paper": {
+        "doi": "10.7326/0003-4819-153-7-201010050-00006",
+        "title": "Insufficient sleep undermines dietary efforts to reduce adiposity",
+        "year": 2010,
+        "design": "randomized 2-period, 2-condition crossover trial",
+        "n": 10
+      },
+      "verbatim": "Sleep curtailment decreased the proportion of weight lost as fat by 55% (1.4 vs. 0.6 kg with 8.5 vs. 5.5 hours of sleep opportunity, respectively; P = 0.043) and increased the loss of fat-free body mass by 60% (1.5 vs. 2.4 kg; P = 0.002).",
+      "figure": null,
+      "caveats": "Very small sample (n=10), single crossover RCT; direction here is coded '+' because sleep restriction relatively increases retained fat mass (less fat lost) compared with adequate sleep, for the same total weight loss.",
+      "key_results": "The primary measure was loss of fat and fat-free body mass. This was accompanied by markers of enhanced neuroendocrine adaptation to caloric restriction, increased hunger, and a shift in relative substrate utilization toward oxidation of less fat. The amount of human sleep contributes to the maintenance of fat-free body mass at times of decreased energy intake. Lack of sufficient sleep may compromise the efficacy of typical dietary interventions for weight loss."
+    },
+    {
+      "behavior_id": "sleep_restriction_during_diet",
+      "marker_id": "lean_mass",
+      "direction": "-",
+      "effect": "Sleep curtailment increased the loss of fat-free body mass by 60% (2.4 vs 1.5 kg lost, P=0.002) during the same matched 14-day moderate caloric restriction",
+      "effect_normalized": null,
+      "normalization_method": "percent difference in kg of fat-free mass lost between sleep conditions, as reported (absolute kg values also given)",
+      "evidence_tier": "B",
+      "population": "10 overweight nonsmoking adults (3 women, 7 men), mean age 41 (SD 5), mean BMI 27.4 (SD 2.0)",
+      "conditional_on": "Total weight loss was matched between the two 14-day moderate-caloric-restriction conditions (only sleep opportunity, 8.5h vs 5.5h/night, differed); effect is on the composition of weight lost, not total weight lost",
+      "paper": {
+        "doi": "10.7326/0003-4819-153-7-201010050-00006",
+        "title": "Insufficient sleep undermines dietary efforts to reduce adiposity",
+        "year": 2010,
+        "design": "randomized 2-period, 2-condition crossover trial",
+        "n": 10
+      },
+      "verbatim": "Sleep curtailment decreased the proportion of weight lost as fat by 55% (1.4 vs. 0.6 kg with 8.5 vs. 5.5 hours of sleep opportunity, respectively; P = 0.043) and increased the loss of fat-free body mass by 60% (1.5 vs. 2.4 kg; P = 0.002).",
+      "figure": null,
+      "caveats": "Very small sample (n=10), single crossover RCT; the study's own limitation statement notes its duration and sample size were constrained by feasibility.",
+      "key_results": "Sleep curtailment decreased the proportion of weight lost as fat by 55% and increased the loss of fat-free body mass by 60%. The amount of human sleep contributes to the maintenance of fat-free body mass at times of decreased energy intake."
+    },
+    {
+      "behavior_id": "alcohol",
+      "marker_id": "waist_vat",
+      "direction": "+",
+      "effect": "Alcohol consumption was dose-dependently associated with visceral fat mass in males (beta=1.104, 95% CI 1.040-1.167, p<0.001) and females (beta=1.102, 95% CI 1.029-1.180, p=0.006), independent of total fat mass; the highest-consumption quartile had over 10% greater visceral fat mass percentage than the adjacent lower quartile",
+      "effect_normalized": 1.104,
+      "normalization_method": "regression beta coefficient (per exposure unit), visceral fat mass, adjusted for age, smoking, height, physical activity, socio-economic status and total fat mass",
+      "evidence_tier": "D",
+      "population": "5,761 men and women, Oxford Biobank, DXA-scanned, cross-sectional",
+      "conditional_on": "Association remained after adjusting for total fat mass, i.e. this is a body-fat-distribution (preferential visceral accumulation) effect, not simply a total-adiposity effect; highest quartile defined as >17 units/week (men) or >10 units/week (women)",
+      "paper": {
+        "doi": "10.1038/s41366-026-02030-5",
+        "title": "Greater visceral fat mass accumulation with high alcohol consumption",
+        "year": 2026,
+        "design": "cross-sectional cohort study",
+        "n": 5761
+      },
+      "verbatim": "After adjustment for key confounders - age, smoking, height, physical activity, socio-economic status, and total fat mass (TFM) - alcohol consumption remained dose-dependently associated with VFM, in males (ß = 1.104 (1.040-1.167), p < 0.001) and females (ß = 1.102 (1.029-1.180), p = 0.006). The mean VFM percentage (%VFM) in the highest alcohol consumption quartile was over 10% greater, relative to the mean %VFM in the adjacent lower quartile, in both males (median 24 vs 12 units/week) and females (median 14 vs 7 units/week).",
+      "figure": null,
+      "caveats": "Cross-sectional observational cohort, not an RCT (heavy long-term alcohol intake cannot be ethically randomized), so causality cannot be established as firmly as for the exercise/diet edges above. Waist circumference specifically (a cruder proxy) was noted elsewhere in the design literature as a weaker, sometimes non-significant, marker of this association compared with DXA-measured VFM; this edge relies on the DXA measure.",
+      "key_results": "Regular alcohol consumption is commonly perceived to contribute to abdominal adiposity, particularly visceral fat mass (VFM). Observational studies in this area have either been small or used imprecise measurement methods of VFM (e.g., waist circumference). Elevated VFM among heavier drinkers may contribute to poorer cardiovascular and metabolic health and is relevant in the search for mechanisms of regional fat repositioning."
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "lean_mass",
+      "direction": "-",
+      "effect": "GLP-1 receptor agonists decreased absolute lean mass by -1.74 kg (95% CI -3.04 to -0.45, p<0.00001) despite increasing lean mass as a proportion of total body weight by 1.81% (95% CI 1.1-2.52, p<0.00001); semaglutide specifically caused the largest absolute lean-mass loss (-5.44 kg, 95% CI -7.07 to -3.81, p<0.00001)",
+      "effect_normalized": -1.74,
+      "normalization_method": "MD (kg), absolute lean mass change, GLP-1 receptor agonist vs placebo",
+      "evidence_tier": "A",
+      "population": "821 patients, 7 RCTs, adults with obesity treated with GLP-1 receptor agonists at obesity-management doses vs placebo",
+      "conditional_on": "Relative (proportion of total weight) and absolute lean-mass changes move in opposite directions because total weight loss is large; semaglutide shows the largest absolute lean-mass loss among the pooled agents; authors argue lean-mass loss should not by itself be a contraindication if accompanied by resistance training and adequate protein",
+      "paper": {
+        "doi": "10.1038/s41366-026-02118-y",
+        "title": "Effect of GLP-1 receptor agonists at doses for obesity management on muscle health: systematic review and meta-analysis of randomized controlled trials (RCTs)",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 821
+      },
+      "verbatim": "GLP1-RA significantly improved lean mass as a proportion of total weight, with an observed increase of 1.81% (95% CI: 1.1- 2.52; p < 0.00001; I² = 7%). However, a significant decrease was observed in the absolute change in lean mass (-1.74 kg; 95% CI: -3.04 to -0.45; p < 0.00001; I² = 98%) and in the percentage of lean mass (-3.06%; 95% CI: -5.10 to -1.02; p < 0.00001; I² = 98%). Semaglutide demonstrated the most significant reduction in absolute lean mass, with a loss of -5.44 kg (95% CI: -7.07 to -3.81; p < 0.00001).",
+      "figure": null,
+      "caveats": "GLP-1 receptor agonists are prescription medications, not supplements; categorized here as 'supplement' only because the schema's category list (exercise|supplement|diet|environment|habit) has no pharmaceutical option - this is a labeling limitation, not a claim about over-the-counter availability. Very high heterogeneity (I2=98%) on the absolute lean-mass outcome.",
+      "key_results": "There is an improvement in body composition due to an increase in lean mass as a proportion of total weight, an effect that could be amplified with the use of semaglutide. Our results suggest that lean mass loss should not be considered a limitation for the use of these drugs in patients with obesity. However, it is essential to accompany drug treatment with nutritional and physical exercise interventions to preserve or improve muscle mass and optimize clinical outcomes."
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "fat_mass",
+      "direction": "-",
+      "effect": "Total fat mass decreased by 14% at 7 months and 18% at 12 months of semaglutide 2.4 mg treatment",
+      "effect_normalized": -18,
+      "normalization_method": "% change from baseline, fat mass, at 12 months",
+      "evidence_tier": "C",
+      "population": "106 patients with obesity (68.9% female, mean BMI 46.3 kg/m2), semaglutide 2.4 mg, 12-month follow-up",
+      "conditional_on": "Single-arm design (no placebo/control comparator, unlike the meta-analysis edges above); lean mass initially declined -3 kg at 7 months but stabilised thereafter; greater fat-mass loss seen in women; patients with type 2 diabetes or prior GLP-1 use had attenuated responses; those with prior bariatric surgery had the most pronounced changes",
+      "paper": {
+        "doi": "10.1111/dom.70141",
+        "title": "Impact of Semaglutide on fat mass, lean mass and muscle function in patients with obesity: The SEMALEAN study",
+        "year": 2026,
+        "design": "prospective single-arm cohort study",
+        "n": 106
+      },
+      "verbatim": "A total of 106 patients (68.9% female; mean BMI 46.3 kg/m2) completed the study. Weight loss was significant, with mean reductions of 10% at M7 and 13% at M12; 59% of patients achieved ≥10% weight loss. Total fat mass decreased by 14% at M7 and 18% at M12, while lean mass initially declined (-3 kg at M7) but stabilised thereafter.",
+      "figure": null,
+      "caveats": "No control/placebo arm, so this single-arm cohort is tier C, weaker than the tier-A meta-analysis edge above; included because it is the only source in this pass with quotable fat-mass percentage numbers alongside lean mass, strength and metabolic outcomes for the same cohort.",
+      "key_results": "Handgrip strength improved significantly (+4.5 kg at M12), and the prevalence of sarcopenic obesity decreased from 49% at baseline to 33% at M12. Subgroup analyses revealed greater weight and fat mass loss in women, while patients with type 2 diabetes or prior GLP-1 analogue use showed attenuated responses. The SEMALEAN study highlights the significant impact of Semaglutide 2.4 mg on weight loss, fat mass reduction, and muscle function improvement, with preserved lean mass and metabolic efficiency."
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "max_strength",
+      "direction": "+",
+      "effect": "Handgrip strength improved significantly (+4.5 kg at 12 months) on semaglutide despite substantial concurrent weight loss",
+      "effect_normalized": 4.5,
+      "normalization_method": "kg change from baseline, handgrip strength, at 12 months",
+      "evidence_tier": "C",
+      "population": "106 patients with obesity, semaglutide 2.4 mg, 12-month follow-up",
+      "conditional_on": "Single-arm cohort, no control group; sarcopenic obesity prevalence fell from 49% to 33% at 12 months alongside the strength gain, suggesting a genuine functional improvement despite the initial lean-mass decline",
+      "paper": {
+        "doi": "10.1111/dom.70141",
+        "title": "Impact of Semaglutide on fat mass, lean mass and muscle function in patients with obesity: The SEMALEAN study",
+        "year": 2026,
+        "design": "prospective single-arm cohort study",
+        "n": 106
+      },
+      "verbatim": "Handgrip strength improved significantly (+4.5 kg at M12), and the prevalence of sarcopenic obesity decreased from 49% at baseline to 33% at M12.",
+      "figure": null,
+      "caveats": "Handgrip strength, not 1RM; single-arm design cannot rule out a practice/regression-to-mean effect on the strength test itself.",
+      "key_results": null
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "rmr",
+      "direction": "+",
+      "effect": "Resting energy expenditure normalized to lean mass increased significantly from 7 to 12 months of semaglutide treatment",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports direction and significance only, no numeric REE value or CI is given",
+      "evidence_tier": "C",
+      "population": "106 patients with obesity, semaglutide 2.4 mg, 12-month follow-up",
+      "conditional_on": "Reported as REE normalized to lean mass (metabolic rate per kg of lean tissue), not as an absolute RMR value in kcal/day; single-arm, no comparator",
+      "paper": {
+        "doi": "10.1111/dom.70141",
+        "title": "Impact of Semaglutide on fat mass, lean mass and muscle function in patients with obesity: The SEMALEAN study",
+        "year": 2026,
+        "design": "prospective single-arm cohort study",
+        "n": 106
+      },
+      "verbatim": "REE normalised to lean mass increased significantly from M7 to M12.",
+      "figure": null,
+      "caveats": "No numeric value or CI is given in the abstract for the REE change, only significance and direction, so effect_normalized is left null per the verbatim-number rule. Single-arm study with no comparator arm, so the causal magnitude vs no treatment is not established.",
+      "key_results": null
+    },
+    {
+      "behavior_id": "hmb",
+      "marker_id": "lean_mass",
+      "direction": null,
+      "effect": "No significant effect of HMB supplementation on fat-free mass (or fat mass) during resistance exercise training in young adults; only total body mass showed a significant effect",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "302 participants (18-45 years), 11 studies (of 14 identified), young healthy adults performing resistance exercise training",
+      "conditional_on": "Population restricted to young adults (18-45y); a significant effect was found on total body mass (TBM) alone, which did not translate into a significant FFM or fat-mass effect",
+      "paper": {
+        "doi": "10.3390/nu12051523",
+        "title": "Supplementation with the Leucine Metabolite β-hydroxy-β-methylbutyrate (HMB) does not Improve Resistance Exercise-Induced Changes in Body Composition or Strength in Young Subjects: A Systematic Review and Meta-Analysis",
+        "year": 2020,
+        "design": "meta-analysis of RCTs",
+        "n": 302
+      },
+      "verbatim": "A significant effect was found on TBM. However, there were no significant effects for FFM, FM, or strength outcomes.",
+      "figure": null,
+      "caveats": "Population restricted to young adults; separate, more mixed evidence exists for HMB in older/sarcopenic adults but was not independently re-verified with a quoted number in this research pass and is listed under cut_candidates.",
+      "key_results": "We conclude that HMB produces a small effect on TBM gain, but this effect does not translate into significantly greater increases in FFM, strength or decreases in FM during periods of RET. Our findings do not support the use of HMB aiming at improvement of body composition or strength with RET."
+    },
+    {
+      "behavior_id": "hmb",
+      "marker_id": "max_strength",
+      "direction": null,
+      "effect": "No significant effect of HMB supplementation on strength outcomes (total 1RM, bench press 1RM, lower-body 1RM) during resistance exercise training in young adults",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "248 participants, young adults 18-45y, strength-analysis subset",
+      "conditional_on": "Population restricted to young adults; null result held across total 1RM, bench press 1RM and lower-body 1RM",
+      "paper": {
+        "doi": "10.3390/nu12051523",
+        "title": "Supplementation with the Leucine Metabolite β-hydroxy-β-methylbutyrate (HMB) does not Improve Resistance Exercise-Induced Changes in Body Composition or Strength in Young Subjects: A Systematic Review and Meta-Analysis",
+        "year": 2020,
+        "design": "meta-analysis of RCTs",
+        "n": 302
+      },
+      "verbatim": "A total of 302 participants (18–45 y) were included in body mass and composition analysis, and 248 were included in the strength analysis. A significant effect was found on TBM. However, there were no significant effects for FFM, FM, or strength outcomes.",
+      "figure": null,
+      "caveats": null,
+      "key_results": null
+    },
+    {
+      "behavior_id": "bcaa",
+      "marker_id": "lean_mass",
+      "direction": null,
+      "effect": "No significant effect of BCAA-rich supplementation plus resistance training on total lean mass (SMD=0.024, p=0.908) or fat mass (SMD=-0.036, p=0.866) versus resistance training alone in sarcopenic older adults",
+      "effect_normalized": 0.024,
+      "normalization_method": "SMD, total lean mass, BCAA+RT vs RT alone",
+      "evidence_tier": "A",
+      "population": "459 participants, 12 RCTs, older patients with diagnosed sarcopenia",
+      "conditional_on": "Population restricted to older adults with diagnosed sarcopenia already undergoing resistance training; skeletal muscle index (a regional/appendicular measure) did improve significantly (SMD=0.337, p=0.029) even though whole-body total lean mass and fat mass did not",
+      "paper": {
+        "doi": "10.1016/j.archger.2025.106063",
+        "title": "Effects of branched-chain amino acid-rich nutritional supplements combined with resistance training on body composition and body function in older patients with sarcopenia",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 459
+      },
+      "verbatim": "No significant differences were found in: hand grip strength (SMD = 0.289, p = 0.080), 30-s chair stand (SMD = -0.794, p = 0.169), SPPB (SMD = -0.321, p = 0.124), walking speed (SMD = 0.344, p = 0.283), knee extension strength (SMD = 0.332,p = 0.328), total lean mass (SMD = 0.024, p = 0.908), or fat mass (SMD = -0.036, p = 0.866; all p > 0.05).",
+      "figure": null,
+      "caveats": "The one significant finding in this review (skeletal muscle index) is a narrower, regional measure than the total lean mass marker used here; the authors themselves note its clinical value without functional gains is uncertain.",
+      "key_results": "Compared with resistance training alone, BCAA-rich supplementation plus resistance training significantly improved skeletal muscle index (SMI) in older adults with sarcopenia, but showed no significant improvement in physical function or other body composition outcomes. BCAA supplementation post-resistance training only increased skeletal muscle index in older adults, without improving other functional or body composition outcomes."
+    },
+    {
+      "behavior_id": "bcaa",
+      "marker_id": "max_strength",
+      "direction": null,
+      "effect": "No significant effect of BCAA-rich supplementation plus resistance training on hand grip strength (SMD=0.289, p=0.080) or knee extension strength (SMD=0.332, p=0.328) versus resistance training alone in sarcopenic older adults",
+      "effect_normalized": 0.289,
+      "normalization_method": "SMD, hand grip strength, BCAA+RT vs RT alone",
+      "evidence_tier": "A",
+      "population": "459 participants, 12 RCTs, older patients with diagnosed sarcopenia",
+      "conditional_on": "Grip-strength result is borderline (p=0.080) rather than a clean null; population restricted to diagnosed sarcopenia in older adults",
+      "paper": {
+        "doi": "10.1016/j.archger.2025.106063",
+        "title": "Effects of branched-chain amino acid-rich nutritional supplements combined with resistance training on body composition and body function in older patients with sarcopenia",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 459
+      },
+      "verbatim": "No significant differences were found in: hand grip strength (SMD = 0.289, p = 0.080), 30-s chair stand (SMD = -0.794, p = 0.169), SPPB (SMD = -0.321, p = 0.124), walking speed (SMD = 0.344, p = 0.283), knee extension strength (SMD = 0.332,p = 0.328), total lean mass (SMD = 0.024, p = 0.908), or fat mass (SMD = -0.036, p = 0.866; all p > 0.05).",
+      "figure": null,
+      "caveats": "This is the population and behavior combination the popular BCAA claim is often extrapolated from; the trial-level evidence in the specific population studied here does not support a strength benefit.",
+      "key_results": null
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "protein_intake -> lean_mass, distribution/timing across the day (e.g., 4x25g pattern) as its own behavior",
+      "reason": "No dedicated, adequately powered RCT or meta-analysis was found within the research budget that isolates meal-to-meal protein distribution as a body-composition outcome separable from total daily protein intake; the existing distribution literature (e.g., Areta et al. 2013) measures acute muscle protein synthesis, not fat mass/lean mass/strength changes over weeks-to-months, so it does not meet this project's outcome bar. Folded into the protein_intake behavior's dose_or_intensity field instead of a separate node."
+    },
+    {
+      "candidate": "hmb -> lean_mass, older/sarcopenic adults (as a second, separate edge)",
+      "reason": "Multiple 2024-2025 meta-analyses (e.g. PMC12655442, PMC12003145) report modest/mixed effects of HMB on handgrip strength and physical-performance batteries in adults over 50, but conflicting reviews and no single verbatim-quotable pooled estimate specifically for appendicular or total lean mass was retrieved within the research budget for this pass; left out rather than asserted from search-summary text alone."
+    },
+    {
+      "candidate": "caloric_deficit_magnitude -> resting metabolic rate (adaptive thermogenesis)",
+      "reason": "Background sources (e.g. a 2022 tissue-loss/metabolic-adaptation study in Int J Obes, and the classic Ballor & Poehlman exercise/diet-restriction meta-analysis) clearly describe RMR decline with caloric restriction, but full abstract text with a verbatim, quotable numeric RMR effect was not retrieved within the research budget for this session. This is flagged as the single most promising addition for a future pass, since it bears directly on the resting-metabolic-rate marker and the caloric_deficit_magnitude behavior already in this file."
+    },
+    {
+      "candidate": "alcohol -> fat_mass and alcohol -> lean_mass (general, beyond visceral fat)",
+      "reason": "Alcohol's relationship with total fat mass and lean mass is confounded by total caloric intake and cannot be isolated with a randomized design (heavy, sustained drinking cannot be ethically randomized long-term); only the visceral-fat-specific, total-fat-mass-adjusted cohort finding (Chesters et al. 2026) was kept, because its adjustment for total fat mass isolates a body-fat-distribution effect rather than a generic caloric one."
+    },
+    {
+      "candidate": "D-aspartic acid, Tribulus terrestris",
+      "reason": "These appear in the design document's Goal A (male vitality / testosterone) candidate list, not in this goal's (body composition and strength) candidate behaviors; out of scope for this file and not evaluated."
+    },
+    {
+      "candidate": "resistance_training / creatine_monohydrate -> lean_mass and max_strength in general (young, non-aged) populations, as separate edges alongside the aged-specific ones",
+      "reason": "The literature for general/young populations is broadly consistent with (and larger in magnitude than) the aged-specific effects already included, but a second, non-overlapping verbatim-quotable meta-analysis was not pulled for this pass given the research budget; the aged-specific creatine finding and the mixed-age Lopez 2021 resistance-training finding were judged sufficient to establish both behaviors without duplicating the same claim twice."
+    }
+  ],
+  "goal": {
+    "id": "goal_e_body_composition_strength",
+    "name": "Body composition and strength",
+    "definition": "Fat mass / body fat percentage, fat-free (lean) mass, maximal strength (1RM), waist circumference / visceral adipose tissue, and resting metabolic rate, as driven by resistance training, diet composition and structure, sleep, alcohol, and pharmacology (GLP-1 receptor agonists)."
+  }
+}

@@ -1,0 +1,768 @@
+{
+  "goal": {
+    "id": "goal_h_longevity_mortality",
+    "name": "Longevity and mortality risk",
+    "definition": "Risk of death from any cause (all-cause mortality), death from cardiovascular disease (cardiovascular mortality), and cancer occurrence or death (cancer incidence/mortality), each reported as hazard ratios or relative risks from the literature. This goal is one of eight in the explorer and is not a common unit that other goals' outcomes are converted into; no other goal's endpoints are re-expressed in mortality terms here, and no life-expectancy-years figures are computed from hazard ratios."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_h_longevity_mortality",
+        "name": "Longevity and mortality risk",
+        "definition": "Risk of death from any cause (all-cause mortality), death from cardiovascular disease (cardiovascular mortality), and cancer occurrence or death (cancer incidence/mortality), each reported as hazard ratios or relative risks from the literature. This goal is one of eight in the explorer and is not a common unit that other goals' outcomes are converted into; no other goal's endpoints are re-expressed in mortality terms here, and no life-expectancy-years figures are computed from hazard ratios."
+      }
+    ],
+    "markers": [
+      {
+        "id": "all_cause_mortality",
+        "name": "All-cause mortality",
+        "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source",
+        "goal_ids": ["goal_h_longevity_mortality"]
+      },
+      {
+        "id": "cardiovascular_mortality",
+        "name": "Cardiovascular mortality",
+        "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source",
+        "goal_ids": ["goal_h_longevity_mortality"]
+      },
+      {
+        "id": "cancer_incidence_mortality",
+        "name": "Cancer incidence or mortality",
+        "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source; incidence and mortality outcomes are pooled by some sources and kept distinct in population/conditional_on where the source distinguishes them",
+        "goal_ids": ["goal_h_longevity_mortality"]
+      }
+    ],
+    "behaviors": [
+      { "id": "smoking_and_cessation", "name": "Cigarette smoking and smoking cessation", "category": "habit", "dose_or_intensity": "Current smoking vs never-smoking; smoking cessation at various ages (before 40/45/54) vs continued smoking" },
+      { "id": "physical_activity_volume", "name": "Physical activity volume / daily step count", "category": "exercise", "dose_or_intensity": "Daily step count (quartiles from ~3500 to ~11000+ steps/day) or 1000-step increments; dose-response plateaus rather than continuing to fall linearly" },
+      { "id": "cardiorespiratory_fitness", "name": "Cardiorespiratory fitness", "category": "exercise", "dose_or_intensity": "Maximal aerobic capacity in metabolic equivalents (METs), categorized low (<7.9 METs), intermediate (7.9-10.8), high (>=10.9)" },
+      { "id": "alcohol_consumption", "name": "Alcohol consumption", "category": "habit", "dose_or_intensity": "Grams of ethanol per day; occasional (<1.3 g/day), low-volume (1.3-24.9 g/day), heavy (>=45-65+ g/day); genotype-predicted intake in Mendelian randomisation studies" },
+      { "id": "obesity_bmi", "name": "Obesity / body mass index", "category": "habit", "dose_or_intensity": "BMI in kg/m2, per-5-kg/m2 increments above 25; reference range 20.0-25.0 kg/m2" },
+      { "id": "sedentary_time", "name": "Sedentary time (sitting and TV viewing)", "category": "habit", "dose_or_intensity": "Total daily sitting time (hours/day) and television viewing time (hours/day), physical-activity-adjusted" },
+      { "id": "fruit_vegetable_intake", "name": "Fruit and vegetable intake", "category": "diet", "dose_or_intensity": "Servings per day; dose-response plateaus around 5 servings/day for all-cause mortality" },
+      { "id": "processed_red_meat", "name": "Processed and red meat intake", "category": "diet", "dose_or_intensity": "Grams per day; effects expressed per daily serving (all-cause) or per 100 g/day red meat and 50 g/day processed meat (cancer)" },
+      { "id": "sleep_duration", "name": "Sleep duration", "category": "habit", "dose_or_intensity": "Hours of sleep per night; U-shaped risk centered near 7 hours, effect expressed per 1-hour deviation" },
+      { "id": "social_isolation", "name": "Social isolation / loneliness", "category": "habit", "dose_or_intensity": "Composite of objective social isolation, subjective loneliness, and living alone, from self-report and social-network measures" },
+      { "id": "air_pollution_pm25", "name": "Air pollution exposure (PM2.5 / traffic-related NO2)", "category": "environment", "dose_or_intensity": "Long-term ambient PM2.5 concentration (per 5 ug/m3) or NO2 as a traffic-pollution proxy (per 10 ug/m3)" },
+      { "id": "mediterranean_diet", "name": "Mediterranean diet adherence", "category": "diet", "dose_or_intensity": "Adherence score (e.g. 0-9 point a priori diet score); effect expressed per 2-point increase in adherence" }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "smoking_and_cessation",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "Rate of death from any cause among current smokers about three times that among never-smokers (HR 3.0 for women, 2.8 for men); life expectancy shortened by more than 10 years",
+      "effect_normalized": 2.9,
+      "normalization_method": "hazard ratio, current smokers vs never-smokers (mean of reported male/female HRs)",
+      "evidence_tier": "C",
+      "population": "113,752 women and 88,496 men aged >=25, US National Health Interview Survey 1997-2004, followed to 2006",
+      "conditional_on": "Current smoking status at interview; adjusted for age, education, adiposity, and alcohol consumption. Cannot be randomized for ethical reasons, so this is necessarily observational, and residual confounding by socioeconomic status and other health behaviors is possible even after adjustment.",
+      "paper": {
+        "doi": "10.1056/NEJMsa1211128",
+        "title": "21st-century hazards of smoking and benefits of cessation in the United States",
+        "year": 2013,
+        "design": "prospective cohort (US National Health Interview Survey linked to mortality)",
+        "n": 202248
+      },
+      "verbatim": "For participants who were 25 to 79 years of age, the rate of death from any cause among current smokers was about three times that among those who had never smoked (hazard ratio for women, 3.0; 99% confidence interval [CI], 2.7 to 3.3; hazard ratio for men, 2.8; 99% CI, 2.4 to 3.1).",
+      "figure": null,
+      "caveats": "Self-reported smoking status at a single baseline interview; no genuine RCT of smoking exists or ever will, so all evidence for this behavior is inherently observational (tier C is a ceiling, not a floor, for this exposure)."
+      ,
+      "key_results": "The rate of death from any cause among current smokers was about three times that among those who had never smoked (hazard ratio for women, 3.0; hazard ratio for men, 2.8). The probability of surviving from 25 to 79 years of age was about twice as great in those who had never smoked as in current smokers (70% vs. 38% among women and 61% vs. 26% among men). Life expectancy was shortened by more than 10 years among the current smokers, as compared with those who had never smoked. Smokers lose at least one decade of life expectancy, as compared with those who have never smoked."
+    },
+    {
+      "behavior_id": "smoking_and_cessation",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "Cessation before age 40 reduces the excess risk of death associated with continued smoking by about 90%; quitting at 25-34, 35-44, or 45-54 years gained about 10, 9, and 6 years of life respectively",
+      "effect_normalized": -0.90,
+      "normalization_method": "proportional reduction in excess mortality risk attributable to continued smoking, as reported",
+      "evidence_tier": "C",
+      "population": "Same US National Health Interview Survey cohort as the smoking-harm edge above, restricted to those who had quit at a given age band",
+      "conditional_on": "Benefit is graded by age at cessation: quitting earlier in life recovers more of the lost life-years and risk reduction than quitting later; even quitting at 45-54 still yields a substantial (6-year) gain versus continuing to smoke.",
+      "paper": {
+        "doi": "10.1056/NEJMsa1211128",
+        "title": "21st-century hazards of smoking and benefits of cessation in the United States",
+        "year": 2013,
+        "design": "prospective cohort (US National Health Interview Survey linked to mortality)",
+        "n": 202248
+      },
+      "verbatim": "Adults who had quit smoking at 25 to 34, 35 to 44, or 45 to 54 years of age gained about 10, 9, and 6 years of life, respectively, as compared with those who continued to smoke. Cessation before the age of 40 years reduces the risk of death associated with continued smoking by about 90%.",
+      "figure": null,
+      "caveats": "Quitters are a self-selected group who may differ from continuing smokers in ways beyond smoking itself (health at time of quitting, motivation, access to care); this is standard smoking-cessation cohort methodology and cannot be fully removed without a randomized cessation trial, which does not exist at this scale."
+      ,
+      "key_results": "Adults who had quit smoking at 25 to 34, 35 to 44, or 45 to 54 years of age gained about 10, 9, and 6 years of life, respectively, as compared with those who continued to smoke. Cessation before the age of 40 years reduces the risk of death associated with continued smoking by about 90%. Most of the excess mortality among smokers was due to neoplastic, vascular, respiratory, and other diseases that can be caused by smoking."
+    },
+    {
+      "behavior_id": "physical_activity_volume",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "Compared with the lowest quartile of daily steps (median 3553/day), adjusted HR for all-cause mortality was 0.60 for quartile 2, 0.55 for quartile 3, and 0.47 for quartile 4 (median 10901/day); risk reduction plateaus at 6000-8000 steps/day in adults 60+ and 8000-10000 steps/day in adults under 60",
+      "effect_normalized": 0.47,
+      "normalization_method": "hazard ratio, highest vs lowest quartile of daily steps",
+      "evidence_tier": "C",
+      "population": "47,471 adults pooled from 15 international cohorts (7 published, 8 unpublished), median follow-up 7.1 years",
+      "conditional_on": "Dose-response plateaus rather than continuing to fall: risk keeps decreasing with more steps only up to an age-dependent threshold (6000-8000 steps/day at age 60+, 8000-10000 steps/day under 60), after which additional steps show no further measurable mortality benefit in this data.",
+      "paper": {
+        "doi": "10.1016/S2468-2667(21)00302-9",
+        "title": "Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts",
+        "year": 2022,
+        "design": "meta-analysis of prospective cohort studies (individual participant data)",
+        "n": 47471
+      },
+      "verbatim": "Compared with the lowest quartile, the adjusted HR for all-cause mortality was 0·60 (95% CI 0·51-0·71) for quartile 2, 0·55 (0·49-0·62) for quartile 3, and 0·47 (0·39-0·57) for quartile 4. Restricted cubic splines showed progressively decreasing risk of mortality among adults aged 60 years and older with increasing number of steps per day until 6000-8000 steps per day and among adults younger than 60 years until 8000-10 000 steps per day.",
+      "figure": null,
+      "caveats": "Observational cohort design; people who are already ill walk less, so reverse causation (illness suppressing step count rather than low step count causing illness) can inflate the apparent benefit of higher steps. Eight of the 15 cohorts were unpublished data contributed directly to this pooled analysis."
+      ,
+      "key_results": "Taking more steps per day was associated with a progressively lower risk of all-cause mortality, up to a level that varied by age. Compared with the lowest quartile, the adjusted HR for all-cause mortality was 0.60 for quartile 2, 0.55 for quartile 3, and 0.47 for quartile 4. Restricted cubic splines showed progressively decreasing risk of mortality with increasing steps per day until 6000-8000 steps per day (age 60+) or 8000-10000 steps per day (under 60). The findings from this meta-analysis can be used to inform step guidelines for public health promotion of physical activity."
+    },
+    {
+      "behavior_id": "physical_activity_volume",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "A 1000-step/day increment was associated with a 15% decreased risk of all-cause mortality (HR 0.85, 95% CI 0.81-0.91)",
+      "effect_normalized": 0.85,
+      "normalization_method": "hazard ratio per 1000-step/day increment",
+      "evidence_tier": "C",
+      "population": "226,889 participants pooled from 17 cohort studies (generally healthy adults or those at cardiovascular risk), median follow-up 7.1 years",
+      "conditional_on": "Nonlinear dose-response confirmed by restricted cubic splines; benefit begins from a low base (as few as 3867 steps/day already shows reduced risk vs the lowest reference group) with progressively smaller marginal gains at higher step counts (\"more is better\" but with diminishing returns), consistent with the plateau reported by Paluch et al. above.",
+      "paper": {
+        "doi": "10.1093/eurjpc/zwad229",
+        "title": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+        "year": 2023,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 226889
+      },
+      "verbatim": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]",
+      "figure": null,
+      "caveats": "Corroborates the Paluch 2022 plateau finding using an independent, larger pooled sample, but both are observational; people already limited by subclinical disease systematically walk less, which can inflate the apparent step-count benefit (residual confounding/reverse causation)."
+      ,
+      "key_results": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality (HR 0.85; 95% CI 0.81-0.91; P < 0.001). Using a restricted cubic splines model, a strong inverse nonlinear association between step count and all-cause mortality was observed. This meta-analysis demonstrates a significant inverse association between daily step count and all-cause mortality with more the better over the cut-off point of 3867 steps/day."
+    },
+    {
+      "behavior_id": "physical_activity_volume",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "-",
+      "effect": "A 500-step/day increment was associated with a 7% decrease in cardiovascular mortality (HR 0.93, 95% CI 0.91-0.95)",
+      "effect_normalized": 0.93,
+      "normalization_method": "hazard ratio per 500-step/day increment",
+      "evidence_tier": "C",
+      "population": "226,889 participants pooled from 17 cohort studies, median follow-up 7.1 years",
+      "conditional_on": "Nonlinear dose-response; cardiovascular mortality benefit becomes apparent at a lower step threshold (as low as 2337 steps/day) than the threshold typically discussed for all-cause mortality, per the same paper's restricted cubic splines.",
+      "paper": {
+        "doi": "10.1093/eurjpc/zwad229",
+        "title": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis",
+        "year": 2023,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 226889
+      },
+      "verbatim": "a 500-step increment was associated with a 7% decrease in CV mortality (HR 0.93; 95% CI 0.91-0.95; P < 0.001)",
+      "figure": null,
+      "caveats": "Observational; the same reverse-causation concern (subclinical cardiovascular disease reducing steps rather than low steps causing disease) applies here as for all-cause mortality."
+      ,
+      "key_results": "A 500-step increment was associated with a 7% decrease in CV mortality (HR 0.93; 95% CI 0.91-0.95; P < 0.001). Compared with the lowest quartile of steps/day, higher quartiles were linearly associated with a reduced risk of CV mortality (16%, 49%, and 77% lower risk across quartiles). A nonlinear dose-response association between step count and CV mortality was observed, with a progressively lower risk of mortality with an increased step count."
+    },
+    {
+      "behavior_id": "cardiorespiratory_fitness",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "Pooled RR of all-cause mortality per 1-MET higher maximal aerobic capacity was 0.87 (95% CI 0.84-0.90); low-fitness participants had RR 1.70 vs high-fitness participants",
+      "effect_normalized": 0.87,
+      "normalization_method": "relative risk per 1-MET increment in maximal aerobic capacity",
+      "evidence_tier": "C",
+      "population": "102,980 healthy men and women pooled across 33 cohort studies for the all-cause mortality outcome",
+      "conditional_on": "Fitness is a composite of genetics, training status, and current activity; the meta-analysis pools healthy adults broadly rather than isolating a specific training protocol, so this reflects fitness level itself rather than a specific exercise prescription.",
+      "paper": {
+        "doi": "10.1001/jama.2009.681",
+        "title": "Cardiorespiratory fitness as a quantitative predictor of all-cause mortality and cardiovascular events in healthy men and women: a meta-analysis",
+        "year": 2009,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 102980
+      },
+      "verbatim": "Pooled RRs of all-cause mortality and CHD/CVD events per 1-MET higher level of MAC (corresponding to 1-km/h higher running/jogging speed) were 0.87 (95% confidence interval [CI], 0.84-0.90) and 0.85 (95% CI, 0.82-0.88), respectively. Compared with participants with high CRF, those with low CRF had an RR for all-cause mortality of 1.70 (95% CI, 1.51-1.92; P < .001).",
+      "figure": null,
+      "caveats": "Higher baseline fitness correlates with absence of subclinical disease and with wealth/education, both of which independently affect mortality (confounding by prior health status is difficult to fully exclude in an observational pooled analysis). This paper's CHD/CVD figure (RR 0.85) mixes fatal and non-fatal events, so it is not used here as a cardiovascular-mortality-specific number; only the all-cause mortality figure is reported for this edge."
+      ,
+      "key_results": "Data were obtained from 33 eligible studies (all-cause mortality, 102,980 participants and 6910 cases). Pooled RRs of all-cause mortality per 1-MET higher level of maximal aerobic capacity was 0.87 (95% CI, 0.84-0.90). Compared with participants with high cardiorespiratory fitness (CRF), those with low CRF had an RR for all-cause mortality of 1.70 (95% CI, 1.51-1.92; P < .001). Better CRF was associated with lower risk of all-cause mortality and CHD/CVD."
+    },
+    {
+      "behavior_id": "alcohol_consumption",
+      "marker_id": "all_cause_mortality",
+      "direction": null,
+      "effect": "No significantly reduced risk of all-cause mortality for occasional drinkers (RR 0.96, 95% CI 0.86-1.06) or low-volume drinkers (RR 0.93, P=.07) vs lifetime nondrinkers after adjusting for former-drinker bias and study quality; risk rose significantly at 45-64 g/day (RR 1.19) and 65+ g/day (RR 1.35)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result at low/moderate intake after bias adjustment; positive RR reported only at higher intake",
+      "evidence_tier": "C",
+      "population": "4,838,825 participants across 107 cohort studies published 1980-2021, 425,564 deaths",
+      "conditional_on": "Effect estimates are strongly bias-dependent: unadjusted analyses reproduce the classic J-curve, but adjusting for former-drinker bias, sampling variation, and study quality removes the apparent protective effect at low/moderate intake. Larger risk increase seen in women than men at a given intake level.",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2023.6185",
+        "title": "Association Between Daily Alcohol Intake and Risk of All-Cause Mortality: A Systematic Review and Meta-analyses",
+        "year": 2023,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 4838825
+      },
+      "verbatim": "In models adjusting for potential confounding effects of sampling variation, former drinker bias, and other prespecified study-level quality criteria, the meta-analysis of all 107 included studies found no significantly reduced risk of all-cause mortality among occasional (>0 to <1.3 g of ethanol per day; relative risk [RR], 0.96; 95% CI, 0.86-1.06; P = .41) or low-volume drinkers (1.3-24.0 g per day; RR, 0.93; P = .07) compared with lifetime nondrinkers.",
+      "figure": null,
+      "caveats": "This is the newer, bias-corrected side of a genuinely contested literature (see companion Stockwell 2016 edge below and the Millwood 2019 Mendelian randomisation edge under cardiovascular mortality). Low-volume drinkers and abstainers differ systematically in health status prior to any alcohol effect (sick or formerly-alcoholic people disproportionately abstain), so even bias-adjusted cohort estimates cannot fully rule out residual confounding in either direction."
+      ,
+      "key_results": "A previous meta-analysis of the association between alcohol use and all-cause mortality found no statistically significant reductions in mortality risk at low levels of consumption compared with lifetime nondrinkers. In this updated systematic review and meta-analysis, daily low or moderate alcohol intake was not significantly associated with all-cause mortality risk, while increased risk was evident at higher consumption levels, starting at lower levels for women than men. There were significantly larger risks of mortality among female drinkers compared with female lifetime nondrinkers (RR, 1.22; P = .03). Significantly increased risk was found for drinkers who drank 45 to 64 and 65 or more grams per day (RR, 1.19 and 1.35; P < .001)."
+    },
+    {
+      "behavior_id": "alcohol_consumption",
+      "marker_id": "all_cause_mortality",
+      "direction": null,
+      "effect": "Unadjusted meta-analysis of 87 studies replicated the classic J-shaped curve (low-volume drinkers RR 0.86); after adjustment for abstainer biases and study quality, no significant reduction in mortality risk remained for low-volume drinkers (RR 0.97, 95% CI 0.88-1.07)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - direction reverses between unadjusted (protective) and bias-adjusted (null) models within the same paper",
+      "evidence_tier": "C",
+      "population": "3,998,626 individuals across 87 cohort studies, 367,103 deaths",
+      "conditional_on": "The entire apparent J-curve depends on whether former and occasional drinkers are correctly separated from lifetime abstainers; former drinkers (who often quit due to illness) have elevated mortality risk (RR 1.22) and, if misclassified as 'abstainers', make light/moderate drinkers look protective by comparison.",
+      "paper": {
+        "doi": "10.15288/jsad.2016.77.185",
+        "title": "Do \"Moderate\" Drinkers Have Reduced Mortality Risk? A Systematic Review and Meta-Analysis of Alcohol Consumption and All-Cause Mortality",
+        "year": 2016,
+        "design": "meta-analysis and meta-regression of prospective cohort studies",
+        "n": 3998626
+      },
+      "verbatim": "Without adjustment, meta-analysis of all 87 included studies replicated the classic J-shaped curve, with low-volume drinkers (1.3-24.9 g ethanol per day) having reduced mortality risk (RR = 0.86, 95% CI [0.83, 0.90])... After adjustment for abstainer biases and quality-related study characteristics, no significant reduction in mortality risk was observed for low-volume drinkers (RR = 0.97, 95% CI [0.88, 1.07]).",
+      "figure": null,
+      "caveats": "Deliberately shipped alongside the Zhao 2023 edge above (same research group, updated data, same conclusion) rather than a single averaged number, because the J-curve's contested status is itself the finding the task requires to be visible: this is not a settled edge, and no consensus point estimate is asserted here."
+      ,
+      "key_results": "Previous meta-analyses of cohort studies indicate a J-shaped relationship between alcohol consumption and all-cause mortality, with reduced risk for low-volume drinkers. Without adjustment, meta-analysis of all 87 included studies replicated the classic J-shaped curve (RR = 0.86 for low-volume drinkers). After adjustment for abstainer biases and quality-related study characteristics, no significant reduction in mortality risk was observed for low-volume drinkers (RR = 0.97). Meta-analyses adjusting for these factors find that low-volume alcohol consumption has no net mortality benefit compared with lifetime abstention or occasional drinking."
+    },
+    {
+      "behavior_id": "alcohol_consumption",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "+",
+      "effect": "Genotype-predicted alcohol intake (Mendelian randomisation) had a continuously positive log-linear association with vascular disease risk, RR per 280 g/week 1.58 for intracerebral haemorrhage and 1.27 for ischaemic stroke, with no U-shaped/J-shaped pattern",
+      "effect_normalized": 1.58,
+      "normalization_method": "relative risk per 280 g/week higher genotype-predicted alcohol intake (Mendelian randomisation)",
+      "evidence_tier": "C",
+      "population": "512,715 adults in the China Kadoorie Biobank; 161,498 genotyped for ALDH2-rs671 and ADH1B-rs1229984, followed about 10 years",
+      "conditional_on": "This is a Mendelian randomisation study, not a mortality-only outcome: incidence of ischaemic stroke, intracerebral haemorrhage, and myocardial infarction was monitored via linkage to morbidity AND mortality registries, so the outcome is vascular disease occurrence (including but not limited to death) rather than cardiovascular death alone. Included here, with this caveat, because it is the strongest causal-inference evidence directly contradicting the conventional J-shaped, moderate-drinking-is-protective picture for vascular disease that the task requires to be surfaced rather than silently resolved.",
+      "paper": {
+        "doi": "10.1016/S0140-6736(18)31772-0",
+        "title": "Conventional and genetic evidence on alcohol and vascular disease aetiology: a prospective study of 500 000 men and women in China",
+        "year": 2019,
+        "design": "Mendelian randomisation within a prospective cohort (China Kadoorie Biobank)",
+        "n": 512715
+      },
+      "verbatim": "In contrast, although genotype-predicted mean male alcohol intake varied widely (from 4 to 256 g per week-ie, near zero to about four drinks per day), it did not have any U-shaped associations with risk. For stroke, genotype-predicted mean alcohol intake had a continuously positive log-linear association with risk, which was stronger for intracerebral haemorrhage (relative risk [RR] per 280 g per week 1·58, 95% CI 1·36-1·84, p<0·0001) than for ischaemic stroke (1·27, 1·13-1·43, p=0·0001).",
+      "figure": null,
+      "caveats": "Conducted in Chinese men where genetic variants strongly determine drinking pattern, which may not generalise identically to other populations' genetic architecture, though the biological mechanism (ethanol's direct vascular effects) is not population-specific. Directly contradicts the conventional-epidemiology U-shaped finding in the SAME paper and cohort, which found men reporting ~100 g/week had lower stroke/MI risk than non-drinkers or heavier drinkers -- the paper's central point is that this conventional U-shape is largely non-causal."
+      ,
+      "key_results": "Among men, conventional epidemiology showed that self-reported alcohol intake had U-shaped associations with the incidence of ischaemic stroke, intracerebral haemorrhage, and acute myocardial infarction; men who reported drinking about 100 g of alcohol per week had lower risks of all three diseases than non-drinkers or heavier drinkers. In contrast, genotype-predicted mean male alcohol intake did not have any U-shaped associations with risk, and had a continuously positive log-linear association with stroke risk. Genetic epidemiology shows that the apparently protective effects of moderate alcohol intake against stroke are largely non-causal. Alcohol consumption uniformly increases blood pressure and stroke risk."
+    },
+    {
+      "behavior_id": "alcohol_consumption",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": "+",
+      "effect": "Heavy drinkers (vs nondrinkers/occasional drinkers) had RR 1.44 for colorectal cancer, RR 1.61 for female breast cancer, RR 5.13 for oral/pharyngeal cancer, and RR 4.95 for oesophageal squamous cell carcinoma, with a clear dose-risk relationship across sites",
+      "effect_normalized": 1.44,
+      "normalization_method": "relative risk, heavy drinkers vs nondrinkers/occasional drinkers, representative value for colorectal cancer (other sites reported separately)",
+      "evidence_tier": "C",
+      "population": "486,538 cancer cases across 572 studies, dose-response meta-regression across 23 cancer types",
+      "conditional_on": "Effect size and even direction vary substantially by cancer site: strongest for oral cavity/pharynx, oesophagus, colorectum, liver, larynx, and female breast; weaker or absent for others; alcohol was inversely associated with Hodgkin's and non-Hodgkin's lymphoma risk in this same analysis.",
+      "paper": {
+        "doi": "10.1038/bjc.2014.579",
+        "title": "Alcohol consumption and site-specific cancer risk: a comprehensive dose-response meta-analysis",
+        "year": 2015,
+        "design": "dose-response meta-analysis of observational studies (cohort and case-control)",
+        "n": 486538
+      },
+      "verbatim": "Relative risks (RRs) for heavy drinkers compared with nondrinkers and occasional drinkers were 5.13 for oral and pharyngeal cancer, 4.95 for oesophageal squamous cell carcinoma, 1.44 for colorectal, 2.65 for laryngeal and 1.61 for breast cancer; for those neoplasms there was a clear dose-risk relationship.",
+      "figure": null,
+      "caveats": "Unlike the contested mortality J-curve, alcohol's carcinogenic effect is not contested in the literature at the sites listed (IARC classifies alcoholic beverages as a Group 1 carcinogen); no protective direction is asserted for any of these specific cancers regardless of dose. Pools cohort and case-control designs; case-control components are more vulnerable to recall bias than the cohort components."
+      ,
+      "key_results": "Alcohol is a risk factor for cancer of the oral cavity, pharynx, oesophagus, colorectum, liver, larynx and female breast, whereas its impact on other cancers remains controversial. Relative risks for heavy drinkers compared with nondrinkers and occasional drinkers were 5.13 for oral and pharyngeal cancer, 4.95 for oesophageal squamous cell carcinoma, 1.44 for colorectal, 2.65 for laryngeal and 1.61 for breast cancer, with a clear dose-risk relationship. Heavy drinkers also had a significantly higher risk of cancer of the stomach, liver, gallbladder, pancreas and lung. Alcohol increases risk of cancer of oral cavity and pharynx, oesophagus, colorectum, liver, larynx and female breast."
+    },
+    {
+      "behavior_id": "obesity_bmi",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "All-cause mortality minimal at BMI 20.0-25.0 kg/m2; HR 1.45 for obesity grade 1 (30.0-<35.0), 1.94 for grade 2 (35.0-<40.0), 2.76 for grade 3 (40.0-<60.0); risk also rose below 20.0 kg/m2 (HR 1.51 for BMI 15.0-<18.5)",
+      "effect_normalized": 1.45,
+      "normalization_method": "hazard ratio vs reference BMI 22.5-<25.0 kg/m2, representative value for obesity grade 1 (other grades and the underweight range reported separately)",
+      "evidence_tier": "C",
+      "population": "3,951,455 never-smokers without chronic disease at recruitment, surviving >=5 years, from 189 prospective studies in Asia, Australia/NZ, Europe, and North America",
+      "conditional_on": "U-shaped, not monotonic: mortality rises both below and above the 20.0-25.0 kg/m2 reference range. Analysis was restricted to never-smokers with no chronic disease at baseline and excluded the first 5 years of follow-up specifically to reduce confounding by smoking and reverse causation from pre-existing illness (e.g., subclinical disease causing weight loss, which would otherwise make low BMI look falsely dangerous).",
+      "paper": {
+        "doi": "10.1016/S0140-6736(16)30175-1",
+        "title": "Body-mass index and all-cause mortality: individual-participant-data meta-analysis of 239 prospective studies in four continents",
+        "year": 2016,
+        "design": "individual-participant-data meta-analysis of prospective cohort studies",
+        "n": 3951455
+      },
+      "verbatim": "All-cause mortality was minimal at 20·0-25·0 kg/m(2) (HR 1·00, 95% CI 0·98-1·02 for BMI 20·0-<22·5 kg/m(2); 1·00, 0·99-1·01 for BMI 22·5-<25·0 kg/m(2)), and increased significantly both just below this range (1·13, 1·09-1·17 for BMI 18·5-<20·0 kg/m(2); 1·51, 1·43-1·59 for BMI 15·0-<18·5) and throughout the overweight range (1·07, 1·07-1·08 for BMI 25·0-<27·5 kg/m(2); 1·20, 1·18-1·22 for BMI 27·5-<30·0 kg/m(2)). The HR for obesity grade 1 (BMI 30·0-<35·0 kg/m(2)) was 1·45, 95% CI 1·41-1·48; the HR for obesity grade 2 (35·0-<40·0 kg/m(2)) was 1·94, 1·87-2·01; and the HR for obesity grade 3 (40·0-<60·0 kg/m(2)) was 2·76, 2·60-2·92.",
+      "figure": null,
+      "caveats": "Despite excluding smokers and the first 5 years of follow-up specifically to address reverse causation, residual confounding by undiagnosed subclinical illness, socioeconomic status, and body composition (BMI does not distinguish fat from muscle) remains possible in an observational design this large."
+      ,
+      "key_results": "All-cause mortality was minimal at 20.0-25.0 kg/m2, and increased significantly both just below this range and throughout the overweight range. The HR for obesity grade 1 was 1.45, for obesity grade 2 was 1.94, and for obesity grade 3 was 2.76. For BMI over 25.0 kg/m2, mortality increased approximately log-linearly with BMI. The associations of both overweight and obesity with higher all-cause mortality were broadly consistent in four continents."
+    },
+    {
+      "behavior_id": "obesity_bmi",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": "+",
+      "effect": "Higher BMI associated with colon cancer (RR 1.24 in men, 1.09 in women) and rectal cancer (RR 1.09 in men) per 5 kg/m2 increase in BMI",
+      "effect_normalized": 1.24,
+      "normalization_method": "relative risk per 5 kg/m2 increase in BMI, representative value for colon cancer in men",
+      "evidence_tier": "C",
+      "population": "67,361 incident colorectal cancer cases from 29 datasets/28 articles of prospective cohort studies",
+      "conditional_on": "Association is stronger in men than women for both colon and rectal cancer; consistent across geographic populations studied.",
+      "paper": {
+        "doi": "10.1111/j.1463-1318.2009.01766.x",
+        "title": "Lifestyle factors and colorectal cancer risk (1): systematic review and meta-analysis of associations with body mass index",
+        "year": 2009,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 67361
+      },
+      "verbatim": "Higher BMI was associated with colon (RR 1.24, 95% CIs: 1.20-1.28) and rectal (1.09, 1.05-1.14) cancers in men, and with colon cancer (1.09, 1.04-1.12) in women.",
+      "figure": null,
+      "caveats": "Covers colorectal cancer only, not cancer overall; body composition (visceral vs subcutaneous fat) likely matters more than BMI itself for cancer mechanisms, and BMI is a crude proxy for adiposity distribution."
+      ,
+      "key_results": "Higher BMI was associated with colon and rectal cancers in men, and with colon cancer in women. Associations were stronger in men than in women for colon (P < 0.001) and rectal (P = 0.005) cancers. Associations were generally consistent across geographic populations. Increasing BMI is associated with a modest increased risk of developing colon and rectal cancers, but this modest risk may translate to large attributable proportions in high-prevalence obese populations."
+    },
+    {
+      "behavior_id": "sedentary_time",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "Physical-activity-adjusted RR for all-cause mortality per 1 h/day of total sedentary time: 1.01 up to 8 h/day, rising to 1.04 per hour beyond 8 h/day (nonlinear)",
+      "effect_normalized": 1.04,
+      "normalization_method": "relative risk per 1 h/day of sedentary time, above the 8 h/day threshold",
+      "evidence_tier": "C",
+      "population": "1,331,468 participants across 34 prospective studies",
+      "conditional_on": "Nonlinear, threshold-based: risk is nearly flat below about 6-8 hours/day of total sitting and rises sharply above that threshold. Adjusted for physical activity level, so this reflects sedentary time's effect independent of how much exercise a person also gets.",
+      "paper": {
+        "doi": "10.1007/s10654-018-0380-1",
+        "title": "Sedentary behaviour and risk of all-cause, cardiovascular and cancer mortality, and incident type 2 diabetes: a systematic review and dose response meta-analysis",
+        "year": 2018,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": 1331468
+      },
+      "verbatim": "For total sedentary behaviour, the PA-adjusted relationship was non-linear for all-cause mortality (RR per 1 h/day: were 1.01 (1.00-1.01) <= 8 h/day; 1.04 (1.03-1.05) > 8 h/day of exposure)... For all-cause and CVD mortality, a threshold of 6-8 h/day of total sitting and 3-4 h/day of TV viewing was identified, above which the risk is increased.",
+      "figure": null,
+      "caveats": "Self-reported and device-measured sedentary time both included across studies, which introduces measurement heterogeneity; sedentary time correlates with poor health status generally (e.g., people who are frail or ill sit more), raising the same reverse-causation concern seen for step-count studies."
+      ,
+      "key_results": "Independent of physical activity, total sitting and TV viewing time are associated with greater risk for several major chronic disease outcomes. For total sedentary behaviour, the relationship was non-linear for all-cause mortality: RR per 1 h/day was 1.01 at or below 8 h/day and 1.04 above 8 h/day. For all-cause and CVD mortality, a threshold of 6-8 h/day of total sitting was identified, above which risk is increased."
+    },
+    {
+      "behavior_id": "sedentary_time",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "+",
+      "effect": "Physical-activity-adjusted RR for cardiovascular mortality per 1 h/day of total sedentary time: 1.01 up to 6 h/day, rising to 1.04 per hour beyond 6 h/day (nonlinear)",
+      "effect_normalized": 1.04,
+      "normalization_method": "relative risk per 1 h/day of sedentary time, above the 6 h/day threshold",
+      "evidence_tier": "C",
+      "population": "1,331,468 participants across 34 prospective studies",
+      "conditional_on": "Threshold for cardiovascular mortality (6 h/day) is lower than for all-cause mortality (8 h/day) in the same data, meaning the cardiovascular-specific risk starts climbing at a lower daily sitting time than the all-cause risk does.",
+      "paper": {
+        "doi": "10.1007/s10654-018-0380-1",
+        "title": "Sedentary behaviour and risk of all-cause, cardiovascular and cancer mortality, and incident type 2 diabetes: a systematic review and dose response meta-analysis",
+        "year": 2018,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": 1331468
+      },
+      "verbatim": "and for CVD mortality (1.01 (0.99-1.02) <= 6 h/day; 1.04 (1.03-1.04) > 6 h/day)",
+      "figure": null,
+      "caveats": "Same measurement heterogeneity and reverse-causation caveats as the all-cause mortality edge for this behavior apply here."
+      ,
+      "key_results": "The PA-adjusted relationship for total sedentary behaviour was non-linear for CVD mortality, with RR per 1 h/day of 1.01 at or below 6 h/day and 1.04 above 6 h/day. Stronger PA-adjusted associations were found for TV viewing than for total sitting time. Independent of physical activity, more sedentary time is associated with greater risk of cardiovascular mortality."
+    },
+    {
+      "behavior_id": "sedentary_time",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": "+",
+      "effect": "TV viewing time (not total sitting time) linearly associated with cancer mortality, RR 1.03 per 1 h/day (95% CI 1.02-1.04); total sedentary time showed no significant association with cancer mortality in the same analysis",
+      "effect_normalized": 1.03,
+      "normalization_method": "relative risk per 1 h/day of television viewing time (linear)",
+      "evidence_tier": "C",
+      "population": "1,331,468 participants across 34 prospective studies",
+      "conditional_on": "This edge applies specifically to television viewing time, a subtype of sedentary behavior, not to total daily sitting time; the same paper explicitly found total sedentary time was NOT significantly associated with cancer mortality, so the effect appears specific to whatever TV viewing captures beyond sitting itself (e.g. snacking, evening timing, or unmeasured confounding with lower socioeconomic status).",
+      "paper": {
+        "doi": "10.1007/s10654-018-0380-1",
+        "title": "Sedentary behaviour and risk of all-cause, cardiovascular and cancer mortality, and incident type 2 diabetes: a systematic review and dose response meta-analysis",
+        "year": 2018,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": 1331468
+      },
+      "verbatim": "Associations with cancer mortality (1.03 (1.02-1.04)) and T2D were linear (1.09 (1.07-1.12)). The association was linear (1.01 (1.00-1.01)) with T2D and non-significant with cancer mortality.",
+      "figure": null,
+      "caveats": "Recorded here per spec 5.3 as a case where the null result (total sitting and cancer mortality) and the positive result (TV viewing and cancer mortality) sit side by side in the same paper: the marker-level takeaway depends entirely on which measure of sedentary behavior is used, which a single summary number would hide."
+      ,
+      "key_results": "The association between total sedentary time and cancer mortality was non-significant. Stronger PA-adjusted associations were found for TV viewing (h/day): associations with cancer mortality (RR 1.03 per h/day) were linear. Independent of physical activity, TV viewing time specifically -- not total sitting time -- was associated with greater cancer mortality risk in this analysis."
+    },
+    {
+      "behavior_id": "fruit_vegetable_intake",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "Pooled HR for all-cause mortality 0.95 per additional serving/day of fruit and vegetables combined, 0.94 for fruit alone, 0.95 for vegetables alone; benefit plateaus around 5 servings/day",
+      "effect_normalized": 0.95,
+      "normalization_method": "hazard ratio per one serving/day increment of combined fruit and vegetable intake",
+      "evidence_tier": "C",
+      "population": "833,234 participants across 16 prospective cohort studies, 56,423 deaths, follow-up 4.6-26 years",
+      "conditional_on": "Dose-response plateaus around 5 servings/day: consuming more than this amount showed no further reduction in all-cause mortality risk in the pooled data, so the relationship is not linear indefinitely.",
+      "paper": {
+        "doi": "10.1136/bmj.g4490",
+        "title": "Fruit and vegetable consumption and mortality from all causes, cardiovascular disease, and cancer: systematic review and dose-response meta-analysis of prospective cohort studies",
+        "year": 2014,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": 833234
+      },
+      "verbatim": "Pooled hazard ratios of all cause mortality were 0.95 (95% confidence interval 0.92 to 0.98) for an increment of one serving a day of fruit and vegetables (P=0.001), 0.94 (0.90 to 0.98) for fruit (P=0.002), and 0.95 (0.92 to 0.99) for vegetables (P=0.006). There was a threshold around five servings of fruit and vegetables a day, after which the risk of all cause mortality did not reduce further.",
+      "figure": null,
+      "caveats": "People who eat more fruit and vegetables tend to differ systematically from those who do not (higher socioeconomic status, less smoking, more overall health consciousness), and observational dietary cohorts cannot fully separate the nutrient effect from this broader healthy-behavior clustering."
+      ,
+      "key_results": "Higher consumption of fruit and vegetables was significantly associated with a lower risk of all cause mortality. Pooled hazard ratios of all-cause mortality were 0.95 for an increment of one serving a day of fruit and vegetables, 0.94 for fruit, and 0.95 for vegetables. There was a threshold around five servings of fruit and vegetables a day, after which the risk of all cause mortality did not reduce further. This meta-analysis provides further evidence that a higher consumption of fruit and vegetables is associated with a lower risk of all cause mortality, particularly cardiovascular mortality."
+    },
+    {
+      "behavior_id": "fruit_vegetable_intake",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "-",
+      "effect": "HR for cardiovascular mortality 0.96 per additional serving/day of fruit and vegetables",
+      "effect_normalized": 0.96,
+      "normalization_method": "hazard ratio per one serving/day increment of combined fruit and vegetable intake",
+      "evidence_tier": "C",
+      "population": "833,234 participants across 16 prospective cohort studies, 11,512 cardiovascular deaths",
+      "conditional_on": "Reported alongside a null finding for cancer mortality in the same paper (see companion edge below), showing the marker-specific divergence the design spec calls for.",
+      "paper": {
+        "doi": "10.1136/bmj.g4490",
+        "title": "Fruit and vegetable consumption and mortality from all causes, cardiovascular disease, and cancer: systematic review and dose-response meta-analysis of prospective cohort studies",
+        "year": 2014,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": 833234
+      },
+      "verbatim": "A significant inverse association was observed for cardiovascular mortality (hazard ratio for each additional serving a day of fruit and vegetables 0.96, 95% confidence interval 0.92 to 0.99), while higher consumption of fruit and vegetables was not appreciably associated with risk of cancer mortality.",
+      "figure": null,
+      "caveats": "Same healthy-user confounding concern as the all-cause mortality edge for this behavior; dietary recall in these cohorts is self-reported and subject to measurement error."
+      ,
+      "key_results": "A significant inverse association was observed for cardiovascular mortality (hazard ratio for each additional serving a day of fruit and vegetables 0.96, 95% CI 0.92 to 0.99). This meta-analysis provides further evidence that a higher consumption of fruit and vegetables is associated with a lower risk of all cause mortality, particularly cardiovascular mortality."
+    },
+    {
+      "behavior_id": "fruit_vegetable_intake",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": null,
+      "effect": "Higher consumption of fruit and vegetables was not appreciably associated with risk of cancer mortality",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no pooled HR reported for cancer mortality specifically",
+      "evidence_tier": "C",
+      "population": "833,234 participants across 16 prospective cohort studies, 16,817 cancer deaths",
+      "conditional_on": "Contrasts directly with the significant inverse associations found in the same paper for all-cause and cardiovascular mortality; fruit and vegetable intake appears to move the cardiovascular pathway but not the cancer pathway in this pooled analysis.",
+      "paper": {
+        "doi": "10.1136/bmj.g4490",
+        "title": "Fruit and vegetable consumption and mortality from all causes, cardiovascular disease, and cancer: systematic review and dose-response meta-analysis of prospective cohort studies",
+        "year": 2014,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": 833234
+      },
+      "verbatim": "while higher consumption of fruit and vegetables was not appreciably associated with risk of cancer mortality",
+      "figure": null,
+      "caveats": "Recorded per spec 5.3 as a genuine null result rather than omitted; a null for cancer mortality specifically does not contradict a large separate literature on fruit/vegetable intake and specific cancer subtypes, which this pooled all-cancer-mortality analysis would not detect if effects are site-specific and offsetting."
+      ,
+      "key_results": "Higher consumption of fruit and vegetables was not appreciably associated with risk of cancer mortality, in contrast to the significant inverse associations found for all-cause and cardiovascular mortality in the same analysis. Sixteen prospective cohort studies were eligible in this meta-analysis, with 16,817 cancer deaths among 833,234 participants."
+    },
+    {
+      "behavior_id": "processed_red_meat",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "Each daily serving increment associated with RR 1.10 for red meat and RR 1.23 for processed meat and all-cause mortality, in a linear dose-response",
+      "effect_normalized": 1.23,
+      "normalization_method": "relative risk per one daily serving increment, processed meat (red meat reported alongside at RR 1.10)",
+      "evidence_tier": "C",
+      "population": "Prospective cohort studies covering 12 major food groups; pooled sample sizes vary by food group within the same meta-analysis",
+      "conditional_on": "Linear dose-response reported (no plateau identified for meat, unlike fruit/vegetables); processed meat shows a larger per-serving risk increase than unprocessed red meat.",
+      "paper": {
+        "doi": "10.3945/ajcn.117.153148",
+        "title": "Food groups and risk of all-cause mortality: a systematic review and meta-analysis of prospective studies",
+        "year": 2017,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": null
+      },
+      "verbatim": "higher intake of red meat (RR: 1.10; 95% CI: 1.04, 1.18) and processed meat (RR: 1.23; 95% CI: 1.12, 1.36) was associated with an increased risk of all-cause mortality in a linear dose-response meta-analysis",
+      "figure": null,
+      "caveats": "Dietary intake is self-reported via food-frequency questionnaires across pooled cohorts, a known source of measurement error; people who eat more processed meat also tend to differ in overall diet quality and socioeconomic status, which the meta-analysis cannot fully separate out."
+      ,
+      "key_results": "With increasing intake of whole grains, vegetables, fruits, nuts, and fish, the risk of all-cause mortality decreased; higher intake of red meat (RR 1.10) and processed meat (RR 1.23) was associated with an increased risk of all-cause mortality in a linear dose-response meta-analysis. A clear indication of nonlinearity was seen for vegetables, fruits, nuts, and dairy, but not for meat. Selecting specific optimal intakes of the investigated food groups can lead to a considerable change in the risk of premature death."
+    },
+    {
+      "behavior_id": "processed_red_meat",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": "+",
+      "effect": "100 g/day increment of red meat and 50 g/day increment of processed meat associated with 11%-51% and 8%-72% higher risk of multiple cancer outcomes respectively, across an umbrella review of 72 meta-analyses",
+      "effect_normalized": null,
+      "normalization_method": "range of relative risk increases across multiple cancer outcomes and meta-analyses, as reported (no single pooled RR given)",
+      "evidence_tier": "C",
+      "population": "Umbrella review synthesizing 72 meta-analyses across 20 unique red-meat cancer outcomes and 19 unique processed-meat cancer outcomes",
+      "conditional_on": "Effect size varies substantially by cancer site (colorectal, bladder, breast, esophageal, gastric, lung, nasopharyngeal, and others named); the range (11-51% for red meat, 8-72% for processed meat) reflects this heterogeneity rather than a single dose-response curve.",
+      "paper": {
+        "doi": "10.1016/j.foodchem.2021.129697",
+        "title": "Red and processed meat consumption and cancer outcomes: Umbrella review",
+        "year": 2021,
+        "design": "umbrella review (review of meta-analyses) of prospective and case-control studies",
+        "n": null
+      },
+      "verbatim": "Dose-response analyses revealed that 100 g/d increment of red meat and 50 g/d increment of processed meat consumption were associated with 11%-51% and 8%-72% higher risk of multiple cancer outcomes, respectively, and seemed to be not correlated with any benefit.",
+      "figure": null,
+      "caveats": "An umbrella review inherits the biases of its underlying meta-analyses, which themselves pool cohort and case-control designs of varying quality; see the companion Pouzou 2024 edge below, which challenges the robustness of these dose-response estimates at realistic (low) consumption levels."
+      ,
+      "key_results": "This umbrella review identified 72 meta-analyses with 20 unique outcomes for red meat and 19 unique outcomes for processed meat. Red meat consumption was associated with increased risk of overall cancer mortality, non-Hodgkin lymphoma, bladder, breast, colorectal, endometrial, esophageal, gastric, lung and nasopharyngeal cancer. Dose-response analyses revealed that 100 g/d increment of red meat and 50 g/d increment of processed meat consumption were associated with 11%-51% and 8%-72% higher risk of multiple cancer outcomes, respectively, and seemed to be not correlated with any benefit."
+    },
+    {
+      "behavior_id": "processed_red_meat",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": null,
+      "effect": "No significant association between 50 g/day red meat and colorectal cancer using an empirical dose-response model restricted to lower consumption levels (RR 0.93, 95% CI 0.8-1.02); classical models using all consumption levels showed RR as high as 1.09 at the same dose",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result under one modeling approach, positive under another, within the same paper",
+      "evidence_tier": "C",
+      "population": "29 cohorts (23.5 million person-years) for processed meat and 23 cohorts (17.3 million person-years) for red meat, reanalyzed from Global Burden of Disease source data",
+      "conditional_on": "The apparent colorectal-cancer risk at realistic, low consumption levels (below the US median of 56 g/day red meat or 21 g/day processed meat) depends heavily on which dose-response modeling method and reference group (nonconsumer vs mixed) is used; classical modeling assumptions and inclusion of high-consumption strata inflate the estimated risk at low doses relative to an empirical, lower-consumption-only fit.",
+      "paper": {
+        "doi": "10.1016/j.advnut.2024.100214",
+        "title": "Observational Dose-Response Meta-Analysis Methods May Bias Risk Estimates at Low Consumption Levels: The Case of Meat and Colorectal Cancer",
+        "year": 2024,
+        "design": "reanalysis of pooled cohort dose-response data (methodological critique), not an independent meta-analysis of new studies",
+        "n": null
+      },
+      "verbatim": "We found no significant association with consumption of 50 g/d RM using an empirical fit with lower consumption (relative risk [RR] 0.93 (0.8-1.02) or all consumption levels (1.04 (0.99-1.10)), while classical models showed RRs as high as 1.09 (1.00-1.18) at 50g/day.",
+      "figure": null,
+      "caveats": "This paper is a methodological critique funded and authored by a risk-consulting firm (EpiX Analytics) whose broader client base includes food-industry-adjacent work; it does not claim red/processed meat is safe overall (it explicitly states a no-risk limit of 0 g/day is inconsistent with the evidence) but specifically challenges the standard dose-response modeling assumptions used to estimate risk at LOW consumption levels. Shipped alongside the Huang 2021 positive-association edge above rather than resolved into one number, per the task's requirement to record genuine model-dependence rather than picking a side."
+      ,
+      "key_results": "We found no significant association with consumption of 50 g/d red meat using an empirical fit with lower consumption (RR 0.93) or all consumption levels (1.04), while classical models showed RRs as high as 1.09 at 50 g/day. Processed meat consumption of 20 g/d was not associated with colorectal cancer (1.01) when using lower consumer data, regardless of model choice. Classical DRMA model assumptions and inclusion of higher consumption levels influence the association between colorectal cancer and low red and processed meat consumption. A no-risk limit of 0 g/d consumption of red meat and processed meat is inconsistent with the evidence."
+    },
+    {
+      "behavior_id": "sleep_duration",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "U-shaped risk centered near 7 hours/night: RR 1.06 per 1-hour reduction below 7 hours, RR 1.13 per 1-hour increment above 7 hours",
+      "effect_normalized": 1.13,
+      "normalization_method": "relative risk per 1-hour deviation from ~7 hours sleep, representative value for the long-sleep side of the U-curve",
+      "evidence_tier": "C",
+      "population": "Prospective cohort studies of generally healthy populations pooled in a dose-response meta-analysis, published before December 2016",
+      "conditional_on": "Explicitly U-shaped with the nadir at approximately 7 hours/night; both short sleep (<7h) and long sleep (>7h) carry excess risk, and the per-hour risk increment is steeper on the long-sleep side (1.13) than the short-sleep side (1.06).",
+      "paper": {
+        "doi": "10.1161/JAHA.117.005947",
+        "title": "Relationship of Sleep Duration With All-Cause Mortality and Cardiovascular Events: A Systematic Review and Dose-Response Meta-Analysis of Prospective Cohort Studies",
+        "year": 2017,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": null
+      },
+      "verbatim": "U-shaped associations were indicated between sleep duration and risk of all outcomes, with the lowest risk observed for ≈7-hour sleep duration per day, which was varied little by sex. For all-cause mortality, when sleep duration was <7 hours per day, the pooled relative risk (RR) was 1.06 (95% CI, 1.04-1.07) per 1-hour reduction; when sleep duration was >7 hours per day, the pooled RR was 1.13 (95% CI, 1.11-1.15) per 1-hour increment.",
+      "figure": null,
+      "caveats": "Self-reported sleep duration in most included cohorts, which is an imprecise proxy for actual sleep; long sleep duration is itself frequently a marker of underlying illness, depression, or low socioeconomic status (reverse causation), which may explain part or all of the long-sleep side of the U-curve rather than long sleep directly causing harm."
+      ,
+      "key_results": "U-shaped associations were indicated between sleep duration and risk of all outcomes, with the lowest risk observed for approximately 7-hour sleep duration per day. For all-cause mortality, when sleep duration was less than 7 hours per day, the pooled RR was 1.06 per 1-hour reduction; when sleep duration was more than 7 hours per day, the pooled RR was 1.13 per 1-hour increment. Our findings indicate that both short and long sleep duration is associated with an increased risk of all-cause mortality and cardiovascular events."
+    },
+    {
+      "behavior_id": "sleep_duration",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "+",
+      "effect": "For total cardiovascular disease, RR 1.06 per 1-hour reduction below 7 hours and RR 1.12 per 1-hour increment above 7 hours",
+      "effect_normalized": 1.12,
+      "normalization_method": "relative risk per 1-hour deviation from ~7 hours sleep, representative value for the long-sleep side of the U-curve",
+      "evidence_tier": "C",
+      "population": "Prospective cohort studies of generally healthy populations pooled in a dose-response meta-analysis, published before December 2016",
+      "conditional_on": "Same U-shape as the all-cause mortality edge, nadir near 7 hours/night; magnitude for total cardiovascular disease is similar to but slightly smaller than the all-cause mortality effect.",
+      "paper": {
+        "doi": "10.1161/JAHA.117.005947",
+        "title": "Relationship of Sleep Duration With All-Cause Mortality and Cardiovascular Events: A Systematic Review and Dose-Response Meta-Analysis of Prospective Cohort Studies",
+        "year": 2017,
+        "design": "dose-response meta-analysis of prospective cohort studies",
+        "n": null
+      },
+      "verbatim": "For total cardiovascular disease, the pooled RR was 1.06 (95% CI, 1.03-1.08) per 1-hour reduction and 1.12 (95% CI, 1.08-1.16) per 1-hour increment of sleep duration.",
+      "figure": null,
+      "caveats": "This paper's cardiovascular outcome combines total CVD incidence and mortality in its pooled category (the paper separately reports coronary heart disease and stroke); to the extent 'total cardiovascular disease' includes non-fatal events, this edge may slightly overstate a pure cardiovascular-mortality-only effect."
+      ,
+      "key_results": "For total cardiovascular disease, the pooled RR was 1.06 per 1-hour reduction and 1.12 per 1-hour increment of sleep duration. U-shaped associations were indicated between sleep duration and cardiovascular risk, with the lowest risk observed for approximately 7-hour sleep duration per day. Both short and long sleep duration is associated with an increased risk of cardiovascular events."
+    },
+    {
+      "behavior_id": "social_isolation",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "Social isolation OR 1.29, loneliness OR 1.26, and living alone OR 1.32 for early mortality, after controlling for several possible confounds",
+      "effect_normalized": 1.29,
+      "normalization_method": "odds ratio, representative value for objective social isolation (loneliness and living alone reported alongside)",
+      "evidence_tier": "C",
+      "population": "Meta-analytic review of studies January 1980-February 2014 providing quantitative mortality data by loneliness, social isolation, or living alone",
+      "conditional_on": "No difference found between objective (social isolation) and subjective (loneliness) measures of social deficit; effect held across gender, follow-up length, and world region, but was stronger in samples with an average age younger than 65 years, and initial health status influenced findings.",
+      "paper": {
+        "doi": "10.1177/1745691614568352",
+        "title": "Loneliness and social isolation as risk factors for mortality: a meta-analytic review",
+        "year": 2015,
+        "design": "meta-analytic review of prospective/longitudinal observational studies",
+        "n": null
+      },
+      "verbatim": "Across studies in which several possible confounds were statistically controlled for, the weighted average effect sizes were as follows: social isolation odds ratio (OR) = 1.29, loneliness OR = 1.26, and living alone OR = 1.32, corresponding to an average of 29%, 26%, and 32% increased likelihood of mortality, respectively.",
+      "figure": null,
+      "caveats": "Social connection cannot be randomized, so this is entirely observational; people who become isolated may already be in declining health (reverse causation) or share unmeasured traits (e.g., untreated depression, lower income) that independently raise mortality risk. The review notes initial health status has an influence on the findings, meaning some of the association may run from poor health to isolation rather than the reverse."
+      ,
+      "key_results": "Actual and perceived social isolation are both associated with increased risk for early mortality. The weighted average effect sizes were: social isolation OR = 1.29, loneliness OR = 1.26, and living alone OR = 1.32, corresponding to an average of 29%, 26%, and 32% increased likelihood of mortality, respectively. No differences were found between measures of objective and subjective social isolation. Overall, the influence of both objective and subjective social isolation on risk for mortality is comparable with well-established risk factors for mortality."
+    },
+    {
+      "behavior_id": "air_pollution_pm25",
+      "marker_id": "all_cause_mortality",
+      "direction": "+",
+      "effect": "Increased long-term PM2.5 exposure associated with increased all-cause mortality, HR 1.08 (95% CI 1.05-1.11)",
+      "effect_normalized": 1.08,
+      "normalization_method": "hazard ratio, high vs low long-term PM2.5 exposure category as defined per included study",
+      "evidence_tier": "C",
+      "population": "7,300,591 individuals pooled across 18 prospective studies, median follow-up 9 years",
+      "conditional_on": "Exposure cannot be randomized, and effect estimates are sensitive to exposure-assessment method (satellite-derived vs monitor-based) and population age, per companion harmonization studies of this literature; a monotonically increasing risk has also been reported down to the lowest observed PM2.5 levels, i.e. no safe threshold has been identified.",
+      "paper": {
+        "doi": "10.1016/j.cpcardiol.2023.101670",
+        "title": "PM2.5 and Cardiovascular Health Risks",
+        "year": 2023,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 7300591
+      },
+      "verbatim": "Compared to low long-term exposure to PM 2.5 levels, an increase in exposure to PM 2.5 levels resulted in an increase in all-cause mortality (HR 1.08 95% CI of 1.05-1.11, P < 0.05).",
+      "figure": null,
+      "caveats": "PM2.5 exposure correlates with lower neighborhood socioeconomic status, proximity to traffic and industry, and other environmental exposures that independently affect health; cohort-level adjustment for individual socioeconomic status is imperfect for an exposure assigned at the neighborhood/residential level."
+      ,
+      "key_results": "We sought to determine the relationship between PM2.5 and cardiovascular disease, cardiovascular events, and all-cause mortality by performing a systematic review and meta-analysis. Compared to low long-term exposure to PM2.5 levels, an increase in exposure resulted in an increase in all-cause mortality (HR 1.08, 95% CI 1.05-1.11). Increased exposure to PM2.5 levels is significantly associated with an increased risk of all-cause mortality, cardiovascular disease, and cardiovascular disease mortality."
+    },
+    {
+      "behavior_id": "air_pollution_pm25",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "+",
+      "effect": "Increased long-term PM2.5 exposure associated with increased cardiovascular disease mortality, HR 1.12 (95% CI 1.07-1.18)",
+      "effect_normalized": 1.12,
+      "normalization_method": "hazard ratio, high vs low long-term PM2.5 exposure category as defined per included study",
+      "evidence_tier": "C",
+      "population": "7,300,591 individuals pooled across 18 prospective studies, median follow-up 9 years",
+      "conditional_on": "Reported alongside a slightly smaller effect on cardiovascular disease incidence overall (HR 1.09) in the same pooled analysis, i.e. the mortality-specific estimate is at least as large as the incidence estimate.",
+      "paper": {
+        "doi": "10.1016/j.cpcardiol.2023.101670",
+        "title": "PM2.5 and Cardiovascular Health Risks",
+        "year": 2023,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 7300591
+      },
+      "verbatim": "Similarly, when compared to a low long-term exposure to PM 2.5 levels, an increase in exposure to PM 2.5 levels resulted in an increase in cardiovascular disease (HR 1.09, 95% CI of 1.00-1.18, P < 0.05) and an increase in cardiovascular disease mortality (HR 1.12, 95% CI of 1.07-1.18, P < 0.05).",
+      "figure": null,
+      "caveats": "Same residential-exposure-assignment and socioeconomic confounding caveats as the all-cause mortality edge for this behavior apply here."
+      ,
+      "key_results": "An increase in exposure to PM2.5 levels resulted in an increase in cardiovascular disease (HR 1.09) and an increase in cardiovascular disease mortality (HR 1.12). Although federal primary and secondary standards are in place, those standards are not low enough to prevent cardiovascular disease health effects. A clinical action guideline is needed specifically for air pollution effects on cardiovascular disease."
+    },
+    {
+      "behavior_id": "air_pollution_pm25",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": "+",
+      "effect": "Each 10 ug/m3 increase in NO2 (a traffic-related air pollution proxy) associated with a 4% increase in lung cancer risk (95% CI 1%-8%)",
+      "effect_normalized": 1.04,
+      "normalization_method": "relative risk per 10 ug/m3 increase in NO2 exposure",
+      "evidence_tier": "C",
+      "population": "20 studies meeting inclusion criteria for the NO2/lung cancer meta-estimate",
+      "conditional_on": "This edge uses nitrogen dioxide (NO2) as a proxy for traffic-sourced air pollution, not PM2.5 mass concentration directly; a dedicated PM2.5-specific pooled dose-response estimate for lung cancer with a cleanly quotable number could not be retrieved within the research budget for this file (see cut_candidates), so this NO2/traffic-proxy meta-analysis is used instead and the exposure metric should not be treated as interchangeable with the PM2.5 estimates in the other two edges for this behavior.",
+      "paper": {
+        "doi": "10.1289/ehp.1408882",
+        "title": "Lung Cancer and Exposure to Nitrogen Dioxide and Traffic: A Systematic Review and Meta-Analysis",
+        "year": 2015,
+        "design": "meta-analysis of prospective cohort and case-control studies",
+        "n": null
+      },
+      "verbatim": "The meta-estimate for the change in lung cancer associated with a 10-μg/m3 increase in exposure to NO2 was 4% (95% CI: 1%, 8%).",
+      "figure": null,
+      "caveats": "NO2 and PM2.5 are correlated but distinct pollutants from overlapping but not identical sources (NO2 is more specifically traffic-associated); this is why this edge is treated as a proxy rather than direct PM2.5-cancer evidence. Trim-and-fill analysis in the source paper suggests that if publication bias exists, the true effect may be even larger than reported, not smaller."
+      ,
+      "key_results": "We conducted a systematic review and meta-analysis of research examining the relationship of nitrogen oxides and traffic-related air pollution exposure with lung cancer. The meta-estimate for the change in lung cancer associated with a 10-ug/m3 increase in exposure to NO2 was 4% (95% CI: 1%, 8%). We found consistent evidence of a relationship between NO2, as a proxy for traffic-sourced air pollution exposure, with lung cancer. The International Agency for Research on Cancer recently classified outdoor air pollution and particulate matter as carcinogenic (Group 1)."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "A 2-point increase in Mediterranean diet adherence score associated with a 9% reduction in overall mortality (pooled RR 0.91, 95% CI 0.89-0.94)",
+      "effect_normalized": 0.91,
+      "normalization_method": "pooled relative risk per 2-point increase in a priori adherence score",
+      "evidence_tier": "C",
+      "population": "514,816 subjects across 8 cohorts (overall mortality analysis), part of a total of 1,574,299 subjects across 12 cohorts in the full review, followed 3-18 years",
+      "conditional_on": "Adherence measured via a composite a priori diet score (higher = closer to the traditional Mediterranean pattern of high fruit/vegetable/legume/whole-grain/olive-oil intake, moderate fish, low red meat); this is an adherence gradient rather than a specific quantified nutrient dose.",
+      "paper": {
+        "doi": "10.1136/bmj.a1344",
+        "title": "Adherence to Mediterranean diet and health status: meta-analysis",
+        "year": 2008,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 514816
+      },
+      "verbatim": "The cumulative analysis among eight cohorts (514,816 subjects and 33,576 deaths) evaluating overall mortality in relation to adherence to a Mediterranean diet showed that a two point increase in the adherence score was significantly associated with a reduced risk of mortality (pooled relative risk 0.91, 95% confidence interval 0.89 to 0.94).",
+      "figure": null,
+      "caveats": "Adherence to a Mediterranean-style diet correlates with higher socioeconomic status, more physical activity, and less smoking in the populations studied (mostly Mediterranean and other European cohorts), and observational dietary-pattern cohorts cannot fully separate the diet's own effect from this broader healthy-lifestyle clustering."
+      ,
+      "key_results": "The cumulative analysis among eight cohorts evaluating overall mortality in relation to adherence to a Mediterranean diet showed that a two-point increase in the adherence score was significantly associated with a reduced risk of mortality (pooled relative risk 0.91). Greater adherence to a Mediterranean diet is associated with a significant improvement in health status, as seen by a significant reduction in overall mortality (9%). These results seem to be clinically relevant for public health, in particular for encouraging a Mediterranean-like dietary pattern for primary prevention of major chronic diseases."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "-",
+      "effect": "A 2-point increase in Mediterranean diet adherence score associated with a 9% reduction in cardiovascular mortality (pooled RR 0.91, 95% CI 0.87-0.95)",
+      "effect_normalized": 0.91,
+      "normalization_method": "pooled relative risk per 2-point increase in a priori adherence score",
+      "evidence_tier": "C",
+      "population": "Subset of the 12-cohort, 1,574,299-subject pooled review reporting cardiovascular mortality specifically",
+      "conditional_on": "Reported in the same paper and same effect size as the all-cause mortality edge above (both RR 0.91 per 2-point increase), suggesting the cardiovascular pathway accounts for a substantial share of the diet's overall mortality association.",
+      "paper": {
+        "doi": "10.1136/bmj.a1344",
+        "title": "Adherence to Mediterranean diet and health status: meta-analysis",
+        "year": 2008,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 514816
+      },
+      "verbatim": "Likewise, the analyses showed a beneficial role for greater adherence to a Mediterranean diet on cardiovascular mortality (pooled relative risk 0.91, 0.87 to 0.95), incidence of or mortality from cancer (0.94, 0.92 to 0.96), and incidence of Parkinson's disease and Alzheimer's disease (0.87, 0.80 to 0.96).",
+      "figure": null,
+      "caveats": "Same healthy-lifestyle clustering caveat as the all-cause mortality edge for this behavior applies; the 2008 publication date makes this an older synthesis relative to more recent Mediterranean-diet RCT evidence (e.g. PREDIMED) that addresses cardiovascular events but not primarily long-term mortality with comparable pooled precision."
+      ,
+      "key_results": "The analyses showed a beneficial role for greater adherence to a Mediterranean diet on cardiovascular mortality (pooled relative risk 0.91). Greater adherence to a Mediterranean diet is associated with a significant reduction in mortality from cardiovascular diseases (9%). These results seem to be clinically relevant for public health, in particular for encouraging a Mediterranean-like dietary pattern for primary prevention of major chronic diseases."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "cancer_incidence_mortality",
+      "direction": "-",
+      "effect": "A 2-point increase in Mediterranean diet adherence score associated with a 6% reduction in cancer incidence or mortality (pooled RR 0.94, 95% CI 0.92-0.96)",
+      "effect_normalized": 0.94,
+      "normalization_method": "pooled relative risk per 2-point increase in a priori adherence score",
+      "evidence_tier": "C",
+      "population": "Subset of the 12-cohort, 1,574,299-subject pooled review reporting cancer incidence/mortality specifically",
+      "conditional_on": "This edge pools cancer incidence and cancer mortality together, per the source paper's own framing ('incidence of or mortality from cancer'), rather than separating them; the effect size (6% reduction) is smaller than the cardiovascular mortality effect (9% reduction) reported in the same paper.",
+      "paper": {
+        "doi": "10.1136/bmj.a1344",
+        "title": "Adherence to Mediterranean diet and health status: meta-analysis",
+        "year": 2008,
+        "design": "meta-analysis of prospective cohort studies",
+        "n": 514816
+      },
+      "verbatim": "Likewise, the analyses showed a beneficial role for greater adherence to a Mediterranean diet on cardiovascular mortality (pooled relative risk 0.91, 0.87 to 0.95), incidence of or mortality from cancer (0.94, 0.92 to 0.96), and incidence of Parkinson's disease and Alzheimer's disease (0.87, 0.80 to 0.96).",
+      "figure": null,
+      "caveats": "Pooling cancer incidence with cancer mortality is a coarser outcome than the goal's marker definition ideally wants, but it is how the source paper itself reports the finding; the 2008 publication date also predates a substantial amount of subsequent Mediterranean-diet cancer literature."
+      ,
+      "key_results": "The analyses showed a beneficial role for greater adherence to a Mediterranean diet on incidence of or mortality from cancer (pooled relative risk 0.94). Greater adherence to a Mediterranean diet is associated with a significant reduction in incidence of or mortality from cancer (6%). These results seem to be clinically relevant for public health, in particular for encouraging a Mediterranean-like dietary pattern for primary prevention of major chronic diseases."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "smoking_and_cessation -> cardiovascular_mortality and smoking_and_cessation -> cancer_incidence_mortality, cause-specific quantified",
+      "reason": "Jha 2013 (used for the all-cause mortality edges) reports only an all-cause hazard ratio in its abstract, not cause-specific breakdowns; other candidate papers found (Wang 2021 on cessation/weight-gain/CVD, Chang 2021 on smoking reduction) report CVD- or cancer-specific relative risks for narrower sub-questions (post-cessation weight gain, partial reduction rather than full cessation) that do not cleanly map to a general smoking-vs-never-smoking comparison for these two markers within the research budget."
+    },
+    {
+      "candidate": "cardiorespiratory_fitness -> cardiovascular_mortality, quantified",
+      "reason": "The main available meta-analysis (Kodama 2009) pools CHD/CVD 'events' rather than cardiovascular deaths specifically, mixing fatal and non-fatal outcomes; assigning its RR (0.85 per 1-MET) to a cardiovascular-mortality-specific marker would misrepresent non-fatal events as deaths, so only the paper's all-cause mortality figure was kept."
+    },
+    {
+      "candidate": "obesity_bmi -> cardiovascular_mortality, quantified",
+      "reason": "The Global BMI Mortality Collaboration's headline dose-response figures are for all-cause mortality; no BMI-specific, cleanly quotable cardiovascular-mortality dose-response estimate independent of the all-cause figures already used was retrieved within the research budget."
+    },
+    {
+      "candidate": "central adiposity / waist circumference as a separate behavior from BMI",
+      "reason": "A strong dose-response meta-analysis exists (Jayedi 2020, BMJ, waist circumference HR 1.11 per 10cm), but it was not on the candidate behavior list and measures a distinct exposure (central fat distribution) from the requested 'obesity/BMI' behavior; adding it as its own node risked fragmenting the same underlying adiposity concept across two behavior nodes rather than clarifying it."
+    },
+    {
+      "candidate": "air_pollution_pm25 -> cancer_incidence_mortality, direct PM2.5 (not NO2 proxy) dose-response for lung cancer specifically",
+      "reason": "A dedicated, cleanly quotable pooled PM2.5-to-lung-cancer dose-response meta-analysis (as distinct from the NO2/traffic-proxy meta-analysis actually used, or the gastrointestinal-cancer PM2.5 meta-analysis found) could not be retrieved within the research budget; the NO2/traffic-proxy edge was shipped instead with an explicit caveat rather than omitting the cancer marker for this behavior entirely."
+    },
+    {
+      "candidate": "physical activity volume -> cancer_incidence_mortality, quantified",
+      "reason": "Arem 2015 (JAMA Intern Med, pooled leisure-time physical activity) states in its abstract that 'a similar dose-response relationship was observed for mortality due to cardiovascular disease and to cancer' but does not give a quotable, cancer-specific numeric hazard ratio in the abstract text itself; using it would have required paraphrasing a number not actually present in the verbatim, which the acceptance bar for this file does not allow."
+    }
+  ]
+}

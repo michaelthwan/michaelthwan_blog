@@ -1,0 +1,465 @@
+{
+ "_meta": {
+  "goal": "Batch 1 - testosterone/erectile/sleep/blood-pressure figure and results-text enrichment pass",
+  "source_file": "docs/superpowers/research/_pending_figures_batch1.json",
+  "extracted": "2026-09-13",
+  "method": "NCBI PMC ID Converter (DOI to PMCID) + direct PMC article page fetch for license and figure extraction; NCBI eutils esearch/efetch against pubmed for abstracts of papers not in PMC or not openly licensed. Figure image URLs verified with curl -sIL for image/* content-type before download; downloaded files verified for non-empty size and valid image magic bytes.",
+  "papers_total": 41,
+  "papers_in_pmc": 23,
+  "papers_open_access_with_reusable_licence": 18,
+  "papers_open_access_but_restrictive_licence": 2,
+  "papers_not_open_access": 21,
+  "figures_downloaded_and_verified": 16,
+  "results_passages_extracted": 41,
+  "notes": [
+   "10.1186/s13102-025-01124-3 (PMC11974082) and 10.1186/s12902-026-02163-8 (PMC12870219) are open access on PMC but licensed CC BY-NC-ND 4.0. The ND (no-derivatives) term makes unmodified figure reuse ambiguous, so no figure was downloaded for either; open_access is recorded true (freely readable) with the licence spelled out, matching the judgement made in goal-b-figures.json.",
+   "10.1001/jama.2011.710 (PMC4445839, Leproult and Van Cauter 2011) and 10.1016/j.sleep.2014.12.004 (PMC4344919) are NIH-funded author-manuscript deposits in PMC with a standard PMC copyright notice, not a Creative Commons licence. Treated as not open access for reuse; no figure downloaded. The JAMA paper is a research letter with no structured abstract, so its results_passage was written from the article's Results/Comment full text instead.",
+   "10.1002/14651858.CD011737.pub3 (PMC8092457, Cochrane review) carries a Cochrane Collaboration copyright notice, not a CC licence; treated as not open access.",
+   "18 of 41 papers were not found in PMC at all (mostly Elsevier, Wiley, Taylor and Francis, JAMA/NEJM, and sports-science journals that do not deposit these articles in PMC). These are recorded as open_access: false; results_passage is drawn from the freely available PubMed abstract.",
+   "10.3390/nu17071275 (Tribulus, PMC11990417) and 10.1161/JAHA.116.003231 (dynamic resistance training and blood pressure, PMC5121472) are CC BY / CC BY-NC licensed and open access, but the only figures in either article are PRISMA/CONSORT flow diagrams, which the task explicitly excludes; figures are recorded as empty for these two despite open_access true.",
+   "For 10.36660/abc.20250440 (salt substitute and hypertension) the article ships duplicate Portuguese- and English-language figure sets; the English-language forest plot was selected."
+  ]
+ },
+ "by_doi": {
+  "10.1519/JSC.0000000000004146": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/35134000/",
+   "results_passage": "Electronic databases (MEDLINE, Scopus, CINAHL, and SPORTDiscus) were systematically searched (up to and including October 22, 2020) for peer-reviewed randomized controlled trials (RCTs) meeting the following criteria: population (insufficiently active, apparently healthy men aged ≥18 years), intervention (exercise training [any modality at intensity of ≥4 metabolic equivalents] lasting a minimum of 4 weeks), control (insufficiently active men), and outcome (resting total testosterone concentration). Intervention effects, weighted by the inverse of the pooled variance, were calculated relative to the control group as standardized mean differences (SMDs). Eleven RCTs, representing 421 insufficiently active, apparently healthy men aged 19-75 years across 16 intervention groups who participated in aerobic, resistance, or combined training lasting a median of 12 weeks, were included in the analysis. Overall, exercise training had a negligible effect on resting total testosterone concentration (mean SMD [95% CI]: 0.00 [-0.20 to 0.20]). Subgroup analyses indicated that the effect of exercise training was not significantly affected by training mode, age, body mass status, or testosterone measure. Exercise training does not seem to affect resting total or free testosterone concentration in insufficiently active, eugonadal men.",
+   "figures": []
+  },
+  "10.1001/jama.2011.710": {
+   "pmcid": "PMC4445839",
+   "open_access": false,
+   "license": "NIH author manuscript (PMC deposit), no Creative Commons licence",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445839/",
+   "results_passage": "In this laboratory study of 10 healthy young men, one week of sleep restriction to 5 hours per night (compared with 10-hour rested nights) reduced daytime testosterone levels by 10% to 15%, from a mean of 18.4 (3.8) nmol/L to 16.5 (2.8) nmol/L during waking hours (P = .049), with the effect most pronounced between 2 PM and 10 PM (17.9 vs 15.5 nmol/L; P = .02). Daytime cortisol profiles were similar under both conditions, and the testosterone decline was accompanied by a progressive drop in vigor scores but not by increased cortisol. The authors note this decrease is comparable to the testosterone decline normally associated with roughly a decade of aging, and conclude that sleep duration should be considered in the clinical evaluation of androgen deficiency in young men.",
+   "figures": []
+  },
+  "10.1371/journal.pone.0161297": {
+   "pmcid": "PMC5008754",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5008754/",
+   "results_passage": "RESULTS: Total testosterone, sex hormone binding globulin and free testosterone increased (P<0.001) and the total IIEF increased (P = 0.017) with no differences between diets (P≥0.244). Increases in testosterone (P = 0.037) and sex hormone binding globulin (P<0.001) and improvements in the total IIEF (P = 0.041) occurred from weeks 0-12 with a further increase in testosterone from week 12-52 (P = 0.002). Increases in free testosterone occurred from week 12-52 (p = 0.002). The IIEF erectile functon domain, lower urinary tract symptoms and sexual desire did not change in either group (P≥0.126). CONCLUSIONS: In overweight and obese men, weight loss with both high protein and carbohydrate diets improve testosterone, sex hormone binding globulin and overall sexual function. TRIAL REGISTRATION: Anzctr.org.au ACTRN12606000002583.",
+   "figures": [
+    {
+     "label": "Fig 2",
+     "local_path": "/img/health-evidence/PMC5008754-fig2-testosterone-shbg-changes.jpg",
+     "caption": "Fig 2. Changes in testosterone, free testosterone and sex hormone binding globulin (SHBG) with a higher protein (HP, n = 57) or higher carbohydrate (HC, n = 61) diet. Data are presented as mean±SEM and were analysed by linear mixed models with the fixed factors time, diet and time-by-diet.",
+     "shows": "Line plot of testosterone, free testosterone and SHBG over 52 weeks comparing the high-protein and high-carbohydrate weight-loss diets; both groups show similar trajectories, with no clear diet-specific advantage."
+    }
+   ]
+  },
+  "10.1016/S0899-9007(96)80058-X": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/8875519/",
+   "results_passage": "In four normal young men (27.5 +/- 0.5 y), we measured serum testosterone before and during marginal zinc deficiency induced by restricting dietary zinc intake. We also measured serum testosterone in nine elderly men (64 +/- 9 y) who were marginally zinc deficient before and after 3 to 6 mo of supplementation with 459 mumol/ d oral zinc administered as zinc gluconate. Serum testosterone concentrations were significantly correlated with cellular zinc concentrations in the cross-sectional study (lymphocyte zinc versus serum testosterone, r = 0.43, p = 0.006; granulocyte zinc versus serum testosterone, r = 0.30, p = 0.03). Dietary zinc restriction in normal young men was associated with a significant decrease in serum testosterone concentrations after 20 weeks of zinc restriction (baseline versus post-zinc restriction mean +/- SD, 39.9 +/- 7.1 versus 10.6 +/- 3.6 nmol/L, respectively; p = 0.005). Zinc supplementation of marginally zinc-deficient normal elderly men for six months resulted in an increase in serum testosterone from 8.3 +/- 6.3 to 16.0 +/- 4.4 nmol/L (p = 0.02). We conclude that zinc may play an important role in modulating serum testosterone levels in normal men.",
+   "figures": []
+  },
+  "10.3390/nu18132090": {
+   "pmcid": "PMC13363579",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13363579/",
+   "results_passage": "The primary TT model included 11 comparisons and showed no clear effect of vitamin D supplementation on final TT (MD 0.47 nmol/L, 95% CI -0.50 to 1.44; I2 = 24.1%). No clear effects were observed for SHBG (MD 0.27 nmol/L, 95% CI -2.14 to 2.68), FAI (MD -0.37, 95% CI -4.28 to 3.55), calculated FT sensitivity evidence (MD -0.0096 nmol/L, 95% CI -0.0525 to 0.0332), or BAT exploratory evidence (MD -0.47 nmol/L, 95% CI -1.77 to 0.83). GRADE certainty was low for TT, SHBG, and FAI, and very low for calculated FT and BAT. CONCLUSIONS: Current randomized evidence does not demonstrate a statistically clear or reproducible effect of vitamin D supplementation on total testosterone or androgen bioavailability markers in adult men. GRADE certainty was low for total testosterone, SHBG, and FAI, and very low for calculated free testosterone and bioactive testosterone. Because directly measured and calculated free testosterone are not analytically equivalent, free testosterone was not pooled as a primary outcome; method-compatible calculated FT was handled as sensitivity evidence and BAT as exploratory evidence.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC13363579-fig2-forest-testosterone.jpg",
+     "caption": "Figure 2. Forest plot of the effect of vitamin D supplementation on final total testosterone concentrations. Effect estimates are expressed as mean differences in nmol/L. Solid horizontal lines represent the 95% confidence intervals for individual study estimates, and the diamond represents the pooled effect estimate using a random-effects model with Hartung-Knapp adjustment.",
+     "shows": "Forest plot of 10 RCTs showing the pooled effect of vitamin D supplementation on total testosterone, with the diamond summary estimate near the null line."
+    }
+   ]
+  },
+  "10.1111/andr.13526": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/37705506/",
+   "results_passage": "The primary outcome was the comparison of total testosterone serum concentrations between the study and control groups. The publications were examined for publication bias using Egger's test. RESULTS: Twenty-one studies were included in the analysis for a total of 30 trials that examined the effects of alcohol consumption on testosterone level in 10,199 subjects. The meta-analysis showed that alcohol consumption overall is related to significant reduction in circulating concentrations of total testosterone (mean difference [MD] = -4.02; 95% CI -6.30, -1.73), free T (MD = -0.17; 95% CI -0.23, -0.12), sex hormone binding globulin (SHBG) (MD = -1.94; 95% CI -3.37, -0.48), an increase in estradiol (E2) (MD = 7.65; 95% CI 1.06, 14.23) and neutral effect on luteinizing hormone (LH) (MD = -0.15; 95% CI -0.36, 0.06), independently by age, body mass index (BMI), E2, and LH serum concentrations and alcohol intake. However, these results are evident only in healthy men exposed to chronic alcohol consumption and not in those with a recognized diagnosis of alcohol use disorder or after acute alcohol intake. CONCLUSION: This study suggests how chronic alcohol consumption may inhibit the gonadal axis in healthy men, although the exact pathophysiological mechanisms connecting alcohol exposure and steroidogenesis are still not completely clarified.",
+   "figures": []
+  },
+  "10.1016/j.jsxm.2018.12.002": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/30770070/",
+   "results_passage": "STRENGTH & LIMITATIONS: The strength of this study is that it is the first meta-analysis to assess the potential role of arginine supplements in ED compared with placebo or no treatment. A limitation is that the treatment dosage and duration varied among studies, which may have contributed to study heterogeneity. CONCLUSION: The results of our systematic review and meta-analysis provide evidence on the effectiveness of arginine supplements for mild to moderate ED. Rhim HC, Kim MS, Park Y-J, et al. The Potential Role of Arginine Supplements on Erectile Dysfunction: A Systemic Review and Meta-Analysis. J Sex Med 2019;16:223-234.",
+   "figures": []
+  },
+  "10.1016/j.urology.2010.08.028": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/21195829/",
+   "results_passage": "RESULTS: A total of 24 patients, mean age 56.5 ± 9.8 years, were entered and concluded the study without adverse events. The improvement in the erection hardness score from 3 (mild ED) to 4 (normal erectile function) occurred in 2 (8.3%) of the 24 men when taking placebo and 12 (50%) of the 24 men when taking L-citrulline (P < .01). The mean number of intercourses per month increased from 1.37 ± 0.93 at baseline to 1.53 ± 1.00 at the end of the placebo phase (P = .57) and 2.3 ± 1.37 at the end of the treatment phase (P < .01). All patients reporting an erection hardness score improvement from 3 to 4 reported being very satisfied. CONCLUSIONS: Although less effective than phosphodiesterase type-5 enzyme inhibitors, at least in the short term, L-citrulline supplementation has been proved to be safe and psychologically well accepted by patients. Its role as an alternative treatment for mild to moderate ED, particularly in patients with a psychologically fear of phosphodiesterase type-5 enzyme inhibitors, deserves further research.",
+   "figures": []
+  },
+  "10.1186/s13102-025-01124-3": {
+   "pmcid": "PMC11974082",
+   "open_access": true,
+   "license": "CC BY-NC-ND 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11974082/",
+   "results_passage": "Meta-analysis revealed improvement in baFMD post-AT (small MD = 1.92%, 95% CI 0.90 to 2.94, p = 0.001). The standard deviation of change scores in the intervention and control groups suggests that most of the variation in the observed change from pre-to-post intervention is due to other factors (e.g., measurement error, biological variability etc.) unrelated to the intervention itself. However, subgroup meta-analysis revealed that significantly trivial IIRD exists following AT in prehypertensive individuals. CONCLUSIONS: The study found small improvements in baFMD, suggesting an average 19.2% reduction in cardiovascular disease (CVD) risk, with some individuals-such as prehypertensive individuals-potentially experiencing even greater benefits from AT. However, a meta-analysis based on IIRD suggests that factors unrelated to AT predominantly explain baFMD changes. Further research is needed to better understand response variability in individuals with cardiovascular risk factors, and longer studies are required to assess IIRD in the general population.",
+   "figures": []
+  },
+  "10.3390/ijerph17041285": {
+   "pmcid": "PMC7068252",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7068252/",
+   "results_passage": "One hundred and eleven studies (158 groups, 1927 participants) reported on the effects of RT for muscle mass. RT significantly increased muscle mass (FFM+LMM+SMM; Δ1.53 kg; 95% CI [1.30, 1.76], p < 0.001; I2 = 0%, p = 1.00). Considering the overall effects of the meta-regression, and taking into account the participants' characteristics, none of the studied covariates explained any effect on changes in muscle mass. Regarding the training characteristics, the only significant variable that explained the variance of the hypertrophy was the sets per workout, showing a significant negative interaction (MD; estimate: 1.85, 95% CI [1.45, 2.25], p < 0.001; moderator: -0.03 95% CI [-0.05, -0.001] p = 0.04). In conclusion, RT has a significant effect on the improvement of hypertrophy (~1.5 kg). The excessive sets per workout affects negatively the muscle mass gain.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC7068252-fig3-mean-diff-training-effect.jpg",
+     "caption": "Mean differences exploration comparing the training effect.",
+     "shows": "Forest-style plot of pooled mean differences in whole-body muscle mass gain attributable to resistance training across the included studies."
+    }
+   ]
+  },
+  "10.1136/bjsports-2017-097608": {
+   "pmcid": "PMC5867436",
+   "open_access": true,
+   "license": "CC BY-NC 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5867436/",
+   "results_passage": "RESULTS: Data from 49 studies with 1863 participants showed that dietary protein supplementation significantly (all p<0.05) increased changes (means (95% CI)) in: strength-one-repetition-maximum (2.49 kg (0.64, 4.33)), FFM (0.30 kg (0.09, 0.52)) and muscle size-muscle fibre cross-sectional area (CSA; 310 µm2 (51, 570)) and mid-femur CSA (7.2 mm2 (0.20, 14.30)) during periods of prolonged RET. The impact of protein supplementation on gains in FFM was reduced with increasing age (-0.01 kg (-0.02,-0.00), p=0.002) and was more effective in resistance-trained individuals (0.75 kg (0.09, 1.40), p=0.03). Protein supplementation beyond total protein intakes of 1.62 g/kg/day resulted in no further RET-induced gains in FFM. SUMMARY/CONCLUSION: Dietary protein supplementation significantly enhanced changes in muscle strength and size during prolonged RET in healthy adults. Increasing age reduces and training experience increases the efficacy of protein supplementation during RET. With protein supplementation, protein intakes at amounts greater than ~1.6 g/kg/day do not further contribute RET-induced gains in FFM.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC5867436-fig2-forest-1rm.jpg",
+     "caption": "Figure 2. Forest plot of the results from a random-effects meta-analysis shown as mean difference with 95% CIs on one-repetition-maximum (1 RM; kg) in untrained and trained participants. Total: 2.49 kg (0.64, 4.33), p=0.01, untrained: 0.99 kg (-0.27, 2.25), p=0.12 and trained: 4.27 kg (0.61, 7.94), p=0.02.",
+     "shows": "Forest plot of the strength (1RM) gain from protein supplementation during resistance training, split by untrained vs trained participants, with the trained subgroup showing a larger effect."
+    }
+   ]
+  },
+  "10.1046/j.1439-0272.2002.00519.x": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/12472620/",
+   "results_passage": "Men aged 21-56 years received Maca in one of two doses: 1,500 mg or 3,000 mg or placebo. Self-perception on sexual desire, score for Hamilton test for depression, and Hamilton test for anxiety were measured at 4, 8 and 12 weeks of treatment. An improvement in sexual desire was observed with Maca since 8 weeks of treatment. Serum testosterone and oestradiol levels were not different in men treated with Maca and in those treated with placebo (P:NS). Logistic regression analysis showed that Maca has an independent effect on sexual desire at 8 and 12 weeks of treatment, and this effect is not because of changes in either Hamilton scores for depression or anxiety or serum testosterone and oestradiol levels. In conclusion, treatment with Maca improved sexual desire.",
+   "figures": []
+  },
+  "10.1093/jsxmed/qdaf045": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/40106710/",
+   "results_passage": "Fatigue emerged as a mediator in this relationship (β = -0.214, P < .05). The significance of the indirect effect of perceived stress via fatigue was confirmed through non-parametric bootstrapping (95% CI = -0.426 to -0.153), with fatigue contributing 26.46% to the total effect. CLINICAL IMPLICATIONS: These findings have provided new ideas for interventions in the clinical management of pED, particularly for improving erectile function by simultaneously managing fatigue and stress. STRENGTHS AND LIMITATIONS: This study explores the broader context of pED and provides a new perspective on the etiology of pED. The main drawback of this study is its lack of generalizability, as it was conducted within a monocultural and specific social context. CONCLUSION: Our findings of this study suggest that targeting both fatigue and perceived stress may be effective strategies for improving erectile function in patients with pED, providing valuable insights for research and clinical practice.",
+   "figures": []
+  },
+  "10.1371/journal.pone.0182630": {
+   "pmcid": "PMC5571970",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5571970/",
+   "results_passage": "DAA supplementation (n = 10) led to a 16%, 95% CI [-27%, -5%] reduction in E2 from T1-T3 (p<0.01). The placebo group (n = 9) demonstrated improvements in spinal responsiveness (gastrocnemius) at the level of the alpha motoneuron. Both groups exhibited increases in isometric strength of the plantar flexors by 17%, 95% CI [7%, 28%] (p<0.05) as well as similar increases in hypertrophy in the quadriceps and calf muscles. CONCLUSIONS: The results of this paper indicate that DAA supplementation is ineffective at changing testosterone levels, or positively affecting training outcomes. Reductions in estradiol and the blunting of peripheral excitability appear unrelated to improvements from resistance training. TRIAL REGISTRATION: Australian New Zealand Clinical Trials Registry ACTRN12617000041358.",
+   "figures": [
+    {
+     "label": "Fig 4",
+     "local_path": "/img/health-evidence/PMC5571970-fig4-testosterone-individual-response.jpg",
+     "caption": "Fig 4. Individual response of total testosterone. Left graph depicts placebo data and right graph depicts the data from the d-aspartic group. Solid line depicts group mean.",
+     "shows": "Individual participant trajectories of total testosterone over the 3-month trial, placebo vs D-aspartic acid supplementation, with the group mean line showing no meaningful separation between arms."
+    }
+   ]
+  },
+  "10.3390/nu17071275": {
+   "pmcid": "PMC11990417",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11990417/",
+   "results_passage": "The Jadad score revealed low methodological quality for 50% of the studies. Results: The studies involved 15 to 172 participants (total = 483) aged between 16 and 70 years with different health conditions: healthy men (n = 5), oligozoospermia (n = 1), erectile dysfunction (n = 1), erectile dysfunction associated with hypogonadism (n = 2), and unexplained infertility (n = 1). TT supplementation at doses of 400 to 750 mg/d for 1 to 3 months improved erectile dysfunction in 3 of the 5 studies that assessed this parameter. Eight out of ten studies did not report significant changes in androgen profile following TT supplementation, but the subjects in the neutral studies did not have low androgen levels at baseline. Therefore, only 2 studies showed significant intra-group increase in total testosterone levels, which had low clinical magnitude (60-70 ng/dL) and involved subjects with hypogonadism. Conclusions: TT supplementation has a low level of evidence regarding its effectiveness in improving erectile function in men with erectile dysfunction, and no robust evidence was found for increasing testosterone levels.",
+   "figures": []
+  },
+  "10.3389/fnut.2026.1799601": {
+   "pmcid": "PMC13185561",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13185561/",
+   "results_passage": "Overall, omega-3/6 supplementation showed no significant effects on IL-6, CRP, and TNF-α (p > 0.05). However, IL-1β levels were significantly reduced in the intervention group (MD = -0.04, 95% CI: -0.07 to -0.01, p = 0.02), with a more pronounced effect observed in the omega-6 subgroup (MD = -0.05, p = 0.03). No significant differences in IL-6 or TNF-α were observed between healthy individuals and patients following omega-3/6 intervention. Additionally, omega-3 supplementation did not improve IL-6 levels in Metabolic dysfunction-associated steatotic liver disease (MASLD) patients (MD = 0.00, p > 0.05). Short-term interventions (10-12 weeks) did not significantly alter IL-6 (omega-6) or TNF-α (omega-3) levels. These findings suggest that omega-6 PUFAs may inhibit IL-1β release via specific pathways, while both omega-3 and omega-6 exert limited effects on most inflammatory markers.",
+   "figures": [
+    {
+     "label": "Figure 5",
+     "local_path": "/img/health-evidence/PMC13185561-fig5-forest-crp-subgroup.jpg",
+     "caption": "Forest plot of CRP subgroup analysis.",
+     "shows": "Forest plot comparing the effect of omega-3 versus omega-6 fatty acid supplementation on C-reactive protein across study subgroups."
+    }
+   ]
+  },
+  "10.1186/s12967-022-03604-3": {
+   "pmcid": "PMC9444081",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9444081/",
+   "results_passage": "We extracted data to an online data extraction sheet. The primary outcomes were CRP change from baseline and CRP serum levels. RESULTS: We included four randomized controlled trials (RCTs) with 274 patients in this study. The overall effect estimate favored Omega-3 over the control group in terms of CRP change from baseline (mean difference (MD) =- 2.53, 95% confidence interval (CI): - 4.40, - 0.66) and CRP serum levels at the end of the study (MD =- 6.24, 95% CI: - 11.93, - 0.54). CONCLUSION: Omega-3 showed promising effects on systemic inflammation by reducing CRP levels in COVID-19 patients. Based on this finding, we recommend Omega-3 for COVID-19 patients for its anti-inflammatory actions.",
+   "figures": [
+    {
+     "label": "Fig. 4",
+     "local_path": "/img/health-evidence/PMC9444081-fig4-forest-crp.jpg",
+     "caption": "Forest plot of the C-reactive protein (CRP) serum levels.",
+     "shows": "Forest plot of randomized controlled trials of omega-3 supplementation in COVID-19 patients, pooled effect on serum CRP levels."
+    }
+   ]
+  },
+  "10.1155/2023/4875636": {
+   "pmcid": "PMC9870680",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9870680/",
+   "results_passage": "A random-effects model was applied to evaluate the effects of curcumin on inflammatory biomarkers. Meta-analysis studies investigating the effects of curcumin supplementation on inflammatory biomarkers with corresponding effect sizes (ES) and confidence intervals (CI) were included in the umbrella meta-analysis. GRADE (Grading of Recommendations Assessment, Development, and Evaluation) was used to evaluate the certainty of evidence. RESULTS: A meta-analyses of ten studies with 5,870 participants indicated a significant decrease in C-reactive protein (CRP) (ES = -0.74; 95% CI: -1.11, -0.37, p < 0.001; I2 = 62.1%, p=0.015), interleukin 6 (IL-6) (ES = -1.07; 95% CI: -1.71, -0.44, p < 0.001; I2 = 75.6%, p < 0.001), and tumour necrosis factor α (TNF-α) levels (ES: -1.92, 95% CI: -2.64, -1.19, p < 0.0; I2 = 18.1%, p=0.296) following curcumin supplementation. Greater effects on CRP and TNF-α were evident in trials with a mean age >45 years and a sample size >300 participants. CONCLUSION: The umbrella of meta-analysis suggests curcumin as a promising agent in reducing inflammation as an adjunctive therapeutic approach in diseases whose pathogenesis is related to a higher level of inflammatory biomarkers.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC9870680-fig2-forest-crp.jpg",
+     "caption": "Figure 2. Mean difference and 95% CIs presented in forest plot of the studies on the effects of curcumin supplementation on CRP levels.",
+     "shows": "Forest plot of the pooled effect of curcumin supplementation on CRP across the included randomized trials."
+    }
+   ]
+  },
+  "10.3389/fpsyg.2023.1253329": {
+   "pmcid": "PMC10499556",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10499556/",
+   "results_passage": "RESULT: Thirty-eight studies were included in the meta-analysis, involving 2,557 healthy subjects (mean age varies from 21 to 86 years). Long-term ET induced significantly decreased in the levels of interleukin-6 (IL-6) (SMD -0.16, 95% CI -0.30 to -0.03, p = 0.017), C-reactive protein (CRP) (SMD -0.18, 95% CI -0.31 to -0.06, p = 0.005), as well as tumor necrosis factor alpha (TNFα) (SMD -0.43, 95% CI -0.62 to -0.24, p < 0.001). Subgroup analysis revealed that Long-term ET conducted for more than 12 weeks and exercise of moderate intensity had greater anti-inflammatory effects. Meta-regression analysis showed that the reduction in CRP level induced by long-term ET was weakened by increasing exercise intensity. CONCLUSION: Long-term ET induced significant anti-inflammatory effects in healthy subjects. Long-term ET-induced anti-inflammatory effects were associated with exercise of moderate intensity and training conducted for more than 12 weeks.Systematic Review Registration: https://www.crd.york.ac.uk/PROSPERO/# myprospero, PROSPERO, identifier CRD42022346693.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC10499556-fig3-forest-crp.jpg",
+     "caption": "Figure 3. The forest plot of the effect of long-term ET on CRP levels.",
+     "shows": "Forest plot of the pooled effect of long-term exercise training on CRP across the included randomized controlled trials."
+    }
+   ]
+  },
+  "10.1016/j.jand.2018.02.009": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/29691143/",
+   "results_passage": "There were no differences in changes in glucose, insulin, or IGFBP-3 concentrations or insulin resistance between treatment groups after 2 weeks. Carbohydrate (P=0.019), available carbohydrate (P<0.001), percent energy from carbohydrate (P<0.001), GI (P<0.001), and GL (P<0.001) decreased significantly among participants following a low GI/GL diet between the pre- and postintervention time points. There were no differences in changes in body composition comparing groups. CONCLUSIONS: In this study, a low GI and GL diet decreased IGF-1 concentrations, a well-established factor in acne pathogenesis. Further research of a longer duration should examine whether a low GI and GL diet would result in a clinically meaningful difference in IGF-1 concentrations leading to a reduction in acne. This trial was registered at clinicaltrials.gov as NCT02913001.",
+   "figures": []
+  },
+  "10.1186/s12902-026-02163-8": {
+   "pmcid": "PMC12870219",
+   "open_access": true,
+   "license": "CC BY-NC-ND 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12870219/",
+   "results_passage": "Subgroup analyses also indicated that low-GI diets combined with calorie restriction significantly reduced fasting insulin (WMD = -3.05 µIU/mL, 95% CI: -5.22, -0.87; I² = 0%) and HOMA-IR (WMD = -0.65, 95% CI: -1.13, -0.16; I² = 0%). Additionally, low-GI diets with a balanced macronutrient distribution (46–65% of energy) significantly lowered HOMA-IR (WMD = -0.53, 95% CI: -1.00, -0.06; I² = 22.4%). Reduced-carbohydrate diets had no significant effects on fasting insulin or HOMA-IR compared to control diets. CONCLUSIONS: This meta-analysis suggests that in children and adolescents with overweight/obesity, improving carbohydrate quality through a low-GI diet may improve insulin sensitivity. The benefits of low-GI diets were particularly observed when they were implemented alongside calorie restriction or when carbohydrates constituted 45–65% of total energy intake. CLINICAL TRIAL NUMBER: Not applicable.",
+   "figures": []
+  },
+  "10.1093/ajcn/86.1.107": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/17616769/",
+   "results_passage": "In contrast, the control situation emphasized carbohydrate-dense foods without reference to the glycemic index. Acne lesion counts and severity were assessed during monthly visits, and insulin sensitivity (using the homeostasis model assessment) was measured at baseline and 12 wk. RESULTS: At 12 wk, mean (+/-SEM) total lesion counts had decreased more (P=0.03) in the low-glycemic-load group (-23.5 +/- 3.9) than in the control group (-12.0 +/- 3.5). The experimental diet also resulted in a greater reduction in weight (-2.9 +/- 0.8 compared with 0.5 +/- 0.3 kg; P<0.001) and body mass index (in kg/m(2); -0.92 +/- 0.25 compared with 0.01 +/- 0.11; P=0.001) and a greater improvement in insulin sensitivity (-0.22 +/- 0.12 compared with 0.47 +/- 0.31; P=0.026) than did the control diet. CONCLUSION: The improvement in acne and insulin sensitivity after a low-glycemic-load diet suggests that nutrition-related lifestyle factors may play a role in the pathogenesis of acne. However, further studies are needed to isolate the independent effects of weight loss and dietary intervention and to further elucidate the underlying pathophysiologic mechanisms.",
+   "figures": []
+  },
+  "10.1016/j.sleep.2014.12.004": {
+   "pmcid": "PMC4344919",
+   "open_access": false,
+   "license": "NIH author manuscript (PMC deposit), no Creative Commons licence",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4344919/",
+   "results_passage": "Participants took 0.5 mg of melatonin 5 h before the baseline bedtime on treatment day 1, and an hour earlier each treatment day. They were exposed to one of three bright-light (~5000 lux) patterns upon waking each morning: four 30-min exposures separated by 30 min of room light (2-h group), four 15-min exposures separated by 45 min of room light (1-h group), and one 30-min exposure (0.5-h group). Dim-light melatonin onsets (DLMOs) before and after treatment determined the phase advance. RESULTS: Compared to the 2-h group (phase shift = 2.4 ± 0.8 h), smaller phase-advance shifts were seen in the 1-h (1.7 ± 0.7 h) and 0.5-h (1.8 ± 0.8 h) groups. The 2-h pattern produced the largest phase advance; however, the single 30-min bright-light exposure was as effective as 1 h of bright light spread over 3.25 h, and it produced 75% of the phase shift observed with 2 h of bright light. CONCLUSIONS: A 30-min morning bright-light exposure with afternoon melatonin is an efficient treatment to phase-advance human circadian rhythms.",
+   "figures": []
+  },
+  "10.3109/07420528.2015.1119158": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/26730983/",
+   "results_passage": "We investigated sleep quality and melatonin in 12 adults who wore blue-light shield or control eyewear 2 hours before sleep while using a self-luminous portable device, and assessed visual quality for the two eyewear types. Overnight melatonin secretion was significantly higher after using the blue-light shield (P < 0.05) than with the control eyewear. Sleep efficacy and sleep latency were significantly superior for wearers of the blue-light shield (P < 0.05 for both), and this group reported greater sleepiness during portable device use compared to those using the control eyewear. Participants rated the blue-light shield as providing acceptable visual quality.",
+   "figures": []
+  },
+  "10.1093/sleepadvances/zpaa002": {
+   "pmcid": "PMC10127364",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10127364/",
+   "results_passage": "Relatively few (k = 12) studies have been done. Study findings were inconsistent, with some showing benefit and others showing no effect of intervention. Meta-analyses yielded a small-to-medium magnitude combined effect size for sleep efficiency (Hedge's g = 0.31; 95% CI: -0.05, 0.66; I2 = 38.16%; k = 7), and a small-to-medium combined effect size for total sleep time (Hedge's g = 0.32; 95% CI: 0.01, 0.63; I2 = 12.07%; k = 6). For self-report measures, meta-analysis yielded a large magnitude combined effects size for Pittsburgh Sleep Quality Index ratings (Hedge's g = -1.25; 95% CI: -2.39, -0.11; I2 = 36.35%; k = 3) and a medium combined effect size for total sleep time (Hedge's g = 0.51; 95% CI: 0.18, 0.84; I2 = 0%; k = 3), Overall, there is some, albeit mixed, evidence that this approach can improve sleep, particularly in individuals with insomnia, bipolar disorder, delayed sleep phase syndrome, or attention-deficit hyperactive disorder. Considering the ubiquitousness of short-wavelength-enriched light sources, future controlled studies to examine the efficacy of this approach to improve sleep are warranted. Systematic review registration: PROSPERO 2018 CRD42018105854.",
+   "figures": [
+    {
+     "label": "Figure (objective sleep outcomes)",
+     "local_path": "/img/health-evidence/PMC10127364-fig4-forest-objective-sleep.jpg",
+     "caption": "Forest plots of objective sleep outcomes. Comparisons are made between blue blocker lenses condition and control (or to pre-treatment baseline). Effect size, 95% confidence interval (CI), and weight of each study are shown on the right of each panel.",
+     "shows": "Multi-panel forest plot of blue-light-blocking interventions' effect on objectively measured sleep outcomes versus control."
+    }
+   ]
+  },
+  "10.1016/j.smrv.2023.101764": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/36870101/",
+   "results_passage": "This systematic review and meta-analysis investigated the effect of caffeine on the characteristics of night-time sleep, with the intent to identify the time after which caffeine should not be consumed prior to bedtime. A systematic search of the literature was undertaken with 24 studies included in the analysis. Caffeine consumption reduced total sleep time by 45 min and sleep efficiency by 7%, with an increase in sleep onset latency of 9 min and wake after sleep onset of 12 min. Duration (+6.1 min) and proportion (+1.7%) of light sleep (N1) increased with caffeine intake and the duration (-11.4 min) and proportion (-1.4%) of deep sleep (N3 and N4) decreased with caffeine intake. To avoid reductions in total sleep time, coffee (107 mg per 250 mL) should be consumed at least 8.8 h prior to bedtime and a standard serve of pre-workout supplement (217.5 mg) should be consumed at least 13.2 h prior to bedtime. The results of the present study provide evidence-based guidance for the appropriate consumption of caffeine to mitigate the deleterious effects on sleep.",
+   "figures": []
+  },
+  "10.2147/nss.s388863": {
+   "pmcid": "PMC9760070",
+   "open_access": true,
+   "license": "CC BY-NC 3.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9760070/",
+   "results_passage": "The basic search terms included exercise, sleep and timing, which were combined with AND. Of the 12,203 retrieved, twenty-eight studies with 325 participants met the inclusion criteria. Results revealed that there were no significant differences in terms of impacts on sleep caused by different intensities of acute evening exercise, except that when compared to no exercise, acute evening high-intensity exercise decreased rapid eye movement sleep (mean difference [MD] = -1.95%, 95% credible interval [CI] = -3.58 to -0.35). Compared to no exercise, acute evening moderate-intensity exercise was ranked as the most potential method to improve sleep, displaying a trend to improve wake time after sleep onset (MD = -2.50 min, 95% CI = -8.17 to 1.62), sleep efficiency (MD = +0.41%, 95% CI = -0.71 to 1.66), the proportion of stage N1 (MD = -0.72%, 95% CI = -2.08 to 0.71) and N3 sleep (slow-wave sleep) (MD = +0.84%, 95% CI = -1.17 to 2.78). Acute evening low-intensity exercise displayed the greatest tendency to shorten sleep onset latency (MD = -1.02 min, 95% CI = -4.39 to 2.50) compared to no exercise. Overall, regardless of intensity, acute evening exercise completed before bedtime does not disrupt subsequent sleep in healthy young and middle-aged adults.",
+   "figures": [
+    {
+     "label": "Figure (network meta-analysis)",
+     "local_path": "/img/health-evidence/PMC9760070-fig3-forest-nma-sleep.jpg",
+     "caption": "Forest plots of network meta-analysis of all comparisons for TST, SOL, WASO, REM-L, and SE. Abbreviations: TST, total sleep time; SOL, sleep onset latency; WASO, wake time after sleep onset; REM-L, rapid eye movement latency; SE, sleep efficiency.",
+     "shows": "Network meta-analysis forest plots comparing low/moderate/high-intensity evening exercise against each other and control for five sleep outcomes."
+    }
+   ]
+  },
+  "10.1371/journal.pone.0063773": {
+   "pmcid": "PMC3656905",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3656905/",
+   "results_passage": "Trials with longer duration and using higher doses of melatonin demonstrated greater effects on decreasing sleep latency and increasing total sleep time. Overall sleep quality was significantly improved in subjects taking melatonin (standardized mean difference = 0.22 [95% CI: 0.12 to 0.32], Z = 4.52, p<0.001) compared to placebo. No significant effects of trial duration and melatonin dose were observed on sleep quality. CONCLUSION: This meta-analysis demonstrates that melatonin decreases sleep onset latency, increases total sleep time and improves overall sleep quality. The effects of melatonin on sleep are modest but do not appear to dissipate with continued melatonin use. Although the absolute benefit of melatonin compared to placebo is smaller than other pharmacological treatments for insomnia, melatonin may have a role in the treatment of insomnia given its relatively benign side-effect profile compared to these agents.",
+   "figures": [
+    {
+     "label": "Figure 1",
+     "local_path": "/img/health-evidence/PMC3656905-fig1-forest-sleep-latency.jpg",
+     "caption": "Figure 1. Efficacy of Melatonin in Reducing Sleep Latency. Forest plot depicting reduction of sleep latency in melatonin compared to placebo. Meta-analysis demonstrated a significant benefit of melatonin in reducing sleep latency. WMD = weighted mean difference; CI = confidence interval.",
+     "shows": "Forest plot of randomized trials showing melatonin significantly reduces sleep onset latency versus placebo."
+    }
+   ]
+  },
+  "10.1016/j.smrv.2024.102030": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/39631226/",
+   "results_passage": "A dose-response relationship was identified such that disruptions to REM sleep occurred following consumption of a low dose of alcohol (≤0.50 g∙kg-1 or approximately two standard drinks) and progressively worsened with increasing doses of alcohol. Reductions in sleep onset latency and latency to deep sleep (i.e., non-rapid eye movement stage three (N3)) were only observed following the consumption of a high dose of alcohol (≥0.85∙g kg-1 or approximately five standard drinks). The effect of alcohol on the remaining characteristics of sleep could not be determined, with large uncertainty observed in the effect on total sleep time, sleep efficiency, and wake after sleep onset. The results of the present study suggest that a low dose of alcohol will negatively impact (i.e., reduce) REM sleep. It appears that high doses of alcohol may shorten sleep onset latency, however this likely exacerbates subsequent REM sleep disruption. Future work on personal and environmental factors that affect alcohol metabolism, and any differential effects of alcohol due to sex is encouraged.",
+   "figures": []
+  },
+  "10.1007/s10865-015-9617-6": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/25596964/",
+   "results_passage": "PubMed and PsycINFO were used to identify 66 studies for inclusion in the analysis that were published through May 2013. Analyses reveal that acute exercise has small beneficial effects on total sleep time, sleep onset latency, sleep efficiency, stage 1 sleep, and slow wave sleep, a moderate beneficial effect on wake time after sleep onset, and a small effect on rapid eye movement sleep. Regular exercise has small beneficial effects on total sleep time and sleep efficiency, small-to-medium beneficial effects on sleep onset latency, and moderate beneficial effects on sleep quality. Effects were moderated by sex, age, baseline physical activity level of participants, as well as exercise type, time of day, duration, and adherence. Significant moderation was not found for exercise intensity, aerobic/anaerobic classification, or publication date. Results were discussed with regards to future avenues of research and clinical application to the treatment of insomnia.",
+   "figures": []
+  },
+  "10.3389/fpsyt.2021.798453": {
+   "pmcid": "PMC8733003",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8733003/",
+   "results_passage": "There was no significant change in anxiety (SMD = -0.62, 95% CI -1.55 to 0.32, p > 0.05) and mental health (SMD = 1.09, 95% CI -0.59 to 2.77, p > 0.05) in CBT intervention group compared with control group. Group-delivered studies with larger number of intervention sessions and longer duration of single session provided a larger improvement in sleep quality. Conclusion: Face-to-face delivered CBT is effective in increasing total sleep time, sleep efficiency, and physical health, and reducing Insomnia Severity Index scores, Pittsburgh Sleep Quality Index scores, sleep onset latency, wakening after sleep onset, number of awakenings, depression, anxiety, and fatigue in patients with insomnia. Face-to-face delivered CBT is more effective when delivered through a larger number of sessions with longer duration of each session, and when delivered in groups. Face-to-face CBT is recommended to provide treatment to patients with insomnia in clinical settings. Systematic Review Registration: www.crd.york.ac.uk/prospero/display_record.php?ID=CRD42020200091, identifier: CRD4202020009.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC8733003-fig2-forest-cbt-sleep.jpg",
+     "caption": "Figure 2. Forest plots of the effect of CBT for sleep outcomes. (A) Insomnia Severity Index, (B) Pittsburgh Sleep Quality Index, (C) total sleep time, (D) sleep efficiency, (E) sleep onset latency, (F) wake after sleep onset.",
+     "shows": "Six-panel forest plot of face-to-face CBT for insomnia's effect on ISI, PSQI, total sleep time, sleep efficiency, sleep onset latency, and wake after sleep onset."
+    }
+   ]
+  },
+  "10.2147/NSS.S524348": {
+   "pmcid": "PMC12412596",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12412596/",
+   "results_passage": "The effect size was small (Cohen's d = 0.2), indicating a modest benefit. Exploratory analyses suggested notably greater improvements among participants reporting lower baseline dietary magnesium intake, potentially indicating a subgroup of high responders. No significant differences were observed in other psychological outcomes. CONCLUSION: Magnesium bisglycinate supplementation modestly improved insomnia severity in adults reporting poor sleep quality. Future research should include objective sleep assessments, longer intervention periods, and better characterization of potential high responders by systematically assessing baseline dietary magnesium intake and status. CLINICAL TRIAL REGISTRATION NAME: Effect of magnesium bisglycinate supplementation on sleep and fatigue parameters in healthy adults reporting poor sleep quality; https://drks.de/search/en/trial/DRKS00031494 DRKS-ID: DRKS00031494.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC12412596-fig2-isi-over-time.jpg",
+     "caption": "Figure 2. Mean Insomnia Severity Index (ISI) scores over time (intention-to-treat). Data represent estimated means from generalized linear mixed-effects models (GLMM), adjusted for age, sex, body mass index, and occupation. Asterisks (*) denote statistically significant differences (p = 0.049) with a small effect size (d = 0.2).",
+     "shows": "Line chart of mean Insomnia Severity Index scores over the trial, magnesium bisglycinate versus placebo, showing a small but significant improvement with magnesium."
+    }
+   ]
+  },
+  "10.1111/j.1440-1681.2006.04453.x": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/16922820/",
+   "results_passage": "4. Resistance training has been less well studied. A meta-analysis of nine randomized controlled trials (12 study groups) on mostly dynamic resistance training revealed a weighted net reduction of diastolic blood pressure of 3.5 mmHg (P < 0.01) associated with exercise and a non-significant reduction of systolic blood pressure of 3.2 mmHg (P = 0.10). 5. In conclusion, dynamic aerobic endurance training decreases blood pressure through a reduction of systemic vascular resistance, in which the sympathetic nervous system and the renin-angiotensin system appear to be involved, and favourably affects concomitant cardiovascular risk factors. In addition, the few available data suggest that resistance training is able to reduce blood pressure.",
+   "figures": []
+  },
+  "10.1161/JAHA.116.003231": {
+   "pmcid": "PMC5121472",
+   "open_access": true,
+   "license": "CC BY-NC 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5121472/",
+   "results_passage": "Participants (N=2344) were white (57%), middle-aged (47.2±19.0 years), and overweight (26.8±3.4 kg/m(2)) adults with prehypertension (126.7±10.3/76.8±8.7 mm Hg); 15% were on antihypertensive medication. Overall, moderate-intensity dynamic RT was performed 2.8±0.6 days/week for 14.4±7.9 weeks and elicited small-to-moderate reductions in systolic BP (SBP; d+=-0.31; 95% CIs, -0.43, -0.19; -3.0 mm Hg) and diastolic BP (DBP; d+=-0.30; 95% CIs, -0.38, -0.18; -2.1 mm Hg) compared to controls (Ps<0.001). Greater BP reductions occurred among samples with higher resting SBP/DBP: ≈6/5 mm Hg for hypertension, ≈3/3 mm Hg for prehypertension, and ≈0/1 mm Hg for normal BP (Ps<0.023). Furthermore, nonwhite samples with hypertension experienced BP reductions that were approximately twice the magnitude of those previously reported following AE training (-14.3 mm Hg [95% CIs, -19.0, -9.4]/-10.3 mm Hg [95% CIs, -14.5, -6.2]). CONCLUSIONS: Our results indicate that for nonwhite adult samples with hypertension, dynamic RT may elicit BP reductions that are comparable to or greater than those reportedly achieved with AE training. Dynamic RT should be further investigated as a viable stand-alone therapeutic exercise option for adult populations with high BP.",
+   "figures": []
+  },
+  "10.1056/NEJM199704173361601": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/9099655/",
+   "results_passage": "Sodium intake and body weight were maintained at constant levels. RESULTS: At base line, the mean (+/-SD) systolic and diastolic blood pressures were 131.3+/-10.8 mm Hg and 84.7+/-4.7 mm Hg, respectively. The combination diet reduced systolic and diastolic blood pressure by 5.5 and 3.0 mm Hg more, respectively, than the control diet (P<0.001 for each); the fruits-and-vegetables diet reduced systolic blood pressure by 2.8 mm Hg more (P<0.001) and diastolic blood pressure by 1.1 mm Hg more than the control diet (P=0.07). Among the 133 subjects with hypertension (systolic pressure, > or =140 mm Hg; diastolic pressure, > or =90 mm Hg; or both), the combination diet reduced systolic and diastolic blood pressure by 11.4 and 5.5 mm Hg more, respectively, than the control diet (P<0.001 for each); among the 326 subjects without hypertension, the corresponding reductions were 3.5 mm Hg (P<0.001) and 2.1 mm Hg (P=0.003). CONCLUSIONS: A diet rich in fruits, vegetables, and low-fat dairy foods and with reduced saturated and total fat can substantially lower blood pressure. This diet offers an additional nutritional approach to preventing and treating hypertension.",
+   "figures": []
+  },
+  "10.1016/j.cpcardiol.2026.103397": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/42492868/",
+   "results_passage": "The DASH diet did not demonstrate a statistically significant advantage over comparator diets in reducing systolic blood pressure (MD = 1.30; 95% CI: -1.54 to 4.14) or diastolic blood pressure (MD = 0.21; 95% CI: -3.72 to 4.14), with substantial heterogeneity observed across studies. Significant effects were identified for selected cardiometabolic outcomes, including reductions in urinary sodium excretion (MD = -32.89; 95% CI: -62.76 to -3.01), LDL cholesterol (MD = -8.59; 95% CI: -14.64 to -2.54), and glycated hemoglobin (HbA1c) (MD = -0.49; 95% CI: -0.52 to -0.46), as well as an increase in urinary potassium excretion (MD = 11.76; 95% CI: 4.08 to 19.44). The certainty of evidence ranged from moderate to very low across outcomes. CONCLUSIONS: The DASH diet was not superior to other dietary interventions in reducing blood pressure; however, it demonstrated consistent benefits in selected cardiometabolic parameters. Given the overall low certainty of evidence and substantial heterogeneity, these findings should be interpreted cautiously. Future research should focus on well-designed trials with standardized outcomes and longer follow-up to clarify comparative effectiveness.",
+   "figures": []
+  },
+  "10.36660/abc.20250440": {
+   "pmcid": "PMC13128219",
+   "open_access": true,
+   "license": "CC BY 4.0 (Creative Commons Attribution licence)",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13128219/",
+   "results_passage": "Mean differences (MD) with 95% CIs were calculated using a random-effects model. Heterogeneity was assessed using the I2 statistic. A p-value < 0.05 was considered statistically significant. RESULTS: Four RCTs involving 1,430 participants were included, of whom 725 (49.57%) received the salt substitute. The use of a salt substitute was associated with a significant reduction in systolic BP (SBP) (MD, -5.75 mmHg; 95% CI, -6.98 to -2.39 mmHg; I2 = 37%; p < 0.01) and a significant reduction in diastolic BP (DBP) (MD, -1.62 mmHg; 95% CI, -2.34 to -0.91 mmHg; I2 = 0%; p < 0.001). CONCLUSION: In patients with hypertension, the use of a salt substitute is associated with a significant reduction in both SBP and DBP compared with regular salt.",
+   "figures": [
+    {
+     "label": "Figure 2 (English)",
+     "local_path": "/img/health-evidence/PMC13128219-fig2-forest-bp.jpg",
+     "caption": "Figure 2. Forest plots of MD in changes in BP comparing salt substitute versus regular salt. A) Change in SBP; B) change in DBP. BP: blood pressure; DBP: diastolic BP; MD: mean difference; SBP: systolic BP.",
+     "shows": "Paired forest plots of RCTs showing the pooled mean-difference reduction in systolic and diastolic blood pressure from salt substitutes versus regular salt."
+    }
+   ]
+  },
+  "10.1161/hy1101.093424": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/11711507/",
+   "results_passage": "Using a standard protocol, information on sample size, participant characteristics, study design, intervention methods, duration, and treatment results was abstracted independently by 3 investigators. By means of a fixed-effects model, findings from individual trials were pooled after results for each trial were weighted by the inverse of its variance. Overall, alcohol reduction was associated with a significant reduction in mean (95% confidence interval) systolic and diastolic blood pressures of -3.31 mm Hg (-2.52 to -4.10 mm Hg) and -2.04 mm Hg (-1.49 to -2.58 mm Hg), respectively. A dose-response relationship was observed between mean percentage of alcohol reduction and mean blood pressure reduction. Effects of intervention were enhanced in those with higher baseline blood pressure. Our study suggests that alcohol reduction should be recommended as an important component of lifestyle modification for the prevention and treatment of hypertension among heavy drinkers.",
+   "figures": []
+  },
+  "10.3945/ajcn.113.081521": {
+   "pmcid": null,
+   "open_access": false,
+   "license": "Not deposited in PMC; no reuse licence found",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/24808490/",
+   "results_passage": "Subgroup analyses showed the most marked relation between sugar intakes and lipids in studies in which efforts were made to ensure an energy balance and when no difference in weight change was reported. Potential explanatory factors, including a weight change, in most instances explained <15% of the heterogeneity between studies (I(2) = 36-75%). The effect of sugar intake on blood pressure was greatest in trials ≥8 wk in duration [MD: 6.9 mm Hg (95% CI: 3.4, 10.3 mm Hg; P < 0.001) for systolic blood pressure and 5.6 mm Hg (95% CI: 2.5, 8.8 mm Hg; P = 0.0005) for diastolic blood pressure]. CONCLUSIONS: Dietary sugars influence blood pressure and serum lipids. The relation is independent of effects of sugars on body weight. Protocols for this review were registered separately for effects of sugars on blood pressure and lipids in the PROSPERO International prospective register of systematic reviews as PROSPERO 2012: CRD42012002379 and 2012: CRD42012002437, respectively.",
+   "figures": []
+  },
+  "10.1016/j.advnut.2023.09.010": {
+   "pmcid": "PMC10721518",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10721518/",
+   "results_passage": "The Cochrane Collaboration tool was used for assessing the risk of bias (Version 1). PubMed, Web of Science, Embase, and Cochrane library databases were searched from inception to April 2023. Nineteen eligible randomized controlled trials, including 1183 participants, were included in the meta-analysis. Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration (standardized mean difference [SMD] = -0.38 mg/L; 95% confidence interval [CI]: -0.72, -0.04), tumor necrosis factor-α concentration (SMD = -0.45 pg/mL; 95% CI: -0.73, -0.17), triglyceride in serum (SMD = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure (SMD = -0.37 mm Hg; 95% CI: -0.66, -0.08); but led to a significant increase in low-density lipoprotein cholesterol concentrations (SMD = 1.32 mg/dL; 95% CI: 0.05, 2.59). ALA supplementation had no significant effect on interleukin-6, diastolic blood pressure, total cholesterol, or high-density lipoprotein cholesterol (all P ≥ 0.05). Subgroup analysis revealed that ALA supplementation at a dose of ≥3 g/d from flaxseed and flaxseed oil had a more prominent effect on improving CVD risk profiles, particularly where the intervention duration was ≥12 wk and where the baseline CVD profile was poor.",
+   "figures": [
+    {
+     "label": "Figure (systolic BP forest plot)",
+     "local_path": "/img/health-evidence/PMC10721518-fig5-forest-systolic-bp.jpg",
+     "caption": "Forest plot of standard mean difference and 95% confidence interval for the effect of dietary ALA supplementation on systolic blood pressure in people with obesity or overweight. ALA, alpha-linolenic acid.",
+     "shows": "Forest plot of randomized trials showing the pooled effect of alpha-linolenic acid supplementation on systolic blood pressure in individuals with obesity or overweight."
+    }
+   ]
+  },
+  "10.1002/14651858.CD011737.pub3": {
+   "pmcid": "PMC8092457",
+   "open_access": false,
+   "license": "Copyright Cochrane Collaboration, no Creative Commons licence",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8092457/",
+   "results_passage": "There was little or no effect of reducing saturated fats on non-fatal myocardial infarction (RR 0.97, 95% CI 0.87 to 1.07) or CHD mortality (RR 0.97, 95% CI 0.82 to 1.16, both low-quality evidence), but effects on total (fatal or non-fatal) myocardial infarction, stroke and CHD events (fatal or non-fatal) were all unclear as the evidence was of very low quality. There was little or no effect on cancer mortality, cancer diagnoses, diabetes diagnosis, HDL cholesterol, serum triglycerides or blood pressure, and small reductions in weight, serum total cholesterol, LDL cholesterol and BMI. There was no evidence of harmful effects of reducing saturated fat intakes. AUTHORS' CONCLUSIONS: The findings of this updated review suggest that reducing saturated fat intake for at least two years causes a potentially important reduction in combined cardiovascular events. Replacing the energy from saturated fat with polyunsaturated fat or carbohydrate appear to be useful strategies, while effects of replacement with monounsaturated fat are unclear. The reduction in combined cardiovascular events resulting from reducing saturated fat did not alter by study duration, sex or baseline level of cardiovascular risk, but greater reduction in saturated fat caused greater reductions in cardiovascular events.",
+   "figures": []
+  }
+ }
+}

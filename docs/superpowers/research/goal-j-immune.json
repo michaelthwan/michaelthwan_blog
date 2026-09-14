@@ -1,0 +1,45 @@
+{
+  "goal": {
+    "id": "goal_j_immune",
+    "name": "Immune function and infection resistance",
+    "definition": "Acute respiratory tract infection incidence, infection duration/symptom-day count, vaccine antibody response (seroconversion/titre), and experimental infection susceptibility as measurable markers of immune competence against common infections."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_j_immune",
+        "name": "Immune function and infection resistance",
+        "definition": "Acute respiratory tract infection incidence, infection duration/symptom-day count, vaccine antibody response (seroconversion/titre), and experimental infection susceptibility as measurable markers of immune competence against common infections."
+      }
+    ],
+    "markers": [
+      {
+        "id": "arti_incidence",
+        "name": "Acute respiratory tract infection incidence",
+        "unit": "proportion of participants with >=1 infection episode, or incidence rate ratio",
+        "goal_ids": ["goal_j_immune"]
+      },
+      {
+        "id": "infection_duration",
+        "name": "Infection duration / symptom-day count",
+        "unit": "days of illness or symptom-days",
+        "goal_ids": ["goal_j_immune"]
+      },
+      {
+        "id": "vaccine_antibody_response",
+        "name": "Vaccine antibody response",
+        "unit": "seroconversion rate (%) or antibody titre",
+        "goal_ids": ["goal_j_immune"]
+      },
+      {
+        "id": "experimental_infection_susceptibility",
+        "name": "Experimental infection susceptibility",
+        "unit": "clinical cold incidence (%) after controlled viral inoculation",
+        "goal_ids": ["goal_j_immune"]
+      }
+    ],
+    "behaviors": []
+  },
+  "edges": [],
+  "cut_candidates": []
+}

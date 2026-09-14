@@ -1,0 +1,370 @@
+{
+  "nodes": {
+    "goals": [
+      {
+        "id": "male_vitality",
+        "name": "Male vitality / testosterone",
+        "definition": "Composite goal spanning serum testosterone, vascular/erectile function, lean mass and strength, and subjective libido in adult men."
+      }
+    ],
+    "markers": [
+      {
+        "id": "serum_testosterone",
+        "name": "Serum testosterone",
+        "unit": "nmol/L (as reported in source papers; some cited studies use ng/dL)",
+        "goal_ids": ["male_vitality"]
+      },
+      {
+        "id": "nitric_oxide_blood_flow",
+        "name": "Nitric oxide / vascular blood flow (erectile function)",
+        "unit": "heterogeneous: %FMD change (direct vascular marker) or IIEF erectile-function domain / pooled odds ratio (clinical surrogate)",
+        "goal_ids": ["male_vitality"]
+      },
+      {
+        "id": "lean_mass_strength",
+        "name": "Lean mass / strength",
+        "unit": "kg fat-free mass (FFM) or kg 1-repetition-maximum (1RM)",
+        "goal_ids": ["male_vitality"]
+      },
+      {
+        "id": "subjective_libido",
+        "name": "Subjective libido / sexual desire",
+        "unit": "validated scale score (IIEF sexual-desire domain or equivalent questionnaire) or standardized regression coefficient",
+        "goal_ids": ["male_vitality"]
+      }
+    ],
+    "behaviors": [
+      { "id": "resistance_training", "name": "Resistance training", "category": "exercise", "dose_or_intensity": "structured resistance-training programs, median ~12 weeks across pooled RCTs" },
+      { "id": "sleep_duration", "name": "Sleep duration / restriction", "category": "habit", "dose_or_intensity": "<5 h/night for 1 week vs ~8-10 h/night (baseline)" },
+      { "id": "fat_loss", "name": "Diet-induced fat loss", "category": "diet", "dose_or_intensity": "hypocaloric diet, active weight-loss phase (weeks 0-12)" },
+      { "id": "zinc", "name": "Zinc supplementation", "category": "supplement", "dose_or_intensity": "~459 umol/day zinc gluconate for 3-6 months (supplementation arm); dietary zinc restriction for 20 weeks (deficiency arm)" },
+      { "id": "vitamin_d", "name": "Vitamin D supplementation", "category": "supplement", "dose_or_intensity": "varies across pooled RCTs; supporting single RCT used 20,000 IU/week for 12 weeks" },
+      { "id": "alcohol", "name": "Alcohol consumption", "category": "habit", "dose_or_intensity": "chronic/habitual consumption; quantity not standardized across pooled studies" },
+      { "id": "l_arginine", "name": "L-arginine supplementation", "category": "supplement", "dose_or_intensity": "1,500-5,000 mg/day across pooled RCTs" },
+      { "id": "l_citrulline", "name": "L-citrulline supplementation", "category": "supplement", "dose_or_intensity": "1.5 g/day for 1 month" },
+      { "id": "aerobic_exercise", "name": "Aerobic exercise training", "category": "exercise", "dose_or_intensity": "varies across 12 pooled RCTs; duration/intensity not resolved in retrieved abstract" },
+      { "id": "protein_intake", "name": "Protein intake (with resistance training)", "category": "diet", "dose_or_intensity": "total protein intake; dose-response plateaus near 1.62 g/kg body mass/day" },
+      { "id": "maca", "name": "Maca (Lepidium meyenii)", "category": "supplement", "dose_or_intensity": "1,500-3,000 mg/day for 12 weeks" },
+      { "id": "psychological_stress", "name": "Psychological stress", "category": "habit", "dose_or_intensity": "naturalistic perceived-stress exposure, not dosed" },
+      { "id": "d_aspartic_acid", "name": "D-aspartic acid supplementation", "category": "supplement", "dose_or_intensity": "6 g/day for 12 weeks" },
+      { "id": "tribulus_terrestris", "name": "Tribulus terrestris supplementation", "category": "supplement", "dose_or_intensity": "400-750 mg/day for 1-3 months (range across pooled studies)" }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "serum_testosterone",
+      "direction": null,
+      "effect": "SMD 0.00 (95% CI -0.20 to 0.20) for resting total testosterone",
+      "effect_normalized": 0.0,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "insufficiently active, apparently healthy, eugonadal men aged 19-75",
+      "conditional_on": "corrected from the candidate hypothesis: negligible effect on RESTING testosterone regardless of training modality (aerobic, resistance, or combined), age, or BMI. Does not address the well-documented acute post-exercise testosterone spike, a separate phenomenon not covered by this edge.",
+      "paper": {
+        "doi": "10.1519/JSC.0000000000004146",
+        "title": "Effects of Exercise Training on Resting Testosterone Concentrations in Insufficiently Active Men: A Systematic Review and Meta-Analysis",
+        "year": 2021,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": "11 RCTs, 421 participants, 16 intervention groups"
+      },
+      "verbatim": "Exercise training had a negligible effect on resting total testosterone concentration (mean SMD [95% CI]: 0.00 [-0.20 to 0.20]).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1519/JSC.0000000000004146" },
+      "caveats": "Directly contradicts the popular claim that resistance training raises baseline/resting testosterone. Full text is paywalled (Ovid); verbatim and n obtained via indexed abstract text, not a direct primary-source fetch."
+    },
+    {
+      "behavior_id": "sleep_duration",
+      "marker_id": "serum_testosterone",
+      "direction": "-",
+      "effect": "16.5 (SD 2.8) nmol/L after sleep restriction vs 18.4 (SD 3.8) nmol/L rested, P=.049",
+      "effect_normalized": -10.3,
+      "normalization_method": "pct_change (derived from the two reported means: (18.4-16.5)/18.4)",
+      "evidence_tier": "B",
+      "population": "healthy young men, mean age 24, n=10 (within-subjects)",
+      "conditional_on": "1 week of sleep restricted to <5 h/night in a laboratory setting; effect measured during common daytime hours (8 AM-10 PM)",
+      "paper": {
+        "doi": "10.1001/jama.2011.710",
+        "title": "Effect of 1 Week of Sleep Restriction on Testosterone Levels in Young Healthy Men",
+        "year": 2011,
+        "design": "within-subjects laboratory trial (3 nights 10 h sleep, then 8 nights 5 h sleep)",
+        "n": 10
+      },
+      "verbatim": "During waking hours common to both conditions (8 AM-10 PM), testosterone levels were lower after sleep restriction than in the rested condition (16.5 [2.8] nmol/L vs 18.4 [3.8] nmol/L; P = .049).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1001/jama.2011.710" },
+      "caveats": "Very small convenience sample (n=10), single site; the widely quoted '10-15% decrease' figure appears in the paper's Comment/discussion, not in the quoted results sentence itself, though it is arithmetically consistent with the reported means."
+    },
+    {
+      "behavior_id": "fat_loss",
+      "marker_id": "serum_testosterone",
+      "direction": "+",
+      "effect": "+0.68 +/- 0.30 nmol/L testosterone, P=0.037; SHBG +4.6 +/- 0.5 nmol/L, P<0.001 (weeks 0-12)",
+      "effect_normalized": null,
+      "normalization_method": "raw units (nmol/L); percent change not computable without baseline value in retrieved text",
+      "evidence_tier": "B",
+      "population": "overweight/obese men, BMI 27-40 kg/m^2, age 20-65",
+      "conditional_on": "effect occurs during the active hypocaloric weight-loss phase (weeks 0-12); macronutrient composition (high-protein vs high-carbohydrate, both low-fat) did not change the result",
+      "paper": {
+        "doi": "10.1371/journal.pone.0161297",
+        "title": "Long-Term Effects of a Randomised Controlled Trial Comparing High Protein or High Carbohydrate Weight Loss Diets on Testosterone, SHBG, Erectile and Urinary Function in Overweight and Obese Men",
+        "year": 2016,
+        "design": "randomized controlled trial",
+        "n": 118
+      },
+      "verbatim": "Increases in testosterone (P = 0.037) and sex hormone binding globulin (P<0.001) and improvements in the total IIEF (P = 0.041) occurred from weeks 0-12",
+      "figure": { "type": "link", "url": "https://doi.org/10.1371/journal.pone.0161297" },
+      "caveats": "Effect size is modest in absolute terms; over the full 52-week trial the two diet types did not differ further. Increase is coupled to caloric restriction/weight loss, not an independent nutrient effect."
+    },
+    {
+      "behavior_id": "zinc",
+      "marker_id": "serum_testosterone",
+      "direction": "+",
+      "effect": "Restriction arm: 39.9 +/- 7.1 -> 10.6 +/- 3.6 nmol/L after 20 weeks (p=0.005). Supplementation arm: 8.3 +/- 6.3 -> 16.0 +/- 4.4 nmol/L after 6 months (p=0.02)",
+      "effect_normalized": 92.8,
+      "normalization_method": "pct_change (supplementation arm: (16.0-8.3)/8.3)",
+      "evidence_tier": "D",
+      "population": "young men n=4 (restriction arm); marginally zinc-deficient elderly men n=9 (supplementation arm)",
+      "conditional_on": "effect specific to zinc-deficient or marginally zinc-deficient men; not tested in zinc-replete men",
+      "paper": {
+        "doi": "10.1016/S0899-9007(96)80058-X",
+        "title": "Zinc status and serum testosterone levels of healthy adults",
+        "year": 1996,
+        "design": "experimental dietary-restriction and supplementation study; blinding/placebo control not confirmed from retrieved text",
+        "n": "4 (restriction) + 9 (supplementation), plus a separate n=40 cross-sectional correlation cohort"
+      },
+      "verbatim": "Zinc supplementation of marginally zinc-deficient normal elderly men for six months resulted in an increase in serum testosterone from 8.3 +/- 6.3 to 16.0 +/- 4.4 nmol/L (p = 0.02).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1016/S0899-9007(96)80058-X" },
+      "caveats": "Landmark but old (1996) study with very small n (4 and 9) and large SD relative to the mean (8.3 +/- 6.3); no placebo control could be confirmed from available text; this is the near-universal citation behind the 'zinc raises testosterone in deficient men' claim and has not been seen replicated at scale in the sources checked here."
+    },
+    {
+      "behavior_id": "vitamin_d",
+      "marker_id": "serum_testosterone",
+      "direction": null,
+      "effect": "No statistically clear or reproducible effect across pooled RCTs; supporting RCT in vitamin-D-insufficient, low-testosterone men found no significant treatment effect",
+      "effect_normalized": null,
+      "normalization_method": "not applicable (qualitative null; numeric WMD/CI and k for the primary 2026 meta-analysis could not be retrieved, publisher page returned HTTP 403)",
+      "evidence_tier": "A",
+      "population": "adult men, including vitamin-D-insufficient and low-testosterone subgroups",
+      "conditional_on": "corrected from the candidate hypothesis ('deficient only' -> works): a supporting RCT tested specifically in men who were BOTH vitamin-D-insufficient (25(OH)D<75 nmol/L) AND had low baseline testosterone (<10.4 nmol/L), and still found no effect.",
+      "paper": {
+        "doi": "10.3390/nu18132090",
+        "title": "Vitamin D Supplementation, Total Testosterone, and Androgen Bioavailability Markers in Adult Men: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2026,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": "not confirmed - number of pooled RCTs/participants could not be retrieved (publisher page blocked)"
+      },
+      "verbatim": "Current randomized evidence does not demonstrate a statistically clear or reproducible effect of vitamin D supplementation on total testosterone or androgen bioavailability markers in adult men.",
+      "figure": { "type": "link", "url": "https://doi.org/10.3390/nu18132090" },
+      "caveats": "GRADE certainty reported as low (total testosterone, SHBG, FAI) to very low (calculated/bioactive testosterone) per this paper. Supporting RCT (DOI 10.1007/s00394-018-1858-z, EJN 2018, n=94, in men both vitamin-D-insufficient and testosterone-low) verbatim: 'We found no significant treatment effect on serum TT.' An older, smaller 2024 meta-analysis (PMC11506788) reported a small significant WMD of 0.38 (95% CI 0.06-0.70) - conflicting with the 2026 review; the more recent and more rigorously GRADE-assessed review is preferred here per the task's instruction to prefer the most recent systematic review. Could not obtain exact k/N for the 2026 meta-analysis itself."
+    },
+    {
+      "behavior_id": "alcohol",
+      "marker_id": "serum_testosterone",
+      "direction": "-",
+      "effect": "Mean difference -4.02 (95% CI -6.30, -1.73) in total testosterone for chronic alcohol consumption vs non-consumption",
+      "effect_normalized": null,
+      "normalization_method": "MD (raw units as pooled by the meta-analysis; exact unit not independently confirmed)",
+      "evidence_tier": "A",
+      "population": "healthy men with chronic (habitual) alcohol consumption",
+      "conditional_on": "effect evident ONLY in healthy men with chronic consumption; the SAME meta-analysis found no such effect in men with diagnosed alcohol use disorder or after acute alcohol intake",
+      "paper": {
+        "doi": "10.1111/andr.13526",
+        "title": "The chronic alcohol consumption influences the gonadal axis in men: Results from a meta-analysis",
+        "year": 2024,
+        "design": "meta-analysis",
+        "n": "not confirmed - primary Wiley page returned HTTP 403; k/N not independently verified"
+      },
+      "verbatim": "alcohol consumption overall is related to significant reduction in circulating concentrations of total testosterone (mean difference [MD] = -4.02; 95% CI -6.30, -1.73)... These results are evident only in healthy men exposed to chronic alcohol consumption and not in those with a recognized diagnosis of alcohol use disorder or after acute alcohol intake.",
+      "figure": { "type": "link", "url": "https://doi.org/10.1111/andr.13526" },
+      "caveats": "IMPORTANT UNRESOLVED CONFLICT: a separate 2024 meta-analysis (DOI 10.4103/ijpvm.ijpvm_81_24, PMC11759224, 17 studies, ~18,600 participants) found NO significant overall alcohol-testosterone association (SMD 0.03, 95% CI -0.11 to 0.16) and even small POSITIVE associations for low/moderate intake vs non-drinkers. This dataset follows Santi et al. 2024 (Andrology) as primary because it specifically isolates chronic/habitual consumption from AUD and acute intake, but the contradiction is flagged rather than resolved. Verbatim for the primary paper was obtained via indexed search-engine text because the Wiley page returned HTTP 403 on direct fetch; independent confirmation from the primary PDF/HTML was not possible in this pass."
+    },
+    {
+      "behavior_id": "l_arginine",
+      "marker_id": "nitric_oxide_blood_flow",
+      "direction": "+",
+      "effect": "OR 3.37 (95% CI 1.29-8.77), P=.01, I2=44, for erectile-dysfunction improvement",
+      "effect_normalized": 3.37,
+      "normalization_method": "OR (pooled odds ratio)",
+      "evidence_tier": "A",
+      "population": "men with erectile dysfunction, dosage 1,500-5,000 mg/day",
+      "conditional_on": "improves erectile-function, overall-satisfaction, intercourse-satisfaction, and orgasmic-function IIEF domains, but the IIEF SEXUAL-DESIRE domain specifically did not change",
+      "paper": {
+        "doi": "10.1016/j.jsxm.2018.12.002",
+        "title": "The Potential Role of Arginine Supplements on Erectile Dysfunction: A Systemic Review and Meta-Analysis",
+        "year": 2019,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": "10 RCTs, 540 patients"
+      },
+      "verbatim": "Arginine supplements with dosage ranging from 1,500 to 5,000 mg significantly improved erectile dysfunction compared with placebo or no treatment (odds ratios, 3.37 [1.29, 8.77], P = .01, I2 = 44).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1016/j.jsxm.2018.12.002" },
+      "caveats": "Outcome measured is clinical erectile function/IIEF, not directly serum nitric oxide or flow-mediated dilation; the NO-precursor mechanism is inferred from pharmacology, not directly measured in these trials."
+    },
+    {
+      "behavior_id": "l_citrulline",
+      "marker_id": "nitric_oxide_blood_flow",
+      "direction": "+",
+      "effect": "Erection-hardness-score normalization in 12/24 (50%) on L-citrulline vs 2/24 (8.3%) on placebo, P<.01",
+      "effect_normalized": 41.7,
+      "normalization_method": "responder-rate difference (percentage points)",
+      "evidence_tier": "B",
+      "population": "men with mild erectile dysfunction (baseline erection-hardness score = 3)",
+      "conditional_on": "mild ED only; 1.5 g/day for 1 month; single-blind (not double-blind) crossover design",
+      "paper": {
+        "doi": "10.1016/j.urology.2010.08.028",
+        "title": "Oral L-citrulline supplementation improves erection hardness in men with mild erectile dysfunction",
+        "year": 2011,
+        "design": "single-blind, placebo-controlled crossover trial",
+        "n": 24
+      },
+      "verbatim": "The improvement in the erection hardness score from 3 (mild ED) to 4 (normal erectile function) occurred in 2 (8.3%) of the 24 men when taking placebo and 12 (50%) of the 24 men when taking L-citrulline (P < .01).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1016/j.urology.2010.08.028" },
+      "caveats": "Small (n=24), single-blind rather than double-blind, one month per arm; outcome is a categorical hardness score, not a directly measured nitric-oxide or blood-flow value; unreplicated at this exact design in a larger independent trial as far as verified here."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "nitric_oxide_blood_flow",
+      "direction": "+",
+      "effect": "MD +1.92% flow-mediated dilation (95% CI 0.90-2.94), P=0.001",
+      "effect_normalized": 1.92,
+      "normalization_method": "MD in %FMD (absolute percentage points)",
+      "evidence_tier": "A",
+      "population": "healthy adults (mixed sex; not restricted to men)",
+      "conditional_on": "brachial-artery flow-mediated dilation (baFMD) specifically; healthy (non-diseased) population",
+      "paper": {
+        "doi": "10.1186/s13102-025-01124-3",
+        "title": "Effects of aerobic training on brachial artery flow-mediated dilation in healthy adults: a meta-analysis of inter-individual response differences in randomized controlled trials",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": "12 RCTs, 385 participants"
+      },
+      "verbatim": "Meta-analysis revealed improvement in baFMD post-AT (small MD = 1.92%, 95% CI 0.90 to 2.94, p = 0.001).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1186/s13102-025-01124-3" },
+      "caveats": "Population is healthy adults generally, not restricted to men; this is the most directly measured (least surrogate) evidence in this marker group, since FMD is a direct vascular/NO-mediated measurement rather than a clinical questionnaire."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "lean_mass_strength",
+      "direction": "+",
+      "effect": "+1.53 kg muscle mass (FFM+LMM+SMM), 95% CI [1.30, 1.76], P<0.001, I2=0%",
+      "effect_normalized": 1.53,
+      "normalization_method": "mean difference (kg)",
+      "evidence_tier": "A",
+      "population": "healthy adult males",
+      "conditional_on": "consistent effect across training-status subgroups; no conditional restriction identified (unlike testosterone, this benefit is not confined to a deficient or untrained subgroup)",
+      "paper": {
+        "doi": "10.3390/ijerph17041285",
+        "title": "A Systematic Review with Meta-Analysis of the Effect of Resistance Training on Whole-Body Muscle Growth in Healthy Adult Males",
+        "year": 2020,
+        "design": "systematic review and meta-analysis",
+        "n": "111 studies, 158 groups, 1,927 participants"
+      },
+      "verbatim": "RT significantly increased muscle mass (FFM+LMM+SMM; Delta 1.53 kg; 95% CI [1.30, 1.76], p < 0.001; I2 = 0%, p = 1.00).",
+      "figure": { "type": "link", "url": "https://doi.org/10.3390/ijerph17041285" },
+      "caveats": "I2=0% indicates very low heterogeneity across the 111 pooled studies; this is the strongest and most consistent edge in the whole dataset."
+    },
+    {
+      "behavior_id": "protein_intake",
+      "marker_id": "lean_mass_strength",
+      "direction": "+",
+      "effect": "FFM +0.30 kg (95% CI 0.09, 0.52); 1RM strength +2.49 kg (95% CI 0.64, 4.33), both p<0.05, on top of resistance training",
+      "effect_normalized": 0.30,
+      "normalization_method": "mean difference (kg)",
+      "evidence_tier": "A",
+      "population": "healthy adults undergoing resistance-exercise training",
+      "conditional_on": "dose-response plateaus near 1.62 g/kg body mass/day (95% CI extends to ~2.2 g/kg/day); benefit diminishes with increasing age; larger effect in resistance-trained than untrained individuals; effect is additive ON TOP OF resistance training, not a standalone effect of protein without training",
+      "paper": {
+        "doi": "10.1136/bjsports-2017-097608",
+        "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults",
+        "year": 2018,
+        "design": "systematic review, meta-analysis and meta-regression of RCTs",
+        "n": "49 RCTs, 1,863 participants"
+      },
+      "verbatim": "dietary protein supplementation significantly (all p<0.05) increased changes (means (95% CI)) in: strength-one-repetition-maximum (2.49 kg (0.64, 4.33)), FFM (0.30 kg (0.09, 0.52))",
+      "figure": { "type": "link", "url": "https://doi.org/10.1136/bjsports-2017-097608" },
+      "caveats": "Absolute FFM effect (0.30 kg) is modest; total protein intake mattered more than supplement timing or protein source in this analysis."
+    },
+    {
+      "behavior_id": "maca",
+      "marker_id": "subjective_libido",
+      "direction": "+",
+      "effect": "Improved sexual-desire scores from week 8 of treatment onward vs placebo; exact numeric scale-score change/CI not retrieved",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - the exact numeric effect size could not be retrieved from the primary journal page (blocked)",
+      "evidence_tier": "B",
+      "population": "healthy adult men aged 21-56",
+      "conditional_on": "the libido effect is explicitly NOT explained by changes in testosterone, oestradiol, or depression/anxiety scores - it is a testosterone-independent effect, exactly the case cited in the design spec as the canonical example of a behavior->marker edge that bypasses the hormone axis",
+      "paper": {
+        "doi": "10.1046/j.1439-0272.2002.00519.x",
+        "title": "Effect of Lepidium meyenii (MACA) on sexual desire and its absent relationship with serum testosterone levels in adult healthy men",
+        "year": 2002,
+        "design": "12-week double-blind, randomized, placebo-controlled, parallel trial",
+        "n": 57
+      },
+      "verbatim": "An improvement in sexual desire was observed with Maca since 8 weeks of treatment... this effect is not because of changes in either Hamilton scores for depression or anxiety or serum testosterone and oestradiol levels.",
+      "figure": { "type": "link", "url": "https://doi.org/10.1046/j.1439-0272.2002.00519.x" },
+      "caveats": "Could not retrieve the exact numeric sexual-desire score change/CI (primary Andrologia page blocked); the directional and mechanistic (testosterone-independent) claims are well supported by the quoted abstract/title text, but the precise magnitude is not independently confirmed here. Single trial; effect size should be treated as directionally suggestive, not precisely quantified."
+    },
+    {
+      "behavior_id": "psychological_stress",
+      "marker_id": "subjective_libido",
+      "direction": "-",
+      "effect": "beta = -0.604, P<.001 (perceived stress vs erectile function); fatigue partially mediates, accounting for 26.46% of the total effect",
+      "effect_normalized": -0.604,
+      "normalization_method": "standardized regression coefficient (already standardized beta)",
+      "evidence_tier": "D",
+      "population": "n=125 men diagnosed with psychogenic erectile dysfunction",
+      "conditional_on": "restricted to a clinical psychogenic-ED population, not general healthy men; correlational, not interventional/causal",
+      "paper": {
+        "doi": "10.1093/jsxmed/qdaf045",
+        "title": "Relationship Between Perceived Stress and Erectile Function in Patients With Psychogenic Erectile Dysfunction: The Mediating Role of Fatigue",
+        "year": 2025,
+        "design": "cross-sectional correlational study with mediation analysis",
+        "n": 125
+      },
+      "verbatim": "Our findings revealed a substantial negative correlation between perceived stress and erectile function (beta = -0.604, P < .001).",
+      "figure": { "type": "link", "url": "https://doi.org/10.1093/jsxmed/qdaf045" },
+      "caveats": "Cross-sectional, not causal; conducted in a clinical psychogenic-ED population rather than the general population, so the effect size likely does not generalize; the marker measured is erectile function specifically, used here as the closest available proxy for the spec's 'subjective libido (IIEF or similar)' marker rather than an exact validated libido/desire-only subscale."
+    },
+    {
+      "behavior_id": "d_aspartic_acid",
+      "marker_id": "serum_testosterone",
+      "direction": null,
+      "effect": "No change in basal total or free testosterone after 12 weeks of supplementation",
+      "effect_normalized": 0.0,
+      "normalization_method": "not applicable (null result; no significant mean difference reported)",
+      "evidence_tier": "B",
+      "population": "resistance-trained men, aged 18-36",
+      "conditional_on": "null result specific to RESISTANCE-TRAINED men; the paper notes prior literature reported testosterone increases in UNTRAINED men, so training status appears to moderate whether any effect exists at all",
+      "paper": {
+        "doi": "10.1371/journal.pone.0182630",
+        "title": "The effects of d-aspartic acid supplementation in resistance-trained men over a three month training period: A randomised controlled trial",
+        "year": 2017,
+        "design": "double-blind, placebo-controlled RCT",
+        "n": "19 completers (10 DAA, 9 placebo) of 22 randomized"
+      },
+      "verbatim": "No change in basal TT or FT were observed after the intervention.",
+      "figure": { "type": "link", "url": "https://doi.org/10.1371/journal.pone.0182630" },
+      "caveats": "Small completer sample (n=19); confirms the candidate 'expected null' hypothesis specifically in trained men; does not rule out an effect in untrained men, per the same paper's discussion of earlier short-term studies."
+    },
+    {
+      "behavior_id": "tribulus_terrestris",
+      "marker_id": "serum_testosterone",
+      "direction": null,
+      "effect": "8 of 10 clinical trials found no significant change in androgen profile",
+      "effect_normalized": null,
+      "normalization_method": "not applicable (qualitative null across a systematic review, not a single pooled effect size)",
+      "evidence_tier": "A",
+      "population": "men, mixed baseline androgen status across 10 pooled studies, 483 total participants",
+      "conditional_on": "the null studies specifically enrolled men who did NOT have low androgen levels at baseline; adequately deficient populations were not well represented, so the candidate hypothesis is confirmed as a null for non-deficient men and left untested for deficient men",
+      "paper": {
+        "doi": "10.3390/nu17071275",
+        "title": "Effects of Tribulus (Tribulus terrestris L.) Supplementation on Erectile Dysfunction and Testosterone Levels in Men-A Systematic Review of Clinical Trials",
+        "year": 2025,
+        "design": "systematic review of 9 clinical trials + 1 quasi-experimental study",
+        "n": "10 studies, 483 participants"
+      },
+      "verbatim": "Eight out of ten studies did not report significant changes in androgen profile following TT supplementation, but the subjects in the neutral studies did not have low androgen levels at baseline.",
+      "figure": { "type": "link", "url": "https://doi.org/10.3390/nu17071275" },
+      "caveats": "A separate, weaker signal in the same review: TT supplementation (400-750 mg/day, 1-3 months) improved erectile-dysfunction symptoms in 3 of 5 studies measuring that outcome - a different marker (erectile function) than testosterone, and explicitly rated by the review's own conclusion as low-level evidence. Overall trial quality is low (an earlier 2014 review found a low Jadad score in 50% of included studies)."
+    }
+  ]
+}

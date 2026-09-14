@@ -1,0 +1,608 @@
+{
+  "goal": {
+    "id": "goal_f_cognition_focus",
+    "name": "Cognition and focus",
+    "definition": "Working memory, sustained attention/reaction time, episodic memory, global cognition (MMSE/MoCA) in older adults, and processing speed, each tied to a named instrument or task rather than a composite or mortality-style outcome."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_f_cognition_focus",
+        "name": "Cognition and focus",
+        "definition": "Working memory, sustained attention/reaction time, episodic memory, global cognition (MMSE/MoCA) in older adults, and processing speed, each tied to a named instrument or task rather than a composite or mortality-style outcome."
+      }
+    ],
+    "markers": [
+      {
+        "id": "working_memory",
+        "name": "Working memory (n-back, digit span, verbal/visuospatial WM tasks)",
+        "unit": "accuracy (%), reaction time (ms), or SMD/Hedges g as reported by source",
+        "goal_ids": [
+          "goal_f_cognition_focus"
+        ]
+      },
+      {
+        "id": "sustained_attention_rt",
+        "name": "Sustained attention / reaction time (PVT lapses, simple/choice RT, task-switching)",
+        "unit": "ms, lapse count, or SMD/Hedges g as reported by source",
+        "goal_ids": [
+          "goal_f_cognition_focus"
+        ]
+      },
+      {
+        "id": "episodic_memory",
+        "name": "Episodic memory (word-list/story recall tasks)",
+        "unit": "% recall or Hedges g / SMD as reported by source",
+        "goal_ids": [
+          "goal_f_cognition_focus"
+        ]
+      },
+      {
+        "id": "global_cognition_older",
+        "name": "Global cognition (MMSE / ADAS-cog / composite telephone battery) in older adults",
+        "unit": "MMSE points, ADAS-cog points, or standardized composite z-score",
+        "goal_ids": [
+          "goal_f_cognition_focus"
+        ]
+      },
+      {
+        "id": "processing_speed",
+        "name": "Processing speed (time-dependent executive-function measures, language/logic processing time)",
+        "unit": "ms, % improvement, or Hedges g as reported by source",
+        "goal_ids": [
+          "goal_f_cognition_focus"
+        ]
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "caffeine",
+        "name": "Caffeine",
+        "category": "supplement",
+        "dose_or_intensity": "Typical doses in trials 100-400 mg; effect isolated here in sleep-restricted/deprived populations"
+      },
+      {
+        "id": "l_theanine_caffeine",
+        "name": "L-theanine + caffeine combination",
+        "category": "supplement",
+        "dose_or_intensity": "97 mg L-theanine + 40 mg caffeine, acute single dose"
+      },
+      {
+        "id": "sleep_deprivation",
+        "name": "Sleep deprivation (total, short-term)",
+        "category": "habit",
+        "dose_or_intensity": "Short-term total sleep deprivation, <48 h, experimental studies"
+      },
+      {
+        "id": "nicotine",
+        "name": "Nicotine / smoking (acute)",
+        "category": "habit",
+        "dose_or_intensity": "Acute nicotine administration or smoking in non-deprived or minimally-deprived (<=2h) nonsmokers/smokers"
+      },
+      {
+        "id": "creatine_monohydrate",
+        "name": "Creatine monohydrate (chronic/general supplementation)",
+        "category": "supplement",
+        "dose_or_intensity": "Oral creatine monohydrate, RCTs pooled across 20.8-76.4 years, healthy and clinical populations"
+      },
+      {
+        "id": "creatine_sleep_deprivation",
+        "name": "Creatine monohydrate (single dose, under acute sleep deprivation)",
+        "category": "supplement",
+        "dose_or_intensity": "Single dose 0.2-0.35 g/kg creatine monohydrate during 21 h total sleep deprivation"
+      },
+      {
+        "id": "ginkgo_biloba",
+        "name": "Ginkgo biloba",
+        "category": "supplement",
+        "dose_or_intensity": "Standardized ginkgo extract, RCTs in both healthy adults and MCI/dementia populations"
+      },
+      {
+        "id": "mindfulness_meditation",
+        "name": "Mindfulness / meditation training",
+        "category": "habit",
+        "dose_or_intensity": "Structured mindfulness-based interventions (MBIs), meditation-naive participants, RCTs"
+      },
+      {
+        "id": "brain_training_working_memory",
+        "name": "Computerized working-memory ('brain training') training",
+        "category": "habit",
+        "dose_or_intensity": "Multi-session computerized working-memory training programs, pretest-posttest with control group"
+      },
+      {
+        "id": "aerobic_exercise_chronic",
+        "name": "Chronic aerobic exercise training",
+        "category": "exercise",
+        "dose_or_intensity": "Multi-week aerobic training programs in adults >=55 years without dementia"
+      },
+      {
+        "id": "acute_aerobic_exercise",
+        "name": "Acute (single-session) aerobic exercise",
+        "category": "exercise",
+        "dose_or_intensity": "Single moderate-intensity aerobic exercise bout, tested immediately or shortly after"
+      },
+      {
+        "id": "multivitamin_older_adults",
+        "name": "Daily multivitamin-mineral supplementation (older adults)",
+        "category": "supplement",
+        "dose_or_intensity": "Commercial multivitamin-mineral supplement, daily for 3 years, adults >=60 years"
+      },
+      {
+        "id": "omega3_supplementation",
+        "name": "Omega-3 (long-chain PUFA) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Omega-3 PUFA gel capsules or fortified margarine, >=6 months, cognitively healthy adults >=60 years"
+      },
+      {
+        "id": "blood_pressure_control",
+        "name": "Intensive blood pressure control (systolic <120 mmHg)",
+        "category": "habit",
+        "dose_or_intensity": "Intensive antihypertensive treatment to systolic BP <120 mmHg vs standard <140 mmHg target"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "caffeine",
+      "marker_id": "sustained_attention_rt",
+      "direction": "+",
+      "effect": "SMD = 0.73 (95% CI: 0.50-0.96) for vigilance and response performance vs placebo",
+      "effect_normalized": 0.73,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "Military personnel undergoing sleep deprivation or sleep restriction, meta-analysis of 7 RCTs",
+      "conditional_on": "Effect isolated to sleep-restricted/deprived populations (military sleep-loss protocols); does not establish the same magnitude in well-rested, habitually-caffeinated adults, where much of the apparent benefit reflects reversal of overnight caffeine-withdrawal rather than net enhancement",
+      "paper": {
+        "doi": "10.3389/fnut.2026.1893033",
+        "title": "Acute caffeine supplementation as a nutrition-based strategy to mitigate sleep-loss-related cognitive and operational performance impairments in military personnel: a systematic review and meta-analysis",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "caffeine significantly improved vigilance and response performance under conditions of sleep deprivation or sleep restriction (SMD = 0.73, 95% CI: 0.50-0.96)",
+      "key_results": "Pooled across 7 randomized controlled trials in military personnel undergoing experimental sleep loss. Caffeine significantly improved vigilance and response performance relative to placebo, with a moderate-to-large pooled effect size (SMD = 0.73). The benefit was specific to conditions of sleep deprivation or restriction rather than rested baseline performance. Authors frame this as a nutrition-based countermeasure for sleep-loss-related operational performance impairment.",
+      "figure": null,
+      "caveats": "Military-specific population (fitness-selected, young, healthy); dose and timing protocols vary across the 7 pooled RCTs; does not isolate effects in habitual heavy caffeine users, where withdrawal-relief may explain part of the benefit."
+    },
+    {
+      "behavior_id": "l_theanine_caffeine",
+      "marker_id": "sustained_attention_rt",
+      "direction": "+",
+      "effect": "Significantly improved accuracy during task switching (P < 0.01)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - only p-value reported in abstract, no SMD",
+      "evidence_tier": "B",
+      "population": "Healthy young adults (n=44), rested (not sleep-deprived)",
+      "conditional_on": "Effect specific to task-switching accuracy; the same trial found no significant effect on choice reaction time, visual search, or mental rotation in the same session (see companion null edge)",
+      "paper": {
+        "doi": "10.1179/147683010X12611460764840",
+        "title": "The combination of L-theanine and caffeine improves cognitive performance and increases subjective alertness",
+        "year": 2010,
+        "design": "randomized placebo-controlled crossover trial",
+        "n": 44
+      },
+      "verbatim": "The combination of moderate levels of L-theanine and caffeine significantly improved accuracy during task switching and self-reported alertness (both P < 0.01) and reduced self-reported tiredness (P < 0.05).",
+      "key_results": "97 mg L-theanine plus 40 mg caffeine was compared with placebo in 44 young adults, with cognitive testing at baseline, 20 min, and 70 min post-dose. The combination significantly improved task-switching accuracy and self-reported alertness, and reduced self-reported tiredness. No significant effects were found on visual search, choice reaction time, or mental rotation tasks tested in the same session. Authors conclude the combination helps focus attention during a demanding cognitive task rather than producing generalized cognitive enhancement.",
+      "figure": null,
+      "caveats": "Single small RCT (n=44), single dose, rested young adults only; no effect-size statistic given in the abstract, only p-values; industry-funded (Unilever R&D)."
+    },
+    {
+      "behavior_id": "l_theanine_caffeine",
+      "marker_id": "sustained_attention_rt",
+      "direction": null,
+      "effect": "No significant effects on visual search or choice reaction times",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "B",
+      "population": "Healthy young adults (n=44), rested (not sleep-deprived)",
+      "conditional_on": "Same trial as the positive task-switching edge above; illustrates that the combination's benefit is narrow (task-switching accuracy specifically) rather than a general reaction-time enhancer",
+      "paper": {
+        "doi": "10.1179/147683010X12611460764840",
+        "title": "The combination of L-theanine and caffeine improves cognitive performance and increases subjective alertness",
+        "year": 2010,
+        "design": "randomized placebo-controlled crossover trial",
+        "n": 44
+      },
+      "verbatim": "There were no significant effects on other cognitive tasks, such as visual search, choice reaction times, or mental rotation.",
+      "key_results": "In the same 44-person crossover RCT that found a task-switching accuracy benefit, choice reaction time, visual search, and mental rotation showed no significant treatment effect versus placebo. This null result sits alongside the positive task-switching finding from the same trial, showing the combination's effect is task-specific rather than a general speed-of-processing or reaction-time enhancer.",
+      "figure": null,
+      "caveats": "Single small RCT (n=44); absence of effect could reflect insufficient power for these specific outcomes rather than a true null; industry-funded."
+    },
+    {
+      "behavior_id": "sleep_deprivation",
+      "marker_id": "sustained_attention_rt",
+      "direction": "+",
+      "effect": "g = -0.776 (95% CI [-0.96, -0.60], p < .001) for lapses in simple attention (increase in lapses under sleep deprivation)",
+      "effect_normalized": -0.776,
+      "normalization_method": "Hedges' g (negative indicates worse/impaired performance under sleep deprivation)",
+      "evidence_tier": "A",
+      "population": "Healthy adult volunteers in experimental short-term (<48h) total sleep deprivation studies, 70 articles / 147 cognitive tests",
+      "conditional_on": "Largest of all six cognitive domains tested (simple attention lapses); working memory and processing speed were also significantly impaired but with smaller effect sizes than simple-attention lapses per the source's domain analysis, while reasoning accuracy showed the smallest, nonsignificant effect",
+      "paper": {
+        "doi": "10.1037/a0018883",
+        "title": "A meta-analysis of the impact of short-term sleep deprivation on cognitive variables",
+        "year": 2010,
+        "design": "meta-analysis of experimental sleep-deprivation studies",
+        "n": null
+      },
+      "verbatim": "Effect sizes ranged from small and nonsignificant (reasoning accuracy: g = -0.125, 95% CI [-0.27, 0.02]) to large (lapses in simple attention: g = -0.776, 95% CI [-0.96, -0.60], p < .001).",
+      "key_results": "Meta-analysis of 70 articles containing 147 cognitive tests across six domains: simple attention, complex attention, working memory, processing speed, short-term memory, and reasoning. Effect sizes for short-term total sleep deprivation ranged from near-zero for reasoning accuracy to large for lapses in simple attention (the largest effect observed in the review). Across domains, significant impairments were found for both speed and accuracy measures, with no consistent difference between speed and accuracy effect sizes within a domain. Time awake was the only significant moderator of between-study variability, and only for accuracy measures.",
+      "figure": null,
+      "caveats": "Pools diverse SD protocols (durations, time-of-testing) into one meta-analytic domain; per-domain quantified numbers for working memory and processing speed specifically are reported in the paper's results table rather than the abstract sentence, so those two domains are not shipped as separate edges here to keep verbatim strictly abstract-derived."
+    },
+    {
+      "behavior_id": "nicotine",
+      "marker_id": "sustained_attention_rt",
+      "direction": "+",
+      "effect": "Significant positive effects on alerting attention-accuracy and response time (RT) and orienting attention-RT (effect size range = 0.16 to 0.44 across the six significant domains, not domain-isolated)",
+      "effect_normalized": null,
+      "normalization_method": "range of Cohen's d / Hedges g across six significant domains as reported; not decomposed per domain in the abstract",
+      "evidence_tier": "A",
+      "population": "Healthy adult nonsmokers or smokers not tobacco-deprived or minimally deprived (<=2h), 41 double-blind placebo-controlled studies (1994-2008)",
+      "conditional_on": "Effects are specifically in non-deprived or minimally-deprived smokers/nonsmokers, meaning the benefit is not confounded by relief of nicotine withdrawal; accuracy in orienting attention did not reach significance even though RT did",
+      "paper": {
+        "doi": "10.1007/s00213-010-1848-1",
+        "title": "Meta-analysis of the acute effects of nicotine and smoking on human performance",
+        "year": 2010,
+        "design": "meta-analysis of double-blind placebo-controlled laboratory studies",
+        "n": null
+      },
+      "verbatim": "We found significant positive effects of nicotine or smoking on six domains: fine motor, alerting attention-accuracy and response time (RT), orienting attention-RT, short-term episodic memory-accuracy, and working memory-RT (effect size range = 0.16 to 0.44).",
+      "key_results": "Meta-analysis of 41 double-blind, placebo-controlled laboratory studies (1994-2008) testing nicotine or smoking in nonsmokers or non-deprived/minimally-deprived smokers. Significant positive effects were found on six of nine tested performance domains, including alerting attention (both accuracy and RT) and orienting attention (RT only), with effect sizes ranging from 0.16 to 0.44. The authors argue these effects likely represent true performance enhancement rather than withdrawal relief, because participants were not substantially nicotine-deprived. The findings are discussed as relevant to why nicotine helps maintain tobacco dependence.",
+      "figure": null,
+      "caveats": "Effect size range is reported across six domains jointly, not isolated per domain, in the abstract; ethical constraints mean no long-term RCT exists, evidence is acute/laboratory only; industry-independent NIDA-funded study but reflects only short-session laboratory testing."
+    },
+    {
+      "behavior_id": "creatine_sleep_deprivation",
+      "marker_id": "sustained_attention_rt",
+      "direction": "+",
+      "effect": "Mitigating effect on sleep-deprivation-induced deterioration in the Psychomotor Vigilance Test (PVT); improvement of up to 12% at the higher dose",
+      "effect_normalized": 12,
+      "normalization_method": "% improvement in cognitive performance vs placebo, as stated in conclusion",
+      "evidence_tier": "B",
+      "population": "29 healthy adults, single dose 0.2 g/kg creatine monohydrate during 21h total sleep deprivation (dose-response compared against a prior 0.35 g/kg study)",
+      "conditional_on": "Effect is specific to the acute sleep-deprived state; single lower dose (0.2 g/kg) is less pronounced than the higher dose (0.35 g/kg) tested in the authors' prior study, and females benefited more than males on PVT and processing-speed measures",
+      "paper": {
+        "doi": "10.3390/nu18081192",
+        "title": "Single-Dose Creatine Reduces Sleep Deprivation-Induced Deterioration in Cognitive Performance",
+        "year": 2026,
+        "design": "randomized, double-blind, placebo-controlled trial",
+        "n": 29
+      },
+      "verbatim": "The results show a mitigating effect of creatine on sleep deprivation-induced deterioration in logical and numerical tasks, language-related processing speed, and the Psychomotor Vigilance Test (PVT). Compared to males, females benefit more in logic, PVT and processing speed in language and logic tasks. Our results show that a dose of 0.2 g/kg creatine is associated with a reduced deterioration in cognitive performance during sleep deprivation. Although the effect is less pronounced than with a high dose of 0.35 g/kg, there is still an improvement of up to 12%.",
+      "key_results": "In 29 healthy subjects undergoing 21 hours of total sleep deprivation, a single 0.2 g/kg dose of creatine monohydrate mitigated deterioration on logical/numerical tasks, language-related processing speed, and PVT performance relative to placebo, tested at 3, 5.5, and 7.5 hours post-dose. The effect was smaller than the authors' earlier 0.35 g/kg dose study but still produced up to a 12% improvement. Sex-specific analysis showed females benefited more than males on PVT and processing-speed-related tasks specifically.",
+      "figure": null,
+      "caveats": "Small sample (n=29), single acute dose only (not chronic loading), effect described as dose-dependent and sex-dependent; conditional specifically on the sleep-deprived state, not shown to apply to well-rested individuals."
+    },
+    {
+      "behavior_id": "ginkgo_biloba",
+      "marker_id": "sustained_attention_rt",
+      "direction": null,
+      "effect": "d = -0.08 (95% CI -0.21 to 0.02) for attention, non-significant and close to zero",
+      "effect_normalized": -0.08,
+      "normalization_method": "Cohen's d, null result",
+      "evidence_tier": "A",
+      "population": "Healthy individuals (non-clinical), meta-analysis pooling RCT data on attention from 910 participants across 8 studies",
+      "conditional_on": "Result is specific to healthy individuals without cognitive impairment; effect sizes were unrelated to participant age, trial duration, daily dose, total dose, or sample size per the authors' meta-regression",
+      "paper": {
+        "doi": "10.1002/hup.2259",
+        "title": "Is Ginkgo biloba a cognitive enhancer in healthy individuals? A meta-analysis",
+        "year": 2012,
+        "design": "meta-analysis of RCTs",
+        "n": 910
+      },
+      "verbatim": "Effect sizes were non-significant and close to zero for memory (d = -0.04: 95%CI -0.17 to 0.07), executive function (d = -0.05: 95%CI -0.17 to 0.05) and attention (d = -0.08: 95%CI -0.21 to 0.02).",
+      "key_results": "Meta-analysis of randomized controlled trials examining Ginkgo biloba's effect on cognitive function in healthy (non-impaired) individuals, covering memory (k=13, n=1132), executive function (k=7, n=534), and attention (k=8, n=910). All three domain effect sizes were non-significant and near zero. Meta-regression found no moderating influence of age, trial duration, dose, or sample size. Authors conclude ginkgo has no ascertainable positive effect on these targeted cognitive functions in people without cognitive impairment.",
+      "figure": null,
+      "caveats": "This is a distinct null from the MCI-population null below: here the population is healthy adults, not people with diagnosed cognitive impairment; some included trials may have used varying ginkgo formulations and doses pooled together."
+    },
+    {
+      "behavior_id": "nicotine",
+      "marker_id": "working_memory",
+      "direction": "+",
+      "effect": "Significant positive effect on working memory-RT (part of the six-domain effect size range = 0.16 to 0.44); accuracy in working memory did not reach significance",
+      "effect_normalized": null,
+      "normalization_method": "range of Cohen's d / Hedges g across six significant domains as reported; not domain-isolated",
+      "evidence_tier": "A",
+      "population": "Healthy adult nonsmokers or smokers not tobacco-deprived or minimally deprived (<=2h), 41 double-blind placebo-controlled studies (1994-2008)",
+      "conditional_on": "The abstract names 'working memory-RT' as one of six significant domains but does not list working-memory accuracy among them, implying accuracy did not reach significance (inferred from the abstract's domain list, not a separately stated null sentence); effect is acute/laboratory, in non-deprived participants so not attributable to withdrawal relief",
+      "paper": {
+        "doi": "10.1007/s00213-010-1848-1",
+        "title": "Meta-analysis of the acute effects of nicotine and smoking on human performance",
+        "year": 2010,
+        "design": "meta-analysis of double-blind placebo-controlled laboratory studies",
+        "n": null
+      },
+      "verbatim": "We found significant positive effects of nicotine or smoking on six domains: fine motor, alerting attention-accuracy and response time (RT), orienting attention-RT, short-term episodic memory-accuracy, and working memory-RT (effect size range = 0.16 to 0.44).",
+      "key_results": "Of nine performance domains tested, nicotine/smoking produced significant effects on six: fine motor, alerting attention-accuracy and RT, orienting attention-RT, short-term episodic memory-accuracy, and working memory-RT (effect size range 0.16-0.44). Working-memory accuracy is not among the six significant domains named, implying it did not reach significance. Because participants were non-deprived or minimally deprived, the authors argue the working-memory RT benefit reflects genuine acute enhancement rather than relief of withdrawal-related impairment.",
+      "figure": null,
+      "caveats": "Effect size for working memory-RT specifically is not isolated from the pooled 0.16-0.44 range given for all six significant domains jointly; the accuracy null is inferred from omission in the abstract's list rather than an explicit stated non-significance for that specific outcome."
+    },
+    {
+      "behavior_id": "mindfulness_meditation",
+      "marker_id": "working_memory",
+      "direction": "+",
+      "effect": "Small-to-moderate significant effect on working memory accuracy vs waitlist/no-treatment (g = 0.257-0.643) and vs active controls (g = 0.192-0.394), pooled with other significant subdomains",
+      "effect_normalized": 0.257,
+      "normalization_method": "Hedges' g, robust variance estimation, range across significant subdomains including working memory accuracy",
+      "evidence_tier": "A",
+      "population": "Meditation-naive adults, 111 RCTs (n = 9,538), effects stronger in those with elevated psychiatric symptoms or medical conditions than in healthy controls",
+      "conditional_on": "Effect concentrated in accuracy-based indices, not latency; the same paper found no significant effect on processing speed, episodic memory, or executive-function latency indices (see companion null edges)",
+      "paper": {
+        "doi": "10.1080/17437199.2023.2248222",
+        "title": "Mindfulness enhances cognitive functioning: a meta-analysis of 111 randomized controlled trials",
+        "year": 2024,
+        "design": "meta-analysis of RCTs",
+        "n": 9538
+      },
+      "verbatim": "MBIs had small-to-moderate significant effects on global cognition, executive attention, working memory accuracy, inhibition accuracy, shifting accuracy, sustained attention, and subjective cognitive functioning (vs. waitlist/no-treatment, g = 0.257-0.643; vs. active controls, g = 0.192-0.394). MBIs did not impact executive functioning (EF) latency indices, verbal fluency, processing speed, episodic memory, and cognitive error.",
+      "key_results": "Across 111 RCTs (n=9,538) of mindfulness-based interventions (MBIs) in meditation-naive adults, small-to-moderate significant benefits were found on global cognition and six specific subdomains including working memory accuracy, with larger effects vs. no-treatment/waitlist controls than vs. active controls. Benefits were stronger in participants with elevated psychiatric symptoms or medical conditions than in healthy controls, and stronger with face-to-face than self-guided delivery. The same meta-analysis found no significant effect on processing speed, episodic memory, verbal fluency, or executive-function latency (reaction-time-based) measures.",
+      "figure": null,
+      "caveats": "Effect size given as a range across several significant subdomains rather than isolated for working memory alone; accuracy-based effects only, latency/speed-based effects on other tasks were null in the same analysis."
+    },
+    {
+      "behavior_id": "brain_training_working_memory",
+      "marker_id": "working_memory",
+      "direction": null,
+      "effect": "No convincing evidence of reliable improvement on measures of far transfer (nonverbal ability, verbal ability, word decoding, reading comprehension, arithmetic) when compared with a treated control condition",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - qualitative null result on far-transfer outcomes; near-transfer (untrained WM tests) did show reliable improvement",
+      "evidence_tier": "A",
+      "population": "Mixed-age participants in working-memory training studies (pretest-posttest with control group), 87 publications / 145 experimental comparisons",
+      "conditional_on": "Near-transfer to other (untrained) working-memory tests was reliably found; the null applies specifically to far transfer to broader cognitive/academic outcomes, and degree of WM improvement during training did not predict far-transfer magnitude",
+      "paper": {
+        "doi": "10.1177/1745691616635612",
+        "title": "Working Memory Training Does Not Improve Performance on Measures of Intelligence or Other Measures of 'Far Transfer': Evidence From a Meta-Analytic Review",
+        "year": 2016,
+        "design": "meta-analytic review of pretest-posttest controlled training studies",
+        "n": null
+      },
+      "verbatim": "Immediately following training there were reliable improvements on measures of intermediate transfer (verbal and visuospatial working memory). For measures of far transfer (nonverbal ability, verbal ability, word decoding, reading comprehension, arithmetic) there was no convincing evidence of any reliable improvements when working memory training was compared with a treated control condition. Furthermore, mediation analyses indicated that across studies, the degree of improvement on working memory measures was not related to the magnitude of far-transfer effects found.",
+      "key_results": "Meta-analysis of 87 publications (145 experimental comparisons) of computerized working-memory ('brain') training programs using a pretest-posttest design with a control group. Training reliably improved performance on other (untrained) working-memory measures (near/intermediate transfer), but showed no convincing evidence of improvement on far-transfer measures such as nonverbal or verbal ability, reading, or arithmetic when compared against a treated control group. The amount of improvement on trained working-memory tasks did not predict the (absent) far-transfer benefit, and publication-bias analysis found no evidential value supporting far transfer across the literature. The authors conclude such programs produce short-term, task-specific effects that do not generalize to real-world cognitive skills.",
+      "figure": null,
+      "caveats": "This is the canonical 'brain training doesn't transfer' null result central to this evidence tree: it directly contradicts marketing claims for commercial brain-training products; it does not evaluate every brain-training paradigm (e.g., action video games), only working-memory training specifically."
+    },
+    {
+      "behavior_id": "aerobic_exercise_chronic",
+      "marker_id": "episodic_memory",
+      "direction": "+",
+      "effect": "Hedges' g = 0.28 (p = 0.002) for episodic memory improvement",
+      "effect_normalized": 0.28,
+      "normalization_method": "Hedges' g",
+      "evidence_tier": "A",
+      "population": "Adults >=55 years without dementia (M = 70.82 years), meta-analysis of 36 RCTs, 2750 participants",
+      "conditional_on": "Effect significant only in the 55-68 mean-age subgroup, not in the 69-85 subgroup; larger in studies with a high percentage of females, normal-cognition participants, no-contact/non-aerobic control groups, and >3900 total minutes of prescribed activity",
+      "paper": {
+        "doi": "10.1038/s43856-022-00079-7",
+        "title": "Aerobic exercise improves episodic memory in late adulthood: a systematic review and meta-analysis",
+        "year": 2022,
+        "design": "meta-analysis of RCTs",
+        "n": 2750
+      },
+      "verbatim": "Here we show that aerobic exercise interventions are effective at improving episodic memory (Hedges'g = 0.28; p = 0.002). Subgroup analyses revealed a moderating effect of age (p = 0.027), with a significant effect for studies with a mean age between 55-68 but not 69-85.",
+      "key_results": "Meta-analysis of 36 RCTs (2,750 participants, mean age 70.82) testing aerobic exercise interventions in adults 55 and older without dementia. Aerobic exercise produced a small but significant improvement in episodic memory overall (g=0.28). Age moderated the effect: significant in the 55-68 subgroup but not in the 69-85 subgroup. Larger effects were also seen in studies with more female participants, participants with normal (not impaired) cognition, no-contact or non-aerobic active control groups, and higher total prescribed exercise minutes (>3900 min). Authors describe aerobic exercise as an accessible non-pharmaceutical intervention for episodic memory in late adulthood.",
+      "figure": null,
+      "caveats": "Effect attenuates or disappears in the oldest-old (69-85) subgroup; control-group type and total training volume both moderate the effect size, so the g=0.28 headline figure is not uniform across all older-adult subpopulations."
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "episodic_memory",
+      "direction": "+",
+      "effect": "SMD = 0.31 (95% CI: 0.18-0.44), Hedges' g = 0.3003 (95% CI: 0.1778-0.4228) for memory",
+      "effect_normalized": 0.31,
+      "normalization_method": "SMD / Hedges' g",
+      "evidence_tier": "A",
+      "population": "Adults aged 20.8-76.4 years, healthy individuals and patients with specific diseases pooled, 16 RCTs, 492 participants",
+      "conditional_on": "Benefit was more pronounced in individuals with diseases than in healthy individuals, in those aged 18-60 rather than older, and in females; GRADE certainty for this memory finding is moderate, higher than for the other domains tested",
+      "paper": {
+        "doi": "10.3389/fnut.2024.1424972",
+        "title": "The effects of creatine supplementation on cognitive function in adults: a systematic review and meta-analysis",
+        "year": 2024,
+        "design": "meta-analysis of RCTs",
+        "n": 492
+      },
+      "verbatim": "Creatine supplementation showed significant positive effects on memory (SMD = 0.31, 95% CI: 0.18-0.44, Hedges's g = 0.3003, 95% CI: 0.1778-0.4228) and attention time (SMD = -0.31, 95% CI: -0.58 to -0.03, Hedges's g = -0.3004, 95% CI: -0.5719 to -0.0289), as well as significantly improving processing speed time (SMD = -0.51, 95% CI: -1.01 to -0.01, Hedges's g = -0.4916, 95% CI: -0.7852 to -0.1980).",
+      "key_results": "Meta-analysis of 16 RCTs (492 participants, 20.8-76.4 years, mixing healthy and diseased populations) evaluating oral creatine monohydrate. Significant improvements were found for memory, attention time, and processing speed time, but not for overall cognitive function or executive function. Subgroup analysis found larger benefits in people with diseases than healthy individuals, in adults 18-60 versus older adults, and in females versus males, with no difference between short (<4 weeks) and longer (>=4 weeks) supplementation. GRADE certainty was rated moderate for memory but low for processing speed, overall cognitive function, executive function, and attention.",
+      "figure": null,
+      "caveats": "GRADE certainty is only moderate for the memory outcome shown here and low for the related processing-speed outcome; effect is a general/chronic supplementation effect distinct from the larger, more acute benefit seen specifically under sleep deprivation (see creatine_sleep_deprivation edges)."
+    },
+    {
+      "behavior_id": "mindfulness_meditation",
+      "marker_id": "episodic_memory",
+      "direction": null,
+      "effect": "No significant impact of MBIs on episodic memory",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no effect size for episodic memory given",
+      "evidence_tier": "A",
+      "population": "Meditation-naive adults, 111 RCTs (n = 9,538)",
+      "conditional_on": "Contrasts with the same meta-analysis's positive finding for working memory accuracy and global cognition; episodic memory and processing speed specifically did not respond to mindfulness training",
+      "paper": {
+        "doi": "10.1080/17437199.2023.2248222",
+        "title": "Mindfulness enhances cognitive functioning: a meta-analysis of 111 randomized controlled trials",
+        "year": 2024,
+        "design": "meta-analysis of RCTs",
+        "n": 9538
+      },
+      "verbatim": "MBIs did not impact executive functioning (EF) latency indices, verbal fluency, processing speed, episodic memory, and cognitive error.",
+      "key_results": "In the same 111-RCT meta-analysis of mindfulness-based interventions that found significant benefits for working memory accuracy and global cognition, episodic memory showed no significant treatment effect, alongside null results for processing speed, verbal fluency, EF latency indices, and cognitive error. This domain-specificity is a central finding of the paper: MBIs help accuracy-based executive and attentional measures but not memory-consolidation-dependent or speed-based measures.",
+      "figure": null,
+      "caveats": "Null result reported without an explicit numeric effect size or CI for episodic memory in the abstract text; treated here as a genuine recorded null per spec 5.3 rather than omitted."
+    },
+    {
+      "behavior_id": "multivitamin_older_adults",
+      "marker_id": "global_cognition_older",
+      "direction": "+",
+      "effect": "Mean z-score = 0.07 (95% CI 0.02 to 0.12; P = .007) benefit on global cognition composite vs placebo",
+      "effect_normalized": 0.07,
+      "normalization_method": "mean standardized (z) score difference on a composite of TICS, word list/story recall, oral trail-making, verbal fluency, number span, and digit ordering",
+      "evidence_tier": "B",
+      "population": "2,262 community-dwelling older adults (mean age 73, 60% women), COSMOS-Mind randomized clinical trial",
+      "conditional_on": "Benefit most pronounced in participants with a history of cardiovascular disease (0.14 vs 0.06 in those without); this is one of three COSMOS cognitive substudies (telephone, web, and in-person) referenced by this design and represents the in-person/telephone composite analysis",
+      "paper": {
+        "doi": "10.1002/alz.12767",
+        "title": "Effects of cocoa extract and a multivitamin on cognitive function: A randomized clinical trial",
+        "year": 2023,
+        "design": "randomized, double-blind, placebo-controlled 2x2 factorial trial",
+        "n": 2262
+      },
+      "verbatim": "Daily MVM supplementation, relative to placebo, resulted in a statistically significant benefit on global cognition (mean z = 0.07, 95% CI 0.02 to 0.12; P = .007), and this effect was most pronounced in participants with a history of cardiovascular disease (no history: 0.06, 95% CI 0.01 to 0.11; history: 0.14, 95% CI -0.02 to 0.31; interaction, nominal P = .01). Multivitamin-mineral benefits were also observed for memory and executive function.",
+      "key_results": "COSMOS-Mind randomized 2,262 older adults (mean age 73) to daily multivitamin-mineral (MVM) supplementation or placebo for 3 years, assessing a global cognition composite (Telephone Interview of Cognitive Status, word list and story recall, oral trail-making, verbal fluency, number span, digit ordering) alongside memory and executive-function composites. Daily MVM produced a small but statistically significant benefit on global cognition, with a larger effect in participants with a cardiovascular disease history. Cocoa extract, tested in the same factorial design, had no effect on global cognition (mean z = 0.03; P = .28). Memory and executive function composites also improved with MVM.",
+      "figure": null,
+      "caveats": "Effect size is small (z=0.07) though statistically significant; this is one of three COSMOS cognitive sub-studies and later pooled meta-analyses of all three report the effect as equivalent to about 2 years of reduced cognitive aging, a comparison not reproduced verbatim here since it was not in this trial's own abstract."
+    },
+    {
+      "behavior_id": "ginkgo_biloba",
+      "marker_id": "global_cognition_older",
+      "direction": null,
+      "effect": "MD = -0.07 (95% CI -0.67 to 0.51) on ADAS-cog in people with mild cognitive impairment",
+      "effect_normalized": -0.07,
+      "normalization_method": "mean difference (MD) on Alzheimer's Disease Assessment Scale - cognition (ADAS-cog)",
+      "evidence_tier": "A",
+      "population": "People with mild cognitive impairment (MCI), Cochrane review of 12 RCTs, 1913 participants (508 for the ADAS-cog comparison)",
+      "conditional_on": "Applies specifically to the MCI population at six months; the same review found small-to-moderate benefits of ginkgo on global status, cognition, and ADLs in people with diagnosed dementia (a different, more impaired population), so the null does not generalize to dementia",
+      "paper": {
+        "doi": "10.1002/14651858.CD013661.pub2",
+        "title": "Ginkgo biloba for cognitive impairment and dementia",
+        "year": 2026,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 1913
+      },
+      "verbatim": "At six months, moderate-certainty evidence suggests that ginkgo probably has little to no effect on global clinical status measured on the Clinical Dementia Rating Scale (MD -0.03, 95% CI -0.06 to 0.01; 3 studies, 631 participants; I2 = 0%), cognition measured on the Alzheimer's Disease Assessment Scale - cognition (MD -0.07, 95% CI -0.67 to 0.51; I2 = 0%; 2 studies, 508 participants), and ADLs measured on the Instrumental ADL scale (MD -0.05, 95% CI -0.29 to 0.19; 1 study, 350 participants).",
+      "key_results": "Updated Cochrane review (82 studies, 10,613 participants total across all populations) found that in people with mild cognitive impairment specifically, ginkgo versus placebo produced little to no effect at six months on global clinical status (Clinical Dementia Rating), cognition (ADAS-cog), or instrumental activities of daily living, all rated moderate-certainty evidence. In contrast, in people with diagnosed dementia the same review found small-to-moderate benefits on global status, cognition, and ADLs (low-certainty evidence). The authors conclude ginkgo probably has no benefit for MCI but may have small benefits once dementia is established.",
+      "figure": null,
+      "caveats": "ADAS-cog comparison rests on only 2 studies / 508 participants; the review explicitly separates MCI (null) from dementia (small benefit) and from healthy/subjective-complaint populations (uncertain), so this edge should not be read as 'ginkgo does nothing for cognition' generally."
+    },
+    {
+      "behavior_id": "omega3_supplementation",
+      "marker_id": "global_cognition_older",
+      "direction": null,
+      "effect": "MD = -0.07 (95% CI -0.25 to 0.10) on Mini-Mental State Examination score vs placebo",
+      "effect_normalized": -0.07,
+      "normalization_method": "mean difference (MD) on Mini-Mental State Examination (MMSE)",
+      "evidence_tier": "A",
+      "population": "Cognitively healthy adults aged 60 and over, Cochrane review of 2 RCTs, 3221 participants (MMSE comparison)",
+      "conditional_on": "Applies specifically to cognitively healthy older people supplemented for 24-40 months; none of the pooled trials examined incident dementia as an outcome, only cognitive test scores in people free of dementia at baseline",
+      "paper": {
+        "doi": "10.1002/14651858.CD005379.pub3",
+        "title": "Omega 3 fatty acid for the prevention of cognitive decline and dementia",
+        "year": 2012,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 3221
+      },
+      "verbatim": "In two studies involving 3221 participants there was no difference between the omega-3 and placebo group in mini-mental state examination score at final follow-up (following 24 or 40 months of intervention); MD -0.07 (95% CI -0.25 to 0.10). In two studies involving 1043 participants, other tests of cognitive function such as word learning, digit span and verbal fluency showed no beneficial effect of omega-3 PUFA supplementation.",
+      "key_results": "Cochrane review of randomized trials giving omega-3 PUFA (via gel capsules or fortified margarine) for at least six months to cognitively healthy adults aged 60+. Across 3,221 participants in two trials, there was no difference in MMSE score between omega-3 and placebo groups after 24-40 months. A further two trials (1,043 participants) found no benefit on word learning, digit span, or verbal fluency. No trial examined incident dementia directly. Authors conclude there is no benefit of omega-3 PUFA supplementation on cognitive function in cognitively healthy older people, though longer studies might detect effects the included trials could not.",
+      "figure": null,
+      "caveats": "This 2012 review is restricted to cognitively healthy older adults; it does not address omega-3 in deficient individuals or in populations with existing cognitive impairment, and a 2025 dose-response meta-analysis pooling broader (including impaired) populations has reported positive associations, which is why this edge is scoped tightly to the matched healthy-older-adult, MMSE-specific claim."
+    },
+    {
+      "behavior_id": "blood_pressure_control",
+      "marker_id": "global_cognition_older",
+      "direction": "+",
+      "effect": "HR = 0.81 (95% CI, 0.69-0.95) for reduced risk of mild cognitive impairment; HR = 0.83 (95% CI, 0.67-1.04, not significant) for the primary probable-dementia outcome",
+      "effect_normalized": 0.81,
+      "normalization_method": "hazard ratio for MCI incidence (secondary outcome); primary dementia outcome was not statistically significant",
+      "evidence_tier": "B",
+      "population": "9,361 adults aged 50+ with hypertension, without diabetes or prior stroke, SPRINT MIND randomized trial",
+      "conditional_on": "Significant benefit was on the secondary outcome (mild cognitive impairment), not the trial's primary outcome (probable dementia), which showed a favorable but non-significant trend; the trial was stopped early for cardiovascular benefit, which the authors note likely left it underpowered for the dementia endpoint specifically",
+      "paper": {
+        "doi": "10.1001/jama.2018.21442",
+        "title": "Effect of Intensive vs Standard Blood Pressure Control on Probable Dementia: A Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized clinical trial (SPRINT MIND)",
+        "n": 9361
+      },
+      "verbatim": "During a total median follow-up of 5.11 years, adjudicated probable dementia occurred in 149 participants in the intensive treatment group vs 176 in the standard treatment group (7.2 vs 8.6 cases per 1000 person-years; hazard ratio [HR], 0.83; 95% CI, 0.67-1.04). Intensive BP control significantly reduced the risk of mild cognitive impairment (14.6 vs 18.3 cases per 1000 person-years; HR, 0.81; 95% CI, 0.69-0.95) and the combined rate of mild cognitive impairment or probable dementia (20.2 vs 24.1 cases per 1000 person-years; HR, 0.85; 95% CI, 0.74-0.97).",
+      "key_results": "SPRINT MIND randomized 9,361 hypertensive adults aged 50+ to an intensive (<120 mmHg) or standard (<140 mmHg) systolic blood pressure target. Over a median 5.11-year follow-up, intensive treatment significantly reduced the risk of mild cognitive impairment (HR 0.81) and the combined MCI-or-dementia outcome (HR 0.85), but the reduction in the trial's pre-specified primary outcome, probable dementia, did not reach statistical significance (HR 0.83, CI crossing 1). The trial was stopped early (August 2015) for cardiovascular benefit and all-cause mortality, which the authors state likely left too few dementia cases to detect a true effect on that specific, harder-to-diagnose endpoint.",
+      "figure": null,
+      "caveats": "The primary, hardest endpoint (adjudicated probable dementia) was null; only the secondary MCI endpoint reached significance; outcome is a clinical diagnosis/adjudication rather than a continuous MMSE/MoCA test score, so this edge operationalizes 'global cognition' via validated case-ascertainment rather than a raw test score, unlike the multivitamin, ginkgo, and omega-3 edges above."
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "processing_speed",
+      "direction": "+",
+      "effect": "SMD = -0.51 (95% CI: -1.01 to -0.01), Hedges' g = -0.4916 (95% CI: -0.7852 to -0.1980) for processing speed time (negative SMD indicates faster/improved processing time)",
+      "effect_normalized": -0.51,
+      "normalization_method": "SMD / Hedges' g (time-based measure, negative = faster)",
+      "evidence_tier": "A",
+      "population": "Adults aged 20.8-76.4 years, healthy individuals and patients with specific diseases pooled, 16 RCTs, 492 participants",
+      "conditional_on": "GRADE certainty for this processing-speed finding is explicitly rated low by the source, versus moderate certainty for the memory finding in the same paper; benefit larger in diseased vs healthy subgroups",
+      "paper": {
+        "doi": "10.3389/fnut.2024.1424972",
+        "title": "The effects of creatine supplementation on cognitive function in adults: a systematic review and meta-analysis",
+        "year": 2024,
+        "design": "meta-analysis of RCTs",
+        "n": 492
+      },
+      "verbatim": "as well as significantly improving processing speed time (SMD = -0.51, 95% CI: -1.01 to -0.01, Hedges's g = -0.4916, 95% CI: -0.7852 to -0.1980). However, no significant improvements were found on overall cognitive function or executive function.",
+      "key_results": "The same 16-RCT, 492-participant meta-analysis reporting a memory benefit for creatine monohydrate also found a significant improvement in processing speed time (SMD -0.51), alongside a significant improvement in attention time, but no significant change in overall cognitive function or executive function. The authors explicitly flag the certainty of the processing-speed finding as low (GRADE), in contrast to the moderate certainty given to the memory result, and note larger effects in diseased populations, younger adults (18-60), and females.",
+      "figure": null,
+      "caveats": "GRADE-rated low certainty by the source itself; wide confidence interval (crosses close to zero at the lower bound); mixes healthy and diseased populations rather than isolating either."
+    },
+    {
+      "behavior_id": "creatine_sleep_deprivation",
+      "marker_id": "processing_speed",
+      "direction": "+",
+      "effect": "Mitigating effect on sleep-deprivation-induced deterioration in language-related processing speed; improvement of up to 12% at the higher (0.35 g/kg) dose",
+      "effect_normalized": 12,
+      "normalization_method": "% improvement in cognitive performance vs placebo, as stated in conclusion",
+      "evidence_tier": "B",
+      "population": "29 healthy adults, single dose 0.2 g/kg creatine monohydrate during 21h total sleep deprivation",
+      "conditional_on": "Effect specific to the acute sleep-deprived state; dose-dependent (larger at 0.35 g/kg than 0.2 g/kg per the authors' prior and current studies) and sex-dependent (females benefited more in language and logic processing-speed tasks)",
+      "paper": {
+        "doi": "10.3390/nu18081192",
+        "title": "Single-Dose Creatine Reduces Sleep Deprivation-Induced Deterioration in Cognitive Performance",
+        "year": 2026,
+        "design": "randomized, double-blind, placebo-controlled trial",
+        "n": 29
+      },
+      "verbatim": "The results show a mitigating effect of creatine on sleep deprivation-induced deterioration in logical and numerical tasks, language-related processing speed, and the Psychomotor Vigilance Test (PVT). Compared to males, females benefit more in logic, PVT and processing speed in language and logic tasks. Our results show that a dose of 0.2 g/kg creatine is associated with a reduced deterioration in cognitive performance during sleep deprivation. Although the effect is less pronounced than with a high dose of 0.35 g/kg, there is still an improvement of up to 12%.",
+      "key_results": "In the same 21-hour total sleep deprivation RCT described under the sustained-attention edge, a single 0.2 g/kg dose of creatine monohydrate mitigated sleep-deprivation-induced deterioration in language-related processing speed as well as logical/numerical task performance and PVT. Sex-stratified analysis showed a larger benefit in females than males for processing-speed-related tasks. The overall improvement was up to 12% relative to placebo, smaller than the effect seen with a higher 0.35 g/kg dose in the authors' earlier study.",
+      "figure": null,
+      "caveats": "Small sample (n=29); single acute dose in an acutely sleep-deprived state, not evidence for chronic loading or well-rested individuals; illustrates the conditional_on pattern explicitly requested for creatine (effect concentrated under sleep deprivation) alongside the smaller, low-certainty general-population effect above."
+    },
+    {
+      "behavior_id": "acute_aerobic_exercise",
+      "marker_id": "processing_speed",
+      "direction": "+",
+      "effect": "g = .35 for time-dependent (reaction-time-based) measures in executive-function tasks; larger in preadolescent children (g = .54) and older adults (g = .67) than other age groups",
+      "effect_normalized": 0.35,
+      "normalization_method": "Hedges' g",
+      "evidence_tier": "A",
+      "population": "Mixed age groups (children, young adults, older adults) and fitness levels, meta-analysis of 40 experimental studies of a single moderate-intensity aerobic exercise bout",
+      "conditional_on": "Age moderates the effect substantially: older adults and preadolescent children benefit far more (g = .67 and .54 respectively) on reaction-time measures than young/middle-aged adults; aerobic fitness level did not moderate the effect",
+      "paper": {
+        "doi": "10.1111/psyp.12736",
+        "title": "Acute effects of moderate aerobic exercise on specific aspects of executive function in different age and fitness groups: A meta-analysis",
+        "year": 2016,
+        "design": "meta-analysis of experimental studies",
+        "n": null
+      },
+      "verbatim": "Based on data from 40 experimental studies, a small effect of aerobic exercise on time-dependent measures (g = .35) and accuracy (g = .22) in executive function tasks was confirmed. The results further suggest that preadolescent children (g = .54) and older adults (g = .67) compared to other age groups benefit more from aerobic exercise when reaction time is considered as dependent variable.",
+      "key_results": "Meta-analysis of 40 experimental studies testing a single (acute) bout of moderate aerobic exercise on executive-function task performance. A small overall effect was found on both time-dependent (RT-based, g=.35) and accuracy (g=.22) measures. Age strongly moderated the RT-based effect: preadolescent children and older adults showed substantially larger benefits (g=.54 and g=.67) than other age groups, while aerobic fitness level did not moderate the effect size. Authors suggest older adults and children in particular could use a single exercise bout strategically before tasks demanding high executive control.",
+      "figure": null,
+      "caveats": "Overall effect (g=.35) is small; the more clinically interesting numbers (g=.54, g=.67) are specific to children and older adults, not the general adult population; 'time-dependent measures' in executive-function tasks is the paper's own operationalization of processing speed, not a single named standardized test."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "bilingualism_cognitive_reserve -> global_cognition_older (delay in dementia/symptom onset)",
+      "reason": "Evidence is observational/retrospective and framed as a delay in age-of-onset (Cohen's d = 0.32 for age-of-onset studies) rather than a score on a named instrument; prospective incidence-rate studies (the design least confounded by education/immigration/SES) show a much weaker, largely null effect (d = 0.10). Age-of-onset-delay framing structurally mirrors the 'years of life' mortality-style metric this design explicitly excludes, and no RCT is possible for a lifelong exposure like bilingualism, so the claim cannot be cleanly separated from cohort confounding (bilingual populations in these studies differ systematically in education and immigration history)."
+    },
+    {
+      "candidate": "omega3_supplementation -> global_cognition_older or processing_speed, using the 2025 dose-response meta-analysis (PMC12368174) showing broad positive effects",
+      "reason": "This more recent 58-RCT dose-response meta-analysis reports positive effects across multiple domains (perceptual speed, language, memory, visuospatial function, global cognition), which would directly contradict the shipped null edge (Cochrane 2012, MMSE, cognitively healthy older adults). Rather than shipping both and leaving the contradiction unresolved, the population-matched, instrument-named, healthy-older-adult-specific Cochrane null was kept because it isolates the exact population and instrument (MMSE) that the design's marker specifies; the broader dose-response review pools healthy and impaired populations and multiple cognitive tests without isolating a single clean healthy-adult claim in its abstract."
+    },
+    {
+      "candidate": "acute_aerobic_exercise -> processing_speed or global cognition, using the individual-participant-data meta-analysis (Ishihara et al. 2021, PMID 34147558)",
+      "reason": "This IPD meta-analysis's abstract reports only a qualitative moderation pattern (pre-test performance moderates the after-effect of acute exercise) with no quantified effect size, so no number could be placed in the `effect` field without violating the requirement that every number in `effect` be derivable from the edge's own verbatim. Superseded here by Chang et al. 2012 and Ludyga et al. 2016, both of which report quantified Hedges' g values in their abstracts."
+    },
+    {
+      "candidate": "caffeine -> working_memory or sustained_attention_rt in well-rested, non-sleep-deprived healthy adults (i.e., caffeine's 'baseline' effect outside of sleep loss)",
+      "reason": "The literature on caffeine in rested, habitual consumers is heavily confounded by reversal of overnight withdrawal (habitual drinkers test worse than their true baseline without their usual dose, so a 'benefit' partly reflects relief of withdrawal rather than net enhancement). No abstract-quantified meta-analysis isolating a clean non-deprived, non-habituated caffeine effect with a named instrument was retrieved within the research budget; only the sleep-restricted/deprived population edge (Frontiers 2026 military meta-analysis) is shipped, with this exact caveat given in its conditional_on field."
+    },
+    {
+      "candidate": "creatine_monohydrate -> working_memory, using secondary/news coverage claiming 'creatine users performed better on working memory' (nutraingredients.com, bubsnaturals.com)",
+      "reason": "These are secondary/marketing summaries of the sleep-deprivation RCT (Gordji-Nejad et al.), but the PubMed abstract of that RCT itself names only 'logical and numerical tasks, language-related processing speed, and the Psychomotor Vigilance Test (PVT)' as outcomes -- it does not use the phrase 'working memory' or report a working-memory-specific statistic. Shipping a working-memory edge from this source would require citing a paraphrase rather than the source's own verbatim, which the acceptance bar disallows."
+    }
+  ]
+}

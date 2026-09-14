@@ -1,0 +1,900 @@
+{
+  "goal": {
+    "id": "goal_d_cardiometabolic",
+    "name": "Cardiometabolic health",
+    "definition": "Blood pressure, LDL cholesterol, triglycerides, HbA1c/fasting glucose, insulin sensitivity (HOMA-IR), cardiorespiratory fitness (VO2max), and resting heart rate / arterial stiffness (pulse wave velocity) as measurable markers of cardiovascular and metabolic disease risk."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_d_cardiometabolic",
+        "name": "Cardiometabolic health",
+        "definition": "Blood pressure, LDL cholesterol, triglycerides, HbA1c/fasting glucose, insulin sensitivity (HOMA-IR), cardiorespiratory fitness (VO2max), and resting heart rate / arterial stiffness (pulse wave velocity) as measurable markers of cardiovascular and metabolic disease risk."
+      }
+    ],
+    "markers": [
+      {
+        "id": "blood_pressure",
+        "name": "Systolic / diastolic blood pressure",
+        "unit": "mmHg",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      },
+      {
+        "id": "ldl_cholesterol",
+        "name": "LDL cholesterol",
+        "unit": "mmol/L or mg/dL as reported by source",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      },
+      {
+        "id": "triglycerides",
+        "name": "Triglycerides",
+        "unit": "mmol/L or mg/dL as reported by source",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      },
+      {
+        "id": "hba1c_fasting_glucose",
+        "name": "HbA1c / fasting glucose",
+        "unit": "% (HbA1c), mmol/L or mg/dL (fasting glucose)",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      },
+      {
+        "id": "insulin_sensitivity_homa_ir",
+        "name": "Insulin sensitivity (HOMA-IR)",
+        "unit": "HOMA-IR units (unitless); glucose infusion/disposal rate (micromol/kg lean body mass/min) for clamp studies",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      },
+      {
+        "id": "vo2max",
+        "name": "VO2max / cardiorespiratory fitness",
+        "unit": "mL/kg/min",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      },
+      {
+        "id": "resting_hr_arterial_stiffness",
+        "name": "Resting heart rate / arterial stiffness (pulse wave velocity)",
+        "unit": "bpm (resting HR); m/s (carotid-femoral pulse wave velocity)",
+        "goal_ids": [
+          "goal_d_cardiometabolic"
+        ]
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "aerobic_exercise",
+        "name": "Aerobic / endurance exercise training",
+        "category": "exercise",
+        "dose_or_intensity": "Regular dynamic aerobic training, moderate intensity, >=4 weeks; classic meta-analyses pool trials of 4-52 weeks, 3-5 sessions/week"
+      },
+      {
+        "id": "resistance_training",
+        "name": "Resistance training (dynamic)",
+        "category": "exercise",
+        "dose_or_intensity": "Moderate-intensity dynamic resistance training, ~2.8 days/week for ~14 weeks on average"
+      },
+      {
+        "id": "hiit",
+        "name": "High-intensity interval training",
+        "category": "exercise",
+        "dose_or_intensity": "Interval training at high intensity (near-maximal effort intervals), >=2 weeks, compared against continuous endurance training"
+      },
+      {
+        "id": "sodium_reduction",
+        "name": "Dietary sodium reduction (salt substitute)",
+        "category": "diet",
+        "dose_or_intensity": "Potassium-enriched salt substitute replacing regular table/cooking salt in hypertensive adults"
+      },
+      {
+        "id": "dash_diet",
+        "name": "DASH dietary pattern",
+        "category": "diet",
+        "dose_or_intensity": "Diet rich in fruits, vegetables, low-fat dairy, reduced saturated/total fat, sodium held constant (classic trial); or DASH vs other structured diets (recent meta-analysis)"
+      },
+      {
+        "id": "mediterranean_diet",
+        "name": "Mediterranean diet pattern",
+        "category": "diet",
+        "dose_or_intensity": "Mediterranean-style dietary intervention vs control diet, trials in adults at increased risk of T2D/CVD"
+      },
+      {
+        "id": "oat_beta_glucan",
+        "name": "Soluble fibre / oat beta-glucan",
+        "category": "diet",
+        "dose_or_intensity": "Median dose 3.5 g/day oat beta-glucan, >=3 weeks"
+      },
+      {
+        "id": "plant_sterols",
+        "name": "Plant sterols / stanols (enriched foods)",
+        "category": "diet",
+        "dose_or_intensity": "Average dose 1.6 g/day (range 0.3-3.2 g/day) from sterol-enriched foods"
+      },
+      {
+        "id": "omega3_marine",
+        "name": "Marine omega-3 (EPA/DHA) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "EPA/DHA supplementation, categorized low (<1000 mg/d), medium (1000-2000 mg/d), high (>2000 mg/d); short (<=8wk), medium (>8-12wk), long (>12wk) term"
+      },
+      {
+        "id": "omega3_ala",
+        "name": "Plant omega-3 (alpha-linolenic acid) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Oral ALA supplementation or ALA-rich food (flaxseed/flaxseed oil), most prominent effect at >=3 g/day, in overweight/obese adults"
+      },
+      {
+        "id": "saturated_fat_reduction",
+        "name": "Dietary saturated-fat reduction (non-pharmacological)",
+        "category": "diet",
+        "dose_or_intensity": "Reduced saturated fat intake replaced with carbohydrate, PUFA, MUFA or protein; long-term trials >=24 months (Cochrane) or food-substitution trials >=13 days (food-level review)"
+      },
+      {
+        "id": "added_sugar",
+        "name": "Added / free dietary sugar (higher vs lower intake)",
+        "category": "diet",
+        "dose_or_intensity": "Higher vs lower free-sugar intake, trials >=2 weeks; blood-pressure effect strongest in trials >=8 weeks"
+      },
+      {
+        "id": "coffee_unfiltered",
+        "name": "Unfiltered / boiled coffee consumption",
+        "category": "diet",
+        "dose_or_intensity": "Caffeinated, unfiltered/boiled coffee vs filtered coffee or abstention, dose-dependent"
+      },
+      {
+        "id": "weight_loss",
+        "name": "Weight loss (bariatric surgery vs conventional therapy)",
+        "category": "habit",
+        "dose_or_intensity": "Bariatric surgery vs conventional medical/lifestyle therapy in adults with type 2 diabetes, mean follow-up ~17 months"
+      },
+      {
+        "id": "alcohol_reduction",
+        "name": "Alcohol intake reduction",
+        "category": "habit",
+        "dose_or_intensity": "Reduction in habitual alcohol intake, dose-dependent, trials in mostly heavy/moderate drinkers"
+      },
+      {
+        "id": "smoking",
+        "name": "Cigarette smoking (current vs never/non-smoker)",
+        "category": "habit",
+        "dose_or_intensity": "Current smoking status vs non-smoker, cross-sectional comparison pooled across studies"
+      },
+      {
+        "id": "smoking_cessation",
+        "name": "Smoking cessation",
+        "category": "habit",
+        "dose_or_intensity": "Quitting smoking, outcomes tracked from baseline to 6 weeks, 2 months, 3 months, and 1 year post-cessation"
+      },
+      {
+        "id": "sleep_restriction",
+        "name": "Sleep restriction (experimental)",
+        "category": "habit",
+        "dose_or_intensity": "Single night of 4 hours' sleep (0100-0500h) vs normal sleep duration (2300-0730h) in a controlled crossover design"
+      },
+      {
+        "id": "sauna_bathing",
+        "name": "Finnish sauna bathing",
+        "category": "environment",
+        "dose_or_intensity": "4 sessions/week, 20-30 min/session, ~79C, 13% relative humidity, 8-week intervention"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "Endurance training reduced resting BP by 3.0/2.4 mmHg overall (P<0.001); reduction was larger in hypertensive study groups (-6.9/-4.9 mmHg) than in others (-1.9/-1.6 mmHg)",
+      "effect_normalized": -3.0,
+      "normalization_method": "WMD (mmHg), original units retained",
+      "evidence_tier": "A",
+      "population": "Healthy sedentary normotensive and/or hypertensive adults; 72 RCTs, 105 study groups",
+      "conditional_on": "Effect roughly 3-4x larger in hypertensive study groups (-6.9/-4.9 mmHg) than in normotensive groups (-1.9/-1.6 mmHg); duration >=4 weeks, training as sole intervention",
+      "paper": {
+        "doi": "10.1111/j.1440-1681.2006.04453.x",
+        "title": "Exercise is good for your blood pressure: effects of endurance training and resistance training",
+        "year": 2006,
+        "design": "narrative summary of the author's own meta-analyses of RCTs (72 trials, endurance arm)",
+        "n": null
+      },
+      "verbatim": "The meta-analysis on endurance training involved 72 trials and 105 study groups. After weighting for the number of trained participants, training induced significant net reductions of resting and day time ambulatory blood pressure of 3.0/2.4 mmHg (P < 0.001) and 3.3/3.5 mmHg (P < 0.01), respectively. The reduction of resting blood pressure was more pronounced in the 30 hypertensive study groups (-6.9/-4.9) than in the others (-1.9/-1.6; P < 0.001 for all).",
+      "key_results": "Systemic vascular resistance decreased by 7.1% (P<0.05), plasma noradrenaline by 29% (P<0.001), and plasma renin activity by 20% (P<0.05), pointing to a sympathetic/renin-angiotensin mechanism. Bodyweight fell 1.2 kg, waist circumference 2.8 cm, and body fat 1.4% (all P<0.001), so the BP effect is not isolated from body-composition change. HDL-cholesterol rose 0.032 mmol/L (P<0.05) and the HOMA insulin-resistance index fell by 0.31 units (P<0.01) in the same pooled trials, indicating the training effect is not confined to blood pressure alone.",
+      "figure": null,
+      "caveats": "This is a 2006 narrative review citing the author's own earlier meta-analyses (Fagard/Cornelissen 2005) rather than presenting new pooled data with a stated total n; original meta-analysis papers were not independently re-extracted."
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "Dynamic resistance training reduced systolic BP by 3.0 mmHg and diastolic BP by 2.1 mmHg vs controls overall (P<0.001); reductions were ~6/5 mmHg in samples with hypertension vs ~0/1 mmHg in normal-BP samples",
+      "effect_normalized": -0.31,
+      "normalization_method": "Cohen's d (d+), converted mmHg reported alongside",
+      "evidence_tier": "A",
+      "population": "N=2344, predominantly white (57%), middle-aged (47.2 years), overweight adults with prehypertension (126.7/76.8 mmHg); 64 controlled studies, 71 interventions",
+      "conditional_on": "Effect size scales with baseline BP: ~6/5 mmHg reduction for hypertension, ~3/3 mmHg for prehypertension, ~0/1 mmHg for normal BP (P<0.023); nonwhite samples with hypertension showed roughly double the reduction (-14.3/-10.3 mmHg) of previously reported aerobic-exercise effects",
+      "paper": {
+        "doi": "10.1161/JAHA.116.003231",
+        "title": "Dynamic Resistance Training as Stand-Alone Antihypertensive Lifestyle Therapy: A Meta-Analysis",
+        "year": 2016,
+        "design": "meta-analysis of RCTs",
+        "n": 2344
+      },
+      "verbatim": "Overall, moderate-intensity dynamic RT was performed 2.8+/-0.6 days/week for 14.4+/-7.9 weeks and elicited small-to-moderate reductions in systolic BP (SBP; d+=-0.31; 95% CIs, -0.43, -0.19; -3.0 mm Hg) and diastolic BP (DBP; d+=-0.30; 95% CIs, -0.38, -0.18; -2.1 mm Hg) compared to controls (Ps<0.001). Greater BP reductions occurred among samples with higher resting SBP/DBP: =6/5 mm Hg for hypertension, =3/3 mm Hg for prehypertension, and =0/1 mm Hg for normal BP (Ps<0.023).",
+      "key_results": "Nonwhite samples with hypertension experienced BP reductions approximately twice the magnitude reported for aerobic exercise training in the literature (-14.3 mmHg [95% CI -19.0,-9.4] / -10.3 mmHg [95% CI -14.5,-6.2]). The authors conclude dynamic resistance training may be comparable to or greater than aerobic training for BP reduction in nonwhite hypertensive adults. 15% of participants were on antihypertensive medication, and effects were assessed on top of this background therapy.",
+      "figure": null,
+      "caveats": "Sample skewed white (57%); nonwhite subgroup findings, while striking, come from fewer studies. Resistance training remains recommended as adjuvant rather than first-line therapy in most guidelines despite this result."
+    },
+    {
+      "behavior_id": "dash_diet",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "Combination DASH diet reduced systolic/diastolic BP by 5.5/3.0 mmHg more than a control diet (P<0.001); reduction was 11.4/5.5 mmHg in hypertensive subjects vs 3.5/2.1 mmHg in non-hypertensive subjects",
+      "effect_normalized": -5.5,
+      "normalization_method": "mean difference (mmHg) vs control diet, original units retained",
+      "evidence_tier": "B",
+      "population": "459 adults, SBP <160 and DBP 80-95 mmHg at enrollment; controlled feeding trial",
+      "conditional_on": "Effect over 3x larger in the 133 subjects with hypertension (-11.4/-5.5 mmHg) than in the 326 without hypertension (-3.5/-2.1 mmHg); sodium intake and body weight held constant across arms so the effect is independent of weight loss or sodium reduction",
+      "paper": {
+        "doi": "10.1056/NEJM199704173361601",
+        "title": "A clinical trial of the effects of dietary patterns on blood pressure. DASH Collaborative Research Group.",
+        "year": 1997,
+        "design": "randomized controlled feeding trial",
+        "n": 459
+      },
+      "verbatim": "The combination diet reduced systolic and diastolic blood pressure by 5.5 and 3.0 mm Hg more, respectively, than the control diet (P<0.001 for each)...Among the 133 subjects with hypertension...the combination diet reduced systolic and diastolic blood pressure by 11.4 and 5.5 mm Hg more, respectively, than the control diet (P<0.001 for each); among the 326 subjects without hypertension, the corresponding reductions were 3.5 mm Hg (P<0.001) and 2.1 mm Hg (P=0.003).",
+      "key_results": "A fruits-and-vegetables-only diet (without the low-fat dairy/reduced-fat component) reduced SBP by 2.8 mmHg more than control (P<0.001) but DBP only 1.1 mmHg more (P=0.07), showing the full combination diet outperforms fruit/vegetables alone. Sodium intake and body weight were deliberately held constant, isolating the dietary-pattern effect from weight loss or sodium reduction. The authors conclude a diet rich in fruits, vegetables and low-fat dairy with reduced saturated and total fat can substantially lower blood pressure.",
+      "figure": null,
+      "caveats": "See conflicting 2026 meta-analysis (DOI 10.1016/j.cpcardiol.2026.103397) below: when DASH is compared against OTHER structured diets (Mediterranean, low-carb, etc.) rather than a typical American control diet, the BP advantage disappears (MD=1.30 mmHg, 95% CI -1.54 to 4.14, not significant). The comparator matters: DASH beats a typical Western diet on BP but is not shown to beat other healthy dietary patterns."
+    },
+    {
+      "behavior_id": "dash_diet",
+      "marker_id": "ldl_cholesterol",
+      "direction": "-",
+      "effect": "DASH diet reduced LDL cholesterol by a mean difference of 8.59 mg/dL (95% CI -14.64 to -2.54) compared with other structured dietary interventions",
+      "effect_normalized": -8.59,
+      "normalization_method": "MD (mg/dL), original units retained",
+      "evidence_tier": "A",
+      "population": "Adults with elevated blood pressure or hypertension; 22 RCTs identified, 10 pooled in meta-analysis",
+      "conditional_on": "Comparator is other structured dietary interventions (not a typical/control diet); GRADE certainty for this outcome not stated as high in the abstract",
+      "paper": {
+        "doi": "10.1016/j.cpcardiol.2026.103397",
+        "title": "Effectiveness of the DASH diet versus alternative dietary interventions for hypertension management: A systematic review and meta-analysis",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Significant effects were identified for selected cardiometabolic outcomes, including reductions in urinary sodium excretion (MD = -32.89; 95% CI: -62.76 to -3.01), LDL cholesterol (MD = -8.59; 95% CI: -14.64 to -2.54), and glycated hemoglobin (HbA1c) (MD = -0.49; 95% CI: -0.52 to -0.46), as well as an increase in urinary potassium excretion (MD = 11.76; 95% CI: 4.08 to 19.44).",
+      "key_results": "The same meta-analysis found the DASH diet did NOT significantly outperform other structured diets on systolic BP (MD=1.30, 95% CI -1.54 to 4.14) or diastolic BP (MD=0.21, 95% CI -3.72 to 4.14), despite significant advantages on LDL and HbA1c. Certainty of evidence ranged from moderate to very low across outcomes. Authors conclude DASH is not superior to other dietary interventions for BP, but shows consistent benefit on selected cardiometabolic parameters.",
+      "figure": null,
+      "caveats": "Only 10 of 22 identified RCTs were poolable; substantial heterogeneity reported across outcomes; certainty of evidence graded low to very low for several endpoints including LDL."
+    },
+    {
+      "behavior_id": "dash_diet",
+      "marker_id": "hba1c_fasting_glucose",
+      "direction": "-",
+      "effect": "DASH diet reduced HbA1c by a mean difference of 0.49 percentage points (95% CI -0.52 to -0.46) compared with other structured dietary interventions",
+      "effect_normalized": -0.49,
+      "normalization_method": "MD (percentage points HbA1c), original units retained",
+      "evidence_tier": "A",
+      "population": "Adults with elevated blood pressure or hypertension; 10 RCTs pooled",
+      "conditional_on": "Comparator is other structured dietary interventions, not usual care; tight confidence interval despite low overall study count suggests possible underlying homogeneity or a small number of dominant trials",
+      "paper": {
+        "doi": "10.1016/j.cpcardiol.2026.103397",
+        "title": "Effectiveness of the DASH diet versus alternative dietary interventions for hypertension management: A systematic review and meta-analysis",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Significant effects were identified for selected cardiometabolic outcomes, including reductions in urinary sodium excretion (MD = -32.89; 95% CI: -62.76 to -3.01), LDL cholesterol (MD = -8.59; 95% CI: -14.64 to -2.54), and glycated hemoglobin (HbA1c) (MD = -0.49; 95% CI: -0.52 to -0.46), as well as an increase in urinary potassium excretion (MD = 11.76; 95% CI: 4.08 to 19.44).",
+      "key_results": "This HbA1c benefit was found in the same trial set that showed no significant BP advantage over other diets, illustrating that a dietary pattern can move a glycemic marker without moving blood pressure relative to comparator diets. Certainty of evidence ranged from moderate to very low across outcomes per GRADE assessment.",
+      "figure": null,
+      "caveats": "Very narrow confidence interval relative to the small number of pooled trials (10 RCTs) is notable and could reflect one or two large, homogeneous trials dominating the pooled estimate; full trial-level breakdown not available from the abstract."
+    },
+    {
+      "behavior_id": "sodium_reduction",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "Salt substitute reduced systolic BP by 5.75 mmHg (95% CI -6.98 to -2.39) and diastolic BP by 1.62 mmHg (95% CI -2.34 to -0.91) compared with regular salt",
+      "effect_normalized": -5.75,
+      "normalization_method": "MD (mmHg), original units retained",
+      "evidence_tier": "A",
+      "population": "1,430 hypertensive participants across 4 RCTs; 725 (49.57%) received the salt substitute",
+      "conditional_on": "Studied specifically in patients with hypertension using a potassium-enriched salt substitute vs regular sodium chloride salt, not in normotensive subjects",
+      "paper": {
+        "doi": "10.36660/abc.20250440",
+        "title": "Efficacy of a Salt Substitute on the Incidence of Hypertension: A Systematic Review with Meta-Analysis",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 1430
+      },
+      "verbatim": "The use of a salt substitute was associated with a significant reduction in systolic BP (SBP) (MD, -5.75 mmHg; 95% CI, -6.98 to -2.39 mmHg; I2 = 37%; p < 0.01) and a significant reduction in diastolic BP (DBP) (MD, -1.62 mmHg; 95% CI, -2.34 to -0.91 mmHg; I2 = 0%; p < 0.001).",
+      "key_results": "Only 4 RCTs met inclusion criteria despite the well-established public-health interest in salt substitutes, reflecting a relatively thin trial base for a widely recommended intervention. Heterogeneity was moderate for SBP (I2=37%) and zero for DBP (I2=0%), suggesting the DBP estimate is more consistent across trials than the SBP estimate.",
+      "figure": null,
+      "caveats": "Small evidence base (4 RCTs); studied only in patients with existing hypertension, so effect size in normotensive individuals is not established by this analysis."
+    },
+    {
+      "behavior_id": "alcohol_reduction",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "Alcohol reduction lowered mean systolic BP by 3.31 mmHg (95% CI -2.52 to -4.10) and diastolic BP by 2.04 mmHg (95% CI -1.49 to -2.58), with a dose-response relationship between percentage alcohol reduction and BP reduction",
+      "effect_normalized": -3.31,
+      "normalization_method": "pooled MD (mmHg), original units retained",
+      "evidence_tier": "A",
+      "population": "2,234 participants across 15 RCTs, published before June 1999, mostly heavier drinkers undergoing alcohol-reduction interventions",
+      "conditional_on": "Dose-response: greater percentage alcohol reduction produced greater BP reduction; effects were enhanced in participants with higher baseline blood pressure",
+      "paper": {
+        "doi": "10.1161/hy1101.093424",
+        "title": "Effects of alcohol reduction on blood pressure: a meta-analysis of randomized controlled trials",
+        "year": 2001,
+        "design": "meta-analysis of RCTs",
+        "n": 2234
+      },
+      "verbatim": "Overall, alcohol reduction was associated with a significant reduction in mean (95% confidence interval) systolic and diastolic blood pressures of -3.31 mm Hg (-2.52 to -4.10 mm Hg) and -2.04 mm Hg (-1.49 to -2.58 mm Hg), respectively. A dose-response relationship was observed between mean percentage of alcohol reduction and mean blood pressure reduction.",
+      "key_results": "Effects of the intervention were enhanced in those with higher baseline blood pressure, mirroring the pattern seen for exercise and DASH interventions above (bigger benefit for those who need it most). The authors recommend alcohol reduction as a component of lifestyle modification for hypertension prevention and treatment among heavy drinkers specifically, not the general population.",
+      "figure": null,
+      "caveats": "Trials predate June 1999 and were conducted mostly in heavier drinkers undergoing deliberate reduction; effect in light/moderate habitual drinkers reducing further is less established. Framed here as 'alcohol reduction lowers BP', which is logically equivalent to 'alcohol intake raises BP' for the same population and dose-response relationship."
+    },
+    {
+      "behavior_id": "added_sugar",
+      "marker_id": "blood_pressure",
+      "direction": "+",
+      "effect": "Higher vs lower sugar intake raised systolic BP by 6.9 mmHg (95% CI 3.4 to 10.3) and diastolic BP by 5.6 mmHg (95% CI 2.5 to 8.8) in trials lasting 8 weeks or more",
+      "effect_normalized": 6.9,
+      "normalization_method": "MD (mmHg), original units retained",
+      "evidence_tier": "A",
+      "population": "12 RCTs reporting blood pressure outcomes, out of 39 trials total in the review; minimum trial duration 2 weeks, effect reported specifically for trials >=8 weeks",
+      "conditional_on": "Effect on blood pressure was only seen in trials of 8 weeks or longer duration; effect on lipids was most marked in studies designed to hold energy balance constant (no weight change)",
+      "paper": {
+        "doi": "10.3945/ajcn.113.081521",
+        "title": "Dietary sugars and cardiometabolic risk: systematic review and meta-analyses of randomized controlled trials of the effects on blood pressure and lipids",
+        "year": 2014,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "The effect of sugar intake on blood pressure was greatest in trials >=8 wk in duration [MD: 6.9 mm Hg (95% CI: 3.4, 10.3 mm Hg; P < 0.001) for systolic blood pressure and 5.6 mm Hg (95% CI: 2.5, 8.8 mm Hg; P = 0.0005) for diastolic blood pressure].",
+      "key_results": "The same review found higher sugar intake raised triglycerides (MD 0.11 mmol/L, P<0.0001), total cholesterol (MD 0.16 mmol/L, P<0.0001), LDL cholesterol (MD 0.12 mmol/L, P=0.0001) and even HDL cholesterol slightly (MD 0.02 mmol/L, P=0.03). The relation between sugar and lipids was independent of body-weight change in most instances (explaining <15% of between-study heterogeneity), arguing against 'it's just the calories' as a full explanation.",
+      "figure": null,
+      "caveats": "Only 12 of 39 total trials reported blood pressure specifically, a smaller subset than for lipid outcomes; blood pressure effect required longer trial duration (>=8 weeks) to manifest, so shorter feeding studies may show no effect."
+    },
+    {
+      "behavior_id": "omega3_ala",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "ALA supplementation reduced systolic blood pressure by an SMD of -0.37 mmHg (95% CI -0.66 to -0.08); diastolic blood pressure was not significantly affected",
+      "effect_normalized": -0.37,
+      "normalization_method": "SMD, units as reported (mmHg) by source",
+      "evidence_tier": "A",
+      "population": "1,183 participants with obesity or overweight across 19 RCTs",
+      "conditional_on": "Studied specifically in adults with obesity or overweight; subgroup analysis showed a more prominent effect at ALA doses >=3 g/day from flaxseed and flaxseed oil",
+      "paper": {
+        "doi": "10.1016/j.advnut.2023.09.010",
+        "title": "Effect of Alpha-Linolenic Acid Supplementation on Cardiovascular Disease Risk Profile in Individuals with Obesity or Overweight: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 1183
+      },
+      "verbatim": "Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration (standardized mean difference [SMD] = -0.38 mg/L; 95% confidence interval [CI]: -0.72, -0.04), tumor necrosis factor-alpha concentration (SMD = -0.45 pg/mL; 95% CI: -0.73, -0.17), triglyceride in serum (SMD = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure (SMD = -0.37 mm Hg; 95% CI: -0.66, -0.08); but led to a significant increase in low-density lipoprotein cholesterol concentrations (SMD = 1.32 mg/dL; 95% CI: 0.05, 2.59).",
+      "key_results": "ALA supplementation had no significant effect on interleukin-6, diastolic blood pressure, total cholesterol, or HDL cholesterol (all P>=0.05). Notably ALA simultaneously lowered triglycerides and raised LDL cholesterol in the same population, an internal divergence worth flagging when comparing to marine omega-3 (EPA/DHA), which shows a cleaner triglyceride-lowering profile without the LDL increase in other reviews.",
+      "figure": null,
+      "caveats": "Population restricted to overweight/obese adults; the paper labels several results as 'SMD' but reports them in original units (mg/L, pg/mL, mg/dL, mmHg) rather than as a unitless standardized value, an apparent labeling inconsistency in the source abstract that is preserved here verbatim rather than corrected."
+    },
+    {
+      "behavior_id": "saturated_fat_reduction",
+      "marker_id": "blood_pressure",
+      "direction": null,
+      "effect": "Little or no effect of reducing saturated fat intake on blood pressure",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no pooled mean difference given for blood pressure specifically",
+      "evidence_tier": "A",
+      "population": "56,675 participants across 15 RCTs (16 comparisons); primary and secondary CVD prevention populations, intervention duration >=24 months",
+      "conditional_on": "Reduction in saturated fat sustained for at least 2 years, replaced with carbohydrate, polyunsaturated fat, monounsaturated fat, or protein",
+      "paper": {
+        "doi": "10.1002/14651858.CD011737.pub3",
+        "title": "Reduction in saturated fat intake for cardiovascular disease",
+        "year": 2020,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 56675
+      },
+      "verbatim": "There was little or no effect on cancer mortality, cancer diagnoses, diabetes diagnosis, HDL cholesterol, serum triglycerides or blood pressure, and small reductions in weight, serum total cholesterol, LDL cholesterol and BMI.",
+      "key_results": "The same review found reducing saturated fat intake reduced combined cardiovascular events by 17% (RR 0.83, 95% CI 0.70-0.98, moderate-quality evidence) despite the null effect on blood pressure, triglycerides and HDL - illustrating that a marker-level null result does not imply a null clinical outcome. Number needed to treat was 56 in primary prevention and 53 in secondary prevention trials over about 4 years. There was little or no effect on all-cause mortality (RR 0.96) or cardiovascular mortality (RR 0.95).",
+      "figure": null,
+      "caveats": "The cardiovascular-event benefit despite null marker-level effects on BP/triglycerides suggests the CVD-event reduction is likely driven by the LDL/total-cholesterol reduction (and possibly mechanisms not captured by these markers), not by blood pressure or triglyceride change."
+    },
+    {
+      "behavior_id": "oat_beta_glucan",
+      "marker_id": "ldl_cholesterol",
+      "direction": "-",
+      "effect": "A median dose of 3.5 g/day oat beta-glucan lowered LDL cholesterol by 0.19 mmol/L (95% CI -0.23 to -0.14), non-HDL cholesterol by 0.20 mmol/L, and apoB by 0.03 g/L",
+      "effect_normalized": -0.19,
+      "normalization_method": "mean difference (mmol/L), original units retained",
+      "evidence_tier": "A",
+      "population": "3,974 participants across 58 RCTs of >=3 weeks follow-up",
+      "conditional_on": "Dose-dependent; considerable unexplained heterogeneity in the LDL analysis (I2=79%) and non-HDL analysis (I2=99%), so individual response likely varies substantially by baseline diet and lipid status",
+      "paper": {
+        "doi": "10.1017/S000711451600341X",
+        "title": "The effect of oat beta-glucan on LDL-cholesterol, non-HDL-cholesterol and apoB for CVD risk reduction: a systematic review and meta-analysis of randomised-controlled trials",
+        "year": 2016,
+        "design": "meta-analysis of RCTs",
+        "n": 3974
+      },
+      "verbatim": "A median dose of 3.5 g/d of oat beta-glucan significantly lowered LDL-cholesterol (-0.19; 95 % CI -0.23, -0.14 mmol/l, P<0.00001), non-HDL-cholesterol (-0.20; 95 % CI -0.26, -0.15 mmol/l, P<0.00001) and apoB (-0.03; 95 % CI -0.05, -0.02 g/l, P<0.0001) compared with control interventions.",
+      "key_results": "58 trials pooled is a large evidence base for a dietary-fibre intervention, giving this finding a solid tier-A footing. The consistent direction across LDL, non-HDL, and apoB (a more precise marker of atherogenic particle number) strengthens confidence that this reflects a genuine lipid-lowering effect rather than a single-marker artifact.",
+      "figure": null,
+      "caveats": "Considerable unexplained heterogeneity (I2=79-99%) across included trials means the pooled point estimate should be read with a wide plausible range of individual response, not as a fixed expected effect."
+    },
+    {
+      "behavior_id": "plant_sterols",
+      "marker_id": "ldl_cholesterol",
+      "direction": "-",
+      "effect": "Plant-sterol-enriched foods reduced LDL cholesterol by an average of 0.33 mmol/L (8.5%) and total cholesterol by 0.36 mmol/L (5.9%) at an average dose of 1.6 g/day",
+      "effect_normalized": -0.33,
+      "normalization_method": "pooled mean net change (mmol/L), original units retained",
+      "evidence_tier": "A",
+      "population": "2,084 subjects across 41 studies (55 strata)",
+      "conditional_on": "Effect size scales with plant sterol dose; at the highest dose category (2.0-3.2 g/day) plasma plant sterol concentrations rose further, implying larger LDL reductions plausible at higher doses within the studied range",
+      "paper": {
+        "doi": "10.1016/j.atherosclerosis.2013.08.012",
+        "title": "Consumption of plant sterol-enriched foods and effects on plasma plant sterol concentrations--a meta-analysis of randomized controlled studies",
+        "year": 2013,
+        "design": "meta-analysis of RCTs",
+        "n": 2084
+      },
+      "verbatim": "The average dose of PS from enriched foods was 1.6 g/d (range: 0.3-3.2 g/d). Total- and LDL-cholesterol were reduced by on average 0.36 mmol/L (5.9%) and 0.33 mmol/L (8.5%), respectively.",
+      "key_results": "Plasma sitosterol and campesterol (the plant sterols themselves) rose 31% and 37% respectively with supplementation, confirming intake compliance and absorption, but the paper notes total circulating plant sterols remain below 1% of total blood sterols even at the highest intake category - reassuring on the theoretical concern about plant-sterol accumulation. A companion 2016 meta-analysis by an overlapping author group (Rocha et al., DOI 10.1016/j.atherosclerosis.2016.01.035) found plant sterols did NOT significantly reduce CRP (absolute change -0.10 mg/L, 95% CI -0.26 to 0.05) despite reliably lowering LDL, showing the LDL-lowering and anti-inflammatory effects are dissociable.",
+      "figure": null,
+      "caveats": "Two of the co-authors are employed by Unilever, a manufacturer of plant-sterol-enriched food products (margarines), a financial conflict of interest relevant to interpreting a positive finding for the product category."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "ldl_cholesterol",
+      "direction": "-",
+      "effect": "Mediterranean diet interventions reduced LDL cholesterol by a mean difference of 0.10 mmol/L (95% CI -0.19 to 0.00) compared with control diets",
+      "effect_normalized": -0.1,
+      "normalization_method": "MD (mmol/L), original units retained",
+      "evidence_tier": "A",
+      "population": "1,337 participants across 9 RCTs, adults at increased risk of type 2 diabetes and cardiovascular disease",
+      "conditional_on": "Studied in adults already at increased T2D/CVD risk, not a general healthy population; confidence interval borders zero (upper bound 0.00), a marginal effect",
+      "paper": {
+        "doi": "10.1016/j.numecd.2025.104433",
+        "title": "Mediterranean diet, gut microbiota, and type 2 diabetes: A systematic review and meta-analysis of intervention trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 1337
+      },
+      "verbatim": "Compared with control diets, MedD interventions significantly reduced glycated hemoglobin (HbA1c) (mean difference -0.18, 95 % CI = -0.35, -0.01), LDL cholesterol (-0.10, 95 % CI = -0.19, -0.00), and triglycerides -0.20, 95 % CI = -0.28, -0.12).",
+      "key_results": "No significant effects were observed on fasting glucose, insulin, HOMA-IR, total cholesterol, or HDL cholesterol in the same trials, so the Mediterranean diet's measurable benefit in this pooled analysis is concentrated in HbA1c, LDL, and triglycerides rather than insulin resistance markers directly. A qualitative gut-microbiota analysis in the same review found increased alpha-diversity and enrichment of Akkermansia muciniphila and Roseburia spp., proposed mechanistic mediators.",
+      "figure": null,
+      "caveats": "The LDL confidence interval upper bound touches 0.00, making this one of the weaker significant findings in the set; effect measured in an at-risk (not general healthy) population."
+    },
+    {
+      "behavior_id": "saturated_fat_reduction",
+      "marker_id": "ldl_cholesterol",
+      "direction": "-",
+      "effect": "Foods high in unsaturated and low in saturated/trans fatty acids caused at least a moderate reduction in LDL cholesterol, defined as 0.20-0.40 mmol/L",
+      "effect_normalized": -0.2,
+      "normalization_method": "categorical effect-size band (mmol/L) as defined by source review, lower bound reported",
+      "evidence_tier": "A",
+      "population": "Synthesis of 37 guidelines, 108 systematic reviews, and 20 RCTs (RCTs used specifically for coffee), searched through June 2019",
+      "conditional_on": "Applies to food-level substitution (e.g., rapeseed/canola oil) rated as 'high evidence' by GRADE; contrasts with 'sugar caused a small increase' and 'unfiltered coffee caused a moderate to large increase' identified in the same review",
+      "paper": {
+        "doi": "10.1016/j.numecd.2020.12.032",
+        "title": "The effects of foods on LDL cholesterol levels: A systematic review of the accumulated evidence from systematic reviews and meta-analyses of randomized controlled trials",
+        "year": 2021,
+        "design": "systematic review of systematic reviews and meta-analyses (evidence synthesis, GRADE-rated)",
+        "n": null
+      },
+      "verbatim": "With high evidence, foods high in unsaturated and low in saturated and trans fatty acids (e.g. rapeseed/canola oil), with added plant sterols/stanols, and high in soluble fiber (e.g. oats, barley, and psyllium) caused at least moderate (i.e. 0.20-0.40 mmol/L) reductions in LDL cholesterol.",
+      "key_results": "The same synthesis independently corroborates the plant-sterol and oat-beta-glucan edges above by grouping them in the same 'high evidence, moderate-to-large reduction' band. It separately flags 'moderate evidence' for avocados and turmeric causing moderate-to-large reductions, and notes soy protein, tomatoes, flaxseed and almonds cause only small reductions - a useful ranking of food-level interventions by evidence strength and effect size.",
+      "figure": null,
+      "caveats": "This is a review-of-reviews (evidence synthesis) rather than a single meta-analysis with one pooled effect size; the 0.20-0.40 mmol/L figure is the review's own defined category boundary for 'moderate' rather than a single pooled point estimate specific to saturated-fat swaps alone."
+    },
+    {
+      "behavior_id": "added_sugar",
+      "marker_id": "ldl_cholesterol",
+      "direction": "+",
+      "effect": "Higher vs lower sugar intake raised LDL cholesterol by a mean difference of 0.12 mmol/L (95% CI 0.05 to 0.19)",
+      "effect_normalized": 0.12,
+      "normalization_method": "MD (mmol/L), original units retained",
+      "evidence_tier": "A",
+      "population": "37 of 39 trials reported lipid outcomes; adult subjects, trial duration >=2 weeks",
+      "conditional_on": "The relation between sugar and LDL was independent of body-weight change in most instances (explained <15% of heterogeneity, I2=36-75%); most marked in trials designed to hold energy balance constant",
+      "paper": {
+        "doi": "10.3945/ajcn.113.081521",
+        "title": "Dietary sugars and cardiometabolic risk: systematic review and meta-analyses of randomized controlled trials of the effects on blood pressure and lipids",
+        "year": 2014,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Higher compared with lower sugar intakes significantly raised triglyceride concentrations [mean difference (MD): 0.11 mmol/L; 95% CI: 0.07, 0.15 mmol/L; P < 0.0001], total cholesterol (MD: 0.16 mmol/L; 95% CI: 0.10, 0.24 mmol/L; P < 0.0001), low-density lipoprotein cholesterol (0.12 mmol/L; 95% CI: 0.05, 0.19 mmol/L; P = 0.0001), and high-density lipoprotein cholesterol (MD: 0.02 mmol/L; 95% CI: 0.00, 0.03 mmol/L; P = 0.03).",
+      "key_results": "All four lipid fractions moved in a direction consistent with worsened cardiometabolic risk except the small HDL increase, which is nominally 'favorable' in isolation but is dwarfed by the larger unfavorable LDL and triglyceride increases. The effect held even in energy-balanced designs, arguing the mechanism is not simply excess caloric intake.",
+      "figure": null,
+      "caveats": "39 trials were of variable duration (minimum 2 weeks); shorter feeding trials may understate longer-term dietary-pattern effects."
+    },
+    {
+      "behavior_id": "omega3_ala",
+      "marker_id": "ldl_cholesterol",
+      "direction": "+",
+      "effect": "ALA supplementation increased LDL cholesterol by an SMD of 1.32 mg/dL (95% CI 0.05 to 2.59) in overweight/obese adults",
+      "effect_normalized": 1.32,
+      "normalization_method": "SMD, units as reported (mg/dL) by source",
+      "evidence_tier": "A",
+      "population": "1,183 participants with obesity or overweight across 19 RCTs",
+      "conditional_on": "Occurs in the same population and trials where ALA simultaneously lowered triglycerides, C-reactive protein and systolic BP - i.e. the LDL increase and triglyceride decrease co-occur in the same subjects rather than being alternative findings",
+      "paper": {
+        "doi": "10.1016/j.advnut.2023.09.010",
+        "title": "Effect of Alpha-Linolenic Acid Supplementation on Cardiovascular Disease Risk Profile in Individuals with Obesity or Overweight: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 1183
+      },
+      "verbatim": "Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration...triglyceride in serum (standardized mean difference [SMD] = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure...but led to a significant increase in low-density lipoprotein cholesterol concentrations (SMD = 1.32 mg/dL; 95% CI: 0.05, 2.59).",
+      "key_results": "This directly contrasts with marine omega-3 (EPA/DHA), which lowers triglycerides without raising LDL in the metabolic-syndrome literature (see omega3_marine edge). The divergence suggests ALA and EPA/DHA should not be treated as interchangeable 'omega-3' for LDL purposes even though both lower triglycerides.",
+      "figure": null,
+      "caveats": "Confidence interval lower bound (0.05) sits just above the null, making this one of the more marginal significant findings; population restricted to overweight/obese adults."
+    },
+    {
+      "behavior_id": "coffee_unfiltered",
+      "marker_id": "ldl_cholesterol",
+      "direction": "+",
+      "effect": "Consumption of unfiltered but not filtered coffee increases serum total and LDL cholesterol in a dose-response manner; filtered coffee shows very little increase",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports statistical significance and direction (P<0.01 for dose-response trend) but does not state a pooled numeric effect size for LDL",
+      "evidence_tier": "A",
+      "population": "14 published trials identified via Medline search through December 1998",
+      "conditional_on": "Effect specific to unfiltered/boiled, caffeinated coffee; filtered coffee shows minimal effect; increases were greater in patients with pre-existing hyperlipidemia",
+      "paper": {
+        "doi": "10.1093/aje/153.4.353",
+        "title": "Coffee consumption and serum lipids: a meta-analysis of randomized controlled clinical trials",
+        "year": 2001,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "A dose-response relation between coffee consumption and both total cholesterol and LDL cholesterol was identified (p < 0.01). Increases in serum lipids were greater in studies of patients with hyperlipidemia and in trials of caffeinated or boiled coffee. Trials using filtered coffee demonstrated very little increase in serum cholesterol. Consumption of unfiltered, but not filtered, coffee increases serum levels of total and LDL cholesterol.",
+      "key_results": "The mechanism is attributed elsewhere in the literature to diterpenes (cafestol and kahweol) present in unfiltered brewing methods (French press, Turkish/boiled coffee, espresso to a lesser degree) that are largely removed by paper filtration. A separate systematic review (Penson et al. 2018, DOI 10.1080/10408398.2016.1272045) on coffee and lipoprotein(a) similarly found preparation method mattered: boiled-coffee consumers had higher median Lp(a) (13.0 mg/dL) than filtered-coffee consumers (7.9 mg/dL) in one cross-sectional study, consistent with the filtration mechanism.",
+      "figure": null,
+      "caveats": "No pooled numeric LDL effect size could be extracted from the available abstract text (the full-text PDF was not retrievable within the research budget); this edge is shipped as a qualitative, directionally-supported finding rather than a quantified one, per the rule that effect size need not be stated as a number when the source abstract does not provide one."
+    },
+    {
+      "behavior_id": "omega3_marine",
+      "marker_id": "triglycerides",
+      "direction": "-",
+      "effect": "High-dose (>2000 mg/day), long-term (>12 weeks) marine omega-3 supplementation reduced triglycerides by 56.78 mg/dL (+/-3.44); high-dose short-term (<=8 weeks) reduced them by 50.87 mg/dL (+/-3.04)",
+      "effect_normalized": -56.78,
+      "normalization_method": "mean change (mg/dL), original units retained",
+      "evidence_tier": "A",
+      "population": "~1,950 adults with metabolic syndrome or its components across 21 RCTs",
+      "conditional_on": "Effect scales with both dose (low <1000mg/d, medium 1000-2000mg/d, high >2000mg/d) and duration (short <=8wk, medium >8-12wk, long >12wk); largest reductions specifically in high-dose long-term and high-dose short-term groups",
+      "paper": {
+        "doi": "10.3390/nu17203279",
+        "title": "Marine-Based Omega-3 Fatty Acids and Metabolic Syndrome: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 1950
+      },
+      "verbatim": "Trials were categorized by dose-low (<1000 mg/day), medium (1000-2000 mg/day), and high (>2000 mg/day)-and duration: short-term (ST; <=8 weeks), medium-term (MT; >8-12 weeks), and long-term (LT; >12 weeks). For triglycerides, the largest reductions occurred in the high-dose LT (-56.78 mg/dL +/- 3.44) and ST (-50.873 mg/dL +/- 3.04) groups, and MT duration (-41.536 mg/dL +/- 4.12), showing that in high doses of omega-3, the beneficial effect of reducing TGs was more",
+      "key_results": "Meta-regression was used to estimate dose-duration effects specifically, giving more granular evidence than a single pooled estimate: the paper stratifies by three dose bands and three duration bands crossed against multiple metabolic syndrome components (triglycerides, HDL, fasting glucose, blood pressure, waist circumference, LDL, HOMA-IR, HbA1c). Publication bias was assessed with funnel plots and Egger's test for outcomes with >=3 studies.",
+      "figure": null,
+      "caveats": "The abstract sentence was truncated by the retrieval tool ('...was more' with the comparative completion not captured); the quoted verbatim is exactly what could be retrieved and the reported numbers are used as stated. Population restricted to adults with metabolic syndrome or its components, not the general population."
+    },
+    {
+      "behavior_id": "omega3_ala",
+      "marker_id": "triglycerides",
+      "direction": "-",
+      "effect": "ALA supplementation reduced serum triglycerides by an SMD of -4.41 mg/dL (95% CI -5.99 to -2.82) in overweight/obese adults",
+      "effect_normalized": -4.41,
+      "normalization_method": "SMD, units as reported (mg/dL) by source",
+      "evidence_tier": "A",
+      "population": "1,183 participants with obesity or overweight across 19 RCTs",
+      "conditional_on": "Subgroup analysis showed more prominent effect at ALA doses >=3 g/day from flaxseed and flaxseed oil specifically",
+      "paper": {
+        "doi": "10.1016/j.advnut.2023.09.010",
+        "title": "Effect of Alpha-Linolenic Acid Supplementation on Cardiovascular Disease Risk Profile in Individuals with Obesity or Overweight: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 1183
+      },
+      "verbatim": "Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration (standardized mean difference [SMD] = -0.38 mg/L; 95% confidence interval [CI]: -0.72, -0.04), tumor necrosis factor-alpha concentration (SMD = -0.45 pg/mL; 95% CI: -0.73, -0.17), triglyceride in serum (SMD = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure (SMD = -0.37 mm Hg; 95% CI: -0.66, -0.08).",
+      "key_results": "ALA had no significant effect on total cholesterol or HDL cholesterol in the same trials, so its lipid signature is a triglyceride decrease paired with an LDL increase (see LDL edge) rather than a broad favorable shift across all lipid fractions.",
+      "figure": null,
+      "caveats": "Same population/paper as the ALA LDL and blood-pressure edges above; the source abstract's use of 'SMD' with original-unit labels (mg/dL) appears to be a labeling inconsistency, preserved verbatim rather than corrected."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "triglycerides",
+      "direction": "-",
+      "effect": "Mediterranean diet interventions reduced triglycerides by a mean difference of 0.20 mmol/L (95% CI -0.28 to -0.12) compared with control diets",
+      "effect_normalized": -0.2,
+      "normalization_method": "MD (mmol/L), original units retained",
+      "evidence_tier": "A",
+      "population": "1,337 participants across 9 RCTs, adults at increased risk of type 2 diabetes and cardiovascular disease",
+      "conditional_on": "Studied in adults already at increased T2D/CVD risk; this was the largest and most confident of the three significant findings in this paper (HbA1c, LDL, triglycerides)",
+      "paper": {
+        "doi": "10.1016/j.numecd.2025.104433",
+        "title": "Mediterranean diet, gut microbiota, and type 2 diabetes: A systematic review and meta-analysis of intervention trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 1337
+      },
+      "verbatim": "Compared with control diets, MedD interventions significantly reduced glycated hemoglobin (HbA1c) (mean difference -0.18, 95 % CI = -0.35, -0.01), LDL cholesterol (-0.10, 95 % CI = -0.19, -0.00), and triglycerides -0.20, 95 % CI = -0.28, -0.12).",
+      "key_results": "This was the tightest and most confidently bounded of the three significant findings (confidence interval does not approach zero, unlike the LDL finding). No significant effect on HOMA-IR was found in the same trials despite the triglyceride and HbA1c improvements, again showing dissociation between markers within one intervention.",
+      "figure": null,
+      "caveats": "9 RCTs, 1337 participants is a moderate evidence base; population is at elevated cardiometabolic risk rather than general healthy adults."
+    },
+    {
+      "behavior_id": "added_sugar",
+      "marker_id": "triglycerides",
+      "direction": "+",
+      "effect": "Higher vs lower sugar intake raised triglyceride concentrations by a mean difference of 0.11 mmol/L (95% CI 0.07 to 0.15)",
+      "effect_normalized": 0.11,
+      "normalization_method": "MD (mmol/L), original units retained",
+      "evidence_tier": "A",
+      "population": "37 of 39 trials reported lipid outcomes; adults, trial duration >=2 weeks",
+      "conditional_on": "Most marked in studies designed to hold energy balance constant and where no weight change was reported, i.e. not simply an artifact of excess caloric intake causing weight gain",
+      "paper": {
+        "doi": "10.3945/ajcn.113.081521",
+        "title": "Dietary sugars and cardiometabolic risk: systematic review and meta-analyses of randomized controlled trials of the effects on blood pressure and lipids",
+        "year": 2014,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Higher compared with lower sugar intakes significantly raised triglyceride concentrations [mean difference (MD): 0.11 mmol/L; 95% CI: 0.07, 0.15 mmol/L; P < 0.0001]",
+      "key_results": "This is the most tightly bounded (narrowest CI, smallest P value) of the four lipid findings in this paper, suggesting the triglyceride effect of sugar is the most robust of the lipid outcomes studied. Potential explanatory factors including weight change explained less than 15% of the heterogeneity between studies (I2=36-75%).",
+      "figure": null,
+      "caveats": "39 trials of variable duration (minimum 2 weeks) were pooled; longer-term free-living dietary patterns may differ from controlled feeding trials."
+    },
+    {
+      "behavior_id": "saturated_fat_reduction",
+      "marker_id": "triglycerides",
+      "direction": null,
+      "effect": "Little or no effect of reducing saturated fat intake on serum triglycerides",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no pooled mean difference given for triglycerides specifically",
+      "evidence_tier": "A",
+      "population": "56,675 participants across 15 RCTs (16 comparisons); primary and secondary CVD prevention populations, intervention duration >=24 months",
+      "conditional_on": "Reduction sustained for at least 2 years, replaced with carbohydrate, PUFA, MUFA or protein",
+      "paper": {
+        "doi": "10.1002/14651858.CD011737.pub3",
+        "title": "Reduction in saturated fat intake for cardiovascular disease",
+        "year": 2020,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 56675
+      },
+      "verbatim": "There was little or no effect on cancer mortality, cancer diagnoses, diabetes diagnosis, HDL cholesterol, serum triglycerides or blood pressure, and small reductions in weight, serum total cholesterol, LDL cholesterol and BMI.",
+      "key_results": "Contrasts directly with the added-sugar edge above, where raising sugar (not fat) intake DID raise triglycerides significantly - suggesting triglycerides in this population respond more to carbohydrate/sugar intake than to saturated fat intake specifically, a distinction obscured if 'diet' is treated as a single undifferentiated behavior.",
+      "figure": null,
+      "caveats": "Long-duration trials (>=24 months) with a variety of replacement macronutrients pooled together; a null pooled effect does not rule out effects specific to one particular replacement macronutrient (e.g., replacing saturated fat with refined carbohydrate specifically)."
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "triglycerides",
+      "direction": "+",
+      "effect": "Triglyceride levels were 0.50 mmol/L (95% CI 0.49 to 0.50) higher in smokers than non-smokers",
+      "effect_normalized": 0.5,
+      "normalization_method": "pooled mean difference (mmol/L), original units retained",
+      "evidence_tier": "C",
+      "population": "169 studies comparing triglyceride levels in smokers vs non-smokers, mostly cross-sectional comparisons",
+      "conditional_on": "Cross-sectional comparison (smokers vs non-smokers at one point in time), not an interventional/causal design; 'the effect differed widely across studies' per the source",
+      "paper": {
+        "doi": "10.1016/j.toxrep.2023.03.001",
+        "title": "Meta-analysis of the effects of smoking and smoking cessation on triglyceride levels",
+        "year": 2023,
+        "design": "meta-analysis of cross-sectional/observational comparisons (not RCTs)",
+        "n": null
+      },
+      "verbatim": "We identified 169 and 21 studies evaluating the effects of smoking and smoking cessation, respectively, on triglyceride levels...Triglyceride levels were 0.50 mmol/L (95% confidence interval: 0.49-0.50 mmol/L) higher in smokers than non-smokers, but the effect differed widely across studies.",
+      "key_results": "The extremely narrow confidence interval (0.49-0.50) relative to '169 studies' with widely varying individual effects is notable and likely reflects the very large combined sample size across 169 cross-sectional comparisons rather than true precision of a causal effect estimate, since cross-sectional smoker/non-smoker differences are confounded by diet, alcohol use, socioeconomic status and other lifestyle factors that were not controlled in this pooling.",
+      "figure": null,
+      "caveats": "All authors are employed by Philip Morris International (a tobacco company) - a major conflict of interest for a paper studying smoking's health effects, disclosed in the paper itself. Design is cross-sectional comparison, not RCT or even prospective cohort, so causality (vs confounding by other smoker lifestyle factors) cannot be established from this evidence alone; evidence tier downgraded to C accordingly despite the paper describing itself as a 'meta-analysis'."
+    },
+    {
+      "behavior_id": "smoking_cessation",
+      "marker_id": "triglycerides",
+      "direction": null,
+      "effect": "No statistically significant effect of smoking cessation on triglyceride levels at 6 weeks, 2 months, 3 months, or 1 year after quitting, except a small significant decrease at 1 month",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - series of null results reported as mean differences at each timepoint (numbers in verbatim)",
+      "evidence_tier": "B",
+      "population": "21 studies evaluating the effect of smoking cessation on triglyceride levels in people who quit smoking",
+      "conditional_on": "Timepoint-dependent: null at 6 weeks, 2 months, 3 months, 1 year; only the 1-month timepoint showed a small significant decrease",
+      "paper": {
+        "doi": "10.1016/j.toxrep.2023.03.001",
+        "title": "Meta-analysis of the effects of smoking and smoking cessation on triglyceride levels",
+        "year": 2023,
+        "design": "meta-analysis of pre/post cessation studies",
+        "n": null
+      },
+      "verbatim": "No statistically significant effect was observed on triglyceride levels between baseline and 6 weeks (mean difference [MD] = 0.02 [-0.09, 0.12] mmol/L), 2 months (MD = 0.03 [-0.21, 0.27] mmol/L), 3 months (MD = 0.08 [-0.03, 0.21] mmol/L), or 1 year (MD = 0.04 [-0.06, 0.14] mmol/L) after quitting. However, a slightly significant decrease in triglyceride levels was observed at 1 month after cessation (MD = -0.15 [-0.15, -0.01] mmol/L).",
+      "key_results": "This is a genuinely puzzling and important null result given the cross-sectional finding above that smokers have 0.50 mmol/L higher triglycerides than non-smokers: if smoking itself raised triglycerides via a causal, reversible mechanism, cessation should be expected to lower them over time, but this meta-analysis of pre/post cessation studies finds essentially no sustained change. The authors' own framing is that this 'provides a basis for understanding' the discrepancy, without resolving it.",
+      "figure": null,
+      "caveats": "Same Philip Morris International-funded paper as the smoking-triglycerides edge; a tobacco-industry-funded paper concluding that quitting smoking does not improve triglycerides is a finding that should be read with particular scrutiny for motivated framing, even though the numbers themselves (pre/post within-subject design) are less confounded than the cross-sectional smoker-vs-non-smoker comparison above."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "hba1c_fasting_glucose",
+      "direction": "-",
+      "effect": "Mediterranean diet interventions reduced HbA1c by a mean difference of 0.18 percentage points (95% CI -0.35 to -0.01) compared with control diets",
+      "effect_normalized": -0.18,
+      "normalization_method": "MD (percentage points), original units retained",
+      "evidence_tier": "A",
+      "population": "1,337 participants across 9 RCTs, adults at increased risk of type 2 diabetes and cardiovascular disease",
+      "conditional_on": "Confidence interval upper bound (-0.01) sits very close to the null, the most marginal of the three significant findings in this paper; no significant effect on fasting glucose, insulin or HOMA-IR in the same trials",
+      "paper": {
+        "doi": "10.1016/j.numecd.2025.104433",
+        "title": "Mediterranean diet, gut microbiota, and type 2 diabetes: A systematic review and meta-analysis of intervention trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 1337
+      },
+      "verbatim": "Compared with control diets, MedD interventions significantly reduced glycated hemoglobin (HbA1c) (mean difference -0.18, 95 % CI = -0.35, -0.01), LDL cholesterol (-0.10, 95 % CI = -0.19, -0.00), and triglycerides -0.20, 95 % CI = -0.28, -0.12).",
+      "key_results": "No significant effects were observed on fasting glucose, insulin, or HOMA-IR in the same set of trials, so the HbA1c benefit (which reflects average glucose over ~3 months) did not translate into a detectable improvement in fasting glucose or insulin resistance markers measured at a single point in time.",
+      "figure": null,
+      "caveats": "Confidence interval upper bound is very close to zero (-0.01), making this the most marginal of the three significant lipid/glycemic findings from this paper."
+    },
+    {
+      "behavior_id": "weight_loss",
+      "marker_id": "hba1c_fasting_glucose",
+      "direction": "-",
+      "effect": "Bariatric surgery produced a weighted mean difference of 1.1 percentage points greater HbA1c reduction (95% CI 0.6 to 1.6) and 24.9 mg/dL greater fasting plasma glucose reduction (95% CI 15.9 to 33.9) than conventional medical therapy",
+      "effect_normalized": -1.1,
+      "normalization_method": "WMD (percentage points HbA1c), original units retained",
+      "evidence_tier": "C",
+      "population": "6,131 patients with type 2 diabetes across 16 studies (5 RCTs, remainder observational), mean 17.3-month follow-up; 3,076 bariatric surgery vs 3,055 conventional therapy",
+      "conditional_on": "Surgical (large-magnitude) weight loss specifically, in patients with diagnosed type 2 diabetes and mean BMI ~40 (surgery arm) vs ~39 (conventional arm); not generalizable to modest lifestyle-driven weight loss",
+      "paper": {
+        "doi": "10.1007/s11695-013-1160-3",
+        "title": "Diabetes and weight in comparative studies of bariatric surgery vs conventional medical therapy: a systematic review and meta-analysis",
+        "year": 2014,
+        "design": "systematic review and meta-analysis of RCTs and observational studies (mixed design)",
+        "n": 6131
+      },
+      "verbatim": "In bariatric surgery vs conventional therapy groups, the mean 17.3 +/- 5.7 month BMI WMD was 8.3 (7.0, 9.6; p < 0.001; I(2) = 91.8), HbA(1C) was 1.1 (0.6, 1.6; p < 0.001; I(2) = 91.9), and FPG, 24.9 (15.9, 33.9; p < 0.001; I(2) = 84.8), with significant differences favoring surgery.",
+      "key_results": "T2DM remission rate was 63.5% with surgery vs 15.6% with conventional therapy (p<0.001); pooled odds ratio for remission ranged 9.8-15.8 depending on statistical method (Peto vs inverse variance). 94% of included studies showed a significant advantage for surgery. This is the largest-magnitude weight-loss-to-glycemic-marker effect in this dataset, consistent with the much larger weight loss achieved surgically (mean BMI WMD 8.3) compared with the dietary/lifestyle weight-loss literature.",
+      "figure": null,
+      "caveats": "Only 5 of 16 included studies were RCTs; the rest were observational comparisons, so residual confounding by indication (patients selected for or choosing surgery may differ systematically from those on conventional therapy) cannot be excluded. Very high heterogeneity (I2 = 84.8-91.9%) across all three pooled outcomes. Evidence tier downgraded to C to reflect the mixed RCT/observational design despite large n."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "insulin_sensitivity_homa_ir",
+      "direction": "-",
+      "effect": "Endurance training reduced the Homeostatic Model Assessment (HOMA) index of insulin resistance by 0.31 units (P<0.01)",
+      "effect_normalized": -0.31,
+      "normalization_method": "pooled mean change (HOMA-IR units), original units retained",
+      "evidence_tier": "A",
+      "population": "Pooled trials from the author's meta-analysis of 72 endurance-training RCTs, 105 study groups, healthy sedentary normotensive/hypertensive adults",
+      "conditional_on": "Reported alongside concurrent reductions in bodyweight (1.2 kg), waist circumference (2.8 cm) and body fat (1.4%) in the same pooled trials, so the HOMA-IR improvement is not necessarily independent of body-composition change",
+      "paper": {
+        "doi": "10.1111/j.1440-1681.2006.04453.x",
+        "title": "Exercise is good for your blood pressure: effects of endurance training and resistance training",
+        "year": 2006,
+        "design": "narrative summary of the author's own meta-analysis of RCTs (72 trials)",
+        "n": null
+      },
+      "verbatim": "Bodyweight decreased by 1.2 kg (P < 0.001), waist circumference by 2.8 cm (P < 0.001), percentage body fat by 1.4% (P < 0.001) and the Homeostatic Model Assessment (HOMA) index of insulin resistance by 0.31 units (P < 0.01). High-density lipoprotein-cholesterol increased by 0.032 mmol/L (P < 0.05).",
+      "key_results": "This same pooled analysis is the source of the aerobic-exercise blood-pressure edge above (-3.0/-2.4 mmHg), so the two markers (BP and HOMA-IR) improve together within the same 72-trial evidence base rather than being drawn from separate literatures - a genuine convergence, not a coincidence of citation.",
+      "figure": null,
+      "caveats": "As with the BP edge from the same source, this is a 2006 narrative review citing the author's own earlier meta-analysis rather than a fresh, independently-reproduced pooled estimate; concurrent weight loss in the same trials means the HOMA-IR effect may be partly mediated by body-composition change rather than an exercise effect independent of weight."
+    },
+    {
+      "behavior_id": "sleep_restriction",
+      "marker_id": "insulin_sensitivity_homa_ir",
+      "direction": "+",
+      "effect": "A single night of partial sleep restriction (4 hours vs ~7.5 hours) decreased the glucose infusion rate during a hyperinsulinemic euglycemic clamp by approximately 25% (P=0.001), reflecting decreased peripheral insulin sensitivity",
+      "effect_normalized": null,
+      "normalization_method": "percentage change in glucose infusion rate (clamp-derived measure), as reported",
+      "evidence_tier": "B",
+      "population": "9 healthy subjects (5 men, 4 women), within-subject crossover design",
+      "conditional_on": "Effect isolated to a single night of 4-hour sleep restriction under tightly controlled polysomnography and clamp conditions in healthy subjects; a companion study by the same group found a similar ~21% decrease in patients with type 1 diabetes (DOI 10.2337/dc09-2317)",
+      "paper": {
+        "doi": "10.1210/jc.2009-2430",
+        "title": "A single night of partial sleep deprivation induces insulin resistance in multiple metabolic pathways in healthy subjects",
+        "year": 2010,
+        "design": "randomized crossover physiological study (hyperinsulinemic-euglycemic clamp)",
+        "n": 9
+      },
+      "verbatim": "Sleep restriction decreased the glucose disposal rate during the clamp (32.5 +/- 3.6 vs. 40.7 +/- 5.1 micromol x kg lean body mass(-1) x min(-1), P = 0009), reflecting decreased peripheral insulin sensitivity. Accordingly, sleep restriction decreased the rate of glucose infusion by approximately 25% (P = 0.001).",
+      "key_results": "Sleep restriction also increased endogenous glucose production during the clamp (4.4 vs 3.6 micromol/kg lean body mass/min, P=0.017), indicating hepatic (not just peripheral) insulin resistance, and raised plasma nonesterified fatty acid levels during the clamp (68 vs 57 micromol/L, P=0.005). This means a single bad night of sleep produces a measurable, gold-standard-confirmed reduction in insulin sensitivity across both liver and peripheral tissue, not merely a subjective or surrogate-marker effect.",
+      "figure": null,
+      "caveats": "Very small sample (n=9), though the crossover design with each subject as their own control and the hyperinsulinemic-euglycemic clamp (the gold-standard insulin-sensitivity measure) partially offsets the small n. This is a single acute-exposure RCT, not a meta-analysis; a separate meta-analysis of 21 chronic sleep-restriction RCTs (Sondrup et al. 2022, DOI 10.1016/j.smrv.2022.101594) corroborates the direction (reduced insulin sensitivity by OGTT/IVGTT and HOMA-IR) but did not report a quantified pooled effect size in its abstract, so that corroborating paper could not itself be shipped as a quantified edge."
+    },
+    {
+      "behavior_id": "aerobic_exercise",
+      "marker_id": "vo2max",
+      "direction": "+",
+      "effect": "Endurance training increased VO2max by 4.9 mL/kg/min (95% confidence limits +/-1.4) compared with no-exercise controls",
+      "effect_normalized": 4.9,
+      "normalization_method": "pooled mean change (mL/kg/min), original units retained",
+      "evidence_tier": "A",
+      "population": "723 participants, healthy adults aged 18-45 years, mean initial fitness 40.8 mL/kg/min; 28 controlled trials, training duration >=2 weeks",
+      "conditional_on": "A further moderate additional increase was seen in younger subjects (+2.4 mL/kg/min) and longer interventions (+2.2 mL/kg/min), and a small additional improvement in subjects with lower baseline fitness (+1.4 mL/kg/min)",
+      "paper": {
+        "doi": "10.1007/s40279-015-0365-0",
+        "title": "Effectiveness of High-Intensity Interval Training (HIT) and Continuous Endurance Training for VO2max Improvements: A Systematic Review and Meta-Analysis of Controlled Trials",
+        "year": 2015,
+        "design": "meta-analysis of controlled trials",
+        "n": 723
+      },
+      "verbatim": "The meta-analysed effect of endurance training on VO2max was a possibly large beneficial effect (4.9 mL.kg(-1).min(-1); 95 % confidence limits +/-1.4 mL.kg(-1).min(-1)), when compared with no-exercise controls.",
+      "key_results": "The magnitude-based inference framework used here classifies the effect as 'possibly large' relative to between-subject SDs for baseline VO2max, a more conservative and context-specific interpretation than a raw p-value would give. Longer intervention duration and younger age both independently boosted the effect further, while lower baseline fitness gave a smaller additional boost, suggesting diminishing incremental benefit for already-fit individuals from continuous endurance training specifically.",
+      "figure": null,
+      "caveats": "Population restricted to healthy adults aged 18-45; effect size in older or clinical populations not established by this analysis. Uses a magnitude-based inference statistical framework rather than conventional null-hypothesis significance testing, which is less commonly used and somewhat more subjective in threshold-setting than standard CI-based significance."
+    },
+    {
+      "behavior_id": "hiit",
+      "marker_id": "vo2max",
+      "direction": "+",
+      "effect": "HIIT increased VO2max by 5.5 mL/kg/min (95% confidence limits +/-1.2) compared with no-exercise controls, and by a further 1.2 mL/kg/min compared with continuous endurance training",
+      "effect_normalized": 5.5,
+      "normalization_method": "pooled mean change (mL/kg/min), original units retained",
+      "evidence_tier": "A",
+      "population": "723 participants, healthy adults aged 18-45 years; 28 controlled trials, training duration >=2 weeks",
+      "conditional_on": "Greater additional increase for subjects with lower baseline fitness (+3.2 mL/kg/min) and longer interventions (+3.0 mL/kg/min); when compared head-to-head with continuous endurance training, HIIT's advantage was larger for typically longer HIIT repetitions, older subjects, longer interventions, and greater work/rest ratio",
+      "paper": {
+        "doi": "10.1007/s40279-015-0365-0",
+        "title": "Effectiveness of High-Intensity Interval Training (HIT) and Continuous Endurance Training for VO2max Improvements: A Systematic Review and Meta-Analysis of Controlled Trials",
+        "year": 2015,
+        "design": "meta-analysis of controlled trials",
+        "n": 723
+      },
+      "verbatim": "When compared with no-exercise controls, there was likely a large beneficial effect of HIT (5.5 mL.kg(-1).min(-1); +/-1.2 mL.kg(-1).min(-1)), with a likely moderate greater additional increase for subjects with lower baseline fitness (3.2 mL.kg(-1).min(-1); +/-1.9 mL.kg(-1).min(-1)) and interventions of longer duration (3.0 mL.kg(-1).min(-1); +/-1.9 mL.kg(-1).min(-1))...When compared with endurance training, there was a possibly small beneficial effect for HIT (1.2 mL.kg(-1).min(-1); +/-0.9 mL.kg(-1).min(-1))",
+      "key_results": "The head-to-head advantage of HIIT over continuous endurance training (+1.2 mL/kg/min) is classified only as 'possibly small' by the study's own magnitude-based inference thresholds, meaning the practical superiority of HIIT specifically for VO2max, while directionally positive and likely real, is modest in absolute terms compared with either modality's large effect against a no-exercise control.",
+      "figure": null,
+      "caveats": "Population restricted to healthy adults aged 18-45; the modest head-to-head HIIT-vs-endurance advantage should not be overstated relative to the much larger shared benefit both modalities provide over no exercise at all."
+    },
+    {
+      "behavior_id": "sauna_bathing",
+      "marker_id": "resting_hr_arterial_stiffness",
+      "direction": null,
+      "effect": "No significant difference in change in carotid-femoral pulse wave velocity or resting blood pressure between an 8-week Finnish sauna intervention and a control (no sauna) intervention",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, p-values reported directly in verbatim rather than a pooled effect size",
+      "evidence_tier": "B",
+      "population": "41 adults (62 years, 33 men/8 women) with stable coronary artery disease, randomized to 8 weeks of sauna (n=21, 4 sessions/week, 20-30 min, 79C) or lifestyle-maintenance control (n=20)",
+      "conditional_on": "Studied in adults with existing coronary artery disease, not healthy adults; a separate 3-arm RCT in a general population with cardiovascular risk factors (DOI 10.1152/ajpregu.00076.2022) found sauna bathing combined with exercise lowered systolic BP by 8.0 mmHg more than exercise alone, so sauna's effect may depend on being combined with exercise and/or on the population studied",
+      "paper": {
+        "doi": "10.1152/japplphysiol.00322.2023",
+        "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial",
+        "year": 2023,
+        "design": "randomized controlled trial",
+        "n": 41
+      },
+      "verbatim": "The change in cf-PWV (P = 0.816), systolic (P = 0.951), and diastolic (P = 0.292) blood pressure did not differ between interventions. These results demonstrate that four sessions of Finnish sauna bathing per week for 8 wk does not improve markers of vascular health in adults with stable CAD.",
+      "key_results": "Resting core temperature was lower after the sauna intervention (-0.27C, P=0.046) and sweat rate during sauna exposure was greater (+0.3 L/h, P=0.003), confirming a genuine heat-acclimation physiological adaptation occurred, but this adaptation did not translate into a measurable vascular-health benefit (flow-mediated dilation, reactive hyperemia, arterial stiffness, or blood pressure) in this population over 8 weeks. Brachial artery flow-mediated dilation also did not differ between groups.",
+      "figure": null,
+      "caveats": "Small sample (n=41) in a clinical (coronary artery disease) rather than healthy population, so this null result should not be over-generalized to healthy adults; the observational literature associating sauna use with lower cardiovascular mortality (e.g. Finnish cohort studies) remains unreconciled with this RCT's null finding on the specific mechanistic markers tested here - a genuine open contradiction between epidemiological and RCT evidence that the design intentionally surfaces rather than resolves."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "coffee consumption -> LDL cholesterol, precisely quantified pooled effect size",
+      "reason": "The one available RCT meta-analysis (Jee et al. 2001, DOI 10.1093/aje/153.4.353) establishes a clear dose-response direction (unfiltered coffee raises LDL, filtered does not) but its abstract does not report a numeric pooled effect size, and the full text was not retrievable within the research budget. Shipped as a qualitative edge instead (direction with no numeric effect) rather than cut outright, per the rule that a qualitative, directionally-supported finding is acceptable when no number is available to misstate."
+    },
+    {
+      "candidate": "aerobic exercise -> resting heart rate (quantified reduction), as its own dedicated edge",
+      "reason": "Training-induced bradycardia is well established physiologically, but the specific meta-analyses located within budget either did not report a clean pooled resting-HR number (a 2026 detraining meta-analysis reported resting HR as 'no longer significant' in the reversal/detraining direction, not the training direction) or were not accessed in time. The resting_hr_arterial_stiffness marker slot is instead filled by the sauna null-result edge; a dedicated quantified aerobic-exercise-to-resting-HR edge is a good candidate for a follow-up research pass."
+    },
+    {
+      "candidate": "sleep duration (habitual, non-experimental) -> HbA1c/fasting glucose, dose-response meta-analysis",
+      "reason": "Multiple cohort studies link short habitual sleep to higher diabetes risk, but a quantified RCT or meta-analysis giving a specific HbA1c or fasting-glucose number tied to a specific sleep-duration change (rather than diabetes incidence risk ratios) was not located within the research budget. The sleep_restriction -> insulin_sensitivity_homa_ir edge (Donga 2010) covers the same underlying mechanism with a single well-controlled RCT instead."
+    },
+    {
+      "candidate": "resistance training -> HbA1c / insulin sensitivity in type 2 diabetes",
+      "reason": "Multiple recent (2026) meta-analyses on this topic were identified in PubMed search results but not fetched and reviewed within the research budget after the edge list reached sufficient breadth across all seven target markers with aerobic exercise, weight loss, Mediterranean diet, and sleep restriction already covering the glycemic/insulin-sensitivity markers. Worth a follow-up pass given resistance training's inclusion in the confirmed behavior list."
+    },
+    {
+      "candidate": "HIIT -> blood pressure, as a chronic training effect distinct from VO2max",
+      "reason": "HIIT is confirmed and well evidenced for VO2max (shipped above) but a dedicated chronic HIIT-training blood-pressure meta-analysis distinct from acute post-exercise hypotension studies was not located and fetched within the research budget; the blood_pressure marker is already well covered by aerobic exercise, resistance training, DASH, sodium reduction, alcohol reduction, and added sugar."
+    },
+    {
+      "candidate": "vitamin D / zinc / magnesium supplementation -> any cardiometabolic marker",
+      "reason": "These behaviors belong to the Goal A (male vitality) and Goal C (sleep) candidate lists per the design spec's section 4.1, not the cardiometabolic marker set specified for this file, so no search was performed for them here."
+    }
+  ]
+}

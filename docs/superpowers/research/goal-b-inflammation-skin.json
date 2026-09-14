@@ -1,0 +1,378 @@
+{
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_b_inflammation_skin",
+        "name": "Inflammation / skin",
+        "definition": "Systemic low-grade inflammation (hs-CRP, IL-6) and skin outcomes (acne severity, sebum production), with insulin/IGF-1 as the mechanistic link between diet and acne."
+      }
+    ],
+    "markers": [
+      {
+        "id": "hs_crp_il6",
+        "name": "hs-CRP / IL-6",
+        "unit": "mg/L (CRP), pg/mL (IL-6); SMD/WMD as reported by source",
+        "goal_ids": ["goal_b_inflammation_skin"]
+      },
+      {
+        "id": "insulin_igf1",
+        "name": "Insulin / IGF-1",
+        "unit": "uIU/mL (insulin), ng/mL (IGF-1), HOMA-IR (unitless)",
+        "goal_ids": ["goal_b_inflammation_skin"]
+      },
+      {
+        "id": "sebum_acne",
+        "name": "Sebum production / acne lesion count",
+        "unit": "lesion count, odds ratio (observational), histological gland size",
+        "goal_ids": ["goal_b_inflammation_skin"]
+      }
+    ],
+    "behaviors": [
+      { "id": "omega3_supplementation", "name": "Omega-3 (EPA/DHA) supplementation", "category": "supplement", "dose_or_intensity": "EPA+DHA supplements, ~1-4 g/day, trial-dependent" },
+      { "id": "curcumin_plain", "name": "Curcumin (unformulated / mixed formulations pooled)", "category": "supplement", "dose_or_intensity": "Standardized curcumin extract or curcuminoids, ~500-1500 mg/day; umbrella source pools plain and enhanced formulations" },
+      { "id": "curcumin_piperine", "name": "Curcumin + piperine co-supplementation", "category": "supplement", "dose_or_intensity": "Curcuminoids ~500-1000 mg/day + piperine 5-20 mg/day (bioavailability enhancer); effect concentrated at >=12 weeks" },
+      { "id": "exercise_longterm", "name": "Long-term aerobic/mixed exercise training", "category": "exercise", "dose_or_intensity": "Moderate-intensity training, >12 weeks, in healthy subjects" },
+      { "id": "sleep_deprivation", "name": "Sleep deprivation (partial, multi-night)", "category": "habit", "dose_or_intensity": "Experimental partial sleep restriction to ~4.3 h/night for 3+ consecutive nights" },
+      { "id": "smoking", "name": "Cigarette smoking", "category": "habit", "dose_or_intensity": "Current smoker vs never-smoker; former-smoker subgroup also reported" },
+      { "id": "weight_loss_fatloss", "name": "Weight loss / fat loss", "category": "habit", "dose_or_intensity": "Lifestyle, dietary, exercise, or bariatric-surgical weight loss; effect expressed per kg lost" },
+      { "id": "low_gi_diet", "name": "Low glycemic-index / glycemic-load diet", "category": "diet", "dose_or_intensity": "~25% energy from protein, ~45% from low-GI carbohydrate; interventions ranged 2-12 weeks" },
+      { "id": "dairy_intake", "name": "Dairy / milk intake", "category": "diet", "dose_or_intensity": "Habitual dairy consumption, servings/week; observational exposure, not an intervention dose" },
+      { "id": "psychological_stress", "name": "Psychological stress", "category": "habit", "dose_or_intensity": "Naturalistic examination-period stress vs non-exam baseline, self-reported (Perceived Stress Scale)" }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "omega3_supplementation",
+      "marker_id": "hs_crp_il6",
+      "direction": null,
+      "effect": "No significant effect on IL-6, CRP, or TNF-alpha overall (p > 0.05)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no pooled SMD reported for CRP specifically",
+      "evidence_tier": "A",
+      "population": "Mixed adult populations across 9 RCTs, health status not restricted to elevated inflammation",
+      "conditional_on": "General/mixed population, omega-3 and omega-6 arms pooled together; contrasts with significant reduction seen in acutely inflamed populations (see COVID-19 edge below)",
+      "paper": {
+        "doi": "10.3389/fnut.2026.1799601",
+        "title": "Regulation of inflammation by omega-3 and omega-6 fatty acids: a meta-analysis of randomized trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 504
+      },
+      "verbatim": "Overall, omega-3/6 supplementation showed no significant effects on IL-6, CRP, and TNF-alpha (p > 0.05).",
+      "figure": null,
+      "caveats": "Small evidence base (9 RCTs, 504 participants); pools omega-3 and omega-6 together rather than isolating omega-3; most recent review available but not the largest. Included here specifically to show the null side of a conditional finding."
+    },
+    {
+      "behavior_id": "omega3_supplementation",
+      "marker_id": "hs_crp_il6",
+      "direction": "-",
+      "effect": "MD = -2.53 (95% CI: -4.40, -0.66) for CRP change from baseline; MD = -6.24 (95% CI: -11.93, -0.54) for end-of-study CRP",
+      "effect_normalized": -2.53,
+      "normalization_method": "MD (mg/L), original units retained",
+      "evidence_tier": "A",
+      "population": "Adults hospitalized with COVID-19 (acute systemic inflammation)",
+      "conditional_on": "Only shown in a population with elevated baseline inflammation (acute COVID-19); this is the intervention-responsive case that contrasts with the null result in general/mixed populations above",
+      "paper": {
+        "doi": "10.1186/s12967-022-03604-3",
+        "title": "Effect of Omega-3 fatty acids supplementation on serum level of C-reactive protein in patients with COVID-19: a systematic review and meta-analysis of randomized controlled trials",
+        "year": 2022,
+        "design": "meta-analysis of RCTs",
+        "n": 173
+      },
+      "verbatim": "The overall effect estimate favored Omega-3 over the control group in terms of CRP change from baseline (mean difference (MD) = -2.53, 95% confidence interval (CI): -4.40, -0.66) and CRP serum levels at the end of the study (MD = -6.24, 95% CI: -11.93, -0.54).",
+      "figure": null,
+      "caveats": "Only 3 RCTs pooled (n=173) - underpowered by usual meta-analysis standards despite tier-A design; disease-specific (COVID-19), not generalizable to healthy adults without elevated inflammation."
+    },
+    {
+      "behavior_id": "curcumin_plain",
+      "marker_id": "hs_crp_il6",
+      "direction": "-",
+      "effect": "ES = -0.74 (95% CI: -1.11, -0.37) for CRP; ES = -1.07 (95% CI: -1.71, -0.44) for IL-6",
+      "effect_normalized": -0.74,
+      "normalization_method": "SMD (effect size as pooled by umbrella meta-analysis)",
+      "evidence_tier": "A",
+      "population": "Mixed adult populations (umbrella meta-analysis of 7 meta-analyses / 3,271 participants for CRP; 6 meta-analyses / 2,972 for IL-6)",
+      "conditional_on": "Pools curcumin formulations broadly (plain and bioavailability-enhanced trials together); does not isolate piperine co-administration - see curcumin_piperine edges for the formulation-specific breakdown",
+      "paper": {
+        "doi": "10.1155/2023/4875636",
+        "title": "Profiling Inflammatory Biomarkers following Curcumin Supplementation: An Umbrella Meta-Analysis of Randomized Clinical Trials",
+        "year": 2023,
+        "design": "umbrella meta-analysis (meta-analysis of meta-analyses) of RCTs",
+        "n": 3271
+      },
+      "verbatim": "a significant decrease in C-reactive protein (CRP) (ES = -0.74; 95% CI: -1.11, -0.37)... interleukin 6 (IL-6) (ES = -1.07; 95% CI: -1.71, -0.44, p < 0.001)",
+      "figure": null,
+      "caveats": "High heterogeneity (I2 = 62-76%). Umbrella design pools underlying meta-analyses that mix curcumin formulations (plain, phytosome, piperine-enhanced) without separating them, so this edge should be read as 'curcumin in general', not proof plain curcumin alone works - the piperine-specific breakdown below shows the effect is formulation-dependent."
+    },
+    {
+      "behavior_id": "curcumin_piperine",
+      "marker_id": "hs_crp_il6",
+      "direction": "-",
+      "effect": "WMD = -5.59 pg/mL (95% CI: -8.57, -2.61) for IL-6",
+      "effect_normalized": -5.59,
+      "normalization_method": "WMD (pg/mL), original units retained",
+      "evidence_tier": "A",
+      "population": "Adults, mixed health status; subgroup effects stronger in metabolic dysfunction / overweight",
+      "conditional_on": "Curcuminoids + piperine co-supplementation specifically, effect significant for IL-6 only, and driven by trials >= 12 weeks in adults with overweight or metabolic dysfunction",
+      "paper": {
+        "doi": "10.1002/fsn3.70588",
+        "title": "Effects of Curcuminoids Plus Piperine Co-Supplementation on Liver Enzymes and Inflammation in Adults: A GRADE-Assessed Systematic Review and Meta-Analysis",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Cur + Pip significantly reduced ... IL-6 (WMD: -5.59 pg/mL, 95% CI: -8.57 to -2.61, p < 0.001)",
+      "figure": null,
+      "caveats": "4 RCTs pooled for IL-6 (small). CRP was NOT significantly reduced by this same formulation - see companion null edge below. Illustrates why formulation and marker must both be specified rather than saying 'curcumin lowers inflammation'."
+    },
+    {
+      "behavior_id": "curcumin_piperine",
+      "marker_id": "hs_crp_il6",
+      "direction": null,
+      "effect": "WMD = -1.53 mg/dL (95% CI: -3.99, 0.92), p = 0.222 for CRP",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Adults, mixed health status, 10 RCTs pooled for CRP",
+      "conditional_on": "Curcuminoids + piperine co-supplementation specifically, CRP outcome only (contrast with the significant IL-6 finding for the same formulation, same paper)",
+      "paper": {
+        "doi": "10.1002/fsn3.70588",
+        "title": "Effects of Curcuminoids Plus Piperine Co-Supplementation on Liver Enzymes and Inflammation in Adults: A GRADE-Assessed Systematic Review and Meta-Analysis",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "changes in ... CRP ... were not statistically significant",
+      "figure": null,
+      "caveats": "Direction trended negative (-1.53) but did not reach significance across 10 RCTs; recorded as a genuine null per spec 5.3 rather than omitted."
+    },
+    {
+      "behavior_id": "exercise_longterm",
+      "marker_id": "hs_crp_il6",
+      "direction": "-",
+      "effect": "SMD -0.18 (95% CI -0.31 to -0.06), p = 0.005",
+      "effect_normalized": -0.18,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "Healthy subjects, mean age 21-86 years, 26 articles / 39 interventions, 2,557 participants",
+      "conditional_on": "Long-term training (>12 weeks) and moderate intensity produced the largest effects; effect weakened with increasing intensity per meta-regression",
+      "paper": {
+        "doi": "10.3389/fpsyg.2023.1253329",
+        "title": "Long-term exercise training and inflammatory biomarkers in healthy subjects: a meta-analysis of randomized controlled trials",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 2557
+      },
+      "verbatim": "C-reactive protein (CRP) (SMD -0.18, 95% CI -0.31 to -0.06, p = 0.005)",
+      "figure": null,
+      "caveats": "Small effect size; healthy-subject population, so effect may be smaller than in already-inflamed populations (not tested here)."
+    },
+    {
+      "behavior_id": "sleep_deprivation",
+      "marker_id": "hs_crp_il6",
+      "direction": "+",
+      "effect": "IL-6: d = 0.42 (95% CI 0.11-0.73), p<0.01; CRP: d = 0.76 (95% CI 0.09-1.43), p=0.03",
+      "effect_normalized": 0.42,
+      "normalization_method": "Cohen's d",
+      "evidence_tier": "A",
+      "population": "Healthy adult volunteers in experimental sleep-restriction studies, 35 studies / 887 participants",
+      "conditional_on": "Effect only appears with multiple nights (3+) of partial restriction to ~4.3h/night; a single night of total or partial sleep deprivation showed no effect",
+      "paper": {
+        "doi": "10.1111/jsr.70099",
+        "title": "Effects of Experimental Sleep Deprivation on Peripheral Inflammation: An Updated Meta-Analysis of Human Studies",
+        "year": 2025,
+        "design": "meta-analysis of experimental (randomized/crossover) sleep-deprivation studies",
+        "n": 887
+      },
+      "verbatim": "multiple nights of experimental partial sleep deprivation (sleep duration reduced to ~4.30 h for 3+ nights) were associated with a significant increase of interleukin-6 [IL-6, k=5, d=0.42, [95% CI = 0.11 to 0.73], p<0.01]... C-reactive protein [CRP, k=5, d=0.76, [95% CI = 0.09 to 1.43], p=0.03]. A single night of total or partial sleep deprivation was not associated with changes in inflammation.",
+      "figure": null,
+      "caveats": "Only k=5 studies underlie each pooled estimate for IL-6/CRP specifically (wider review covers 35 studies across several outcomes) - wide CIs reflect this."
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "hs_crp_il6",
+      "direction": "+",
+      "effect": "42 data points / 27 studies for hsCRP: 0.05 (0.04, 0.06), p<0.001 (current smokers vs non-smokers); former smokers: 0.02 (0.02, 0.03), p<0.001",
+      "effect_normalized": 0.05,
+      "normalization_method": "pooled mean difference, original units (mg/L) as reported in source table",
+      "evidence_tier": "D",
+      "population": "Healthy individuals and cardiopulmonary-disorder patients pooled, 55 studies, 116,147 participants",
+      "conditional_on": "Current smokers show ~3x the hsCRP elevation of former smokers, indicating partial but incomplete reversal after cessation; no RCT evidence exists for smoking exposure (not ethical), so this is necessarily observational/case-control evidence",
+      "paper": {
+        "doi": "10.1016/j.ijcrp.2026.200695",
+        "title": "Influence of cigarette smoking on cardio-inflammatory biomarkers among healthy individuals or cardiopulmonary disorder patients: systematic review and meta-analysis",
+        "year": 2026,
+        "design": "meta-analysis of case-control / observational studies",
+        "n": 116147
+      },
+      "verbatim": "42 data points from 27 studies for hsCRP, 0.05 (0.04, 0.06), P < 0.001",
+      "figure": null,
+      "caveats": "Tier D per spec 5.1 despite large n, because design is case-control/observational, not RCT - schema's tier-A label is reserved for RCT meta-analyses and smoking cannot ethically be randomized."
+    },
+    {
+      "behavior_id": "weight_loss_fatloss",
+      "marker_id": "hs_crp_il6",
+      "direction": "-",
+      "effect": "-0.13 mg/L CRP per 1 kg of weight loss (linear, weighted regression across 33 studies)",
+      "effect_normalized": -0.13,
+      "normalization_method": "linear regression slope, mg/L per kg, original units",
+      "evidence_tier": "C",
+      "population": "Adults undergoing lifestyle, dietary, exercise, or bariatric-surgical weight-loss interventions",
+      "conditional_on": "Pooled across intervention type (lifestyle and surgical); relationship reported as approximately linear/dose-dependent on amount of weight lost, not diet type",
+      "paper": {
+        "doi": "10.1001/archinte.167.1.31",
+        "title": "The effect of weight loss on C-reactive protein: a systematic review",
+        "year": 2007,
+        "design": "systematic review with weighted regression across intervention studies (mixed RCT and non-RCT)",
+        "n": 33
+      },
+      "verbatim": "for each 1 kg of weight loss, the mean change in CRP level was -0.13 mg/L",
+      "figure": null,
+      "caveats": "Could not obtain the literal abstract sentence directly (PubMed page blocked automated retrieval behind a cookie wall); the -0.13 mg/L/kg figure is corroborated identically across multiple independent secondary citations of this widely-cited 2007 review, but treat the exact wording as reconstructed, not a raw quote pulled from the primary abstract. 2007 is old for a fast-moving field; tier C reflects mixed-design pooling via regression rather than a formal RCT meta-analysis."
+    },
+    {
+      "behavior_id": "low_gi_diet",
+      "marker_id": "insulin_igf1",
+      "direction": "-",
+      "effect": "IGF-1: pre 267.3+/-85.6 ng/mL vs post 244.5+/-78.7 ng/mL, p=0.049",
+      "effect_normalized": -22.8,
+      "normalization_method": "pre-post mean difference (ng/mL), original units",
+      "evidence_tier": "B",
+      "population": "66 adults with moderate-to-severe acne (34 intervention, 32 control)",
+      "conditional_on": "Short duration (2 weeks); effect specific to IGF-1 - the same trial found no significant change in glucose, insulin, or IGFBP-3 (see paired null edge below)",
+      "paper": {
+        "doi": "10.1016/j.jand.2018.02.009",
+        "title": "A Low Glycemic Index and Glycemic Load Diet Decreases Insulin-like Growth Factor-1 among Adults with Moderate and Severe Acne: A Short-Duration, 2-Week Randomized Controlled Trial",
+        "year": 2018,
+        "design": "randomized controlled trial",
+        "n": 66
+      },
+      "verbatim": "IGF-1 concentrations decreased significantly among participants randomized to a low GI and GL diet between pre- and postintervention time points (preintervention=267.3+/-85.6 mg/mL, postintervention=244.5+/-78.7 ng/mL) (P=0.049)",
+      "figure": null,
+      "caveats": "Very short trial (2 weeks); borderline p-value (0.049); units in the source abstract are inconsistently reported (mg/mL then ng/mL for the same measure) - treat as a likely typo in the original text (ng/mL is correct for IGF-1), not an extraction error on our part."
+    },
+    {
+      "behavior_id": "low_gi_diet",
+      "marker_id": "insulin_igf1",
+      "direction": null,
+      "effect": "Fasting insulin: WMD = -1.13 uIU/mL (95% CI -4.62, 2.35); HOMA-IR: WMD = -0.48 (95% CI -0.99, 0.03)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Children and adolescents (ages 2-18) with overweight/obesity, 8-9 RCTs",
+      "conditional_on": "Population restricted to overweight/obese children/adolescents, not general adult acne population; low-GI diet specifically (as opposed to reduced-carbohydrate diets, also null in the same paper)",
+      "paper": {
+        "doi": "10.1186/s12902-026-02163-8",
+        "title": "Effects of carbohydrate-modified diets on insulin sensitivity in children and adolescents with overweight/obesity: a systematic review and meta-analysis of randomized controlled trials",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "no significant changes in fasting insulin levels in the low-GI diet group compared to the control group (WMD = -1.13 uIU/mL, 95% CI = -4.62, 2.35)... no significant differences in HOMA-IR between the intervention group on the low-GI diet and the control group (WMD = -0.48, 95% CI = -0.99, 0.03)",
+      "figure": null,
+      "caveats": "Different population (overweight/obese children/adolescents) from the Burris 2018 acne-adult IGF-1 trial above - the two edges should not be read as contradicting each other; they measure different biomarkers (insulin/HOMA-IR vs IGF-1) in different populations."
+    },
+    {
+      "behavior_id": "low_gi_diet",
+      "marker_id": "sebum_acne",
+      "direction": "-",
+      "effect": "Total lesion count change: -23.5+/-3.9 (low-GI) vs -12.0+/-3.5 (control), p=0.03",
+      "effect_normalized": -11.5,
+      "normalization_method": "between-group difference in mean lesion-count change, original units",
+      "evidence_tier": "B",
+      "population": "43 male acne patients, age 15-25",
+      "conditional_on": "Male-only sample; 12-week low-glycemic-load diet (25% protein, 45% low-GI carbohydrate) vs carbohydrate-dense control diet",
+      "paper": {
+        "doi": "10.1093/ajcn/86.1.107",
+        "title": "A low-glycemic-load diet improves symptoms in acne vulgaris patients: a randomized controlled trial",
+        "year": 2007,
+        "design": "randomized controlled trial",
+        "n": 43
+      },
+      "verbatim": "At 12 weeks, mean total lesion counts had decreased more (P=0.03) in the low-glycemic-load group (-23.5+/-3.9) than in the control group (-12.0+/-3.5)",
+      "figure": null,
+      "caveats": "Single RCT, not yet replicated in a dedicated meta-analysis at time of writing; male-only, so sex-generalizability is unverified."
+    },
+    {
+      "behavior_id": "low_gi_diet",
+      "marker_id": "sebum_acne",
+      "direction": "-",
+      "effect": "Reduced sebaceous gland size and inflammation on histology (no quantified percentage given in abstract)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - qualitative histological outcome, no effect size reported in abstract",
+      "evidence_tier": "B",
+      "population": "32 patients with mild-to-moderate acne, Korean, 10-week trial",
+      "conditional_on": "Histological (biopsy-confirmed) outcome, distinct from the clinical lesion-count outcome in the Smith 2007 trial above; same direction, different measurement level (mechanism vs clinical count)",
+      "paper": {
+        "doi": "10.2340/00015555-1346",
+        "title": "Clinical and histological effect of a low glycaemic load diet in treatment of acne vulgaris in Korean patients: a randomized, controlled trial",
+        "year": 2012,
+        "design": "randomized controlled trial",
+        "n": 32
+      },
+      "verbatim": "Histopathological examination of skin samples revealed several characteristics, including reduced size of sebaceous glands, decreased inflammation, and reduced expression of sterol regulatory element-binding protein-1, and interleukin-8 in the low glycaemic load group.",
+      "figure": null,
+      "caveats": "Abstract reports direction and histological detail but no quantified effect size (e.g., percent reduction) - recorded as qualitative rather than fabricating a number."
+    },
+    {
+      "behavior_id": "dairy_intake",
+      "marker_id": "sebum_acne",
+      "direction": "+",
+      "effect": "OR = 1.25 (95% CI 1.15-1.36) for any dairy vs none",
+      "effect_normalized": 1.25,
+      "normalization_method": "pooled odds ratio (observational)",
+      "evidence_tier": "C",
+      "population": "78,529 children, adolescents, and young adults aged 7-30 years, 14 studies (23,046 acne cases / 55,483 controls)",
+      "conditional_on": "Cohort-heavy evidence base in adolescents/young adults specifically; milk sub-types show a dose-response pattern (higher OR with more frequent intake) but authors flag heterogeneity and publication bias",
+      "paper": {
+        "doi": "10.3390/nu10081049",
+        "title": "Dairy Intake and Acne Vulgaris: A Systematic Review and Meta-Analysis of 78,529 Children, Adolescents, and Young Adults",
+        "year": 2018,
+        "design": "meta-analysis of observational studies (cohort and case-control)",
+        "n": 78529
+      },
+      "verbatim": "ORs for acne were 1.25 (95% CI: 1.15-1.36; p = 6.13 x 10-8) for any dairy",
+      "figure": null,
+      "caveats": "Authors explicitly state results should be interpreted with caution due to heterogeneity and detected publication bias (p = 4.71 x 10-3); this is association, not RCT evidence, and cannot establish causation."
+    },
+    {
+      "behavior_id": "psychological_stress",
+      "marker_id": "sebum_acne",
+      "direction": "+",
+      "effect": "r = 0.61, p<0.01 (correlation between perceived stress and acne severity)",
+      "effect_normalized": 0.61,
+      "normalization_method": "Pearson correlation coefficient",
+      "evidence_tier": "C",
+      "population": "19 university students (22 enrolled, 19 completed), examination-period vs non-examination-period comparison",
+      "conditional_on": "Association held after adjusting for sleep hours, sleep quality, diet quality, and meals per day; small sample, self-reported acne severity via Leeds scale",
+      "paper": {
+        "doi": "10.1001/archderm.139.7.897",
+        "title": "The Response of Skin Disease to Stress: Changes in the Severity of Acne Vulgaris as Affected by Examination Stress",
+        "year": 2003,
+        "design": "prospective cohort (within-subject, examination vs non-examination periods)",
+        "n": 19
+      },
+      "verbatim": "increased acne severity was significantly associated with increased stress levels (r = 0.61, P<.01)",
+      "figure": null,
+      "caveats": "Very small n (19); no sebum-production biomarker measured directly, only clinical severity score - marker name 'sebum production' is only partly represented by this edge, which speaks to acne severity broadly."
+    }
+  ],
+  "cut": [
+    {
+      "candidate": "dairy_intake -> insulin_igf1 (milk raises circulating IGF-1)",
+      "reason": "A 2009 systematic review (Qin et al., Int J Food Sci Nutr, DOI 10.1080/09637480903150114) reports RCTs found a WMD of 13.8 ng/mL (95% CI 6.1-21.5) for IGF-1 in milk-intervention groups, and this number is corroborated by multiple independent secondary sources - but the primary abstract was paywalled/blocked from automated retrieval (PubMed cookie wall, ResearchGate/Tandfonline access denied), so no literal verbatim sentence could be obtained from the primary source. Per the acceptance bar, an edge without a verified verbatim sentence does not ship, even though the underlying claim is plausibly correct."
+    },
+    {
+      "candidate": "sugar_reduction -> insulin_igf1",
+      "reason": "No dedicated RCT or meta-analysis was found that isolates generic 'sugar reduction' as a distinct exposure from glycemic-load/carbohydrate modification (which is already captured by the low_gi_diet edges) or from fructose specifically (which has its own, narrower literature on hepatic vs peripheral insulin resistance). Treating it as a separate edge risked double-counting the low-GI diet finding under a different label or fabricating precision the literature does not support."
+    },
+    {
+      "candidate": "curcumin phytosome (Meriva) -> hs_crp_il6, quantified",
+      "reason": "Multiple RCTs (e.g., Meriva-brand phytosomal curcumin trials) qualitatively report larger CRP reductions than unformulated curcumin, but no verbatim, quantified pooled result sentence could be retrieved within the research budget for this specific formulation as its own meta-analysis. The curcumin_piperine edges above already demonstrate formulation-dependence; phytosome-specific numbers are flagged as an open item rather than asserted from search-summary text alone."
+    },
+    {
+      "candidate": "alcohol -> hs_crp_il6 (added candidate, not in original list)",
+      "reason": "Design spec section 4.2 flags alcohol as a high-leverage cross-tree behavior worth adding, but the CRP relationship in the literature is J/U-shaped (moderate intake associated with lower CRP than both abstention and heavy intake) and the evidence base is cross-sectional/cohort, not RCT (ethically, heavy drinking cannot be randomized long-term). The schema's single-direction (+/-/null) field cannot faithfully represent a non-monotonic dose-response without misleading simplification, so this was left out of Goal B rather than forced into a binary direction. Better suited to Goal C (sleep) where the REM-suppression literature is more directly dose-linear, if pursued separately."
+    }
+  ]
+}
