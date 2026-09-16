@@ -341,6 +341,43 @@
       "caveats": "The much-quoted figure from this paper, RR 1.57, is for a clinical diagnosis of alcohol use disorder, not for drinking. This row reports what the same paper found for the behaviour, which is a great deal weaker and does not survive adjustment for publication bias. The 338,426 participants are real; the finding they support at this end is not a strong one.",
       "review_note": "This row previously quoted the paper's alcohol use disorder figure (RR 1.57) under a node named after the diagnosis. A diagnosis is not something a reader decides, and the same paper reports the drinking separately. The row now quotes the drinking, and the node is named after it. The weaker number is the honest one for the question this page asks.",
       "source": "inclusion-rule-2026-09-16"
+    },
+    {
+      "behavior_id": "weight_loss",
+      "marker_id": "bmd",
+      "refile_to": "weight_loss_fatloss",
+      "review_note": "The behaviour node reads \"Weight loss (bariatric surgery vs conventional therapy)\", but this paper studied weight loss by calorie restriction and exercise. No surgical arm appears in it. The node was named from a third row on it - the HbA1c one - which really is bariatric, and the name then spread to two rows it did not describe. Moved to the general weight-loss node.",
+      "source": "attribution-sources-2026-09-16"
+    },
+    {
+      "behavior_id": "weight_loss",
+      "marker_id": "oa_pain",
+      "refile_to": "weight_loss_fatloss",
+      "review_note": "The behaviour node reads \"Weight loss (bariatric surgery vs conventional therapy)\", but this paper studied weight loss by calorie restriction and exercise. No surgical arm appears in it. The node was named from a third row on it - the HbA1c one - which really is bariatric, and the name then spread to two rows it did not describe. Moved to the general weight-loss node.",
+      "source": "attribution-sources-2026-09-16"
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "vasomotor_symptoms",
+      "effect": "Smoking more cigarettes, for longer, and starting earlier were each associated with more frequent or severe vasomotor symptoms. The paper reports no clean main-effect figure for smoking; its published risk ratios are body-weight strata, and the strongest of them, RR 3.02 (95% CI 2.41 to 3.78), is obese smokers against normal-weight never-smokers - obesity and smoking together.",
+      "effect_normalized": null,
+      "caveats": "The two headline figures in this paper are BMI strata, not smoking effects. RR 1.52 is obese NEVER-smokers, which contains no smoking at all, and RR 3.02 is the obesity-and-smoking cell. Neither isolates smoking. The direction is supported by the paper's dose-response statement; the magnitude is not available from the abstract.",
+      "review_note": "This row led with RR 1.52 - a figure for obese never-smokers, that is, a pure obesity effect - under a node about smoking, and plotted RR 3.02, the joint obesity-and-smoking cell, as though it were smoking's own effect. The row now states what the paper supports for smoking and no more, and contributes no magnitude to the chart.",
+      "source": "attribution-sources-2026-09-16"
+    },
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "serum_testosterone",
+      "effect": "SMD 0.00 for resting testosterone. The estimate pools aerobic, resistance and combined training, and the review reports the effect was not significantly affected by training mode, so this is not specific to resistance training.",
+      "review_note": "The review's inclusion criterion was any exercise modality and it states the result did not vary by mode, so the finding belongs to exercise in general rather than to resistance training. There is no general-exercise node clean enough to hold it - the existing ones are scoped to NAFLD patients or to sleep timing - so it stays here with its scope stated. The finding is a null, so it does not inflate the chart.",
+      "source": "attribution-sources-2026-09-16"
+    },
+    {
+      "behavior_id": "saturated_fat_reduction",
+      "marker_id": "ldl_cholesterol",
+      "caveats": "Not independent of two other rows on this marker. This is a 2021 umbrella review of 108 systematic reviews, and the plant-sterol and oat-beta-glucan rows draw on meta-analyses inside its evidence pool. Three rows, three different papers, three different numbers - but one body of evidence behind them. Where the page sums usefulness across rows, this marker's total counts some of that evidence more than once.",
+      "review_note": "Checked against the source after a suspicion that the quoted result was a composite portfolio diet. It is not: the paper ranks foods separately and the sentence lists three food categories in one evidence band. The real problem is the overlap with the sterol and fibre rows, which is now stated on the row.",
+      "source": "attribution-sources-2026-09-16"
     }
   ]
 }

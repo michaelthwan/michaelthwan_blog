@@ -3738,7 +3738,8 @@
     "id": "probiotics",
     "name": "Probiotic supplementation",
     "category": "supplement",
-    "dose_or_intensity": "Various probiotic strains/doses across 23 RCTs and 1 cluster-RCT, mainly Lactobacillus/Bifidobacterium species, taken prophylactically",
+    "dose_or_intensity": "Varies by edge. The respiratory-infection rows pool 23 RCTs and one cluster-RCT of mainly Lactobacillus and Bifidobacterium taken prophylactically; the IBS row is a separate meta-analysis of 20 trials in 3,011 patients with irritable bowel syndrome. The node previously carried only the first description, which said nothing true about the second.",
+    "renamed_from": "Probiotic supplementation",
     "group": "supplement_biotic",
     "group_label": "Supplements: live cultures",
     "group_rank": 9
@@ -4205,7 +4206,7 @@
    "behavior_id": "resistance_training",
    "marker_id": "serum_testosterone",
    "direction": null,
-   "effect": "SMD 0.00 (95% CI -0.20 to 0.20) for resting total testosterone",
+   "effect": "SMD 0.00 for resting testosterone. The estimate pools aerobic, resistance and combined training, and the review reports the effect was not significantly affected by training mode, so this is not specific to resistance training.",
    "effect_normalized": 0.0,
    "normalization_method": "SMD",
    "evidence_tier": "A",
@@ -4229,6 +4230,9 @@
    "caveats": "Directly contradicts the popular claim that resistance training raises baseline/resting testosterone. Full text is paywalled (Ovid); verbatim and n obtained via indexed abstract text, not a direct primary-source fetch.",
    "legacy_key": "resistance_training::serum_testosterone::10.1519/JSC.0000000000004146",
    "edge_id": "resistance_training::serum_testosterone::10.1519/JSC.0000000000004146::3bd8fd4d",
+   "review_note": "The review's inclusion criterion was any exercise modality and it states the result did not vary by mode, so the finding belongs to exercise in general rather than to resistance training. There is no general-exercise node clean enough to hold it - the existing ones are scoped to NAFLD patients or to sleep timing - so it stays here with its scope stated. The finding is a null, so it does not inflate the chart.",
+   "effect_corrected_from": "SMD 0.00 (95% CI -0.20 to 0.20) for resting total testosterone",
+   "verified_note_source": "attribution-sources-2026-09-16",
    "valence": "none",
    "usefulness": {
     "tier": "NULL",
@@ -4274,7 +4278,7 @@
     "score": 3.0,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 10 participants (+0)"
     ]
    },
@@ -4318,10 +4322,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "D",
-    "score": 2.02,
+    "score": 2.27,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 118 participants (+0.27)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4367,10 +4371,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "E",
-    "score": 1.25,
+    "score": 1.0,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 4 participants (+0)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4455,7 +4459,7 @@
     "score": 2.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4500,11 +4504,11 @@
    "quote_spliced_coverage": 0.517,
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.93,
+    "tier": "B",
+    "score": 3.93,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 75th percentile among the 5 scored rows on this marker (+2)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 540 participants (+0.43)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4543,10 +4547,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.1,
+    "score": 3.6,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 5 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 24 participants (+0.1)"
     ]
    },
@@ -4583,11 +4587,11 @@
    "edge_id": "aerobic_exercise::nitric_oxide_blood_flow::10.1186/s13102-025-01124-3::e11b38f9",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.4,
+    "tier": "B",
+    "score": 3.9,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 385 participants (+0.4)"
     ]
    },
@@ -4628,7 +4632,7 @@
     "score": 4.82,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 1,927 participants (+0.57)"
     ]
    },
@@ -4674,7 +4678,7 @@
     "score": 4.32,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 1,863 participants (+0.57)"
     ]
    },
@@ -4713,10 +4717,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 2.94,
+    "score": 2.69,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 57 participants (+0.19)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4758,10 +4762,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "E",
-    "score": 0.52,
+    "score": 0.77,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 125 participants (+0.27)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4913,11 +4917,11 @@
    "edge_id": "omega3_supplementation::hs_crp_il6::10.1186/s12967-022-03604-3::9ab65973",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 5.31,
+    "tier": "B",
+    "score": 4.31,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 83th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 173 participants (+0.31)"
     ]
    },
@@ -4957,10 +4961,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.19,
+    "score": 3.69,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 5,870 participants (+0.69)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -4997,10 +5001,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 5.0,
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5078,11 +5082,11 @@
    "edge_id": "exercise_longterm::hs_crp_il6::10.3389/fpsyg.2023.1253329::77468602",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.6,
+    "tier": "B",
+    "score": 4.35,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 2,557 participants (+0.6)"
     ]
    },
@@ -5118,10 +5122,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "B",
-    "score": 3.99,
+    "score": 4.24,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 887 participants (+0.49)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5165,10 +5169,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "E",
-    "score": 0.5,
+    "score": 1.25,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 0th percentile among the 7 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 116,147 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5206,11 +5210,11 @@
    "verified_note_source": "_verification-abcd-pass2.md",
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 1.5,
+    "tier": "C",
+    "score": 2.75,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 17th percentile among the 7 scored rows on this marker (+0)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -5248,7 +5252,7 @@
     "score": 3.2,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 66 participants (+0.2)"
     ]
    },
@@ -5319,11 +5323,11 @@
    "edge_id": "low_gi_diet::sebum_acne::10.1093/ajcn/86.1.107::20f8f869",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.66,
+    "tier": "C",
+    "score": 3.41,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 43 participants (+0.16)"
     ]
    },
@@ -5401,7 +5405,7 @@
     "score": 2.47,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 78,529 participants (+0.97)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5437,10 +5441,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "D",
-    "score": 1.57,
+    "score": 1.82,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 19 participants (+0.07)"
     ]
    },
@@ -5477,10 +5481,10 @@
    "valence": "unclear",
    "usefulness": {
     "tier": "C",
-    "score": 2.92,
+    "score": 2.67,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 50 participants (+0.17)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5517,10 +5521,10 @@
    "valence": "unclear",
    "usefulness": {
     "tier": "E",
-    "score": 0.77,
+    "score": 1.02,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 12 participants (+0.02)"
     ]
    },
@@ -5558,10 +5562,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.79,
+    "score": 4.29,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 144 participants (+0.29)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5598,10 +5602,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "A",
-    "score": 5.0,
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -5683,7 +5687,7 @@
     "score": 4.56,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,683 participants (+0.56)"
     ]
    },
@@ -5720,10 +5724,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.5,
+    "score": 4.0,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -5763,7 +5767,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -5847,7 +5851,7 @@
     "score": 4.42,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 462 participants (+0.42)"
     ]
    },
@@ -5883,10 +5887,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 2.55,
+    "score": 2.8,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 153 participants (+0.3)"
     ]
    },
@@ -5921,11 +5925,11 @@
    "edge_id": "aerobic_exercise::blood_pressure::10.1111/j.1440-1681.2006.04453.x::225493af",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 20th percentile among the 11 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -5961,10 +5965,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.59,
+    "score": 3.84,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 11 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 2,344 participants (+0.59)"
     ]
    },
@@ -6004,7 +6008,7 @@
     "score": 2.92,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 50th percentile among the 11 scored rows on this marker (+1)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 459 participants (+0.42)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -6040,11 +6044,11 @@
    "edge_id": "dash_diet::ldl_cholesterol::10.1016/j.cpcardiol.2026.103397::bee12d2d",
    "valence": "good",
    "usefulness": {
-    "tier": "S",
-    "score": 5.5,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 86th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 67th percentile among the 7 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -6080,10 +6084,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 4.5,
+    "score": 4.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 5 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -6118,11 +6122,11 @@
    "edge_id": "sodium_reduction::blood_pressure::10.36660/abc.20250440::d6243713",
    "valence": "good",
    "usefulness": {
-    "tier": "S",
-    "score": 5.54,
+    "tier": "A",
+    "score": 4.54,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 70th percentile among the 11 scored rows on this marker (+2)",
+     "effect size ranks 40th percentile among the 6 scored rows on this marker reported the same way (+1)",
      "measured in 1,430 participants (+0.54)"
     ]
    },
@@ -6161,7 +6165,7 @@
     "score": 3.59,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 30th percentile among the 11 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 6 scored rows on this marker reported the same way (+0)",
      "measured in 2,234 participants (+0.59)"
     ]
    },
@@ -6196,11 +6200,11 @@
    "edge_id": "added_sugar::blood_pressure::10.3945/ajcn.113.081521::6e7387d5",
    "valence": "bad",
    "usefulness": {
-    "tier": "S",
-    "score": 5.5,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 80th percentile among the 11 scored rows on this marker (+2)",
+     "effect size ranks 60th percentile among the 6 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -6235,11 +6239,11 @@
    "edge_id": "omega3_ala::blood_pressure::10.1016/j.advnut.2023.09.010::0d204f9f",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.52,
+    "tier": "A",
+    "score": 4.52,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 10th percentile among the 11 scored rows on this marker (+0)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,183 participants (+0.52)"
     ]
    },
@@ -6311,11 +6315,11 @@
    "edge_id": "oat_beta_glucan::ldl_cholesterol::10.1017/S000711451600341X::dbad7aac",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.65,
+    "tier": "A",
+    "score": 4.65,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 29th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 7 scored rows on this marker reported the same way (+1)",
      "measured in 3,974 participants (+0.65)"
     ]
    },
@@ -6352,11 +6356,11 @@
    "quote_spliced_coverage": 0.528,
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.08,
+    "tier": "A",
+    "score": 5.08,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 57th percentile among the 8 scored rows on this marker (+1)",
+     "effect size ranks 83th percentile among the 7 scored rows on this marker reported the same way (+2)",
      "measured in 2,084 participants (+0.58)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -6396,7 +6400,7 @@
     "score": 3.53,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 7 scored rows on this marker reported the same way (+0)",
      "measured in 1,337 participants (+0.53)"
     ]
    },
@@ -6426,16 +6430,19 @@
    "verbatim": "With high evidence, foods high in unsaturated and low in saturated and trans fatty acids (e.g. rapeseed/canola oil), with added plant sterols/stanols, and high in soluble fiber (e.g. oats, barley, and psyllium) caused at least moderate (i.e. 0.20-0.40 mmol/L) reductions in LDL cholesterol.",
    "key_results": "The same synthesis independently corroborates the plant-sterol and oat-beta-glucan edges above by grouping them in the same 'high evidence, moderate-to-large reduction' band. It separately flags 'moderate evidence' for avocados and turmeric causing moderate-to-large reductions, and notes soy protein, tomatoes, flaxseed and almonds cause only small reductions - a useful ranking of food-level interventions by evidence strength and effect size.",
    "figure": null,
-   "caveats": "This is a review-of-reviews (evidence synthesis) rather than a single meta-analysis with one pooled effect size; the 0.20-0.40 mmol/L figure is the review's own defined category boundary for 'moderate' rather than a single pooled point estimate specific to saturated-fat swaps alone.",
+   "caveats": "Not independent of two other rows on this marker. This is a 2021 umbrella review of 108 systematic reviews, and the plant-sterol and oat-beta-glucan rows draw on meta-analyses inside its evidence pool. Three rows, three different papers, three different numbers - but one body of evidence behind them. Where the page sums usefulness across rows, this marker's total counts some of that evidence more than once.",
    "legacy_key": "saturated_fat_reduction::ldl_cholesterol::10.1016/j.numecd.2020.12.032",
    "edge_id": "saturated_fat_reduction::ldl_cholesterol::10.1016/j.numecd.2020.12.032::4b3033e9",
+   "review_note": "Checked against the source after a suspicion that the quoted result was a composite portfolio diet. It is not: the paper ranks foods separately and the sentence lists three food categories in one evidence band. The real problem is the overlap with the sterol and fibre rows, which is now stated on the row.",
+   "caveats_corrected_from": "This is a review-of-reviews (evidence synthesis) rather than a single meta-analysis with one pooled effect size; the 0.20-0.40 mmol/L figure is the review's own defined category boundary for 'moderate' rather than a single pooled point estimate specific to saturated-fat swaps alone.",
+   "verified_note_source": "attribution-sources-2026-09-16",
    "valence": "good",
    "usefulness": {
     "tier": "A",
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 43th percentile among the 8 scored rows on this marker (+1)",
+     "effect size ranks 50th percentile among the 7 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -6474,7 +6481,7 @@
     "score": 3.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 14th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 17th percentile among the 7 scored rows on this marker reported the same way (+0)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -6510,11 +6517,11 @@
    "edge_id": "omega3_ala::ldl_cholesterol::10.1016/j.advnut.2023.09.010::7993bb33",
    "valence": "bad",
    "usefulness": {
-    "tier": "A",
-    "score": 5.02,
+    "tier": "B",
+    "score": 4.02,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 71th percentile among the 8 scored rows on this marker (+2)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,183 participants (+0.52)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -6595,10 +6602,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 5.07,
+    "score": 4.82,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 5 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 1,950 participants (+0.57)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -6634,11 +6641,11 @@
    "edge_id": "omega3_ala::triglycerides::10.1016/j.advnut.2023.09.010::16828ae5",
    "valence": "good",
    "usefulness": {
-    "tier": "S",
-    "score": 5.52,
+    "tier": "A",
+    "score": 4.52,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 75th percentile among the 5 scored rows on this marker (+2)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,183 participants (+0.52)"
     ]
    },
@@ -6673,11 +6680,11 @@
    "edge_id": "mediterranean_diet::triglycerides::10.1016/j.numecd.2025.104433::fcdc1bbd",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.53,
+    "tier": "A",
+    "score": 4.53,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 25th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 1,337 participants (+0.53)"
     ]
    },
@@ -6713,10 +6720,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "B",
-    "score": 3.5,
+    "score": 3.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -6796,7 +6803,7 @@
     "score": 1.0,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 50th percentile among the 5 scored rows on this marker (+1)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -6873,10 +6880,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.53,
+    "score": 4.28,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 1,337 participants (+0.53)"
     ]
    },
@@ -6911,11 +6918,11 @@
    "edge_id": "weight_loss::hba1c_fasting_glucose::10.1007/s11695-013-1160-3::9a1e7f8e",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.7,
+    "tier": "D",
+    "score": 2.2,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 5 scored rows on this marker (+2)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 6,131 participants (+0.7)"
     ]
    },
@@ -6951,10 +6958,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.0,
+    "score": 4.25,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -7000,7 +7007,7 @@
     "score": 2.5,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 9 participants (+0)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -7040,7 +7047,7 @@
     "score": 4.21,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 723 participants (+0.46)"
     ]
    },
@@ -7080,7 +7087,7 @@
     "score": 4.21,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 723 participants (+0.46)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -7158,11 +7165,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.47,
+    "tier": "B",
+    "score": 4.47,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 7 scored rows on this marker (+0)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 747 participants (+0.47)"
     ]
    },
@@ -7202,11 +7209,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.47,
+    "tier": "A",
+    "score": 4.72,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 747 participants (+0.47)"
     ]
    },
@@ -7245,7 +7252,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 40th percentile among the 6 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -7280,11 +7287,11 @@
    "edge_id": "resistance_training::waist_vat::10.1007/s40279-021-01562-2::8f60d3ae",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.75,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -7320,10 +7327,10 @@
    "valence": "unclear",
    "usefulness": {
     "tier": "A",
-    "score": 4.75,
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -7362,7 +7369,7 @@
     "score": 3.71,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 17th percentile among the 7 scored rows on this marker (+0)",
+     "effect size ranks 20th percentile among the 6 scored rows on this marker reported the same way (+0)",
      "measured in 6,880 participants (+0.71)"
     ]
    },
@@ -7401,7 +7408,7 @@
     "score": 4.71,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 6,880 participants (+0.71)"
     ]
    },
@@ -7441,11 +7448,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.57,
+    "tier": "B",
+    "score": 3.57,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 5 scored rows on this marker reported the same way (+0)",
      "measured in 1,863 participants (+0.57)"
     ]
    },
@@ -7489,7 +7496,7 @@
     "score": 4.57,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,863 participants (+0.57)"
     ]
    },
@@ -7527,11 +7534,11 @@
    "edge_id": "protein_intake::lean_mass::10.3945/ajcn.115.119339::69212c9d",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 2.65,
+    "tier": "D",
+    "score": 1.65,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 50th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 25th percentile among the 5 scored rows on this marker reported the same way (+0)",
      "measured in 40 participants (+0.15)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -7571,7 +7578,7 @@
     "score": 3.15,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 50th percentile among the 7 scored rows on this marker (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 40 participants (+0.15)"
     ]
    },
@@ -7611,11 +7618,11 @@
    "edge_id": "creatine_monohydrate::lean_mass::10.1186/s11556-025-00392-9::a8198b57",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 2.92,
+    "tier": "B",
+    "score": 3.92,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 17th percentile among the 7 scored rows on this marker (+0)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 482 participants (+0.42)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -7652,10 +7659,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.67,
+    "score": 4.17,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 482 participants (+0.42)"
     ]
    },
@@ -7694,7 +7701,7 @@
     "score": 3.25,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 67th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 50th percentile among the 5 scored rows on this marker reported the same way (+1)",
      "measured in 101 participants (+0.25)"
     ]
    },
@@ -7733,7 +7740,7 @@
     "score": 3.25,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 67th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 60th percentile among the 6 scored rows on this marker reported the same way (+1)",
      "measured in 101 participants (+0.25)"
     ]
    },
@@ -7769,10 +7776,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.0,
+    "score": 3.75,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 101 participants (+0.25)"
     ]
    },
@@ -7848,7 +7855,7 @@
     "score": 3.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 7 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 6 scored rows on this marker reported the same way (+0)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -7961,7 +7968,7 @@
     "score": 3.0,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 67th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 60th percentile among the 6 scored rows on this marker reported the same way (+1)",
      "measured in 10 participants (+0)"
     ]
    },
@@ -8000,7 +8007,7 @@
     "score": 4.0,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 5 scored rows on this marker reported the same way (+2)",
      "measured in 10 participants (+0)"
     ]
    },
@@ -8035,11 +8042,11 @@
    "edge_id": "alcohol::waist_vat::10.1038/s41366-026-02030-5::5537a347",
    "valence": "bad",
    "usefulness": {
-    "tier": "D",
-    "score": 1.69,
+    "tier": "E",
+    "score": 1.19,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 5,761 participants (+0.69)"
     ]
    },
@@ -8081,7 +8088,7 @@
     "score": 5.48,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 83th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 75th percentile among the 5 scored rows on this marker reported the same way (+2)",
      "measured in 821 participants (+0.48)"
     ]
    },
@@ -8125,7 +8132,7 @@
     "score": 2.26,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 6 scored rows on this marker reported the same way (+2)",
      "measured in 106 participants (+0.26)",
      "a quote-integrity flag is open on this row (-0.5)",
      "an author has a stake in the result (-0.5)"
@@ -8164,11 +8171,11 @@
    "verified_note_source": "_verification-efgh.md",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 2.51,
+    "tier": "D",
+    "score": 1.76,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 106 participants (+0.26)",
      "an author has a stake in the result (-0.5)"
     ]
@@ -8207,10 +8214,10 @@
    "valence": "unclear",
    "usefulness": {
     "tier": "D",
-    "score": 1.51,
+    "score": 1.76,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 106 participants (+0.26)",
      "an author has a stake in the result (-0.5)"
     ]
@@ -8397,11 +8404,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.5,
+    "tier": "B",
+    "score": 4.25,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 60th percentile among the 6 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -8439,11 +8446,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.16,
+    "tier": "C",
+    "score": 3.16,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 20th percentile among the 6 scored rows on this marker (+0)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 44 participants (+0.16)"
     ]
    },
@@ -8518,11 +8525,11 @@
    "edge_id": "sleep_deprivation::sustained_attention_rt::10.1037/a0018883::9a784254",
    "valence": "bad",
    "usefulness": {
-    "tier": "S",
-    "score": 5.5,
+    "tier": "A",
+    "score": 4.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 80th percentile among the 6 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -8561,10 +8568,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 4.5,
+    "score": 5.0,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 40th percentile among the 6 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -8604,11 +8611,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.62,
+    "tier": "C",
+    "score": 2.62,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 6 scored rows on this marker (+2)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 29 participants (+0.12)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -8681,11 +8688,11 @@
    "edge_id": "nicotine::working_memory::10.1007/s00213-010-1848-1::7246412f",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.25,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -8721,10 +8728,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 4.99,
+    "score": 4.74,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 9,538 participants (+0.74)"
     ]
    },
@@ -8800,7 +8807,7 @@
     "score": 4.61,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 2,750 participants (+0.61)"
     ]
    },
@@ -8846,7 +8853,7 @@
     "score": 4.92,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 492 participants (+0.42)"
     ]
    },
@@ -8922,7 +8929,7 @@
     "score": 3.34,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 2,262 participants (+0.59)"
     ]
    },
@@ -9042,11 +9049,11 @@
    "direction_corrected_from": "+",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.42,
+    "tier": "A",
+    "score": 4.67,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 492 participants (+0.42)"
     ]
    },
@@ -9087,10 +9094,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 3.12,
+    "score": 2.62,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 29 participants (+0.12)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -9130,10 +9137,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.0,
+    "score": 4.25,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -9173,11 +9180,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.79,
+    "tier": "S",
+    "score": 5.79,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 64th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 10 scored rows on this marker reported the same way (+2)",
      "measured in 14,170 participants (+0.79)"
     ]
    },
@@ -9217,11 +9224,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.79,
+    "tier": "A",
+    "score": 4.79,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 21th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 10 scored rows on this marker reported the same way (+1)",
      "measured in 14,170 participants (+0.79)"
     ]
    },
@@ -9256,11 +9263,11 @@
    "edge_id": "aerobic_exercise::depressive_symptoms::10.1136/bjsports-2025-110301::b45dc844",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.98,
+    "tier": "S",
+    "score": 5.98,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 57th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 89th percentile among the 10 scored rows on this marker reported the same way (+2)",
      "measured in 79,551 participants (+0.98)"
     ]
    },
@@ -9299,7 +9306,7 @@
     "score": 4.98,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 43th percentile among the 8 scored rows on this marker (+1)",
+     "effect size ranks 50th percentile among the 5 scored rows on this marker reported the same way (+1)",
      "measured in 79,551 participants (+0.98)"
     ]
    },
@@ -9337,10 +9344,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 2.99,
+    "score": 3.49,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 922 participants (+0.49)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -9380,7 +9387,7 @@
     "score": 3.57,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 10 scored rows on this marker reported the same way (+0)",
      "measured in 1,824 participants (+0.57)"
     ]
    },
@@ -9419,7 +9426,7 @@
     "score": 3.57,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 14th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 5 scored rows on this marker reported the same way (+0)",
      "measured in 1,824 participants (+0.57)"
     ]
    },
@@ -9458,10 +9465,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.82,
+    "score": 4.07,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,824 participants (+0.57)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -9501,7 +9508,7 @@
     "score": 4.64,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 3,508 participants (+0.64)"
     ]
    },
@@ -9540,7 +9547,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 36th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 56th percentile among the 10 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -9586,7 +9593,7 @@
     "score": 5.18,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 71th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 5 scored rows on this marker reported the same way (+2)",
      "measured in 5,048 participants (+0.68)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -9626,7 +9633,7 @@
     "score": 3.45,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 7th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 11th percentile among the 10 scored rows on this marker reported the same way (+0)",
      "measured in 610 participants (+0.45)"
     ]
    },
@@ -9665,7 +9672,7 @@
     "score": 3.49,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 14th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 22th percentile among the 10 scored rows on this marker reported the same way (+0)",
      "measured in 881 participants (+0.49)"
     ]
    },
@@ -9705,11 +9712,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.58,
+    "tier": "A",
+    "score": 4.58,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 29th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 44th percentile among the 10 scored rows on this marker reported the same way (+1)",
      "measured in 2,160 participants (+0.58)"
     ]
    },
@@ -9786,11 +9793,11 @@
    "edge_id": "vitamin_d::depressive_symptoms::10.1017/S0033291724001697::d3a45e17",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.85,
+    "tier": "S",
+    "score": 5.85,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 78th percentile among the 10 scored rows on this marker reported the same way (+2)",
      "measured in 24,189 participants (+0.85)"
     ]
    },
@@ -9862,11 +9869,11 @@
    "edge_id": "st_johns_wort::depressive_symptoms::10.1002/14651858.CD000448.pub3::60d8e2c3",
    "valence": "good",
    "usefulness": {
-    "tier": "S",
-    "score": 5.68,
+    "tier": "B",
+    "score": 4.18,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 79th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 5,489 participants (+0.68)"
     ]
    },
@@ -9902,10 +9909,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 5.48,
+    "score": 4.73,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 817 participants (+0.48)"
     ]
    },
@@ -9978,10 +9985,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 5.38,
+    "score": 4.88,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 339 participants (+0.38)"
     ]
    },
@@ -10057,7 +10064,7 @@
     "score": 4.61,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 36th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 56th percentile among the 10 scored rows on this marker reported the same way (+1)",
      "measured in 2,880 participants (+0.61)"
     ]
    },
@@ -10133,7 +10140,7 @@
     "score": 3.58,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 29th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 25th percentile among the 5 scored rows on this marker reported the same way (+0)",
      "measured in 2,124 participants (+0.58)"
     ]
    },
@@ -10173,11 +10180,11 @@
    "paper_notice_serious": false,
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "C",
+    "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 93th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -10217,11 +10224,11 @@
    "verified_note_source": "inclusion-rule-2026-09-16",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 4.0,
+    "tier": "C",
+    "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 86th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 338,426 participants (+1)"
     ]
    },
@@ -10256,11 +10263,11 @@
    "edge_id": "sleep_deprivation::anxiety_symptoms::10.1037/bul0000410::c21ec77a",
    "valence": "bad",
    "usefulness": {
-    "tier": "A",
-    "score": 4.69,
+    "tier": "S",
+    "score": 5.69,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 57th percentile among the 8 scored rows on this marker (+1)",
+     "effect size ranks 75th percentile among the 5 scored rows on this marker reported the same way (+2)",
      "measured in 5,717 participants (+0.69)"
     ]
    },
@@ -10332,11 +10339,11 @@
    "edge_id": "time_in_nature::depressive_symptoms::10.1016/j.ssmph.2021.100934::cfcd3d65",
    "valence": "good",
    "usefulness": {
-    "tier": "S",
-    "score": 5.5,
+    "tier": "B",
+    "score": 4.25,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 71th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -10371,11 +10378,11 @@
    "edge_id": "time_in_nature::anxiety_symptoms::10.1016/j.ssmph.2021.100934::a534ceb7",
    "valence": "good",
    "usefulness": {
-    "tier": "S",
-    "score": 5.5,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 86th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -10414,7 +10421,7 @@
     "score": 4.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 8 scored rows on this marker reported the same way (+2)",
      "measured in 202,248 participants (+1)"
     ]
    },
@@ -10454,11 +10461,11 @@
    "quote_spliced_coverage": 0.661,
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 1.5,
+    "tier": "C",
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 29th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 50th percentile among the 7 scored rows on this marker reported the same way (+1)",
      "measured in 202,248 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10503,7 +10510,7 @@
     "score": 1.42,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 0th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 8 scored rows on this marker reported the same way (+0)",
      "measured in 47,471 participants (+0.92)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10548,7 +10555,7 @@
     "score": 2.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 14th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 17th percentile among the 7 scored rows on this marker reported the same way (+0)",
      "measured in 226,889 participants (+1)"
     ]
    },
@@ -10588,11 +10595,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.0,
+    "tier": "C",
+    "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 29th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 226,889 participants (+1)"
     ]
    },
@@ -10627,11 +10634,11 @@
    "edge_id": "cardiorespiratory_fitness::all_cause_mortality::10.1001/jama.2009.681::1fc378cc",
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.0,
+    "tier": "C",
+    "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 21th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 7 scored rows on this marker reported the same way (+1)",
      "measured in 102,980 participants (+1)"
     ]
    },
@@ -10678,11 +10685,11 @@
    "verified_note_source": "null-review-2026-09-16",
    "valence": "bad",
    "usefulness": {
-    "tier": "C",
-    "score": 2.5,
+    "tier": "B",
+    "score": 3.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 50th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 83th percentile among the 7 scored rows on this marker reported the same way (+2)",
      "measured in 4,838,825 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10760,11 +10767,11 @@
    "edge_id": "alcohol::cardiovascular_mortality::10.1016/S0140-6736(18)31772-0::ec18932b",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "C",
+    "score": 3.25,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 512,715 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10800,11 +10807,11 @@
    "edge_id": "alcohol::cancer_incidence_mortality::10.1038/bjc.2014.579::70a34de4",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 4.0,
+    "tier": "C",
+    "score": 3.25,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 80th percentile among the 6 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 486,538 participants (+1)"
     ]
    },
@@ -10857,7 +10864,7 @@
     "score": 3.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 93th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 86th percentile among the 8 scored rows on this marker reported the same way (+2)",
      "measured in 3,951,455 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10894,10 +10901,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "C",
-    "score": 2.96,
+    "score": 2.71,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 60th percentile among the 6 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 67,361 participants (+0.96)"
     ]
    },
@@ -10933,11 +10940,11 @@
    "edge_id": "sedentary_time::all_cause_mortality::10.1007/s10654-018-0380-1::a0568ed6",
    "valence": "bad",
    "usefulness": {
-    "tier": "C",
-    "score": 2.5,
+    "tier": "D",
+    "score": 1.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 57th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 29th percentile among the 8 scored rows on this marker reported the same way (+0)",
      "measured in 1,331,468 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10977,7 +10984,7 @@
     "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 57th percentile among the 8 scored rows on this marker (+1)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 1,331,468 participants (+1)"
     ]
    },
@@ -11017,11 +11024,11 @@
    "verified_note_source": "_verification-efgh.md",
    "valence": "bad",
    "usefulness": {
-    "tier": "D",
-    "score": 1.5,
+    "tier": "C",
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 20th percentile among the 6 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 1,331,468 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -11062,11 +11069,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.0,
+    "tier": "D",
+    "score": 2.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 43th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 14th percentile among the 8 scored rows on this marker reported the same way (+0)",
      "measured in 833,234 participants (+1)"
     ]
    },
@@ -11106,11 +11113,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.0,
+    "tier": "D",
+    "score": 2.25,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 43th percentile among the 8 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 833,234 participants (+1)"
     ]
    },
@@ -11187,11 +11194,11 @@
    "edge_id": "processed_red_meat::all_cause_mortality::10.3945/ajcn.117.153148::51356f27",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "C",
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 79th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 57th percentile among the 8 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -11229,11 +11236,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "C",
+    "score": 3.25,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 6 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -11308,11 +11315,11 @@
    "edge_id": "sleep_duration::all_cause_mortality::10.1161/JAHA.117.005947::43df3502",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "C",
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 71th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 43th percentile among the 8 scored rows on this marker reported the same way (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -11347,11 +11354,11 @@
    "edge_id": "sleep_duration::cardiovascular_mortality::10.1161/JAHA.117.005947::e3700ce6",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "C",
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 71th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -11390,7 +11397,7 @@
     "score": 3.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 86th percentile among the 15 scored rows on this marker (+2)",
+     "effect size ranks 71th percentile among the 8 scored rows on this marker reported the same way (+2)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -11425,11 +11432,11 @@
    "edge_id": "air_pollution_pm25::all_cause_mortality::10.1016/j.cpcardiol.2023.101670::91c92b9f",
    "valence": "bad",
    "usefulness": {
-    "tier": "C",
-    "score": 3.0,
+    "tier": "B",
+    "score": 4.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 64th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 7 scored rows on this marker reported the same way (+2)",
      "measured in 7,300,591 participants (+1)"
     ]
    },
@@ -11465,10 +11472,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "B",
-    "score": 4.0,
+    "score": 3.75,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 71th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 7,300,591 participants (+1)"
     ]
    },
@@ -11507,7 +11514,7 @@
     "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 40th percentile among the 6 scored rows on this marker (+1)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -11546,7 +11553,7 @@
     "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 36th percentile among the 15 scored rows on this marker (+1)",
+     "effect size ranks 67th percentile among the 7 scored rows on this marker reported the same way (+1)",
      "measured in 514,816 participants (+1)"
     ]
    },
@@ -11581,11 +11588,11 @@
    "edge_id": "mediterranean_diet::cardiovascular_mortality::10.1136/bmj.a1344::5a656365",
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.0,
+    "tier": "C",
+    "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 14th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 514,816 participants (+1)"
     ]
    },
@@ -11621,10 +11628,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "D",
-    "score": 2.0,
+    "score": 2.25,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 0th percentile among the 6 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 514,816 participants (+1)"
     ]
    },
@@ -11663,7 +11670,7 @@
     "score": 1.16,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 4,303 participants (+0.66)"
     ]
    },
@@ -11776,7 +11783,7 @@
     "score": 2.81,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 180 participants (+0.31)"
     ]
    },
@@ -11816,11 +11823,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 2.56,
+    "tier": "D",
+    "score": 2.31,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 180 participants (+0.31)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -11857,10 +11864,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.44,
+    "score": 3.94,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 551 participants (+0.44)"
     ]
    },
@@ -11933,10 +11940,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.87,
+    "score": 4.12,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 3,037 participants (+0.62)"
     ]
    },
@@ -12019,7 +12026,7 @@
     "score": 3.15,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 40 participants (+0.15)"
     ]
    },
@@ -12063,7 +12070,7 @@
     "score": 3.15,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 40 participants (+0.15)"
     ]
    },
@@ -12099,10 +12106,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.1,
+    "score": 3.85,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 247 participants (+0.35)"
     ]
    },
@@ -12184,7 +12191,7 @@
     "score": 2.98,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 800 participants (+0.48)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12222,11 +12229,11 @@
    "quote_spliced_coverage": 0.731,
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.29,
+    "tier": "B",
+    "score": 4.04,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,424 participants (+0.54)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12268,7 +12275,7 @@
     "score": 4.04,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 1,424 participants (+0.54)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12392,7 +12399,7 @@
     "score": 4.26,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 11,321 participants (+0.76)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12468,10 +12475,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.5,
+    "score": 3.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 17th percentile among the 7 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -12515,7 +12522,7 @@
     "score": 4.0,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12560,7 +12567,7 @@
     "score": 2.55,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 153 participants (+0.3)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12645,7 +12652,7 @@
     "score": 3.15,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 394 participants (+0.4)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12765,11 +12772,11 @@
    "edge_id": "moderate_exercise::arti_incidence::10.1016/j.amjmed.2006.06.033::5dde8373",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.77,
+    "tier": "C",
+    "score": 3.27,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 115 participants (+0.27)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12814,7 +12821,7 @@
     "score": 4.21,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 6,950 participants (+0.71)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12856,7 +12863,7 @@
     "score": 3.46,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 6,950 participants (+0.71)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12935,11 +12942,11 @@
    "quote_check_kind": "unmatched",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.26,
+    "tier": "B",
+    "score": 3.76,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 7 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 11,306 participants (+0.76)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -12982,7 +12989,7 @@
     "score": 5.01,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 11,306 participants (+0.76)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -13059,11 +13066,11 @@
    "quote_spliced_coverage": 0.423,
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.43,
+    "tier": "A",
+    "score": 5.18,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 7 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 52,105 participants (+0.93)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -13103,7 +13110,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -13138,11 +13145,11 @@
    "edge_id": "resistance_training::bmd::10.1186/s13018-025-05890-1::40ed1b2c",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 5.46,
+    "tier": "B",
+    "score": 4.46,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 5 scored rows on this marker (+2)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 690 participants (+0.46)"
     ]
    },
@@ -13177,11 +13184,11 @@
    "edge_id": "impact_exercise::bmd::10.1007/s00774-009-0139-6::57dea581",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.5,
+    "tier": "A",
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 25th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -13220,7 +13227,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 5 scored rows on this marker (+1)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -13256,10 +13263,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "S",
-    "score": 5.77,
+    "score": 5.52,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 75th percentile among the 5 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 12,257 participants (+0.77)"
     ]
    },
@@ -13303,7 +13310,7 @@
     "score": 4.37,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 30,970 participants (+0.87)"
     ]
    },
@@ -13379,7 +13386,7 @@
     "score": 3.15,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 3,889 participants (+0.65)"
     ]
    },
@@ -13457,7 +13464,7 @@
     "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 240,871 participants (+1)"
     ]
    },
@@ -13465,7 +13472,7 @@
    "evidence_label": "Prospective cohort study"
   },
   {
-   "behavior_id": "weight_loss",
+   "behavior_id": "weight_loss_fatloss",
    "marker_id": "bmd",
    "direction": "-",
    "effect": "Weight loss significantly decreased hip BMD (MD -0.008 g/cm2, 95% CI -0.09 to -0.006, p<0.001) and lumbar spine BMD (MD -0.018 g/cm2, 95% CI -0.019 to -0.017, p<0.001), but had no significant effect on total body BMD (MD 0.007, 95% CI -0.020 to 0.034, p=0.608)",
@@ -13488,15 +13495,18 @@
    "figure": null,
    "caveats": "Abstract does not report total pooled participant n across the 32 RCTs; this edge and the weight_loss -> oa_pain edge below together illustrate the tension the research brief anticipated: weight loss improves knee osteoarthritis pain/function but can reduce hip and spine BMD, particularly when achieved through calorie restriction rather than exercise.",
    "key_results": "Thirty-two randomized controlled trials met predetermined inclusion criteria. Weight loss led to significant decreases at the hip and lumbar spine BMD but not at the total. Weight loss response following calorie restriction resulted in a decrease in hip and lumbar spine bone density especially more than 1 year; whereas an exercise-induced weight loss did not.",
-   "legacy_key": "weight_loss::bmd::10.1007/s00198-016-3617-4",
-   "edge_id": "weight_loss::bmd::10.1007/s00198-016-3617-4::bfc0808f",
+   "refiled_from": "weight_loss",
+   "review_note": "The behaviour node reads \"Weight loss (bariatric surgery vs conventional therapy)\", but this paper studied weight loss by calorie restriction and exercise. No surgical arm appears in it. The node was named from a third row on it - the HbA1c one - which really is bariatric, and the name then spread to two rows it did not describe. Moved to the general weight-loss node.",
+   "verified_note_source": "attribution-sources-2026-09-16",
+   "legacy_key": "weight_loss_fatloss::bmd::10.1007/s00198-016-3617-4",
+   "edge_id": "weight_loss_fatloss::bmd::10.1007/s00198-016-3617-4::bfc0808f",
    "valence": "bad",
    "usefulness": {
     "tier": "B",
-    "score": 3.5,
+    "score": 3.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -13504,7 +13514,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "weight_loss",
+   "behavior_id": "weight_loss_fatloss",
    "marker_id": "oa_pain",
    "direction": "-",
    "effect": "Diet-plus-exercise weight loss interventions significantly improved knee osteoarthritis pain versus control on a 0-20 scale (-2.2 points, 95% CI -4.1 to -0.21); psychological+diet+exercise was not significantly superior to control (-3.9, 95% CI -8.4 to 0.5) despite producing the largest weight loss; clinically meaningful pain relief is predicted at >=7% weight loss",
@@ -13527,8 +13537,11 @@
    "figure": null,
    "caveats": "An Expression of Concern has since been issued for this article (Osteoarthritis Cartilage 2024;32(11):1513); noted here for transparency, though the substance of the concern was not available in the retrieved metadata - treat pooled estimates with appropriate caution pending resolution. Also note the same weight-loss literature reduces hip/spine BMD (see the weight_loss -> bmd edge above), so weight loss for knee OA is not risk-free for bone health.",
    "key_results": "13 RCTs on knee OA (2800 participants) with 7 interventions were networked. For weight change (kg), all interventions significantly outperformed control, ranging from -11.2 kg (PDE) to -4.7 kg (DE). PDE and DE interventions may offer the most effective approach for weight loss, potentially leading to improvements in pain and physical function among overweight/obese individuals with KOA if they achieve more than 7% weight loss.",
-   "legacy_key": "weight_loss::oa_pain::10.1016/j.joca.2024.08.012",
-   "edge_id": "weight_loss::oa_pain::10.1016/j.joca.2024.08.012::7e9b043e",
+   "refiled_from": "weight_loss",
+   "review_note": "The behaviour node reads \"Weight loss (bariatric surgery vs conventional therapy)\", but this paper studied weight loss by calorie restriction and exercise. No surgical arm appears in it. The node was named from a third row on it - the HbA1c one - which really is bariatric, and the name then spread to two rows it did not describe. Moved to the general weight-loss node.",
+   "verified_note_source": "attribution-sources-2026-09-16",
+   "legacy_key": "weight_loss_fatloss::oa_pain::10.1016/j.joca.2024.08.012",
+   "edge_id": "weight_loss_fatloss::oa_pain::10.1016/j.joca.2024.08.012::7e9b043e",
    "paper_notices": [
     "expression_of_concern"
    ],
@@ -13536,11 +13549,11 @@
    "paper_notice_serious": true,
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.61,
+    "tier": "B",
+    "score": 4.11,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 2,800 participants (+0.61)"
     ]
    },
@@ -13576,10 +13589,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 5.25,
+    "score": 5.0,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -13618,7 +13631,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -13740,7 +13753,7 @@
     "score": 2.84,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 235 participants (+0.34)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -13817,10 +13830,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.68,
+    "score": 4.43,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 507 participants (+0.43)"
     ]
    },
@@ -13858,10 +13871,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 4.77,
+    "score": 4.52,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,251 participants (+0.52)"
     ]
    },
@@ -13896,11 +13909,11 @@
    "edge_id": "fibre_general::constipation_relief::10.1093/ajcn/nqac184::0ce4c5b7",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.27,
+    "tier": "A",
+    "score": 4.52,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 1,251 participants (+0.52)"
     ]
    },
@@ -13936,11 +13949,11 @@
    "edge_id": "psyllium::ibs_severity::10.1136/bmj.b3154::c1594a23",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 2.86,
+    "tier": "D",
+    "score": 2.36,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 40th percentile among the 6 scored rows on this marker (+1)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 275 participants (+0.36)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14017,11 +14030,11 @@
    "edge_id": "prunes::stool_frequency_consistency::10.1111/apt.12913::4f95ae98",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.25,
+    "tier": "B",
+    "score": 3.5,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -14061,10 +14074,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 2.98,
+    "score": 2.73,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 87 participants (+0.23)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14141,7 +14154,7 @@
     "score": 4.47,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 60th percentile among the 6 scored rows on this marker (+1)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 726 participants (+0.47)"
     ]
    },
@@ -14177,11 +14190,11 @@
    "edge_id": "probiotics::ibs_severity::10.1016/j.clnesp.2024.02.025::a6d79202",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.12,
+    "tier": "B",
+    "score": 4.12,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 20th percentile among the 6 scored rows on this marker (+0)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 3,011 participants (+0.62)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14217,11 +14230,11 @@
    "edge_id": "low_fodmap_diet::ibs_severity::10.1016/j.nut.2017.07.004::1016c6dd",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.44,
+    "tier": "B",
+    "score": 3.94,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 6 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 596 participants (+0.44)"
     ]
    },
@@ -14257,10 +14270,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.19,
+    "score": 3.69,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 6 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 56 participants (+0.19)"
     ]
    },
@@ -14337,10 +14350,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.25,
+    "score": 3.75,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 80th percentile among the 6 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 101 participants (+0.25)"
     ]
    },
@@ -14379,7 +14392,7 @@
     "score": 1.02,
     "why": [
      "Cross-sectional, case-control, animal or mechanistic (+0)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 12 participants (+0.02)"
     ]
    },
@@ -14415,10 +14428,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.86,
+    "score": 4.36,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 2,884 participants (+0.61)"
     ]
    },
@@ -14491,10 +14504,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 4.55,
+    "score": 4.8,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 1,618 participants (+0.55)"
     ]
    },
@@ -14530,10 +14543,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "D",
-    "score": 2.38,
+    "score": 2.13,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 323 participants (+0.38)"
     ]
    },
@@ -14609,7 +14622,7 @@
     "score": 3.11,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 274 participants (+0.36)"
     ]
    },
@@ -14648,7 +14661,7 @@
     "score": 4.73,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 854 participants (+0.48)"
     ]
    },
@@ -14687,7 +14700,7 @@
     "score": 4.74,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 940 participants (+0.49)"
     ]
    },
@@ -14727,7 +14740,7 @@
     "score": 3.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14803,11 +14816,11 @@
    "edge_id": "soy_isoflavones::vasomotor_symptoms::10.1097/gme.0b013e3182410159::e0be8b53",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.75,
+    "tier": "B",
+    "score": 4.0,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14819,8 +14832,8 @@
    "behavior_id": "smoking",
    "marker_id": "vasomotor_symptoms",
    "direction": "+",
-   "effect": "Obese never-smokers: RR 1.52 (95% CI 1.35 to 1.73) for often/severe vasomotor symptoms vs normal-weight never-smokers; obese smokers: RR 3.02 (95% CI 2.41 to 3.78) vs normal-weight never-smokers",
-   "effect_normalized": 3.02,
+   "effect": "Smoking more cigarettes, for longer, and starting earlier were each associated with more frequent or severe vasomotor symptoms. The paper reports no clean main-effect figure for smoking; its published risk ratios are body-weight strata, and the strongest of them, RR 3.02 (95% CI 2.41 to 3.78), is obese smokers against normal-weight never-smokers - obesity and smoking together.",
+   "effect_normalized": null,
    "normalization_method": "Relative risk ratio vs normal-weight never-smokers, pooled cross-sectional analysis of cohort data",
    "evidence_tier": "C",
    "population": "Midlife women; 8 pooled cohort studies, 21,460 women in the cross-sectional analysis, 11,986 in the prospective analysis",
@@ -14838,18 +14851,23 @@
    "verbatim": "Never smokers who were obese had a 1.5-fold (relative risk ratio, 1.52; 95% confidence interval, 1.35-1.73) higher risk of often/severe vasomotor symptoms. The risk of often/severe vasomotor symptoms was much greater among smokers who were obese (relative risk ratio, 3.02; 95% confidence interval, 2.41-3.78).",
    "key_results": "Data were pooled from 8 cohort studies. High body mass index (>=25 kg/m2) and cigarette smoking substantially increased women's risk for experiencing frequent or severe vasomotor symptoms in a dose-response manner, and smoking intensified the effect of obesity: obese smokers had roughly double the relative risk of obese never-smokers.",
    "figure": null,
-   "caveats": "Cohort/cross-sectional design, not a smoking-cessation RCT, so causality (vs residual confounding by other lifestyle factors correlated with smoking) cannot be established as firmly as for the RCT-based edges in this file.",
+   "caveats": "The two headline figures in this paper are BMI strata, not smoking effects. RR 1.52 is obese NEVER-smokers, which contains no smoking at all, and RR 3.02 is the obesity-and-smoking cell. Neither isolates smoking. The direction is supported by the paper's dose-response statement; the magnitude is not available from the abstract.",
    "legacy_key": "smoking::vasomotor_symptoms::10.1016/j.ajog.2019.10.103",
    "edge_id": "smoking::vasomotor_symptoms::10.1016/j.ajog.2019.10.103::844b8895",
    "quote_spliced": true,
    "quote_spliced_coverage": 0.51,
+   "review_note": "This row led with RR 1.52 - a figure for obese never-smokers, that is, a pure obesity effect - under a node about smoking, and plotted RR 3.02, the joint obesity-and-smoking cell, as though it were smoking's own effect. The row now states what the paper supports for smoking and no more, and contributes no magnitude to the chart.",
+   "effect_corrected_from": "Obese never-smokers: RR 1.52 (95% CI 1.35 to 1.73) for often/severe vasomotor symptoms vs normal-weight never-smokers; obese smokers: RR 3.02 (95% CI 2.41 to 3.78) vs normal-weight never-smokers",
+   "caveats_corrected_from": "Cohort/cross-sectional design, not a smoking-cessation RCT, so causality (vs residual confounding by other lifestyle factors correlated with smoking) cannot be established as firmly as for the RCT-based edges in this file.",
+   "effect_normalized_corrected_from": 3.02,
+   "verified_note_source": "attribution-sources-2026-09-16",
    "valence": "bad",
    "usefulness": {
     "tier": "D",
     "score": 2.33,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 21,460 participants (+0.83)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14890,10 +14908,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "D",
-    "score": 2.4,
+    "score": 2.15,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 412 participants (+0.4)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -14930,10 +14948,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.98,
+    "score": 4.48,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 840 participants (+0.48)"
     ]
    },
@@ -14968,11 +14986,11 @@
    "edge_id": "fluoride_toothpaste::caries_increment::10.1002/14651858.CD007868.pub3::85456038",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.5,
+    "tier": "B",
+    "score": 4.25,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -15008,10 +15026,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 2.5,
+    "score": 2.75,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -15050,7 +15068,7 @@
     "score": 4.17,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 4,624 participants (+0.67)"
     ]
    },
@@ -15085,11 +15103,11 @@
    "edge_id": "powered_toothbrushing::gingival_inflammation::10.1002/14651858.CD002281.pub3::0319fe19",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.67,
+    "tier": "B",
+    "score": 4.42,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 4,624 participants (+0.67)"
     ]
    },
@@ -15125,10 +15143,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 5.4,
+    "score": 4.9,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 3,929 participants (+0.65)"
     ]
    },
@@ -15205,10 +15223,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.15,
+    "score": 4.4,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 3,929 participants (+0.65)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -15248,7 +15266,7 @@
     "score": 4.65,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 3,929 participants (+0.65)"
     ]
    },
@@ -15287,7 +15305,7 @@
     "score": 5.18,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 5,345 participants (+0.68)"
     ]
    },
@@ -15323,10 +15341,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 3.93,
+    "score": 4.43,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 5,345 participants (+0.68)"
     ]
    },
@@ -15362,10 +15380,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "C",
-    "score": 3.25,
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -15403,11 +15421,11 @@
    "verified_note_source": "null-review-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 2.94,
+    "tier": "B",
+    "score": 3.69,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 5,903 participants (+0.69)"
     ]
    },
@@ -15446,7 +15464,7 @@
     "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -15522,10 +15540,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.0,
+    "score": 3.75,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -15601,7 +15619,7 @@
     "score": 2.94,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 60 participants (+0.19)"
     ]
    },
@@ -15640,7 +15658,7 @@
     "score": 3.37,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 30 participants (+0.12)"
     ]
    },
@@ -15679,7 +15697,7 @@
     "score": 3.19,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 60 participants (+0.19)"
     ]
    },
@@ -15791,11 +15809,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 3.94,
+    "tier": "C",
+    "score": 3.19,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 60 participants (+0.19)"
     ]
    },
@@ -15834,7 +15852,7 @@
     "score": 4.12,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 8 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 7 scored rows on this marker reported the same way (+2)",
      "measured in 30 participants (+0.12)"
     ]
    },
@@ -15873,7 +15891,7 @@
     "score": 4.12,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 90th percentile among the 11 scored rows on this marker (+2)",
+     "effect size ranks 80th percentile among the 6 scored rows on this marker reported the same way (+2)",
      "measured in 30 participants (+0.12)"
     ]
    },
@@ -15949,7 +15967,7 @@
     "score": 4.44,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 575 participants (+0.44)"
     ]
    },
@@ -15988,7 +16006,7 @@
     "score": 2.41,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 7th percentile among the 15 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 7 scored rows on this marker reported the same way (+0)",
      "measured in 420 participants (+0.41)"
     ]
    },
@@ -16023,11 +16041,11 @@
    "edge_id": "coq10_supplementation::cardiovascular_mortality::10.1016/j.jchf.2014.06.008::5f4ec341",
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.41,
+    "tier": "C",
+    "score": 2.66,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 8 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 420 participants (+0.41)"
     ]
    },
@@ -16062,11 +16080,11 @@
    "edge_id": "coq10_supplementation::blood_pressure::10.1016/j.ijcrp.2025.200424::b753cabb",
    "valence": "good",
    "usefulness": {
-    "tier": "A",
-    "score": 4.5,
+    "tier": "B",
+    "score": 3.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 40th percentile among the 11 scored rows on this marker (+1)",
+     "effect size ranks 20th percentile among the 6 scored rows on this marker reported the same way (+0)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -16145,7 +16163,7 @@
     "score": 3.97,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 781 participants (+0.47)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -16181,11 +16199,11 @@
    "edge_id": "korean_red_ginseng::nitric_oxide_blood_flow::10.1111/j.1365-2125.2008.03236.x::c502dcc4",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.39,
+    "tier": "A",
+    "score": 4.64,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 5 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 349 participants (+0.39)"
     ]
    },
@@ -16220,11 +16238,11 @@
    "edge_id": "korean_red_ginseng::nitric_oxide_blood_flow::10.1111/j.1365-2125.2008.03236.x::5d229ae1",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.28,
+    "tier": "B",
+    "score": 4.03,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 25th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 135 participants (+0.28)"
     ]
    },
@@ -16263,10 +16281,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.1,
+    "score": 3.6,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 75th percentile among the 5 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 24 participants (+0.1)"
     ]
    },
@@ -16304,11 +16322,11 @@
    "verified_note_source": "valence-pass-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.1,
+    "tier": "B",
+    "score": 3.85,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 60th percentile among the 11 scored rows on this marker (+1)",
+     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 24 participants (+0.1)"
     ]
    },
@@ -16350,7 +16368,7 @@
     "score": 3.2,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "only scored row on this marker, so no relative ranking (+1)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 64 participants (+0.2)"
     ]
    },
@@ -16392,7 +16410,7 @@
     "score": 4.2,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 11 scored rows on this marker (+2)",
+     "effect size ranks 100th percentile among the 6 scored rows on this marker reported the same way (+2)",
      "measured in 64 participants (+0.2)"
     ]
    },
@@ -16467,11 +16485,11 @@
    "verified_note_source": "valence-pass-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "C",
-    "score": 3.47,
+    "tier": "B",
+    "score": 4.47,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 25th percentile among the 5 scored rows on this marker (+0)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 770 participants (+0.47)"
     ]
    },
@@ -16624,7 +16642,7 @@
     "score": 4.47,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
      "measured in 747 participants (+0.47)"
     ]
    },
@@ -16701,11 +16719,11 @@
    "verified_note_source": "valence-pass-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "B",
-    "score": 4.47,
+    "tier": "C",
+    "score": 3.47,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 83th percentile among the 7 scored rows on this marker (+2)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 783 participants (+0.47)"
     ]
    },
@@ -16744,7 +16762,7 @@
     "score": 3.96,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 671 participants (+0.46)"
     ]
    },
@@ -16820,7 +16838,7 @@
     "score": 4.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -16858,11 +16876,11 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.17,
+    "tier": "C",
+    "score": 2.67,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 6 scored rows on this marker (+0)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 50 participants (+0.17)"
     ]
    },
@@ -16901,10 +16919,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 3.42,
+    "score": 3.17,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 50 participants (+0.17)"
     ]
    },

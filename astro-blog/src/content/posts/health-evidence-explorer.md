@@ -7,7 +7,7 @@ affiliations:
   - "Independent Analysis"
 published: "2026-09-13"
 thumbnail: "/img/health-evidence/thumbnail.svg"
-abstract: "Health advice arrives as a flat list: eat this, take that, sleep more. A flat list hides the three things that decide whether a claim is worth acting on - which endpoint actually moved, how strong the evidence behind it is, and whether two pieces of advice are really the same lever pulled twice. This is that literature rebuilt as a graph: behavior to biomarker to goal, walkable from either end. Effect sizes are compared only within a marker, where the units match. Null results are recorded as findings. Nothing is ever summed, and every row carries the paper's own result sentence. The dataset behind it currently holds 316 rows across 14 goals, drawn from 225 papers, including 65 results that were measured and came back null."
+abstract: "Health advice arrives as a flat list: eat this, take that, sleep more. A flat list hides the three things that decide whether a claim is worth acting on - which endpoint actually moved, how strong the evidence behind it is, and whether two pieces of advice are really the same lever pulled twice. This is that literature rebuilt as a graph: behavior to biomarker to goal, walkable from either end. Effect sizes are compared only within a marker, and only against rows reported on the same scale. Null results are recorded as findings. Nothing is ever summed, and every row carries the paper's own result sentence. The dataset behind it currently holds 316 rows across 14 goals, drawn from 225 papers, including 65 results that were measured and came back null."
 tags:
   - "explainer"
   - "interactive"
@@ -86,7 +86,11 @@ category: "business"
   }
   .hx-shell-head .hx-langs { flex-shrink: 0; }
   .hx-legend-body[hidden] { display: none; }
-  .hx-explorer { overflow: hidden; }
+  /* Not hidden: an overflow value other than visible makes this element the scroll
+     container for any sticky descendant, so the sticky head and section titles would
+     anchor to a 50,000px-tall box that never scrolls instead of to .hx-shell-scroll,
+     which is the thing the reader actually scrolls. The shell above already clips. */
+  .hx-explorer { min-width: 0; }
 
   .hx-shell .hx-legendbox,
   .hx-shell #hx-glossary .hx-cutbox,
@@ -137,6 +141,30 @@ category: "business"
   /* Quotes stay in the language the paper was written in, so the note explaining that
      only needs to appear when the surrounding interface is not English. */
   .hx-quotenote { margin: 0 0 6px; font-size: 0.78rem; color: var(--color-gray-light); }
+
+  /* The tabs and the filter used to scroll away, so a reader deep in a long list had no
+     way to switch view or search without scrolling back up. They stay put now, and so does
+     the heading of whatever section is being read - the list is long enough that losing
+     track of which group you are in is easy.
+
+     Sticky offsets are measured rather than guessed: the head wraps onto two lines on a
+     narrow screen, and a hard-coded top would hide a row behind it. JS writes the measured
+     height into --hx-headh. */
+  .hx-stickyhead {
+    position: sticky; top: 0; z-index: 4;
+    background: var(--color-bg);
+  }
+  .hx-group {
+    position: sticky; top: var(--hx-headh, 96px); z-index: 3;
+    background: var(--color-bg);
+  }
+  /* In goal mode nothing sits between the head and the goal rows; in behaviour mode the
+     group heading does, so the row below it has to clear that too. */
+  #hx-explorer[data-mode="goal"] .hx-goalbar { top: var(--hx-headh, 96px); }
+  #hx-explorer[data-mode="behavior"] .hx-goalbar { top: calc(var(--hx-headh, 96px) + 30px); }
+  .hx-goalbar {
+    position: sticky; z-index: 2; background: var(--color-bg);
+  }
 
   .hx-body { display: block; }
   .hx-tree { padding: 6px 16px 20px; min-width: 0; }
@@ -556,7 +584,7 @@ sits in a list next to "take magnesium" at the same indent, and nothing on the p
 them reaches six goals and the other reaches one.</figcaption>
 </figure>
 
-The middle layer is what makes the other two problems visible. Where several behaviors land on the same marker, you can see them converge and know they don't add. Effect sizes are compared only inside a marker, where the units match — comparing a mortality percentage to a hormone percentage is meaningless, so the tool never offers it. Nothing is summed anywhere. Click any row for the study: the result sentence quoted verbatim, the population it was measured in, what the finding is conditional on, and the paper's own figures.
+The middle layer is what makes the other two problems visible. Where several behaviors land on the same marker, you can see them converge and know they don't add. Effect sizes are compared only inside a marker AND only against rows reported the same way. Inside a marker is not enough on its own: LDL arrives in this corpus as both mmol/L and mg/dL, and ranking 18.73 of one against 0.33 of the other put two similar findings 57-fold apart. Convertible units are converted; a standardised mean difference and an odds ratio are not convertible and are never ranked against each other. Where that leaves a row with nothing comparable, it scores the neutral middle rather than a rank it has not earned. Nothing is summed anywhere. Click any row for the study: the result sentence quoted verbatim, the population it was measured in, what the finding is conditional on, and the paper's own figures.
 
 <div class="hx-wide">
 
@@ -571,6 +599,7 @@ The middle layer is what makes the other two problems visible. Where several beh
 
 <div class="hx-shell-scroll">
 <div class="hx-explorer" id="hx-explorer">
+  <div class="hx-stickyhead" id="hx-stickyhead">
   <div class="hx-modebar">
     <button class="hx-mode is-active" data-mode="goal">By goal &mdash; what moves this?</button>
     <button class="hx-mode" data-mode="behavior">By behavior &mdash; what does this do?</button>
@@ -579,6 +608,7 @@ The middle layer is what makes the other two problems visible. Where several beh
     <input id="hx-filter" class="hx-filter" type="search" placeholder="Filter goals, markers, behaviors…" autocomplete="off">
     <button class="hx-toggle" data-open="true">Expand all</button>
     <button class="hx-toggle" data-open="false">Collapse all</button>
+  </div>
   </div>
   <div class="hx-body">
     <div class="hx-tree" id="hx-tree"></div>
@@ -680,7 +710,7 @@ absence of evidence are different, and collapsing them is how "nobody has checke
 
 Rows sort by the usefulness tier, which is a derived sort key rather than a measurement. It adds up evidence strength, where the effect ranks among rows on the same marker, and how many people the finding was measured in, then subtracts penalties for rows with an open quote-integrity flag and studies whose authors have a stake in the result. Hovering a badge shows that arithmetic for that row.
 
-Four things keep it honest. The magnitude term is ranked only *within a marker*, because a hormone percentage and a mortality hazard ratio are not comparable quantities. That ranking is also discounted where the marker has few rows to rank: being the larger of two studies is not a percentile, and it used to be worth the same two points as leading a field of fifteen. The sample-size term is centred on a thousand participants rather than on the middle of its own range, because the typical row here has about nine hundred — anchored anywhere else it would have been measuring "is this enormous" while pretending to measure "is this well powered". A paper that never states a participant count takes that same midpoint, since not knowing is not the same as being small. And both inputs stay printed on the row, so a reader who weighs conditionality differently can ignore the tier and read the effect and the evidence tag directly. The tier is there to put the strongest rows first, not to tell you a number the studies never produced.
+Four things keep it honest. The magnitude term is ranked only *within a marker*, and within one scale inside it. A hormone percentage and a mortality hazard ratio are not comparable quantities, and neither are 18.73 mg/dL and 0.33 mmol/L until one of them is converted. That ranking is also discounted where the marker has few rows to rank: being the larger of two studies is not a percentile, and it used to be worth the same two points as leading a field of fifteen. The sample-size term is centred on a thousand participants rather than on the middle of its own range, because the typical row here has about nine hundred — anchored anywhere else it would have been measuring "is this enormous" while pretending to measure "is this well powered". A paper that never states a participant count takes that same midpoint, since not knowing is not the same as being small. And both inputs stay printed on the row, so a reader who weighs conditionality differently can ignore the tier and read the effect and the evidence tag directly. The tier is there to put the strongest rows first, not to tell you a number the studies never produced.
 
 Where two behaviors land on the same marker, the tree shows them converging. That is the whole point of the middle layer: you can see that they do not add, without being told.
 
@@ -692,4 +722,4 @@ Where two behaviors land on the same marker, the tree shows them converging. Tha
 
 **This describes literature, not what you should do.** Every row says what a study found in a specific population. If a row looks wrong, the quoted sentence and the DOI are right there — check it.
 
-<script src="/js/health-evidence-explorer.js?v=67"></script>
+<script src="/js/health-evidence-explorer.js?v=69"></script>

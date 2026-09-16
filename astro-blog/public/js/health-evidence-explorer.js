@@ -526,14 +526,14 @@
       'Prospective cohort study (+1)': '前瞻性世代研究（+1）',
       'Cross-sectional, case-control, animal or mechanistic (+0)': '橫斷面、病例對照、動物或機轉推論（+0）',
       'no numeric effect to rank (+0)': '沒有可排名的數值效應量（+0）',
-      'only scored row on this marker, so no relative ranking (+1)': '此指標僅此列有分數，故無相對排名（+1）',
+      'the only scored row on this marker reported this way, so there is nothing to rank it against (+1)': '此指標上只有這一列以這種方式報告，沒有可供比較的對象（+1）',
       'a quote-integrity flag is open on this row (-0.5)': '此列的引句完整性標記仍開著（-0.5）',
       'an author has a stake in the result (-0.5)': '作者與此結果有利害關係（-0.5）'
     };
     if (exact[w]) return exact[w];
-    var m = /^effect size ranks (\d+)(?:st|nd|rd|th) percentile among the (\d+) scored rows on this marker \(\+([0-9.]+)(, pulled toward the middle[^)]*)?\)$/.exec(w);
+    var m = /^effect size ranks (\d+)(?:st|nd|rd|th) percentile among the (\d+) scored rows on this marker reported the same way \(\+([0-9.]+)(, pulled toward the middle[^)]*)?\)$/.exec(w);
     if (m) {
-      return '效應量在此指標 ' + m[2] + ' 條有評分的列中位於第 ' + m[1] + ' 百分位（+' + m[3] + (m[4] ? '，因為 ' + m[2] + ' 條列的比較基礎太薄，已向中間收斂' : '') + '）';
+      return '效應量在此指標 ' + m[2] + ' 條以相同方式報告、有評分的列中位於第 ' + m[1] + ' 百分位（+' + m[3] + (m[4] ? '，因為 ' + m[2] + ' 條列的比較基礎太薄，已向中間收斂' : '') + '）';
     }
     return w;
   }
@@ -1061,14 +1061,33 @@
     else if (el.tree && el.tree.scrollIntoView) el.tree.scrollIntoView({ block: 'nearest' });
   }
 
+  // The sticky offsets below the head depend on the head's real height, which changes when
+  // the toolbar wraps. Measured, not assumed.
+  function measureHead() {
+    var head = document.getElementById('hx-stickyhead');
+    if (head && el.root) {
+      el.root.style.setProperty('--hx-headh', Math.round(head.offsetHeight) + 'px');
+    }
+  }
+
   function render() {
+    el.root.setAttribute('data-mode', state.mode);
     el.tree.innerHTML = state.mode === 'goal' ? renderAllGoals() : renderAllBehaviors();
+    measureHead();
     Array.prototype.forEach.call(el.root.querySelectorAll('.hx-mode'), function (btn) {
       btn.classList.toggle('is-active', btn.getAttribute('data-mode') === state.mode);
     });
   }
 
   function bind() {
+    measureHead();
+    if (window.ResizeObserver) {
+      var sticky = document.getElementById('hx-stickyhead');
+      if (sticky) new ResizeObserver(measureHead).observe(sticky);
+    } else {
+      window.addEventListener('resize', measureHead);
+    }
+
     var head = document.querySelector('.hx-shell-head');
     if (head) {
       head.addEventListener('click', function (ev) {

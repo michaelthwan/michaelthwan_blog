@@ -261,6 +261,14 @@ DROP_BEHAVIORS = {
 # admits a behaviour only if a reader can decide it, so where the paper measured the decision
 # and the node was named after the diagnosis, the name is what is wrong, not the row.
 RENAME_BEHAVIORS = {
+    "probiotics": {
+        "dose_or_intensity": "Varies by edge. The respiratory-infection rows pool 23 RCTs and "
+                             "one cluster-RCT of mainly Lactobacillus and Bifidobacterium "
+                             "taken prophylactically; the IBS row is a separate meta-analysis "
+                             "of 20 trials in 3,011 patients with irritable bowel syndrome. "
+                             "The node previously carried only the first description, which "
+                             "said nothing true about the second.",
+    },
     "alcohol_use_disorder": {
         "name": "Heavy drinking (>168 g/week, or >48 g/day at least weekly)",
         "dose_or_intensity": "Heavy intake, >168 g/week or >48 g/day at least weekly, against "
@@ -464,6 +472,65 @@ EVIDENCE_TAG = {
 EVIDENCE_POINTS = {"A": 3.0, "B": 2.0, "C": 1.0, "D": 0.0}
 
 
+# Effect sizes are only comparable inside a marker if they are also on the same SCALE, and
+# for most of this corpus they were not. 148 of 251 scored rows sat on markers whose plotted
+# magnitudes mixed standardised mean differences with risk ratios with percentages with raw
+# clinical units, and the ranking - which is a third of the usefulness score - compared them
+# all against each other as bare numbers.
+#
+# The clearest case was LDL, whose own unit field admits "mmol/L or mg/dL as reported by
+# source". An 18.73 mg/dL fall and a 0.33 mmol/L fall are 0.48 and 0.33 in the same units,
+# but the ranking saw 18.73 against 0.33 and put them 57-fold apart.
+#
+# Two things fix it. Where the same quantity is reported in two units, convert. Where the
+# scales are genuinely different kinds of number, rank within kind and do not pretend
+# otherwise - a standardised mean difference and an odds ratio have no common ladder.
+
+SCALE_SMD = re.compile(r"\b(smd|standardi[sz]ed mean|hedges|cohen's|\bg\s*=|\bd\s*=)", re.I)
+SCALE_RATIO = re.compile(r"\b(rr|or|hr|irr)\s*[=:]|odds ratio|risk ratio|hazard ratio|"
+                         r"rate ratio|prevented fraction", re.I)
+SCALE_PERCENT = re.compile(r"%|\bpercent", re.I)
+
+# mg/dL to mmol/L, by molar mass. Only for quantities this corpus actually reports both ways.
+UNIT_CONVERSIONS = {
+    "ldl_cholesterol": 38.67,
+    "hdl_cholesterol": 38.67,
+    "total_cholesterol": 38.67,
+    "triglycerides": 88.57,
+    "hba1c_fasting_glucose": 18.016,
+}
+
+
+def _scale_of(edge):
+    """Which kind of number this row reports, and in which unit where that matters."""
+    text = " ".join(str(edge.get(f) or "") for f in ("effect", "effect_normalized"))
+    if SCALE_SMD.search(text):
+        return "smd"
+    if SCALE_RATIO.search(text):
+        return "ratio"
+    # A raw clinical value may be reported in either of two units; unit-tag it so that only
+    # rows genuinely on the same ladder are ranked together.
+    if re.search(r"\bmg\s*/\s*dl\b", text, re.I):
+        return "raw:mg/dL"
+    if re.search(r"\bmmol\s*/\s*l\b", text, re.I):
+        return "raw:mmol/L"
+    if SCALE_PERCENT.search(text):
+        return "percent"
+    return "raw"
+
+
+def _comparable_magnitude(edge):
+    """The magnitude, converted to the marker's canonical unit where a conversion exists."""
+    mag = _magnitude(edge)
+    if mag is None:
+        return None, _scale_of(edge)
+    scale = _scale_of(edge)
+    factor = UNIT_CONVERSIONS.get(edge.get("marker_id"))
+    if factor and scale == "raw:mg/dL":
+        return mag / factor, "raw:mmol/L"
+    return mag, scale
+
+
 def _magnitude(edge):
     v = edge.get("effect_normalized")
     if isinstance(v, (int, float)):
@@ -616,9 +683,9 @@ def assign_usefulness(edges, markers):
     for e in edges:
         if e.get("direction") is None:
             continue
-        mag = _magnitude(e)
+        mag, scale = _comparable_magnitude(e)
         if mag is not None:
-            by_marker.setdefault(e["marker_id"], []).append(mag)
+            by_marker.setdefault((e["marker_id"], scale), []).append(mag)
     for k in by_marker:
         by_marker[k].sort()
 
@@ -635,8 +702,8 @@ def assign_usefulness(edges, markers):
         score = EVIDENCE_POINTS.get(tier_letter, 0.0)
         why.append(EVIDENCE_TAG.get(tier_letter, ("?", "unclassified"))[1] + f" (+{score:g})")
 
-        mag = _magnitude(e)
-        peers = by_marker.get(e["marker_id"], [])
+        mag, scale = _comparable_magnitude(e)
+        peers = by_marker.get((e["marker_id"], scale), [])
         if mag is not None and len(peers) >= 2:
             rank = sum(1 for p in peers if p < mag) / (len(peers) - 1)
             raw = 2.0 if rank >= 0.667 else (1.0 if rank >= 0.333 else 0.0)
@@ -650,12 +717,14 @@ def assign_usefulness(edges, markers):
             pts = round(1.0 + (raw - 1.0) * trust, 2)
             score += pts
             why.append(f"effect size ranks {round(rank * 100)}th percentile among the "
-                       f"{len(peers)} scored rows on this marker (+{pts:g}"
+                       f"{len(peers)} scored rows on this marker reported the same way "
+                       f"(+{pts:g}"
                        + (f", pulled toward the middle because {len(peers)} rows is a thin "
                           f"comparison" if trust < 1.0 else "") + ")")
         elif mag is not None:
             score += 1.0
-            why.append("only scored row on this marker, so no relative ranking (+1)")
+            why.append("the only scored row on this marker reported this way, so there is "
+                       "nothing to rank it against (+1)")
         else:
             why.append("no numeric effect to rank (+0)")
 
@@ -876,6 +945,8 @@ def apply_verification_overrides(edges):
     applied = 0
     for o in entries:
         targets = index.get((o.get("behavior_id"), o.get("marker_id")), [])
+        if not targets and o.get("refile_to"):
+            continue  # already moved by refile_edges, which ran first and applied its note
         if not targets:
             print(f"  WARNING: override targets a missing edge: "
                   f"{o.get('behavior_id')} -> {o.get('marker_id')}")
@@ -925,8 +996,11 @@ def apply_verification_overrides(edges):
             # the effect of a diagnosis and the effect of the behaviour separately, and a row
             # that quotes the first while claiming to be about the second says something the
             # paper did not.
-            for field in ("effect", "verbatim", "caveats"):
-                if o.get(field):
+            # Membership, not truthiness: clearing a value is a correction too, and the
+            # plotted magnitude on the smoking-and-vasomotor row had to be removed rather
+            # than replaced, because the paper supports no magnitude for smoking alone.
+            for field in ("effect", "verbatim", "caveats", "effect_normalized"):
+                if field in o:
                     e[field + "_corrected_from"] = e.get(field)
                     e[field] = o[field]
             for field in ("conditional_on", "population"):
