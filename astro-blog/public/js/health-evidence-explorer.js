@@ -54,6 +54,7 @@
       widest: 'widest: ',
       stats: 'What the statistics mean',
       cut: 'Candidate rows that did not make it',
+      cutRule: 'What gets in: anything a reader can reach by their own decisions. That is a wider door than it sounds - you can ask a doctor about a drug, book a course of therapy, buy a light box - and a narrower one than \u201Canything with evidence\u201D. What stays out is what a diagnosis or a clinician stands in front of, and what is a state rather than a choice. Prescription status is not the test; it would admit half a pharmacopoeia and still exclude the one drug people are actually deciding about.',
       goals: 'goals', markers: 'markers', behaviors: 'behaviors', edges: 'edges',
       goalsChip: 'goals',
       papers: 'papers', nulls: 'null results', cutN: 'cut',
@@ -146,6 +147,7 @@
       widest: '最廣：',
       stats: '統計量的意思',
       cut: '未能收錄的候選條目',
+      cutRule: '收錄標準：讀者能靠自己的決定走到的事。這扇門比聽起來寬——你可以去問醫生某個藥、去預約心理治療、去買一盞光照燈——也比「有證據就收」窄。被排除的，是中間站著一個診斷或一個醫生的事，以及屬於狀態而非選擇的事。是不是處方藥不是判準：那會放進半本藥典，卻依然挡掉人們真正在考慮的那一個藥。',
       goals: '目標', markers: '指標', behaviors: '行為', edges: '條目',
       goalsChip: '個目標',
       papers: '篇論文', nulls: '陰性結果', cutN: '已剔除',
@@ -1191,6 +1193,7 @@
     var h = '<details class="hx-cutbox"><summary class="hx-cutsum">' +
       '<span class="hx-cutsum-label">' + t('cut') + '</span>' +
       '<span class="hx-tally">' + data.cut.length + '</span></summary>' +
+      '<p class="hx-cutrule">' + t('cutRule') + '</p>' +
       '<ul class="hx-cutlist">';
     var zhCut = (state.lang !== 'en' && state.i18n && state.i18n.cut) || [];
     data.cut.forEach(function (c, i) {

@@ -2405,7 +2405,7 @@
    {
     "id": "max_strength",
     "name": "Maximal strength (1RM)",
-    "unit": "kg (1RM or handgrip), or SMD as reported by source",
+    "unit": "kg (one-repetition maximum) or SMD as reported by source",
     "goal_ids": [
      "goal_e_body_composition_strength"
     ],
@@ -2795,6 +2795,42 @@
     ],
     "reused": false,
     "why_new": "No catalogue marker covers male fertility/sperm quality; attached to Male vitality as the nearest existing goal covering men's reproductive physiology, though that goal's stated definition (testosterone, vascular function, lean mass, libido) does not explicitly name fertility - flagged here rather than silently assumed.",
+    "desirable": "+"
+   },
+   {
+    "id": "grip_strength",
+    "name": "Grip strength",
+    "unit": "kg (handgrip dynamometry) or SMD as reported by source",
+    "goal_ids": [
+     "goal_e_body_composition_strength"
+    ],
+    "desirable": "+"
+   },
+   {
+    "id": "cvd_event_incidence",
+    "name": "Cardiovascular event incidence (stroke, myocardial infarction)",
+    "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source",
+    "goal_ids": [
+     "goal_h_longevity_mortality"
+    ],
+    "desirable": "-"
+   },
+   {
+    "id": "depression_onset",
+    "name": "New-onset depression (clinical diagnosis)",
+    "unit": "odds ratio (OR) or relative risk (RR) for incident diagnosis, 95% CI",
+    "goal_ids": [
+     "goal_g_mood_anxiety"
+    ],
+    "desirable": "-"
+   },
+   {
+    "id": "erectile_function",
+    "name": "Erectile function (IIEF erectile-function domain)",
+    "unit": "IIEF or IIEF-5 score, or standardized regression coefficient",
+    "goal_ids": [
+     "male_vitality"
+    ],
     "desirable": "+"
    }
   ],
@@ -4730,7 +4766,7 @@
   },
   {
    "behavior_id": "psychological_stress",
-   "marker_id": "subjective_libido",
+   "marker_id": "erectile_function",
    "direction": "-",
    "effect": "beta = -0.604, P<.001 (perceived stress vs erectile function); fatigue partially mediates, accounting for 26.46% of the total effect",
    "effect_normalized": -0.604,
@@ -4754,11 +4790,12 @@
     "url": "https://doi.org/10.1093/jsxmed/qdaf045"
    },
    "caveats": "Cross-sectional, not causal; conducted in a clinical psychogenic-ED population rather than the general population, so the effect size likely does not generalize; the marker measured is erectile function specifically, used here as the closest available proxy for the spec's 'subjective libido (IIEF or similar)' marker rather than an exact validated libido/desire-only subscale.",
+   "marker_corrected_from": "subjective_libido",
    "unsupported_numbers": [
     "26.46"
    ],
-   "legacy_key": "psychological_stress::subjective_libido::10.1093/jsxmed/qdaf045",
-   "edge_id": "psychological_stress::subjective_libido::10.1093/jsxmed/qdaf045::03290990",
+   "legacy_key": "psychological_stress::erectile_function::10.1093/jsxmed/qdaf045",
+   "edge_id": "psychological_stress::erectile_function::10.1093/jsxmed/qdaf045::03290990",
    "valence": "bad",
    "usefulness": {
     "tier": "E",
@@ -6216,7 +6253,7 @@
    "marker_id": "blood_pressure",
    "direction": "-",
    "effect": "ALA supplementation reduced systolic blood pressure by an SMD of -0.37 mmHg (95% CI -0.66 to -0.08); diastolic blood pressure was not significantly affected",
-   "effect_normalized": -0.37,
+   "effect_normalized": null,
    "normalization_method": "SMD, units as reported (mmHg) by source",
    "evidence_tier": "A",
    "population": "1,183 participants with obesity or overweight across 19 RCTs",
@@ -6234,9 +6271,13 @@
    "verbatim": "Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration (standardized mean difference [SMD] = -0.38 mg/L; 95% confidence interval [CI]: -0.72, -0.04), tumor necrosis factor-alpha concentration (SMD = -0.45 pg/mL; 95% CI: -0.73, -0.17), triglyceride in serum (SMD = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure (SMD = -0.37 mm Hg; 95% CI: -0.66, -0.08); but led to a significant increase in low-density lipoprotein cholesterol concentrations (SMD = 1.32 mg/dL; 95% CI: 0.05, 2.59).",
    "key_results": "ALA supplementation had no significant effect on interleukin-6, diastolic blood pressure, total cholesterol, or HDL cholesterol (all P>=0.05). Notably ALA simultaneously lowered triglycerides and raised LDL cholesterol in the same population, an internal divergence worth flagging when comparing to marine omega-3 (EPA/DHA), which shows a cleaner triglyceride-lowering profile without the LDL increase in other reviews.",
    "figure": null,
-   "caveats": "Population restricted to overweight/obese adults; the paper labels several results as 'SMD' but reports them in original units (mg/L, pg/mL, mg/dL, mmHg) rather than as a unitless standardized value, an apparent labeling inconsistency in the source abstract that is preserved here verbatim rather than corrected.",
+   "caveats": "The source labels these estimates \"SMD\" and then attaches a clinical unit to each: \"SMD = -4.41 mg/dL\", \"SMD = 1.32 mg/dL\", \"SMD = -0.37 mm Hg\". A standardised mean difference is unitless, so the paper's own labelling is self-contradictory, and the two readings are far apart: -4.41 standard deviations would be an implausibly enormous effect, while -4.41 mg/dL of triglyceride is negligible. The quote is faithful to the paper - the contradiction is the paper's. Because the number cannot be placed on either scale with confidence, this row contributes no magnitude to the ranking; its direction and evidence tier still stand.",
    "legacy_key": "omega3_ala::blood_pressure::10.1016/j.advnut.2023.09.010",
    "edge_id": "omega3_ala::blood_pressure::10.1016/j.advnut.2023.09.010::0d204f9f",
+   "review_note": "Checked against the source (PMID 37778442) after the scale-grouping work isolated these three rows. The contradictory unit is in the published abstract itself, not in the extraction.",
+   "caveats_corrected_from": "Population restricted to overweight/obese adults; the paper labels several results as 'SMD' but reports them in original units (mg/L, pg/mL, mg/dL, mmHg) rather than as a unitless standardized value, an apparent labeling inconsistency in the source abstract that is preserved here verbatim rather than corrected.",
+   "effect_normalized_corrected_from": -0.37,
+   "verified_note_source": "unit-contradiction-2026-09-16",
    "valence": "good",
    "usefulness": {
     "tier": "A",
@@ -6493,7 +6534,7 @@
    "marker_id": "ldl_cholesterol",
    "direction": "+",
    "effect": "ALA supplementation increased LDL cholesterol by an SMD of 1.32 mg/dL (95% CI 0.05 to 2.59) in overweight/obese adults",
-   "effect_normalized": 1.32,
+   "effect_normalized": null,
    "normalization_method": "SMD, units as reported (mg/dL) by source",
    "evidence_tier": "A",
    "population": "1,183 participants with obesity or overweight across 19 RCTs",
@@ -6511,10 +6552,14 @@
    "verbatim": "Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration...triglyceride in serum (standardized mean difference [SMD] = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure...but led to a significant increase in low-density lipoprotein cholesterol concentrations (SMD = 1.32 mg/dL; 95% CI: 0.05, 2.59).",
    "key_results": "This directly contrasts with marine omega-3 (EPA/DHA), which lowers triglycerides without raising LDL in the metabolic-syndrome literature (see omega3_marine edge). The divergence suggests ALA and EPA/DHA should not be treated as interchangeable 'omega-3' for LDL purposes even though both lower triglycerides.",
    "figure": null,
-   "caveats": "Confidence interval lower bound (0.05) sits just above the null, making this one of the more marginal significant findings; population restricted to overweight/obese adults.",
+   "caveats": "The source labels these estimates \"SMD\" and then attaches a clinical unit to each: \"SMD = -4.41 mg/dL\", \"SMD = 1.32 mg/dL\", \"SMD = -0.37 mm Hg\". A standardised mean difference is unitless, so the paper's own labelling is self-contradictory, and the two readings are far apart: -4.41 standard deviations would be an implausibly enormous effect, while -4.41 mg/dL of triglyceride is negligible. The quote is faithful to the paper - the contradiction is the paper's. Because the number cannot be placed on either scale with confidence, this row contributes no magnitude to the ranking; its direction and evidence tier still stand.",
    "quote_elided": true,
    "legacy_key": "omega3_ala::ldl_cholesterol::10.1016/j.advnut.2023.09.010",
    "edge_id": "omega3_ala::ldl_cholesterol::10.1016/j.advnut.2023.09.010::7993bb33",
+   "review_note": "Checked against the source (PMID 37778442) after the scale-grouping work isolated these three rows. The contradictory unit is in the published abstract itself, not in the extraction.",
+   "caveats_corrected_from": "Confidence interval lower bound (0.05) sits just above the null, making this one of the more marginal significant findings; population restricted to overweight/obese adults.",
+   "effect_normalized_corrected_from": 1.32,
+   "verified_note_source": "unit-contradiction-2026-09-16",
    "valence": "bad",
    "usefulness": {
     "tier": "B",
@@ -6618,7 +6663,7 @@
    "marker_id": "triglycerides",
    "direction": "-",
    "effect": "ALA supplementation reduced serum triglycerides by an SMD of -4.41 mg/dL (95% CI -5.99 to -2.82) in overweight/obese adults",
-   "effect_normalized": -4.41,
+   "effect_normalized": null,
    "normalization_method": "SMD, units as reported (mg/dL) by source",
    "evidence_tier": "A",
    "population": "1,183 participants with obesity or overweight across 19 RCTs",
@@ -6636,9 +6681,13 @@
    "verbatim": "Compared with placebo, dietary ALA supplementation significantly reduced C-reactive protein concentration (standardized mean difference [SMD] = -0.38 mg/L; 95% confidence interval [CI]: -0.72, -0.04), tumor necrosis factor-alpha concentration (SMD = -0.45 pg/mL; 95% CI: -0.73, -0.17), triglyceride in serum (SMD = -4.41 mg/dL; 95% CI: -5.99, -2.82), and systolic blood pressure (SMD = -0.37 mm Hg; 95% CI: -0.66, -0.08).",
    "key_results": "ALA had no significant effect on total cholesterol or HDL cholesterol in the same trials, so its lipid signature is a triglyceride decrease paired with an LDL increase (see LDL edge) rather than a broad favorable shift across all lipid fractions.",
    "figure": null,
-   "caveats": "Same population/paper as the ALA LDL and blood-pressure edges above; the source abstract's use of 'SMD' with original-unit labels (mg/dL) appears to be a labeling inconsistency, preserved verbatim rather than corrected.",
+   "caveats": "The source labels these estimates \"SMD\" and then attaches a clinical unit to each: \"SMD = -4.41 mg/dL\", \"SMD = 1.32 mg/dL\", \"SMD = -0.37 mm Hg\". A standardised mean difference is unitless, so the paper's own labelling is self-contradictory, and the two readings are far apart: -4.41 standard deviations would be an implausibly enormous effect, while -4.41 mg/dL of triglyceride is negligible. The quote is faithful to the paper - the contradiction is the paper's. Because the number cannot be placed on either scale with confidence, this row contributes no magnitude to the ranking; its direction and evidence tier still stand.",
    "legacy_key": "omega3_ala::triglycerides::10.1016/j.advnut.2023.09.010",
    "edge_id": "omega3_ala::triglycerides::10.1016/j.advnut.2023.09.010::16828ae5",
+   "review_note": "Checked against the source (PMID 37778442) after the scale-grouping work isolated these three rows. The contradictory unit is in the published abstract itself, not in the extraction.",
+   "caveats_corrected_from": "Same population/paper as the ALA LDL and blood-pressure edges above; the source abstract's use of 'SMD' with original-unit labels (mg/dL) appears to be a labeling inconsistency, preserved verbatim rather than corrected.",
+   "effect_normalized_corrected_from": -4.41,
+   "verified_note_source": "unit-contradiction-2026-09-16",
    "valence": "good",
    "usefulness": {
     "tier": "A",
@@ -7788,7 +7837,7 @@
   },
   {
    "behavior_id": "caloric_deficit_magnitude",
-   "marker_id": "max_strength",
+   "marker_id": "grip_strength",
    "direction": null,
    "effect": "No difference in handgrip strength between severe and moderate energy restriction groups at 12 months, despite significantly greater absolute lean-mass loss in the severe group",
    "effect_normalized": null,
@@ -7810,8 +7859,9 @@
    "figure": null,
    "caveats": "Single RCT in postmenopausal women with obesity; handgrip is a lower-resolution strength proxy than a true 1RM test.",
    "key_results": null,
-   "legacy_key": "caloric_deficit_magnitude::max_strength::10.1001/jamanetworkopen.2019.13733",
-   "edge_id": "caloric_deficit_magnitude::max_strength::10.1001/jamanetworkopen.2019.13733::ef281b78",
+   "marker_corrected_from": "max_strength",
+   "legacy_key": "caloric_deficit_magnitude::grip_strength::10.1001/jamanetworkopen.2019.13733",
+   "edge_id": "caloric_deficit_magnitude::grip_strength::10.1001/jamanetworkopen.2019.13733::ef281b78",
    "valence": "none",
    "usefulness": {
     "tier": "NULL",
@@ -8143,7 +8193,7 @@
   },
   {
    "behavior_id": "glp1_receptor_agonists",
-   "marker_id": "max_strength",
+   "marker_id": "grip_strength",
    "direction": "+",
    "effect": "Handgrip strength improved significantly (+4.5 kg at 12 months) on semaglutide despite substantial concurrent weight loss",
    "effect_normalized": 4.5,
@@ -8165,8 +8215,9 @@
    "figure": null,
    "caveats": "Handgrip strength, not 1RM; single-arm design cannot rule out a practice/regression-to-mean effect on the strength test itself.",
    "key_results": null,
-   "legacy_key": "glp1_receptor_agonists::max_strength::10.1111/dom.70141",
-   "edge_id": "glp1_receptor_agonists::max_strength::10.1111/dom.70141::66dffac5",
+   "marker_corrected_from": "max_strength",
+   "legacy_key": "glp1_receptor_agonists::grip_strength::10.1111/dom.70141",
+   "edge_id": "glp1_receptor_agonists::grip_strength::10.1111/dom.70141::66dffac5",
    "coi_note": "A co-author of the source trial is an employee of Novo Nordisk, which manufactures the drug studied. Disclosed in the paper's own conflict-of-interest statement.",
    "verified_note_source": "_verification-efgh.md",
    "valence": "good",
@@ -8338,7 +8389,7 @@
   },
   {
    "behavior_id": "bcaa",
-   "marker_id": "max_strength",
+   "marker_id": "grip_strength",
    "direction": null,
    "effect": "No significant effect of BCAA-rich supplementation plus resistance training on hand grip strength (SMD=0.289, p=0.080) or knee extension strength (SMD=0.332, p=0.328) versus resistance training alone in sarcopenic older adults",
    "effect_normalized": 0.289,
@@ -8360,8 +8411,9 @@
    "figure": null,
    "caveats": "This is the population and behavior combination the popular BCAA claim is often extrapolated from; the trial-level evidence in the specific population studied here does not support a strength benefit.",
    "key_results": null,
-   "legacy_key": "bcaa::max_strength::10.1016/j.archger.2025.106063",
-   "edge_id": "bcaa::max_strength::10.1016/j.archger.2025.106063::4248591f",
+   "marker_corrected_from": "max_strength",
+   "legacy_key": "bcaa::grip_strength::10.1016/j.archger.2025.106063",
+   "edge_id": "bcaa::grip_strength::10.1016/j.archger.2025.106063::4248591f",
    "valence": "none",
    "usefulness": {
     "tier": "NULL",
@@ -9870,10 +9922,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "B",
-    "score": 4.18,
+    "score": 4.43,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker reported the same way (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 5,489 participants (+0.68)"
     ]
    },
@@ -10149,7 +10201,7 @@
   },
   {
    "behavior_id": "loneliness_social_isolation",
-   "marker_id": "depressive_symptoms",
+   "marker_id": "depression_onset",
    "direction": "+",
    "effect": "Pooled adjusted odds ratio 2.33 (95% CI 1.62-3.34) for new-onset depression in adults who were often lonely vs not often lonely",
    "effect_normalized": 2.33,
@@ -10171,8 +10223,9 @@
    "key_results": "32 studies were included, most focusing on depression; a meta-analysis of eight independent cohorts and a narrative synthesis of the remaining studies were conducted. Most studies show loneliness at baseline is associated with subsequent new-onset depression. The pooled adjusted odds ratio was 2.33 for new-onset depression in adults who were often lonely. This should be interpreted with caution given evidence of heterogeneity. Loneliness is a growing public mental health issue associated with the onset of depression and other common mental health problems.",
    "figure": null,
    "caveats": "As an observational, longitudinal-cohort design, causality cannot be established (reverse causation — incipient depression causing withdrawal and perceived loneliness — is plausible and not fully ruled out by baseline-loneliness-predicts-later-depression designs); this marker (new-onset depression diagnosis) is coarser than the continuous PHQ-9/BDI/HAM-D scales used for other edges in this dataset.",
-   "legacy_key": "loneliness_social_isolation::depressive_symptoms::10.1007/s00127-022-02261-7",
-   "edge_id": "loneliness_social_isolation::depressive_symptoms::10.1007/s00127-022-02261-7::06c2840c",
+   "marker_corrected_from": "depressive_symptoms",
+   "legacy_key": "loneliness_social_isolation::depression_onset::10.1007/s00127-022-02261-7",
+   "edge_id": "loneliness_social_isolation::depression_onset::10.1007/s00127-022-02261-7::06c2840c",
    "paper_notices": [
     "erratum"
    ],
@@ -10181,10 +10234,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "C",
-    "score": 3.0,
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -10225,10 +10278,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "C",
-    "score": 3.0,
+    "score": 3.25,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker reported the same way (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 338,426 participants (+1)"
     ]
    },
@@ -10737,7 +10790,7 @@
   },
   {
    "behavior_id": "alcohol",
-   "marker_id": "cardiovascular_mortality",
+   "marker_id": "cvd_event_incidence",
    "direction": "+",
    "effect": "Genotype-predicted alcohol intake (Mendelian randomisation) had a continuously positive log-linear association with vascular disease risk, RR per 280 g/week 1.58 for intracerebral haemorrhage and 1.27 for ischaemic stroke, with no U-shaped/J-shaped pattern",
    "effect_normalized": 1.58,
@@ -10759,19 +10812,20 @@
    "figure": null,
    "caveats": "Conducted in Chinese men where genetic variants strongly determine drinking pattern, which may not generalise identically to other populations' genetic architecture, though the biological mechanism (ethanol's direct vascular effects) is not population-specific. Directly contradicts the conventional-epidemiology U-shaped finding in the SAME paper and cohort, which found men reporting ~100 g/week had lower stroke/MI risk than non-drinkers or heavier drinkers -- the paper's central point is that this conventional U-shape is largely non-causal.",
    "key_results": "Among men, conventional epidemiology showed that self-reported alcohol intake had U-shaped associations with the incidence of ischaemic stroke, intracerebral haemorrhage, and acute myocardial infarction; men who reported drinking about 100 g of alcohol per week had lower risks of all three diseases than non-drinkers or heavier drinkers. In contrast, genotype-predicted mean male alcohol intake did not have any U-shaped associations with risk, and had a continuously positive log-linear association with stroke risk. Genetic epidemiology shows that the apparently protective effects of moderate alcohol intake against stroke are largely non-causal. Alcohol consumption uniformly increases blood pressure and stroke risk.",
+   "marker_corrected_from": "cardiovascular_mortality",
    "unsupported_numbers": [
     "1.27",
     "1.58"
    ],
-   "legacy_key": "alcohol::cardiovascular_mortality::10.1016/S0140-6736(18)31772-0",
-   "edge_id": "alcohol::cardiovascular_mortality::10.1016/S0140-6736(18)31772-0::ec18932b",
+   "legacy_key": "alcohol::cvd_event_incidence::10.1016/S0140-6736(18)31772-0",
+   "edge_id": "alcohol::cvd_event_incidence::10.1016/S0140-6736(18)31772-0::ec18932b",
    "valence": "bad",
    "usefulness": {
     "tier": "C",
-    "score": 3.25,
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 100th percentile among the 4 scored rows on this marker reported the same way (+1.75, pulled toward the middle because 4 rows is a thin comparison)",
+     "the only scored row on this marker reported this way, so there is nothing to rank it against (+1)",
      "measured in 512,715 participants (+1)",
      "a quote-integrity flag is open on this row (-0.5)"
     ]
@@ -10984,7 +11038,7 @@
     "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 33th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 50th percentile among the 3 scored rows on this marker reported the same way (+1, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 1,331,468 participants (+1)"
     ]
    },
@@ -11113,11 +11167,11 @@
    "paper_notice_serious": false,
    "valence": "good",
    "usefulness": {
-    "tier": "D",
-    "score": 2.25,
+    "tier": "C",
+    "score": 2.5,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 0th percentile among the 4 scored rows on this marker reported the same way (+0.25, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 3 scored rows on this marker reported the same way (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
      "measured in 833,234 participants (+1)"
     ]
    },
@@ -11355,10 +11409,10 @@
    "valence": "bad",
    "usefulness": {
     "tier": "C",
-    "score": 2.5,
+    "score": 3.0,
     "why": [
      "Prospective cohort study (+1)",
-     "effect size ranks 67th percentile among the 4 scored rows on this marker reported the same way (+1, pulled toward the middle because 4 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 3 scored rows on this marker reported the same way (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },

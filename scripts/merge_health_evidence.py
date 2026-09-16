@@ -260,6 +260,57 @@ DROP_BEHAVIORS = {
 # Nodes whose name describes a state when the row underneath is about a decision. The page
 # admits a behaviour only if a reader can decide it, so where the paper measured the decision
 # and the node was named after the diagnosis, the name is what is wrong, not the row.
+# Markers a row can be moved onto, created here because the marker it arrived on measures a
+# different thing. Each was found by reading the source rather than the data.
+#
+# This matters more than a naming quibble: effect sizes are ranked WITHIN a marker, so a
+# marker holding two different measurements ranks them against each other. A +4.5 kg handgrip
+# gain and a +2.49 kg one-repetition-maximum gain are not the same achievement and cannot be
+# placed on one ladder.
+NEW_MARKERS = {
+    "grip_strength": {
+        "id": "grip_strength",
+        "name": "Grip strength",
+        "unit": "kg (handgrip dynamometry) or SMD as reported by source",
+        "goal_ids": ["goal_e_body_composition_strength"],
+    },
+    "cvd_event_incidence": {
+        "id": "cvd_event_incidence",
+        "name": "Cardiovascular event incidence (stroke, myocardial infarction)",
+        "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source",
+        "goal_ids": ["goal_h_longevity_mortality"],
+    },
+    "depression_onset": {
+        "id": "depression_onset",
+        "name": "New-onset depression (clinical diagnosis)",
+        "unit": "odds ratio (OR) or relative risk (RR) for incident diagnosis, 95% CI",
+        "goal_ids": ["goal_g_mood_anxiety"],
+    },
+    "erectile_function": {
+        "id": "erectile_function",
+        "name": "Erectile function (IIEF erectile-function domain)",
+        "unit": "IIEF or IIEF-5 score, or standardized regression coefficient",
+        "goal_ids": ["male_vitality"],
+    },
+}
+
+# A marker whose own unit field was written to accommodate rows that have since moved off it.
+# Left as it was, it would keep advertising that it holds handgrip measurements when it no
+# longer does - and that phrasing is what let the two measures sit together in the first place.
+MARKER_FIXES = {
+    "max_strength": {"unit": "kg (one-repetition maximum) or SMD as reported by source"},
+}
+
+# (behavior_id, from_marker) -> to_marker, with the reason shown on the row.
+REMARK_EDGES = {
+    ("caloric_deficit_magnitude", "max_strength"): "grip_strength",
+    ("glp1_receptor_agonists", "max_strength"): "grip_strength",
+    ("bcaa", "max_strength"): "grip_strength",
+    ("alcohol", "cardiovascular_mortality"): "cvd_event_incidence",
+    ("loneliness_social_isolation", "depressive_symptoms"): "depression_onset",
+    ("psychological_stress", "subjective_libido"): "erectile_function",
+}
+
 RENAME_BEHAVIORS = {
     "probiotics": {
         "dose_or_intensity": "Varies by edge. The respiratory-infection rows pool 23 RCTs and "
@@ -574,6 +625,10 @@ MARKER_DESIRABLE = {
     "m_psqi": "-",                        # PSQI and ISI are symptom scores: lower is better
     "m_sol": "-",                         # minutes to fall asleep
     "sustained_attention_rt": "-",        # lapses and reaction time
+    "grip_strength": "+",
+    "cvd_event_incidence": "-",
+    "depression_onset": "-",
+    "erectile_function": "+",
     "lean_mass": "+",
     "lean_mass_strength": "+",
     "max_strength": "+",
@@ -1176,6 +1231,20 @@ def merge():
     # ends up on, not the one it came from.
     refiled = refile_edges(edges)
 
+    remarked = 0
+    for e in edges:
+        dest = REMARK_EDGES.get((e.get("behavior_id"), e.get("marker_id")))
+        if dest:
+            e["marker_corrected_from"] = e["marker_id"]
+            e["marker_id"] = dest
+            remarked += 1
+    for mid, fix in MARKER_FIXES.items():
+        if mid in markers:
+            markers[mid].update(fix)
+    for mid, node in NEW_MARKERS.items():
+        if any(e.get("marker_id") == mid for e in edges):
+            markers.setdefault(mid, dict(node))
+
     # Integrity: every edge must resolve, and carry the fields the page depends on.
     for e in edges:
         for field in REQUIRED_EDGE_FIELDS:
@@ -1341,6 +1410,7 @@ def merge():
     print(f"  edges quoted from beyond the abstract: {beyond}")
     print(f"  verification overrides applied: {overridden}")
     print(f"  rows refiled onto a different behaviour: {refiled}")
+    print(f"  rows moved onto a different marker: {remarked}")
     print(f"  rows dropped as prescription drugs: {dropped}")
     serious = sum(1 for e in edges if e.get("paper_notice_serious"))
     print(f"  duplicate edge ids remaining: {clashes}")

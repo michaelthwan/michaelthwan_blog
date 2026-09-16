@@ -18,7 +18,7 @@
     },
     {
       "behavior_id": "glp1_receptor_agonists",
-      "marker_id": "max_strength",
+      "marker_id": "grip_strength",
       "coi_note": "A co-author of the source trial is an employee of Novo Nordisk, which manufactures the drug studied. Disclosed in the paper's own conflict-of-interest statement.",
       "source": "_verification-efgh.md"
     },
@@ -378,6 +378,30 @@
       "caveats": "Not independent of two other rows on this marker. This is a 2021 umbrella review of 108 systematic reviews, and the plant-sterol and oat-beta-glucan rows draw on meta-analyses inside its evidence pool. Three rows, three different papers, three different numbers - but one body of evidence behind them. Where the page sums usefulness across rows, this marker's total counts some of that evidence more than once.",
       "review_note": "Checked against the source after a suspicion that the quoted result was a composite portfolio diet. It is not: the paper ranks foods separately and the sentence lists three food categories in one evidence band. The real problem is the overlap with the sterol and fibre rows, which is now stated on the row.",
       "source": "attribution-sources-2026-09-16"
+    },
+    {
+      "behavior_id": "omega3_ala",
+      "marker_id": "triglycerides",
+      "effect_normalized": null,
+      "caveats": "The source labels these estimates \"SMD\" and then attaches a clinical unit to each: \"SMD = -4.41 mg/dL\", \"SMD = 1.32 mg/dL\", \"SMD = -0.37 mm Hg\". A standardised mean difference is unitless, so the paper's own labelling is self-contradictory, and the two readings are far apart: -4.41 standard deviations would be an implausibly enormous effect, while -4.41 mg/dL of triglyceride is negligible. The quote is faithful to the paper - the contradiction is the paper's. Because the number cannot be placed on either scale with confidence, this row contributes no magnitude to the ranking; its direction and evidence tier still stand.",
+      "review_note": "Checked against the source (PMID 37778442) after the scale-grouping work isolated these three rows. The contradictory unit is in the published abstract itself, not in the extraction.",
+      "source": "unit-contradiction-2026-09-16"
+    },
+    {
+      "behavior_id": "omega3_ala",
+      "marker_id": "ldl_cholesterol",
+      "effect_normalized": null,
+      "caveats": "The source labels these estimates \"SMD\" and then attaches a clinical unit to each: \"SMD = -4.41 mg/dL\", \"SMD = 1.32 mg/dL\", \"SMD = -0.37 mm Hg\". A standardised mean difference is unitless, so the paper's own labelling is self-contradictory, and the two readings are far apart: -4.41 standard deviations would be an implausibly enormous effect, while -4.41 mg/dL of triglyceride is negligible. The quote is faithful to the paper - the contradiction is the paper's. Because the number cannot be placed on either scale with confidence, this row contributes no magnitude to the ranking; its direction and evidence tier still stand.",
+      "review_note": "Checked against the source (PMID 37778442) after the scale-grouping work isolated these three rows. The contradictory unit is in the published abstract itself, not in the extraction.",
+      "source": "unit-contradiction-2026-09-16"
+    },
+    {
+      "behavior_id": "omega3_ala",
+      "marker_id": "blood_pressure",
+      "effect_normalized": null,
+      "caveats": "The source labels these estimates \"SMD\" and then attaches a clinical unit to each: \"SMD = -4.41 mg/dL\", \"SMD = 1.32 mg/dL\", \"SMD = -0.37 mm Hg\". A standardised mean difference is unitless, so the paper's own labelling is self-contradictory, and the two readings are far apart: -4.41 standard deviations would be an implausibly enormous effect, while -4.41 mg/dL of triglyceride is negligible. The quote is faithful to the paper - the contradiction is the paper's. Because the number cannot be placed on either scale with confidence, this row contributes no magnitude to the ranking; its direction and evidence tier still stand.",
+      "review_note": "Checked against the source (PMID 37778442) after the scale-grouping work isolated these three rows. The contradictory unit is in the published abstract itself, not in the extraction.",
+      "source": "unit-contradiction-2026-09-16"
     }
   ]
 }

@@ -509,6 +509,11 @@ category: "business"
     grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr));
   }
   .hx-cutlist li { padding: 0 0 9px; border-bottom: 1px solid var(--color-border); }
+  .hx-cutrule {
+    margin: 4px 0 12px; padding: 9px 12px; font-size: 0.82rem; line-height: 1.6;
+    color: var(--color-gray); background: var(--color-canvas-subtle);
+    border-left: 3px solid var(--color-border); border-radius: 0 4px 4px 0;
+  }
   .hx-cut-what { display: block; font-weight: 600; }
   .hx-cut-why { display: block; margin-top: 2px; color: var(--color-gray); line-height: 1.5; }
 
@@ -722,4 +727,4 @@ Where two behaviors land on the same marker, the tree shows them converging. Tha
 
 **This describes literature, not what you should do.** Every row says what a study found in a specific population. If a row looks wrong, the quoted sentence and the DOI are right there — check it.
 
-<script src="/js/health-evidence-explorer.js?v=69"></script>
+<script src="/js/health-evidence-explorer.js?v=70"></script>
