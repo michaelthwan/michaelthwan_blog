@@ -28,18 +28,499 @@
       {
         "id": "oa_pain",
         "name": "Knee or hip osteoarthritis pain",
-        "unit": "WOMAC pain subscale or VAS points (0-100 or 0-20 scale as reported)",
+        "unit": "WOMAC pain subscale or VAS points (0-100 or 0-20 scale as reported); WOMAC-style scales in this file are scored so a HIGHER number is WORSE (more pain) - a negative direction/effect means pain improved",
         "goal_ids": ["goal_k_bone_joint_health"]
       },
       {
         "id": "oa_function",
         "name": "Physical function in osteoarthritis",
-        "unit": "WOMAC physical function subscale points",
+        "unit": "WOMAC physical function subscale points; scored so a HIGHER number is WORSE (worse function) - a negative direction/effect means function improved",
         "goal_ids": ["goal_k_bone_joint_health"]
       }
     ],
-    "behaviors": []
+    "behaviors": [
+      {
+        "id": "resistance_training",
+        "name": "Resistance training",
+        "category": "exercise",
+        "dose_or_intensity": "Structured resistance training programs, 12-104 weeks, 2-3 sessions/week; high-intensity defined as >=70% 1RM in the cited meta-analysis"
+      },
+      {
+        "id": "impact_exercise",
+        "name": "Impact / weight-bearing exercise",
+        "category": "exercise",
+        "dose_or_intensity": "Odd- or high-impact loading protocols (jumping, hopping), alone or combined with high-magnitude resistance training, in controlled trials of premenopausal women"
+      },
+      {
+        "id": "protein_intake",
+        "name": "Dietary protein intake (higher vs lower)",
+        "category": "diet",
+        "dose_or_intensity": "Higher vs lower total dietary protein intake, as compared across RCTs and prospective cohorts in adults; exact gram/kg thresholds vary by included study"
+      },
+      {
+        "id": "calcium_supplementation",
+        "name": "Calcium supplementation (alone or as dietary intake, without vitamin D co-supplementation contrast)",
+        "category": "supplement",
+        "dose_or_intensity": "Calcium supplements or dietary calcium sources vs control, most trials in adults >50 years, doses compared above/below 500 mg/day and 1000 mg/day thresholds"
+      },
+      {
+        "id": "vitamin_d_calcium_combined",
+        "name": "Vitamin D plus calcium supplementation (combined)",
+        "category": "supplement",
+        "dose_or_intensity": "Combined oral vitamin D and calcium supplementation vs placebo/control, RCTs in community-dwelling and institutionalized middle-aged to older adults"
+      },
+      {
+        "id": "vitamin_d_alone",
+        "name": "Vitamin D supplementation alone (without calcium)",
+        "category": "supplement",
+        "dose_or_intensity": "Vitamin D3 2000 IU/day vs placebo, in a population not selected for vitamin D deficiency, low bone mass, or osteoporosis"
+      },
+      {
+        "id": "smoking",
+        "name": "Cigarette smoking",
+        "category": "habit",
+        "dose_or_intensity": "Current smoking status vs non-smoking, observational (cross-sectional, cohort, case-control) exposure"
+      },
+      {
+        "id": "alcohol",
+        "name": "Alcohol consumption",
+        "category": "habit",
+        "dose_or_intensity": "Habitual alcohol consumption in standard drinks/day, dose-response, observational exposure rather than a randomized intervention"
+      },
+      {
+        "id": "weight_loss",
+        "name": "Body weight loss (via calorie restriction and/or exercise)",
+        "category": "diet",
+        "dose_or_intensity": "Intentional weight loss via calorie restriction, exercise, or combined diet+exercise interventions in overweight/obese adults; direction and magnitude vary by method (see conditional_on per edge)"
+      },
+      {
+        "id": "land_based_exercise",
+        "name": "Land-based exercise for knee osteoarthritis",
+        "category": "exercise",
+        "dose_or_intensity": "Land-based therapeutic exercise programs of varying modality (strengthening, aerobic, flexibility) vs non-exercise control, in adults with knee osteoarthritis"
+      },
+      {
+        "id": "glucosamine_chondroitin",
+        "name": "Glucosamine and/or chondroitin sulfate",
+        "category": "supplement",
+        "dose_or_intensity": "Oral glucosamine sulfate, chondroitin sulfate, or their combination vs placebo, randomized placebo-controlled trials in knee osteoarthritis"
+      },
+      {
+        "id": "omega_3",
+        "name": "Omega-3 fatty acid supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Marine long-chain omega-3 (EPA/DHA), either as krill oil (4 g/day, 0.60 g EPA + 0.28 g DHA + astaxanthin) or as standard marine n-3 supplementation (1 g/day), vs placebo"
+      },
+      {
+        "id": "collagen_peptides",
+        "name": "Collagen peptides / hydrolyzed collagen",
+        "category": "supplement",
+        "dose_or_intensity": "Oral collagen peptide or hydrolyzed collagen supplementation vs placebo in knee osteoarthritis RCTs; dosing varies by trial"
+      }
+    ]
   },
-  "edges": [],
-  "cut_candidates": []
+  "edges": [
+    {
+      "behavior_id": "resistance_training",
+      "marker_id": "bmd",
+      "direction": "+",
+      "effect": "Resistance training significantly improved BMD at the lumbar spine (SMD 0.88, 95% CI 0.21-1.56), femoral neck (SMD 0.89, 95% CI 0.40-1.39), and total hip (SMD 0.30, 95% CI 0.10-0.50) in postmenopausal women; no significant effect on trochanter BMD (SMD 0.23, 95% CI -0.01-0.47)",
+      "effect_normalized": 0.88,
+      "normalization_method": "SMD, random-effects meta-analysis of RCTs, resistance training vs control, lumbar spine, postmenopausal women",
+      "evidence_tier": "A",
+      "population": "690 postmenopausal women, 17 RCTs",
+      "conditional_on": "High-intensity training (>=70% 1RM) had a significant effect specifically at total hip and femoral neck; training 3x/week improved BMD at all sites (LS, FN, TH, trochanter); intervention duration >=48 weeks was needed for femoral neck/total hip effects; population restricted to postmenopausal women - magnitude may differ in premenopausal women or men (see impact_exercise edge below for premenopausal women)",
+      "paper": {
+        "doi": "10.1186/s13018-025-05890-1",
+        "title": "Optimal resistance training parameters for improving bone mineral density in postmenopausal women: a systematic review and meta-analysis",
+        "year": 2025,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 690
+      },
+      "verbatim": "The results indicate that resistance training significantly improves BMD at the LS (SMD = 0.88, 95% CI [0.21, 1.56], P = 0.01, I2 = 91%), FN (SMD = 0.89, 95% CI [0.40, 1.39], P = 0.0004, I2 = 87%) and TH (SMD = 0.30, 95% CI [0.10, 0.50], P = 0.003, I2 = 25%). However, no significant effect was observed on Troch bone density (SMD = 0.23, 95% CI [-0.01, 0.47], P = 0.06, I2 = 19%).",
+      "figure": null,
+      "caveats": "High heterogeneity (I2 87-91%) at lumbar spine and femoral neck limits precision of the pooled estimates; no significant effect at the trochanter.",
+      "key_results": "17 randomized controlled trials involving 690 subjects were included. Resistance training significantly improves BMD at the LS, FN and TH. Subgroup analysis further revealed that high-intensity training (>=70% 1RM) had a significant effect on the TH and FN; training three times per week significantly improved bone mineral density at the LS, FN, TH, and Troch; intervention durations of >=48 weeks had a significant impact on FN and TH. A high-intensity training regimen (>=70% 1RM) performed three times per week with a longer training duration may be optimal."
+    },
+    {
+      "behavior_id": "impact_exercise",
+      "marker_id": "bmd",
+      "direction": "+",
+      "effect": "Combined odd/high-impact plus high-magnitude resistance loading increased BMD at lumbar spine (WMD 0.009 g/cm2, 95% CI 0.002-0.015) and femoral neck (WMD 0.007 g/cm2, 95% CI 0.001-0.013) in premenopausal women; high-impact-only protocols increased femoral neck BMD (WMD 0.024 g/cm2, 95% CI 0.002-0.027)",
+      "effect_normalized": 0.009,
+      "normalization_method": "WMD (g/cm2), fixed-effect meta-analysis, combined impact+resistance exercise vs control, lumbar spine, premenopausal women",
+      "evidence_tier": "A",
+      "population": "premenopausal women, controlled trials of impact exercise (meta-analysis; total pooled n not given in abstract)",
+      "conditional_on": "Effect on lumbar spine and femoral neck required combining impact loading with high-magnitude resistance training; high-impact-alone protocols were effective only at the femoral neck, not the lumbar spine; insufficient trials to assess total hip BMD; restricted to premenopausal women, so this does not generalize to the postmenopausal population in the resistance_training edge above",
+      "paper": {
+        "doi": "10.1007/s00774-009-0139-6",
+        "title": "Effects of different impact exercise modalities on bone mineral density in premenopausal women: a meta-analysis",
+        "year": 2010,
+        "design": "meta-analysis of controlled trials",
+        "n": null
+      },
+      "verbatim": "Combined protocols integrating odd- or high-impact exercise with high-magnitude loading (resistance exercises), were effective in increasing BMD at both LS and FN [WMD (fixed effect) 0.009 g cm(-2) 95% CI (0.002-0.015) and 0.007 g cm(-2) 95% CI (0.001-0.013); P = 0.011 and 0.017, respectively]. High-impact only protocols were effective on femoral neck BMD [WMD (fixed effect) 0.024 g cm(-2) 95% CI (0.002-0.027); P < 0.00001].",
+      "figure": null,
+      "caveats": "Funnel plots showed some asymmetry for positive BMD outcomes, suggesting possible publication bias; insufficient protocols to assess total hip BMD; abstract does not report total pooled participant n.",
+      "key_results": "Exercise programmes that combine odd- or high-impact activity with high-magnitude resistance training appear effective in augmenting BMD in premenopausal women at the hip and spine. High-impact-alone protocols are effective only on hip BMD in this group. However, diverse methodological and reporting discrepancies are evident in published trials."
+    },
+    {
+      "behavior_id": "protein_intake",
+      "marker_id": "bmd",
+      "direction": "+",
+      "effect": "Higher versus lower protein intake produced a small protective net effect on lumbar spine BMD (net percentage change 0.52%, 95% CI 0.06-0.97%) but no significant effect on total hip, femoral neck, or total body BMD",
+      "effect_normalized": 0.52,
+      "normalization_method": "net percentage change, lumbar spine BMD, higher vs lower protein intake, meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "adults, National Osteoporosis Foundation review of 16 RCTs and 20 prospective cohort studies (lumbar spine meta-analysis itself pooled 5 RCTs)",
+      "conditional_on": "Moderate-quality evidence supports the lumbar spine effect only, based on just 5 RCTs; no effect shown at total hip, femoral neck, or total body BMD; protein's added effect when combined with calcium +/- vitamin D was NOT supported for lumbar spine BMD, total hip BMD, or forearm fractures in the same review, and evidence was insufficient for femoral neck BMD and overall fractures",
+      "paper": {
+        "doi": "10.3945/ajcn.116.145110",
+        "title": "Dietary protein and bone health: a systematic review and meta-analysis from the National Osteoporosis Foundation",
+        "year": 2017,
+        "design": "systematic review and meta-analysis of RCTs and prospective cohort studies",
+        "n": null
+      },
+      "verbatim": "Moderate evidence suggested that higher protein intake may have a protective effect on lumbar spine (LS) bone mineral density (BMD) compared with lower protein intake (net percentage change: 0.52%; 95% CI: 0.06%, 0.97%, I2: 0%; n = 5) but no effect on total hip (TH), femoral neck (FN), or total body BMD or bone biomarkers.",
+      "figure": null,
+      "caveats": "Effect based on only 5 RCTs for the lumbar spine meta-analysis; overall studies were heterogeneous and confounding could not be excluded; abstract does not report a single pooled total n across all included studies.",
+      "key_results": "Sixteen RCTs and 20 prospective cohort studies were included in the systematic review. Overall risk of bias was medium. Current evidence shows no adverse effects of higher protein intakes. Although there were positive trends on BMD at most bone sites, only the LS showed moderate evidence to support benefits of higher protein intake. High-quality, long-term studies are needed to clarify dietary protein's role in bone health."
+    },
+    {
+      "behavior_id": "calcium_supplementation",
+      "marker_id": "bmd",
+      "direction": "+",
+      "effect": "Calcium supplements increased BMD by 0.7-1.8% at all five skeletal sites (lumbar spine, total hip, femoral neck, total body, forearm) at one, two, and over two and a half years",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - reported as a range of percentage change across skeletal sites and time points, meta-analysis of RCTs, calcium supplementation vs control",
+      "evidence_tier": "A",
+      "population": "adults >50 years; 51 RCTs of calcium supplements (n=12,257) and 15 RCTs of dietary calcium sources (n=1,533)",
+      "conditional_on": "Effect sizes were similar for dietary calcium and calcium supplements (except at the forearm), for calcium monotherapy vs calcium+vitamin D co-administration, and across calcium doses (>=1000 vs <1000 mg/day; <=500 vs >500 mg/day) and baseline dietary intake levels; the BMD increase did not progress further after the first year - contrast with the vitamin_d_calcium_combined -> fracture_incidence edge, where the COMBINED regimen (not calcium alone) reduced fracture risk by a magnitude the authors here say plain BMD change would not predict",
+      "paper": {
+        "doi": "10.1136/bmj.h4183",
+        "title": "Calcium intake and bone mineral density: systematic review and meta-analysis",
+        "year": 2015,
+        "design": "meta-analysis of RCTs",
+        "n": 12257
+      },
+      "verbatim": "Calcium supplements increased BMD by 0.7-1.8% at all five skeletal sites at one, two, and over two and a half years, but the size of the increase in BMD at later time points was similar to the increase at one year.",
+      "figure": null,
+      "caveats": "The review authors' own conclusion frames these BMD increases as statistically real but too small to be clinically meaningful for fracture prevention on their own; this is the 'calcium alone' comparator that should be read alongside the vitamin_d_calcium_combined and vitamin_d_alone fracture edges below.",
+      "key_results": "We identified 59 eligible randomised controlled trials: 15 studied dietary sources of calcium and 51 studied calcium supplements. Increases in BMD were similar in trials of dietary sources of calcium and calcium supplements (except at the forearm), in trials of calcium monotherapy versus co-administered calcium and vitamin D, and across different calcium doses. Increasing calcium intake from dietary sources or by taking calcium supplements produces small non-progressive increases in BMD, which are unlikely to lead to a clinically significant reduction in risk of fracture."
+    },
+    {
+      "behavior_id": "vitamin_d_calcium_combined",
+      "marker_id": "fracture_incidence",
+      "direction": "-",
+      "effect": "Calcium plus vitamin D supplementation produced a significant 15% reduced risk of total fractures (RR 0.85, 95% CI 0.73-0.98) and 30% reduced risk of hip fractures (RR 0.70, 95% CI 0.56-0.87)",
+      "effect_normalized": 0.85,
+      "normalization_method": "summary relative risk estimate (SRRE), random-effects meta-analysis of RCTs, total fracture incidence, calcium+vitamin D vs placebo/control",
+      "evidence_tier": "A",
+      "population": "30,970 participants, 8 RCTs, community-dwelling and institutionalized middle-aged to older adults",
+      "conditional_on": "Effect is for COMBINED calcium+vitamin D co-supplementation, not calcium or vitamin D alone (contrast with the vitamin_d_alone null edge below and the calcium_supplementation -> bmd edge, which shows calcium alone barely moves BMD); applies to both community-dwelling and institutionalized populations; a substantial portion of the pooled n derives from a subgroup analysis of the Women's Health Initiative, per the authors' own stated limitation",
+      "paper": {
+        "doi": "10.1007/s00198-015-3386-5",
+        "title": "Calcium plus vitamin D supplementation and risk of fractures: an updated meta-analysis from the National Osteoporosis Foundation",
+        "year": 2016,
+        "design": "meta-analysis of RCTs",
+        "n": 30970
+      },
+      "verbatim": "Meta-analysis of all studies showed that calcium plus vitamin D supplementation produced a statistically significant 15 % reduced risk of total fractures (SRRE, 0.85; 95 % confidence interval [CI], 0.73-0.98) and a 30 % reduced risk of hip fractures (SRRE, 0.70; 95 % CI, 0.56-0.87).",
+      "figure": null,
+      "caveats": "A limitation acknowledged by the authors is that this meta-analysis utilized data from a subgroup analysis of the Women's Health Initiative; numerous sensitivity and subgroup analyses reportedly produced similar summary associations per the abstract.",
+      "key_results": "Of the citations retrieved, eight studies including 30,970 participants met criteria for inclusion in the primary analysis, reporting 195 hip fractures and 2231 total fractures. This meta-analysis of RCTs supports the use of calcium plus vitamin D supplements as an intervention for fracture risk reduction in both community-dwelling and institutionalized middle-aged to older adults."
+    },
+    {
+      "behavior_id": "vitamin_d_alone",
+      "marker_id": "fracture_incidence",
+      "direction": null,
+      "effect": "Supplemental vitamin D3 (2000 IU/day) did not significantly reduce total fractures (HR 0.98, 95% CI 0.89-1.08), nonvertebral fractures (HR 0.97, 95% CI 0.87-1.07), or hip fractures (HR 1.01, 95% CI 0.70-1.47) versus placebo in adults not selected for vitamin D deficiency or low bone mass",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result; hazard ratios reported for a general (non-deficiency-selected) population",
+      "evidence_tier": "B",
+      "population": "25,871 US adults (men >=50y, women >=55y), median follow-up 5.3 years, not selected for vitamin D deficiency, low bone mass, or osteoporosis",
+      "conditional_on": "Population was NOT selected for baseline vitamin D deficiency (25-hydroxyvitamin D status was not an enrollment criterion); no modification of the treatment effect was found by baseline vitamin D level, age, sex, race/ethnicity, or BMI; this null result is for vitamin D ALONE and should not be read as contradicting the vitamin_d_calcium_combined edge above, which found a significant benefit for the COMBINED regimen; it also should not be extrapolated to vitamin-D-deficient populations, who were not the focus of this trial",
+      "paper": {
+        "doi": "10.1056/NEJMoa2202106",
+        "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
+        "year": 2022,
+        "design": "randomized, placebo-controlled trial (VITAL ancillary study)",
+        "n": 25871
+      },
+      "verbatim": "Supplemental vitamin D3, as compared with placebo, did not have a significant effect on total fractures (which occurred in 769 of 12,927 participants in the vitamin D group and in 782 of 12,944 participants in the placebo group; hazard ratio, 0.98; 95% confidence interval [CI], 0.89 to 1.08; P = 0.70), nonvertebral fractures (hazard ratio, 0.97; 95% CI, 0.87 to 1.07; P = 0.50), or hip fractures (hazard ratio, 1.01; 95% CI, 0.70 to 1.47; P = 0.96).",
+      "figure": null,
+      "caveats": "This is a large, well-powered RCT but tests vitamin D3 alone, not combined with calcium; the population was generally replete in vitamin D at baseline rather than deficient, which is the standard caveat attached to null vitamin-D-alone fracture trials.",
+      "key_results": "Among 25,871 participants, we confirmed 1991 incident fractures in 1551 participants over a median follow-up of 5.3 years. There was no modification of the treatment effect according to baseline characteristics, including age, sex, race or ethnic group, body-mass index, or serum 25-hydroxyvitamin D levels. Vitamin D3 supplementation did not result in a significantly lower risk of fractures than placebo among generally healthy midlife and older adults who were not selected for vitamin D deficiency, low bone mass, or osteoporosis."
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "fracture_incidence",
+      "direction": "+",
+      "effect": "Current smokers had similar hip fracture risk to non-smokers at age 50, but relative risk increased with age: 17% higher at age 60, 41% higher at 70, 71% higher at 80, and 108% higher at 90, versus non-smokers",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - age-stratified relative risk from regression analysis of pooled observational studies, current smokers vs non-smokers, no single pooled point estimate given",
+      "evidence_tier": "C",
+      "population": "29 cross-sectional studies (2156 smokers, 9705 non-smokers) for bone density; 19 cohort and case-control studies recording 3889 hip fractures; predominantly women, with limited data suggesting a similar proportionate effect in men",
+      "conditional_on": "Effect is concentrated after menopause: in premenopausal women bone density was similar between smokers and non-smokers; postmenopausal bone loss was accelerated in current smokers, with the excess growing by about 2% per additional decade of age; the association was not explained by smokers being thinner, younger at menopause, or exercising less, nor by known actions on oestrogen, per the authors",
+      "paper": {
+        "doi": "10.1136/bmj.315.7112.841",
+        "title": "A meta-analysis of cigarette smoking, bone mineral density and risk of hip fracture: recognition of a major effect",
+        "year": 1997,
+        "design": "meta-analysis of cross-sectional, cohort, and case-control studies",
+        "n": 3889
+      },
+      "verbatim": "In premenopausal women bone density was similar in smokers and non-smokers. Postmenopausal bone loss was greater in current smokers than non-smokers, bone density diminishing by about an additional 2% for every 10 year increase in age, with a difference of 6% at age 80. In current smokers relative to non-smokers the risk of hip fracture was similar at age 50 but greater thereafter by an estimated 17% at age 60, 41% at 70, 71% at 80, and 108% at 90.",
+      "figure": null,
+      "caveats": "Observational synthesis (cross-sectional, cohort, case-control), not RCTs - smoking cannot ethically be randomized, so causality is inferred rather than directly tested; this is a 1997 meta-analysis, still widely cited as the reference estimate for this association, but it predates any newer large-cohort confirmation captured in this pass.",
+      "key_results": "The estimated cumulative risk of hip fracture in women in England was 19% in smokers and 12% in non-smokers to age 85; 37% and 22% to age 90. Among all women, one hip fracture in eight is attributable to smoking. Limited data in men suggest a similar proportionate effect of smoking as in women. Hip fracture in old age is a major adverse effect of smoking after the menopause."
+    },
+    {
+      "behavior_id": "alcohol",
+      "marker_id": "bmd",
+      "direction": "+",
+      "effect": "Compared to non-drinkers, consumption of up to two standard drinks/day was associated with higher lumbar spine and femoral neck BMD, and up to one standard drink/day was associated with higher hip BMD",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - dose-response meta-analysis reports categorical drink/day-band associations rather than a single pooled effect size for BMD",
+      "evidence_tier": "C",
+      "population": "46,916 individuals across 11 studies with BMD assessment, dose-response meta-analysis of predominantly observational studies",
+      "conditional_on": "Association applies only at light-to-moderate intake (up to approximately 1-2 standard drinks/day); this is an observational (non-randomized) association and cannot establish that alcohol itself raises BMD - residual confounding (e.g. body weight, estrogen metabolism, or a 'healthy drinker' effect) cannot be excluded; the same review found the opposite direction (increased fracture risk) at higher intake in the companion edge below, so this is not a monotonic 'more is better' relationship",
+      "paper": {
+        "doi": "10.3390/ijerph19031515",
+        "title": "Alcohol Consumption, Bone Mineral Density, and Risk of Osteoporotic Fractures: A Dose-Response Meta-Analysis",
+        "year": 2022,
+        "design": "dose-response meta-analysis of observational studies",
+        "n": 46916
+      },
+      "verbatim": "Compared to non-drinkers, consumption of up to two standard drinks of alcohol per day was correlated with higher lumbar and femur neck BMD values, while up to one standard drink of alcohol was correlated with higher hip BMD compared to no alcohol consumption.",
+      "figure": null,
+      "caveats": "Observational, dose-response synthesis, not an RCT (heavy long-term alcohol intake cannot be ethically randomized); the pattern is non-monotonic - see the alcohol -> fracture_incidence edge below, where higher intake (3-4+ drinks/day) increases hip fracture risk despite this BMD association at lower doses.",
+      "key_results": "A total of 11 studies including 46,916 individuals with BMD assessment and 8 studies including 240,871 individuals with risk of fracture analysis were included. There is consistent evidence that increased alcohol consumption is associated with higher risk of osteoporotic hip fracture; however, the role of alcohol at lower doses is uncertain, as BMD was even higher in light drinkers compared to abstainers."
+    },
+    {
+      "behavior_id": "alcohol",
+      "marker_id": "fracture_incidence",
+      "direction": "+",
+      "effect": "Compared to non-drinkers, higher risk of hip fracture was found starting from three standard drinks per day (RR 1.33, 95% CI 1.04-1.69) and four drinks per day (RR 1.59, 95% CI 1.23-2.05); risk of any osteoporotic fracture increased steadily with intake but did not reach statistical significance",
+      "effect_normalized": 1.33,
+      "normalization_method": "relative risk (RR), dose-response meta-analysis, hip fracture, 3 standard drinks/day vs non-drinkers",
+      "evidence_tier": "C",
+      "population": "240,871 individuals across 8 studies with fracture-risk analysis, dose-response meta-analysis of observational studies",
+      "conditional_on": "Threshold effect: no significantly elevated hip fracture risk below 3 drinks/day; risk for ANY osteoporotic fracture (not just hip) increased with dose but never reached significance in this review, so hip fracture is where the effect is clearest; contrasts with the same review's BMD finding above that light drinking (<=1-2 drinks/day) is associated with higher, not lower, BMD",
+      "paper": {
+        "doi": "10.3390/ijerph19031515",
+        "title": "Alcohol Consumption, Bone Mineral Density, and Risk of Osteoporotic Fractures: A Dose-Response Meta-Analysis",
+        "year": 2022,
+        "design": "dose-response meta-analysis of observational studies",
+        "n": 240871
+      },
+      "verbatim": "Higher risk of hip fractures was found starting from three standard drinks of alcohol per day (RR = 1.33, 95% CI: 1.04; 1.69 for three alcoholic drinks/d, and RR = 1.59, 95% CI: 1.23; 2.05 for four alcoholic drinks/d) compared to no alcohol consumption, with no evidence of heterogeneity. Concerning the risk of any osteoporotic fractures, the risk steadily increased with higher intake of alcohol, although never reaching statistical significance.",
+      "figure": null,
+      "caveats": "Observational dose-response synthesis, not RCT evidence; 'no evidence of heterogeneity' applies to the hip-fracture-specific estimate, not the broader any-fracture outcome, which remained non-significant.",
+      "key_results": "In conclusion, there is consistent evidence that increased alcohol consumption is associated with higher risk of osteoporotic hip fracture; however, the role of alcohol at lower doses is uncertain, as BMD was even higher in light drinkers compared to abstainers."
+    },
+    {
+      "behavior_id": "weight_loss",
+      "marker_id": "bmd",
+      "direction": "-",
+      "effect": "Weight loss significantly decreased hip BMD (MD -0.008 g/cm2, 95% CI -0.09 to -0.006, p<0.001) and lumbar spine BMD (MD -0.018 g/cm2, 95% CI -0.019 to -0.017, p<0.001), but had no significant effect on total body BMD (MD 0.007, 95% CI -0.020 to 0.034, p=0.608)",
+      "effect_normalized": -0.008,
+      "normalization_method": "MD (g/cm2), hip BMD, weight loss vs baseline/control, meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "32 RCTs, adults undergoing weight loss via calorie restriction and/or exercise",
+      "conditional_on": "Calorie-restriction-induced weight loss decreased hip and lumbar spine BMD, especially beyond 4 months (hip) or 13 months (lumbar spine) of calorie restriction and especially in participants who were obese; exercise-induced weight loss (without dietary restriction) did NOT decrease hip BMD - so this edge's direction is conditional on weight-loss METHOD, not a uniform effect of weight loss itself; see the weight_loss -> oa_pain edge below for the competing benefit to the knee joint",
+      "paper": {
+        "doi": "10.1007/s00198-016-3617-4",
+        "title": "The effects of weight loss approaches on bone mineral density in adults: a systematic review and meta-analysis of randomized controlled trials",
+        "year": 2016,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "The meta-analysis revealed no significant difference on total BMD (MD 0.007, 95 % CI -0.020-0.034, p = 0.608). In contrast, the pooled data of studies showed a significant effect of weight loss on hip BMD (MD -0.008, 95 % CI -0.09 to -0.006 g/cm(2), p < 0.001) and also lumbar spine BMD (MD -0.018 g/cm(2), 95 % CI -0.019 to -0.017, p < 0.001).",
+      "figure": null,
+      "caveats": "Abstract does not report total pooled participant n across the 32 RCTs; this edge and the weight_loss -> oa_pain edge below together illustrate the tension the research brief anticipated: weight loss improves knee osteoarthritis pain/function but can reduce hip and spine BMD, particularly when achieved through calorie restriction rather than exercise.",
+      "key_results": "Thirty-two randomized controlled trials met predetermined inclusion criteria. Weight loss led to significant decreases at the hip and lumbar spine BMD but not at the total. Weight loss response following calorie restriction resulted in a decrease in hip and lumbar spine bone density especially more than 1 year; whereas an exercise-induced weight loss did not."
+    },
+    {
+      "behavior_id": "weight_loss",
+      "marker_id": "oa_pain",
+      "direction": "-",
+      "effect": "Diet-plus-exercise weight loss interventions significantly improved knee osteoarthritis pain versus control on a 0-20 scale (-2.2 points, 95% CI -4.1 to -0.21); psychological+diet+exercise was not significantly superior to control (-3.9, 95% CI -8.4 to 0.5) despite producing the largest weight loss; clinically meaningful pain relief is predicted at >=7% weight loss",
+      "effect_normalized": -2.2,
+      "normalization_method": "mean difference on a 0-20 WOMAC-style pain scale, diet+exercise vs control, network meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "2800 participants, 13 RCTs, overweight/obese adults with knee osteoarthritis",
+      "conditional_on": "Of 7 networked interventions (diet, exercise, diet+exercise, pharmacological, psychological, psychological+diet+exercise, Mediterranean diet), only diet+exercise significantly outperformed control on pain; psychological+diet+exercise achieved the largest weight loss (-11.2 kg) but was NOT significantly better than control for pain, showing weight-loss magnitude alone does not guarantee pain benefit; meta-regression indicates >=7% body weight loss is the threshold for anticipated significant pain relief regardless of intervention type; the pain scale (0-20, higher = worse) matches this goal's oa_pain marker convention",
+      "paper": {
+        "doi": "10.1016/j.joca.2024.08.012",
+        "title": "Comparison of weight loss interventions in overweight and obese adults with knee osteoarthritis: A systematic review and network meta-analysis of randomized trials",
+        "year": 2025,
+        "design": "network meta-analysis of RCTs",
+        "n": 2800
+      },
+      "verbatim": "In terms of pain (0-20 scale), only DE outperformed control comparators (-2.2, 95% CI: -4.1, -0.21), whereas PDE was not superior to control comparators (-3.9, 95% CI: -8.4, 0.5) in improving the pain. Regardless of the chosen intervention, prediction intervals from meta-regression analysis indicate that significant pain relief may be anticipated when patients achieve at least a weight reduction of 7%.",
+      "figure": null,
+      "caveats": "An Expression of Concern has since been issued for this article (Osteoarthritis Cartilage 2024;32(11):1513); noted here for transparency, though the substance of the concern was not available in the retrieved metadata - treat pooled estimates with appropriate caution pending resolution. Also note the same weight-loss literature reduces hip/spine BMD (see the weight_loss -> bmd edge above), so weight loss for knee OA is not risk-free for bone health.",
+      "key_results": "13 RCTs on knee OA (2800 participants) with 7 interventions were networked. For weight change (kg), all interventions significantly outperformed control, ranging from -11.2 kg (PDE) to -4.7 kg (DE). PDE and DE interventions may offer the most effective approach for weight loss, potentially leading to improvements in pain and physical function among overweight/obese individuals with KOA if they achieve more than 7% weight loss."
+    },
+    {
+      "behavior_id": "land_based_exercise",
+      "marker_id": "oa_pain",
+      "direction": "-",
+      "effect": "Land-based therapeutic exercise significantly reduced knee osteoarthritis pain by 12 points/100 (95% CI 10-15) immediately after treatment, with a smaller but still significant reduction of 6 points/100 (95% CI 3-9) sustained 2-6 months post-treatment",
+      "effect_normalized": -12,
+      "normalization_method": "pooled mean difference on a 0-100 pain scale, random-effects meta-analysis of RCTs, land-based exercise vs non-exercise control, immediately post-treatment",
+      "evidence_tier": "A",
+      "population": "44 of 54 identified trials pooled for the pain outcome, adults with knee osteoarthritis",
+      "conditional_on": "Comparator is a non-exercise control; effect is moderate immediately post-treatment and diminishes but remains significant 2-6 months after formal treatment ends; only 19 of 54 included studies (35%) had adequate random sequence generation, allocation concealment, and complete outcome data, so pooled results may be vulnerable to selection, attrition, and detection bias",
+      "paper": {
+        "doi": "10.1136/bjsports-2015-095424",
+        "title": "Exercise for osteoarthritis of the knee: a Cochrane systematic review",
+        "year": 2015,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Pooled results from 44 trials indicated that exercise significantly reduced pain (12 points/100; 95% CI 10 to 15) and improved physical function (10 points/100; 95% CI 8 to 13) to a moderate degree immediately after treatment, while evidence from 13 studies revealed that exercise significantly improved quality of life immediately after treatment with small effect (4 points/100; 95% CI 2 to 5). In addition, 12 studies provided 2-month to 6-month post-treatment sustainability data which showed significantly reduced knee pain (6 points/100; 95% CI 3 to 9) and 10 studies which showed improved physical function (3 points/100; 95% CI 1 to 5).",
+      "figure": null,
+      "caveats": "Of 54 identified studies, only 19 (35%) had adequate randomization, allocation concealment, and complete outcome data, so pooled estimates may be vulnerable to bias; abstract does not report total pooled participant n.",
+      "key_results": "In total, 54 studies were identified. Among people with knee osteoarthritis, land-based therapeutic exercise provides short-term benefit that is sustained for at least 2-6 months after cessation of formal treatment."
+    },
+    {
+      "behavior_id": "land_based_exercise",
+      "marker_id": "oa_function",
+      "direction": "-",
+      "effect": "Land-based therapeutic exercise significantly improved knee osteoarthritis physical function by 10 points/100 (95% CI 8-13) immediately after treatment, with a smaller but still significant improvement of 3 points/100 (95% CI 1-5) sustained 2-6 months post-treatment",
+      "effect_normalized": -10,
+      "normalization_method": "pooled mean difference on a 0-100 function scale, random-effects meta-analysis of RCTs, land-based exercise vs non-exercise control, immediately post-treatment",
+      "evidence_tier": "A",
+      "population": "trials pooled for the function outcome (10 of 12 studies providing 2-6 month follow-up data), adults with knee osteoarthritis",
+      "conditional_on": "Same 54-trial Cochrane review as the oa_pain edge above; function improvement attenuates substantially at follow-up (3/100) relative to immediately post-treatment (10/100), i.e. the benefit fades without continued exercise",
+      "paper": {
+        "doi": "10.1136/bjsports-2015-095424",
+        "title": "Exercise for osteoarthritis of the knee: a Cochrane systematic review",
+        "year": 2015,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Pooled results from 44 trials indicated that exercise significantly reduced pain (12 points/100; 95% CI 10 to 15) and improved physical function (10 points/100; 95% CI 8 to 13) to a moderate degree immediately after treatment, while evidence from 13 studies revealed that exercise significantly improved quality of life immediately after treatment with small effect (4 points/100; 95% CI 2 to 5). In addition, 12 studies provided 2-month to 6-month post-treatment sustainability data which showed significantly reduced knee pain (6 points/100; 95% CI 3 to 9) and 10 studies which showed improved physical function (3 points/100; 95% CI 1 to 5).",
+      "figure": null,
+      "caveats": "Same risk-of-bias limitations as the oa_pain edge above (only 35% of the 54 studies had low risk of bias on key domains).",
+      "key_results": "Among people with knee osteoarthritis, land-based therapeutic exercise provides short-term benefit that is sustained for at least 2-6 months after cessation of formal treatment."
+    },
+    {
+      "behavior_id": "glucosamine_chondroitin",
+      "marker_id": "oa_pain",
+      "direction": null,
+      "effect": "Glucosamine alone reduced VAS pain by 7.41 mm (95% CI -14.31 to -0.51) and chondroitin alone reduced VAS pain by 8.35 mm (95% CI -11.84 to -4.85) versus placebo, but their combination showed no significant VAS pain reduction (WMD -0.28 mm, 95% CI -8.87 to 8.32); none of glucosamine, chondroitin, or the combination significantly improved the total WOMAC index or its subscores",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - reported as WMD in mm on a VAS scale for individual agents (small effects on a typically 0-100mm scale), and as a non-significant WOMAC-index result for the combination; the contested, direction-dependent result set cannot be reduced to one normalized effect size",
+      "evidence_tier": "A",
+      "population": "randomized placebo-controlled trials of knee osteoarthritis using WOMAC and/or VAS pain outcomes (meta-analysis of RCTs; total pooled n not given in abstract)",
+      "conditional_on": "Glucosamine-alone and chondroitin-alone show small, statistically significant VAS pain reductions individually, but neither improves the total WOMAC index or its subscores (this goal's oa_pain/oa_function marker scale); their COMBINATION - the most commonly marketed and used form - shows no significant pain benefit by either VAS or WOMAC; this alone-vs-combined distinction is the specific contested area the research brief flagged",
+      "paper": {
+        "doi": "10.1007/s00296-018-4077-2",
+        "title": "Effect of glucosamine and chondroitin sulfate in symptomatic knee osteoarthritis: a systematic review and meta-analysis of randomized placebo-controlled trials",
+        "year": 2018,
+        "design": "meta-analysis of randomized placebo-controlled trials",
+        "n": null
+      },
+      "verbatim": "Treatments with glucosamine and chondroitin were found to significantly reduce pain in VAS [weighted mean difference (WMD) - 7.41 mm, 95% CI - 14.31, - 0.51, p = 0.04 and WMD - 8.35 mm, 95% CI - 11.84, - 4.85, p < 0.00001, respectively]. Their combination did not show this behavior (WMD - 0.28 mm, 95% CI - 8.87, 8.32, p = 0.95). None of the glucosamine, chondroitin or their combination had a significant positive effect on the total WOMAC index and its subscores.",
+      "figure": null,
+      "caveats": "VAS effect sizes for the individual agents (7-8mm) are small relative to typical minimum clinically important difference thresholds (often cited around 15-20mm on a 100mm VAS) and are of doubtful clinical significance even where statistically significant; abstract does not report total pooled participant n.",
+      "key_results": "Oral supplementation with glucosamine or chondroitin sulfate reduces pain in knee OA [by VAS]. However, there is no additional effect using both therapeutic agents in combination for the management of symptomatic knee OA. None of the glucosamine, chondroitin or their combination had a significant positive effect on the total WOMAC index and its subscores."
+    },
+    {
+      "behavior_id": "glucosamine_chondroitin",
+      "marker_id": "oa_function",
+      "direction": null,
+      "effect": "Neither glucosamine, chondroitin, nor their combination had a significant positive effect on the WOMAC physical function subscore",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no effect size reported for the function subscore specifically in the abstract",
+      "evidence_tier": "A",
+      "population": "randomized placebo-controlled trials of knee osteoarthritis using the WOMAC index (same trial set as the oa_pain edge above)",
+      "conditional_on": "Same alone-vs-combined trial set as the oa_pain edge above; the null result for WOMAC function holds regardless of whether glucosamine and chondroitin are given alone or combined",
+      "paper": {
+        "doi": "10.1007/s00296-018-4077-2",
+        "title": "Effect of glucosamine and chondroitin sulfate in symptomatic knee osteoarthritis: a systematic review and meta-analysis of randomized placebo-controlled trials",
+        "year": 2018,
+        "design": "meta-analysis of randomized placebo-controlled trials",
+        "n": null
+      },
+      "verbatim": "None of the glucosamine, chondroitin or their combination had a significant positive effect on the total WOMAC index and its subscores.",
+      "figure": null,
+      "caveats": "The WOMAC function subscore is referenced generically as one of the 'subscores' in this sentence; the abstract does not break out a separate numeric estimate for the function subscore alone.",
+      "key_results": "Oral supplementation with glucosamine or chondroitin sulfate reduces pain in knee OA as measured by VAS. However, there is no additional effect using both therapeutic agents in combination for the management of symptomatic knee OA."
+    },
+    {
+      "behavior_id": "omega_3",
+      "marker_id": "oa_pain",
+      "direction": "-",
+      "effect": "Krill oil (4 g/day: 0.60 g EPA + 0.28 g DHA + astaxanthin) improved WOMAC knee pain score more than placebo over 6 months (adjusted mean difference between groups -5.18 points on a 0-100 scale, 95% CI -10.0 to -0.32)",
+      "effect_normalized": -5.18,
+      "normalization_method": "adjusted mean difference between groups, WOMAC pain (0-100 scale), krill oil vs placebo, RCT",
+      "evidence_tier": "B",
+      "population": "235 adults aged 40-65 with mild-to-moderate knee osteoarthritis, regular knee pain, and low baseline long-chain omega-3 intake (<0.5 g/day), 6-month RCT",
+      "conditional_on": "Specific to krill oil (a particular omega-3 plus astaxanthin source) at a defined dose, not omega-3 supplementation in general; population was screened for LOW baseline omega-3 intake, so the effect may not generalize to populations already consuming adequate long-chain omega-3; contrast with the null result for general marine omega-3 supplementation in an unscreened population, in the edge below",
+      "paper": {
+        "doi": "10.1093/ajcn/nqac125",
+        "title": "Krill oil improved osteoarthritic knee pain in adults with mild to moderate knee osteoarthritis: a 6-month multicenter, randomized, double-blind, placebo-controlled trial",
+        "year": 2022,
+        "design": "randomized, double-blind, placebo-controlled trial",
+        "n": 235
+      },
+      "verbatim": "Knee pain score improved in both groups with greater improvements for krill oil than for placebo (difference in adjusted mean change between groups at 6 mo: -5.18; 95% CI: -10.0, -0.32; P = 0.04).",
+      "figure": null,
+      "caveats": "Effect size is modest (-5.18 points on a 0-100 scale) and the confidence interval approaches the null; knee stiffness and physical function also improved more with krill oil than placebo (differences of -6.45 and -4.67 respectively, both P<0.05), but pain is the outcome matching this goal's oa_pain marker.",
+      "key_results": "Omega-3 Index increased with the krill oil supplement compared with placebo (from 6.0% to 8.9% compared with from 5.5% to 5.4%, P < 0.001). Knee stiffness and physical function also had greater improvements with krill oil than with placebo. Krill oil was safe to consume and resulted in modest improvements in knee pain, stiffness, and physical function in adults with mild to moderate knee OA."
+    },
+    {
+      "behavior_id": "omega_3",
+      "marker_id": "oa_pain",
+      "direction": null,
+      "effect": "Marine omega-3 fatty acid supplementation (1 g/day) for a mean of 5.3 years did not significantly change WOMAC knee pain scores versus placebo in adults with pre-existing chronic knee pain (time-by-treatment interaction P=0.77)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no significant time-by-treatment interaction reported",
+      "evidence_tier": "B",
+      "population": "1398 US adults with pre-existing chronic knee pain (a subgroup of the 25,871-participant VITAL trial), mean age 67.7, 66% women, mean baseline WOMAC pain 37/100, mean follow-up 5.3 years",
+      "conditional_on": "Population was NOT screened for omega-3 deficiency; dose was 1 g/day marine omega-3 (EPA+DHA), a standard general-population supplementation dose, lower and differently sourced than the krill oil trial above; vitamin D supplementation in the same 2x2 factorial trial also showed no effect on knee pain, function, or stiffness",
+      "paper": {
+        "doi": "10.1002/art.41416",
+        "title": "The Effects of Vitamin D and Marine Omega-3 Fatty Acid Supplementation on Chronic Knee Pain in Older US Adults: Results From a Randomized Trial",
+        "year": 2020,
+        "design": "randomized, double-blind, placebo-controlled trial (VITAL ancillary study)",
+        "n": 1398
+      },
+      "verbatim": "WOMAC pain did not differ between the active vitamin D group and the vitamin D placebo group or between the active n-3 FA group and the n-3 FA placebo group at any time point during follow-up. Linear time-by-treatment interactions were not significant for either treatment (vitamin D, P = 0.41; n-3 FA, P = 0.77).",
+      "figure": null,
+      "caveats": "This null result for general-population marine omega-3 supplementation contrasts with the positive krill-oil trial above; plausible explanations include the different omega-3 source/dose, the lack of baseline omega-3-deficiency screening here, and the older, US-based, chronic-knee-pain population being less responsive to a standard 1 g/day dose.",
+      "key_results": "This study included 1,398 participants who returned at least one knee pain questionnaire. Vitamin D and n-3 FA supplementation did not significantly affect WOMAC function or stiffness scores over time. Our findings indicate that vitamin D and n-3 FA supplementation for a mean of 5.3 years does not reduce knee pain or improve function or stiffness in a large sample of US adults with chronic knee pain."
+    },
+    {
+      "behavior_id": "collagen_peptides",
+      "marker_id": "oa_pain",
+      "direction": "-",
+      "effect": "Collagen peptide supplementation significantly reduced knee osteoarthritis pain versus placebo (SMD -0.58, 95% CI -0.98 to -0.18, p=0.004)",
+      "effect_normalized": -0.58,
+      "normalization_method": "SMD, random-effects meta-analysis of RCTs, collagen peptide vs placebo, pain outcome",
+      "evidence_tier": "A",
+      "population": "507 patients with knee osteoarthritis, 4 RCTs",
+      "conditional_on": "All 4 included trials were assessed as high risk of bias by the review's own Cochrane ROB 2.0 tool; quality of evidence for the pain outcome was rated moderate (GRADE); no significant difference in adverse events versus placebo (OR 1.66, 95% CI 0.99-2.78, p=0.05, quality of evidence very low)",
+      "paper": {
+        "doi": "10.1186/s13018-023-04182-w",
+        "title": "Analgesic efficacy of collagen peptide in knee osteoarthritis: a meta-analysis of randomized controlled trials",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 507
+      },
+      "verbatim": "Our results revealed a significant difference in pain relief between the collagen peptide group and the placebo group in patients with knee osteoarthritis (standardized mean difference: - 0.58; 95% CI - 0.98, - 0.18, p = 0.004; I2: 68%; quality of evidence: moderate).",
+      "figure": null,
+      "caveats": "Based on only 4 trials, all rated high risk of bias by the review's own assessment; moderate heterogeneity (I2=68%); the review's own authors call for better-designed RCTs to confirm the finding.",
+      "key_results": "Four trials involving 507 patients with knee osteoarthritis were included and analyzed using the random-effects model. Our findings demonstrate significant pain relief in patients with knee osteoarthritis who received collagen peptides compared to those who received placebo. However, due to potential biases and limitations, well-designed randomized controlled trials are needed to validate and confirm these findings."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "behavior": "Sedentary time",
+      "reason": "No meta-analysis or adequately powered RCT directly linking sedentary time (as distinct from lack of exercise) to BMD or fracture incidence was located within the research budget for this pass; most literature conflates sedentary time with physical inactivity generally, which would duplicate the resistance_training/impact_exercise/land_based_exercise edges rather than add an independent behavior. Left out rather than asserted from memory; a future pass could search cohort studies using accelerometer-measured sedentary time and site-specific BMD or hip fracture as the outcome."
+    }
+  ]
 }

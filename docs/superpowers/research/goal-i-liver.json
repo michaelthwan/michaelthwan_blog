@@ -38,8 +38,481 @@
         "goal_ids": ["goal_i_liver"]
       }
     ],
-    "behaviors": []
+    "behaviors": [
+      {
+        "id": "coffee",
+        "name": "Coffee consumption",
+        "category": "diet",
+        "dose_or_intensity": "Regular habitual coffee consumption vs none/minimal, observational studies; threshold effects reported above ~3 cups/day in dose-response analyses"
+      },
+      {
+        "id": "alcohol_intake",
+        "name": "Alcohol consumption (low-to-moderate)",
+        "category": "habit",
+        "dose_or_intensity": "Habitual alcohol intake, categorized <20 g pure alcohol/day vs non-drinkers in dose-response meta-analyses; ethnicity-stratified"
+      },
+      {
+        "id": "weight_loss_bariatric",
+        "name": "Weight loss via bariatric surgery",
+        "category": "habit",
+        "dose_or_intensity": "Bariatric surgery in severely obese adults with biopsy-proven NASH, followed 5 years; effect scales with magnitude of weight loss (mean BMI reduction 13.4 vs 6.3 kg/m2 in resolvers vs non-resolvers)"
+      },
+      {
+        "id": "exercise_training",
+        "name": "Exercise training",
+        "category": "exercise",
+        "dose_or_intensity": "Randomized exercise training in NAFLD/MASH patients; clinically significant MRI liver-fat response requires >=750 MET-min/week (~150 min/wk brisk walking equivalent); studied both alone and combined with energy restriction"
+      },
+      {
+        "id": "mediterranean_diet",
+        "name": "Mediterranean diet pattern",
+        "category": "diet",
+        "dose_or_intensity": "Mediterranean-style dietary intervention in NAFLD patients vs control diet, RCTs of 6 weeks to 1 year"
+      },
+      {
+        "id": "added_sugar",
+        "name": "Added / free dietary sugar (reduction)",
+        "category": "diet",
+        "dose_or_intensity": "Restriction of free sugar intake to <3% of daily calories vs usual diet, 8-week intervention, in adolescents with biopsy-proven NAFLD and active disease"
+      },
+      {
+        "id": "vitamin_e",
+        "name": "Vitamin E supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "800 IU/day vitamin E vs placebo, 96 weeks, in non-diabetic adults with biopsy-proven NASH"
+      },
+      {
+        "id": "glp1_ra",
+        "name": "GLP-1 receptor agonist (semaglutide)",
+        "category": "supplement",
+        "dose_or_intensity": "Once-weekly subcutaneous semaglutide 2.4 mg vs placebo in adults with biopsy-confirmed MASH and fibrosis stage 2-3, interim analysis at week 72 of a 240-week trial"
+      },
+      {
+        "id": "omega3_marine",
+        "name": "Marine omega-3 (EPA/DHA) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Oral omega-3 PUFA supplementation in NAFLD patients across 18 pooled RCTs, variable dose and duration"
+      },
+      {
+        "id": "saturated_fat",
+        "name": "Saturated fat overfeeding",
+        "category": "diet",
+        "dose_or_intensity": "Isocaloric overfeeding (~750 extra kcal/day) as saturated fat (palm oil) vs n-6 PUFA (sunflower oil) muffins, 7 weeks, in young normal-weight adults, with matched weight gain between arms"
+      },
+      {
+        "id": "intermittent_fasting_tre",
+        "name": "Time-restricted eating",
+        "category": "habit",
+        "dose_or_intensity": "8-hour eating window (8am-4pm) vs daily calorie restriction with unrestricted timing, both at matched 1200-1800 kcal/day, 12-month RCT in adults with obesity and NAFLD"
+      }
+    ]
   },
-  "edges": [],
-  "cut_candidates": []
+  "edges": [
+    {
+      "behavior_id": "coffee",
+      "marker_id": "liver_stiffness_fibrosis",
+      "direction": "-",
+      "effect": "Coffee consumption associated with 35% decreased odds of significant liver fibrosis in NAFLD patients (RR 0.65, 95% CI 0.54-0.78)",
+      "effect_normalized": 0.65,
+      "normalization_method": "pooled risk ratio (odds of significant fibrosis vs non-coffee-drinkers), meta-analysis of observational studies",
+      "evidence_tier": "D",
+      "population": "NAFLD patients; 5 studies (case-control, cross-sectional, and cohort) pooled for the fibrosis outcome",
+      "conditional_on": "Studied only within NAFLD patients (fibrosis risk given existing steatosis), not in the general population; relative risk comparison is highest vs lowest coffee consumption category, threshold for consumption varied across included studies",
+      "paper": {
+        "doi": "10.3390/nu13093042",
+        "title": "Effect of Coffee Consumption on Non-Alcoholic Fatty Liver Disease Incidence, Prevalence and Risk of Significant Liver Fibrosis: Systematic Review with Meta-Analysis of Observational Studies",
+        "year": 2021,
+        "design": "systematic review and meta-analysis of observational studies (2 case-control, 8 cross-sectional, 1 prospective cohort study pooled across outcomes)",
+        "n": 4303
+      },
+      "verbatim": "The meta-analysis showed coffee consumption to be significantly associated with a 35% decreased odds of significant liver fibrosis (RR 0.65, 95% CI 0.54-0.78, p < 0.00001).",
+      "key_results": "There was no heterogeneity for the fibrosis outcome (I2 = 11%, p = 0.34) and no evidence of publication bias (p = 0.134), unusually clean for an observational meta-analysis. Two earlier, smaller meta-analyses of overlapping literature found closely consistent effect sizes: Hayat et al. 2021 (RR 0.68) and Wijarnpreecha et al. 2017 (RR 0.70), both also reporting a significantly reduced risk of liver fibrosis in NAFLD patients who drink coffee. This convergence across three independent meta-analyses using different but overlapping source studies is one of the more reproducible findings in the diet-liver literature.",
+      "figure": null,
+      "caveats": "All source studies are observational (mostly cross-sectional and case-control, one cohort); no RCT has tested coffee against liver fibrosis. Reverse causation (sicker patients avoiding coffee) and confounding by lifestyle (coffee drinkers differing systematically from non-drinkers) cannot be excluded by this design."
+    },
+    {
+      "behavior_id": "coffee",
+      "marker_id": "liver_fat_steatosis",
+      "direction": null,
+      "effect": "No significant association between coffee consumption and NAFLD incidence (RR 0.88, 95% CI 0.63-1.25) or prevalence (RR 0.88, 95% CI 0.76-1.02) in this pooled analysis",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "D",
+      "population": "NAFLD incidence: 3 studies, 92,075 subjects; NAFLD prevalence: 8 studies, 9,558 subjects; observational",
+      "conditional_on": "This null result is for whether coffee prevents/reduces the presence of steatosis itself; the same paper found a significant protective association further downstream, for fibrosis risk once NAFLD is already present (see coffee -> liver_stiffness_fibrosis edge)",
+      "paper": {
+        "doi": "10.3390/nu13093042",
+        "title": "Effect of Coffee Consumption on Non-Alcoholic Fatty Liver Disease Incidence, Prevalence and Risk of Significant Liver Fibrosis: Systematic Review with Meta-Analysis of Observational Studies",
+        "year": 2021,
+        "design": "systematic review and meta-analysis of observational studies",
+        "n": 101633
+      },
+      "verbatim": "There was no association between coffee consumption and NAFLD incidence (RR 0.88, 95% CI 0.63-1.25, p = 0.48) or NAFLD prevalence (RR 0.88, 95% CI 0.76-1.02, p = 0.09).",
+      "key_results": "This 2021 meta-analysis directly conflicts with two earlier meta-analyses of overlapping literature: Hayat et al. 2021 (pooled RR 0.77, 95% CI 0.60-0.98, reported as a significant reduction in NAFLD risk) and Wijarnpreecha et al. 2017 (pooled RR 0.71, 95% CI 0.60-0.85, also significant). The disagreement is plausibly explained by differences in study inclusion and the larger, more recent incidence-focused studies pulling the pooled estimate toward null. The fibrosis-risk finding (RR 0.65-0.70 across all three reviews) is far more consistent than the steatosis/NAFLD-risk finding, suggesting coffee's most reproducible signal is on disease progression rather than disease onset.",
+      "figure": null,
+      "caveats": "Conflicting result vs Hayat et al. 2021 (DOI 10.1016/j.aohep.2020.08.071) and Wijarnpreecha et al. 2017 (DOI 10.1097/MEG.0000000000000776), both of which reported significant protective associations for NAFLD risk using smaller, overlapping sets of the same observational literature. This edge ships the more recent, larger, and more conservative (null) estimate per the rule of recording disagreement rather than picking a side; readers should treat coffee's effect on steatosis onset as unsettled, in contrast to its more consistent fibrosis-risk association."
+    },
+    {
+      "behavior_id": "alcohol_intake",
+      "marker_id": "liver_fat_steatosis",
+      "direction": null,
+      "effect": "Low alcohol consumption (<20 g/day) associated with 25% lower odds of hepatic steatosis in Japan (RR 0.75), but no association found in other high-income countries (RR 1.05)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - effect direction reverses by population, no single pooled estimate is meaningful",
+      "evidence_tier": "D",
+      "population": "99,370 participants across 18 observational studies (11 Japan, 7 other high-income countries); non-invasive imaging-diagnosed hepatic steatosis, excluding viral/drug-induced liver disease",
+      "conditional_on": "Effect only present in Japanese cohorts; dose-response analysis in Japan (up to 80 g/day) showed an inverse relationship in men and a J-shaped curve in women; no such pattern found outside Japan. This is about low-moderate intake and steatosis risk, not about established alcohol-related liver disease at higher doses, which is unambiguously harmful and outside the scope of this evidence base",
+      "paper": {
+        "doi": "10.1016/j.ebiom.2016.04.023",
+        "title": "Ethnicity matters: A Systematic Review and Meta-Analysis of the Non-Linear Relationship Between Alcohol Consumption and Prevalence and Incidence of Hepatic Steatosis",
+        "year": 2016,
+        "design": "systematic review and meta-analysis of observational studies (dose-response and categorical)",
+        "n": 99370
+      },
+      "verbatim": "In Japan, low alcohol consumption was consistently associated with substantially reduced incidence and prevalence of hepatic steatosis compared to non-drinkers (RR for <20g pure alcohol/day=0.75, 95% CI: 0.71-0.79, I(2)=0%). No overall association was found in other countries (RR=1.05, 95% CI: 0.86-1.30, I(2)=84%).",
+      "key_results": "Heterogeneity was essentially zero within Japan (I2=0%) but very high elsewhere (I2=84%), meaning the Japan finding is a stable and repeatable pattern while the null finding elsewhere reflects genuinely inconsistent studies rather than a single stable null. The authors attribute the ethnicity difference to unmeasured confounding (diet, body composition, genetic polymorphisms in alcohol-metabolizing enzymes more common in East Asian populations) rather than a true biological difference in alcohol's hepatic effect.",
+      "figure": null,
+      "caveats": "This is a genuinely contested, unresolved finding rather than a simple protective or harmful effect - the population-dependence is itself the finding. All included studies are observational and cannot rule out a 'healthy drinker' confounding effect (light drinkers in some populations being healthier for unrelated reasons). Should not be read as evidence that alcohol is protective against fatty liver in general; the effect nulls out or reverses outside the specific Japanese cohorts studied."
+    },
+    {
+      "behavior_id": "weight_loss_bariatric",
+      "marker_id": "liver_stiffness_fibrosis",
+      "direction": "-",
+      "effect": "Fibrosis decreased from baseline in 70.2% of patients and disappeared entirely in 56% of all patients (45.5% of those with baseline bridging fibrosis) 5 years after bariatric surgery",
+      "effect_normalized": -70.2,
+      "normalization_method": "percent of patients with biopsy-confirmed fibrosis regression from baseline",
+      "evidence_tier": "C",
+      "population": "180 severely obese adults with biopsy-proven NASH; 64 of 94 patients (68%) with paired biopsies reached the 5-year follow-up",
+      "conditional_on": "Fibrosis regression began within the first year and continued progressively through year 5; magnitude tracks with amount of weight lost (see liver_fat_steatosis edge for the NASH-resolution/weight-loss relationship in the same cohort)",
+      "paper": {
+        "doi": "10.1053/j.gastro.2020.06.006",
+        "title": "Bariatric Surgery Provides Long-term Resolution of Nonalcoholic Steatohepatitis and Regression of Fibrosis",
+        "year": 2020,
+        "design": "prospective single-center cohort study with paired liver biopsies",
+        "n": 180
+      },
+      "verbatim": "Fibrosis decreased, compared with baseline, in samples from 70.2% of patients (95% CI, 56.6%-81.6%). Fibrosis disappeared from samples from 56% of all patients (95% CI, 42.4%-69.3%) and from samples from 45.5% of patients with baseline bridging fibrosis.",
+      "key_results": "Fibrosis began to decrease by 1 year after surgery and continued to decrease until 5 years (P<0.001), indicating this is a durable, progressive effect rather than an early transient improvement that plateaus or reverses. The study design (sequential biopsies in the same patients at surgery, 1 year, and 5 years) gives unusually direct histologic evidence compared with most NAFLD literature, which relies on non-invasive proxies.",
+      "figure": null,
+      "caveats": "No untreated control arm (all patients underwent surgery); this is a within-patient before-after cohort, not a randomized comparison, so the counterfactual (fibrosis trajectory without surgery) is inferred rather than directly measured. Substantial biopsy attrition by year 5 (32% missing) could bias toward patients who remained engaged in follow-up."
+    },
+    {
+      "behavior_id": "weight_loss_bariatric",
+      "marker_id": "liver_fat_steatosis",
+      "direction": "-",
+      "effect": "84% of patients had resolution of NASH without worsening of fibrosis 5 years after bariatric surgery",
+      "effect_normalized": -84,
+      "normalization_method": "percent of patients achieving histologic NASH resolution",
+      "evidence_tier": "C",
+      "population": "180 severely obese adults with biopsy-proven NASH, followed for 5 years, France",
+      "conditional_on": "NASH resolution is a composite histologic outcome (reduction in steatosis, lobular inflammation, and hepatocyte ballooning together), not steatosis grade in isolation; persistence of NASH was linked to smaller weight loss (BMI reduction 6.3+/-4.1 kg/m2 in non-resolvers vs 13.4+/-7.4 kg/m2 in resolvers, P=.017), i.e. the effect is dose-dependent on amount of weight lost",
+      "paper": {
+        "doi": "10.1053/j.gastro.2020.06.006",
+        "title": "Bariatric Surgery Provides Long-term Resolution of Nonalcoholic Steatohepatitis and Regression of Fibrosis",
+        "year": 2020,
+        "design": "prospective single-center cohort study with paired liver biopsies",
+        "n": 180
+      },
+      "verbatim": "At 5 years after bariatric surgery, NASH was resolved, without worsening fibrosis, in samples from 84% of patients (n = 64; 95% confidence interval, 73.1%-92.2%). Resolution of NASH was observed at 1 year after bariatric surgery in biopsies from 84% of patients, with no significant recurrence between 1 and 5 years (P = .17).",
+      "key_results": "The identical 84% resolution rate at 1 year and 5 years, with no significant recurrence in between (P=.17), indicates the benefit is stable rather than a transient post-surgical effect that fades. Persistence of NASH was specifically associated with less weight loss, giving a clear dose-response signal within the same cohort rather than relying on cross-study comparison.",
+      "figure": null,
+      "caveats": "Single-arm cohort (no non-surgical comparator), so the counterfactual rate of spontaneous NASH resolution without intervention is not directly measured here; other literature on non-surgical weight loss (e.g., lifestyle intervention trials) reports lower and more variable resolution rates, suggesting the magnitude here may be specific to the large, sustained weight loss bariatric surgery produces."
+    },
+    {
+      "behavior_id": "exercise_training",
+      "marker_id": "liver_fat_steatosis",
+      "direction": "-",
+      "effect": "Exercise training tripled the odds of achieving a clinically meaningful (>=30%) reduction in MRI-measured liver fat compared with no exercise (OR 3.51, 95% CI 1.49-8.23)",
+      "effect_normalized": 3.51,
+      "normalization_method": "odds ratio for achieving >=30% relative reduction in MRI-measured liver fat vs control",
+      "evidence_tier": "A",
+      "population": "551 subjects with NAFLD across 14 RCTs; mean age 53.3 years, mean BMI 31.1 kg/m2",
+      "conditional_on": "Requires an exercise dose of >=750 MET-min/week (e.g., 150 min/week of brisk walking); lesser doses did not produce a significant treatment response. Effect held independent of clinically significant body weight loss (>5%), i.e. exercise moved liver fat even in participants who did not lose much weight",
+      "paper": {
+        "doi": "10.14309/ajg.0000000000002098",
+        "title": "Exercise Training Is Associated With Treatment Response in Liver Fat Content by Magnetic Resonance Imaging Independent of Clinically Significant Body Weight Loss in Patients With Nonalcoholic Fatty Liver Disease: A Systematic Review and Meta-Analysis",
+        "year": 2023,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 551
+      },
+      "verbatim": "Exercise training subjects were more likely to achieve >=30% relative reduction in MRI-measured liver fat (odds ratio 3.51, 95% confidence interval 1.49-8.23, P = 0.004) than those in the control condition. An exercise dose of >=750 metabolic equivalents of task min/wk (e.g., 150 min/wk of brisk walking) resulted in significant treatment response (MRI response odds ratio 3.73, 95% confidence interval 1.34-10.41, P = 0.010), but lesser doses of exercise did not.",
+      "key_results": "The 30% relative liver-fat reduction threshold used here is not an arbitrary cutoff - the authors note it is the threshold associated with histologic improvement in steatohepatitis activity, NASH resolution, and fibrosis stage in prior validation work, so this MRI endpoint is a meaningful proxy for histologic benefit. The weight-loss-independence finding is the paper's central claim and directly answers whether exercise has value beyond its role in producing weight loss.",
+      "figure": null,
+      "caveats": "14 RCTs is a moderate evidence base for a dose-stratified subgroup analysis; individual trials varied in exercise modality (aerobic, resistance, combined) and NAFLD diagnostic method, which the pooled analysis does not fully disentangle."
+    },
+    {
+      "behavior_id": "exercise_training",
+      "marker_id": "hepatic_insulin_sensitivity",
+      "direction": null,
+      "effect": "Exercise plus energy restriction and energy-restriction-alone control both improved hepatic insulin resistance similarly; the exercise-specific benefit was on peripheral, not hepatic, insulin sensitivity",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result for the exercise-specific (vs control) hepatic effect",
+      "evidence_tier": "B",
+      "population": "24 adults with biopsy-diagnosed MASH randomized to 10 months of energy restriction + supervised high-intensity interval training (n=16) or standard-of-care control (n=8); hepatic and peripheral insulin sensitivity measured by isotopically labeled hyperinsulinemic-euglycemic clamp",
+      "conditional_on": "Both study arms lost weight and reduced energy intake (control received standard-of-care dietary counseling, not a true no-intervention arm); the exercise arm's added benefit over control was specific to peripheral insulin sensitivity (two-fold increase) and cardiorespiratory fitness, not to the hepatic insulin sensitivity marker itself",
+      "paper": {
+        "doi": "10.1016/j.jhep.2024.06.017",
+        "title": "Histological improvements following energy restriction and exercise: The role of insulin resistance in resolution of MASH",
+        "year": 2024,
+        "design": "randomized controlled trial with hyperinsulinemic-euglycemic clamp",
+        "n": 24
+      },
+      "verbatim": "Both groups exhibited reductions in total energy intake, hemoglobin A1c, hepatic insulin resistance, and liver fat (p <0.05). Compared to control, treatment induced a two-fold increase in peripheral insulin sensitivity which was significantly related to higher VO2peak and resolution of liver disease.",
+      "key_results": "This is a direct, clamp-based test of whether exercise's benefit to the liver runs specifically through hepatic insulin sensitivity, and the answer is no: the paper's own framing states 'an improvement in peripheral (but not hepatic) insulin sensitivity ... were strongly related to resolution of liver disease.' The mechanistic proposal is that exercise redistributes excess nutrients to skeletal muscle, reducing hepatic nutrient toxicity indirectly rather than acting on the liver's own insulin signaling.",
+      "figure": null,
+      "caveats": "Very small trial (n=24, with only 8 controls); the control group received physician-directed standard-of-care rather than no intervention, so this compares exercise-added-to-restriction against restriction-alone rather than against a sedentary baseline. This null result on the specific hepatic-insulin-sensitivity marker sits alongside a positive result for exercise on liver fat directly (see the liver_fat_steatosis edge from Stine et al. 2023), illustrating the marker-layer distinction the schema is built to expose: exercise helps the liver, but seemingly not via the hepatic insulin sensitivity pathway specifically."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "alt_ast",
+      "direction": "-",
+      "effect": "Mediterranean diet interventions reduced ALT (P=0.02) and Fatty Liver Index (P<0.001) in NAFLD patients",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports significance without a pooled numeric mean difference for the MD-specific subgroup",
+      "evidence_tier": "A",
+      "population": "NAFLD patients across 13 Mediterranean-diet RCTs/CCTs (part of a 26-study, 3037-participant pooled review covering calorie restriction and MD interventions)",
+      "conditional_on": "This is the Mediterranean-diet-specific subgroup result, distinct from the pooled result across all dietary interventions (calorie restriction plus MD); MD's liver-stiffness effect in this same paper was only marginal (P=0.05) and did not replicate in a separate, more precisely quantified meta-analysis (see liver_stiffness_fibrosis edge)",
+      "paper": {
+        "doi": "10.1016/j.clnu.2022.06.037",
+        "title": "The effectiveness and acceptability of Mediterranean diet and calorie restriction in non-alcoholic fatty liver disease (NAFLD): A systematic review and meta-analysis",
+        "year": 2022,
+        "design": "systematic review and meta-analysis of RCTs and non-randomized controlled trials",
+        "n": 3037
+      },
+      "verbatim": "MD reduced ALT (P = 0.02), FLI (P < 0.001) and liver stiffness (P = 0.05).",
+      "key_results": "In the same review, calorie-restriction interventions (a distinct comparison from MD) had favourable effects on ALT (P<0.001), hepatic steatosis (P<0.001) and liver stiffness (P=0.009), a stronger and more consistent evidence pattern than for MD specifically - the review's own conclusion notes calorie restriction 'should remain the cornerstone of NAFLD management' while MD data are more limited. There was a dose-response relationship between degree of calorie restriction and beneficial effects on liver function and weight loss.",
+      "figure": null,
+      "caveats": "Considerable heterogeneity across the 26 pooled studies regarding intervention components, liver-status assessment method, and diet outcome measures; mean attrition across studies was 14%. No pooled numeric mean difference is given for the MD-specific ALT result in the abstract, only significance."
+    },
+    {
+      "behavior_id": "mediterranean_diet",
+      "marker_id": "liver_stiffness_fibrosis",
+      "direction": null,
+      "effect": "Mediterranean diet reduced liver stiffness by 0.42 kPa (95% CI -0.92 to 0.09) versus control diets, not reaching statistical significance",
+      "effect_normalized": -0.42,
+      "normalization_method": "pooled mean difference (kPa), original units retained",
+      "evidence_tier": "A",
+      "population": "737 adults with NAFLD across 10 RCTs, mean intervention duration 6 weeks to 1 year",
+      "conditional_on": "Confidence interval crosses zero (upper bound 0.09), a non-significant trend rather than a confirmed null; no significant findings were documented for liver enzymes or waist circumference in this same pooled analysis, despite Mediterranean diet showing significant ALT benefit in a separate, earlier meta-analysis (see alt_ast edge)",
+      "paper": {
+        "doi": "10.3390/nu15102250",
+        "title": "Does the Mediterranean Diet Have Any Effect on Lipid Profile, Central Obesity and Liver Enzymes in Non-Alcoholic Fatty Liver Disease (NAFLD) Subjects? A Systematic Review and Meta-Analysis of Randomized Control Trials",
+        "year": 2023,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 737
+      },
+      "verbatim": "According to the results, the MD seems to decrease the liver stiffness (kPa) by -0.42 (CI95% -0.92, 0.09) (p = 0.10), while no significant findings were documented for liver enzymes and WC among patients with NAFLD.",
+      "key_results": "This directly conflicts with Haigh et al. 2022, which reported MD reduced liver stiffness at P=0.05 (borderline significant) and ALT at P=0.02 (significant) in an overlapping but not identical set of trials. Del Bo' et al. found no significant liver-enzyme effect at all. The two meta-analyses drew on different, only partially overlapping trial sets and used different pooling methods, which likely explains the discrepancy.",
+      "figure": null,
+      "caveats": "Conflicts with Haigh et al. 2022 (DOI 10.1016/j.clnu.2022.06.037), which found a borderline-significant liver-stiffness benefit (P=0.05) and a significant ALT benefit (P=0.02) for Mediterranean diet specifically. This edge ships the more precisely quantified (point estimate plus CI) but non-significant result and records the conflict here rather than silently favoring the more positive finding."
+    },
+    {
+      "behavior_id": "added_sugar",
+      "marker_id": "liver_fat_steatosis",
+      "direction": "-",
+      "effect": "Restricting free sugar to under 3% of calories for 8 weeks reduced hepatic steatosis by an adjusted 6.23 percentage points more than usual diet (95% CI -9.45 to -3.02)",
+      "effect_normalized": -6.23,
+      "normalization_method": "adjusted mean difference (percentage points MRI-PDFF) vs usual-diet control",
+      "evidence_tier": "B",
+      "population": "40 adolescent boys aged 11-16 with histologically diagnosed NAFLD and active disease (hepatic steatosis >10%, ALT >=45 U/L), 95% Hispanic, at 2 US academic centers",
+      "conditional_on": "Framed here as sugar reduction improving steatosis; equivalently, higher free-sugar intake is associated with more liver fat in this population. Effect measured over only 8 weeks in adolescents with already-active NAFLD, not a general or adult population",
+      "paper": {
+        "doi": "10.1001/jama.2018.20579",
+        "title": "Effect of a Low Free Sugar Diet vs Usual Diet on Nonalcoholic Fatty Liver Disease in Adolescent Boys: A Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized controlled trial",
+        "n": 40
+      },
+      "verbatim": "The mean decrease in hepatic steatosis from baseline to week 8 was significantly greater for the intervention diet group (25% to 17%) vs the usual diet group (21% to 20%) and the adjusted week 8 mean difference was -6.23% (95% CI, -9.45% to -3.02%; P < .001).",
+      "key_results": "Of 12 prespecified secondary outcomes, 7 were null and only 5 (including ALT and diet adherence) were statistically significant, an unusually transparent reporting of a mixed result rather than a uniformly positive one. Adherence was high (18 of 20 intervention participants achieved <3% free-sugar intake), meaning the result reflects a genuinely achieved dietary change rather than a diluted intention-to-treat effect.",
+      "figure": null,
+      "caveats": "Small trial (n=40), 8-week duration, single-sex (boys only) and 95% Hispanic - generalizability to girls, adults, or other ethnicities is not established. The authors explicitly describe the findings as preliminary pending longer-term and clinical-outcome data."
+    },
+    {
+      "behavior_id": "added_sugar",
+      "marker_id": "alt_ast",
+      "direction": "-",
+      "effect": "Restricting free sugar to under 3% of calories for 8 weeks reduced ALT more than usual diet (geometric mean ratio 0.65, 95% CI 0.53-0.81)",
+      "effect_normalized": 0.65,
+      "normalization_method": "adjusted ratio of geometric means (ALT, U/L) vs usual-diet control",
+      "evidence_tier": "B",
+      "population": "40 adolescent boys aged 11-16 with histologically diagnosed NAFLD and active disease, 95% Hispanic",
+      "conditional_on": "Framed as sugar reduction lowering ALT; equivalently, higher habitual free-sugar intake is associated with higher ALT in this population of adolescents with already-active NAFLD",
+      "paper": {
+        "doi": "10.1001/jama.2018.20579",
+        "title": "Effect of a Low Free Sugar Diet vs Usual Diet on Nonalcoholic Fatty Liver Disease in Adolescent Boys: A Randomized Clinical Trial",
+        "year": 2019,
+        "design": "randomized controlled trial",
+        "n": 40
+      },
+      "verbatim": "The geometric mean decrease in alanine aminotransferase level from baseline to 8 weeks was significantly greater for the intervention diet group (103 U/L to 61 U/L) vs the usual diet group (82 U/L to 75 U/L) and the adjusted ratio of the geometric means at week 8 was 0.65 U/L (95% CI, 0.53 to 0.81 U/L; P < .001).",
+      "key_results": "ALT fell from a markedly elevated 103 U/L to 61 U/L in the intervention group over just 8 weeks, a large absolute change, while the usual-diet group barely moved (82 to 75 U/L). This ALT result and the hepatic-steatosis result (see liver_fat_steatosis edge) come from the same trial and track together, unlike the mixed picture across the other 10 secondary outcomes.",
+      "figure": null,
+      "caveats": "Same small, short, single-sex, single-ethnicity trial as the steatosis edge above; not yet replicated in adults or in a larger sample."
+    },
+    {
+      "behavior_id": "vitamin_e",
+      "marker_id": "alt_ast",
+      "direction": "-",
+      "effect": "Vitamin E significantly reduced serum ALT and AST levels compared with placebo over 96 weeks (P<0.001)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports statistical significance without a pooled numeric mean difference for aminotransferase levels",
+      "evidence_tier": "B",
+      "population": "247 non-diabetic adults with biopsy-proven NASH randomized to vitamin E 800 IU/day (84), pioglitazone 30 mg/day (80), or placebo (83), 96 weeks, multicenter US trial (NASH CRN)",
+      "conditional_on": "Population is non-diabetic NASH patients specifically (the PIVENS trial deliberately excluded diabetics, studied separately in other trials); vitamin E improved steatosis and lobular inflammation but not fibrosis score specifically (see liver_stiffness_fibrosis edge)",
+      "paper": {
+        "doi": "10.1056/NEJMoa0907929",
+        "title": "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis",
+        "year": 2010,
+        "design": "randomized, multicenter, double-blind, placebo-controlled trial",
+        "n": 247
+      },
+      "verbatim": "Serum alanine and aspartate aminotransferase levels were reduced with vitamin E and with pioglitazone, as compared with placebo (P<0.001 for both comparisons), and both agents were associated with reductions in hepatic steatosis (P=0.005 for vitamin E and P<0.001 for pioglitazone) and lobular inflammation (P=0.02 for vitamin E and P=0.004 for pioglitazone) but not with improvement in fibrosis scores (P=0.24 for vitamin E and P=0.12 for pioglitazone).",
+      "key_results": "Vitamin E met the trial's primary histologic outcome (improvement in NASH histology: 43% vs 19% for placebo, P=0.001) while pioglitazone did not reach significance on the same primary outcome (34% vs 19%, P=0.04, above the trial's pre-specified 0.025 threshold for two planned comparisons) despite pioglitazone also improving ALT/AST, steatosis, and inflammation - illustrating that a marker-level improvement (enzymes, steatosis) does not guarantee the composite histologic outcome clears a pre-specified significance bar.",
+      "figure": null,
+      "caveats": "Trial restricted to non-diabetic adults; a separate literature addresses vitamin E in diabetic NASH patients, not covered by this trial. Pioglitazone caused more weight gain than vitamin E or placebo, a side effect not relevant to the liver markers but relevant to overall risk-benefit."
+    },
+    {
+      "behavior_id": "vitamin_e",
+      "marker_id": "liver_stiffness_fibrosis",
+      "direction": null,
+      "effect": "No significant improvement in fibrosis scores with vitamin E vs placebo (P=0.24) despite improvements in steatosis, inflammation, and aminotransferases",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "B",
+      "population": "247 non-diabetic adults with biopsy-proven NASH, 96-week RCT",
+      "conditional_on": "Null specifically for histologic fibrosis stage; the same agent and trial showed significant benefit on steatosis, lobular inflammation, and aminotransferases (see alt_ast edge), so this is a case where the marker layer shows a treatment moves upstream markers but not the fibrosis endpoint that most determines long-term liver outcomes",
+      "paper": {
+        "doi": "10.1056/NEJMoa0907929",
+        "title": "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis",
+        "year": 2010,
+        "design": "randomized, multicenter, double-blind, placebo-controlled trial",
+        "n": 247
+      },
+      "verbatim": "Serum alanine and aspartate aminotransferase levels were reduced with vitamin E and with pioglitazone, as compared with placebo (P<0.001 for both comparisons), and both agents were associated with reductions in hepatic steatosis (P=0.005 for vitamin E and P<0.001 for pioglitazone) and lobular inflammation (P=0.02 for vitamin E and P=0.004 for pioglitazone) but not with improvement in fibrosis scores (P=0.24 for vitamin E and P=0.12 for pioglitazone).",
+      "key_results": "This null fibrosis result for a well-powered, 96-week RCT of the single most evidence-backed NASH supplement is a useful contrast to GLP-1 receptor agonists, where semaglutide's phase 3 ESSENCE trial did show significant fibrosis improvement over a similar timeframe (see glp1_ra edge) - suggesting fibrosis-stage reversal may require a metabolic/weight-loss mechanism that antioxidant therapy alone does not provide.",
+      "figure": null,
+      "caveats": "96 weeks may not be long enough to detect fibrosis regression even if a true small effect exists, since fibrosis is generally the slowest-changing histologic feature; a truly negative long-term fibrosis effect cannot be concluded from this trial duration alone."
+    },
+    {
+      "behavior_id": "glp1_ra",
+      "marker_id": "liver_stiffness_fibrosis",
+      "direction": "-",
+      "effect": "Semaglutide 2.4 mg produced a reduction in liver fibrosis without worsening of steatohepatitis in 36.8% of patients vs 22.4% with placebo (difference 14.4 percentage points, 95% CI 7.5-21.3)",
+      "effect_normalized": 14.4,
+      "normalization_method": "estimated difference in percentage of patients achieving fibrosis improvement without MASH worsening, vs placebo",
+      "evidence_tier": "B",
+      "population": "800 adults with biopsy-defined MASH and fibrosis stage 2 or 3, interim analysis at week 72 of an ongoing 240-week phase 3 trial (part of a planned 1197-patient study)",
+      "conditional_on": "Studied specifically in patients with moderate-to-advanced fibrosis (stage 2-3), not early-stage or fibrosis-free NAFLD; occurs alongside substantial weight loss (mean -10.5% with semaglutide vs -2.0% placebo), so the fibrosis benefit is not clearly separable from the drug's weight-loss effect in this trial design",
+      "paper": {
+        "doi": "10.1056/NEJMoa2413258",
+        "title": "Phase 3 Trial of Semaglutide in Metabolic Dysfunction-Associated Steatohepatitis",
+        "year": 2025,
+        "design": "randomized, double-blind, placebo-controlled phase 3 trial (planned interim analysis)",
+        "n": 800
+      },
+      "verbatim": "A reduction in liver fibrosis without worsening of steatohepatitis was reported in 36.8% of the patients in the semaglutide group and in 22.4% of those in the placebo group (estimated difference, 14.4 percentage points; 95% CI, 7.5 to 21.3; P<0.001).",
+      "key_results": "Resolution of steatohepatitis without worsening of fibrosis occurred in 62.9% of the semaglutide group vs 34.3% of placebo (estimated difference 28.7 percentage points, 95% CI 21.1-36.2, P<0.001), a larger effect than the fibrosis-specific endpoint, consistent with steatosis/inflammation responding faster and more completely than fibrosis. Combined resolution of steatohepatitis AND fibrosis reduction occurred in 32.7% vs 16.1% (P<0.001).",
+      "figure": null,
+      "caveats": "This ESSENCE phase 3 fibrosis result contrasts with the earlier, smaller Newsome et al. 2021 phase 2 trial (DOI 10.1056/NEJMoa2028395), which found semaglutide significantly improved NASH resolution (59% vs 17% at the 0.4mg dose) but did NOT show a significant fibrosis-stage improvement (43% vs 33%, P=0.48) - the phase 2 trial may have been underpowered for the fibrosis endpoint specifically (230 patients with F2/F3 fibrosis vs 800 in this phase 3 interim analysis). This is only a planned interim analysis (weeks 1-72 of a 240-week trial), so long-term fibrosis and clinical-outcome data are not yet available."
+    },
+    {
+      "behavior_id": "omega3_marine",
+      "marker_id": "liver_fat_steatosis",
+      "direction": "-",
+      "effect": "Omega-3 PUFA supplementation showed a significant benefit for liver fat compared with control across pooled RCTs in NAFLD patients",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports significance across a pooled set of outcomes without a single numeric liver-fat effect size",
+      "evidence_tier": "A",
+      "population": "1,424 patients with NAFLD across 18 RCTs of oral omega-3 PUFA supplementation, variable dose and duration",
+      "conditional_on": "Significant interstudy heterogeneity was present; subgroup and meta-regression analyses found no clear methodologic factor explaining it, so individual response likely varies by baseline diet, dose, and NAFLD severity",
+      "paper": {
+        "doi": "10.1097/MD.0000000000012271",
+        "title": "Omega-3 polyunsaturated fatty acid supplementation and non-alcoholic fatty liver disease: A meta-analysis of randomized controlled trials",
+        "year": 2018,
+        "design": "meta-analysis of RCTs",
+        "n": 1424
+      },
+      "verbatim": "We found a significant benefit for omega-3 PUFAs vs control for liver fat, alanine aminotransferase, aspartate aminotransferase, gamma-glutamyl transferase, triglycerides, insulin resistance, and glucose.",
+      "key_results": "The same pooled analysis found benefit across seven different outcomes simultaneously (liver fat, ALT, AST, GGT, triglycerides, insulin resistance, glucose), a broad pattern of improvement rather than an isolated single-marker effect, though the authors caution that a broad win across many correlated markers in the presence of substantial heterogeneity should be interpreted cautiously rather than as seven independent confirmations.",
+      "figure": null,
+      "caveats": "No publication bias was detected, but significant heterogeneity across the 18 trials was present and not resolved by subgroup or regression analysis; the authors explicitly call for larger, better-designed RCTs before treating this as confirmed. No specific numeric effect size for liver fat is given in the abstract."
+    },
+    {
+      "behavior_id": "omega3_marine",
+      "marker_id": "alt_ast",
+      "direction": "-",
+      "effect": "Omega-3 PUFA supplementation showed a significant benefit for ALT and AST compared with control across pooled RCTs in NAFLD patients",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports significance without a single pooled numeric mean difference for ALT/AST",
+      "evidence_tier": "A",
+      "population": "1,424 patients with NAFLD across 18 RCTs",
+      "conditional_on": "Same trial set and same heterogeneity caveat as the liver_fat_steatosis edge; a separate, later meta-analysis restricted to plant-based (ALA) omega-3 specifically also found a significant ALT benefit (mean difference 8.04 IU/L) in a smaller set of 6 trials, suggesting the ALT effect may generalize across omega-3 sources, not just marine EPA/DHA",
+      "paper": {
+        "doi": "10.1097/MD.0000000000012271",
+        "title": "Omega-3 polyunsaturated fatty acid supplementation and non-alcoholic fatty liver disease: A meta-analysis of randomized controlled trials",
+        "year": 2018,
+        "design": "meta-analysis of RCTs",
+        "n": 1424
+      },
+      "verbatim": "We found a significant benefit for omega-3 PUFAs vs control for liver fat, alanine aminotransferase, aspartate aminotransferase, gamma-glutamyl transferase, triglycerides, insulin resistance, and glucose.",
+      "key_results": "A separate 2024 meta-analysis of plant-based (ALA) omega-3 specifically (DOI 10.1093/nutrit/nuad054, 6 RCTs, 362 NAFLD patients) corroborates the ALT direction, finding plant-based n-3 reduced ALT by a mean difference of 8.04 IU/L (95% CI 1.38-14.70) alongside reduced triglycerides, though that review notes the effect appeared alongside concurrent lifestyle interventions in some trials, making the omega-3-specific contribution harder to isolate.",
+      "figure": null,
+      "caveats": "Same heterogeneity and no-numeric-effect-size caveats as the liver_fat_steatosis edge from the same source paper. The corroborating plant-based-omega-3 review is a smaller, separate trial set (6 RCTs) and should be read as directionally supportive rather than as independent replication of the marine-omega-3 estimate."
+    },
+    {
+      "behavior_id": "saturated_fat",
+      "marker_id": "liver_fat_steatosis",
+      "direction": "+",
+      "effect": "Overfeeding saturated fat markedly increased liver fat compared with overfeeding an equal calorie surplus of polyunsaturated fat, despite similar total weight gain in both groups",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports the directional comparison without a single pooled numeric percentage change",
+      "evidence_tier": "B",
+      "population": "39 young, normal-weight adults randomized to 7 weeks of overfeeding with muffins high in saturated fat (palm oil) or n-6 polyunsaturated fat (sunflower oil); liver fat assessed by MRI (LIPOGAIN trial)",
+      "conditional_on": "Both diet groups gained similar total body weight, isolating fat-type composition from the confound of differential weight gain; saturated fat also caused roughly twice the increase in visceral adipose tissue compared with polyunsaturated fat over the same weight gain",
+      "paper": {
+        "doi": "10.2337/db13-1622",
+        "title": "Overfeeding polyunsaturated and saturated fat causes distinct effects on liver and visceral fat accumulation in humans",
+        "year": 2014,
+        "design": "double-blind, parallel-group randomized controlled trial",
+        "n": 39
+      },
+      "verbatim": "Both groups gained similar weight. SFAs, however, markedly increased liver fat compared with PUFAs and caused a twofold larger increase in VAT than PUFAs.",
+      "key_results": "Increase in liver fat directly correlated with changes in plasma saturated fatty acids and inversely with plasma polyunsaturated fatty acids, supporting a fat-composition-specific mechanism rather than a generic overfeeding effect. Conversely, PUFA overfeeding caused a nearly threefold larger increase in lean tissue than SFA overfeeding, meaning the same excess calories were partitioned very differently in the body depending on fat type alone.",
+      "figure": null,
+      "caveats": "Small trial (n=39) in young, healthy, normal-weight adults during a controlled 7-week overfeeding challenge, not a real-world dietary pattern or a NAFLD patient population; no numeric percentage change in liver fat is given in the abstract, only the directional comparison and the correlational finding with plasma fatty acids."
+    },
+    {
+      "behavior_id": "intermittent_fasting_tre",
+      "marker_id": "liver_fat_steatosis",
+      "direction": null,
+      "effect": "Time-restricted eating produced no additional reduction in intrahepatic triglyceride content beyond daily calorie restriction with unrestricted meal timing, at matched calorie intake over 12 months",
+      "effect_normalized": 1.0,
+      "normalization_method": "percentage point difference in intrahepatic triglyceride reduction between TRE and daily-calorie-restriction arms (both reduced substantially from baseline; the number here is the non-significant between-arm difference)",
+      "evidence_tier": "B",
+      "population": "88 adults with obesity and NAFLD randomized to an 8-hour eating window (8am-4pm) or daily calorie restriction with habitual meal timing, both at matched 1200-1800 kcal/day, 12-month RCT in China",
+      "conditional_on": "Both arms were matched for total calorie intake; the comparison isolates meal-timing restriction from calorie restriction itself. TRE did not outperform calorie restriction, but both reduced intrahepatic fat substantially (~7-8%) from baseline, so this is a null for TRE's added value over calorie restriction, not a null for calorie restriction's effect on liver fat",
+      "paper": {
+        "doi": "10.1001/jamanetworkopen.2023.3513",
+        "title": "Effects of Time-Restricted Eating on Nonalcoholic Fatty Liver Disease: The TREATY-FLD Randomized Clinical Trial",
+        "year": 2023,
+        "design": "randomized controlled trial",
+        "n": 88
+      },
+      "verbatim": "Changes in IHTG content were comparable between the 2 groups at 6 months (percentage point difference: -0.2; 95% CI, -2.7 to 2.2; P = .86) and 12 months (percentage point difference: 1.0; 95% CI, -1.6 to 3.5; P = .45).",
+      "key_results": "Liver stiffness, body weight, and metabolic risk factors were also significantly and comparably reduced in both groups, reinforcing that the active ingredient in this trial was calorie restriction rather than eating-window timing. A separate smaller 8-week trial (Deng et al. 2024, DOI 10.1002/oby.23965) similarly found early vs late time-restricted eating windows produced comparable intrahepatic fat reductions, suggesting the null extends to which hours are chosen for TRE, not just TRE vs standard calorie restriction.",
+      "figure": null,
+      "caveats": "This is a null for TRE's incremental benefit specifically, in a trial explicitly designed to hold calories constant between arms - it does not contradict evidence that calorie restriction itself (via any schedule) reduces liver fat. The authors' own conclusion frames this as supporting caloric intake restriction as the important variable, with TRE being an optional adherence strategy rather than a distinct mechanism."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "behavior": "Obesity / BMI (as a standalone behavior-marker edge)",
+      "reason": "Redundant with the weight_loss_bariatric edges, which already capture the dose-response relationship between adiposity change and liver fat/fibrosis in both directions; no clean, quotable dose-response meta-analysis linking BMI directly to a specific liver marker (independent of a weight-loss intervention) was found within the research budget for this pass."
+    },
+    {
+      "behavior": "Intermittent fasting (non-time-restricted protocols, e.g. alternate-day fasting, 5:2)",
+      "reason": "Search budget was spent on time-restricted eating (TRE) specifically, which had the strongest and most directly comparable RCT evidence (TREATY-FLD); alternate-day and 5:2 fasting protocols for liver markers were not separately verified and are not included to avoid conflating distinct intervention types under one behavior node."
+    }
+  ]
 }

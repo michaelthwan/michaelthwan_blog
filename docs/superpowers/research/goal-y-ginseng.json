@@ -1,0 +1,604 @@
+{
+  "scope": {
+    "type": "behavior-group",
+    "name": "Ginseng (Panax and Eleutherococcus species)",
+    "definition": "This file is organized by behavior, not by a single goal, because 'ginseng' is marketed as one ingredient but is botanically at least three separate plants with separate evidence bases: Panax ginseng (Asian/Korean, including the steamed 'red ginseng' preparation), Panax quinquefolius (American/North American ginseng), and Eleutherococcus senticosus (Siberian 'ginseng', a different genus entirely, not a Panax species). Edges here attach only to goals and markers that already exist in the explorer's catalogue (male_vitality, goal_d_cardiometabolic, goal_f_cognition_focus, goal_g_mood_anxiety, goal_j_immune); no new goal was created for this file. Where a source pooled species (reviews that explicitly searched 'the genus Panax', or that used the generic term 'ginseng' without naming a species in the abstract), that pooling is preserved and named in conditional_on/caveats rather than split into invented species-specific rows."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "male_vitality",
+        "name": "Male vitality / testosterone",
+        "definition": "Composite goal spanning serum testosterone, vascular/erectile function, lean mass and strength, and subjective libido in adult men."
+      },
+      {
+        "id": "goal_d_cardiometabolic",
+        "name": "Cardiometabolic health",
+        "definition": "Blood pressure, LDL cholesterol, triglycerides, HbA1c/fasting glucose, insulin sensitivity (HOMA-IR), cardiorespiratory fitness (VO2max), and resting heart rate / arterial stiffness (pulse wave velocity) as measurable markers of cardiovascular and metabolic disease risk."
+      },
+      {
+        "id": "goal_f_cognition_focus",
+        "name": "Cognition and focus",
+        "definition": "Working memory, sustained attention/reaction time, episodic memory, global cognition (MMSE/MoCA) in older adults, and processing speed, each tied to a named instrument or task rather than a composite or mortality-style outcome."
+      },
+      {
+        "id": "goal_g_mood_anxiety",
+        "name": "Mood and anxiety",
+        "definition": "Depressive symptom severity (PHQ-9, BDI, HAM-D), anxiety symptom severity (GAD-7, STAI, HAM-A, BAI), perceived stress (PSS), and cortisol (salivary, diurnal slope) as the mechanistic stress-axis link. Named-instrument evidence only; mortality and quality-of-life-years outcomes are out of scope."
+      },
+      {
+        "id": "goal_j_immune",
+        "name": "Immune function and infection resistance",
+        "definition": "Acute respiratory tract infection incidence, infection duration/symptom-day count, vaccine antibody response (seroconversion/titre), and experimental infection susceptibility as measurable markers of immune competence against common infections."
+      }
+    ],
+    "markers": [
+      {
+        "id": "nitric_oxide_blood_flow",
+        "name": "Nitric oxide / vascular blood flow (erectile function)",
+        "unit": "heterogeneous: %FMD change (direct vascular marker) or IIEF erectile-function domain / pooled odds ratio (clinical surrogate)",
+        "goal_ids": ["male_vitality"]
+      },
+      {
+        "id": "hba1c_fasting_glucose",
+        "name": "HbA1c / fasting glucose",
+        "unit": "% (HbA1c), mmol/L or mg/dL (fasting glucose)",
+        "goal_ids": ["goal_d_cardiometabolic"]
+      },
+      {
+        "id": "blood_pressure",
+        "name": "Systolic / diastolic blood pressure",
+        "unit": "mmHg",
+        "goal_ids": ["goal_d_cardiometabolic"]
+      },
+      {
+        "id": "resting_hr_arterial_stiffness",
+        "name": "Resting heart rate / arterial stiffness (pulse wave velocity)",
+        "unit": "bpm (resting HR); m/s (carotid-femoral pulse wave velocity)",
+        "goal_ids": ["goal_d_cardiometabolic"]
+      },
+      {
+        "id": "arti_incidence",
+        "name": "Acute respiratory tract infection incidence",
+        "unit": "proportion of participants with >=1 infection episode, or incidence rate ratio",
+        "goal_ids": ["goal_j_immune"]
+      },
+      {
+        "id": "infection_duration",
+        "name": "Infection duration / symptom-day count",
+        "unit": "days of illness or symptom-days",
+        "goal_ids": ["goal_j_immune"]
+      },
+      {
+        "id": "episodic_memory",
+        "name": "Episodic memory (word-list/story recall tasks)",
+        "unit": "% recall or Hedges g / SMD as reported by source",
+        "goal_ids": ["goal_f_cognition_focus"]
+      },
+      {
+        "id": "sustained_attention_rt",
+        "name": "Sustained attention / reaction time (PVT lapses, simple/choice RT, task-switching)",
+        "unit": "ms, lapse count, or SMD/Hedges g as reported by source",
+        "goal_ids": ["goal_f_cognition_focus"]
+      },
+      {
+        "id": "global_cognition_older",
+        "name": "Global cognition (MMSE / ADAS-cog / composite telephone battery) in older adults",
+        "unit": "MMSE points, ADAS-cog points, or standardized composite z-score",
+        "goal_ids": ["goal_f_cognition_focus"]
+      },
+      {
+        "id": "perceived_stress",
+        "name": "Perceived stress (PSS)",
+        "unit": "PSS points, SMD as pooled by source",
+        "goal_ids": ["goal_g_mood_anxiety"]
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "korean_red_ginseng",
+        "name": "Korean red ginseng (steamed Panax ginseng root)",
+        "category": "supplement",
+        "dose_or_intensity": "Standardized red ginseng extract, 600-3000 mg/day across the pooled trials; Panax ginseng C.A. Meyer root that has been steamed and dried, distinct from unprocessed ('white') ginseng of the same species"
+      },
+      {
+        "id": "american_ginseng",
+        "name": "American ginseng (Panax quinquefolius)",
+        "category": "supplement",
+        "dose_or_intensity": "Panax quinquefolius L. root extract, 1-3 g/day across the trials in this file, either alone or as an adjunct to conventional antidiabetic/antihypertensive therapy; a botanically distinct species from Asian Panax ginseng despite the shared 'ginseng' marketing name"
+      },
+      {
+        "id": "panax_genus_pooled",
+        "name": "Ginseng, genus Panax pooled (Asian and American species not stratified)",
+        "category": "supplement",
+        "dose_or_intensity": "Meta-analyses whose own search strategy and title target 'the genus Panax' and pool Panax ginseng and Panax quinquefolius trials together, without reporting a species-stratified subgroup result in the abstract"
+      },
+      {
+        "id": "ginseng_species_unspecified",
+        "name": "Ginseng, species not named in the source abstract",
+        "category": "supplement",
+        "dose_or_intensity": "Systematic reviews using only the generic term 'ginseng' for the pooled RCTs, with no Panax species identified in the abstract text itself"
+      },
+      {
+        "id": "panax_ginseng_hrg80",
+        "name": "Panax ginseng Meyer, HRG80 hydroponic red-root preparation",
+        "category": "supplement",
+        "dose_or_intensity": "Hydroponically cultivated red Panax ginseng Meyer root extract (HRG80), tested head-to-head against a traditionally harvested six-year-old white Panax ginseng preparation (PGS) of the same species"
+      },
+      {
+        "id": "eleutherococcus_senticosus",
+        "name": "Eleutherococcus senticosus (Siberian 'ginseng', not a Panax species)",
+        "category": "supplement",
+        "dose_or_intensity": "Root extract, 120 mg/day (Schaffler 2013); Araliaceae family but a different genus from true ginseng (Panax) despite the common marketing name"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "korean_red_ginseng",
+      "marker_id": "nitric_oxide_blood_flow",
+      "direction": "+",
+      "effect": "RR = 2.40 (95% CI 1.65-3.51, p<0.00001) for erectile function response rate vs placebo, all-cause erectile dysfunction",
+      "effect_normalized": 2.40,
+      "normalization_method": "risk ratio (pooled responder rate)",
+      "evidence_tier": "A",
+      "population": "Men with erectile dysfunction of any cause; meta-analysis of 6 of 7 identified RCTs comparing red ginseng to placebo (n=349)",
+      "conditional_on": "Specific to Korean red ginseng (steamed and dried Panax ginseng root), 600-3000 mg/day across the pooled trials; does not establish the same effect for raw/white ginseng, other Panax species, or Eleutherococcus",
+      "paper": {
+        "doi": "10.1111/j.1365-2125.2008.03236.x",
+        "title": "Red ginseng for treating erectile dysfunction: a systematic review",
+        "year": 2008,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 349
+      },
+      "verbatim": "The meta-analysis of these data showed a significant effect (n = 349, risk ratio, 2.40; 95% CI of 1.65, 3.51, p < 0.00001, heterogeneity: tau(2) = 0.05, chi(2) = 6.42, p = 0.27, I(2) = 22%).",
+      "key_results": "Seven RCTs of red ginseng for erectile dysfunction met inclusion criteria; six of these (n=349) were pooled against placebo. Red ginseng produced a significant 2.4-fold higher response rate than placebo. Methodological quality of the seven RCTs was low on average by Jadad scoring. The authors call the evidence 'suggestive' rather than definitive because of the small number of trials, small total sample size, and low methodological quality of the primary studies.",
+      "figure": null,
+      "caveats": "Authors explicitly state RCT count, sample size and methodological quality were too low for definitive conclusions; review is now 18 years old and has not been identified as superseded by a larger, higher-quality meta-analysis within this research's budget; Korean red ginseng research is frequently Korean-government or industry funded, though this specific review's abstract does not disclose funding sources for the primary trials."
+    },
+    {
+      "behavior_id": "korean_red_ginseng",
+      "marker_id": "nitric_oxide_blood_flow",
+      "direction": "+",
+      "effect": "RR = 2.05 (95% CI 1.33-3.16, p=0.001) for erectile function response rate vs placebo, psychogenic erectile dysfunction subgroup",
+      "effect_normalized": 2.05,
+      "normalization_method": "risk ratio (pooled responder rate), subgroup analysis",
+      "evidence_tier": "A",
+      "population": "Men with psychogenic (non-organic) erectile dysfunction, subgroup of the same 6-RCT meta-analysis (n=135)",
+      "conditional_on": "Same Korean red ginseng dose range as the all-cause estimate above; this subgroup restricts to psychogenic etiology specifically and shows lower heterogeneity (I2=0%) than the pooled all-cause estimate",
+      "paper": {
+        "doi": "10.1111/j.1365-2125.2008.03236.x",
+        "title": "Red ginseng for treating erectile dysfunction: a systematic review",
+        "year": 2008,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 135
+      },
+      "verbatim": "Subgroup analyses also showed beneficial effects of red ginseng in psychogenic erectile dysfunction (n = 135, risk ratio, 2.05; 95% CI of 1.33, 3.16, p = 0.001, heterogeneity: chi(2) = 0.08, p = 0.96, I(2) = 0%).",
+      "key_results": "Within the same six-RCT pool, a subgroup analysis restricted to men with psychogenic erectile dysfunction found a still-significant but slightly smaller risk ratio (2.05 vs 2.40 for all-cause) with essentially no between-study heterogeneity (I2=0%), compared to modest heterogeneity (I2=22%) in the all-cause pooled estimate.",
+      "figure": null,
+      "caveats": "Subgroup of the same small, low-quality trial pool as the all-cause edge above; not an independent replication."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "hba1c_fasting_glucose",
+      "direction": "+",
+      "effect": "-0.29% HbA1c (p=0.041) and -0.71 mmol/L fasting blood glucose (p=0.008) vs placebo",
+      "effect_normalized": -0.71,
+      "normalization_method": "mean difference vs placebo, mmol/L for fasting glucose",
+      "evidence_tier": "B",
+      "population": "24 adults with type 2 diabetes on conventional treatment (age 64+/-7y, HbA1c 7.1+/-1.2%), double-blind randomized cross-over trial",
+      "conditional_on": "Specific to Panax quinquefolius (American ginseng) extract, 1 g/meal (3 g/day), added on top of existing conventional antidiabetic treatment for 8 weeks with a >=4-week washout; an add-on/adjunct effect, not tested as monotherapy",
+      "paper": {
+        "doi": "10.1007/s00394-018-1642-0",
+        "title": "Efficacy and safety of American ginseng (Panax quinquefolius L.) extract on glycemic control and cardiovascular risk factors in individuals with type 2 diabetes: a double-blind, randomized, cross-over clinical trial",
+        "year": 2019,
+        "design": "randomized, double-blind, placebo-controlled cross-over trial",
+        "n": 24
+      },
+      "verbatim": "Compared to placebo, AG significantly reduced HbA1c (- 0.29%; p = 0.041) and fasting blood glucose (- 0.71 mmol/L; p = 0.008).",
+      "key_results": "In 24 people with type 2 diabetes taking American ginseng (3 g/day) versus placebo as an add-on to their usual treatment for 8 weeks each in a cross-over design, AG significantly reduced both HbA1c and fasting blood glucose relative to placebo. The same trial also found reductions in systolic blood pressure and LDL-related lipid ratios (reported as a separate edge). Safety parameters (liver and kidney function) were unaffected.",
+      "figure": null,
+      "caveats": "Small sample (n=24); single research group (Vuksan/Sievenpiper, St Michael's Hospital Toronto) has published most of the American-ginseng-specific trials in this file, so results are not fully independent of each other; lead author (VV) discloses ginseng-related patents and industry funding in related papers from this group."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "blood_pressure",
+      "direction": "+",
+      "effect": "-5.6 +/- 2.7 mmHg systolic blood pressure vs placebo (p<0.001)",
+      "effect_normalized": -5.6,
+      "normalization_method": "mean difference vs placebo, mmHg",
+      "evidence_tier": "B",
+      "population": "24 adults with type 2 diabetes on conventional treatment, double-blind randomized cross-over trial",
+      "conditional_on": "Same American ginseng adjunct-therapy trial as the glycemic edge above (3 g/day, 8 weeks, add-on to conventional treatment); diastolic blood pressure was not reported as significantly changed in this trial",
+      "paper": {
+        "doi": "10.1007/s00394-018-1642-0",
+        "title": "Efficacy and safety of American ginseng (Panax quinquefolius L.) extract on glycemic control and cardiovascular risk factors in individuals with type 2 diabetes: a double-blind, randomized, cross-over clinical trial",
+        "year": 2019,
+        "design": "randomized, double-blind, placebo-controlled cross-over trial",
+        "n": 24
+      },
+      "verbatim": "Furthermore, AG lowered systolic blood pressure (- 5.6 ± 2.7 mmHg; p < 0.001), increased NOx (+ 1.85 ± 2.13 µmol/L; p < 0.03), and produced a mean percent end-difference of - 12.3 ± 3.9% in LDL-C and - 13.9 ± 5.8% in LDL-C/HDL.",
+      "key_results": "In the same 24-person cross-over trial, American ginseng significantly lowered systolic blood pressure, increased serum nitrate/nitrite (a nitric-oxide marker), and improved LDL-cholesterol and LDL/HDL ratio compared to placebo, alongside the glycemic benefits reported separately. Safety parameters were unaffected.",
+      "figure": null,
+      "caveats": "Small sample (n=24); same research group as other American-ginseng trials in this file; multiple secondary endpoints tested in one small trial raises multiple-comparisons concern not addressed in the abstract."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "resting_hr_arterial_stiffness",
+      "direction": "+",
+      "effect": "-5.3% radial augmentation index (arterial stiffness) vs placebo (P=0.041)",
+      "effect_normalized": -5.3,
+      "normalization_method": "percent change vs placebo, radial augmentation index by applanation tonometry",
+      "evidence_tier": "B",
+      "population": "64 adults with type 2 diabetes and concomitant well-controlled hypertension (age 63+/-9y), double-blind placebo-controlled parallel RCT, 12 weeks",
+      "conditional_on": "Panax quinquefolius 3 g/day as an adjunct to existing antihypertensive and antidiabetic therapy in people with both type 2 diabetes and hypertension; no significant effect was found on diastolic blood pressure in the same trial (see companion null edge)",
+      "paper": {
+        "doi": "10.1016/j.jep.2013.08.015",
+        "title": "Effect of American ginseng (Panax quinquefolius L.) on arterial stiffness in subjects with type-2 diabetes and concomitant hypertension",
+        "year": 2013,
+        "design": "randomized, double-blind, placebo-controlled, parallel-design trial",
+        "n": 64
+      },
+      "verbatim": "Compared to placebo, 3g of AG significantly lowered radial AI by 5.3% (P=0.041) and systolic BP by 11.7% (P<0.001) at 12 weeks.",
+      "key_results": "In 64 people with both type 2 diabetes and well-controlled hypertension, 12 weeks of American ginseng (3 g/day) added to usual therapy significantly reduced radial augmentation index (a measure of arterial stiffness) and systolic blood pressure compared to placebo. No significant change was seen in diastolic blood pressure. The authors frame this as evidence for a vascular benefit of American ginseng warranting further long-term study before clinical recommendation.",
+      "figure": null,
+      "caveats": "Same broader Vuksan/Zagreb research collaboration as the other American-ginseng T2D trials in this file, so this is not a fully independent replication of the glycemic/blood-pressure findings; single trial, n=64."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "blood_pressure",
+      "direction": "+",
+      "effect": "-11.7% systolic blood pressure vs placebo (P<0.001)",
+      "effect_normalized": -11.7,
+      "normalization_method": "percent change vs placebo",
+      "evidence_tier": "B",
+      "population": "64 adults with type 2 diabetes and concomitant well-controlled hypertension, double-blind placebo-controlled parallel RCT, 12 weeks",
+      "conditional_on": "Same trial as the arterial-stiffness edge above; 3 g/day Panax quinquefolius as adjunct therapy in people with both T2D and hypertension",
+      "paper": {
+        "doi": "10.1016/j.jep.2013.08.015",
+        "title": "Effect of American ginseng (Panax quinquefolius L.) on arterial stiffness in subjects with type-2 diabetes and concomitant hypertension",
+        "year": 2013,
+        "design": "randomized, double-blind, placebo-controlled, parallel-design trial",
+        "n": 64
+      },
+      "verbatim": "Compared to placebo, 3g of AG significantly lowered radial AI by 5.3% (P=0.041) and systolic BP by 11.7% (P<0.001) at 12 weeks.",
+      "key_results": "The same trial reporting the arterial-stiffness benefit above also found a significant 11.7% reduction in systolic blood pressure with American ginseng versus placebo at 12 weeks, in people with both type 2 diabetes and hypertension already on conventional therapy.",
+      "figure": null,
+      "caveats": "No effect on diastolic blood pressure was found in this same trial (explicit null, see companion edge); adjunct-therapy population only, not tested as monotherapy or in normotensive people."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "blood_pressure",
+      "direction": null,
+      "effect": "No significant effect on diastolic blood pressure",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no effect size given for diastolic BP",
+      "evidence_tier": "B",
+      "population": "64 adults with type 2 diabetes and concomitant well-controlled hypertension, double-blind placebo-controlled parallel RCT, 12 weeks",
+      "conditional_on": "Same trial as the systolic-BP and arterial-stiffness edges above; the systolic-specific benefit does not extend to diastolic pressure in this population",
+      "paper": {
+        "doi": "10.1016/j.jep.2013.08.015",
+        "title": "Effect of American ginseng (Panax quinquefolius L.) on arterial stiffness in subjects with type-2 diabetes and concomitant hypertension",
+        "year": 2013,
+        "design": "randomized, double-blind, placebo-controlled, parallel-design trial",
+        "n": 64
+      },
+      "verbatim": "No effect was observed with diastolic BP.",
+      "key_results": "In the same 64-person trial that found significant systolic blood pressure and arterial stiffness benefits from American ginseng, diastolic blood pressure showed no treatment effect, illustrating that the benefit is specific to systolic pressure and vascular stiffness rather than a general antihypertensive effect.",
+      "figure": null,
+      "caveats": "Null result stated as a single short sentence in the abstract with no numeric value; treated here as a genuine recorded null per spec 5.3."
+    },
+    {
+      "behavior_id": "panax_genus_pooled",
+      "marker_id": "hba1c_fasting_glucose",
+      "direction": "+",
+      "effect": "MD = -0.31 mmol/L fasting blood glucose vs control (95% CI -0.59 to -0.03, P=0.03)",
+      "effect_normalized": -0.31,
+      "normalization_method": "mean difference (MD) vs control, mmol/L",
+      "evidence_tier": "A",
+      "population": "770 fasting-glucose comparisons across 16 RCTs in people with and without diabetes",
+      "conditional_on": "This review's own title and search strategy target 'the genus Panax' and the abstract does not report a species-stratified subgroup for this fasting-glucose result, so the -0.31 mmol/L estimate reflects Panax ginseng and Panax quinquefolius trials pooled together and cannot be attributed to either species alone",
+      "paper": {
+        "doi": "10.1371/journal.pone.0107391",
+        "title": "The effect of ginseng (the genus panax) on glycemic control: a systematic review and meta-analysis of randomized controlled clinical trials",
+        "year": 2014,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 770
+      },
+      "verbatim": "Ginseng significantly reduced fasting blood glucose compared to control (MD = -0.31 mmol/L [95% CI: -0.59 to -0.03], P = 0.03).",
+      "key_results": "Across 16 RCTs (770 fasting-glucose comparisons) of genus Panax ginseng products in people with and without diabetes, ginseng significantly but modestly reduced fasting blood glucose versus control. Fasting insulin, HbA1c, and HOMA-IR showed no significant overall effect, though a subgroup of parallel-design (not crossover) trials did show a significant HbA1c reduction (reported as a companion edge). Most trials were short (67% under 12 weeks) and enrolled people with relatively good baseline glycemic control.",
+      "figure": null,
+      "caveats": "Pooled-species result: mixes Asian Panax ginseng and American Panax quinquefolius trials without a species-stratified estimate in the abstract, so it does not transfer cleanly to either species alone; lead authors (Vuksan, Sievenpiper, Jenkins, Jovanovski) disclose extensive industry funding, advisory roles, and ginseng-related patents/grants in the paper's conflict-of-interest statement."
+    },
+    {
+      "behavior_id": "panax_genus_pooled",
+      "marker_id": "hba1c_fasting_glucose",
+      "direction": null,
+      "effect": "No significant overall effect on HbA1c, fasting insulin, or HOMA-IR; HbA1c reduction was significant only in the parallel-design trial subgroup (MD=0.22%, 95% CI 0.06-0.37, P=0.01)",
+      "effect_normalized": 0.22,
+      "normalization_method": "mean difference between parallel and crossover trial subgroups, % HbA1c",
+      "evidence_tier": "A",
+      "population": "264 glycated-hemoglobin comparisons and 349 fasting-insulin comparisons across the same 16-RCT pool",
+      "conditional_on": "Same genus-Panax-pooled review as the fasting-glucose edge above; the HbA1c benefit is conditional on trial design (parallel vs crossover), not on species, dose, or population",
+      "paper": {
+        "doi": "10.1371/journal.pone.0107391",
+        "title": "The effect of ginseng (the genus panax) on glycemic control: a systematic review and meta-analysis of randomized controlled clinical trials",
+        "year": 2014,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 264
+      },
+      "verbatim": "Although there was no significant effect on fasting plasma insulin, glycated hemoglobin, or homeostasis model assessment of insulin resistance, a priori subgroup analyses did show significant reductions in glycated hemoglobin in parallel compared to crossover trials (MD = 0.22% [95%CI: 0.06 to 0.37], P = 0.01).",
+      "key_results": "In the same 16-trial genus-Panax pool, HbA1c, fasting insulin, and HOMA-IR showed no significant overall pooled effect. A pre-specified subgroup analysis found that parallel-design trials showed a significantly greater HbA1c reduction than crossover-design trials, suggesting design/carryover effects moderate the glycemic result more than the headline fasting-glucose figure alone would suggest.",
+      "figure": null,
+      "caveats": "Pooled-species result, same caveats as the fasting-glucose edge; the positive HbA1c subgroup number reflects a between-design comparison, not a ginseng-vs-placebo effect size on its own."
+    },
+    {
+      "behavior_id": "panax_genus_pooled",
+      "marker_id": "blood_pressure",
+      "direction": null,
+      "effect": "No significant effect on systolic BP, diastolic BP, or mean arterial pressure",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result across all three blood-pressure endpoints",
+      "evidence_tier": "A",
+      "population": "1,381 participants across 17 RCTs of ginseng lasting >=4 weeks",
+      "conditional_on": "Review's title and search strategy target 'the genus Panax' broadly; the abstract does not report a species-stratified blood-pressure estimate, so this null applies to Panax ginseng and Panax quinquefolius trials pooled together, not to either species in isolation",
+      "paper": {
+        "doi": "10.1038/jhh.2016.18",
+        "title": "The effect of ginseng (genus Panax) on blood pressure: a systematic review and meta-analysis of randomized controlled clinical trials",
+        "year": 2016,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 1381
+      },
+      "verbatim": "No significant effect of ginseng on SBP, DBP and MAP was found.",
+      "key_results": "Across 17 RCTs (1,381 participants) of genus Panax ginseng lasting at least 4 weeks, there was no significant pooled effect on systolic, diastolic, or mean arterial blood pressure. A non-significant stratified trend favored systolic BP improvement in people with diabetes, metabolic syndrome, or obesity (MD=-2.76 mmHg, 95% CI -6.40 to 0.87, P=0.14), and body mass index was significantly associated with treatment differences in a priori subgroup analysis. Authors conclude ginseng has neutral vascular effects overall and should not be discouraged for fear of raising blood pressure.",
+      "figure": null,
+      "caveats": "Pooled-species null: mixes Panax ginseng and Panax quinquefolius trials without a species-stratified estimate; same core research group (Vuksan/Sievenpiper/Komishon) as the glycemic-control genus-Panax review and the American-ginseng-specific trials in this file, so these are not fully independent bodies of evidence; the diabetes/metabolic-syndrome/obesity subgroup trend is explicitly non-significant (P=0.14)."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "arti_incidence",
+      "direction": null,
+      "effect": "RR = 0.70 (95% CI 0.48-1.02) for having >=1 cold or ARI vs placebo, not statistically significant",
+      "effect_normalized": 0.70,
+      "normalization_method": "relative risk vs placebo, pooled across 5 trials",
+      "evidence_tier": "A",
+      "population": "747 healthy adults across 5 RCTs, all examining North American ginseng specifically",
+      "conditional_on": "All five pooled trials in this review used North American ginseng (Panax quinquefolius) root extract specifically, taken preventatively for 8-16 week durations; despite the review's title also searching for Asian Panax ginseng, none of the 5 included trials tested it",
+      "paper": {
+        "doi": "10.1093/ecam/nep068",
+        "title": "North American (Panax quinquefolius) and Asian Ginseng (Panax ginseng) Preparations for Prevention of the Common Cold in Healthy Adults: A Systematic Review",
+        "year": 2011,
+        "design": "systematic review of RCTs and controlled clinical trials",
+        "n": 747
+      },
+      "verbatim": "There was a tendency toward a lower incidence of having at least one common cold or other acute respiratory infection (ARI) in the ginseng group compared to the placebo group (five trials; relative risk: 0.70; 95% CI: 0.48-1.02).",
+      "key_results": "Five trials (747 participants), all using North American ginseng specifically, were pooled for incidence of at least one cold or acute respiratory infection. The relative risk favored ginseng (0.70) but the confidence interval crossed 1.0, so the reduction was not statistically significant. A separate pooled result for duration of illness (reported as a companion edge) did reach significance. The authors conclude there is insufficient evidence that ginseng reduces cold incidence or severity, though it may shorten duration.",
+      "figure": null,
+      "caveats": "Confidence interval crosses the null value (1.02 upper bound); methodological quality of the underlying trials varied widely per the review; despite the review title naming both North American and Asian ginseng, only North American ginseng trials were actually available and pooled."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "infection_duration",
+      "direction": "+",
+      "effect": "-6.2 days duration of colds/ARIs vs placebo (95% CI 3.4-9.0)",
+      "effect_normalized": -6.2,
+      "normalization_method": "mean difference in days vs placebo, pooled across 2 trials",
+      "evidence_tier": "A",
+      "population": "Subset of participants from 2 of the 5 trials in the same North American ginseng cold-prevention review reporting illness duration",
+      "conditional_on": "Same North American ginseng (Panax quinquefolius)-specific review as the incidence edge above; based on only 2 of the 5 pooled trials, taken preventatively for 8-16 weeks before cold onset",
+      "paper": {
+        "doi": "10.1093/ecam/nep068",
+        "title": "North American (Panax quinquefolius) and Asian Ginseng (Panax ginseng) Preparations for Prevention of the Common Cold in Healthy Adults: A Systematic Review",
+        "year": 2011,
+        "design": "systematic review of RCTs and controlled clinical trials",
+        "n": 747
+      },
+      "verbatim": "Compared to placebo, ginseng significantly shortened the duration of colds or ARIs by 6.2 days (two trials; 95% CI: 3.4-9.0).",
+      "key_results": "In the two trials reporting illness duration within this North American ginseng review, ginseng significantly shortened the length of colds or acute respiratory infections by about 6 days compared to placebo, a much clearer effect than the non-significant incidence-reduction trend found across all five trials. This duration result is the basis for the review's specific conclusion that North American ginseng may be useful for shortening (not preventing) colds.",
+      "figure": null,
+      "caveats": "Based on only 2 of the 5 pooled trials, a smaller evidence base than the incidence estimate; wide confidence interval relative to the point estimate."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "arti_incidence",
+      "direction": null,
+      "effect": "5.5% (placebo) vs 5.2% (400mg) vs 4.6% (800mg) laboratory-confirmed-clinical URI incidence, P=0.89, not significant",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - proportions with reported p-value, not a pooled effect size",
+      "evidence_tier": "B",
+      "population": "783 influenza-vaccinated community-dwelling adults, multicenter RCT, 6 months",
+      "conditional_on": "Specific proprietary North American ginseng extract CVT-E002 (brand name COLD-fX) at 400 or 800 mg/day, in adults already vaccinated against influenza; this is the trial's pre-specified primary, laboratory-confirmed intention-to-treat endpoint",
+      "paper": {
+        "doi": "10.1155/2011/759051",
+        "title": "Efficacy and Safety of CVT-E002, a Proprietary Extract of Panax quinquefolius in the Prevention of Respiratory Infections in Influenza-Vaccinated Community-Dwelling Adults: A Multicenter, Randomized, Double-Blind, and Placebo-Controlled Trial",
+        "year": 2011,
+        "design": "multicenter, randomized, double-blind, placebo-controlled trial",
+        "n": 783
+      },
+      "verbatim": "The incidence of laboratory-confirmed-clinical URIs (LCCUs) in the ITT group was 5.5%, 5.2%, and 4.6% in the placebo, 400 mg and 800 mg groups, respectively (P = 0.89).",
+      "key_results": "In 783 influenza-vaccinated adults randomized to placebo, 400 mg, or 800 mg CVT-E002 (North American ginseng extract) daily for 6 months, the primary pre-specified endpoint of laboratory-confirmed-clinical upper respiratory infection showed a numerically lower but not statistically significant incidence in the treated groups. A secondary, less strict clinical-criteria (Jackson-based) analysis in study completers did find a significant reduction (reported as a companion edge).",
+      "figure": null,
+      "caveats": "Primary, strictest endpoint of this trial was null; manufacturer-funded (CV Technologies/Afexa Life Sciences, maker of COLD-fX)."
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "arti_incidence",
+      "direction": "+",
+      "effect": "Significantly lower Jackson-criteria-confirmed URI incidence in CVT-E002 treated groups vs placebo (P<0.04)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - only p-value reported in the abstract for this secondary endpoint",
+      "evidence_tier": "B",
+      "population": "Study completers from the same 783-participant influenza-vaccinated adult trial",
+      "conditional_on": "Same CVT-E002 (COLD-fX) trial and dosing as the null primary-endpoint edge above; this positive result uses a looser, symptom-based (Jackson) case definition applied to study completers rather than the pre-specified primary lab-confirmed intention-to-treat endpoint",
+      "paper": {
+        "doi": "10.1155/2011/759051",
+        "title": "Efficacy and Safety of CVT-E002, a Proprietary Extract of Panax quinquefolius in the Prevention of Respiratory Infections in Influenza-Vaccinated Community-Dwelling Adults: A Multicenter, Randomized, Double-Blind, and Placebo-Controlled Trial",
+        "year": 2011,
+        "design": "multicenter, randomized, double-blind, placebo-controlled trial",
+        "n": 783
+      },
+      "verbatim": "Jackson-confirmed URIs were significantly lower in the treated groups (P < 0.04).",
+      "key_results": "Using a secondary, symptom-based (Jackson) case definition in study completers rather than the primary lab-confirmed ITT analysis, CVT-E002 (North American ginseng) significantly reduced URI incidence, and also reduced the severity and duration of Jackson-confirmed URIs, versus placebo.",
+      "figure": null,
+      "caveats": "Discordant with the trial's own primary, pre-specified, stricter endpoint (null, see companion edge); secondary-endpoint, completers-only analysis is more prone to selection and multiple-comparisons issues than an ITT primary analysis; manufacturer-funded."
+    },
+    {
+      "behavior_id": "ginseng_species_unspecified",
+      "marker_id": "episodic_memory",
+      "direction": "+",
+      "effect": "SMD = 0.19 (95% CI 0.02-0.36, p<0.05) for memory improvement; SMD = 0.33 (95% CI 0.04-0.61, p<0.05) at high doses",
+      "effect_normalized": 0.19,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "671 participants across 15 RCTs; a mix of healthy adults and people with cognitive impairment, schizophrenia, hospitalization, or Alzheimer's disease",
+      "conditional_on": "The Panax species of the pooled trials is not identified in the available abstract; the review's traditional-Chinese-medicine framing and its heterogeneous clinical population suggest multiple ginseng preparations, and possibly species, were pooled across the 15 RCTs, so this SMD should not be attributed to Panax ginseng, Panax quinquefolius, or Eleutherococcus specifically",
+      "paper": {
+        "doi": "10.1002/ptr.8359",
+        "title": "Effects of Ginseng on Cognitive Function: A Systematic Review and Meta-Analysis",
+        "year": 2024,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 671
+      },
+      "verbatim": "The meta-analysis results indicated that ginseng has a significant effect on memory improvement (SMD = 0.19, 95%CI: 0.02-0.36, p < 0.05), especially at high doses (SMD = 0.33, 95%CI: 0.04-0.61, p < 0.05).",
+      "key_results": "Across 15 RCTs (671 participants) spanning healthy people, cognitively impaired patients, schizophrenia, hospitalized patients, and Alzheimer's disease, ginseng preparations produced a small but significant improvement in memory, roughly doubling in magnitude at higher doses. The same meta-analysis found no significant benefit for overall cognition, attention, or executive function (reported as a companion null edge). Authors call for more high-quality studies given the mixed and heterogeneous evidence base.",
+      "figure": null,
+      "caveats": "Ginseng species/preparation not specified in the available abstract; population is highly heterogeneous (healthy through Alzheimer's disease) rather than a single matched group; effect is memory-specific and did not extend to broader cognitive domains in the same analysis."
+    },
+    {
+      "behavior_id": "ginseng_species_unspecified",
+      "marker_id": "sustained_attention_rt",
+      "direction": null,
+      "effect": "SMD = 0.06 (95% CI -0.12 to 0.23, p=0.54) for attention, non-significant",
+      "effect_normalized": 0.06,
+      "normalization_method": "SMD, null result",
+      "evidence_tier": "A",
+      "population": "Same 671-participant, 15-RCT pool as the memory edge above",
+      "conditional_on": "Same species-unspecified ginseng pool as the memory edge above; illustrates that the memory-specific benefit did not generalize to overall cognition or attention in the same meta-analysis",
+      "paper": {
+        "doi": "10.1002/ptr.8359",
+        "title": "Effects of Ginseng on Cognitive Function: A Systematic Review and Meta-Analysis",
+        "year": 2024,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 671
+      },
+      "verbatim": "Ginseng did not have a positive effect on overall cognition, attention, and executive function (SMD = 0.06, 95%CI: -0.64-0.77, p = 0.86; SMD = 0.06, 95%CI: -0.12 to 0.23, p = 0.54; SMD = -0.03, 95%CI: -0.28 to 0.21, p = 0.79).",
+      "key_results": "In the same 15-RCT, 671-participant meta-analysis that found a significant memory benefit, ginseng showed no significant effect on overall cognition (SMD=0.06), attention (SMD=0.06), or executive function (SMD=-0.03). This domain-specificity mirrors the pattern seen with other cognition-focused supplements in this dataset (for example, mindfulness and ginkgo): a real but narrow effect on one measured domain, not a general cognitive enhancer.",
+      "figure": null,
+      "caveats": "Species/preparation not specified in the abstract; three separate null domains are reported jointly in one sentence rather than isolated per-domain sentences."
+    },
+    {
+      "behavior_id": "ginseng_species_unspecified",
+      "marker_id": "global_cognition_older",
+      "direction": "+",
+      "effect": "MD = +0.68 MMSE points vs control (95% CI 0.03-1.32, p=0.04); ADAS-cog MD = -1.10 points (95% CI -1.82 to -0.38, p=0.003)",
+      "effect_normalized": 0.68,
+      "normalization_method": "mean difference (MD), MMSE points",
+      "evidence_tier": "A",
+      "population": "Individuals with subjective memory impairment, mild cognitive impairment, or Alzheimer's disease, pooled across 8 RCTs",
+      "conditional_on": "Ginseng species is not identified in the abstract; the review additionally searched Korean-language databases (KISS, RISS, ScienceON) alongside PubMed/Embase/Cochrane, so Korean ginseng products are plausible among the pooled trials, but species is not reported as a subgroup and this cannot be confirmed from the abstract text alone",
+      "paper": {
+        "doi": "10.1159/000547543",
+        "title": "Cognitive Benefits of Ginseng: A Systematic Review and Meta-Analysis of Changes in Mini-Mental State Examination and Alzheimer's Disease Assessment Scale-Cognitive Subscale Scores",
+        "year": 2025,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Ginseng consumption showed a significant effect on increasing Mini-Mental State Examination scores (MD = 0.68; 95% CI: 0.03, 1.32; p = 0.04; I2 = 66%). For Alzheimer's Disease Assessment Scale-Cognitive Subscale, a significant reduction in scores was observed in both the total (MD = -1.10; 95% CI: -1.82, -0.38; p = 0.003; I2 = 0%) and low-dose groups (MD = -1.09; 95% CI: -1.96, -0.22; p = 0.01; I2 = 0%).",
+      "key_results": "Across 8 RCTs in people with subjective memory impairment, mild cognitive impairment, or Alzheimer's disease, ginseng consumption significantly increased MMSE scores and significantly reduced (improved) ADAS-cog scores versus control, with the ADAS-cog benefit holding in a low-dose subgroup and showing no heterogeneity (I2=0%) there. The MMSE result had substantial heterogeneity (I2=66%). Authors conclude ginseng may benefit certain cognitive indicators in this impaired population but call for more long-term, dose-stratified research.",
+      "figure": null,
+      "caveats": "Ginseng species not specified in the abstract; only 8 studies pooled; MMSE result has high heterogeneity (I2=66%) despite reaching significance; this is a memory/cognitive-impairment population, distinct from the healthy-older-adult MMSE null already shipped for omega-3 and the MCI-specific ginkgo null in goal-f-cognition.json, so it should not be read as contradicting those unless the underlying trial populations and ginseng exposure are compared directly."
+    },
+    {
+      "behavior_id": "panax_ginseng_hrg80",
+      "marker_id": "sustained_attention_rt",
+      "direction": "+",
+      "effect": "Significant time-by-treatment interaction (p<0.0001) on the attention d2 test favoring HRG80 over placebo",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - only p-value reported in the abstract, no SMD/effect size given",
+      "evidence_tier": "B",
+      "population": "50 tired but otherwise healthy adults, three-arm randomized double-blind placebo-controlled crossover pilot trial",
+      "conditional_on": "Specific to HRG80, a hydroponically cultivated red-root preparation of Panax ginseng Meyer; a traditionally harvested six-year-old white ginseng preparation of the same species (PGS) showed a numerically better but not statistically significant trend versus placebo, and was itself significantly inferior to HRG80 (p<0.0001), suggesting cultivation/processing method drives this specific result more than species identity alone",
+      "paper": {
+        "doi": "10.3390/ph13040057",
+        "title": "Efficacy of Panax ginseng Meyer Herbal Preparation HRG80 in Preventing and Mitigating Stress-Induced Failure of Cognitive Functions in Healthy Subjects: A Pilot, Randomized, Double-Blind, Placebo-Controlled Crossover Trial",
+        "year": 2020,
+        "design": "pilot, randomized, double-blind, placebo-controlled, three-arm crossover trial",
+        "n": 50
+      },
+      "verbatim": "A statistically significant interaction effect between time and treatment (p < 0.0001) was observed in the attention d2 and memory tests, indicating that HRG80 treatment was more beneficial than that with a placebo.",
+      "key_results": "In 50 tired healthy adults tested after single (day 1) and repeated (days 5 and 12) dosing, HRG80 (hydroponic red Panax ginseng Meyer) produced a significant time-by-treatment interaction on the d2 attention test and a computerized memory test versus placebo. The traditionally harvested white ginseng comparator (PGS, same species) trended better than placebo but not significantly, and was itself significantly worse than HRG80. A companion perceived-stress result from the same trial is reported separately.",
+      "figure": null,
+      "caveats": "Small pilot crossover trial (n=50); no quantified effect size (SMD/Cohen's d) given in the abstract, only p-values; a study co-author is co-CEO of Botalys SA, the company supplying the HRG80 preparation."
+    },
+    {
+      "behavior_id": "panax_ginseng_hrg80",
+      "marker_id": "perceived_stress",
+      "direction": "+",
+      "effect": "HRG80 significantly superior to both placebo and the white-ginseng comparator on perceived-stress score after single and repeated dosing",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - only qualitative superiority and p-values reported in the abstract, no SMD",
+      "evidence_tier": "B",
+      "population": "50 tired but otherwise healthy adults, three-arm randomized double-blind placebo-controlled crossover pilot trial",
+      "conditional_on": "Same HRG80 (hydroponic red Panax ginseng Meyer) trial and dosing as the attention/memory edge above; comparison is against both placebo and a traditionally harvested white-ginseng preparation of the same species",
+      "paper": {
+        "doi": "10.3390/ph13040057",
+        "title": "Efficacy of Panax ginseng Meyer Herbal Preparation HRG80 in Preventing and Mitigating Stress-Induced Failure of Cognitive Functions in Healthy Subjects: A Pilot, Randomized, Double-Blind, Placebo-Controlled Crossover Trial",
+        "year": 2020,
+        "design": "pilot, randomized, double-blind, placebo-controlled, three-arm crossover trial",
+        "n": 50
+      },
+      "verbatim": "Overall, HRG80 treatment was significantly superior compared to that with the PGS and placebo regarding attention, memory, and PS scores after single and repeated administrations for 5 and 12 days.",
+      "key_results": "The trial's overall conclusion states that HRG80 was significantly superior to both the white-ginseng comparator and placebo on perceived-stress (PS) score, alongside the attention and memory measures reported separately, after both single and repeated (5- and 12-day) dosing.",
+      "figure": null,
+      "caveats": "No numeric PS score or effect size given in the abstract, only the qualitative superiority statement and p-values reported elsewhere in the same sentence pattern; small pilot trial; industry-affiliated authorship (see companion edge caveats)."
+    },
+    {
+      "behavior_id": "eleutherococcus_senticosus",
+      "marker_id": "perceived_stress",
+      "direction": null,
+      "effect": "No significant between-group difference; almost all parameters, including stress-related measures, improved over time in every arm regardless of treatment",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - qualitative null result, no effect size given for stress specifically",
+      "evidence_tier": "B",
+      "population": "144 adults with stress-related asthenia, reduced working capacity, or impaired concentration, randomized to Eleutherococcus senticosus extract, stress-management training, or a combination, 8 weeks",
+      "conditional_on": "Eleutherococcus senticosus (Siberian 'ginseng') 120 mg/day tested both as monotherapy and as an add-on to structured stress-management training; combining it with training was 'not superior to SMT in any parameter at week 8', and the extract alone did not separate from general improvement over time on any measured parameter",
+      "paper": {
+        "doi": "10.1055/s-0033-1347178",
+        "title": "No benefit adding eleutherococcus senticosus to stress management training in stress-related fatigue/weakness, impaired work or concentration, a randomized controlled study",
+        "year": 2013,
+        "design": "randomized controlled trial",
+        "n": 144
+      },
+      "verbatim": "Almost all parameters improved significantly over time without group differences.",
+      "key_results": "In 144 adults with chronic-stress-related asthenia, all three arms (Eleutherococcus senticosus extract alone, stress-management training alone, and the combination) showed significant within-group improvement over 8 weeks on cognitive performance, stress, fatigue, mood, quality-of-life, and physiological stress measures (including cortisol awakening response), but with no significant differences between the arms on almost every parameter. The combination arm showed a significant advantage over the extract alone specifically for mental fatigue and restlessness, but adding the extract to training was not superior to training alone on any parameter at week 8. Authors conclude that any effect of adding Eleutherococcus senticosus to stress-management training is, at most, negligible.",
+      "figure": null,
+      "caveats": "Botanically distinct from Panax ginseng and American ginseng: Eleutherococcus senticosus is a different genus in the same family (Araliaceae), marketed as 'Siberian ginseng' but not a true ginseng; single RCT; industry/CRO-run trial (HPR Dr. Schaffler GmbH); no numeric effect size given for the stress outcome specifically in the abstract."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "eleutherococcus_senticosus -> chronic fatigue (Hartz et al. 2004, Randomized controlled trial of Siberian ginseng for chronic fatigue, Psychol Med, PMID 14971626, n=96)",
+      "reason": "No existing goal or marker in the catalogue covers subjective/chronic fatigue as a named-instrument endpoint (Mood and anxiety is scoped explicitly to PHQ-9/BDI/HAM-D, GAD-7/STAI/HAM-A/BAI, PSS, and cortisol; Cognition and focus, Immune function, and the other 12 goals do not cover it either). The trial itself also found overall efficacy 'not demonstrated', with only a subgroup hint of benefit in less-severe or long-duration fatigue. Rather than inventing a new goal or forcing this onto a mismatched marker, it is left uncaptured; a future 'fatigue/energy' goal would be the right home for it."
+    },
+    {
+      "candidate": "american_ginseng -> cancer-related fatigue (Barton et al. 2013, Wisconsin Ginseng (Panax quinquefolius) to Improve Cancer-Related Fatigue: N07C2, J Natl Cancer Inst, PMID 23853057, n=364)",
+      "reason": "This is the single strongest RCT found for any ginseng species in this research pass (n=364, phase III, significant dose-response-consistent benefit: MFSI-SF change score 20 vs 10.3, P=.003 at 8 weeks), but like the Eleutherococcus fatigue trial above it has no home in the current 14-goal, 60-marker catalogue, which does not include a fatigue/vitality-energy goal. Cut here rather than mis-attached to Mood and anxiety or Male vitality, neither of which defines fatigue as an in-scope marker."
+    },
+    {
+      "candidate": "CVT-E002 (North American ginseng) for URI prevention in institutionalized older adults (McElhaney et al. 2004, PMID 14687309)",
+      "reason": "A companion, earlier trial of the same COLD-fX extract in a frailer institutionalized-senior population was identified by search but its abstract was not retrieved and verified within the research budget for this file; the community-dwelling, influenza-vaccinated version of this trial (McElhaney 2011) is shipped instead."
+    },
+    {
+      "candidate": "Cochrane review 'Ginseng for cognition' (Geng et al. 2010) as an additional cognition source",
+      "reason": "This earlier Cochrane review (9 RCTs) reports that pooling was 'impossible due to heterogeneity in outcome measures, trial duration, and ginseng dosage' per secondary summaries found during search, i.e. it does not offer a quantified, verbatim-derivable effect size of its own. Superseded here by the two more recent, quantified 2024/2025 meta-analyses (Zeng et al.; Kim et al.) that are shipped as ginseng_species_unspecified edges above."
+    },
+    {
+      "candidate": "Panax ginseng for menopausal vasomotor symptoms or PCOS androgen markers (Female reproductive and hormonal health goal)",
+      "reason": "Not investigated within this research pass's time budget; the brief's listed likely endpoints (cognition, fatigue, erectile function, glucose/HbA1c, blood pressure, URI incidence, immune measures) were prioritized first. Flagged as a plausible follow-up search rather than asserted from memory."
+    },
+    {
+      "candidate": "Rg3-enriched Korean Red Ginseng + American ginseng coadministration trial for cardiometabolic outcomes in type-2 diabetes (PMID 34803424)",
+      "reason": "This trial deliberately combines Korean Red Ginseng (Panax ginseng) and American ginseng (Panax quinquefolius) as a co-administered product, which is a genuine third condition (neither single-species nor an unstratified pooled review, but a combination product tested as such). Not shipped here because its abstract was not retrieved and verified within the research budget; flagged rather than asserted, and would need its own conditional_on describing the co-administration explicitly rather than being folded into either single-species behavior or the pooled-review behavior above."
+    }
+  ]
+}

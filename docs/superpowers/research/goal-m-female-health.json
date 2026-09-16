@@ -1,0 +1,437 @@
+{
+  "goal": {
+    "id": "goal_m_female_health",
+    "name": "Female reproductive and hormonal health",
+    "definition": "Menopausal vasomotor symptom frequency or severity, menstrual pain (dysmenorrhoea), premenstrual symptom severity (PMS), PCOS-related hyperandrogenism (total/free testosterone, androstenedione, Ferriman-Gallwey hirsutism score), and menstrual cyclicity or ovulation rate as the markers. Named-instrument or biochemical/clinical-marker evidence only; mortality and quality-of-life-years outcomes are out of scope."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_m_female_health",
+        "name": "Female reproductive and hormonal health",
+        "definition": "Menopausal vasomotor symptom frequency or severity, menstrual pain (dysmenorrhoea), premenstrual symptom severity (PMS), PCOS-related hyperandrogenism (total/free testosterone, androstenedione, Ferriman-Gallwey hirsutism score), and menstrual cyclicity or ovulation rate as the markers. Named-instrument or biochemical/clinical-marker evidence only; mortality and quality-of-life-years outcomes are out of scope."
+      }
+    ],
+    "markers": [
+      {
+        "id": "vasomotor_symptoms",
+        "name": "Vasomotor symptoms (menopausal hot flush frequency or severity)",
+        "unit": "episodes per day, or a validated severity score / SMD as pooled by source",
+        "goal_ids": ["goal_m_female_health"]
+      },
+      {
+        "id": "menstrual_pain",
+        "name": "Menstrual pain (dysmenorrhoea)",
+        "unit": "VAS (0-100mm) or a validated dysmenorrhoea scale; SMD/OR as pooled by source",
+        "goal_ids": ["goal_m_female_health"]
+      },
+      {
+        "id": "pms_symptoms",
+        "name": "Premenstrual symptom score",
+        "unit": "PSST, DRSP or equivalent instrument; OR/SMD as pooled by source",
+        "goal_ids": ["goal_m_female_health"]
+      },
+      {
+        "id": "pcos_androgens",
+        "name": "Androgen levels in PCOS",
+        "unit": "total or free testosterone, androstenedione (nmol/L or SMD), or Ferriman-Gallwey hirsutism score",
+        "goal_ids": ["goal_m_female_health"]
+      },
+      {
+        "id": "menstrual_regularity",
+        "name": "Menstrual cyclicity or ovulation rate",
+        "unit": "cycles per year, ovulation rate, or clinical pregnancy rate as pooled by source",
+        "goal_ids": ["goal_m_female_health"]
+      }
+    ],
+    "behaviors": [
+      { "id": "exercise_vasomotor", "name": "Structured exercise (aerobic/mixed) for vasomotor symptoms", "category": "exercise", "dose_or_intensity": "Structured RCT exercise programs vs no-treatment control, pooled across 21 RCTs" },
+      { "id": "cbt_vasomotor", "name": "Cognitive and behavioural therapy for vasomotor symptoms", "category": "habit", "dose_or_intensity": "Individual or group CBT/behaviour therapy protocols, pooled across 14 RCTs" },
+      { "id": "weight_loss_pcos", "name": "Diet-induced weight loss in PCOS", "category": "diet", "dose_or_intensity": "Dietary-intervention-induced weight loss, baseline vs post-intervention, pooled across 9-11 studies" },
+      { "id": "myo_inositol_pcos", "name": "Myo-inositol (and D-chiro-inositol) supplementation in PCOS", "category": "supplement", "dose_or_intensity": "Oral inositol vs placebo, pooled across 9 RCTs" },
+      { "id": "metformin_pcos", "name": "Metformin in PCOS", "category": "supplement", "dose_or_intensity": "Oral metformin vs placebo/no treatment for ovulation induction, pooled across 48 RCTs" },
+      { "id": "nsaids_dysmenorrhea", "name": "NSAIDs for dysmenorrhoea", "category": "supplement", "dose_or_intensity": "20 different NSAIDs vs placebo or paracetamol, pooled across 80 RCTs" },
+      { "id": "heat_therapy_dysmenorrhea", "name": "Local heat therapy for dysmenorrhoea", "category": "environment", "dose_or_intensity": "Heating pad/patch vs analgesic medication, no treatment, or unheated placebo, pooled across 6 RCTs" },
+      { "id": "exercise_dysmenorrhea", "name": "Exercise for dysmenorrhoea", "category": "exercise", "dose_or_intensity": "~45-60 minutes, >=3x/week, low- or high-intensity, vs no exercise" },
+      { "id": "vitamin_b6_pms", "name": "Vitamin B6 (pyridoxine) for PMS", "category": "supplement", "dose_or_intensity": "Up to 100 mg/day vs placebo, pooled across 9 RCTs" },
+      { "id": "calcium_pms", "name": "Calcium supplementation for PMS", "category": "supplement", "dose_or_intensity": "Oral calcium vs control, pooled across 6 RCTs (2013-2020)" },
+      { "id": "black_cohosh", "name": "Black cohosh (Cimicifuga spp.) for hot flushes", "category": "supplement", "dose_or_intensity": "Orally administered black cohosh monopreparation vs placebo, pooled across 16 RCTs" },
+      { "id": "soy_isoflavones", "name": "Soy isoflavone supplementation for hot flushes", "category": "supplement", "dose_or_intensity": "Extracted/synthesized isoflavones, median 54 mg aglycone equivalents/day, 6 weeks-12 months, vs placebo, pooled across 19 trials" },
+      { "id": "smoking", "name": "Cigarette smoking (joint effect with obesity) on vasomotor symptoms", "category": "habit", "dose_or_intensity": "Current smoking status crossed with BMI category, pooled across 8 cohort studies" },
+      { "id": "low_gi_diet_pcos", "name": "Low-glycaemic-index diet in PCOS", "category": "diet", "dose_or_intensity": "Low-GI diet vs control diet in overweight/obese PCOS women, pooled across 8 studies" },
+      { "id": "vitamin_d_pcos", "name": "Vitamin D3 supplementation in PCOS", "category": "supplement", "dose_or_intensity": "Oral vitamin D3 vs control, pooled across 13 RCTs" }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "exercise_vasomotor",
+      "marker_id": "vasomotor_symptoms",
+      "direction": "-",
+      "effect": "Severity: SMD = 0.25 (95% CI 0.04 to 0.47, p=0.02) improvement vs no-treatment control; attenuated to SMD = 0.11 (95% CI -0.03 to 0.26, p=0.13) when studies with high risk of bias were excluded",
+      "effect_normalized": 0.25,
+      "normalization_method": "SMD vs no-treatment control, random-effects meta-analysis",
+      "evidence_tier": "A",
+      "population": "Menopausal women; 21 RCTs, 2884 participants; severity outcome pooled from 10 of those studies",
+      "conditional_on": "Effect is for symptom severity specifically, not frequency (see paired null edge); GRADE certainty was rated very low for this severity estimate and the effect became non-significant once high-risk-of-bias trials were excluded",
+      "paper": {
+        "doi": "10.1080/13697137.2022.2097865",
+        "title": "Effects of exercise on vasomotor symptoms in menopausal women: a systematic review and meta-analysis",
+        "year": 2022,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 2884
+      },
+      "verbatim": "Compared to no-treatment control, exercise significantly improved severity of vasomotor symptoms (10 studies, standardized mean difference [SMD] = 0.25; 95% confidence interval [CI]: 0.04 to 0.47, p = 0.02, very low certainty of evidence); the effect size was attenuated when studies with a high risk of bias were excluded (SMD = 0.11, 95% CI: -0.03 to 0.26, p = 0.13).",
+      "key_results": "We appraised 21 RCTs involving 2884 participants. Compared to no-treatment control, exercise significantly improved severity of vasomotor symptoms (SMD = 0.25), but this effect was attenuated and lost significance when high-risk-of-bias studies were excluded (SMD = 0.11). No significant changes in vasomotor frequency were found between exercise and control. In conclusion, exercise might improve vasomotor symptom severity, but future rigorous RCTs are warranted to explore optimal exercise prescription.",
+      "figure": null,
+      "caveats": "GRADE certainty for the severity estimate was rated very low; the point estimate roughly halves and loses statistical significance once high-risk-of-bias trials are dropped, suggesting the pooled effect is bias-driven."
+    },
+    {
+      "behavior_id": "exercise_vasomotor",
+      "marker_id": "vasomotor_symptoms",
+      "direction": null,
+      "effect": "Frequency: no significant change (SMD = 0.14, 95% CI -0.03 to 0.31, p = 0.12, high certainty of evidence)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result",
+      "evidence_tier": "A",
+      "population": "Menopausal women; same 21-RCT, 2884-participant review as the severity edge above",
+      "conditional_on": "This is the frequency outcome from the same review that found a (fragile) severity benefit above; notably this null result carries HIGH GRADE certainty, higher than the certainty behind the positive severity finding",
+      "paper": {
+        "doi": "10.1080/13697137.2022.2097865",
+        "title": "Effects of exercise on vasomotor symptoms in menopausal women: a systematic review and meta-analysis",
+        "year": 2022,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 2884
+      },
+      "verbatim": "No significant changes in vasomotor frequency were found between exercise and control (SMD = 0.14, 95% CI: -0.03 to 0.31, p = 0.12, high certainty of evidence).",
+      "key_results": "Across the same 21 RCTs, exercise did not significantly change the frequency of vasomotor symptoms compared with control, and this null finding was rated high certainty by GRADE, in contrast to the very-low-certainty positive finding for severity. The authors conclude exercise might improve severity but not frequency of hot flushes.",
+      "figure": null,
+      "caveats": "The certainty asymmetry (high certainty null for frequency vs very-low-certainty positive for severity) is itself the most trustworthy signal in this paper."
+    },
+    {
+      "behavior_id": "cbt_vasomotor",
+      "marker_id": "vasomotor_symptoms",
+      "direction": "-",
+      "effect": "Hedges' g = 0.39 (95% CI 0.23 to 0.55, I2 = 45) reduction in hot flushes vs control",
+      "effect_normalized": -0.39,
+      "normalization_method": "Hedges' g vs control groups, random-effects meta-analysis",
+      "evidence_tier": "A",
+      "population": "Women with natural or treatment-induced menopause; 14 RCTs, 1618 patients, mean sample size 116",
+      "conditional_on": "Efficacy was stronger for natural-menopause vasomotor symptoms than for treatment-induced menopause (e.g. post-cancer-treatment) symptoms; effects sustained long-term but decline somewhat over time",
+      "paper": {
+        "doi": "10.1017/S0033291721005407",
+        "title": "Efficacy of cognitive therapy and behavior therapy for menopausal symptoms: a systematic review and meta-analysis",
+        "year": 2022,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 1618
+      },
+      "verbatim": "We included 14 RCTs comprising 1618 patients with a mean sample size of 116. CTBT significantly outperformed control groups in terms of reducing hot flushes [g = 0.39, 95% confidence interval (CI) 0.23-0.55, I2 = 45], night sweats, depression (g = 0.50, 95% CI 0.34-0.66, I2 = 51), anxiety (g = 0.38, 95% CI 0.23-0.54, I2 = 49), fatigue, and quality of life.",
+      "key_results": "CTBT is an effective psychological treatment for menopausal symptoms, with predominantly small to moderate effects (g = 0.39 for hot flushes). The efficacy is sustained long-term, although it declines somewhat over time. The efficacy was stronger for natural menopause symptoms, such as vasomotor symptoms, than for treatment-induced menopause symptoms. Egger's test indicated no publication bias.",
+      "figure": null,
+      "caveats": "Effect size for hot flushes specifically (g=0.39) is smaller than for depression (g=0.50) in the same pooled trials; treatment-induced-menopause subgroup responded less well than natural menopause."
+    },
+    {
+      "behavior_id": "weight_loss_pcos",
+      "marker_id": "pcos_androgens",
+      "direction": "-",
+      "effect": "Androstenedione decreased significantly after diet-induced weight loss vs baseline (SMD 0.36, 95% CI 0.13 to 0.60; 4 studies, n=147)",
+      "effect_normalized": 0.36,
+      "normalization_method": "SMD, baseline vs post-weight-loss (no external control group), random-effects meta-analysis",
+      "evidence_tier": "C",
+      "population": "Women with PCOS undergoing diet-induced weight loss; 11 studies (n=323) in the systematic review, 9 studies (n=286) in the meta-analysis",
+      "conditional_on": "Comparison is baseline vs post-weight-loss within the same women, not a placebo/no-diet controlled comparison; pools RCTs and cohort studies together; degree of weight loss achieved and diet composition are not stratified in this pooled estimate; LH also fell (SMD 0.30) and SHBG rose (SMD -0.43) in the same analysis",
+      "paper": {
+        "doi": "10.3390/jcm13164934",
+        "title": "The Impact of Diet-Induced Weight Loss on Inflammatory Status and Hyperandrogenism in Women with Polycystic Ovarian Syndrome (PCOS)-A Systematic Review and Meta-Analysis",
+        "year": 2024,
+        "design": "systematic review and meta-analysis of RCTs and cohort studies (pre-post, no external control)",
+        "n": 323
+      },
+      "verbatim": "Pooled analysis of data revealed a statistically significant decrease in circulating CRP (SMD 0.39, 95%CI 0.22, 0.56; 9 studies, n = 286), IL-6 (SMD 0.37, 95%Cl, 0.12, 0.61; 3 Studies, n = 140), TNF-α (SMD 0.30, 95%Cl, 0.07, 0.53; 4 Studies, n = 162), androstenedione (SMD 0.36, 95%Cl, 0.13, 0.60; 4 studies, n = 147) and LH (SMD 0.30, 95% Cl, 0.09, 0.51; 5 studies, n = 197) after weight loss compared to baseline levels among PCOS women.",
+      "key_results": "Eleven studies (n=323) were eligible for the systematic review, of which nine (n=286) were included in the meta-analysis. Weight loss induced by dietary interventions was associated with significant decreases in circulating CRP, IL-6, TNF-alpha, androstenedione, and LH, and a significant increase in SHBG, compared to baseline. These findings suggest that weight loss induced by dietary interventions seems to improve PCOS-related chronic inflammation and hyperandrogenism. The possible causative relationship between the improvement in inflammation and hyperandrogenism remains to be determined.",
+      "figure": null,
+      "caveats": "Pre-post design without a no-intervention control arm is a weaker causal design than a placebo-controlled RCT; the paper's own abstract text quoted here does not give a pooled total-testosterone estimate, so this edge is restricted to the androstenedione outcome, which is quantified."
+    },
+    {
+      "behavior_id": "myo_inositol_pcos",
+      "marker_id": "pcos_androgens",
+      "direction": null,
+      "effect": "Testosterone: SMD = -0.49 (95% CI -1.072 to 0.092, P = 0.099) vs placebo - a non-significant trend toward reduction",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result (non-significant SMD reported for context)",
+      "evidence_tier": "A",
+      "population": "Women with PCOS; 9 RCTs, 247 cases and 249 controls",
+      "conditional_on": "Androstenedione was unaffected in the same analysis; SHBG rose significantly only in the subgroup of studies with treatment duration of 24 weeks or more (SMD 0.425, 95% CI 0.050 to 0.801, P = 0.026); fasting insulin and HOMA index did improve significantly",
+      "paper": {
+        "doi": "10.1530/EC-17-0243",
+        "title": "Myo-inositol effects in women with PCOS: a meta-analysis of randomized controlled trials",
+        "year": 2017,
+        "design": "meta-analysis of RCTs",
+        "n": 496
+      },
+      "verbatim": "SMD = -0.49, 95% CI: -1.072 to 0.092, P = 0.099",
+      "key_results": "Nine RCTs involving 247 cases and 249 controls were included. Myo-inositol supplementation significantly decreased fasting insulin (SMD -1.021) and HOMA index (SMD -0.585). Testosterone showed only a non-significant trend toward reduction (SMD -0.49, P = 0.099), and androstenedione was not significantly affected. SHBG increased significantly only in trials lasting 24 weeks or longer.",
+      "figure": null,
+      "caveats": "Marketing for myo-inositol in PCOS often emphasizes androgen-lowering effects, but this meta-analysis found the testosterone effect fell short of statistical significance; the point estimate direction is negative but the confidence interval crosses zero, so this is reported as a null result per the design principle that null results are content."
+    },
+    {
+      "behavior_id": "metformin_pcos",
+      "marker_id": "menstrual_regularity",
+      "direction": "+",
+      "effect": "Ovulation: OR 2.55 (95% CI 1.81 to 3.59; 14 studies, 701 women, moderate-quality evidence) vs placebo/no treatment; menstrual frequency also increased (OR 1.72, 95% CI 1.14 to 2.61, 7 studies, 427 women, low-quality evidence)",
+      "effect_normalized": 2.55,
+      "normalization_method": "Odds ratio vs placebo/no treatment, Cochrane meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Women with PCOS undergoing ovulation induction; 48 studies (4451 women) in the full review, this ovulation estimate pooled from 14 studies (701 women)",
+      "conditional_on": "The pooled benefit is not uniform by obesity status: among non-obese women there was no clear difference in ovulation rate (OR 0.81, 95% CI 0.51 to 1.28, 4 studies, 312 women) though more pregnancies occurred (OR 1.56); among OBESE women, metformin was associated with LOWER rates of ovulation (OR 0.29, 95% CI 0.20 to 0.43, 2 studies, 500 women) and clinical pregnancy (OR 0.34, 95% CI 0.21 to 0.55) - the headline pooled OR masks a reversal in the obese subgroup",
+      "paper": {
+        "doi": "10.1002/14651858.CD003053.pub6",
+        "title": "Insulin-sensitising drugs (metformin, rosiglitazone, pioglitazone, D-chiro-inositol) for women with polycystic ovary syndrome, oligo amenorrhoea and subfertility",
+        "year": 2017,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 4451
+      },
+      "verbatim": "The metformin group experienced more gastrointestinal side effects (OR 4.76, 95% CI 3.06 to 7.41, 7 studies, 670 women, I2 = 61%, moderate-quality evidence) but had higher rates of clinical pregnancy (OR 1.93, 95% CI 1.42 to 2.64, 9 studies, 1027 women, I2 = 43%, moderate-quality evidence), ovulation (OR 2.55, 95% CI 1.81 to 3.59, 14 studies, 701 women, I2 = 58%, moderate-quality evidence) and menstrual frequency (OR 1.72, 95% CI 1.14 to 2.61, 7 studies, 427 women, I2 = 54%, low-quality evidence).",
+      "key_results": "Metformin versus placebo or no treatment showed higher rates of clinical pregnancy, ovulation, and menstrual frequency, with more gastrointestinal side effects. In subgroup analysis by obesity status, obese women had lower rates of clinical pregnancy and ovulation on metformin, while non-obese women had more pregnancies and no clear difference in ovulation rates. Live birth rate showed no clear evidence of a difference between metformin and placebo overall.",
+      "figure": null,
+      "caveats": "The obesity-stratified reversal (metformin associated with WORSE ovulation/pregnancy odds specifically among obese women, each from only 2 studies/500 women, very-low-quality evidence) is a striking, easily-missed caveat if only the pooled headline OR of 2.55 is read; live birth rate itself was not significantly different from placebo overall."
+    },
+    {
+      "behavior_id": "nsaids_dysmenorrhea",
+      "marker_id": "menstrual_pain",
+      "direction": "-",
+      "effect": "OR 4.37 (95% CI 3.76 to 5.09; 35 RCTs, low quality evidence) vs placebo; OR 1.89 (95% CI 1.05 to 3.43; 3 RCTs, low quality evidence) vs paracetamol",
+      "effect_normalized": 4.37,
+      "normalization_method": "Odds ratio for moderate-or-excellent pain relief, Cochrane meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Women with primary dysmenorrhoea; 80 RCTs, 5820 women, comparing 20 different NSAIDs vs placebo, paracetamol, or each other",
+      "conditional_on": "NSAIDs also caused more adverse effects than placebo (overall OR 1.29, GI OR 1.58, neurological OR 2.74); no individual NSAID was shown superior to others, and there was no evidence COX-2-specific inhibitors were more effective or tolerable than traditional non-selective NSAIDs",
+      "paper": {
+        "doi": "10.1002/14651858.CD001751.pub3",
+        "title": "Nonsteroidal anti-inflammatory drugs for dysmenorrhoea",
+        "year": 2015,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 5820
+      },
+      "verbatim": "Among women with primary dysmenorrhoea, NSAIDs were more effective for pain relief than placebo (OR 4.37, 95% CI 3.76 to 5.09; 35 RCTs, I(2) = 53%, low quality evidence)... NSAIDs appeared to be more effective for pain relief than paracetamol (OR 1.89, 95% CI 1.05 to 3.43, three RCTs, I(2) = 0%, low quality evidence).",
+      "key_results": "We included 80 randomised controlled trials (5820 women) comparing 20 different NSAIDs versus placebo, paracetamol or each other. NSAIDs were more effective for pain relief than placebo and appeared more effective than paracetamol, but were associated with more adverse effects (overall, gastrointestinal, and neurological). There was insufficient evidence to determine which individual NSAID is safest and most effective. The quality of evidence was rated low for most comparisons, mainly due to poor reporting of study methods.",
+      "figure": null,
+      "caveats": "Quality of evidence rated low for both key comparisons; 59% of studies were commercially funded and a further 31% did not state funding source."
+    },
+    {
+      "behavior_id": "heat_therapy_dysmenorrhea",
+      "marker_id": "menstrual_pain",
+      "direction": "-",
+      "effect": "SMD -0.72 (95% CI -0.97 to -0.48, P<0.001; two studies, n=274) for heating pads vs analgesic medication",
+      "effect_normalized": -0.72,
+      "normalization_method": "SMD vs analgesic medication, meta-analysis of RCTs",
+      "evidence_tier": "B",
+      "population": "Women with primary dysmenorrhoea; 6 RCTs total across all comparisons in the review",
+      "conditional_on": "This estimate is specifically heat vs analgesic medication (2 of 6 RCTs, n=274); a separate single RCT found heat superior to no treatment (n=132; MD -4.04 VAS, 95% CI -4.88 to -3.20, P<0.001), and two further RCTs favoured heat over unheated placebo without a pooled effect size reported",
+      "paper": {
+        "doi": "10.1038/s41598-018-34303-z",
+        "title": "Heat therapy for primary dysmenorrhea: A systematic review and meta-analysis of its effects on pain relief and quality of life",
+        "year": 2018,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 274
+      },
+      "verbatim": "Three RCTs found favorable effects of heating pads on menstrual pain compared with analgesic medication (n = 274; SMD -0.72; 95% confidence interval -0.97 to -0.48; P < 0.001; two studies).",
+      "key_results": "Six RCTs met inclusion criteria. Heating pads showed favorable effects on menstrual pain compared with analgesic medication (SMD -0.72). One RCT showed beneficial effects of heat therapy compared with no treatment (MD -4.04 VAS). Two RCTs found favorable effects of heat therapy compared with unheated placebo therapy. Local heat is proposed to reduce muscle tension and increase pelvic blood circulation, reducing pain from muscle spasm.",
+      "figure": null,
+      "caveats": "The source text itself is internally inconsistent about whether 2 or 3 studies underlie the heat-vs-analgesic SMD (stating both 'Three RCTs' and 'two studies' in the same sentence); the evidence base is small (6 RCTs total) and mostly unblinded given the nature of heat therapy."
+    },
+    {
+      "behavior_id": "exercise_dysmenorrhea",
+      "marker_id": "menstrual_pain",
+      "direction": "-",
+      "effect": "SMD -1.86 (95% CI -2.06 to -1.66; 9 RCTs, n=632, I2=91%, low-quality evidence) vs no exercise",
+      "effect_normalized": -1.86,
+      "normalization_method": "SMD vs no exercise, Cochrane meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Women with moderate-to-severe primary dysmenorrhoea; 12 trials (854 women) in the review, 9 RCTs (n=632) in this pooled pain-intensity estimate",
+      "conditional_on": "Effective at ~45-60 minutes per session, >=3 times per week, regardless of intensity (both low-intensity, e.g. yoga, and high-intensity, e.g. aerobics, showed a large reduction); quality of evidence rated low with high heterogeneity (I2=91%); comparison to NSAIDs was based on only one trial with uncertain results",
+      "paper": {
+        "doi": "10.1002/14651858.CD004142.pub4",
+        "title": "Exercise for dysmenorrhoea",
+        "year": 2019,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 854
+      },
+      "verbatim": "Exercise may have a large effect on reducing menstrual pain intensity compared to no exercise (standard mean difference (SMD) -1.86, 95% confidence interval (CI) -2.06 to -1.66; 9 randomised controlled trials (RCTs), n = 632; I²= 91%; low-quality evidence).",
+      "key_results": "Twelve trials (854 women; 10 trials with 754 women in meta-analysis) were included. Exercise may have a large effect on reducing menstrual pain intensity compared to no exercise. The current low-quality evidence suggests that exercise, performed for about 45 to 60 minutes each time, three times per week or more, regardless of intensity, may provide a clinically significant reduction in menstrual pain intensity of around 25 mm on a 100 mm VAS. One trial compared exercise to NSAIDs with uncertain results.",
+      "figure": null,
+      "caveats": "Very high heterogeneity (I2=91%) and low-quality evidence rating; trials are necessarily unblinded, so expectancy effects likely inflate this large pooled estimate."
+    },
+    {
+      "behavior_id": "vitamin_b6_pms",
+      "marker_id": "pms_symptoms",
+      "direction": "-",
+      "effect": "OR 2.32 (95% CI 1.95 to 2.54) for improvement in overall premenstrual symptoms vs placebo; OR 1.69 (95% CI 1.39 to 2.06, 4 trials, 541 patients) for premenstrual depressive symptoms",
+      "effect_normalized": 2.32,
+      "normalization_method": "Odds ratio for symptomatic improvement vs placebo, systematic review of RCTs",
+      "evidence_tier": "A",
+      "population": "Women with PMS; 9 published placebo-controlled RCTs, 940 patients",
+      "conditional_on": "Conclusions explicitly limited by the low methodological quality of most included trials; results apply to doses up to 100 mg/day",
+      "paper": {
+        "doi": "10.1136/bmj.318.7195.1375",
+        "title": "Efficacy of vitamin B-6 in the treatment of premenstrual syndrome: systematic review",
+        "year": 1999,
+        "design": "systematic review of randomised placebo-controlled trials",
+        "n": 940
+      },
+      "verbatim": "Odds ratio relative to placebo for an improvement in overall premenstrual symptoms was 2.32 (95% confidence interval 1.95 to 2.54). Odds ratio relative to placebo for an improvement in depressive symptoms was 1.69 (1.39 to 2.06) from four trials representing 541 patients.",
+      "key_results": "Nine published trials representing 940 patients with premenstrual syndrome were included. Vitamin B-6 was more likely than placebo to produce an improvement in overall premenstrual symptoms (OR 2.32) and in premenstrual depressive symptoms specifically (OR 1.69). Conclusions are limited by the low quality of most of the trials included. Results suggest that doses of vitamin B-6 up to 100 mg/day are likely to be of benefit in treating premenstrual symptoms and premenstrual depression.",
+      "figure": null,
+      "caveats": "Trial quality was explicitly rated low by the reviewers themselves; this is a 1999 review and no equally comprehensive quantitative update was located in this search."
+    },
+    {
+      "behavior_id": "calcium_pms",
+      "marker_id": "pms_symptoms",
+      "direction": "-",
+      "effect": "Calcium reduced the severity of PMS complaints vs control groups (p=0.002, I2=76.2%); no significant difference vs other active treatments (p=0.416, I2=54.7%)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports p-values and heterogeneity only, no pooled SMD/MD given",
+      "evidence_tier": "A",
+      "population": "Women with PMS; 6 RCTs conducted 2013-2020",
+      "conditional_on": "Significant benefit only versus control/placebo groups; no significant difference when calcium was compared against other active PMS treatments",
+      "paper": {
+        "doi": "10.23950/jcmk/15827",
+        "title": "The Effect of Calcium on Premenstrual Syndrome: A Meta-Analysis Study",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "calcium reduced the severity of PMS complaints (p=0.002; I2 = 76.2%)... the severity of PMS complaints did not change when calcium administration for the reduction of PMS complaints was compared with other treatments (p=0.416; I2 = 54.7%).",
+      "key_results": "Six randomized controlled trials (2013-2020) were pooled comparing calcium supplementation to control and to other active treatments for PMS. Calcium significantly reduced the severity of PMS complaints compared to control groups. There was no significant difference in effect when calcium was compared against other active treatments for PMS. Heterogeneity was high in both comparisons (I2=76.2% and 54.7% respectively).",
+      "figure": null,
+      "caveats": "The retrieved abstract text reports only p-values and I2 heterogeneity statistics, not a pooled effect size (SMD/MD) or participant count, which limits how precisely this benefit can be compared to other edges in this file; high heterogeneity in both pooled comparisons."
+    },
+    {
+      "behavior_id": "black_cohosh",
+      "marker_id": "vasomotor_symptoms",
+      "direction": null,
+      "effect": "MD 0.07 hot flushes/day (95% CI -0.43 to 0.56, P=0.79; 393 women, 3 trials) - no significant difference vs placebo",
+      "effect_normalized": 0.07,
+      "normalization_method": "Mean difference in daily hot flush frequency vs placebo, Cochrane meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Perimenopausal and postmenopausal women; 16 RCTs, 2027 women",
+      "conditional_on": "Null result specific to orally administered black cohosh MONOPREPARATIONS vs placebo; overall menopausal symptom scores also showed no significant difference (SMD -0.10, 95% CI -0.32 to 0.11, P=0.34, 357 women, 4 trials); by contrast, hormone therapy significantly outperformed black cohosh (SMD 0.32 favouring HT, 95% CI 0.13 to 0.51, P=0.0009, 468 women, 5 trials)",
+      "paper": {
+        "doi": "10.1002/14651858.CD007244.pub2",
+        "title": "Black cohosh (Cimicifuga spp.) for menopausal symptoms",
+        "year": 2012,
+        "design": "Cochrane systematic review and meta-analysis of RCTs",
+        "n": 2027
+      },
+      "verbatim": "no significant difference between black cohosh and placebo in the frequency of hot flushes (MD 0.07 flushes daily; 95% CI -0.43 to 0.56; P=0.79; 393 women across three trials).",
+      "key_results": "Sixteen trials involving 2,027 women were included. There was no significant difference between black cohosh and placebo in the frequency of hot flushes or in overall menopausal symptom scores. Hormone therapy significantly reduced daily hot flush frequency and menopausal symptom scores compared with black cohosh. There is currently insufficient evidence to support the use of black cohosh for menopausal symptoms.",
+      "figure": null,
+      "caveats": "This Cochrane review has itself been criticized by other researchers for allegedly failing to identify all eligible trials and for not differentiating between black cohosh extracts of different composition; more recent non-Cochrane meta-analyses (e.g. isopropanolic extract iCR-specific reviews) report positive effects, so the literature is genuinely contested rather than uniformly null - this edge reports the Cochrane finding specifically."
+    },
+    {
+      "behavior_id": "soy_isoflavones",
+      "marker_id": "vasomotor_symptoms",
+      "direction": "-",
+      "effect": "Reduced hot flash frequency by 20.6% vs placebo",
+      "effect_normalized": -20.6,
+      "normalization_method": "Percentage reduction vs placebo, meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Perimenopausal and postmenopausal women; 19 double-blinded RCTs",
+      "conditional_on": "Applies to extracted or synthesized isoflavone supplements (median dose 54 mg aglycone equivalents/day, 6 weeks to 12 months), not whole soy foods; supplements providing more than 18.8 mg genistein were more than twice as effective at reducing hot flash frequency as lower-genistein formulations - this contrasts with the null Cochrane finding for black cohosh above",
+      "paper": {
+        "doi": "10.1097/gme.0b013e3182410159",
+        "title": "Extracted or synthesized soybean isoflavones reduce menopausal hot flash frequency and severity: systematic review and meta-analysis of randomized controlled trials",
+        "year": 2012,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Meta-analysis revealed that ingestion of soy isoflavones (median, 54 mg; aglycone equivalents) for 6 weeks to 12 months significantly reduced the frequency of hot flashes by 20.6%... Soy isoflavone supplements, derived by extraction or chemical synthesis, are significantly more effective than placebo in reducing the frequency and severity of hot flashes.",
+      "key_results": "Nineteen trials met inclusion criteria. Soy isoflavone supplements significantly reduced hot flash frequency by 20.6% and severity by 26.2% compared with placebo. Supplements providing more than 18.8 mg of genistein were more than twice as potent at reducing hot flash frequency as lower-genistein supplements. The authors recommend further research addressing optimal dose, form, and individual factors affecting outcomes.",
+      "figure": null,
+      "caveats": "An earlier 2006 JAMA meta-analysis of plant medicines (mixing isoflavones with other botanicals) found no definitive evidence of efficacy; this more recent, isoflavone-specific pooling reaches a more positive conclusion, illustrating how much the result depends on which preparations are pooled together."
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "vasomotor_symptoms",
+      "direction": "+",
+      "effect": "Obese never-smokers: RR 1.52 (95% CI 1.35 to 1.73) for often/severe vasomotor symptoms vs normal-weight never-smokers; obese smokers: RR 3.02 (95% CI 2.41 to 3.78) vs normal-weight never-smokers",
+      "effect_normalized": 3.02,
+      "normalization_method": "Relative risk ratio vs normal-weight never-smokers, pooled cross-sectional analysis of cohort data",
+      "evidence_tier": "C",
+      "population": "Midlife women; 8 pooled cohort studies, 21,460 women in the cross-sectional analysis, 11,986 in the prospective analysis",
+      "conditional_on": "This is a joint BMI x smoking interaction effect, not smoking isolated from body weight; smoking approximately doubles the excess risk already conferred by obesity rather than acting as a fully independent additive risk",
+      "paper": {
+        "doi": "10.1016/j.ajog.2019.10.103",
+        "title": "Obesity, smoking, and risk of vasomotor menopausal symptoms: a pooled analysis of eight cohort studies",
+        "year": 2020,
+        "design": "pooled analysis of 8 cohort studies (cross-sectional and prospective)",
+        "n": 21460
+      },
+      "verbatim": "Never smokers who were obese had a 1.5-fold (relative risk ratio, 1.52; 95% confidence interval, 1.35-1.73) higher risk of often/severe vasomotor symptoms. The risk of often/severe vasomotor symptoms was much greater among smokers who were obese (relative risk ratio, 3.02; 95% confidence interval, 2.41-3.78).",
+      "key_results": "Data were pooled from 8 cohort studies. High body mass index (>=25 kg/m2) and cigarette smoking substantially increased women's risk for experiencing frequent or severe vasomotor symptoms in a dose-response manner, and smoking intensified the effect of obesity: obese smokers had roughly double the relative risk of obese never-smokers.",
+      "figure": null,
+      "caveats": "Cohort/cross-sectional design, not a smoking-cessation RCT, so causality (vs residual confounding by other lifestyle factors correlated with smoking) cannot be established as firmly as for the RCT-based edges in this file."
+    },
+    {
+      "behavior_id": "low_gi_diet_pcos",
+      "marker_id": "pcos_androgens",
+      "direction": "-",
+      "effect": "Body hair (hirsutism proxy) SMD -0.40 (95% CI -0.46 to -0.35, P<0.0001, I2=0%; 3 studies, 132 participants) lower with low-GI diet vs control diet",
+      "effect_normalized": -0.40,
+      "normalization_method": "SMD vs control diet, meta-analysis of RCTs",
+      "evidence_tier": "C",
+      "population": "Overweight/obese women with PCOS, mean age 21-32; 8 studies (412 participants) in the full review, this outcome pooled from 3 studies (132 participants)",
+      "conditional_on": "Small evidence base (8 studies total, 412 participants); in the SAME 3-study/132-participant subgroup the review also found infertility significantly HIGHER (worse) with low-GI diet (SMD 1.45, 95% CI 0.30 to 2.61, P=0.01, I2=79%), an unreconciled, counter-intuitive finding alongside the favourable body-hair and emotional-health results",
+      "paper": {
+        "doi": "10.1016/j.heliyon.2021.e08338",
+        "title": "The effect of low glycemic index diet on the reproductive and clinical profile in women with polycystic ovarian syndrome: A systematic review and meta-analysis",
+        "year": 2021,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": 412
+      },
+      "verbatim": "Measured emotional health (3 studies, 132 participants, SMD: -1.97; 95%CI:-3.54, -0.40, P = 0.01, I2 = 89%) and body hair (3 studies, 132 participants, SMD: -0.40; 95%CI:-0.46, -0.35, P < 0.0001, I2 = 0%), were found to be significantly lower in women in LGD vs control diet groups. Moreover, infertility (3 studies, 132 participants, SMD: 1.45; 95%CI: 0.30, 2.61, P = 0.01, I2 = 79%) was significantly higher in women in LGD vs control diet groups.",
+      "key_results": "Eight studies (412 overweight/obese PCOS participants) were included. Low glycaemic index diet was associated with significantly lower emotional-health scores and body-hair (hirsutism) scores than control diets, but significantly higher infertility scores in the same small subgroup of 3 studies. The authors concluded LGD may play a role in reducing PCOS clinical/biochemical features, but the evidence is not strong enough for a definite recommendation.",
+      "figure": null,
+      "caveats": "The paradoxical 'higher infertility' finding in the same pooled subgroup that shows improved hirsutism is not explained by the authors and should be read as a sign that this evidence base (3 small studies) is too thin and heterogeneous (I2 up to 89%) to support a confident directional claim for this behavior overall."
+    },
+    {
+      "behavior_id": "vitamin_d_pcos",
+      "marker_id": "pcos_androgens",
+      "direction": "-",
+      "effect": "Total testosterone MD -0.17 (95% CI -0.29 to -0.05, p<0.05) reduced vs control; no significant difference in SHBG (MD 1.33, 95% CI -2.70 to 5.36) or modified Ferriman-Gallwey score (MD 0.04, 95% CI -0.79 to 0.86)",
+      "effect_normalized": -0.17,
+      "normalization_method": "Mean difference vs control, meta-analysis of RCTs",
+      "evidence_tier": "A",
+      "population": "Women with PCOS; 13 RCTs, 840 patients",
+      "conditional_on": "Statistically significant reduction in the biochemical marker (total testosterone) did not extend to the clinical hirsutism marker (mF-G score) or to SHBG in the same pooled analysis; vitamin D also raised serum vitamin D level, endometrial thickness, and reduced hs-CRP, parathyroid hormone, and total cholesterol",
+      "paper": {
+        "doi": "10.1016/j.heliyon.2023.e14291",
+        "title": "Vitamin D supplementation in the treatment of polycystic ovary syndrome: A meta-analysis of randomized controlled trials",
+        "year": 2023,
+        "design": "meta-analysis of RCTs",
+        "n": 840
+      },
+      "verbatim": "reduce the serum hs-CRP [MD = -0.54, 95%CI (-1.00, -0.08)], parathyroid hormone[MD = -14.76, 95%CI (-28.32, -1.19)], total cholesterol[MD = -12.00, 95%CI (-18.36, -5.56)] and total testosterone level [MD = -0.17, 95%CI (-0.29, -0.05)] (all p < 0.05). No significant differences in the SHBG level [MD = 1.33, 95%CI (-2.70, 5.36)] and mF-G score [MD = 0.04, 95%CI (-0.79, 0.86)] between vitamin D and control group were found (all p > 0.05).",
+      "key_results": "Thirteen RCTs with 840 PCOS patients were included. Vitamin D supplementation increased serum vitamin D level and endometrial thickness, and reduced hs-CRP, parathyroid hormone, total cholesterol, and total testosterone level. No significant differences in SHBG or modified Ferriman-Gallwey hirsutism score were found between vitamin D and control groups. Egger's tests showed no publication bias in any synthesized result.",
+      "figure": null,
+      "caveats": "The significant biochemical testosterone reduction did not translate into a significant change in the clinical hirsutism score (mF-G) in the same pooled analysis, a dissociation between biomarker and clinical-symptom outcomes worth flagging explicitly."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "Mediterranean diet in PCOS",
+      "reason": "No dedicated meta-analysis was located that pools a marker-level effect size (testosterone, Ferriman-Gallwey, or menstrual regularity) specifically for a Mediterranean dietary pattern in PCOS. Available trials (e.g. a 12-week RCT combining a Mediterranean/low-carbohydrate pattern vs a low-fat diet in overweight PCOS patients) are single small studies not yet pooled to the evidence bar this file requires. Low-glycaemic-index diet was kept instead because a dedicated systematic review/meta-analysis with quantified outcomes exists (10.1016/j.heliyon.2021.e08338)."
+    },
+    {
+      "candidate": "Alcohol on menstrual symptoms (dysmenorrhoea/PMS)",
+      "reason": "Evidence found was inconsistent and largely descriptive/cross-sectional (e.g. one Chinese university-student survey found lower rates of dysmenorrhoea among alcohol consumers than non-consumers; others report no association; none met the meta-analysis or adequately powered RCT/cohort bar with a poolable, quantified effect size on a named marker). Smoking was kept because a large pooled cohort analysis with quantified relative risks was available; alcohol was cut for lack of an equivalent quantitative source."
+    },
+    {
+      "candidate": "Myo-inositol on menstrual cyclicity/ovulation in PCOS",
+      "reason": "The 2023 PCOS-guideline systematic review and meta-analysis (10.1210/clinem/dgad762, 30 trials, 2230 participants) reports that menstrual-cycle and ovulation outcomes for myo-inositol/D-chiro-inositol were mixed across included studies without a single pooled, quantified effect size meeting this file's verbatim-with-numbers bar. The androgen-outcome edge for myo-inositol (non-significant testosterone SMD) was kept instead, since that number was directly quotable from a dedicated meta-analysis abstract."
+    },
+    {
+      "candidate": "D-aspartic acid / Tribulus terrestris style 'expected null' supplements for female-specific markers",
+      "reason": "These were candidates in the male-vitality goal (Goal A) design table, not in this female-health candidate list, and no equivalent PCOS/menopause/PMS-specific supplement trial data for them was sought or found in this pass; not evaluated, not cut on evidence, simply out of scope for this file."
+    }
+  ]
+}

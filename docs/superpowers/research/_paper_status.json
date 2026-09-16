@@ -1,0 +1,105 @@
+{
+ "_note": "Publication-status flags pulled from PubMed for every cited paper. Written by scripts/check_retractions.py; consumed by the merge step so that a flagged paper marks every row citing it.",
+ "checked": 207,
+ "resolved": 205,
+ "unresolved": [
+  "10.3389/fnut.2026.1893033",
+  "10.23950/jcmk/15827"
+ ],
+ "by_doi": {
+  "10.1016/j.jsxm.2018.12.002": [
+   {
+    "kind": "erratum",
+    "note": "J Sex Med. 2020 Mar;17(3):560. doi: 10.1016/j.jsxm.2020.01.021."
+   }
+  ],
+  "10.1136/bjsports-2017-097608": [
+   {
+    "kind": "erratum",
+    "note": "Br J Sports Med. 2020 Oct;54(19):e7. doi: 10.1136/bjsports-2017-097608corr1."
+   }
+  ],
+  "10.1249/MSS.0000000000002585": [
+   {
+    "kind": "erratum",
+    "note": "Med Sci Sports Exerc. 2022 Feb 1;54(2):370. doi: 10.1249/MSS.0000000000002838."
+   }
+  ],
+  "10.3389/fnut.2024.1424972": [
+   {
+    "kind": "erratum",
+    "note": "Front Nutr. 2025 Feb 17;12:1570800. doi: 10.3389/fnut.2025.1570800."
+   }
+  ],
+  "10.1136/bmj-2023-075847": [
+   {
+    "kind": "erratum",
+    "note": "BMJ. 2024 May 28;385:q1024. doi: 10.1136/bmj.q1024."
+   }
+  ],
+  "10.1001/jamapsychiatry.2023.3971": [
+   {
+    "kind": "erratum",
+    "note": "JAMA Psychiatry. 2024 Mar 1;81(3):320. doi: 10.1001/jamapsychiatry.2023.5480."
+   },
+   {
+    "kind": "erratum",
+    "note": "JAMA Psychiatry. 2024 Mar 1;81(3):320. doi: 10.1001/jamapsychiatry.2023.5364."
+   }
+  ],
+  "10.1038/s41398-019-0515-5": [
+   {
+    "kind": "erratum",
+    "note": "Transl Psychiatry. 2021 Sep 7;11(1):465. doi: 10.1038/s41398-021-01582-6."
+   }
+  ],
+  "10.1007/s00127-022-02261-7": [
+   {
+    "kind": "erratum",
+    "note": "Soc Psychiatry Psychiatr Epidemiol. 2022 Nov;57(11):2179. doi: 10.1007/s00127-022-02337-4."
+   }
+  ],
+  "10.1093/eurjpc/zwad229": [
+   {
+    "kind": "erratum",
+    "note": "Eur J Prev Cardiol. 2023 Dec 21;30(18):2045. doi: 10.1093/eurjpc/zwad263."
+   }
+  ],
+  "10.1001/jamanetworkopen.2023.6185": [
+   {
+    "kind": "erratum",
+    "note": "JAMA Netw Open. 2023 May 1;6(5):e2315283. doi: 10.1001/jamanetworkopen.2023.15283."
+   }
+  ],
+  "10.1136/bmj.g4490": [
+   {
+    "kind": "erratum",
+    "note": "BMJ. 2014;349:5472"
+   }
+  ],
+  "10.1001/jama.2018.20579": [
+   {
+    "kind": "erratum",
+    "note": "JAMA. 2019 Aug 6;322(5):469. doi: 10.1001/jama.2019.10532."
+   }
+  ],
+  "10.1007/s00198-015-3386-5": [
+   {
+    "kind": "erratum",
+    "note": "Osteoporos Int. 2016 Aug;27(8):2643-2646. doi: 10.1007/s00198-016-3699-z."
+   }
+  ],
+  "10.1016/j.joca.2024.08.012": [
+   {
+    "kind": "expression_of_concern",
+    "note": "Osteoarthritis Cartilage. 2024 Nov;32(11):1513. doi: 10.1016/j.joca.2024.10.001."
+   }
+  ],
+  "10.1093/ajcn/nqac125": [
+   {
+    "kind": "erratum",
+    "note": "Am J Clin Nutr. 2022 Nov;116(5):1454. doi: 10.1093/ajcn/nqac262."
+   }
+  ]
+ }
+}

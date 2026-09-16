@@ -1,0 +1,456 @@
+{
+  "goal": {
+    "id": "goal_n_oral",
+    "name": "Oral health",
+    "definition": "Dental caries increment (DMFS/DMFT increment or prevented fraction), gingival inflammation (gingival or bleeding index), periodontal probing depth / clinical attachment level, and dental plaque (plaque index) as measurable markers of tooth decay and periodontal disease risk."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_n_oral",
+        "name": "Oral health",
+        "definition": "Dental caries increment (DMFS/DMFT increment or prevented fraction), gingival inflammation (gingival or bleeding index), periodontal probing depth / clinical attachment level, and dental plaque (plaque index) as measurable markers of tooth decay and periodontal disease risk."
+      }
+    ],
+    "markers": [
+      {
+        "id": "caries_increment",
+        "name": "Dental caries increment",
+        "unit": "DMFS/DMFT (or dmfs/dmft) increment; prevented fraction (%); odds ratio for incidence",
+        "goal_ids": ["goal_n_oral"]
+      },
+      {
+        "id": "gingival_inflammation",
+        "name": "Gingival inflammation",
+        "unit": "Gingival Index (Loe-Silness, 0-3 scale) or % bleeding sites; SMD/MD as reported",
+        "goal_ids": ["goal_n_oral"]
+      },
+      {
+        "id": "periodontal_attachment",
+        "name": "Periodontal probing depth or clinical attachment level",
+        "unit": "mm (probing pocket depth or clinical attachment level); risk ratio for periodontitis incidence/progression where mm not reported",
+        "goal_ids": ["goal_n_oral"]
+      },
+      {
+        "id": "plaque_index",
+        "name": "Dental plaque",
+        "unit": "Plaque index (e.g. Quigley-Hein/Turesky, 0-5 scale) or SMD",
+        "goal_ids": ["goal_n_oral"]
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "fluoride_toothpaste",
+        "name": "Fluoride toothpaste (concentration)",
+        "category": "habit",
+        "dose_or_intensity": "Regular toothbrushing with fluoride toothpaste at concentrations from non-fluoride up to 2800 ppm; dose-response strongest between non-fluoride and ~1450-1500 ppm"
+      },
+      {
+        "id": "toothbrushing_frequency",
+        "name": "Toothbrushing frequency",
+        "category": "habit",
+        "dose_or_intensity": "Self-reported frequency, compared as >=2 times/day vs <2 times/day and >=1 time/day vs <1 time/day, in children and adults"
+      },
+      {
+        "id": "powered_toothbrushing",
+        "name": "Powered toothbrushing (vs manual)",
+        "category": "habit",
+        "dose_or_intensity": "Everyday unsupervised use of a powered toothbrush vs manual toothbrush, >=4 weeks; rotation-oscillation type has the largest evidence base"
+      },
+      {
+        "id": "flossing",
+        "name": "Dental floss (in addition to toothbrushing)",
+        "category": "habit",
+        "dose_or_intensity": "Daily or near-daily flossing added to toothbrushing vs toothbrushing alone, in adults, trials of 1-6 months"
+      },
+      {
+        "id": "interdental_brushes",
+        "name": "Interdental brushes (in addition to toothbrushing)",
+        "category": "habit",
+        "dose_or_intensity": "Daily interdental brush use added to toothbrushing vs toothbrushing alone, or vs floss, in adults"
+      },
+      {
+        "id": "chlorhexidine_mouthwash",
+        "name": "Chlorhexidine mouthrinse (adjunctive)",
+        "category": "habit",
+        "dose_or_intensity": "Chlorhexidine mouthrinse used as an adjunct to mechanical oral hygiene for >=4 weeks; no evidence that concentration or once- vs twice-daily rinsing changes effect size"
+      },
+      {
+        "id": "free_sugar_intake",
+        "name": "Free/added dietary sugar intake",
+        "category": "diet",
+        "dose_or_intensity": "Amount of free sugars intake as percentage of total energy (E); WHO guideline thresholds of <10% E and <5% E examined"
+      },
+      {
+        "id": "xylitol_products",
+        "name": "Xylitol-containing products (toothpaste, gum, lozenges, syrup)",
+        "category": "diet",
+        "dose_or_intensity": "10% xylitol fluoride toothpaste used 2.5-3 years (strongest evidence); also lozenges, sucking tablets, syrup (2.67-8 g/day), and wipes in children, infants, and adults -- chewing gum specifically not isolated as its own pooled category in the available evidence"
+      },
+      {
+        "id": "smoking",
+        "name": "Cigarette/tobacco smoking",
+        "category": "habit",
+        "dose_or_intensity": "Current tobacco smoking status, pooled across prospective longitudinal studies of periodontitis incidence and progression"
+      },
+      {
+        "id": "professional_scaling",
+        "name": "Routine professional scale and polish",
+        "category": "habit",
+        "dose_or_intensity": "Six-monthly or twelve-monthly professional scaling/polishing vs no scheduled treatment, in adults without severe periodontitis who are regular dental attenders"
+      },
+      {
+        "id": "diabetes_status",
+        "name": "Diabetes (type 1/2/gestational) status",
+        "category": "habit",
+        "dose_or_intensity": "Diagnosed diabetes vs no diabetes, longitudinal incidence of periodontitis; dose-response by glycemic control (HbA1c) level specifically was not established by any single source meeting the DOI/verbatim bar in this search"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "fluoride_toothpaste",
+      "marker_id": "caries_increment",
+      "direction": "-",
+      "effect": "Network meta-analysis found 1000-1250 ppm and 1450-1500 ppm fluoride toothpaste reduce caries increment vs non-fluoride toothpaste (SMD -0.28 and -0.36 respectively) in children/adolescents' permanent teeth, with a small additional benefit of 1450-1500 ppm over 1000-1250 ppm (SMD -0.08), and no further benefit above ~1500 ppm",
+      "effect_normalized": -0.36,
+      "normalization_method": "SMD, network meta-analysis of D(M)FS increment",
+      "evidence_tier": "A",
+      "population": "96 RCTs (1955-2014); children, adolescents, and adults; primary, immature permanent, and mature permanent dentition",
+      "conditional_on": "Dose-response present between non-fluoride and ~1450-1500 ppm; further increases to 1700-2800 ppm show no additional benefit vs 1450-1500 ppm; in young children's primary dentition, 1500 ppm reduced caries increment vs non-fluoride toothpaste (MD -1.86 dfs) but the choice of concentration for young children must be balanced against fluorosis risk",
+      "paper": {
+        "doi": "10.1002/14651858.CD007868.pub3",
+        "title": "Fluoride toothpastes of different concentrations for preventing dental caries",
+        "year": 2019,
+        "design": "Cochrane network meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "there was high- and moderate-certainty evidence that 1000 to 1250 ppm or 1450 to 1500 ppm fluoride toothpaste reduces caries increments when compared with non-fluoride toothpaste (SMD -0.28, 95% CI -0.32 to -0.25, 55 studies; and SMD -0.36, 95% CI -0.43 to -0.29, four studies); there was moderate-certainty evidence that 1450 to 1500 ppm fluoride toothpaste slightly reduces caries increments when compared to 1000 to 1250 ppm (SMD -0.08, 95% CI -0.14 to -0.01, 10 studies); and moderate-certainty evidence that the caries increments are similar for 1700 to 2200 ppm and 2400 to 2800 ppm fluoride toothpaste when compared to 1450 to 1500 ppm (SMD 0.04, 95% CI -0.07 to 0.15, indirect evidence only; SMD -0.05, 95% CI -0.14 to 0.05, two studies).",
+      "key_results": "In the primary dentition of young children, 1500 ppm fluoride toothpaste reduces caries increment when compared with non-fluoride toothpaste (MD -1.86 dfs, 95% CI -2.51 to -1.21; 998 participants, one study, moderate-certainty evidence). In the adult permanent dentition, 1000 or 1100 ppm fluoride toothpaste reduces DMFS increment when compared with non-fluoride toothpaste (MD -0.53, 95% CI -1.02 to -0.04; 2162 participants, three studies, moderate-certainty evidence). Authors' conclusion: 'a dose-response effect was observed for D(M)FS in children and adolescents... The choice of fluoride toothpaste concentration for young children should be balanced against the risk of fluorosis.'",
+      "figure": null,
+      "caveats": "Many head-to-head concentration comparisons rest on low-certainty evidence or single studies; the primary-dentition and adult-dentition point estimates each come from very few trials; fluorosis risk (the tradeoff for higher concentrations) is not itself one of this tree's four markers."
+    },
+    {
+      "behavior_id": "toothbrushing_frequency",
+      "marker_id": "caries_increment",
+      "direction": "-",
+      "effect": "Infrequent brushers had higher caries incidence (OR 1.50, 95% CI 1.34-1.69) and increment (SMD 0.28, 95% CI 0.13-0.44) than frequent brushers; similar effect whether the threshold was >=2/day vs <2/day (OR 1.45) or >=1/day vs <1/day (OR 1.56)",
+      "effect_normalized": 1.5,
+      "normalization_method": "OR, infrequent vs frequent brushers (caries incidence); toothbrushing frequency is protective, i.e. the reciprocal direction",
+      "evidence_tier": "C",
+      "population": "33 eligible studies (from 5,494 titles screened) pooled across three meta-analyses; children and adults; incidence and increment outcomes, both self-reported brushing frequency",
+      "conditional_on": "Effect of infrequent brushing was larger in deciduous dentition (OR 1.75, 95% CI 1.49-2.06) than permanent dentition (OR 1.39, 95% CI 1.29-1.49); meta-regression found no influence of sample size, follow-up length, caries diagnostic threshold, or study quality on the effect estimate",
+      "paper": {
+        "doi": "10.1177/0022034516655315",
+        "title": "Effect of Toothbrushing Frequency on Incidence and Increment of Dental Caries: A Systematic Review and Meta-Analysis",
+        "year": 2016,
+        "design": "systematic review and meta-analysis, predominantly observational (cohort/cross-sectional) studies with self-reported exposure",
+        "n": null
+      },
+      "verbatim": "Self-reported infrequent brushers demonstrated higher incidence (odds ratio [OR], 1.50; 95% confidence interval [CI], 1.34 to 1.69) and increment (standardized mean difference [SMD], 0.28; 95% CI: 0.13 to 0.44) of carious lesions than frequent brushers. The odds of having carious lesions differed little when subgroup analysis was conducted to compare the incidence between >=2 times/d vs <2 times/d (OR: 1.45; 95% CI: 1.21 to 1.74) and >=1 time/d vs <1 time/d brushers (OR: 1.56; 95% CI: 1.37 to 1.78). When meta-analysis was conducted with the type of dentition as subgroups, the effect of infrequent brushing on incidence and increment of carious lesions was higher in deciduous (OR: 1.75; 95% CI: 1.49 to 2.06) than permanent dentition (OR: 1.39; 95% CI: 1.29 to 1.49).",
+      "key_results": "The paper opens by noting that 'brushing twice a day has become a social norm, but the evidence base for this frequency is weak.' Meta-regression indicated that none of sample size, follow-up period, diagnosis level for carious lesions, or methodological quality of the articles influenced the effect estimate, suggesting the association is fairly robust to study-level differences even though it is observational.",
+      "figure": null,
+      "caveats": "Underlying studies are observational with self-reported brushing frequency, not RCTs -- weaker causal evidence than the fluoride-concentration edge; brushing frequency likely correlates with other hygiene behaviors and socioeconomic factors not fully adjusted for in all included studies, so tier is set to C (cohort/cross-sectional) rather than A despite being called a meta-analysis."
+    },
+    {
+      "behavior_id": "powered_toothbrushing",
+      "marker_id": "plaque_index",
+      "direction": "-",
+      "effect": "Powered toothbrushes reduced plaque vs manual toothbrushes short term (SMD -0.50, 95% CI -0.70 to -0.31) and long term (SMD -0.47, 95% CI -0.82 to -0.11), corresponding to an 11% short-term and 21% long-term reduction on the Quigley Hein (Turesky) index",
+      "effect_normalized": -0.5,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "51 of 56 eligible RCTs provided data for meta-analysis, 4624 participants; children and adults, everyday unsupervised use >=4 weeks",
+      "conditional_on": "Rotation-oscillation powered brushes had the largest evidence base and a statistically significant reduction at both time points; high heterogeneity (I2 = 83% short term, 86% long term) was not explained by powered-toothbrush subtype",
+      "paper": {
+        "doi": "10.1002/14651858.CD002281.pub3",
+        "title": "Powered versus manual toothbrushing for oral health",
+        "year": 2014,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 4624
+      },
+      "verbatim": "There is moderate quality evidence that powered toothbrushes provide a statistically significant benefit compared with manual toothbrushes with regard to the reduction of plaque in both the short term (standardised mean difference (SMD) -0.50 (95% confidence interval (CI) -0.70 to -0.31); 40 trials, n = 2871) and long term (SMD -0.47 (95% CI -0.82 to -0.11; 14 trials, n = 978). These results correspond to an 11% reduction in plaque for the Quigley Hein index (Turesky) in the short term and 21% reduction long term.",
+      "key_results": "Authors' conclusion: 'Powered toothbrushes reduce plaque and gingivitis more than manual toothbrushing in the short and long term. The clinical importance of these findings remains unclear.' The greatest body of evidence was for rotation-oscillation brushes (27 of 56 trials), which showed significant reductions in both plaque and gingivitis at both time points.",
+      "figure": null,
+      "caveats": "High heterogeneity (I2 83-86%) is unexplained by toothbrush subtype; two co-authors had prior industry-funded trial involvement with Braun AG (a powered-toothbrush manufacturer), though this is disclosed and separate from the meta-analytic data extraction; authors themselves say clinical importance of the statistically significant effect is unclear."
+    },
+    {
+      "behavior_id": "powered_toothbrushing",
+      "marker_id": "gingival_inflammation",
+      "direction": "-",
+      "effect": "Powered toothbrushes reduced gingivitis vs manual toothbrushes short term (SMD -0.43, 95% CI -0.60 to -0.25) and long term (SMD -0.21, 95% CI -0.31 to -0.12), corresponding to a 6% short-term and 11% long-term reduction on the Loe and Silness index",
+      "effect_normalized": -0.43,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "51 of 56 eligible RCTs provided data for meta-analysis; short-term gingivitis analysis 44 trials/3345 participants, long-term 16 trials/1645 participants",
+      "conditional_on": "Rotation-oscillation brushes again drove most of the evidence base; high heterogeneity (I2 = 82% short term, 51% long term) unexplained by subtype",
+      "paper": {
+        "doi": "10.1002/14651858.CD002281.pub3",
+        "title": "Powered versus manual toothbrushing for oral health",
+        "year": 2014,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 4624
+      },
+      "verbatim": "With regard to gingivitis, there is moderate quality evidence that powered toothbrushes again provide a statistically significant benefit when compared with manual toothbrushes both in the short term (SMD -0.43 (95% CI -0.60 to -0.25); 44 trials, n = 3345) and long term (SMD -0.21 (95% CI -0.31 to -0.12); 16 trials, n = 1645). This corresponds to a 6% and 11% reduction in gingivitis for the Loe and Silness index respectively.",
+      "key_results": "This gingivitis benefit accompanies the plaque benefit reported for the same trial set (see the powered_toothbrushing -> plaque_index edge), consistent with plaque removal as the underlying mechanism. Cost, reliability and side effects were inconsistently reported across trials; any reported side effects were localised and only temporary.",
+      "figure": null,
+      "caveats": "Same trial base and heterogeneity caveats as the plaque_index edge for this behavior; the smaller long-term effect size (SMD -0.21) vs short-term (SMD -0.43) suggests some attenuation of benefit over time."
+    },
+    {
+      "behavior_id": "flossing",
+      "marker_id": "gingival_inflammation",
+      "direction": "-",
+      "effect": "Flossing plus toothbrushing may reduce gingivitis (Gingival Index) vs toothbrushing alone at 1 month (SMD -0.58, 95% CI -1.12 to -0.04); low-certainty evidence; results for bleeding sites and plaque were inconsistent",
+      "effect_normalized": -0.58,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "8 of 15 floss trials (585 participants) contributed to this comparison, within a total review of 35 RCTs/3929 adult participants comparing interdental devices to toothbrushing alone",
+      "conditional_on": "GRADE certainty rated low; effect not clearly shown at 3 or 6 months in this review; most participants had a low level of baseline gingival inflammation, limiting generalizability to patients with more disease",
+      "paper": {
+        "doi": "10.1002/14651858.CD012018.pub2",
+        "title": "Home use of interdental cleaning devices, in addition to toothbrushing, for preventing and controlling periodontal diseases and dental caries",
+        "year": 2019,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 3929
+      },
+      "verbatim": "Low-certainty evidence suggested that flossing, in addition to toothbrushing, may reduce gingivitis (measured by gingival index (GI)) at one month (SMD -0.58, 95% confidence interval (CI) -1.12 to -0.04; 8 trials, 585 participants), three months or six months. The results for proportion of bleeding sites and plaque were inconsistent (very low-certainty evidence).",
+      "key_results": "The review's overall conclusion: 'Using floss or interdental brushes in addition to toothbrushing may reduce gingivitis or plaque, or both, more than toothbrushing alone. Interdental brushes may be more effective than floss.' Studies were at high risk of performance bias because blinding of participants to floss/no-floss was not possible.",
+      "figure": null,
+      "caveats": "The earlier dedicated flossing review (Cochrane CD008829, Sambunjak 2011/2019) was formally WITHDRAWN by Cochrane; this edge instead uses the current living review (CD012018) which pools floss trials alongside other interdental devices. High risk of performance bias across trials and low baseline gingival inflammation in most participants both limit confidence in generalizing this effect."
+    },
+    {
+      "behavior_id": "flossing",
+      "marker_id": "caries_increment",
+      "direction": null,
+      "effect": "No trials of flossing plus toothbrushing versus toothbrushing alone reported effects on interproximal dental caries -- an evidence gap, not a demonstrated null effect",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - absence of RCT data on this outcome, not a null trial result",
+      "evidence_tier": "A",
+      "population": "35 RCTs, 3929 adult participants screened across all interdental-device comparisons in the current living Cochrane review; 15 of these trials examined floss specifically",
+      "conditional_on": "Applies specifically to the interproximal-caries outcome; the same gap was reported by the prior (now withdrawn) dedicated flossing review",
+      "paper": {
+        "doi": "10.1002/14651858.CD012018.pub2",
+        "title": "Home use of interdental cleaning devices, in addition to toothbrushing, for preventing and controlling periodontal diseases and dental caries",
+        "year": 2019,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 3929
+      },
+      "verbatim": "No trials assessed interproximal caries, and most did not assess periodontitis.",
+      "key_results": "The now-withdrawn 2019 Cochrane flossing review (CD008829.pub3) reported the identical gap in its own main results: 'None of the included trials reported data for the outcomes of caries, calculus, clinical attachment loss, or quality of life.' Two independent Cochrane review teams, a decade apart, found zero RCTs testing flossing against a caries endpoint -- the popular claim that flossing prevents cavities has never been tested this way in a controlled trial.",
+      "figure": null,
+      "caveats": "This is an evidence gap, not a demonstrated null effect: absence of RCT data does not prove flossing has no effect on caries, only that no included trial has measured it. Shipped here because the schema's null/no-effect field is the right place to record 'studied area with no data', matching the design's explicit instruction that null results are content."
+    },
+    {
+      "behavior_id": "interdental_brushes",
+      "marker_id": "gingival_inflammation",
+      "direction": "-",
+      "effect": "Interdental brushes plus toothbrushing reduced gingivitis (GI) vs toothbrushing alone at 1 month (MD -0.53, 95% CI -0.83 to -0.23), very low-certainty evidence from a single small trial; interdental brushes also reduced gingivitis more than floss at 1 and 3 months (low-certainty), though not periodontitis measured by probing pocket depth",
+      "effect_normalized": -0.53,
+      "normalization_method": "MD (Gingival Index)",
+      "evidence_tier": "A",
+      "population": "1 trial, 62 participants for the toothbrushing-alone comparison; 9 trials for the head-to-head comparison against floss, within the same 35-RCT/3929-participant review",
+      "conditional_on": "The toothbrushing-alone comparison rests on a single small trial (very low certainty); the more robust finding is the 9-trial head-to-head comparison against floss showing interdental brushes may reduce gingivitis more than floss, with no difference found for periodontitis measured by probing pocket depth",
+      "paper": {
+        "doi": "10.1002/14651858.CD012018.pub2",
+        "title": "Home use of interdental cleaning devices, in addition to toothbrushing, for preventing and controlling periodontal diseases and dental caries",
+        "year": 2019,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 3929
+      },
+      "verbatim": "Very low-certainty evidence suggested that using an interdental brush, plus toothbrushing, may reduce gingivitis (measured by GI) at one month (MD -0.53, 95% CI -0.83 to -0.23; 1 trial, 62 participants), though there was no clear difference in bleeding sites (MD -0.05, 95% CI -0.13 to 0.03; 1 trial, 31 participants). ... Low-certainty evidence suggested interdental brushes may reduce gingivitis more than floss at one and three months, but did not show a difference for periodontitis measured by probing pocket depth.",
+      "key_results": "The review's overall conclusion places interdental brushes ahead of floss: 'Using floss or interdental brushes in addition to toothbrushing may reduce gingivitis or plaque, or both, more than toothbrushing alone. Interdental brushes may be more effective than floss.' This is the specific comparison the design brief asked to keep distinct from floss's caries evidence.",
+      "figure": null,
+      "caveats": "Primary comparison vs toothbrushing alone is a single small trial (very low certainty); do not read the floss-vs-brush comparison as proof interdental brushes prevent periodontitis -- no difference from floss was found on probing depth."
+    },
+    {
+      "behavior_id": "interdental_brushes",
+      "marker_id": "plaque_index",
+      "direction": "-",
+      "effect": "Interdental brushes plus toothbrushing reduced plaque more than toothbrushing alone (SMD -1.07, 95% CI -1.51 to -0.63), low-certainty evidence from 2 small trials",
+      "effect_normalized": -1.07,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "2 trials, 93 participants",
+      "conditional_on": "Low-certainty evidence from only 2 small trials; the head-to-head comparison of interdental brushes vs floss for plaque was inconsistent across trials",
+      "paper": {
+        "doi": "10.1002/14651858.CD012018.pub2",
+        "title": "Home use of interdental cleaning devices, in addition to toothbrushing, for preventing and controlling periodontal diseases and dental caries",
+        "year": 2019,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 3929
+      },
+      "verbatim": "Low-certainty evidence suggested interdental brushes may reduce plaque more than toothbrushing alone (SMD -1.07, 95% CI -1.51 to -0.63; 2 trials, 93 participants).",
+      "key_results": "The review separately notes: 'Evidence for plaque was inconsistent' when interdental brushes were compared directly against floss (rather than against toothbrushing alone), so this large point estimate should not be read as settled.",
+      "figure": null,
+      "caveats": "Based on only 2 small trials (93 participants total); the large effect size (SMD -1.07) combined with the small trial count raises the usual risk of small-study overestimation."
+    },
+    {
+      "behavior_id": "chlorhexidine_mouthwash",
+      "marker_id": "plaque_index",
+      "direction": "-",
+      "effect": "Chlorhexidine mouthrinse reduced plaque by SMD 1.45 (95% CI 1.00 to 1.90) at 4-6 weeks vs placebo/control -- a large reduction -- with a similar large reduction at 6 months; high-quality evidence",
+      "effect_normalized": -1.45,
+      "normalization_method": "SMD",
+      "evidence_tier": "A",
+      "population": "12 of 51 trials (950 participants) contributed to the plaque outcome, within a total review of 51 RCTs/5345 participants",
+      "conditional_on": "No evidence that chlorhexidine concentration or rinsing frequency (once vs twice daily) changes the size of the plaque benefit; comes with a large increase in extrinsic tooth staining (SMD 1.07) as an adverse effect",
+      "paper": {
+        "doi": "10.1002/14651858.CD008676.pub2",
+        "title": "Chlorhexidine mouthrinse as an adjunctive treatment for gingival health",
+        "year": 2017,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 5345
+      },
+      "verbatim": "Plaque Plaque was measured by different indices and the SMD at 4 to 6 weeks was 1.45 (95% CI 1.00 to 1.90) standard deviations lower in the chlorhexidine group (12 trials, 950 participants analysed, high-quality evidence), indicating a large reduction in plaque. A similar large reduction was found for chlorhexidine mouthrinse use at 6 months.",
+      "key_results": "Authors' conclusion: 'There is high-quality evidence of a large reduction in dental plaque with chlorhexidine mouthrinse used as an adjunct to mechanical oral hygiene procedures for 4 to 6 weeks and 6 months. There is no evidence that one concentration of chlorhexidine rinse is more effective than another.' Extrinsic tooth staining rose sharply in the same trials (SMD 1.07, 95% CI 0.80-1.34).",
+      "figure": null,
+      "caveats": "50 of 51 included trials were at high risk of bias, though the authors judged further research unlikely to change the plaque/gingivitis estimates specifically; extrinsic tooth staining is a near-universal adverse effect that limits long-term substitution for mechanical cleaning."
+    },
+    {
+      "behavior_id": "chlorhexidine_mouthwash",
+      "marker_id": "gingival_inflammation",
+      "direction": "-",
+      "effect": "Chlorhexidine mouthrinse reduced gingivitis (Gingival Index, 0-3 scale) by 0.21 points (95% CI 0.11 to 0.31) vs placebo/control at 4-6 weeks in people with mild gingival inflammation, high-quality evidence, but the authors judged this reduction not clinically relevant",
+      "effect_normalized": -0.21,
+      "normalization_method": "MD (Gingival Index, 0-3 scale)",
+      "evidence_tier": "A",
+      "population": "10 of 51 trials (805 participants) with mild gingival inflammation at baseline (mean GI score of 1)",
+      "conditional_on": "Insufficient data to determine the effect in people with moderate-to-severe gingival inflammation (mean GI 1.1-3); the finding is specific to mild-inflammation populations",
+      "paper": {
+        "doi": "10.1002/14651858.CD008676.pub2",
+        "title": "Chlorhexidine mouthrinse as an adjunctive treatment for gingival health",
+        "year": 2017,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 5345
+      },
+      "verbatim": "After 4 to 6 weeks of use, chlorhexidine mouthrinse reduced gingivitis (Gingival Index (GI) 0 to 3 scale) by 0.21 (95% CI 0.11 to 0.31) compared to placebo, control or no mouthrinse (10 trials, 805 participants with mild gingival inflammation (mean score 1 on the GI scale) analysed, high-quality evidence). A similar effect size was found for reducing gingivitis at 6 months.",
+      "key_results": "Authors' conclusion is explicit about the statistical/clinical divergence: 'There is high-quality evidence from studies that reported the Loe and Silness Gingival Index of a reduction in gingivitis in individuals with mild gingival inflammation on average... that was not considered to be clinically relevant.' There is insufficient evidence for people with moderate or severe gingival inflammation.",
+      "figure": null,
+      "caveats": "A rare case in this dataset where a statistically significant, high-quality-evidence effect is explicitly labeled by the reviewers themselves as not clinically relevant -- worth surfacing precisely because it cuts against a naive 'high tier + significant = important' reading."
+    },
+    {
+      "behavior_id": "free_sugar_intake",
+      "marker_id": "caries_increment",
+      "direction": "+",
+      "effect": "Moderate-quality evidence that caries is lower when free-sugars intake is below 10% of energy; a significant relationship was also seen at the stricter <5% energy threshold but of very low quality; 42 of 50 studies in children and 5 of 5 in adults reported at least one positive sugar-caries association",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - data variability across the 55 included studies precluded meta-analysis; findings are a graded qualitative synthesis (GRADE), not a single pooled effect size",
+      "evidence_tier": "C",
+      "population": "55 studies (3 intervention, 8 cohort, 20 population, 24 cross-sectional) selected from 5,990 papers identified; children and adults",
+      "conditional_on": "Association held across both children and adults; evidence graded moderate quality for the <10% energy threshold and very low quality for the stricter <5% energy threshold; only 3 of 55 included studies were intervention trials, the rest observational",
+      "paper": {
+        "doi": "10.1177/0022034513508954",
+        "title": "Effect on caries of restricting sugars intake: systematic review to inform WHO guidelines",
+        "year": 2014,
+        "design": "systematic review of mixed intervention/cohort/cross-sectional studies (GRADE-rated), commissioned to inform WHO guidelines",
+        "n": null
+      },
+      "verbatim": "Of the studies, 42 out of 50 of those in children and 5 out of 5 in adults reported at least one positive association between sugars and caries. There is evidence of moderate quality showing that caries is lower when free-sugars intake is < 10% E. With the < 5% E cut-off, a significant relationship was observed, but the evidence was judged to be of very low quality.",
+      "key_results": "This review directly underpinned the World Health Organization's guideline recommending free sugars intake below 10% of total energy, with a conditional recommendation for below 5%. 'Data variability limited meta-analysis,' so the review reports a qualitative/vote-counting synthesis rather than a single pooled effect size, unlike most of the RCT-based edges in this dataset.",
+      "figure": null,
+      "caveats": "No pooled quantitative effect size is available because data variability across designs precluded meta-analysis; only 3 of 55 included studies were true intervention trials; the stricter <5% E finding is explicitly graded very low quality by the authors' own GRADE assessment, so it is presented here as suggestive rather than established."
+    },
+    {
+      "behavior_id": "xylitol_products",
+      "marker_id": "caries_increment",
+      "direction": null,
+      "effect": "Fluoride toothpaste containing 10% xylitol may reduce caries by 13% vs fluoride-only toothpaste over 2.5-3 years (prevented fraction -0.13, 95% CI -0.18 to -0.08), low-quality evidence from only two studies by the same author group in the same population; evidence for other xylitol formats (lozenges, tablets, syrup, wipes) in children and adults was insufficient or compatible with both benefit and harm; no chewing-gum-specific pooled estimate was reported",
+      "effect_normalized": -0.13,
+      "normalization_method": "prevented fraction (PF), fixed-effect model",
+      "evidence_tier": "B",
+      "population": "10 RCTs, 5903 participants total across all xylitol product formats; children, infants, and adults",
+      "conditional_on": "The one reasonably-sized positive finding (PF -0.13) is specific to xylitol-containing TOOTHPASTE, not chewing gum, and comes from only two studies conducted by the same author group in the same population -- an unreplicated finding the review's own authors flag for caution; a high-dose xylitol syrup (8 g/day) reduced caries by 58% vs low-dose (2.67 g/day) in one small 94-infant study; lozenges, sucking tablets, and wipes each had confidence intervals compatible with both benefit and harm",
+      "paper": {
+        "doi": "10.1002/14651858.CD010743.pub2",
+        "title": "Xylitol-containing products for preventing dental caries in children and adults",
+        "year": 2015,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 5903
+      },
+      "verbatim": "The main finding of the review was that, over 2.5 to 3 years of use, a fluoride toothpaste containing 10% xylitol may reduce caries by 13% when compared to a fluoride-only toothpaste (PF -0.13, 95% CI -0.18 to -0.08, 4216 children analysed, low-quality evidence).",
+      "key_results": "The remaining evidence on children, from small single studies with risk of bias issues and great uncertainty associated with the effect estimates, was insufficient to determine a benefit from xylitol products. One study reported that xylitol syrup (8 g per day) reduced caries by 58% (95% CI 33% to 83%, 94 infants analysed, low quality evidence) when compared to a low-dose xylitol syrup (2.67 g per day) consumed for 1 year. The following results had 95% CIs that were compatible with both a reduction and an increase in caries associated with xylitol: xylitol lozenges versus no treatment in children; xylitol sucking tablets versus no treatment in infants; xylitol tablets versus control (sorbitol) tablets in infants; xylitol wipes versus control wipes in infants. There was only one study investigating the effects of xylitol lozenges, when compared to control lozenges, in adults; the effect estimate had a 95% CI that was compatible with both a reduction and an increase in caries associated with xylitol.",
+      "figure": null,
+      "caveats": "CORRECTED FROM CANDIDATE 'xylitol chewing gum': this review does not isolate chewing gum as its own product category with a pooled effect estimate -- the abstract's only quantified positive finding concerns xylitol-containing toothpaste, and it is downgraded because it rests on two studies from a single author group in one population. Treat the popular claim that xylitol gum specifically prevents cavities as not established by this systematic review; direction is recorded as null (studied broadly, no reliable gum-specific effect identified) rather than as a confirmed benefit."
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "periodontal_attachment",
+      "direction": "+",
+      "effect": "Smoking increased the risk of periodontitis incidence/progression by 85% in prospective longitudinal studies (pooled adjusted risk ratio 1.85, 95% CI 1.5 to 2.2)",
+      "effect_normalized": 1.85,
+      "normalization_method": "pooled adjusted risk ratio (RR), periodontitis incidence/progression",
+      "evidence_tier": "A",
+      "population": "14 of 28 identified longitudinal studies contributed poolable data to the meta-analysis",
+      "conditional_on": "Meta-regression found age explained 54.2% of between-study variability, follow-up time 13.5%, loss to follow-up 10.7%, periodontal case-definition criteria 2.1%, and periodontitis severity 16.9% -- smoking dose (e.g. pack-years) was not reported as a separate continuous moderator in the abstract",
+      "paper": {
+        "doi": "10.1016/j.amepre.2018.02.014",
+        "title": "Effect of Smoking on Periodontitis: A Systematic Review and Meta-regression",
+        "year": 2018,
+        "design": "systematic review and meta-regression of prospective longitudinal studies",
+        "n": null
+      },
+      "verbatim": "Pooled adjusted risk ratios estimate that smoking increases the risk of periodontitis by 85% (risk ratio=1.85, 95% CI=1.5, 2.2). Meta-regression demonstrated that age explained 54.2% of the variability between studies, time of follow-up explained 13.5%, loss to follow-up 10.7%, criteria used to assess the periodontal status explained 2.1%, and severity of periodontitis explained 16.9%.",
+      "key_results": "Authors' conclusion: 'Smoking has a detrimental effect on the incidence and progression of periodontitis. Tobacco smoking, therefore, is important information that should be assessed along with other risk factors for periodontitis.' Only 14 of 28 identified studies (50%) had data suitable for pooling.",
+      "figure": null,
+      "caveats": "This tree keeps smoking's oral effect scoped to periodontitis incidence/progression (a composite diagnosis, mapped here to the periodontal_attachment marker as the closest available), not to systemic inflammation -- the claim that periodontal disease improves systemic inflammation belongs to a different goal tree, per this project's scope. Outcome is a risk ratio for a diagnosis, not a continuous mm value; half of identified studies could not be pooled."
+    },
+    {
+      "behavior_id": "diabetes_status",
+      "marker_id": "periodontal_attachment",
+      "direction": "+",
+      "effect": "In 28 pooled longitudinal studies, baseline diabetes status was associated with higher newly incident periodontitis, though with only modest pooled risk-ratio differences between groups; the reverse direction (periodontitis predicting incident type 2 diabetes) was stronger and more consistent (18-25% higher incidence)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - the abstract reports the diabetes-to-periodontitis pooled RR only qualitatively as 'modest', without a single point estimate and CI for that direction",
+      "evidence_tier": "A",
+      "population": "28 longitudinal studies, 16 countries, >300,000 participants; type 1, type 2, and gestational diabetes vs incident periodontitis, dental caries, tooth loss/edentulism",
+      "conditional_on": "The association is bidirectional and asymmetric: evidence is more consistent for periodontitis/edentulism predicting incident type 2 diabetes (periodontitis: 18-25% higher incidence; tooth loss: HR 1.12-1.20; edentulism: RR 1.30) than for diabetes predicting incident periodontitis, which showed only 'modest' pooled differences; evidence on diabetes and dental caries was too scarce and heterogeneous to pool; no dose-response by glycemic control (HbA1c) level was reported",
+      "paper": {
+        "doi": "10.1016/S2468-2667(26)00149-0",
+        "title": "Oral health and diabetes: a systematic review and meta-analysis",
+        "year": 2026,
+        "design": "systematic review and meta-analysis of prospective longitudinal cohort studies",
+        "n": 300000
+      },
+      "verbatim": "A bidirectional temporal association in incidence patterns was observed between diabetes and periodontitis. Individuals with periodontitis at baseline showed a 18-25% higher occurrence of newly incident type 2 diabetes during follow-up, and baseline diabetes status was associated with a higher newly incident cases of periodontitis, with pooled RRs indicating modest differences between groups.",
+      "key_results": "Interpretation: 'People with diabetes are more likely to be diagnosed with periodontitis than people without diabetes, but with less consistent evidence [than the reverse direction].' Evidence on dental caries was scarce and heterogeneous, precluding meta-analysis, and no longitudinal evidence was found for oral cancer. Tooth loss was also associated with newly incident type 2 diabetes (HR 1.12-1.20), and edentulous individuals had higher incident type 2 diabetes (RR 1.30).",
+      "figure": null,
+      "caveats": "This article carries a Lancet Public Health retraction-and-republication note (originally published as DOI 10.1016/S2468-2667(26)00150-7, retracted and republished as the current DOI 10.1016/S2468-2667(26)00149-0 cited here); the abstract does not give a single pooled numeric RR/CI for the diabetes-to-periodontitis direction specifically, only a qualitative 'modest' descriptor, so effect_normalized is left null rather than invented. This edge captures diabetes STATUS/diagnosis, not glycemic CONTROL level -- the original candidate 'diabetes control' is narrowed accordingly; no HbA1c dose-response meta-analysis meeting the DOI/verbatim bar was found (see cut_candidates)."
+    },
+    {
+      "behavior_id": "professional_scaling",
+      "marker_id": "gingival_inflammation",
+      "direction": null,
+      "effect": "Routine six-monthly or twelve-monthly professional scale-and-polish made little or no difference to gingivitis compared with no scheduled scale-and-polish over 2-3 years, in adults without severe periodontitis who already attend dental care regularly (high-certainty evidence)",
+      "effect_normalized": -0.01,
+      "normalization_method": "SMD (six-monthly vs no scheduled treatment; -0.04 for twelve-monthly vs no scheduled treatment)",
+      "evidence_tier": "A",
+      "population": "2 RCTs, 1711 adults without severe periodontitis in UK general dental practices, regular dental attenders; 24-36 month follow-up",
+      "conditional_on": "Applies only to adults without severe periodontitis who are already regular dental attenders; a small reduction was found for calculus levels (SMD -0.32 six-monthly, -0.19 twelve-monthly) but not for gingivitis, probing depth, or quality of life; neither included study measured clinical attachment level",
+      "paper": {
+        "doi": "10.1002/14651858.CD004625.pub5",
+        "title": "Routine scale and polish for periodontal health in adults",
+        "year": 2018,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 1711
+      },
+      "verbatim": "We found little or no difference between groups over a two- to three-year period for gingivitis, probing depths, oral health-related quality of life (all high-certainty evidence) and plaque (low-certainty evidence). The SMD for gingivitis when comparing six-monthly scale and polish treatment versus no scheduled treatment was -0.01 (95% CI -0.13 to 0.11; two trials, 1087 participants), and for 12-monthly scale and polish versus no scheduled treatment was -0.04 (95% CI -0.16 to 0.08; two trials, 1091 participants).",
+      "key_results": "'Regular planned scale and polish treatments produced a small reduction in calculus levels over two to three years when compared with no scheduled scale and polish treatments (high-certainty evidence)... the clinical importance of these small reductions is unclear.' Neither included study measured adverse effects, changes in attachment level, tooth loss, or halitosis. Authors' overall conclusion: 'routine scale and polish treatment makes little or no difference to gingivitis, probing depths and oral health-related quality of life over two to three years follow-up... when compared with no scheduled scale and polish treatments.'",
+      "figure": null,
+      "caveats": "Applies only to low-risk adults already attending dental care regularly without severe periodontitis -- does not generalize to people with existing periodontitis, where professional subgingival debridement is standard periodontal therapy rather than 'routine' prophylaxis. Neither trial measured clinical attachment level, so no periodontal_attachment edge could be built for this behavior from this source."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "Diabetes control (glycemic control level / HbA1c dose-response) -> periodontal_attachment",
+      "reason": "No meta-analysis quantifying a dose-response between HbA1c/glycemic control level and periodontal attachment loss or probing depth, with a resolvable DOI and quotable verbatim, was found within the research budget. The candidate was narrowed and shipped instead as 'diabetes_status' (diagnosed diabetes vs no diabetes) using a 2026 Lancet Public Health longitudinal meta-analysis (DOI 10.1016/S2468-2667(26)00149-0). An older, frequently cited cross-sectional meta-analysis (Chavarry et al. 2009, Oral Health Prev Dent, clinical attachment level MD 1.00 mm) was found and would have supported a stronger quantitative edge, but has no resolvable DOI in PubMed/Crossref and was excluded on that basis."
+    },
+    {
+      "candidate": "Xylitol chewing gum -> caries_increment",
+      "reason": "Corrected rather than cut: the only Cochrane-quality quantitative finding for xylitol products concerns 10% xylitol fluoride TOOTHPASTE (prevented fraction -0.13), not chewing gum specifically; the review does not report a pooled effect for gum as its own category. Shipped as 'xylitol_products' with direction null and the toothpaste-vs-gum distinction made explicit in the caveats, rather than asserting a gum-specific benefit from memory."
+    },
+    {
+      "candidate": "Professional scaling -> periodontal_attachment (clinical attachment level)",
+      "reason": "The only Cochrane RCT evidence on routine scale-and-polish (Lamont 2018) explicitly states neither included study measured clinical attachment level. Kept the professional_scaling behavior with a gingival_inflammation null-result edge instead of fabricating an attachment-level number."
+    }
+  ]
+}

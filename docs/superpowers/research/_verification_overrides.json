@@ -59,6 +59,288 @@
       "marker_id": "hs_crp_il6",
       "quote_note": "The stated figure is the pooled all-smokers statistic, but the row describes it as current smokers versus non-smokers. The current-smoker-only value in the paper is 0.06, not 0.05.",
       "source": "_verification-abcd.md"
+    },
+    {
+      "behavior_id": "low_gi_diet_pcos",
+      "marker_id": "pcos_androgens",
+      "review_note": "This row is tagged as a prospective cohort while its own paper.design field records a systematic review and meta-analysis of randomised trials. One of the two is wrong and the row does not say which, so the evidence tag here should not be relied on.",
+      "source": "_verification-lmn.md"
+    },
+    {
+      "behavior_id": "wheat_bran",
+      "marker_id": "ibs_severity",
+      "review_note": "The automated quote check flags 0.61 as absent from the quoted sentence, but a live read of the source confirms P=0.61 is genuinely reported there. Treat that flag as a false positive.",
+      "source": "_verification-lmn.md",
+      "flags": {
+        "unsupported_numbers": []
+      }
+    },
+    {
+      "behavior_id": "smoking_cessation",
+      "marker_id": "triglycerides",
+      "evidence_tier": "C",
+      "tier_note": "Corrected from B. The row was tagged as a single adequately powered randomised trial; the paper is a meta-analysis of 21 pre/post cessation studies following people who quit on their own against their own baseline. Nobody was randomly assigned to quit smoking, and it is not a single trial. The sibling row from the same paper was already tagged for a non-randomised design.",
+      "source": "_verification-abcd-pass2.md"
+    },
+    {
+      "behavior_id": "curcumin_plain",
+      "marker_id": "hs_crp_il6",
+      "sample": {
+        "n": 5870,
+        "n_kind": "participants",
+        "n_label": "5,870"
+      },
+      "review_note": "The sample-size badge read 3,271, from a per-marker split (7 meta-analyses / 3,271 for CRP, 6 / 2,972 for IL-6) that appears nowhere in the paper's abstract. The abstract gives one combined figure for all three biomarkers: ten studies, 5,870 participants. The badge now shows that figure.",
+      "source": "_verification-abcd-pass2.md",
+      "population": "Mixed adult populations (umbrella meta-analysis; the source abstract reports ten studies and 5,870 participants across CRP, IL-6 and TNF-alpha together, and gives no per-marker split)"
+    },
+    {
+      "behavior_id": "weight_loss_fatloss",
+      "marker_id": "hs_crp_il6",
+      "sample": {
+        "n": 33,
+        "n_kind": "studies",
+        "n_label": "33"
+      },
+      "review_note": "The badge read 33 people. The paper's 33 is a count of included studies, not participants; the abstract gives no single participant total. The badge now reads as a study count, which understates nothing and claims nothing the paper did not say.",
+      "source": "_verification-abcd-pass2.md"
+    },
+    {
+      "behavior_id": "b_cbti",
+      "marker_id": "m_psqi",
+      "sample": {
+        "n": 462,
+        "n_kind": "participants",
+        "n_label": "462"
+      },
+      "review_note": "The badge read 2,449, the review's pooled sample across all 31 trials and every outcome it measured. The sleep-quality number on this row comes from 5 of those trials, 462 people, per the full-text outcomes table. The badge now matches the number it sits beside.",
+      "source": "_verification-abcd-pass2.md",
+      "population": "adults over 18 with a diagnosed insomnia disorder; 31 RCTs were pooled overall (n=2,449; 1,107 intervention / 1,342 control), but the sleep-quality figure on this row rests on 5 of them, n=462"
+    },
+    {
+      "behavior_id": "tribulus_terrestris",
+      "marker_id": "serum_testosterone",
+      "conditional_on": "the null studies enrolled men who did not have low androgen levels at baseline; 2 of the 10 studies did enrol hypogonadal men and found a significant rise in total testosterone there, though of low clinical magnitude (60-70 ng/dL)",
+      "review_note": "The row previously said deficient men were left untested. The abstract says the opposite: two of the ten studies enrolled hypogonadal men and found a small but significant increase in them. The condition has been rewritten to say what the paper found rather than claiming a gap that is not there.",
+      "source": "_verification-abcd-pass2.md"
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "m_psqi",
+      "direction": "-",
+      "review_note": "The row recorded the direction as a rise. The paper reports the opposite: PSQI and Daytime Dysfunction scores went DOWN, which on a symptom score is the improvement. Recorded as a rise it read as a harm, and the row showed red. Corrected to a fall.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "caffeine",
+      "marker_id": "sustained_attention_rt",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment, not a raw lapse count or reaction time, so on this row a rise is the benefit. The marker holds both scales - some papers report PVT lapses, where a rise is the harm - so the direction that counts as good is recorded on the row rather than on the marker.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "l_theanine_caffeine",
+      "marker_id": "sustained_attention_rt",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment, not a raw lapse count or reaction time, so on this row a rise is the benefit. The marker holds both scales - some papers report PVT lapses, where a rise is the harm - so the direction that counts as good is recorded on the row rather than on the marker.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "nicotine",
+      "marker_id": "sustained_attention_rt",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment, not a raw lapse count or reaction time, so on this row a rise is the benefit. The marker holds both scales - some papers report PVT lapses, where a rise is the harm - so the direction that counts as good is recorded on the row rather than on the marker.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "creatine_sleep_deprivation",
+      "marker_id": "sustained_attention_rt",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment, not a raw lapse count or reaction time, so on this row a rise is the benefit. The marker holds both scales - some papers report PVT lapses, where a rise is the harm - so the direction that counts as good is recorded on the row rather than on the marker.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "panax_ginseng_hrg80",
+      "marker_id": "sustained_attention_rt",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment, not a raw lapse count or reaction time, so on this row a rise is the benefit. The marker holds both scales - some papers report PVT lapses, where a rise is the harm - so the direction that counts as good is recorded on the row rather than on the marker.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "glp1_receptor_agonists",
+      "marker_id": "lean_mass",
+      "flags": {
+        "valence_reviewed": true
+      },
+      "review_note": "Lean mass fell by 1.74 kg. The sentence also says the proportion of total mass rose, which is what trips the automated read, but the absolute loss is the finding and it is unfavourable.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "blood_pressure_control",
+      "marker_id": "global_cognition_older",
+      "flags": {
+        "valence_reviewed": true
+      },
+      "review_note": "HR 0.81 is a REDUCED risk of mild cognitive impairment. The word impairment names the outcome, not the verdict; the finding is favourable.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "processed_red_meat",
+      "marker_id": "cancer_incidence_mortality",
+      "flags": {
+        "valence_reviewed": true
+      },
+      "review_note": "Higher intake, higher cancer risk. Unfavourable, correctly tagged.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "weight_loss_bariatric",
+      "marker_id": "liver_fat_steatosis",
+      "flags": {
+        "valence_reviewed": true
+      },
+      "review_note": "NASH resolved in 84% WITHOUT worsening of fibrosis. The negation is what trips the automated read; the finding is favourable.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "glp1_ra",
+      "marker_id": "liver_stiffness_fibrosis",
+      "flags": {
+        "valence_reviewed": true
+      },
+      "review_note": "Fibrosis reduced WITHOUT worsening of steatohepatitis. Same negation; favourable.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "all_cause_mortality",
+      "match": "gained about 10, 9, and 6 years of life",
+      "refile_to": "smoking_cessation",
+      "review_note": "This row was filed under smoking. Its finding is about quitting - cessation before 40 removes about 90% of the excess risk, and quitting at 25-34 gains about ten years - so under smoking it rendered as a favourable green mark on smoking itself, and left that one behaviour holding both a favourable and an unfavourable row on the same marker. Moved to smoking cessation, where the sign means what it says. The unfavourable row on smoking (three times the death rate of never-smokers) is a separate paper and stays where it is.",
+      "source": "valence-scan-2026-09-16"
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "blood_pressure",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "hba1c_fasting_glucose",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "resting_hr_arterial_stiffness",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "infection_duration",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "american_ginseng",
+      "marker_id": "arti_incidence",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "panax_genus_pooled",
+      "marker_id": "hba1c_fasting_glucose",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "panax_ginseng_hrg80",
+      "marker_id": "perceived_stress",
+      "review_note": "The extraction recorded the direction as a rise because the finding was a positive result for ginseng. The number itself fell - the effect on this row is negative - and on this marker a fall is the improvement, so the row rendered red on a benefit. Corrected to a fall. The same error runs through every ginseng row on a lower-is-better marker.",
+      "source": "valence-pass-2026-09-16",
+      "direction": "-",
+      "when_direction": "+"
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "insulin_sensitivity_homa_ir",
+      "when_direction": "+",
+      "up_is_good": true,
+      "review_note": "This row reports clamp-derived insulin-stimulated glucose disposal, where a rise is the improvement. The marker's other rows report HOMA-IR, where a fall is. The row inherited the HOMA-IR polarity and rendered red on a benefit, so which way is better is recorded on the row.",
+      "source": "valence-pass-2026-09-16"
+    },
+    {
+      "behavior_id": "creatine_monohydrate",
+      "marker_id": "processing_speed",
+      "when_direction": "+",
+      "direction": "-",
+      "review_note": "The row recorded a rise; the reported SMD is -0.51, meaning the processing time fell, which on a time measure is the improvement.",
+      "source": "valence-pass-2026-09-16"
+    },
+    {
+      "behavior_id": "creatine_sleep_deprivation",
+      "marker_id": "processing_speed",
+      "when_direction": "+",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment rather than a raw time or index, so on this row a rise is the benefit. The marker holds both scales, so the direction that counts as good is recorded on the row.",
+      "source": "valence-pass-2026-09-16"
+    },
+    {
+      "behavior_id": "acute_aerobic_exercise",
+      "marker_id": "processing_speed",
+      "when_direction": "+",
+      "up_is_good": true,
+      "review_note": "This row reports an effect size favouring the treatment rather than a raw time or index, so on this row a rise is the benefit. The marker holds both scales, so the direction that counts as good is recorded on the row.",
+      "source": "valence-pass-2026-09-16"
+    },
+    {
+      "behavior_id": "sleep_restriction",
+      "marker_id": "insulin_sensitivity_homa_ir",
+      "when_direction": "+",
+      "direction": "-",
+      "up_is_good": true,
+      "review_note": "This row was right on the screen and wrong underneath: it reports clamp glucose disposal, which FELL by about 25%, but recorded the direction as a rise and then inherited the HOMA-IR polarity where a rise is the harm. Two errors cancelled and the row showed the correct red. Recorded now as a fall on a measure where a rise is the benefit, which gives the same red for the reason the paper actually gives.",
+      "source": "valence-pass-2026-09-16"
+    },
+    {
+      "behavior_id": "xylitol_products",
+      "marker_id": "caries_increment",
+      "when_direction": null,
+      "direction": "-",
+      "review_note": "This was marked as a null result. The review's own headline figure is a 13% reduction in caries with a confidence interval of -0.18 to -0.08, which excludes zero. It is a finding, not a null - a weak one, on low-quality evidence from two studies by one author group, which the row's own caveats already say. Recorded as a fall in caries.",
+      "source": "null-review-2026-09-16"
+    },
+    {
+      "behavior_id": "alcohol",
+      "marker_id": "all_cause_mortality",
+      "when_direction": null,
+      "direction": "+",
+      "match": "no significantly reduced risk of all-cause mortality among occasion",
+      "review_note": "The null here is only about the supposed protective effect of light drinking, which did not survive adjustment. The same analysis found mortality rising significantly at 45-64 g/day (RR 1.19) and 65 g/day and above (RR 1.35). Shown as a null, the row read as though alcohol does not affect mortality at all, which is the opposite of what the paper concludes. Recorded as a rise in mortality.",
+      "source": "null-review-2026-09-16"
+    },
+    {
+      "behavior_id": "flossing",
+      "marker_id": "caries_increment",
+      "flags": {
+        "not_measured": true
+      },
+      "review_note": "No trial in this review assessed interproximal caries at all. The row carried the same grey mark as a measured null, which claims the opposite of the truth: not that flossing was tested and did nothing, but that nobody has tested it. Marked as an evidence gap.",
+      "source": "null-review-2026-09-16"
     }
   ]
 }

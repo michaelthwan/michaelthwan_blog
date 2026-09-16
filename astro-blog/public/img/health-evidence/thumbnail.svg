@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 504" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <!-- 840x504 is the card's own 5:3. object-fit is contain, so any other ratio letterboxes
+       and leaves this light plate floating in the middle of a dark card. -->
+  <rect width="840" height="504" fill="#fafafa"/>
+
+  <!-- The three columns are named even at thumbnail size: the argument of the page is that
+       nothing points at a goal directly, and that only reads if the columns are labelled. -->
+  <text x="110" y="44" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1.7" fill="#8b949e">BEHAVIOUR</text>
+  <text x="445" y="44" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1.7" fill="#8b949e">MARKER</text>
+  <text x="732" y="44" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1.7" fill="#8b949e">GOAL</text>
+
+  <!-- behaviour to marker. The last is dashed: it was measured and came back mixed, which
+       is a result rather than a gap, and the page records it as one. -->
+  <g fill="none" stroke="#afb8c1" stroke-width="2.5">
+    <path d="M200,274 C242,274 242,130 268,130"/>
+    <path d="M200,274 C242,274 242,226 268,226"/>
+    <path d="M200,274 C242,274 242,322 268,322"/>
+    <path d="M200,274 C242,274 242,418 268,418" stroke-dasharray="7 6"/>
+  </g>
+
+  <!-- marker to goal. Two markers land on one goal: the convergence the explorer exists
+       to make visible, and the reason two pieces of advice can be one lever. -->
+  <g fill="none" stroke="#afb8c1" stroke-width="2.5">
+    <path d="M600,130 H640"/>
+    <path d="M600,226 H640"/>
+    <path d="M600,322 C620,322 620,370 640,370"/>
+    <path d="M600,418 C620,418 620,370 640,370" stroke-dasharray="7 6"/>
+  </g>
+
+  <rect x="20" y="234" width="180" height="80" rx="9" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+  <text x="110" y="270" text-anchor="middle" font-size="27" font-weight="700" fill="#1f2328">Sleep loss</text>
+  <text x="110" y="295" text-anchor="middle" font-size="16" fill="#8b949e">restriction</text>
+
+  <g>
+    <rect x="300" y="97" width="300" height="66" rx="9" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+    <text x="320" y="139" font-size="23" fill="#1f2328">Serum testosterone</text>
+    <circle cx="282" cy="130" r="16" fill="#cf222e"/>
+    <text x="282" y="139" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">&#8722;</text>
+  </g>
+  <g>
+    <rect x="300" y="193" width="300" height="66" rx="9" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+    <text x="320" y="235" font-size="23" fill="#1f2328">hs-CRP and IL-6</text>
+    <circle cx="282" cy="226" r="16" fill="#cf222e"/>
+    <text x="282" y="235" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">&#8722;</text>
+  </g>
+  <g>
+    <rect x="300" y="289" width="300" height="66" rx="9" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+    <text x="320" y="331" font-size="23" fill="#1f2328">Anxiety score</text>
+    <circle cx="282" cy="322" r="16" fill="#cf222e"/>
+    <text x="282" y="331" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">&#8722;</text>
+  </g>
+  <g>
+    <rect x="300" y="385" width="300" height="66" rx="9" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+    <text x="320" y="427" font-size="23" fill="#57606a">Depressive symptoms</text>
+    <circle cx="282" cy="418" r="16" fill="#eaeef2" stroke="#afb8c1" stroke-width="2"/>
+    <text x="282" y="426" text-anchor="middle" font-size="21" font-weight="700" fill="#6e7781">=</text>
+  </g>
+
+  <rect x="640" y="94" width="185" height="72" rx="9" fill="#f6f8fa" stroke="#afb8c1" stroke-width="2"/>
+  <text x="732" y="138" text-anchor="middle" font-size="22" font-weight="600" fill="#1f2328">Male vitality</text>
+
+  <rect x="640" y="190" width="185" height="72" rx="9" fill="#f6f8fa" stroke="#afb8c1" stroke-width="2"/>
+  <text x="732" y="234" text-anchor="middle" font-size="22" font-weight="600" fill="#1f2328">Inflammation</text>
+
+  <rect x="640" y="334" width="185" height="72" rx="9" fill="#f6f8fa" stroke="#afb8c1" stroke-width="2"/>
+  <text x="732" y="378" text-anchor="middle" font-size="22" font-weight="600" fill="#1f2328">Mood and anxiety</text>
+</svg>

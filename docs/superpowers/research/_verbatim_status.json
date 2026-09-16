@@ -1,0 +1,379 @@
+{
+ "_note": "Longest contiguous run of each quoted sentence found in its paper's PubMed abstract, as a fraction of the quote. 1.0 is a clean quotation. Around 0.5 usually means two non-adjacent sentences spliced together. A low score can also mean the sentence came from the full text, which the abstract never contained, so treat these as leads rather than verdicts. Written by scripts/check_verbatim.py.",
+ "buckets": {
+  "exact": 257,
+  "partial": 4,
+  "spliced": 46,
+  "absent": 10,
+  "no_abstract": 3
+ },
+ "kinds": {
+  "spliced": 41,
+  "beyond_abstract": 7,
+  "no_numbers": 4,
+  "near": 4,
+  "unmatched": 4
+ },
+ "flagged": {
+  "alcohol::serum_testosterone::10.1111/andr.13526::4fb1a922": {
+   "doi": "10.1111/andr.13526",
+   "coverage": 0.577,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "l_arginine::nitric_oxide_blood_flow::10.1016/j.jsxm.2018.12.002::acc141e8": {
+   "doi": "10.1016/j.jsxm.2018.12.002",
+   "coverage": 0.517,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "maca::subjective_libido::10.1046/j.1439-0272.2002.00519.x::3bf5001e": {
+   "doi": "10.1046/j.1439-0272.2002.00519.x",
+   "coverage": 0.6,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "curcumin_plain::hs_crp_il6::10.1155/2023/4875636::1cbee2a5": {
+   "doi": "10.1155/2023/4875636",
+   "coverage": 0.519,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "curcumin_piperine::hs_crp_il6::10.1002/fsn3.70588::0b9eb3ed": {
+   "doi": "10.1002/fsn3.70588",
+   "coverage": 0.222,
+   "band": "absent",
+   "kind": "beyond_abstract"
+  },
+  "curcumin_piperine::hs_crp_il6::10.1002/fsn3.70588::66a47137": {
+   "doi": "10.1002/fsn3.70588",
+   "coverage": 0.571,
+   "band": "spliced",
+   "kind": "no_numbers"
+  },
+  "sleep_deprivation::hs_crp_il6::10.1111/jsr.70099::bee01842": {
+   "doi": "10.1111/jsr.70099",
+   "coverage": 0.557,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "smoking::hs_crp_il6::10.1016/j.ijcrp.2026.200695::88b1ce4c": {
+   "doi": "10.1016/j.ijcrp.2026.200695",
+   "coverage": 0.071,
+   "band": "absent",
+   "kind": "beyond_abstract"
+  },
+  "low_gi_diet::insulin_igf1::10.1186/s12902-026-02163-8::27bd7ad4": {
+   "doi": "10.1186/s12902-026-02163-8",
+   "coverage": 0.098,
+   "band": "absent",
+   "kind": "beyond_abstract"
+  },
+  "low_gi_diet::sebum_acne::10.1093/ajcn/86.1.107::20f8f869": {
+   "doi": "10.1093/ajcn/86.1.107",
+   "coverage": 0.862,
+   "band": "partial",
+   "kind": "near"
+  },
+  "dairy_intake::sebum_acne::10.3390/nu10081049::af61ae4b": {
+   "doi": "10.3390/nu10081049",
+   "coverage": 0.647,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "b_morning_light::m_dlmo::10.1016/j.sleep.2014.12.004::14277ae2": {
+   "doi": "10.1016/j.sleep.2014.12.004",
+   "coverage": 0.507,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "b_evening_blue_light::m_psqi::10.1093/sleepadvances/zpaa002::dcde8699": {
+   "doi": "10.1093/sleepadvances/zpaa002",
+   "coverage": 0.615,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "b_exercise_timing::m_sol::10.2147/nss.s388863::0ee8f457": {
+   "doi": "10.2147/nss.s388863",
+   "coverage": 0.636,
+   "band": "spliced",
+   "kind": "no_numbers"
+  },
+  "b_exogenous_melatonin::m_sol::10.1371/journal.pone.0063773::625f6ac3": {
+   "doi": "10.1371/journal.pone.0063773",
+   "coverage": 0.407,
+   "band": "spliced",
+   "kind": "beyond_abstract"
+  },
+  "b_alcohol::m_sol::10.1016/j.smrv.2024.102030::752e3bd6": {
+   "doi": "10.1016/j.smrv.2024.102030",
+   "coverage": 0.672,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "b_cbti::m_psqi::10.3389/fpsyt.2021.798453::9f873280": {
+   "doi": "10.3389/fpsyt.2021.798453",
+   "coverage": 0.208,
+   "band": "absent",
+   "kind": "beyond_abstract"
+  },
+  "dash_diet::blood_pressure::10.1056/NEJM199704173361601::e35933e1": {
+   "doi": "10.1056/NEJM199704173361601",
+   "coverage": 0.6,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "omega3_ala::ldl_cholesterol::10.1016/j.advnut.2023.09.010::7993bb33": {
+   "doi": "10.1016/j.advnut.2023.09.010",
+   "coverage": 0.4,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "plant_sterols::ldl_cholesterol::10.1016/j.atherosclerosis.2013.08.012::cba0f7c7": {
+   "doi": "10.1016/j.atherosclerosis.2013.08.012",
+   "coverage": 0.528,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "omega3_marine::triglycerides::10.3390/nu17203279::6b977925": {
+   "doi": "10.3390/nu17203279",
+   "coverage": 0.527,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "hiit::vo2max::10.1007/s40279-015-0365-0::ee2caaea": {
+   "doi": "10.1007/s40279-015-0365-0",
+   "coverage": 0.727,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "creatine_sleep_deprivation::sustained_attention_rt::10.3390/nu18081192::ec70867e": {
+   "doi": "10.3390/nu18081192",
+   "coverage": 0.511,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "creatine_sleep_deprivation::processing_speed::10.3390/nu18081192::86c395c4": {
+   "doi": "10.3390/nu18081192",
+   "coverage": 0.511,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "ginkgo_biloba::global_cognition_older::10.1002/14651858.CD013661.pub2::9ac9b745": {
+   "doi": "10.1002/14651858.CD013661.pub2",
+   "coverage": 0.457,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "resistance_training::anxiety_symptoms::10.1007/s40279-017-0769-0::9eb041d2": {
+   "doi": "10.1007/s40279-017-0769-0",
+   "coverage": 0.673,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "mindfulness_based_interventions::perceived_stress::10.3389/fpubh.2023.1259250::271af855": {
+   "doi": "10.3389/fpubh.2023.1259250",
+   "coverage": 0.269,
+   "band": "absent",
+   "kind": "unmatched"
+  },
+  "cbt::anxiety_symptoms::10.1001/jamapsychiatry.2023.3971::ca5985f2": {
+   "doi": "10.1001/jamapsychiatry.2023.3971",
+   "coverage": 0.588,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "smoking::all_cause_mortality::10.1056/NEJMsa1211128::45e30093": {
+   "doi": "10.1056/NEJMsa1211128",
+   "coverage": 0.661,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "alcohol::all_cause_mortality::10.15288/jsad.2016.77.185::228eda80": {
+   "doi": "10.15288/jsad.2016.77.185",
+   "coverage": 0.556,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "sedentary_time::all_cause_mortality::10.1007/s10654-018-0380-1::a0568ed6": {
+   "doi": "10.1007/s10654-018-0380-1",
+   "coverage": 0.536,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "sedentary_time::cancer_incidence_mortality::10.1007/s10654-018-0380-1::fc7a5194": {
+   "doi": "10.1007/s10654-018-0380-1",
+   "coverage": 0.517,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "weight_loss_bariatric::liver_fat_steatosis::10.1053/j.gastro.2020.06.006::00b14150": {
+   "doi": "10.1053/j.gastro.2020.06.006",
+   "coverage": 0.528,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "mediterranean_diet::liver_stiffness_fibrosis::10.3390/nu15102250::aec9bd52": {
+   "doi": "10.3390/nu15102250",
+   "coverage": 0.571,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "omega3_marine::liver_fat_steatosis::10.1097/MD.0000000000012271::59330aac": {
+   "doi": "10.1097/MD.0000000000012271",
+   "coverage": 0.731,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "omega3_marine::alt_ast::10.1097/MD.0000000000012271::79114680": {
+   "doi": "10.1097/MD.0000000000012271",
+   "coverage": 0.731,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "vitamin_d::arti_incidence::10.1016/S2213-8587(21)00051-6::ce1ee486": {
+   "doi": "10.1016/S2213-8587(21)00051-6",
+   "coverage": 0.194,
+   "band": "absent",
+   "kind": "beyond_abstract"
+  },
+  "psychological_stress::experimental_infection_susceptibility::10.1056/NEJM199108293250903::03878347": {
+   "doi": "10.1056/NEJM199108293250903",
+   "coverage": 0.615,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "heavy_exercise_load::arti_incidence::10.1249/00005768-199402000-00002::91271316": {
+   "doi": "10.1249/00005768-199402000-00002",
+   "coverage": 0.609,
+   "band": "spliced",
+   "kind": "no_numbers"
+  },
+  "heavy_exercise_load::arti_incidence::10.1111/j.1600-0838.2005.00490.x::718367ee": {
+   "doi": "10.1111/j.1600-0838.2005.00490.x",
+   "coverage": 0.933,
+   "band": "partial",
+   "kind": "near"
+  },
+  "probiotics::infection_duration::10.1002/14651858.CD006895.pub4::286dd257": {
+   "doi": "10.1002/14651858.CD006895.pub4",
+   "coverage": 0.458,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "vitamin_c_supplementation::arti_incidence::10.1002/14651858.CD000980.pub4::ed7ec553": {
+   "doi": "10.1002/14651858.CD000980.pub4",
+   "coverage": 0.091,
+   "band": "absent",
+   "kind": "unmatched"
+  },
+  "vitamin_c_supplementation::arti_incidence::10.1002/14651858.CD000980.pub4::242a0909": {
+   "doi": "10.1002/14651858.CD000980.pub4",
+   "coverage": 0.222,
+   "band": "absent",
+   "kind": "unmatched"
+  },
+  "vitamin_c_supplementation::infection_duration::10.1002/14651858.CD000980.pub4::2021a39c": {
+   "doi": "10.1002/14651858.CD000980.pub4",
+   "coverage": 0.118,
+   "band": "absent",
+   "kind": "unmatched"
+  },
+  "hand_hygiene::arti_incidence::10.1002/14651858.CD006207.pub6::bc2a27a6": {
+   "doi": "10.1002/14651858.CD006207.pub6",
+   "coverage": 0.423,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "psyllium::stool_frequency_consistency::10.1093/ajcn/nqac184::cfc59faf": {
+   "doi": "10.1093/ajcn/nqac184",
+   "coverage": 0.125,
+   "band": "absent",
+   "kind": "beyond_abstract"
+  },
+  "psyllium::ibs_severity::10.1136/bmj.b3154::c1594a23": {
+   "doi": "10.1136/bmj.b3154",
+   "coverage": 0.549,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "wheat_bran::ibs_severity::10.1136/bmj.b3154::4524896d": {
+   "doi": "10.1136/bmj.b3154",
+   "coverage": 0.625,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "kiwifruit::constipation_relief::10.1186/1475-2891-12-78::16d47c1a": {
+   "doi": "10.1186/1475-2891-12-78",
+   "coverage": 0.646,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "probiotics::ibs_severity::10.1016/j.clnesp.2024.02.025::a6d79202": {
+   "doi": "10.1016/j.clnesp.2024.02.025",
+   "coverage": 0.58,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "psychological_stress::gut_transit::10.1159/000050681::43ee5e40": {
+   "doi": "10.1159/000050681",
+   "coverage": 0.68,
+   "band": "spliced",
+   "kind": "no_numbers"
+  },
+  "nsaids_dysmenorrhea::menstrual_pain::10.1002/14651858.CD001751.pub3::72fa6fe1": {
+   "doi": "10.1002/14651858.CD001751.pub3",
+   "coverage": 0.527,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "exercise_dysmenorrhea::menstrual_pain::10.1002/14651858.CD004142.pub4::282a8f14": {
+   "doi": "10.1002/14651858.CD004142.pub4",
+   "coverage": 0.897,
+   "band": "partial",
+   "kind": "near"
+  },
+  "black_cohosh::vasomotor_symptoms::10.1002/14651858.CD007244.pub2::05ead7d5": {
+   "doi": "10.1002/14651858.CD007244.pub2",
+   "coverage": 0.467,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "soy_isoflavones::vasomotor_symptoms::10.1097/gme.0b013e3182410159::e0be8b53": {
+   "doi": "10.1097/gme.0b013e3182410159",
+   "coverage": 0.462,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "smoking::vasomotor_symptoms::10.1016/j.ajog.2019.10.103::844b8895": {
+   "doi": "10.1016/j.ajog.2019.10.103",
+   "coverage": 0.51,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "low_gi_diet_pcos::pcos_androgens::10.1016/j.heliyon.2021.e08338::7f72fc4f": {
+   "doi": "10.1016/j.heliyon.2021.e08338",
+   "coverage": 0.382,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "powered_toothbrushing::gingival_inflammation::10.1002/14651858.CD002281.pub3::0319fe19": {
+   "doi": "10.1002/14651858.CD002281.pub3",
+   "coverage": 0.929,
+   "band": "partial",
+   "kind": "near"
+  },
+  "interdental_brushes::gingival_inflammation::10.1002/14651858.CD012018.pub2::8f093390": {
+   "doi": "10.1002/14651858.CD012018.pub2",
+   "coverage": 0.732,
+   "band": "spliced",
+   "kind": "spliced"
+  },
+  "american_ginseng::arti_incidence::10.1155/2011/759051::faa772f7": {
+   "doi": "10.1155/2011/759051",
+   "coverage": 0.759,
+   "band": "spliced",
+   "kind": "spliced"
+  }
+ }
+}

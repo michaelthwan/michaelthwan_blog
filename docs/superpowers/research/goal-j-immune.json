@@ -38,8 +38,472 @@
         "goal_ids": ["goal_j_immune"]
       }
     ],
-    "behaviors": []
+    "behaviors": [
+      {
+        "id": "vitamin_d_supplementation",
+        "name": "Vitamin D supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Oral vitamin D2/D3, dosing regimen (daily/weekly vs single or intermittent bolus) and baseline 25(OH)D status are the dominant effect modifiers; protective daily dose equivalent identified at 400-1000 IU/day for up to 12 months"
+      },
+      {
+        "id": "zinc_acetate_lozenges",
+        "name": "Zinc acetate lozenges (treatment, not prophylaxis)",
+        "category": "supplement",
+        "dose_or_intensity": "Zinc acetate lozenges begun after cold symptom onset, individual patient data pooled across trials; not studied here as pre-exposure prophylaxis"
+      },
+      {
+        "id": "short_sleep_duration",
+        "name": "Short sleep duration / poor sleep efficiency",
+        "category": "habit",
+        "dose_or_intensity": "Habitual sleep <7 hours/night or sleep efficiency <92% over 14 days of actigraphy/diary monitoring preceding viral challenge or vaccination"
+      },
+      {
+        "id": "psychological_stress",
+        "name": "Psychological stress (chronic life-event stress index)",
+        "category": "habit",
+        "dose_or_intensity": "Composite stress index from number of major stressful life events, perceived stress, and negative affect, assessed before controlled viral challenge"
+      },
+      {
+        "id": "heavy_exercise_load",
+        "name": "Very heavy / exhaustive exercise load",
+        "category": "exercise",
+        "dose_or_intensity": "Marathon racing and high weekly training mileage (e.g. >=97 km/week); acute exhaustive endurance events"
+      },
+      {
+        "id": "moderate_exercise",
+        "name": "Regular moderate-intensity exercise",
+        "category": "exercise",
+        "dose_or_intensity": "45 minutes of moderate-intensity aerobic exercise, 5 days/week, sustained for 12 months, in sedentary overweight adults"
+      },
+      {
+        "id": "probiotics",
+        "name": "Probiotic supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Various probiotic strains/doses across 23 RCTs and 1 cluster-RCT, mainly Lactobacillus/Bifidobacterium species, taken prophylactically"
+      },
+      {
+        "id": "vitamin_c_supplementation",
+        "name": "Vitamin C (ascorbic acid) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Regular daily supplementation (>=200 mg/day in most trials) for prevention; population and physical-exertion context are the dominant effect modifiers"
+      },
+      {
+        "id": "elderberry_supplementation",
+        "name": "Black elderberry (Sambucus nigra) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Oral elderberry extract/syrup taken at or after onset of upper respiratory symptoms; small pooled evidence base (4 RCTs, 180 participants)"
+      },
+      {
+        "id": "hand_hygiene",
+        "name": "Hand hygiene interventions",
+        "category": "habit",
+        "dose_or_intensity": "Hand-washing/hand-hygiene promotion programmes, alone or combined with education, across community and household RCTs"
+      },
+      {
+        "id": "smoking",
+        "name": "Tobacco smoking (active or passive)",
+        "category": "habit",
+        "dose_or_intensity": "Active or passive tobacco smoke exposure at time of vaccination, pooled across 34 studies covering multiple vaccine types"
+      }
+    ]
   },
-  "edges": [],
+  "edges": [
+    {
+      "behavior_id": "vitamin_d_supplementation",
+      "marker_id": "arti_incidence",
+      "direction": "-",
+      "effect": "In participants receiving daily or weekly vitamin D without bolus doses, adjusted OR for acute respiratory tract infection was 0.81 (95% CI 0.72-0.91); protection was much stronger in those with baseline 25-hydroxyvitamin D <25 nmol/L (OR 0.30, 0.17-0.53) than in those with higher baseline levels (OR 0.75, 0.60-0.95)",
+      "effect_normalized": 0.81,
+      "normalization_method": "adjusted odds ratio, original units retained",
+      "evidence_tier": "A",
+      "population": "Individual participant data meta-analysis; 25 RCTs, 11321 participants total (IPD obtained for 10933, 96.6%), aged 0-95 years",
+      "conditional_on": "Effect confined to daily or weekly non-bolus dosing regimens; within that group, effect is roughly 2.5x larger in participants who were vitamin-D deficient at baseline (<25 nmol/L) than in those with higher baseline status",
+      "paper": {
+        "doi": "10.1136/bmj.i6583",
+        "title": "Vitamin D supplementation to prevent acute respiratory tract infections: systematic review and meta-analysis of individual participant data",
+        "year": 2017,
+        "design": "individual participant data (IPD) meta-analysis of RCTs",
+        "n": 11321
+      },
+      "verbatim": "In subgroup analysis, protective effects were seen in those receiving daily or weekly vitamin D without additional bolus doses (adjusted odds ratio 0.81, 0.72 to 0.91) but not in those receiving one or more bolus doses (adjusted odds ratio 0.97, 0.86 to 1.10; P for interaction=0.05).",
+      "key_results": "Vitamin D supplementation reduced the risk of acute respiratory tract infection among all participants (adjusted odds ratio 0.88, 95% confidence interval 0.81 to 0.96; P for heterogeneity <0.001). Among those receiving daily or weekly vitamin D, protective effects were stronger in those with baseline 25-hydroxyvitamin D levels <25 nmol/L (adjusted odds ratio 0.30, 0.17 to 0.53) than in those with baseline 25-hydroxyvitamin D levels >=25 nmol/L (adjusted odds ratio 0.75, 0.60 to 0.95; P for interaction=0.006). Vitamin D did not influence the proportion of participants experiencing at least one serious adverse event (adjusted odds ratio 0.98, 0.80 to 1.20, P=0.83). The body of evidence contributing to these analyses was assessed as being of high quality.",
+      "figure": null,
+      "caveats": "This edge reports the non-bolus subgroup only; the bolus-dosing subgroup from the same trial is recorded as a separate null-result edge below. P for interaction between dosing regimens was 0.05, borderline."
+    },
+    {
+      "behavior_id": "vitamin_d_supplementation",
+      "marker_id": "arti_incidence",
+      "direction": null,
+      "effect": "No significant protection against acute respiratory tract infection in participants receiving one or more bolus doses of vitamin D (adjusted OR 0.97, 95% CI 0.86-1.10)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result reported as adjusted odds ratio crossing 1",
+      "evidence_tier": "A",
+      "population": "Individual participant data meta-analysis; subgroup of the 25 RCTs / 11321 participants receiving intermittent bolus dosing (single or occasional large doses rather than daily/weekly)",
+      "conditional_on": "Applies specifically to bolus (single large or intermittent) dosing regimens, in contrast to the daily/weekly regimen which was protective in the same trial set",
+      "paper": {
+        "doi": "10.1136/bmj.i6583",
+        "title": "Vitamin D supplementation to prevent acute respiratory tract infections: systematic review and meta-analysis of individual participant data",
+        "year": 2017,
+        "design": "individual participant data (IPD) meta-analysis of RCTs",
+        "n": 11321
+      },
+      "verbatim": "In subgroup analysis, protective effects were seen in those receiving daily or weekly vitamin D without additional bolus doses (adjusted odds ratio 0.81, 0.72 to 0.91) but not in those receiving one or more bolus doses (adjusted odds ratio 0.97, 0.86 to 1.10; P for interaction=0.05).",
+      "key_results": "25 eligible randomised controlled trials (total 11321 participants, aged 0 to 95 years) were identified, with IPD obtained for 10933 (96.6%) participants. Vitamin D supplementation reduced the risk of acute respiratory tract infection among all participants overall (adjusted odds ratio 0.88, 95% CI 0.81 to 0.96), but this pooled benefit was driven entirely by the non-bolus subgroup. The authors conclude patients who were very vitamin D deficient and those not receiving bolus doses experienced the most benefit, implying bolus-only regimens should not be expected to protect against ARI.",
+      "figure": null,
+      "caveats": "This is the same source paper and trial set as the non-bolus edge above; recorded separately because the design explicitly requires null/no-effect subgroup findings to be shipped as content, not omitted."
+    },
+    {
+      "behavior_id": "vitamin_d_supplementation",
+      "marker_id": "arti_incidence",
+      "direction": "-",
+      "effect": "Daily dosing regimen reduced ARI risk (OR 0.75, 95% CI 0.61-0.93); daily dose equivalents of 400-1000 IU/day for 12 months or less showed the strongest protection (OR 0.70, 95% CI 0.55-0.89)",
+      "effect_normalized": 0.7,
+      "normalization_method": "odds ratio, original units retained",
+      "evidence_tier": "A",
+      "population": "Updated aggregate-data meta-analysis of RCTs of vitamin D for ARI prevention, larger and more recent trial set than the 2017 IPD analysis",
+      "conditional_on": "Greatest protection specific to daily dosing (not weekly/monthly/bolus), at a daily dose equivalent of 400-1000 IU, given for a duration of 12 months or less",
+      "paper": {
+        "doi": "10.1016/S2213-8587(21)00051-6",
+        "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials",
+        "year": 2021,
+        "design": "aggregate-data meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "Greatest protection emerged with daily dosing regimen (OR 0.75, 95% CI 0.61 to 0.93) and daily dose equivalents of 400-1000 IU (OR 0.70, 95% CI 0.55 to 0.89) over periods of 12 months or less.",
+      "key_results": "Vitamin D supplementation reduced acute respiratory infection risk overall across the pooled trial set (OR 0.91, 95% CI 0.84-0.99), a smaller effect than the 2017 IPD estimate, consistent with dilution from trials using non-optimal dosing regimens. The intervention proved safe, with no significant difference in adverse events between groups. The authors state the relevance of these findings to COVID-19 is not known and requires further investigation.",
+      "figure": null,
+      "caveats": "Full numeric trial/participant counts could not be extracted cleanly from the retrieved abstract text; this edge is shipped on the dose-subgroup odds ratios, which were clearly stated, rather than on an unverified total-n figure."
+    },
+    {
+      "behavior_id": "zinc_acetate_lozenges",
+      "marker_id": "infection_duration",
+      "direction": "-",
+      "effect": "Zinc acetate lozenges shortened common cold duration by 2.73 days (95% CI 1.8-3.3) in a one-stage meta-analysis, and by 2.94 days (95% CI 2.1-3.8) in a two-stage meta-analysis",
+      "effect_normalized": -2.73,
+      "normalization_method": "mean difference in days, original units retained",
+      "evidence_tier": "A",
+      "population": "Individual patient data meta-analysis pooling multiple placebo-controlled zinc acetate lozenge trials in adults with naturally occurring colds",
+      "conditional_on": "Lozenges started after symptom onset (treatment, not prophylaxis); effect not modified by allergy status, smoking, baseline severity, age, gender, or ethnic group",
+      "paper": {
+        "doi": "10.1111/bcp.13057",
+        "title": "Zinc acetate lozenges for treating the common cold: an individual patient data meta-analysis",
+        "year": 2016,
+        "design": "individual patient data meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "The one stage meta-analysis gave an overall estimate of 2.73 days (95% CI 1.8, 3.3 days) shorter colds by zinc acetate lozenge usage.",
+      "key_results": "The two stage meta-analysis gave an estimate of 2.94 days (95% CI 2.1, 3.8 days) reduction in common cold duration, closely consistent with the one-stage estimate. The effect of zinc lozenges was not modified by allergy status, smoking, baseline severity of the common cold, age, gender or ethnic group, indicating a robust effect across subgroups. This is a treatment effect (lozenges taken after symptoms begin), and should not be generalized to prophylactic zinc supplementation for preventing infection incidence.",
+      "figure": null,
+      "caveats": "Effect is specific to zinc acetate lozenges dosed as treatment after symptom onset; does not address whether prophylactic zinc supplementation reduces infection incidence, which is a separate and less well-supported question."
+    },
+    {
+      "behavior_id": "short_sleep_duration",
+      "marker_id": "experimental_infection_susceptibility",
+      "direction": "+",
+      "effect": "Participants sleeping less than 7 hours were 2.94 times (95% CI 1.18-7.30) more likely to develop a clinical cold after rhinovirus challenge than those sleeping 8+ hours; those with sleep efficiency below 92% were 5.50 times (95% CI 2.08-14.48) more likely to develop a cold than those at 98%+ efficiency",
+      "effect_normalized": 2.94,
+      "normalization_method": "odds ratio, original units retained",
+      "evidence_tier": "B",
+      "population": "153 healthy men and women, age range 21-55 years, sleep tracked for 14 days before quarantined experimental rhinovirus exposure",
+      "conditional_on": "Sleep duration and efficiency measured in the weeks before viral exposure, not during illness itself; associations held after controlling for demographics, pre-challenge antibody status, and other health factors",
+      "paper": {
+        "doi": "10.1001/archinternmed.2008.505",
+        "title": "Sleep habits and susceptibility to the common cold",
+        "year": 2009,
+        "design": "prospective cohort with experimental viral challenge",
+        "n": 153
+      },
+      "verbatim": "Participants with less than 7 hours of sleep were 2.94 times (95% confidence interval [CI], 1.18-7.30) more likely to develop a cold than those with 8 hours or more of sleep.",
+      "key_results": "Participants with sleep efficiency less than 92% were 5.50 times (95% CI, 2.08-14.48) more likely to develop a cold than those with efficiency of 98% or more. The percentage of days feeling rested was not associated with colds, meaning objectively measured sleep duration and continuity predicted susceptibility better than subjective restedness. Poorer sleep efficiency and shorter sleep duration in the weeks preceding exposure to a rhinovirus were associated with lower resistance to illness. Associations persisted after adjustment for prechallenge virus-specific antibody titer.",
+      "figure": null,
+      "caveats": "Sleep was self/actigraphy-monitored in natural conditions rather than experimentally manipulated in this particular study, so causal direction (poor sleep causing susceptibility vs. a shared confounder) cannot be fully excluded despite the controlled viral challenge."
+    },
+    {
+      "behavior_id": "short_sleep_duration",
+      "marker_id": "vaccine_antibody_response",
+      "direction": "-",
+      "effect": "Shorter actigraphy-measured sleep duration was associated with a lower secondary antibody response to hepatitis B vaccination, independent of age, sex, BMI, and response to the initial immunization",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports a significant regression association without a standardized effect size for this specific analysis",
+      "evidence_tier": "C",
+      "population": "125 midlife adults (70 female, age 40-60 years) receiving hepatitis B vaccination, sleep measured by actigraphy and sleep diaries",
+      "conditional_on": "Association specific to the secondary (booster) antibody response, adjusted for age, sex, body mass index, and response to the initial immunization",
+      "paper": {
+        "doi": "10.5665/sleep.1990",
+        "title": "Sleep and antibody response to hepatitis B vaccination",
+        "year": 2012,
+        "design": "prospective observational cohort",
+        "n": 125
+      },
+      "verbatim": "Regression analyses revealed that shorter actigraphy-based sleep duration was associated with a lower secondary antibody response independent of age, sex, body mass index, and response to the initial immunization.",
+      "key_results": "Experimental evidence links poor sleep with susceptibility to infectious illness, but this study tested whether naturally occurring sleep relates to a directly measurable immune response (vaccine antibody titre) rather than illness incidence alone. Short sleep duration in the natural environment may negatively affect in vivo antibody responses to novel antigens, providing a possible mechanistic link between poor sleep and increased infection susceptibility. The association held for actigraphy-measured objective sleep duration specifically.",
+      "figure": null,
+      "caveats": "The retrieved abstract does not state a numeric regression coefficient, odds ratio, or p-value for this association; effect is reported here qualitatively rather than quantitatively for that reason, and evidence tier reflects a single observational cohort rather than an RCT."
+    },
+    {
+      "behavior_id": "psychological_stress",
+      "marker_id": "experimental_infection_susceptibility",
+      "direction": "+",
+      "effect": "Infection rates after experimental viral exposure ranged from approximately 74% to approximately 90% according to level of psychological stress (P<0.005 for dose-response); clinical cold rates ranged from approximately 27% to 47% (P<0.02)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - reported as a dose-response range across stress index quantiles rather than a single pooled effect size",
+      "evidence_tier": "B",
+      "population": "394 healthy subjects exposed to one of five respiratory viruses via nasal drops, plus 26 controls given saline",
+      "conditional_on": "Dose-response relationship across a composite psychological stress index; association held across all five challenge viruses tested and after controlling for age, sex, education, allergic status, weight, season, smoking, alcohol use, and prechallenge antibody titer",
+      "paper": {
+        "doi": "10.1056/NEJM199108293250903",
+        "title": "Psychological stress and susceptibility to the common cold",
+        "year": 1991,
+        "design": "randomized controlled experimental viral challenge study",
+        "n": 394
+      },
+      "verbatim": "Rates of both respiratory infection and clinical colds increased in a dose-response manner with increases in the degree of psychological stress: infection rates ranged from approximately 74 percent to approximately 90 percent, according to levels of psychological stress, and rates of clinical colds ranged from approximately 27 percent to 47 percent.",
+      "key_results": "The dose-response relations could not be explained by any of several potential confounding variables, including age, sex, education, allergic status, weight, season of the year, and self-reported measures of personality, sleep quality, and smoking or alcohol consumption. These data suggest that psychological stress is associated with an increased risk of acute infectious respiratory illness, and this risk appears to be due to increased rates of infection rather than to an increased frequency of symptoms after infection. The association held consistently across all five respiratory viruses used for challenge.",
+      "figure": null,
+      "caveats": "Effect is reported as a range across stress-index quantiles in the retrieved abstract rather than a single point estimate with confidence interval; exact odds ratios per stress-index unit were not available from the abstract text."
+    },
+    {
+      "behavior_id": "heavy_exercise_load",
+      "marker_id": "arti_incidence",
+      "direction": "+",
+      "effect": "Narrative review describes a J-shaped relationship in which unusually heavy acute or chronic exercise is associated with increased risk of upper respiratory tract infection, particularly in the one to two weeks following marathon-distance events",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - qualitative synthesis across multiple studies, no single pooled effect size given",
+      "evidence_tier": "D",
+      "population": "Narrative review synthesizing marathon runner and high-mileage training cohorts",
+      "conditional_on": "Increased risk specific to unusually heavy acute exertion (marathon racing) or unusually heavy chronic training load, contrasted with moderate exercise which the same review associates with reduced infection risk (J-shaped curve)",
+      "paper": {
+        "doi": "10.1249/00005768-199402000-00002",
+        "title": "Exercise, upper respiratory tract infection, and the immune system",
+        "year": 1994,
+        "design": "narrative review",
+        "n": null
+      },
+      "verbatim": "Unusually heavy acute or chronic exercise is associated with an increased risk of URTI, particularly within one to two weeks following marathon events.",
+      "key_results": "Among high-mileage runners, elevated infection risk emerges only after controlling for confounding variables such as prior illness and psychological stress. Limited experimental data suggest moderate physical activity may reduce symptom severity rather than increase it, the opposite pattern from heavy exertion. The mechanisms proposed involve transient immune function changes and elevated stress hormones (epinephrine and cortisol) during intense exertion, contrasting with the immune benefits observed during moderate-intensity exercise without an accompanying large hormonal stress response.",
+      "figure": null,
+      "caveats": "This is a 1994 narrative review rather than a meta-analysis with a pooled quantitative effect size; see the Ekblom et al. 2006 large-cohort survey below, which found the opposite (no clear increase in infection after marathon running), illustrating that this relationship is more contested in the primary literature than the review's J-curve framing suggests."
+    },
+    {
+      "behavior_id": "heavy_exercise_load",
+      "marker_id": "arti_incidence",
+      "direction": null,
+      "effect": "Survey of 1694 marathon runners found pre-race infection incidence of 17% and post-race incidence of 19%, with the authors concluding the data do not support increased infection risk after exhaustive long-distance running",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - descriptive incidence percentages, no formal null-hypothesis test of pre- vs post-race difference reported in the retrieved abstract",
+      "evidence_tier": "C",
+      "population": "1694 Stockholm Marathon runners surveyed for infectious episodes during the three weeks before and after the race",
+      "conditional_on": "Applies to recreational marathon runners surveyed retrospectively by questionnaire, not to elite athletes or to a randomized/controlled design",
+      "paper": {
+        "doi": "10.1111/j.1600-0838.2005.00490.x",
+        "title": "Infectious episodes before and after a marathon race",
+        "year": 2006,
+        "design": "prospective survey cohort",
+        "n": 1694
+      },
+      "verbatim": "This does not support the theory of increased infection rate after exhaustive long-distance running.",
+      "key_results": "Pre-race infection incidence was 17% with no gender difference, and post-race incidence was 19%, a small numerical difference the authors did not interpret as support for an exercise-induced infection spike. Younger runners were more prone to experience infectious episodes both before and after the race than older runners. Runners with a pre-race infection had a 33% post-race infection rate, suggesting that running while or shortly after being infected, rather than exhaustive exercise itself, may explain post-race illness in some cases.",
+      "figure": null,
+      "caveats": "This finding directly complicates the heavy-exercise-raises-infection-risk narrative from smaller, older marathon studies (e.g. Nieman 1990, LA Marathon survey, which found higher post-race infection rates in high-mileage vs low-mileage runners); it is retained here as a large, more recent counterpoint rather than omitted, consistent with the instruction to ship complicating evidence rather than only the cleanest story."
+    },
+    {
+      "behavior_id": "moderate_exercise",
+      "marker_id": "arti_incidence",
+      "direction": "-",
+      "effect": "Over 12 months, risk of colds decreased in exercisers relative to stretching controls (P=0.02); in the final 3 months, risk of colds in stretchers was more than threefold that of exercisers (P=0.03); overall risk of upper respiratory tract infections (colds plus other URTIs) did not differ significantly between groups (P=0.16)",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports hazard/risk comparisons with p-values but no single pooled relative risk for the cold-specific outcome",
+      "evidence_tier": "B",
+      "population": "115 sedentary, overweight/obese postmenopausal women randomized to 45 minutes of moderate-intensity exercise 5 days/week or weekly stretching, followed for 12 months",
+      "conditional_on": "Effect specific to self-reported colds, strongest in the final 3 months of a 12-month sustained moderate-intensity aerobic exercise program; effect on the broader upper-respiratory-infection category (colds plus other URTIs pooled) was not statistically significant",
+      "paper": {
+        "doi": "10.1016/j.amjmed.2006.06.033",
+        "title": "Moderate-intensity exercise reduces the incidence of colds among postmenopausal women",
+        "year": 2006,
+        "design": "randomized controlled trial",
+        "n": 115
+      },
+      "verbatim": "Over 12 months, the risk of colds decreased in exercisers relative to stretchers (P = .02).",
+      "key_results": "In the final 3 months of the study, the risk of colds in stretchers was more than threefold that of exercisers (P = .03), suggesting the protective effect built up over the course of sustained training rather than appearing immediately. Risk of upper respiratory tract infections overall (a broader category including infections other than colds) did not differ between groups (P = .16), showing the benefit was concentrated in cold-specific illness rather than all URTIs. The intervention was 45 minutes of moderate-intensity exercise 5 days weekly for 12 months compared with a weekly stretching control in sedentary, overweight, obese postmenopausal women.",
+      "figure": null,
+      "caveats": "Population restricted to sedentary overweight/obese postmenopausal women; the non-significant result for the broader URTI category (not just colds) should not be dropped when citing this trial as evidence for exercise reducing infection risk generally."
+    },
+    {
+      "behavior_id": "probiotics",
+      "marker_id": "arti_incidence",
+      "direction": "-",
+      "effect": "Probiotics reduced the number of participants diagnosed with at least one URTI episode (RR 0.76, 95% CI 0.67-0.87) and reduced the number diagnosed with at least three URTI episodes (RR 0.59, 95% CI 0.38-0.91)",
+      "effect_normalized": 0.76,
+      "normalization_method": "risk ratio, original units retained",
+      "evidence_tier": "A",
+      "population": "6950 participants across 23 individual RCTs and 1 cluster-RCT; 16 studies (4798 participants) contributed to the at-least-one-URTI outcome, 4 studies (763 participants) to the at-least-three-URTI outcome",
+      "conditional_on": "Prophylactic use across mixed populations and probiotic strains/doses; effect larger (RR further from 1) for the recurrent-infection (>=3 episodes) outcome than for the at-least-one-episode outcome",
+      "paper": {
+        "doi": "10.1002/14651858.CD006895.pub4",
+        "title": "Probiotics for preventing acute upper respiratory tract infections",
+        "year": 2022,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 6950
+      },
+      "verbatim": "Probiotics may reduce the number of participants diagnosed with URTIs (at least one event) (RR 0.76, 95% CI 0.67 to 0.87).",
+      "key_results": "Probiotics likely reduce the number of participants diagnosed with URTIs (at least three events) (RR 0.59, 95% CI 0.38 to 0.91), based on 4 studies with 763 participants, a stronger effect than for the single-episode outcome. Probiotics likely reduce the number of participants who used prescribed antibiotics for acute URTIs (RR 0.58, 95% CI 0.42 to 0.81) across 6 studies with 1548 participants. Probiotics may not increase the number of participants who experienced at least one adverse event (RR 1.02, 95% CI 0.90 to 1.15), suggesting the reduction in infections is not offset by an increase in supplement-related harms.",
+      "figure": null,
+      "caveats": "GRADE certainty was 'may' (low) for the at-least-one-event outcome and 'likely' (moderate) for the at-least-three-event and antibiotic-use outcomes per Cochrane's own wording; strain and dose heterogeneity across the 24 pooled studies was not fully resolved in the retrieved abstract."
+    },
+    {
+      "behavior_id": "probiotics",
+      "marker_id": "infection_duration",
+      "direction": "-",
+      "effect": "Probiotics reduced the mean duration of an acute URTI episode by approximately 1.22 days (95% CI -2.12 to -0.33)",
+      "effect_normalized": -1.22,
+      "normalization_method": "mean difference in days, original units retained",
+      "evidence_tier": "A",
+      "population": "6 studies contributing to the duration outcome, drawn from the same pooled set of 23 RCTs and 1 cluster-RCT (6950 total participants)",
+      "conditional_on": "Duration outcome pooled across only 6 of the 24 included studies; wide confidence interval relative to the point estimate",
+      "paper": {
+        "doi": "10.1002/14651858.CD006895.pub4",
+        "title": "Probiotics for preventing acute upper respiratory tract infections",
+        "year": 2022,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 6950
+      },
+      "verbatim": "Probiotics may reduce the mean duration of an episode of acute URTIs by approximately 1.22 days (95% CI -2.12 to -0.33) across 6 studies.",
+      "key_results": "This duration benefit was assessed with a 'may reduce' (low-certainty) GRADE rating, the same certainty level as the at-least-one-URTI-event incidence outcome from the same review. The confidence interval upper bound (-0.33 days) is close to zero, indicating a plausible small true effect. This duration finding is independent evidence from the incidence and antibiotic-use findings in the same review, though drawn from a smaller subset of the pooled studies (6 of 24).",
+      "figure": null,
+      "caveats": "Only 6 of the 24 pooled studies reported a duration outcome, a smaller and potentially less representative subset than for the incidence outcomes above."
+    },
+    {
+      "behavior_id": "vitamin_c_supplementation",
+      "marker_id": "arti_incidence",
+      "direction": null,
+      "effect": "Regular vitamin C supplementation did not significantly reduce the incidence of the common cold in the general population (RR 0.97)",
+      "effect_normalized": 0.97,
+      "normalization_method": "risk ratio, original units retained",
+      "evidence_tier": "A",
+      "population": "General-population trial participants within a pooled set of 29 placebo-controlled trials, 11306 participants total",
+      "conditional_on": "Applies to ordinary community-dwelling populations under ordinary conditions; contrasts with the marathon runner/soldier/skier subgroup from the same review, where a strong protective effect was found (see companion edge)",
+      "paper": {
+        "doi": "10.1002/14651858.CD000980.pub4",
+        "title": "Vitamin C for preventing and treating the common cold",
+        "year": 2013,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 11306
+      },
+      "verbatim": "In general populations, supplementation showed no significant incidence reduction (RR 0.97).",
+      "key_results": "The review pooled 29 placebo-controlled trials with a total of 11306 participants. Regular vitamin C supplementation did reduce the duration of colds once they occurred, by about 8% in adults and 14% in children, even though it did not prevent colds from occurring in the general population. The authors conclude that routine vitamin C supplementation lacks justification for preventing colds in the general population, but note the picture differs for people under heavy physical exertion.",
+      "figure": null,
+      "caveats": "This null result applies specifically to prevention of incidence in ordinary populations; it should not be read as a blanket null for vitamin C and infection outcomes, since the same review found both a duration-shortening effect in the general population and a strong incidence effect in physically stressed subgroups (see companion edges)."
+    },
+    {
+      "behavior_id": "vitamin_c_supplementation",
+      "marker_id": "arti_incidence",
+      "direction": "-",
+      "effect": "Among athletes and soldiers under heavy acute physical stress, vitamin C supplementation nearly halved cold incidence (RR 0.48) compared with the null effect seen in the general population",
+      "effect_normalized": 0.48,
+      "normalization_method": "risk ratio, original units retained",
+      "evidence_tier": "A",
+      "population": "Subgroup of marathon runners, skiers, and soldiers exposed to brief periods of severe physical exercise and/or cold environments, drawn from the same 29-trial, 11306-participant pooled set",
+      "conditional_on": "Effect specific to short-term participants under heavy acute physical and/or cold-environmental stress (marathon runners, skiers, soldiers on subarctic exercises), not the general population",
+      "paper": {
+        "doi": "10.1002/14651858.CD000980.pub4",
+        "title": "Vitamin C for preventing and treating the common cold",
+        "year": 2013,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 11306
+      },
+      "verbatim": "However, athletes and soldiers showed meaningful benefits (RR 0.48).",
+      "key_results": "This subgroup effect (RR 0.48) contrasts sharply with the null effect for incidence in the general population (RR 0.97) from the same pooled review, making vitamin C's incidence-prevention effect one of the clearest examples in this dataset of a behavior whose effect is entirely conditional on physical-stress context rather than a general property of the population. The authors recommend individual trial-and-see use for symptomatic relief rather than routine general-population supplementation, given this split result.",
+      "figure": null,
+      "caveats": "The physically-stressed subgroup trials are fewer in number and generally smaller than the general-population trials contributing to the RR 0.97 estimate, so this subgroup estimate likely carries a wider true uncertainty than its point estimate alone suggests."
+    },
+    {
+      "behavior_id": "vitamin_c_supplementation",
+      "marker_id": "infection_duration",
+      "direction": "-",
+      "effect": "Regular vitamin C supplementation reduced common cold duration by 8% in adults and by 14% in children",
+      "effect_normalized": -8,
+      "normalization_method": "percent reduction in illness duration, original units retained",
+      "evidence_tier": "A",
+      "population": "Adult and child participants within the same pooled set of 29 placebo-controlled trials, 11306 participants total",
+      "conditional_on": "Applies to regular (prophylactic, ongoing) supplementation rather than supplementation started only after symptom onset (therapeutic use), which showed inconsistent results in the same review",
+      "paper": {
+        "doi": "10.1002/14651858.CD000980.pub4",
+        "title": "Vitamin C for preventing and treating the common cold",
+        "year": 2013,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 11306
+      },
+      "verbatim": "Regular supplementation reduced cold duration by 8% in adults and 14% in children, with severity reductions noted.",
+      "key_results": "This duration-shortening effect occurred despite the null effect of the same regular-supplementation regimen on cold incidence in the general population, illustrating that a behavior can move one marker (duration) without moving another (incidence) within the same goal. Severity of cold symptoms was also reduced according to the same review. Therapeutic vitamin C, meaning supplementation started only after a cold had already begun, showed inconsistent results, unlike the more consistent effect of regular ongoing supplementation.",
+      "figure": null,
+      "caveats": "The review does not attribute this duration effect to a specific numeric day-count in the retrieved abstract, only to percentage reductions; therapeutic (post-onset) use is explicitly distinguished from regular (prophylactic) use and should not be conflated with it."
+    },
+    {
+      "behavior_id": "elderberry_supplementation",
+      "marker_id": "infection_duration",
+      "direction": "-",
+      "effect": "Elderberry supplementation was found to substantially reduce upper respiratory symptoms, with the quantitative synthesis yielding a large mean effect size",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports a qualitative 'large mean effect size' without a numeric point estimate, confidence interval, or day count",
+      "evidence_tier": "C",
+      "population": "180 participants pooled across a small number of randomized controlled trials of black elderberry supplementation for cold/flu symptoms",
+      "conditional_on": "Evidence base restricted to a small number of trials (180 participants total); review notes vaccination status and underlying pathology (cold vs influenza) were evaluated as moderators but does not report their separate numeric results in the abstract",
+      "paper": {
+        "doi": "10.1016/j.ctim.2018.12.004",
+        "title": "Black elderberry (Sambucus nigra) supplementation effectively treats upper respiratory symptoms: A meta-analysis of randomized, controlled clinical trials",
+        "year": 2019,
+        "design": "meta-analysis of RCTs",
+        "n": 180
+      },
+      "verbatim": "Supplementation with elderberry was found to substantially reduce upper respiratory symptoms.",
+      "key_results": "The quantitative synthesis of the effects yielded a large mean effect size, though the abstract does not state this as a numeric standardized mean difference or day-count reduction. Black elderberry has been used to treat cold and flu symptoms, but the authors note there are no large-scale studies or meta-analyses beyond this small pooled set. The authors frame the finding as a potential alternative to antibiotic misuse and prescription drugs for routine common cold and influenza cases, a stronger clinical claim than the small evidence base (180 participants) can firmly support.",
+      "figure": null,
+      "caveats": "Evidence base is small (180 participants) relative to the other supplement edges in this file; the abstract does not provide a numeric effect size, day-count, or confidence interval, so no effect_normalized value is reported here. This is one of the weaker-evidence edges in the file and should be read with appropriate caution relative to the tier-A vitamin C and probiotics findings above."
+    },
+    {
+      "behavior_id": "hand_hygiene",
+      "marker_id": "arti_incidence",
+      "direction": "-",
+      "effect": "Hand hygiene interventions produced a 14% relative reduction in the number of people with acute respiratory infections (RR 0.86, 95% CI 0.81-0.90)",
+      "effect_normalized": 0.86,
+      "normalization_method": "risk ratio, original units retained",
+      "evidence_tier": "A",
+      "population": "52105 participants across 9 trials for the ARI-specific outcome (71210 participants across 19 trials for the broader ARI/ILI/influenza composite outcome)",
+      "conditional_on": "Effect is for hand-hygiene interventions specifically (not combined with masking or other physical interventions) against a strict ARI case definition; the composite outcome including influenza-like illness showed a somewhat smaller relative reduction",
+      "paper": {
+        "doi": "10.1002/14651858.CD006207.pub6",
+        "title": "Physical interventions to interrupt or reduce the spread of respiratory viruses",
+        "year": 2023,
+        "design": "Cochrane meta-analysis of RCTs",
+        "n": 52105
+      },
+      "verbatim": "Hand hygiene interventions produced a 14% relative reduction in the number of people with ARIs (RR 0.86, 95% CI 0.81 to 0.90; 9 trials, 52105 participants).",
+      "key_results": "For the broader composite outcome (ARI, influenza-like illness, or confirmed influenza combined), hand hygiene produced an 11% relative reduction of respiratory illness (RR 0.89, 95% CI 0.83-0.94; 19 trials, 71210 participants), a somewhat smaller effect than for the strict ARI outcome. This is one of the largest evidence bases in this dataset by total participant count (52105 to 71210 depending on outcome definition). The review is a living Cochrane review updated across several editions (this is the 2023 update, pub6), with earlier editions reporting similar but slightly different pooled estimates as new trials were added.",
+      "figure": null,
+      "caveats": "This review pools community and household hand-hygiene promotion trials of varying intensity and adherence; individual adherence to hand hygiene was not separately quantified in the retrieved abstract text, so the effect represents intention-to-treat exposure to a hand-hygiene program rather than a dose-response curve for hand-washing frequency itself."
+    },
+    {
+      "behavior_id": "smoking",
+      "marker_id": "vaccine_antibody_response",
+      "direction": "-",
+      "effect": "Tobacco smoking was associated with a weighted mean difference of 0.65 (95% CI 0.10-1.19, P=0.02) in antibody levels between smokers and non-smokers, pooled across vaccinations against COVID-19, influenza, pneumococcus, hepatitis B, HPV, tetanus, pertussis, polio, Haemophilus influenzae type b, and measles-mumps-rubella",
+      "effect_normalized": 0.65,
+      "normalization_method": "weighted mean difference in antibody level (units as pooled by source across heterogeneous assays), original value retained",
+      "evidence_tier": "A",
+      "population": "34 studies pooled across active and passive tobacco smoke exposure at time of vaccination, spanning 11 different vaccine types",
+      "conditional_on": "Pooled across active and passive smoke exposure and across many different vaccines/assay types; direction is consistently toward decreased antibody levels and avidity and decreased immune cell production in smoke-exposed individuals",
+      "paper": {
+        "doi": "10.3390/vaccines12111260",
+        "title": "Does Tobacco Smoking Affect Vaccine-Induced Immune Response? A Systematic Review and Meta-Analysis",
+        "year": 2024,
+        "design": "systematic review and meta-analysis",
+        "n": null
+      },
+      "verbatim": "The meta-analysis showed a weighted mean difference between smokers and non-smokers equal to 0.65 (95% CI: 0.10-1.19, p = 0.02) for vaccinations against COVID-19, influenza, pneumococcus, HBV, HPV, tetanus, pertussis, polio, haemophilus influenzae type b, measles-mumps-rubella, and recurrent urinary tract infections.",
+      "key_results": "Thirty-four studies were selected for this review, and overall a decrease in antibody levels and avidity and in immune cell production were observed in individuals exposed to smoke, across active and passive exposure. The authors recommend smoking cessation campaigns be considered specifically to increase the effectiveness of vaccination programs. They further suggest the opportunity to adopt different vaccine dosing schemes for smokers versus non-smokers, especially during acute epidemics, be considered.",
+      "figure": null,
+      "caveats": "The pooled weighted mean difference (0.65) combines heterogeneous antibody assays and units across 11 different vaccines into a single standardized-style statistic; the retrieved abstract does not separately report the effect size for any single vaccine type (e.g. influenza alone), so this edge should be read as a general cross-vaccine signal rather than a vaccine-specific effect size. No corresponding smoking -> arti_incidence edge is included in this file because a comparably well-powered meta-analysis of smoking and natural ARI incidence (as opposed to vaccine response) was not identified within the research budget for this file."
+    }
+  ],
   "cut_candidates": []
 }

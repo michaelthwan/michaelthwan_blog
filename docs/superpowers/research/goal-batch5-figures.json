@@ -1,0 +1,409 @@
+{
+ "_meta": {
+  "goal": "Batch 5 - figure and results-text enrichment pass",
+  "source_file": "docs/superpowers/research/_pending_figures_batch5.json",
+  "extracted": "2026-09-15",
+  "method": "NCBI PMC ID Converter (DOI to PMCID, batched) + direct PMC article page fetch for license and figure extraction; NCBI eutils esearch/efetch against pubmed (batched) for abstracts of papers not in PMC or not openly licensed. Figure image URLs verified with curl -sIL for image/* content-type before download; downloaded files verified for non-empty size and valid image magic bytes.",
+  "papers_total": 40,
+  "papers_in_pmc": 24,
+  "papers_open_access_with_reusable_licence": 9,
+  "papers_open_access_but_restrictive_licence_or_copyright": 15,
+  "papers_not_open_access_or_not_in_pmc": 16,
+  "figures_downloaded_and_verified": 9,
+  "notes": [
+   "10.1016/j.ebiom.2016.04.023 (PMC4919723) is CC BY-NC-ND; ND blocks figure reuse, so no figure was downloaded, only a results passage.",
+   "10.1186/s13018-025-05890-1 (PMC12107943) is CC BY-NC-ND for the same reason; no figure downloaded.",
+   "10.14309/ajg.0000000000002098 (PMC10287833), 10.1016/j.jhep.2024.06.017 (PMC12007730), 10.1001/jama.2018.20579 (PMC6440226), 10.1056/NEJMoa0907929 (PMC2928471), 10.1001/archinternmed.2008.505 (PMC2629403), and 10.1056/NEJMoa2202106 (PMC9716639) are NIH/journal author-manuscript deposits in PMC carrying only the standard 'available for text mining / fair use' notice, not a Creative Commons licence; treated as not reusable per the same rule applied to author manuscripts in prior batches.",
+   "10.1111/bcp.13057 (PMC5061795, British Pharmacological Society copyright), 10.5665/sleep.1990 (PMC3397812, Associated Professional Sleep Societies copyright), 10.1007/s00198-015-3386-5 (PMC4715837, IOF/NOF copyright), and 10.1136/bmj.315.7112.841 (PMC2127590, 1997 article, no licence metadata on the PMC page) carry standard copyright notices with no Creative Commons licence; treated as not reusable.",
+   "10.1002/14651858.CD006895.pub4 (PMC9400717) and 10.1002/14651858.CD000980.pub4 (PMC8078152) are Cochrane Database of Systematic Reviews entries under standard Cochrane/Wiley copyright, not a CC licence; treated as not reusable, consistent with prior batches.",
+   "10.1002/14651858.CD006207.pub6 (PMC9885521) is a newer Cochrane review genuinely licensed CC BY 4.0, but every figure/analysis image embedded in the PMC HTML (including the hand-hygiene forest plot, Analysis 3.1, cited in the abstract) resolves only to a 100x100px thumbnail; no full-resolution, non-broken image URL could be found via the PMC page or its figure permalink, so no figure was downloaded despite the permissive licence. Only a results passage is provided.",
+   "PRISMA/CONSORT flow diagrams, risk-of-bias summaries, and a funnel plot were seen and skipped on multiple CC-licensed papers in favour of the forest-plot/dose-response figure showing the finding (e.g. PMC8471033 fig 1, PMC10222807 figs 1 and 7, PMC6155966 figs 1-2, PMC10024204 fig 1, PMC11599009 figs 1 and A1, PMC8835521 fig 1).",
+   "16 of 40 papers (10.1053/j.gastro.2020.06.006, 10.1016/j.clnu.2022.06.037, 10.1056/NEJMoa2413258, 10.2337/db13-1622, 10.1016/S2213-8587(21)00051-6, 10.1056/NEJM199108293250903, 10.1249/00005768-199402000-00002, 10.1111/j.1600-0838.2005.00490.x, 10.1016/j.amjmed.2006.06.033, 10.1016/j.ctim.2018.12.004, 10.1007/s00774-009-0139-6, 10.3945/ajcn.116.145110, 10.1007/s00198-016-3617-4, 10.1016/j.joca.2024.08.012, 10.1136/bjsports-2015-095424, 10.1007/s00296-018-4077-2) were not found in PMC via the DOI-to-PMCID converter; a PubMed AID search located PubMed records and abstracts for all 16 (Elsevier/Wiley/Springer/NEJM/ACSM/AJCN/BJSM venues not deposited in PMC for this DOI), recorded as open_access: false with results_passage drawn from the PubMed abstract."
+  ]
+ },
+ "by_doi": {
+  "10.1056/NEJMoa2413258": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "Resolution of steatohepatitis without worsening of fibrosis occurred in 62.9% of patients receiving semaglutide 2.4 mg weekly versus 34.3% on placebo (estimated difference 28.7 percentage points, 95% CI 21.1-36.2). A reduction in liver fibrosis without worsening of steatohepatitis occurred in 36.8% versus 22.4% (difference 14.4 points, 95% CI 7.5-21.3). Mean body weight change was -10.5% with semaglutide versus -2.0% with placebo. Gastrointestinal adverse events were more common with semaglutide. In patients with MASH and moderate or advanced liver fibrosis, once-weekly semaglutide 2.4 mg improved liver histologic results.",
+   "figures": []
+  },
+  "10.1016/j.joca.2024.08.012": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "Across 13 RCTs (2800 participants) networked for knee osteoarthritis, all weight-loss interventions significantly outperformed control for weight change, from -11.2 kg (95% CI -16.0 to -6.5) for combined psychological+diet+exercise (PDE) to -4.7 kg for diet+exercise (DE). For pain, only DE outperformed control (-2.2 points/20, 95% CI -4.1 to -0.21); PDE was not superior to control for pain. Meta-regression predicted that significant pain relief requires at least 7% weight reduction regardless of the intervention chosen. PDE and DE may offer the most effective approach for weight loss and associated symptom improvement in overweight/obese adults with knee osteoarthritis.",
+   "figures": []
+  },
+  "10.1016/j.clnu.2022.06.037": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "Across 26 trials with 3037 participants, dietary interventions (calorie restriction and Mediterranean diet) reduced ALT (P<0.001), AST (P=0.004), Fatty Liver Index (P<0.001), hepatic steatosis (P=0.02), and liver stiffness (P=0.01) in NAFLD. Calorie-restricted interventions had favourable effects on ALT, hepatic steatosis and liver stiffness; Mediterranean diet reduced ALT, Fatty Liver Index and liver stiffness. A dose-response relationship was seen between degree of calorie restriction and beneficial effects on liver function and weight loss. These results support calorie restriction as the cornerstone of NAFLD dietary management, with Mediterranean diet as an effective adjunct.",
+   "figures": []
+  },
+  "10.1016/S2213-8587(21)00051-6": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In an individual participant data meta-analysis of 46 RCTs (75,541 participants), a significantly lower proportion of participants receiving vitamin D supplementation had one or more acute respiratory infections than those on placebo (OR 0.92, 95% CI 0.86-0.99). Protective effects were stronger in trials using daily dosing (OR 0.78, 95% CI 0.65-0.94), daily doses of 400-1000 IU (OR 0.70, 95% CI 0.55-0.89), trial duration of 12 months or less, and participants aged 1.0-15.99 years. No significant effect was seen for baseline vitamin D status subgroups, and no significant difference in serious adverse events was found. Vitamin D supplementation was safe and overall reduced the risk of acute respiratory infection, though the effect size was small.",
+   "figures": []
+  },
+  "10.1053/j.gastro.2020.06.006": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a prospective study of 180 patients with biopsy-proven NASH followed for 5 years after bariatric surgery, NASH resolved without worsening fibrosis in 84% of patients at 5 years (95% CI 73.1-92.2%). Fibrosis decreased compared with baseline in 70.2% of patients and disappeared entirely in 56%. Persistence of NASH was associated with less weight loss (BMI reduction of 6.3 vs 13.4 kg/m2 with resolution). Resolution of NASH was seen as early as 1 year after surgery with no significant recurrence between 1 and 5 years, while fibrosis continued to decrease progressively through 5 years.",
+   "figures": []
+  },
+  "10.1016/j.ctim.2018.12.004": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "This meta-analysis of 180 participants across studies of black elderberry (Sambucus nigra) supplementation for upper respiratory symptoms found that elderberry substantially reduced upper respiratory symptoms, with a large mean effect size in the quantitative synthesis. The effect was evaluated across moderators including vaccination status and underlying pathology. The findings present elderberry as a potential alternative to antibiotic misuse for viral upper respiratory symptoms and a possible safer alternative to prescription drugs for routine colds and influenza.",
+   "figures": []
+  },
+  "10.1007/s00296-018-4077-2": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a meta-analysis of randomized placebo-controlled trials, glucosamine significantly reduced knee osteoarthritis pain on the Visual Analog Scale (weighted mean difference -7.41 mm, 95% CI -14.31 to -0.51) and chondroitin sulfate also reduced pain (WMD -8.35 mm, 95% CI -11.84 to -4.85). Their combination did not show a significant effect (WMD -0.28 mm, 95% CI -8.87 to 8.32). Neither glucosamine, chondroitin, nor their combination had a significant effect on the total WOMAC index. Oral glucosamine or chondroitin sulfate alone reduces knee osteoarthritis pain, but combining them adds no benefit.",
+   "figures": []
+  },
+  "10.3945/ajcn.116.145110": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a systematic review of 16 RCTs and 20 prospective cohort studies, moderate evidence suggested higher dietary protein intake had a protective effect on lumbar spine bone mineral density compared with lower protein intake (net percentage change 0.52%, 95% CI 0.06-0.97%), but no effect on total hip, femoral neck, or total body BMD or bone biomarkers. Limited evidence did not support an effect of protein combined with calcium/vitamin D on lumbar spine or hip BMD or forearm fractures. Current evidence shows no adverse effects of higher protein intake, with only the lumbar spine showing moderate evidence of benefit; high-quality long-term studies are still needed.",
+   "figures": []
+  },
+  "10.1007/s00198-016-3617-4": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a systematic review of 32 RCTs on weight-loss strategies and bone mineral density (BMD), weight reduction produced no significant change in total BMD but significantly decreased hip BMD (mean difference -0.008 g/cm2, 95% CI -0.09 to -0.006, P<0.001) and lumbar spine BMD (MD -0.018 g/cm2, P<0.001). Hip BMD loss was greater after more than 4 months, especially in obese participants, and calorie restriction longer than 13 months produced greater lumbar spine BMD loss. Calorie restriction alone or combined with exercise decreased hip bone density, whereas exercise-induced weight loss without dietary restriction increased hip BMD.",
+   "figures": []
+  },
+  "10.1136/bjsports-2015-095424": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "This Cochrane review pooled 44 trials showing that land-based therapeutic exercise significantly reduced knee osteoarthritis pain (12 points/100, 95% CI 10-15) and improved physical function (10 points/100, 95% CI 8-13) immediately after treatment, and improved quality of life (4 points/100, 95% CI 2-5) in 13 studies. Benefits were sustained 2-6 months after cessation of formal treatment: reduced pain (6 points/100, 95% CI 3-9) and improved function (3 points/100, 95% CI 1-5) in follow-up studies. Among people with knee osteoarthritis, land-based therapeutic exercise provides short-term benefit for pain and function that is sustained for at least 2-6 months after treatment ends.",
+   "figures": []
+  },
+  "10.2337/db13-1622": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In the LIPOGAIN randomized trial, 39 young normal-weight adults overfed muffins high in saturated fat (SFA, palm oil) or polyunsaturated fat (PUFA, sunflower oil) for 7 weeks gained similar total weight, but SFA overfeeding markedly increased liver fat compared with PUFA and caused a twofold larger increase in visceral adipose tissue. PUFA overfeeding instead caused a nearly threefold larger increase in lean tissue than SFA. Increases in liver fat correlated directly with plasma SFA changes and inversely with PUFA changes. Overeating saturated fat promotes hepatic and visceral fat storage, whereas excess energy from polyunsaturated fat may instead promote lean tissue gain in healthy humans.",
+   "figures": []
+  },
+  "10.1007/s00774-009-0139-6": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a meta-analysis of impact exercise interventions in premenopausal women, protocols combining odd- or high-impact exercise with high-magnitude resistance loading significantly increased bone mineral density at the lumbar spine (weighted mean difference 0.009 g/cm2, 95% CI 0.002-0.015) and femoral neck (WMD 0.007 g/cm2, 95% CI 0.001-0.013). High-impact-only protocols were effective for femoral neck BMD alone (WMD 0.024 g/cm2, 95% CI 0.002-0.027). Insufficient data were available to assess total hip BMD, and funnel plots showed some asymmetry for positive outcomes. Exercise programmes combining odd- or high-impact activity with high-magnitude resistance training appear effective for increasing BMD at the hip and spine in premenopausal women.",
+   "figures": []
+  },
+  "10.1016/j.amjmed.2006.06.033": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a randomized trial of 115 overweight, sedentary postmenopausal women, those assigned to 45 minutes of moderate-intensity exercise 5 days/week for 12 months had a significantly reduced risk of colds relative to stretching controls (P=.02), with more than a threefold difference in cold risk in the final 3 months of the study (P=.03). Overall risk of upper respiratory tract infections did not differ significantly between groups (P=.16), possibly confounded by differential influenza vaccination rates. One year of moderate-intensity exercise training can reduce the incidence of colds among postmenopausal women.",
+   "figures": []
+  },
+  "10.1111/j.1600-0838.2005.00490.x": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a cohort of 1694 Stockholm Marathon runners, pre-race infectious episode incidence was 17% and post-race incidence was 19%, with no significant difference between sexes. Among runners who had a pre-race infection, 33% also experienced a post-race infection, versus 16% among those without a pre-race infection. Younger age and pre-race health status were the main factors explaining post-race infection incidence; training volume, finishing time, and socioeconomic factors were not related. The findings do not support the 'open window' theory of increased post-marathon infection risk in recreational runners, but suggest that resuming strenuous exercise too soon after an infection may raise infection rates.",
+   "figures": []
+  },
+  "10.1249/00005768-199402000-00002": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "This narrative review describes the relationship between exercise and upper respiratory tract infection (URTI) risk as a 'J'-shaped curve: unusually heavy acute or chronic exercise is associated with increased URTI risk, especially in the 1-2 weeks following marathon-type events, while moderate exercise may reduce URTI risk. Heavy exertion is thought to increase URTI risk through negative changes in immune function and elevated stress hormones (epinephrine, cortisol). Two small randomized trials support the view that moderate physical activity may reduce URTI symptoms, while growing evidence indicates that moderate exercise favourably alters immune function without the negative effects seen with heavy exertion.",
+   "figures": []
+  },
+  "10.1056/NEJM199108293250903": {
+   "pmcid": null,
+   "open_access": false,
+   "license": null,
+   "source_url": null,
+   "results_passage": "In a prospective trial in which 394 healthy subjects were experimentally exposed to one of five respiratory viruses after completing psychological stress questionnaires, both respiratory infection rates (P<0.005) and clinical cold rates (P<0.02) increased in a dose-response manner with the degree of psychological stress. Infection rates ranged from about 74% to 90% and clinical cold incidence from about 27% to 47% across stress levels. These associations persisted after controlling for age, sex, education, allergy status, weight, season, and other potential mediators including smoking, alcohol, exercise, diet, and sleep quality. Psychological stress was associated in a dose-response manner with increased risk of acute infectious respiratory illness, attributable to increased infection rates rather than increased symptom frequency after infection.",
+   "figures": []
+  },
+  "10.3390/nu13093042": {
+   "pmcid": "PMC8471033",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8471033/",
+   "results_passage": "Eleven studies were included: three (92,075 subjects) assessed NAFLD incidence, eight (9558 subjects) NAFLD prevalence, and five (4303 subjects) liver fibrosis. There was no association between coffee consumption and NAFLD incidence (RR 0.88, 95% CI 0.63-1.25) or prevalence (RR 0.88, 95% CI 0.76-1.02). Coffee consumption was significantly associated with a 35% decreased odds of significant liver fibrosis (RR 0.65, 95% CI 0.54-0.78, P<0.00001), with no heterogeneity and no evidence of publication bias. This meta-analysis supports a protective role of coffee consumption against significant liver fibrosis in NAFLD patients, though the hepatoprotective threshold of consumption still needs establishing in prospective trials.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC8471033-f2.jpg",
+     "caption": "Forest plot for the association between coffee consumption and (a) NAFLD incidence, (b) NAFLD prevalence, and (c) significant liver fibrosis. Relative risk for the highest versus the lowest level of coffee consumption was pooled using random-effects models.",
+     "shows": "Three-panel forest plot comparing highest vs lowest coffee consumption for NAFLD incidence, prevalence, and liver fibrosis risk, showing the significant protective association only for fibrosis."
+    }
+   ]
+  },
+  "10.1016/j.ebiom.2016.04.023": {
+   "pmcid": "PMC4919723",
+   "open_access": true,
+   "license": "CC BY-NC-ND 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4919723/",
+   "results_passage": "Across 18 studies (99,370 participants, 25,662 cases of hepatic steatosis), low alcohol consumption (<20 g/day) in Japan was consistently associated with substantially reduced incidence and prevalence of hepatic steatosis versus non-drinkers (RR 0.75, 95% CI 0.71-0.79, I2=0%), while no overall association was found in other high-income countries (RR 1.05, 95% CI 0.86-1.30, I2=84%). Dose-response analyses in Japan (up to 80 g/day) showed an inverse relationship in men and a J-shaped relationship in women. Alcohol consumption showed a complex, ethnicity- and sex-dependent association with hepatic steatosis, beneficial in Japan but not established elsewhere, with substantial heterogeneity outside Japan.",
+   "figures": []
+  },
+  "10.14309/ajg.0000000000002098": {
+   "pmcid": "PMC10287833",
+   "open_access": true,
+   "license": "NIH/journal author manuscript deposit (PMC text-mining fair-use notice only, not a CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10287833/",
+   "results_passage": "Across 14 RCTs (551 subjects), exercise training subjects were more likely to achieve a clinically meaningful (>=30%) relative reduction in MRI-measured liver fat than controls (odds ratio 3.51, 95% CI 1.49-8.23, P=0.004). An exercise dose of at least 750 metabolic equivalents of task-min/week (e.g., 150 min/week of brisk walking) produced a significant treatment response (OR 3.73, 95% CI 1.34-10.41), while lesser doses did not. Treatment response was independent of clinically significant body weight loss (>5%). Exercise training is roughly three and a half times more likely to achieve meaningful MRI-measured liver fat reduction than standard care, independent of weight loss, supporting a weight-neutral benefit of exercise for all NAFLD patients.",
+   "figures": []
+  },
+  "10.1016/j.jhep.2024.06.017": {
+   "pmcid": "PMC12007730",
+   "open_access": true,
+   "license": "NIH/journal author manuscript deposit (PMC text-mining fair-use notice only, not a CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12007730/",
+   "results_passage": "In a randomized trial of individuals with biopsy-proven MASH (treatment n=16, control n=8), 10 months of energy restriction plus supervised high-intensity interval training produced significant reductions in body weight, fat mass, and liver injury markers, and improved cardiorespiratory fitness (VO2peak). Both groups showed reductions in hemoglobin A1c, hepatic insulin resistance, and liver fat. Compared with control, the treatment group had a two-fold increase in peripheral insulin sensitivity, which was significantly related to higher VO2peak and resolution of liver disease. Exercise and energy restriction produced clinically meaningful improvements in liver health, likely via redistribution of excess nutrients to skeletal muscle, supporting the addition of aerobic exercise to lifestyle treatment for advanced MASH.",
+   "figures": []
+  },
+  "10.3390/nu15102250": {
+   "pmcid": "PMC10222807",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10222807/",
+   "results_passage": "Ten RCTs (737 adults with NAFLD) were included. The Mediterranean diet decreased liver stiffness by -0.42 kPa (95% CI -0.92 to 0.09, P=0.10, not significant) and significantly reduced total cholesterol by -0.46 mg/dl (95% CI -0.55 to -0.38, P=0.001), while no significant findings were documented for liver enzymes or waist circumference. The Mediterranean diet might reduce indirect and direct outcomes linked with NAFLD severity, such as total cholesterol, liver fibrosis, and waist circumference, although variation across trials should be considered and further RCTs are needed.",
+   "figures": [
+    {
+     "label": "Figure 5",
+     "local_path": "/img/health-evidence/PMC10222807-f5.jpg",
+     "caption": "The effect of the MD on TC [39,40,42,44,45,48].",
+     "shows": "Forest plot of randomized trials showing the Mediterranean diet's significant lowering effect on total cholesterol (TC) in NAFLD patients."
+    }
+   ]
+  },
+  "10.1001/jama.2018.20579": {
+   "pmcid": "PMC6440226",
+   "open_access": true,
+   "license": "NIH/journal author manuscript deposit (PMC text-mining fair-use notice only, not a CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6440226/",
+   "results_passage": "In a randomized trial of 40 adolescent boys with NAFLD, an 8-week diet low in free sugars (<3% of daily calories) reduced hepatic steatosis (measured by MRI proton density fat fraction) significantly more than usual diet (25% to 17% vs 21% to 20%; adjusted week-8 mean difference -6.23%, 95% CI -9.45% to -3.02%, P<0.001). Alanine aminotransferase also decreased significantly more in the intervention group (103 to 61 U/L vs 82 to 75 U/L; P<0.001). Adherence to the low-sugar diet was high (18 of 20 participants). Eight weeks of a low free-sugar diet, compared with usual diet, resulted in significant improvement in hepatic steatosis in adolescent boys with NAFLD, though findings are preliminary pending longer-term outcome data.",
+   "figures": []
+  },
+  "10.1056/NEJMoa0907929": {
+   "pmcid": "PMC2928471",
+   "open_access": true,
+   "license": "NIH/journal author manuscript deposit (PMC text-mining fair-use notice only, not a CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2928471/",
+   "results_passage": "In the PIVENS trial (247 adults with NASH, no diabetes, randomized to pioglitazone 30 mg/day, vitamin E 800 IU/day, or placebo for 96 weeks), vitamin E produced a significantly higher rate of histologic improvement in NASH versus placebo (43% vs 19%, P=0.001), but pioglitazone did not significantly differ from placebo on the primary outcome (34% vs 19%, P=0.04, above the prespecified 0.025 threshold). Both agents reduced aminotransferase levels, hepatic steatosis, and lobular inflammation versus placebo, but neither improved fibrosis scores. Pioglitazone was associated with more weight gain. Vitamin E was superior to placebo for treating NASH in adults without diabetes; pioglitazone showed no benefit over placebo on the primary histologic outcome despite some secondary benefits.",
+   "figures": []
+  },
+  "10.1097/MD.0000000000012271": {
+   "pmcid": "PMC6155966",
+   "open_access": true,
+   "license": "CC BY-NC 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6155966/",
+   "results_passage": "Eighteen RCTs involving 1424 NAFLD patients were included. Omega-3 PUFA supplementation showed a significant benefit versus control for liver fat, alanine aminotransferase, aspartate aminotransferase, gamma-glutamyl transferase, triglycerides, insulin resistance, and glucose, though interstudy heterogeneity was significant. No clear methodologic source of heterogeneity was identified and no publication bias or serious adverse events were detected. Omega-3 PUFA supplementation may decrease liver fat and hepatic enzyme parameters in NAFLD, but larger, well-designed RCTs are needed to confirm the effect.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC6155966-f3.jpg",
+     "caption": "Forest plot of analysis of effect of omega-3 polyunsaturated fatty acids on liver fat.",
+     "shows": "Forest plot of randomized trials pooling the effect of omega-3 PUFA supplementation versus control on liver fat content in NAFLD patients."
+    }
+   ]
+  },
+  "10.1001/jamanetworkopen.2023.3513": {
+   "pmcid": "PMC10024204",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10024204/",
+   "results_passage": "In this 12-month RCT of 88 adults with obesity and NAFLD, time-restricted eating (TRE, eating 8am-4pm) and daily calorie restriction (DCR) produced comparable reductions in intrahepatic triglyceride (IHTG) content: -8.3% vs -8.1% at 6 months and -6.9% vs -7.9% at 12 months, with no significant between-group difference at either time point. Liver stiffness, body weight, and metabolic risk factors were significantly and comparably reduced in both groups. Among adults with obesity and NAFLD, TRE did not produce additional benefit over daily calorie restriction for reducing liver fat, body fat, or metabolic risk factors, underscoring that caloric restriction itself -- not meal timing -- drives the benefit.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC10024204-f2.jpg",
+     "caption": "A, Change in IHTG content. Data are presented as estimated absolute change of IHTG content. Error bars represent 95% CIs. B, Percentage of IHTG content change for each participant. C, Change in liver stiffness. Data are presented as estimated absolute change of liver stiffness. Error bars represent 95% CIs. D, Percentage of patients with resolution of nonalcoholic fatty liver disease (NAFLD) at 6-month (P = .40) and 12-month (P = .31) assessment. Resolution of NAFLD is defined as IHTG content less than 5%.",
+     "shows": "Four-panel chart comparing time-restricted eating vs daily calorie restriction over 12 months: absolute and per-participant change in liver fat (IHTG), change in liver stiffness, and proportion achieving NAFLD resolution, showing near-identical trajectories for both diet strategies."
+    }
+   ]
+  },
+  "10.1136/bmj.i6583": {
+   "pmcid": "PMC5310969",
+   "open_access": true,
+   "license": "CC BY 3.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5310969/",
+   "results_passage": "This individual participant data meta-analysis pooled 25 RCTs (10,933 of 11,321 participants, aged 0-95). Vitamin D supplementation reduced the risk of acute respiratory tract infection among all participants (adjusted odds ratio 0.88, 95% CI 0.81-0.96). Protective effects were seen in those receiving daily or weekly vitamin D without bolus doses (aOR 0.81, 95% CI 0.72-0.91), and were stronger in those with baseline 25-hydroxyvitamin D <25 nmol/L (aOR 0.30, 95% CI 0.17-0.53) than in those with higher baseline levels (aOR 0.75, 95% CI 0.60-0.95). Vitamin D did not affect serious adverse event rates. Vitamin D supplementation was safe and protected against acute respiratory tract infection overall, with the most benefit in patients who were very vitamin D deficient and those given non-bolus dosing regimens.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC5310969-f2.jpg",
+     "caption": "Fig 2 Two step individual participant data meta-analysis: proportion of participants experiencing at least one acute respiratory tract infection (ARTI). Data from trial by Simpson et al were not included in this two step meta-analysis, as an estimate for the effect of the intervention in the study could not be obtained in the regression model owing to small sample size.",
+     "shows": "Forest plot of per-trial and pooled odds ratios for at least one acute respiratory tract infection, vitamin D vs placebo, across the 25 RCTs contributing individual participant data."
+    }
+   ]
+  },
+  "10.1111/bcp.13057": {
+   "pmcid": "PMC5061795",
+   "open_access": true,
+   "license": "Standard copyright, The British Pharmacological Society (no CC licence found; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5061795/",
+   "results_passage": "Individual patient data from three randomized placebo-controlled trials (199 common-cold patients) were pooled. A one-stage meta-analysis estimated 2.73 days (95% CI 1.8-3.3) shorter colds with zinc acetate lozenges, and a two-stage meta-analysis estimated 2.94 days (95% CI 2.1-3.8) shorter duration, versus an average 7-day cold duration in the three trials. The effect was not modified by allergy status, smoking, baseline severity, age, gender, or ethnic group. Because the treatment effect was consistent across subgroups, the overall estimate appears broadly applicable, supporting zinc acetate lozenges as a reasonable option for common cold patients, though optimal composition and dosing frequency need further study.",
+   "figures": []
+  },
+  "10.1001/archinternmed.2008.505": {
+   "pmcid": "PMC2629403",
+   "open_access": true,
+   "license": "NIH/journal author manuscript deposit (PMC text-mining fair-use notice only, not a CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2629403/",
+   "results_passage": "In 153 healthy volunteers who tracked sleep for 14 days before being quarantined and given rhinovirus nasal drops, participants averaging less than 7 hours of sleep were 2.94 times (95% CI 1.18-7.30) more likely to develop a clinical cold than those with 8 or more hours. Participants with sleep efficiency below 92% were 5.50 times (95% CI 2.08-14.48) more likely to develop a cold than those with 98% or greater efficiency. These associations held after controlling for prechallenge antibody titers, demographics, season, body mass, socioeconomic status, psychological variables, and health practices. Poorer sleep efficiency and shorter sleep duration in the weeks preceding rhinovirus exposure were associated with lower resistance to developing a cold.",
+   "figures": []
+  },
+  "10.5665/sleep.1990": {
+   "pmcid": "PMC3397812",
+   "open_access": true,
+   "license": "Standard copyright, Associated Professional Sleep Societies, LLC (no CC licence found; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3397812/",
+   "results_passage": "In 125 healthy midlife adults (70 female, age 40-60) receiving the standard 3-dose hepatitis B vaccination series, actigraphy-measured shorter sleep duration was associated with a lower secondary antibody response, independent of age, sex, BMI, and response to the initial immunization. Shorter sleep duration (by actigraphy and sleep diary) also predicted a decreased likelihood of being clinically protected against hepatitis B (anti-HBs IgG >=10 mIU/ml) six months after the final immunization. Neither sleep efficiency nor subjective sleep quality significantly predicted antibody response. Short sleep duration in the natural environment may negatively affect antibody responses to novel antigens, offering a possible mechanism linking poor sleep with increased infectious disease susceptibility.",
+   "figures": []
+  },
+  "10.1002/14651858.CD006895.pub4": {
+   "pmcid": "PMC9400717",
+   "open_access": false,
+   "license": "Cochrane Database of Systematic Reviews copyright (not a CC licence; PMC deposit, standard copyright, not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9400717/",
+   "results_passage": "This Cochrane review included 23 individual RCTs and one cluster-RCT (6950 participants across children, adults, and older people). Probiotics may reduce the number of participants diagnosed with at least one acute upper respiratory tract infection (URTI) (RR 0.76, 95% CI 0.67-0.87; low-certainty evidence) and likely reduce URTIs occurring at least three times (RR 0.59, 95% CI 0.38-0.91; moderate-certainty evidence). Probiotics may reduce the incidence rate of URTIs (rate ratio 0.82, 95% CI 0.73-0.92) and mean episode duration (mean difference -1.22 days, 95% CI -2.12 to -0.33), and likely reduce antibiotic use for URTIs (RR 0.58, 95% CI 0.42-0.81), without increasing adverse events. Overall, probiotics were found to be better than placebo or no treatment in preventing acute upper respiratory tract infections, though certainty of evidence for most outcomes was low to moderate.",
+   "figures": []
+  },
+  "10.1002/14651858.CD000980.pub4": {
+   "pmcid": "PMC8078152",
+   "open_access": false,
+   "license": "Cochrane Database of Systematic Reviews copyright (not a CC licence; PMC deposit, standard copyright, not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8078152/",
+   "results_passage": "Twenty-nine trial comparisons (11,306 participants) contributed to the meta-analysis of regular vitamin C supplementation and cold incidence: the pooled risk ratio was 0.97 (95% CI 0.94-1.00) in the general community (10,708 participants), but 0.48 (95% CI 0.35-0.64) in 598 marathon runners, skiers, and soldiers under heavy physical/cold stress. Regular vitamin C reduced cold duration by 8% in adults and 14% in children, and reduced severity, but seven therapeutic-dosing comparisons (3249 episodes) showed no consistent effect on duration or severity once a cold had started. Routine vitamin C supplementation is not justified for reducing cold incidence in the general population, but may benefit people undergoing brief periods of severe physical exercise or cold exposure; regular (not therapeutic) supplementation modestly shortens cold duration and severity.",
+   "figures": []
+  },
+  "10.1002/14651858.CD006207.pub6": {
+   "pmcid": "PMC9885521",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9885521/",
+   "results_passage": "This Cochrane review included 78 RCTs and cluster-RCTs (including 11 new trials, 610,872 participants). Wearing medical/surgical masks in the community probably makes little or no difference to influenza-like illness (RR 0.95, 95% CI 0.84-1.09) or laboratory-confirmed influenza/SARS-CoV-2 (RR 1.01, 95% CI 0.72-1.42) compared with not wearing masks. N95/P2 respirators showed no clear difference from medical/surgical masks for laboratory-confirmed influenza (RR 1.10, 95% CI 0.90-1.34). Hand hygiene interventions probably reduced acute respiratory infections by 14% relative to control (RR 0.86, 95% CI 0.81-0.90), a reduction from about 380 to 327 events per 1000 people. High risk of bias, heterogeneous outcome measurement, and low adherence in the included trials limit firm conclusions about the comparative effectiveness of these physical interventions.",
+   "figures": []
+  },
+  "10.3390/vaccines12111260": {
+   "pmcid": "PMC11599009",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11599009/",
+   "results_passage": "Thirty-four studies on the effect of active/passive tobacco smoking on vaccine-induced immune response were included. Overall, a decrease in antibody levels and avidity, and in immune cell production, was observed in individuals exposed to smoke. The meta-analysis found a weighted mean difference of 0.65 (95% CI 0.10-1.19, P=0.02) between smokers and non-smokers across vaccinations against COVID-19, influenza, pneumococcus, HBV, HPV, tetanus, pertussis, polio, Haemophilus influenzae type b, and measles-mumps-rubella. Smoking cessation campaigns should be considered to increase vaccination program effectiveness, and different vaccine dosing schemes for smokers versus non-smokers may be worth considering, especially during acute epidemics.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC11599009-f2.jpg",
+     "caption": "Forest plot of the efficacy of vaccines (VE) after smoking exposure.",
+     "shows": "Forest plot pooling studies of vaccine-induced immune response (antibody levels) comparing smokers to non-smokers across multiple vaccine types, showing an overall reduced response in smokers."
+    }
+   ]
+  },
+  "10.1186/s13018-025-05890-1": {
+   "pmcid": "PMC12107943",
+   "open_access": true,
+   "license": "CC BY-NC-ND 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12107943/",
+   "results_passage": "Seventeen RCTs (690 subjects) were included. Resistance training significantly improved bone mineral density (BMD) at the lumbar spine (SMD 0.88, 95% CI 0.21-1.56, P=0.01), femoral neck (SMD 0.89, 95% CI 0.40-1.39, P=0.0004), and total hip (SMD 0.30, 95% CI 0.10-0.50, P=0.003) in postmenopausal women, but not at the trochanter. High-intensity training (>=70% 1RM) performed three times per week for at least 48 weeks, with sessions of about 40 minutes, produced the largest effects. Resistance training can beneficially influence BMD in postmenopausal women, particularly at the lumbar spine, femoral neck, and total hip, with high-intensity, thrice-weekly, longer-duration programs appearing optimal, though substantial between-study heterogeneity limits generalizability.",
+   "figures": []
+  },
+  "10.1136/bmj.h4183": {
+   "pmcid": "PMC4784773",
+   "open_access": true,
+   "license": "CC BY-NC 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4784773/",
+   "results_passage": "Fifty-nine RCTs were identified: 15 studied dietary calcium sources (1533 participants) and 51 studied calcium supplements (12,257 participants), all in adults over 50. Increasing calcium intake from dietary sources increased BMD by 0.6-1.0% at the total hip and total body at one year, and by 0.7-1.8% at these sites plus the lumbar spine and femoral neck at two years, with no effect at the forearm. Calcium supplements increased BMD by 0.7-1.8% at all five skeletal sites at one and two years, with little further increase at later time points. Increasing calcium intake from dietary sources or supplements produces small, non-progressive increases in BMD that are unlikely to translate into a clinically significant reduction in fracture risk.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC4784773-f3.jpg",
+     "caption": "Fig 3 Random effects meta-analysis of effect of calcium supplements on percentage change in bone mineral density (BMD) for lumbar spine and femoral neck from baseline at one year.",
+     "shows": "Forest plot of randomized trials showing the small percentage increase in lumbar spine and femoral neck BMD produced by calcium supplementation at one year."
+    }
+   ]
+  },
+  "10.1007/s00198-015-3386-5": {
+   "pmcid": "PMC4715837",
+   "open_access": true,
+   "license": "International Osteoporosis Foundation / National Osteoporosis Foundation copyright (no CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4715837/",
+   "results_passage": "Eight studies (30,970 participants, 195 hip fractures, 2231 total fractures) met inclusion criteria. Calcium plus vitamin D supplementation produced a statistically significant 15% reduction in total fracture risk (summary relative risk estimate 0.85, 95% CI 0.73-0.98) and a 30% reduction in hip fracture risk (SRRE 0.70, 95% CI 0.56-0.87). Numerous sensitivity and subgroup analyses produced similar summary associations, though the study relied partly on subgroup analysis of the Women's Health Initiative. This meta-analysis of RCTs supports the use of calcium plus vitamin D supplements for fracture risk reduction in both community-dwelling and institutionalized middle-aged to older adults.",
+   "figures": []
+  },
+  "10.1056/NEJMoa2202106": {
+   "pmcid": "PMC9716639",
+   "open_access": true,
+   "license": "NIH/journal author manuscript deposit (PMC text-mining fair-use notice only, not a CC licence; not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9716639/",
+   "results_passage": "In this ancillary analysis of the VITAL trial (25,871 generally healthy US adults not selected for vitamin D deficiency or osteoporosis), 1991 incident fractures were confirmed in 1551 participants over a median 5.3-year follow-up. Supplemental vitamin D3 (2000 IU/day) did not significantly reduce total fractures (hazard ratio 0.98, 95% CI 0.89-1.08), nonvertebral fractures (HR 0.97, 95% CI 0.87-1.07), or hip fractures (HR 1.01, 95% CI 0.70-1.47) compared with placebo, with no effect modification by age, sex, race, BMI, or baseline vitamin D level. Vitamin D3 supplementation did not result in a significantly lower risk of fractures than placebo among generally healthy midlife and older adults not selected for vitamin D deficiency or low bone mass.",
+   "figures": []
+  },
+  "10.1136/bmj.315.7112.841": {
+   "pmcid": "PMC2127590",
+   "open_access": false,
+   "license": "No Creative Commons licence found on the PMC article page for this 1997 article (pre-dates open-licence deposits; treated as standard copyright, not reusable)",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2127590/",
+   "results_passage": "This meta-analysis pooled 29 cross-sectional studies (2156 smokers, 9705 non-smokers) on bone density and 19 cohort/case-control studies (3889 hip fractures) on fracture risk by smoking status. Premenopausal bone density was similar in smokers and non-smokers, but postmenopausal bone loss was greater in current smokers, with density differences widening with age (about 2% per decade, 6% by age 80). Relative to non-smokers, hip fracture risk in current smokers was similar at age 50 but rose progressively to an estimated 17% higher at 60, 41% at 70, 71% at 80, and 108% at 90; overall about one in eight hip fractures in women was attributable to smoking. Hip fracture in old age is a major adverse effect of smoking after menopause, with cumulative excess bone loss over decades substantially increasing lifetime hip fracture risk.",
+   "figures": []
+  },
+  "10.3390/ijerph19031515": {
+   "pmcid": "PMC8835521",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8835521/",
+   "results_passage": "Eleven studies (46,916 individuals) assessed BMD and 8 studies (240,871 individuals) assessed fracture risk by alcohol dose. Compared with non-drinkers, up to two standard drinks/day was correlated with higher lumbar and femoral neck BMD, and up to one standard drink/day with higher hip BMD. Hip fracture risk rose significantly from three standard drinks/day (RR 1.33, 95% CI 1.04-1.69) and four drinks/day (RR 1.59, 95% CI 1.23-2.05) versus no alcohol consumption, with no evidence of heterogeneity. There is consistent evidence that higher alcohol consumption is associated with increased risk of osteoporotic hip fracture, while the role of alcohol at lower doses is uncertain since BMD was even higher in light drinkers than abstainers.",
+   "figures": [
+    {
+     "label": "Figure 3",
+     "local_path": "/img/health-evidence/PMC8835521-f3.jpg",
+     "caption": "Graphical representation of the dose-response meta-analysis of the risk of hip and any fracture for various doses of alcohol consumption.",
+     "shows": "Dose-response curve of relative risk of hip and any osteoporotic fracture across increasing daily alcohol consumption, showing risk rising from about three standard drinks per day onward."
+    }
+   ]
+  },
+  "10.1093/ajcn/nqac125": {
+   "pmcid": "PMC9437987",
+   "open_access": true,
+   "license": "CC BY 4.0",
+   "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9437987/",
+   "results_passage": "In this 6-month double-blind RCT of 235 adults with mild-to-moderate knee osteoarthritis, krill oil (4 g/day) increased the Omega-3 Index from 6.0% to 8.9% versus 5.5% to 5.4% with placebo (P<0.001). Knee pain improved in both groups, with significantly greater improvement for krill oil than placebo (adjusted mean between-group difference at 6 months: -5.18, 95% CI -10.0 to -0.32, P=0.04). Knee stiffness and physical function also improved significantly more with krill oil (differences of -6.45 and -4.67 respectively, both P<0.05). Krill oil was safe to consume and produced modest but statistically significant improvements in knee pain, stiffness, and physical function in adults with mild-to-moderate knee osteoarthritis.",
+   "figures": [
+    {
+     "label": "Figure 2",
+     "local_path": "/img/health-evidence/PMC9437987-f2.jpg",
+     "caption": "Adjusted mean (95% CI) changes in WOMAC knee pain scores from baseline at 6 mo. (A) Primary analysis comparing changes in WOMAC knee pain score (ITT population, n = 207, P = 0.04). (B) Secondary analysis comparing changes in WOMAC knee pain scores stratified by baseline inflammatory status (ITT approach, n = 205, overall treatment x inflammatory status interaction P = 0.01). WOMAC knee pain scores were normalized to scores ranging from 0 to 100.",
+     "shows": "Line/point chart of adjusted mean change in WOMAC knee pain score over 6 months for krill oil vs placebo, overall and stratified by baseline inflammatory status."
+    }
+   ]
+  }
+ }
+}

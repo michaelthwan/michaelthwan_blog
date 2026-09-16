@@ -1,0 +1,448 @@
+{
+  "goal": {
+    "id": "goal_l_gut",
+    "name": "Gut and digestive health",
+    "definition": "Stool frequency and consistency, IBS symptom severity, whole-gut/colonic transit time, and constipation responder rate as measurable markers of lower-GI function, using hard endpoints rather than microbiome composition."
+  },
+  "nodes": {
+    "goals": [
+      {
+        "id": "goal_l_gut",
+        "name": "Gut and digestive health",
+        "definition": "Stool frequency and consistency, IBS symptom severity, whole-gut/colonic transit time, and constipation responder rate as measurable markers of lower-GI function, using hard endpoints rather than microbiome composition."
+      }
+    ],
+    "markers": [
+      {
+        "id": "stool_frequency_consistency",
+        "name": "Stool frequency and consistency",
+        "unit": "bowel movements per week (BM/wk or CSBM/wk); Bristol Stool Form Scale points (1-7)",
+        "goal_ids": ["goal_l_gut"]
+      },
+      {
+        "id": "ibs_severity",
+        "name": "IBS symptom severity",
+        "unit": "IBS-SSS points (0-500 scale); or adequate-relief / global-improvement responder rate (%)",
+        "goal_ids": ["goal_l_gut"]
+      },
+      {
+        "id": "gut_transit",
+        "name": "Whole-gut or colonic transit time",
+        "unit": "hours; or colonic motor activity area-under-curve for acute stimulus studies",
+        "goal_ids": ["goal_l_gut"]
+      },
+      {
+        "id": "constipation_relief",
+        "name": "Constipation responder rate",
+        "unit": "proportion (%) meeting a trial's relief definition; complete spontaneous bowel movements (CSBM) per week",
+        "goal_ids": ["goal_l_gut"]
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "fibre_general",
+        "name": "Dietary fibre supplementation (pooled across types)",
+        "category": "diet",
+        "dose_or_intensity": "Mixed fibre types (psyllium, pectin, bran, glucomannan etc.) pooled across 16 RCTs; higher doses (>10 g/day) and durations >=4 weeks associated with larger effect"
+      },
+      {
+        "id": "psyllium",
+        "name": "Psyllium (soluble/gel-forming fibre)",
+        "category": "diet",
+        "dose_or_intensity": "10 g/day in IBS RCT (Bijkerk 2009); >10 g/day, >=4 weeks in pooled constipation meta-analysis (van der Schoot 2022)"
+      },
+      {
+        "id": "wheat_bran",
+        "name": "Wheat bran (insoluble fibre)",
+        "category": "diet",
+        "dose_or_intensity": "10 g/day for 12 weeks, added to habitual diet, in primary-care IBS patients"
+      },
+      {
+        "id": "prunes",
+        "name": "Prunes (dried plums)",
+        "category": "diet",
+        "dose_or_intensity": "100 g/day (approx. 7 prunes, ~12 g fibre), 3 weeks, in functional constipation"
+      },
+      {
+        "id": "kiwifruit",
+        "name": "Kiwifruit / kiwifruit extract",
+        "category": "diet",
+        "dose_or_intensity": "Kiwifruit-extract powder (Zyactinase) 5.5 g/day for 4 weeks (positive, Udani 2013); encapsulated freeze-dried kiwifruit extract 1 g/day for 3 weeks (null at this lower dose, Kindleysides 2015)"
+      },
+      {
+        "id": "peppermint_oil",
+        "name": "Peppermint oil (enteric-coated capsules)",
+        "category": "supplement",
+        "dose_or_intensity": "Enteric-coated peppermint oil capsules vs placebo, minimum 2 weeks, active IBS"
+      },
+      {
+        "id": "probiotics",
+        "name": "Probiotics (mixed strains/species, by indication: IBS)",
+        "category": "supplement",
+        "dose_or_intensity": "Single- or multi-strain probiotic formulations, variable dose; subgroup benefit for abdominal pain at daily dose >=10^10 CFU or multi-strain products"
+      },
+      {
+        "id": "low_fodmap_diet",
+        "name": "Low-FODMAP diet",
+        "category": "diet",
+        "dose_or_intensity": "Structured low fermentable oligo-, di-, mono-saccharide and polyol diet vs habitual diet, other diets, or high-FODMAP diet, short-term trials"
+      },
+      {
+        "id": "physical_activity",
+        "name": "Physical activity / exercise consultation",
+        "category": "exercise",
+        "dose_or_intensity": "12-week exercise consultation intervention (behaviour-change counselling to increase habitual exercise) vs usual care, in diagnosed IBS patients"
+      },
+      {
+        "id": "psychological_stress",
+        "name": "Acute/psychological stress (negative)",
+        "category": "habit",
+        "dose_or_intensity": "Acute or short-term psychological/physical stressors, studied mechanistically via colonic manometry and motility recordings in humans and animal models"
+      },
+      {
+        "id": "cognitive_behavioral_therapy",
+        "name": "Cognitive behavioural therapy (stress-axis intervention)",
+        "category": "habit",
+        "dose_or_intensity": "10-week internet-delivered CBT based on behavioural exposure to abdominal symptoms, adolescents with IBS, vs wait-list control"
+      },
+      {
+        "id": "coffee",
+        "name": "Caffeinated coffee",
+        "category": "diet",
+        "dose_or_intensity": "240 mL caffeinated coffee (~150 mg caffeine) as a single acute stimulus vs water/decaffeinated coffee, ambulatory colonic manometry in healthy adults"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "psyllium",
+      "marker_id": "stool_frequency_consistency",
+      "direction": "+",
+      "effect": "Psyllium significantly increased stool frequency by 3.08 bowel movements per week (95% CI 0.61 to 5.54; P=0.01) in a sensitivity analysis of trials using consistent measurement methods",
+      "effect_normalized": 3.08,
+      "normalization_method": "mean difference (bowel movements/week), original units retained",
+      "evidence_tier": "A",
+      "population": "Adults with chronic constipation; 16 RCTs, 1251 participants overall (psyllium-specific sensitivity analysis is a subset)",
+      "conditional_on": "Effect specific to psyllium and pectin among fibre types tested; higher fibre doses (>10 g/day) and longer treatment duration (>=4 weeks) required for the overall fibre-stool-frequency effect to appear; considerable heterogeneity (I2=90% in the psyllium sensitivity analysis)",
+      "paper": {
+        "doi": "10.1093/ajcn/nqac184",
+        "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2022,
+        "design": "meta-analysis of RCTs",
+        "n": 1251
+      },
+      "verbatim": "Psyllium significantly increased stool frequency by +3.08 bowel movements/week [95% CI: 0.61, 5.54 bowel movements/week; P = 0.01; I2 = 90% (P < 0.0001)].",
+      "key_results": "Across all 16 RCTs, fibre overall increased stool frequency (SMD 0.72, 95% CI 0.36-1.08, P=0.0001) and improved stool consistency (SMD 0.32, 95% CI 0.18-0.46, P<0.0001), but flatulence was also higher with fibre than control (SMD 0.80, 95% CI 0.47-1.13, P<0.00001). Psyllium and pectin were the only fibre types with significant individual effects; other fibre types (including bran) did not reach significance in the pooled analysis. The authors conclude psyllium, doses above 10 g/day, and treatment durations of at least 4 weeks appear optimal, with the caveat of considerable heterogeneity.",
+      "figure": null,
+      "caveats": "Considerable heterogeneity (I2=86-90%) across pooled stool-frequency analyses; sensitivity analysis restricted to trials with consistent measurement methods, so this number is a subset of the full 16-trial pool rather than the full-sample estimate."
+    },
+    {
+      "behavior_id": "fibre_general",
+      "marker_id": "constipation_relief",
+      "direction": "+",
+      "effect": "66% of participants (311/473) responded to fibre treatment versus 41% (134/329) to control (RR 1.48, 95% CI 1.17 to 1.88; P=0.001), pooled across all fibre types",
+      "effect_normalized": 1.48,
+      "normalization_method": "risk ratio (RR), responder proportion",
+      "evidence_tier": "A",
+      "population": "Adults with chronic constipation; 1251 participants across 16 RCTs",
+      "conditional_on": "Response higher irrespective of treatment duration, but only at higher fibre doses (>10 g/day); result pools psyllium, pectin, bran and other fibre types together rather than isolating any one type",
+      "paper": {
+        "doi": "10.1093/ajcn/nqac184",
+        "title": "The Effect of Fiber Supplementation on Chronic Constipation in Adults: An Updated Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "year": 2022,
+        "design": "meta-analysis of RCTs",
+        "n": 1251
+      },
+      "verbatim": "Overall, 311 of 473 (66%) participants responded to fiber treatment and 134 of 329 (41%) responded to control treatment [RR: 1.48 (95% CI: 1.17, 1.88; P = 0.001); I2 = 57% (P = 0.007)], with psyllium and pectin having significant effects.",
+      "key_results": "This pooled responder-rate result is presented separately from the psyllium-specific stool-frequency number (see the psyllium edge) precisely because pooling fibre types together, as done here for the 'overall fibre' responder rate, obscures which type drives the effect. The review's own subgroup analysis attributes the significant individual effects to psyllium and pectin specifically, not to fibre as a class, which is why this dataset also carries a separate psyllium-only edge and a separate wheat-bran null edge rather than treating this pooled number as representative of every fibre type.",
+      "figure": null,
+      "caveats": "This edge intentionally represents the pooled/aggregate fibre-class finding for comparison purposes; it should not be read as evidence that any given fibre type (e.g. wheat bran) matches this responder rate individually - see the wheat_bran edge for a specific type that does not."
+    },
+    {
+      "behavior_id": "psyllium",
+      "marker_id": "ibs_severity",
+      "direction": "-",
+      "effect": "Psyllium responders for adequate symptom relief were 57% vs 35% on placebo in month 1 (RR 1.60, 95% CI 1.13-2.26) and 59% vs 41% in month 2 (RR 1.44, 95% CI 1.02-2.06); IBS symptom severity score fell by 90 points vs 49 points on placebo after 3 months (P=0.03)",
+      "effect_normalized": 1.6,
+      "normalization_method": "relative risk (RR) for adequate relief responders, month 1; symptom-severity-score point change also reported in original units",
+      "evidence_tier": "B",
+      "population": "275 adults aged 18-65 with IBS (Rome-defined) in primary care; randomized to psyllium (n=85), bran (n=97), or placebo/rice flour (n=93), 12 weeks",
+      "conditional_on": "Benefit is clearest in the first two months of treatment; by month 3 psyllium's responder-rate advantage over placebo was smaller and comparisons are complicated by higher placebo response over time",
+      "paper": {
+        "doi": "10.1136/bmj.b3154",
+        "title": "Soluble or insoluble fibre in irritable bowel syndrome in primary care? Randomised placebo controlled trial",
+        "year": 2009,
+        "design": "randomized placebo-controlled trial",
+        "n": 275
+      },
+      "verbatim": "The proportion of responders was significantly greater in the psyllium group than in the placebo group during the first month (57% v 35%; relative risk 1.60, 95% confidence interval 1.13 to 2.26) and the second month of treatment (59% v 41%; 1.44, 1.02 to 2.06)...After three months of treatment, symptom severity in the psyllium group was reduced by 90 points, compared with 49 points in the placebo group (P=0.03) and 58 points in the bran group (P=0.61 versus placebo).",
+      "key_results": "The trial concludes psyllium offers benefits in IBS patients in primary care. Only 64% of psyllium-arm patients completed the full three months, similar to placebo (60%) and bran (56%) completion, so the month-3 severity comparison is based on a smaller completer sample than the month-1/2 responder-rate comparisons. No differences were found between arms in IBS-specific quality of life.",
+      "figure": null,
+      "caveats": "Effect size and significance attenuate by month 3; this is a single RCT (tier B) rather than a meta-analysis, conducted in a primary-care (not tertiary/refractory) IBS population."
+    },
+    {
+      "behavior_id": "wheat_bran",
+      "marker_id": "ibs_severity",
+      "direction": null,
+      "effect": "Bran was not significantly better than placebo for adequate symptom relief in the worst-case analysis (RR 1.45, 95% CI 0.97-2.16), and its symptom-severity-score reduction (58 points) did not differ significantly from placebo (P=0.61); early dropout was most common in the bran group, mainly because IBS symptoms worsened",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result versus placebo in the pre-specified worst-case analysis; RR reported for reference",
+      "evidence_tier": "B",
+      "population": "97 adults with IBS randomized to 10 g/day bran for 12 weeks in primary care, compared with placebo (rice flour, n=93) and psyllium (n=85)",
+      "conditional_on": "Bran did show a nominally significant advantage over placebo restricted to month 3 alone (57% v 32%; RR 1.70, 95% CI 1.12-2.57), but this did not hold in the pre-specified worst-case sensitivity analysis (RR 1.45, 95% CI 0.97-2.16), and bran had the highest early-dropout rate of the three arms specifically due to symptom worsening",
+      "paper": {
+        "doi": "10.1136/bmj.b3154",
+        "title": "Soluble or insoluble fibre in irritable bowel syndrome in primary care? Randomised placebo controlled trial",
+        "year": 2009,
+        "design": "randomized placebo-controlled trial",
+        "n": 275
+      },
+      "verbatim": "Bran was more effective than placebo during the third month of treatment only (57% v 32%; 1.70, 1.12 to 2.57), but this was not statistically significant in the worst case analysis (1.45, 0.97 to 2.16)...Early dropout was most common in the bran group; the main reason was that the symptoms of irritable bowel syndrome worsened.",
+      "key_results": "Symptom severity in the bran group fell by 58 points versus 49 points for placebo, a difference the paper reports as not significant (P=0.61 versus placebo) - materially smaller and non-significant compared with psyllium's 90-point reduction (P=0.03 versus placebo) in the same trial. This is the direct head-to-head evidence behind the common clinical teaching that insoluble bran, unlike soluble psyllium, is not a reliable IBS treatment and can aggravate symptoms in a subset of patients.",
+      "figure": null,
+      "caveats": "This is a single RCT (tier B); the month-3-only positive comparison for bran did not survive the trial's own pre-specified worst-case sensitivity analysis, which is why direction is coded null rather than positive despite one nominally significant subgroup result."
+    },
+    {
+      "behavior_id": "prunes",
+      "marker_id": "stool_frequency_consistency",
+      "direction": "+",
+      "effect": "Three weeks of prune consumption (100 g/day) improved stool frequency (3.5 vs 2.8 complete spontaneous bowel movements per week, P=0.006) and stool consistency (3.2 vs 2.8 on the Bristol stool form scale, P=0.02), compared with psyllium (22 g/day)",
+      "effect_normalized": 0.7,
+      "normalization_method": "mean difference (CSBM/week vs active comparator psyllium), original units retained",
+      "evidence_tier": "B",
+      "population": "Adults with functional constipation in a randomized crossover trial (summarized within a systematic review of 4 RCTs on prunes and GI function)",
+      "conditional_on": "Comparator is psyllium (an active treatment), not placebo, so this represents prunes outperforming an already-effective fibre supplement rather than outperforming no treatment; meta-analysis across all 4 identified prune trials was not possible due to heterogeneity in populations and methods",
+      "paper": {
+        "doi": "10.1111/apt.12913",
+        "title": "Systematic review: the effect of prunes on gastrointestinal function",
+        "year": 2014,
+        "design": "systematic review of RCTs (constipation result derived from a single included RCT)",
+        "n": null
+      },
+      "verbatim": "In constipation, 3 weeks of prune consumption (100 g/day) improved stool frequency (3.5 vs. 2.8 CSBM per week, P = 0.006) and stool consistency (3.2 vs. 2.8 on Bristol stool form scale, P = 0.02) compared with psyllium (22 g/day).",
+      "key_results": "The review concludes that in constipation, prunes appear superior to psyllium for improving stool frequency and consistency, though evidence for other outcomes and for non-constipated subjects is weak. In non-constipated subjects, one trial found prunes increased stool wet weight (628 g vs 514 g/72h, P=0.001) versus control. The authors explicitly state meta-analysis was not appropriate given heterogeneity, so this is single-RCT-level evidence presented within a systematic review rather than a pooled estimate.",
+      "figure": null,
+      "caveats": "Only one RCT contributed the constipation-specific numbers quoted here, out of 4 total prune RCTs identified (the other 3 were in non-constipated subjects); two of the four included trials were judged to have unclear risk of bias."
+    },
+    {
+      "behavior_id": "kiwifruit",
+      "marker_id": "constipation_relief",
+      "direction": "+",
+      "effect": "Kiwifruit-extract powder (5.5 g/day, containing Zyactinase) significantly increased complete spontaneous bowel movements at week 2 (P=0.001) and spontaneous bowel movements at weeks 3-4, versus placebo, in adults with occasional constipation",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - trial reports within- and between-group P values for bowel-movement counts rather than a single pooled effect size",
+      "evidence_tier": "B",
+      "population": "87 randomized adults with occasional constipation (43 product, 44 placebo), 4-week double-blind placebo-controlled trial",
+      "conditional_on": "Positive result obtained at 5.5 g/day of a concentrated kiwifruit-extract powder (Zyactinase); a separate, lower-dose (1 g/day) freeze-dried kiwifruit-extract capsule trial found no effect (see the paired null edge below), suggesting the effect is dose-dependent",
+      "paper": {
+        "doi": "10.1186/1475-2891-12-78",
+        "title": "Effects of Kivia powder on gut health in patients with occasional constipation: a randomized, double-blind, placebo-controlled study",
+        "year": 2013,
+        "design": "randomized placebo-controlled trial",
+        "n": 87
+      },
+      "verbatim": "Moreover, CSBM was significantly higher for the treatment group compared to placebo at week 2 (p = 0.001). The change in average daily CSBM from baseline to week 2 was significantly higher in the treatment group than in the placebo group (p = 0.004)...The treatment group demonstrated a significantly higher rate of SBM at week 3 (p = 000) and from baseline to week 4 (p = 0.019).",
+      "key_results": "Abdominal discomfort/pain differed significantly between groups at weeks 1 and 3 (P=0.044, P=0.026), flatulence was significantly lower in the treatment group at weeks 2-3 (P=0.047, P=0.023), and bowel-movement urgency was significantly lower in the treatment group at week 3 (P=0.048). Stools were also significantly smoother and softer in the treatment group by weeks 2-3. The authors conclude the extract was well tolerated and more effective than placebo for gently enhancing bowel-movement frequency while reducing abdominal pain and flatulence.",
+      "figure": null,
+      "caveats": "Trial tests a concentrated proprietary kiwifruit-extract powder (Zyactinase/Kivia), not whole fruit; a typo in the source abstract renders one p-value as 'p = 000' (almost certainly p<0.001), reproduced here as printed."
+    },
+    {
+      "behavior_id": "kiwifruit",
+      "marker_id": "stool_frequency_consistency",
+      "direction": null,
+      "effect": "No difference in total bowel movements over 3 weeks, weekly bowel movement counts, or Bristol stool chart scores between a lower-dose (1 g/day) encapsulated freeze-dried kiwifruit extract and placebo in constipated adults",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, P>0.05 reported directly rather than a pooled effect size",
+      "evidence_tier": "B",
+      "population": "40 adults with confirmed constipation (<=3 bowel movements/week) entered; 32 completed a double-blind, randomized, placebo-controlled crossover trial, 2 x 3-week arms",
+      "conditional_on": "Dose was 1 g/day of freeze-dried extract, five and a half times lower than the 5.5 g/day Kivia powder dose that produced a positive result in the paired edge above; the authors themselves note prior whole-fruit and higher-dose kiwifruit-powder trials showed benefit, suggesting a dose threshold",
+      "paper": {
+        "doi": "10.6133/apjcn.2015.24.3.15",
+        "title": "Encapsulated green kiwifruit extract: a randomised controlled trial investigating alleviation of constipation in otherwise healthy adults",
+        "year": 2015,
+        "design": "randomized double-blind placebo-controlled crossover trial",
+        "n": 40
+      },
+      "verbatim": "There was no difference in total BM over 3 weeks (p>0.05) or mean BM during each of weeks 1, 2 and 3 (p>0.05) between the kiwifruit extract and placebo when assessed from a faecal diary. There was also no detectable difference in defecation related scores of BM ease of defecation, volume, consistency or BM type assessed using Bristol stool chart scores.",
+      "key_results": "The authors conclude that improvement in bowel function or comfort was not achieved with 1 g/day freeze-dried kiwifruit extract, and explicitly suggest investigating higher doses given that prior kiwifruit-powder and whole-fruit trials showed efficacy. This null result at low dose, set against the positive 5.5 g/day Kivia powder trial, is the clearest dose-response pair in this dataset.",
+      "figure": null,
+      "caveats": "Small sample (n=32 completers) in a crossover design; only 80% compliance threshold was required, and GSRS/quality-of-life measures also showed no significant change."
+    },
+    {
+      "behavior_id": "peppermint_oil",
+      "marker_id": "ibs_severity",
+      "direction": "-",
+      "effect": "Peppermint oil was significantly superior to placebo for global improvement of IBS symptoms (relative risk 2.23, 95% CI 1.78-2.81) and for improvement in abdominal pain (relative risk 2.14, 95% CI 1.64-2.79)",
+      "effect_normalized": 2.23,
+      "normalization_method": "relative risk (RR) for global-improvement responders",
+      "evidence_tier": "A",
+      "population": "726 patients with active IBS across 9 RCTs (global-improvement outcome from 5 studies, 392 patients)",
+      "conditional_on": "Peppermint oil patients were significantly more likely to experience an adverse event (mild and transient, most commonly heartburn); efficacy assessed short-term (minimum 2 weeks) only",
+      "paper": {
+        "doi": "10.1097/MCG.0b013e3182a88357",
+        "title": "Peppermint oil for the treatment of irritable bowel syndrome: a systematic review and meta-analysis",
+        "year": 2014,
+        "design": "meta-analysis of RCTs",
+        "n": 726
+      },
+      "verbatim": "Peppermint oil was found to be significantly superior to placebo for global improvement of IBS symptoms (5 studies, 392 patients, relative risk 2.23; 95% confidence interval, 1.78-2.81) and improvement in abdominal pain (5 studies, 357 patients, relative risk 2.14; 95% confidence interval, 1.64-2.79).",
+      "key_results": "Risk of bias was rated low for most assessed factors across the 9 included trials. The authors describe peppermint oil as a safe and effective short-term treatment for IBS and call for future studies on long-term efficacy and head-to-head comparison against antidepressants and antispasmodics.",
+      "figure": null,
+      "caveats": "Trials were short-term (minimum 2 weeks); long-term efficacy and comparative effectiveness versus standard IBS pharmacotherapy remain unestablished by this analysis."
+    },
+    {
+      "behavior_id": "probiotics",
+      "marker_id": "ibs_severity",
+      "direction": "-",
+      "effect": "Probiotics improved global IBS symptom improvement rate versus placebo (RR 1.401, 95% CI 1.182-1.662, P<0.001) and quality-of-life scores (SMD 0.286, 95% CI 0.154-0.418, P<0.001), but showed no significant benefit on global symptom scores specifically (SMD 0.387, 95% CI 0.122-0.653, P=0.004 with I2=91.9%)",
+      "effect_normalized": 1.401,
+      "normalization_method": "relative risk (RR) for global-symptom-improvement responders",
+      "evidence_tier": "A",
+      "population": "3011 patients across 20 studies (trials from 2000 to June 2023)",
+      "conditional_on": "Higher daily dose (>=10^10 CFU) or multi-strain probiotics showed benefit specifically on abdominal pain (SMD 0.412 and 0.590 respectively); shorter treatment (<8 weeks) reduced distension scores; effect size and significance vary considerably by outcome measure and were accompanied by high heterogeneity (I2 up to 91.9%) for global symptom scores",
+      "paper": {
+        "doi": "10.1016/j.clnesp.2024.02.025",
+        "title": "Efficacy and safety of probiotics in irritable bowel syndrome: A systematic review and meta-analysis",
+        "year": 2024,
+        "design": "meta-analysis of RCTs",
+        "n": 3011
+      },
+      "verbatim": "The results demonstrated that probiotics are more effective than placebo in reducing global IBS symptoms improvement rate (RR = 1.401, 95% CI 1.182-1.662, P < 0.001) and quality of life scores (SMD = 0.286, 95% CI = 0.154-0.418, P < 0.001)...there was no significant benefit on global symptom scores (SMD = 0.387, 95% CI 0.122 to 0.653, P = 0.004) with statistically high inter-study heterogeneity (I2 = 91.9%, P < 0.001).",
+      "key_results": "The paper reports no significant difference in adverse-event frequency between probiotics and placebo (RR 0.997, 95% CI 0.845-1.177, P=0.973), supporting a favourable safety profile. The internal contradiction between a significant responder-rate improvement (RR 1.401) and a non-significant continuous global-symptom-score effect at high heterogeneity is preserved here rather than resolved, since the source itself reports both. Authors conclude high doses or multiple strains are preferable but caution that high heterogeneity limits definitive conclusions.",
+      "figure": null,
+      "caveats": "This meta-analysis pools many different probiotic strains and species together rather than isolating one, so 'probiotics' here is a class-level finding; strain-specific effects (e.g. a single Bifidobacterium strain) are likely to differ and were not separately re-extracted within the research budget."
+    },
+    {
+      "behavior_id": "low_fodmap_diet",
+      "marker_id": "ibs_severity",
+      "direction": "-",
+      "effect": "Low-FODMAP diet significantly reduced gastrointestinal symptoms (SMD -0.62, 95% CI -0.93 to -0.31, P=0.0001) and abdominal pain (SMD -0.50, 95% CI -0.77 to -0.22, P=0.008), and improved health-related quality of life (SMD 0.36, 95% CI 0.10-0.62, P=0.007), compared with other diets",
+      "effect_normalized": -0.62,
+      "normalization_method": "standardized mean difference (SMD)",
+      "evidence_tier": "A",
+      "population": "596 subjects across 9 RCTs; comparators included habitual diet, a Western diet with all meals provided, a high-FODMAP diet, a sham diet, or other IBS dietary advice",
+      "conditional_on": "Three studies reported a significant reduction in luminal bifidobacteria after the low-FODMAP diet; only short-term efficacy (weeks, not long-term) was assessed; comparator diets varied substantially across the 9 trials",
+      "paper": {
+        "doi": "10.1016/j.nut.2017.07.004",
+        "title": "Low fermentable, oligo-, di-, mono-saccharides and polyol diet in the treatment of irritable bowel syndrome: A systematic review and meta-analysis",
+        "year": 2018,
+        "design": "meta-analysis of RCTs",
+        "n": 596
+      },
+      "verbatim": "A meta-analysis revealed significant group differences for LFD compared with other diets with regard to gastrointestinal symptoms (SMD = -0.62; 95% CI = -0.93 to -0.31; P = 0.0001), abdominal pain (SMD = -0.50; 95% CI = -0.77 to -0.22; P = 0.008), and health-related quality of life (SMD = 0.36; 95% CI = 0.10-0.62; P = 0.007).",
+      "key_results": "Adverse events were assessed in only 3 of the 9 RCTs, and no intervention-related adverse events were reported in those. The authors state this meta-analysis found evidence of short-term efficacy and safety of the low-FODMAP diet in IBS, but caution that only a preliminary recommendation can be made until long-term effects are investigated, given the reduction in beneficial luminal bifidobacteria observed in some trials.",
+      "figure": null,
+      "caveats": "Comparator diets are heterogeneous (habitual diet, Western diet, high-FODMAP diet, sham diet, other IBS advice), so the pooled SMD averages over several different counterfactuals rather than one consistent comparison; long-term safety and efficacy remain unestablished."
+    },
+    {
+      "behavior_id": "physical_activity",
+      "marker_id": "ibs_severity",
+      "direction": "-",
+      "effect": "An exercise consultation intervention significantly improved constipation symptom scores versus usual care at 12-week follow-up (mean difference=10.9, 95% CI -20.1 to -1.6), while overall IBS-specific quality of life did not differ significantly between groups",
+      "effect_normalized": -10.9,
+      "normalization_method": "mean difference on constipation symptom subscale, original units retained",
+      "evidence_tier": "B",
+      "population": "56 patients (of 305 eligible identified from hospital records, 18.3% recruitment rate) with Rome II-defined IBS, randomized to a 12-week exercise consultation or usual care",
+      "conditional_on": "Effect was specific to the constipation symptom subscale; no significant between-group difference was found for total symptoms, diarrhoea, pain, or quality-of-life scores; authors suggest exercise may particularly benefit constipation-predominant IBS patients",
+      "paper": {
+        "doi": "10.1055/s-2008-1038600",
+        "title": "The effects of exercise upon symptoms and quality of life in patients diagnosed with irritable bowel syndrome: a randomised controlled trial",
+        "year": 2008,
+        "design": "randomized controlled trial",
+        "n": 56
+      },
+      "verbatim": "The exercise group reported significantly improved symptoms of constipation (mean difference=10.9, 95 % CI= -20.1, -1.6) compared to usual care at follow-up. The intervention group participated in significantly more exercise than usual care at follow-up (mean difference=21.6, 95% CI=9.4, 33.8).",
+      "key_results": "The trial's recruitment rate among eligible patients was low (18.3%, 56 of 305), and the authors frame the study primarily as a feasibility trial. Analyses revealed no differences in quality-of-life scores between groups at 12-week follow-up despite the constipation-specific improvement, illustrating that a marker-level (symptom subscale) effect did not translate into a broader quality-of-life effect in this small trial.",
+      "figure": null,
+      "caveats": "Small sample (n=56) and low recruitment rate limit generalizability and power; effect was isolated to the constipation subscale, not total IBS symptoms."
+    },
+    {
+      "behavior_id": "psychological_stress",
+      "marker_id": "gut_transit",
+      "direction": "+",
+      "effect": "Acute and short-term psychological stress consistently inhibits gastric emptying while stimulating colonic transit in human and animal studies, an effect that is exaggerated in IBS patients relative to healthy subjects",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - narrative synthesis of mechanistic literature; no single pooled effect size given for a specific stress-transit-time pairing",
+      "evidence_tier": "D",
+      "population": "Synthesis of human and animal experimental studies on stress and gastrointestinal motility/sensitivity, including patients with functional GI disorders (IBS) and healthy controls",
+      "conditional_on": "Colonic motor response to stress is exaggerated specifically in IBS patients compared with healthy subjects; effect requires a stressor that induces a significant emotional change to reliably increase visceral sensitivity",
+      "paper": {
+        "doi": "10.1159/000050681",
+        "title": "Role of stress in functional gastrointestinal disorders. Evidence for stress-induced alterations in gastrointestinal motility and sensitivity",
+        "year": 2001,
+        "design": "narrative review of mechanistic and experimental studies (human and animal)",
+        "n": null
+      },
+      "verbatim": "The available data clearly demonstrate that inhibition of gastric emptying and stimulation of colonic transit is the most consistent pattern in the motility response of the GI tract to acute or short-term stress...the above-mentioned studies suggest that the colonic motor response to stress is exaggerated in IBS.",
+      "key_results": "The review attributes stress-induced colonic stimulation and visceral hypersensitivity to central corticotropin-releasing factor (CRF) signalling (CRF-1 receptors implicated in colonic and anxiogenic responses), peripheral serotonin acting on 5-HT3 receptors, and stress-induced activation of mucosal mast cells. The author explicitly notes that almost no valid human data exist to determine whether the exaggerated colonic response in IBS reflects an altered autonomic stress response versus increased intrinsic stress susceptibility - an open mechanistic question, not a settled one.",
+      "figure": null,
+      "caveats": "This is a narrative synthesis (tier D), not a quantitative meta-analysis; no single numeric effect size for a defined stress exposure and a defined transit-time change could be extracted, so this edge is shipped as a qualitative, mechanistically well-supported direction rather than a quantified one, matching the rule that a qualitative finding is acceptable when no comparable number exists across the cited studies."
+    },
+    {
+      "behavior_id": "cognitive_behavioral_therapy",
+      "marker_id": "ibs_severity",
+      "direction": "-",
+      "effect": "Internet-delivered CBT produced a significantly larger pre-to-post-treatment reduction in GSRS-IBS symptom score than wait-list control (B=-6.42, P=0.006, Cohen's d=0.45, 95% CI 0.12-0.77), with results stable or improved at 6 months",
+      "effect_normalized": -6.42,
+      "normalization_method": "regression coefficient (B) on GSRS-IBS total score; Cohen's d also reported",
+      "evidence_tier": "B",
+      "population": "101 adolescents aged 13-17 with IBS (Rome III criteria), randomized to 10-week internet-CBT (exposure-based) or wait-list control",
+      "conditional_on": "Population is adolescents specifically, not adults; intervention is exposure-based CBT targeting avoidance of abdominal symptoms, not generic stress-reduction or relaxation training",
+      "paper": {
+        "doi": "10.1038/ajg.2016.503",
+        "title": "Internet-Delivered Cognitive Behavior Therapy for Adolescents With Irritable Bowel Syndrome: A Randomized Controlled Trial",
+        "year": 2017,
+        "design": "randomized controlled trial",
+        "n": 101
+      },
+      "verbatim": "Analyses showed a significant larger pretreatment to posttreatment change on the primary outcome GSRS-IBS (B=-6.42, P=0.006, effect size Cohen's d=0.45, 95% confidence interval (0.12, 0.77)) and on almost all secondary outcomes for the Internet-CBT group compared with the control group. After 6 months, the results were stable or significantly improved.",
+      "key_results": "Dropout was low (6%) and all randomized patients were analyzed by intent-to-treat using mixed-effects models. Almost all secondary outcomes (adolescent- and parent-rated quality of life, parent-rated GI symptoms) also favored Internet-CBT. This trial is presented as the interventional counterpart to the psychological_stress mechanistic edge above: if stress exacerbates IBS symptoms via the gut-brain axis, a therapy that reduces symptom-related avoidance and distress should improve the same marker, which is what this RCT demonstrates.",
+      "figure": null,
+      "caveats": "Population restricted to adolescents (13-17 years), so generalization to adult IBS populations is not directly established by this trial; effect size (d=0.45) is moderate, not large."
+    },
+    {
+      "behavior_id": "coffee",
+      "marker_id": "gut_transit",
+      "direction": "+",
+      "effect": "Caffeinated coffee stimulated colonic motor activity with magnitude similar to a 1000-kcal meal, 60% stronger than water, and 23% stronger than decaffeinated coffee",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - relative percentage comparisons of colonic manometric area-under-curve reported directly by the source rather than a single pooled effect size",
+      "evidence_tier": "D",
+      "population": "12 healthy adult subjects, ambulatory colonic manometry with a six-sensor probe placed to the mid-transverse colon",
+      "conditional_on": "Acute single-dose experimental stimulus (240 mL, ~150 mg caffeine) in healthy subjects, not a chronic-intake or clinical-constipation population; decaffeinated coffee also stimulated colonic activity more than water, indicating the effect is not purely a caffeine effect",
+      "paper": {
+        "doi": "10.1097/00042737-199802000-00003",
+        "title": "Is coffee a colonic stimulant?",
+        "year": 1998,
+        "design": "randomized crossover experimental study",
+        "n": 12
+      },
+      "verbatim": "Caffeinated coffee stimulates colonic motor activity. Its magnitude is similar to a meal, 60% stronger than water and 23% stronger than decaffeinated coffee.",
+      "key_results": "Caffeinated coffee, decaffeinated coffee, and a 1000-kcal meal all induced significantly more colonic activity (greater area under the pressure-wave curve, P<0.01, and more propagated contractions, P<0.05) than water. All three stimuli induced greater motor activity in the transverse/descending colon than in the rectosigmoid colon (P<0.05). Because decaffeinated coffee still out-performed water, the paper's own data show caffeine is not the sole mechanism, contrary to the popular assumption that caffeine alone explains coffee's laxative reputation.",
+      "figure": null,
+      "caveats": "Very small sample (n=12); acute mechanistic/experimental design (single-dose manometry), not a clinical trial measuring whole-gut transit time in hours or a patient-relevant constipation outcome; tier D reflects the small n and acute-mechanistic (not clinical-endpoint) nature of the study."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "microbiome diversity (alpha-diversity index) as a dedicated marker",
+      "reason": "Excluded per explicit instruction: alpha-diversity indices have no agreed good direction and no clinical meaning on their own. Several edges above (low-FODMAP diet, Mediterranean-diet-adjacent literature) mention microbiome shifts as a secondary/mechanistic finding in key_results, but no edge uses a diversity index as its primary marker."
+    },
+    {
+      "candidate": "water intake (plain drinking water) -> stool_frequency_consistency, as a dedicated RCT-supported edge",
+      "reason": "Only located a cross-sectional, non-interventional study (Mazlyn et al. 2013, Malays J Nutr) among already-constipated Malaysian adults showing a correlation between fluid intake and stool frequency/output (rs=0.257, P<0.05, OR=3.571) - not causal RCT evidence and confounded by the fact that people with worse constipation may also eat and drink less overall. No RCT isolating plain water intake (as opposed to mineral-rich or deep-sea water, which are their own interventions) was located within the research budget. The 2025 British Dietetic Association guideline's water-related recommendations were specifically about high-mineral-content water, not plain water volume, which is consistent with plain water intake alone being a weaker/null intervention - but a clean quantified RCT for that specific null was not retrieved in time."
+    },
+    {
+      "candidate": "inulin / prebiotic fibre -> any of the four gut markers, as its own dedicated edge",
+      "reason": "Inulin and other prebiotic fibres were flagged by the task as behaving differently from psyllium and wheat bran and warranting their own row, but a clean, adequately powered inulin-specific RCT or meta-analysis with a quantifiable constipation or IBS outcome (as opposed to fermentation/gas-production or microbiome-composition studies) was not located and fetched within the research budget. Worth a dedicated follow-up search."
+    },
+    {
+      "candidate": "probiotics by specific single strain (e.g. a single Bifidobacterium or Lactobacillus species) for chronic (non-IBS) constipation specifically",
+      "reason": "The probiotics edge shipped here uses a class-level IBS meta-analysis (Yang et al. 2024) that pools many strains together, which is a known limitation for a field that explicitly cares about strain-specific effects. A dedicated single-strain, single-indication (chronic constipation rather than IBS) probiotic edge was not extracted within the research budget; the 2025 BDA dietary guideline documents 20 separate probiotic-related recommendation statements, suggesting strain-level extraction is feasible in a follow-up pass."
+    },
+    {
+      "candidate": "coffee -> ibs_severity or stool_frequency_consistency, as a quantified clinical (not acute-manometric) endpoint",
+      "reason": "The coffee edge shipped here (Rao et al. 1998) is an acute, small-n (n=12), manometric/mechanistic study, not a clinical trial with a patient-relevant stool-frequency or symptom outcome. A dedicated epidemiological or RCT-based coffee-and-bowel-habit study with a clinical endpoint was not located and fetched within the research budget."
+    }
+  ]
+}

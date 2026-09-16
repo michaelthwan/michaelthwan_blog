@@ -1,0 +1,531 @@
+{
+  "note": "Supplement-first file. NMN and CoQ10 are new behaviors attached to markers under EXISTING goals only (male_vitality, goal_c_sleep_quality, goal_d_cardiometabolic, goal_e_body_composition_strength, goal_h_longevity_mortality). No new goal was created. Goal id/name/definition below are copied unchanged from their source goal-*.json files for referential integrity.",
+  "nodes": {
+    "goals": [
+      {
+        "id": "male_vitality",
+        "name": "Male vitality / testosterone",
+        "definition": "Composite goal spanning serum testosterone, vascular/erectile function, lean mass and strength, and subjective libido in adult men."
+      },
+      {
+        "id": "goal_c_sleep_quality",
+        "name": "Sleep quality",
+        "definition": "Composite of circadian alignment (melatonin phase / DLMO), sleep continuity (onset latency), sleep architecture (slow-wave and REM proportion), and subjective sleep quality (PSQI/ISI)."
+      },
+      {
+        "id": "goal_d_cardiometabolic",
+        "name": "Cardiometabolic health",
+        "definition": "Blood pressure, LDL cholesterol, triglycerides, HbA1c/fasting glucose, insulin sensitivity (HOMA-IR), cardiorespiratory fitness (VO2max), and resting heart rate / arterial stiffness (pulse wave velocity) as measurable markers of cardiovascular and metabolic disease risk."
+      },
+      {
+        "id": "goal_e_body_composition_strength",
+        "name": "Body composition and strength",
+        "definition": "Fat mass / body fat percentage, fat-free (lean) mass, maximal strength (1RM), waist circumference / visceral adipose tissue, and resting metabolic rate, as driven by resistance training, diet composition and structure, sleep, alcohol, and pharmacology (GLP-1 receptor agonists)."
+      },
+      {
+        "id": "goal_h_longevity_mortality",
+        "name": "Longevity and mortality risk",
+        "definition": "Risk of death from any cause (all-cause mortality), death from cardiovascular disease (cardiovascular mortality), and cancer occurrence or death (cancer incidence/mortality), each reported as hazard ratios or relative risks from the literature."
+      }
+    ],
+    "markers": [
+      {
+        "id": "insulin_sensitivity_homa_ir",
+        "name": "Insulin sensitivity (HOMA-IR)",
+        "unit": "HOMA-IR units (unitless); glucose infusion/disposal rate (micromol/kg lean body mass/min) for clamp studies",
+        "goal_ids": ["goal_d_cardiometabolic"],
+        "reused": true
+      },
+      {
+        "id": "blood_nad_plus",
+        "name": "Blood NAD+ concentration (and metabolites 2-PY/4-PY)",
+        "unit": "heterogeneous across labs: umol/L or arbitrary LC-MS/MS peak-area units as reported by source; not a standardized clinical assay",
+        "goal_ids": ["goal_d_cardiometabolic"],
+        "reused": false,
+        "why_new": "No marker in the 60-item catalogue captures a blood NAD+ measurement; it is the direct pharmacodynamic readout of NMN and does not correspond to any existing marker. Attached to Cardiometabolic health because every trial that measured it also measured cardiometabolic endpoints (insulin sensitivity, lipids, blood pressure) in the same cohort, not because NAD+ itself is a cardiometabolic marker in other literature."
+      },
+      {
+        "id": "gait_speed_walking_function",
+        "name": "Gait speed / walking function (4-m or 6-m walk time, stepping and chair-stand tests)",
+        "unit": "m/s or seconds per fixed distance; also 5-times-sit-to-stand time (s) as a lower-limb function proxy",
+        "goal_ids": ["goal_e_body_composition_strength"],
+        "reused": false,
+        "why_new": "The catalogue's strength marker (max_strength) is 1RM/handgrip; NMN sarcopenia trials primarily report gait speed and chair-stand time as the functional-capacity outcome, which is a distinct construct worth keeping separate rather than folding into max_strength."
+      },
+      {
+        "id": "m_psqi",
+        "name": "Subjective sleep quality (PSQI / ISI)",
+        "unit": "PSQI or ISI score (points, lower = better)",
+        "goal_ids": ["goal_c_sleep_quality"],
+        "reused": true
+      },
+      {
+        "id": "ldl_cholesterol",
+        "name": "LDL cholesterol",
+        "unit": "mmol/L or mg/dL as reported by source",
+        "goal_ids": ["goal_d_cardiometabolic"],
+        "reused": true
+      },
+      {
+        "id": "blood_pressure",
+        "name": "Systolic / diastolic blood pressure",
+        "unit": "mmHg",
+        "goal_ids": ["goal_d_cardiometabolic"],
+        "reused": true
+      },
+      {
+        "id": "vo2max",
+        "name": "VO2max / cardiorespiratory fitness",
+        "unit": "mL/kg/min",
+        "goal_ids": ["goal_d_cardiometabolic"],
+        "reused": true
+      },
+      {
+        "id": "all_cause_mortality",
+        "name": "All-cause mortality",
+        "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source",
+        "goal_ids": ["goal_h_longevity_mortality"],
+        "reused": true
+      },
+      {
+        "id": "cardiovascular_mortality",
+        "name": "Cardiovascular mortality",
+        "unit": "hazard ratio (HR) or relative risk (RR), 95% CI, as reported by source",
+        "goal_ids": ["goal_h_longevity_mortality"],
+        "reused": true
+      },
+      {
+        "id": "statin_muscle_symptoms",
+        "name": "Statin-associated muscle symptoms (pain, weakness, cramp, tiredness) and creatine kinase",
+        "unit": "pooled weighted mean difference on symptom rating scales as used per source trial (scale not uniformly named in the meta-analysis abstract, commonly a 0-10 VAS); creatine kinase in U/L as a separate sub-outcome",
+        "goal_ids": ["goal_d_cardiometabolic"],
+        "reused": false,
+        "why_new": "No catalogue marker covers statin-drug-interaction muscle symptoms; attached to Cardiometabolic health because statin therapy and its side effects sit inside that goal's clinical context."
+      },
+      {
+        "id": "sperm_parameters",
+        "name": "Sperm parameters (concentration, motility, morphology, volume) and clinical pregnancy rate",
+        "unit": "concentration x10^6/mL, motility %, volume mL, morphology %, or odds ratio for clinical pregnancy, as reported by source",
+        "goal_ids": ["male_vitality"],
+        "reused": false,
+        "why_new": "No catalogue marker covers male fertility/sperm quality; attached to Male vitality as the nearest existing goal covering men's reproductive physiology, though that goal's stated definition (testosterone, vascular function, lean mass, libido) does not explicitly name fertility - flagged here rather than silently assumed."
+      }
+    ],
+    "behaviors": [
+      {
+        "id": "nmn_supplementation",
+        "name": "Nicotinamide mononucleotide (NMN) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Oral beta-NMN, 250-1250 mg/day (some trials 250 mg/day, one dose-ranging trial to 1200 mg/day), 4-24 weeks across cited trials; almost all human RCTs are small (n=11-60 per arm) and short (<=24 weeks)"
+      },
+      {
+        "id": "coq10_supplementation",
+        "name": "Coenzyme Q10 (ubiquinone or ubiquinol) supplementation",
+        "category": "supplement",
+        "dose_or_intensity": "Oral CoQ10, typically 100-300 mg/day (Q-SYMBIO: 100 mg 3x/day = 300 mg/day); formulation (ubiquinone vs ubiquinol) and duration vary widely by trial and are noted per edge in conditional_on where the source distinguishes them"
+      }
+    ]
+  },
+  "edges": [
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "insulin_sensitivity_homa_ir",
+      "direction": "+",
+      "effect": "10-week NMN supplementation increased insulin-stimulated glucose disposal (clamp-derived) and skeletal muscle insulin signaling (AKT and mTOR phosphorylation) in postmenopausal women with prediabetes; placebo showed no change",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports direction and significance for clamp-derived glucose disposal but no single pooled numeric effect size or percentage change",
+      "evidence_tier": "B",
+      "population": "Postmenopausal women with prediabetes who were overweight or obese; single-center RCT (ClinicalTrials.gov NCT03151239)",
+      "conditional_on": "Studied only in postmenopausal women who were already prediabetic and overweight/obese - not shown to generalize to men, normoglycemic adults, or younger women",
+      "paper": {
+        "doi": "10.1126/science.abe9985",
+        "title": "Nicotinamide mononucleotide increases muscle insulin sensitivity in prediabetic women",
+        "year": 2021,
+        "design": "randomized, placebo-controlled, double-blind RCT",
+        "n": null
+      },
+      "verbatim": "Insulin-stimulated glucose disposal, assessed by using the hyperinsulinemic-euglycemic clamp, and skeletal muscle insulin signaling [phosphorylation of protein kinase AKT and mechanistic target of rapamycin (mTOR)] increased after NMN supplementation but did not change after placebo treatment.",
+      "key_results": "NMN supplementation up-regulated expression of platelet-derived growth factor receptor beta and other genes related to muscle remodeling, suggesting a tissue-remodeling mechanism rather than a purely acute metabolic effect. This is the single most-cited positive human NMN trial and is frequently used to justify broader claims the trial itself does not make (it did not measure lifespan, mortality, or general population effects). Total trial n was not stated as a single figure in the abstract; PMC full text reports 25 participants completed the trial.",
+      "figure": null,
+      "caveats": "One inventor (Imai) receives patent-licensing fees from MetroBiotech and Teijin Limited via Washington University; a co-author (Yoshino J) is an inventor on an NMN-related patent application; the senior author receives research support from Janssen Pharmaceuticals. No numeric percentage or absolute effect size for glucose disposal is given in the abstract itself."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "insulin_sensitivity_homa_ir",
+      "direction": null,
+      "effect": "28-day high-dose NMN (MIB-626, 2000 mg/day) did not change insulin sensitivity, or hepatic and intra-abdominal fat, in overweight/obese middle-aged and older adults",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - null result, no pooled numeric value given for insulin sensitivity",
+      "evidence_tier": "B",
+      "population": "30 overweight or obese adults aged >=45 years, randomized 2:1 to MIB-626 or placebo for 28 days",
+      "conditional_on": "Higher dose (2000 mg/day) and shorter duration (28 days) than the Yoshino 2021 positive trial (250 mg/day equivalent range, 10 weeks); a different, older, mixed-sex, non-prediabetic-specific population - the two trials are not directly comparable on population or duration despite superficially similar interventions",
+      "paper": {
+        "doi": "10.1210/clinem/dgad027",
+        "title": "Nicotinamide Adenine Dinucleotide Augmentation in Overweight or Obese Middle-Aged and Older Adults: A Physiologic Study",
+        "year": 2023,
+        "design": "randomized, placebo-controlled, double-blind physiologic RCT",
+        "n": 30
+      },
+      "verbatim": "Insulin sensitivity and hepatic and intra-abdominal fat did not change in either group.",
+      "key_results": "The same trial found MIB-626 significantly reduced body weight (-1.9 kg, P=.008), diastolic blood pressure (-7.01 mmHg, P=.034), total cholesterol (-26.89 mg/dL, P=.004) and LDL cholesterol (-18.73 mg/dL, P=.007) versus placebo, despite the null result on insulin sensitivity - illustrating that NMN's cardiometabolic effects in this trial were concentrated in lipids, weight and blood pressure rather than glycemic control. Changes in muscle strength, muscle fatigability, aerobic capacity and stair-climbing power also did not differ between groups.",
+      "figure": null,
+      "caveats": "Manufactured and partly staffed by Metro International Biotech (MIB-626 sponsor); several co-authors are Metro International Biotech employees. Only 28 days duration, a possible reason the insulin-sensitivity effect seen at 10 weeks in Yoshino 2021 was not replicated."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "blood_nad_plus",
+      "direction": "+",
+      "effect": "12-week NMN (250 mg/day) significantly increased blood NAD+ and its metabolites in older adults versus placebo",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports statistical significance and direction, not a pooled numeric blood NAD+ value",
+      "evidence_tier": "B",
+      "population": "60 older adults (mean age not given in abstract), randomized, placebo-controlled, double-blind, parallel-group",
+      "conditional_on": "Industry-run and industry-funded trial (Meiji Holdings, an NMN/health-food manufacturer); NAD+ rise co-occurred with the 4-m walking time and PSQI improvements reported in the same edge set below, in the same participants",
+      "paper": {
+        "doi": "10.1007/s11357-024-01204-1",
+        "title": "Ingestion of beta-nicotinamide mononucleotide increased blood NAD levels, maintained walking speed, and improved sleep quality in older adults in a double-blind randomized, placebo-controlled study",
+        "year": 2024,
+        "design": "randomized, placebo-controlled, double-blind, parallel-group RCT",
+        "n": 60
+      },
+      "verbatim": "At secondary outcomes, after 12 weeks of NMN intake, the NMN group had a significantly shorter 4-m walking time than the placebo group as well as significantly higher blood levels of NAD + and its metabolites.",
+      "key_results": "A significant negative correlation was observed between the change in 4-m walking time and the change in blood NAD+, 2-PY, and 4-PY at 12 weeks, offered by the authors as mechanistic support that the NAD+ rise underlies the walking-speed effect. The primary outcome (a stepping test) showed no significant group difference at either 4 or 12 weeks. No adverse effects related to test-substance consumption were observed.",
+      "figure": null,
+      "caveats": "All three authors are employees of Meiji Holdings Co., Ltd., the manufacturer with a direct commercial interest in NMN products; no independent replication of this specific NAD+ magnitude is cited."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "blood_nad_plus",
+      "direction": "+",
+      "effect": "28-day high-dose NMN (MIB-626, 2000 mg/day) substantially increased circulating NAD and its metabolites in overweight/obese middle-aged and older adults",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports direction and magnitude qualitatively ('substantially increased'), no numeric value given",
+      "evidence_tier": "B",
+      "population": "30 overweight or obese adults aged >=45 years",
+      "conditional_on": "Confirms the NAD+-raising pharmacodynamic effect is dose-and-route-consistent across a Japanese 250 mg/day trial and a US 2000 mg/day trial, even though downstream functional/metabolic effects diverged between the two (see insulin-sensitivity and gait-speed edges)",
+      "paper": {
+        "doi": "10.1210/clinem/dgad027",
+        "title": "Nicotinamide Adenine Dinucleotide Augmentation in Overweight or Obese Middle-Aged and Older Adults: A Physiologic Study",
+        "year": 2023,
+        "design": "randomized, placebo-controlled, double-blind physiologic RCT",
+        "n": 30
+      },
+      "verbatim": "MIB-626 treatment substantially increased circulating concentrations of NAD and its metabolites.",
+      "key_results": "This is the most consistent finding across all NMN human trials reviewed here: every trial that measured blood NAD+ or its metabolites found an increase. It is the functional and clinical endpoints downstream of this biochemical change that are inconsistent, which is the central honest finding of this file.",
+      "figure": null,
+      "caveats": "Sponsor-affiliated co-authors (Metro International Biotech); raising a blood metabolite is not itself a clinical outcome."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "gait_speed_walking_function",
+      "direction": "+",
+      "effect": "12-week NMN (250 mg/day) produced a significantly shorter 4-meter walking time versus placebo in older adults, alongside higher blood NAD+",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports significance and direction for the 4-m walk, no numeric seconds/meters-per-second value stated",
+      "evidence_tier": "B",
+      "population": "60 older adults, randomized, placebo-controlled, double-blind",
+      "conditional_on": "Primary outcome (a stepping test) showed no significant difference between groups at 4 or 12 weeks; only the secondary 4-m walk measure reached significance - a partial, secondary-endpoint-only positive result",
+      "paper": {
+        "doi": "10.1007/s11357-024-01204-1",
+        "title": "Ingestion of beta-nicotinamide mononucleotide increased blood NAD levels, maintained walking speed, and improved sleep quality in older adults in a double-blind randomized, placebo-controlled study",
+        "year": 2024,
+        "design": "randomized, placebo-controlled, double-blind, parallel-group RCT",
+        "n": 60
+      },
+      "verbatim": "At primary outcome, at both 4 weeks and 12 weeks, the NMN and placebo groups had no significant differences in a stepping test.",
+      "key_results": "The paper's own title claims NMN 'maintained walking speed' - a claim built on the placebo group's speed declining while the NMN group's did not, rather than a straightforward improvement, which is a softer finding than the title suggests. The correlation with blood NAD+ change is the paper's proposed mechanism.",
+      "figure": null,
+      "caveats": "Industry-funded and industry-staffed (Meiji Holdings); the framing of a null primary outcome plus one positive secondary outcome as the article title is a form of outcome-reporting emphasis worth flagging to a reader."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "gait_speed_walking_function",
+      "direction": null,
+      "effect": "24-week NMN (250 mg/day) did not improve grip strength or walking speed in older male patients with diabetes and baseline impaired physical performance",
+      "effect_normalized": -0.033,
+      "normalization_method": "mean between-group change reported in original units (kg for grip strength, m/s for walking speed); walking-speed change was 0.033 m/s (NMN) vs 0.014 m/s (placebo), 95% CIs overlapping",
+      "evidence_tier": "B",
+      "population": "14 male patients with diabetes, aged >=65 years (mean 81.1 years), with reduced grip strength (<26 kg) or walking speed (<1.0 m/s) at baseline",
+      "conditional_on": "Small trial (n=14) explicitly selected for baseline physical impairment and diabetes, the opposite population from the Morifuji 2024 trial's community-dwelling older adults; a co-author group is affiliated with Teijin Ltd (an NMN raw-material manufacturer) via NOMON Co.",
+      "paper": {
+        "doi": "10.1111/ggi.14513",
+        "title": "Effects of nicotinamide mononucleotide on older patients with diabetes and impaired physical performance: A prospective, placebo-controlled, double-blind study",
+        "year": 2023,
+        "design": "randomized, placebo-controlled, double-blind RCT",
+        "n": 14
+      },
+      "verbatim": "The changes in grip strength and walking speed showed no difference between the two groups: 1.25 kg (95% confidence interval -2.31 to 4.81) and 0.033 m/s (-0.021 to 0.087) in the NMN group, and -0.44 kg (-4.15 to 3.26) and 0.014 m/s (-0.16 to -0.13) in the placebo group, respectively.",
+      "key_results": "The authors noted a non-significant trend toward improved frailty prevalence in the NMN group (P=0.066) and a difference in central retinal thickness change between groups (P=0.051), both explicitly reported as not meeting significance. Conclusion: NMN supplementation for 24 weeks was safe but did not improve grip strength or walking speed in this population.",
+      "figure": null,
+      "caveats": "Very small sample (n=14) severely limits power; population was diabetic with pre-existing physical impairment, unlike healthier trial cohorts elsewhere in this file; industry co-authors from Teijin/NOMON."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "gait_speed_walking_function",
+      "direction": null,
+      "effect": "Meta-analysis of NMN and nicotinamide riboside RCTs found no significant effect on gait speed, handgrip strength, skeletal muscle index, or 5-times chair stand test in adults with mean age over 60",
+      "effect_normalized": -0.01,
+      "normalization_method": "MD (m/s) for gait speed as pooled by source; other outcomes pooled separately (see key_results)",
+      "evidence_tier": "A",
+      "population": "Older adults, mean age range 60.9-83 years, across pooled NMN and NR RCTs (gait speed pooled from n=4 studies)",
+      "conditional_on": "This is the authoritative tier-A synthesis of the individual-trial results above (including the Akasaka null and, indirectly, trials feeding the Morifuji-style positive result); the pooled estimate is null despite one included trial reporting a significant secondary-outcome improvement, because pooling averages across trials and outcome definitions differ",
+      "paper": {
+        "doi": "10.1002/jcsm.13799",
+        "title": "The Effect of Nicotinamide Mononucleotide and Riboside on Skeletal Muscle Mass and Function: A Systematic Review and Meta-Analysis",
+        "year": 2025,
+        "design": "systematic review and meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "NMN supplementation showed no significant effects on SMI (n = 3; mean difference (MD): -0.42, 95% confidence interval (CI): -0.99 - 0.14, I2 = 63%, p = 0.14), HGS (One study estimating left grip; n = 5; MD: 0.61, 95%CI: -0.89 - 2.10, I2 = 0%, p = 0.42; One study estimating right grip; n = 5; MD: 0.45, 95%CI: -1.06 - 1.96, I2 = 0%, p = 0.56), gait speed (n = 4; MD: -0.01, 95%CI: -0.08 - 0.06, I2 = 0%, p = 0.79), or 5CST (n = 2; MD: -0.21, 95%CI: -0.70 - 0.29, I2 = 11%, p = 0.41).",
+      "key_results": "The review's overall conclusion: 'Current evidence does not support NMN and NR supplementation for preserving muscle mass and function in adults with mean age of over 60 years.' NMN also did not improve knee extension strength, SPPB, or thigh muscle mass in narrative synthesis. This is the strongest and most current evidence available on NMN and physical function, and it is a clean null.",
+      "figure": null,
+      "caveats": "One author (Patel) has received lecture fees from Abbott and Pfizer, unrelated to NMN manufacturers specifically. Small number of pooled studies per outcome (n=2-5) limits precision despite being the best available synthesis."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "m_psqi",
+      "direction": "+",
+      "effect": "12-week NMN (250 mg/day) improved sleep quality at 12 weeks relative to placebo in older adults, with lower (better) scores for Daytime Dysfunction and Global PSQI",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports the direction and which PSQI subscales improved, not the numeric point change",
+      "evidence_tier": "B",
+      "population": "60 older adults, randomized, placebo-controlled, double-blind",
+      "conditional_on": "Sleep quality was a secondary, not primary, endpoint of this trial; measured in the same participants who showed the 4-m walking-time and blood-NAD+ effects above, so this is one industry-funded trial contributing three separate secondary findings, not three independent replications",
+      "paper": {
+        "doi": "10.1007/s11357-024-01204-1",
+        "title": "Ingestion of beta-nicotinamide mononucleotide increased blood NAD levels, maintained walking speed, and improved sleep quality in older adults in a double-blind randomized, placebo-controlled study",
+        "year": 2024,
+        "design": "randomized, placebo-controlled, double-blind, parallel-group RCT",
+        "n": 60
+      },
+      "verbatim": "The NMN group had improved sleep quality at 12 weeks relative to the placebo group as evidenced by lower scores for \"Daytime dysfunction\" and \"Global PSQI\" on the Pittsburgh Sleep Questionnaire.",
+      "key_results": "This is presently the only human RCT evidence found for NMN and sleep quality; it comes from the same 60-person, industry-funded trial as the walking-speed and blood-NAD+ findings above, so it should be read as one data point, not three.",
+      "figure": null,
+      "caveats": "Industry-funded and industry-staffed (Meiji Holdings); no independent replication found for the sleep-quality outcome specifically; no numeric PSQI point-change given in the abstract."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "ldl_cholesterol",
+      "direction": "-",
+      "effect": "28-day high-dose NMN (MIB-626, 2000 mg/day) reduced LDL cholesterol by 18.73 mg/dL (95% CI -31.85 to -5.60) versus placebo in overweight/obese middle-aged and older adults",
+      "effect_normalized": -18.73,
+      "normalization_method": "mean between-group difference (mg/dL), original units retained",
+      "evidence_tier": "B",
+      "population": "30 overweight or obese adults aged >=45 years",
+      "conditional_on": "Short trial (28 days), high dose (2000 mg/day, well above the 250 mg/day used in most other human NMN trials); accompanied by weight loss (-1.9 kg) in the same arm, so the LDL change is not proven independent of the weight change",
+      "paper": {
+        "doi": "10.1210/clinem/dgad027",
+        "title": "Nicotinamide Adenine Dinucleotide Augmentation in Overweight or Obese Middle-Aged and Older Adults: A Physiologic Study",
+        "year": 2023,
+        "design": "randomized, placebo-controlled, double-blind physiologic RCT",
+        "n": 30
+      },
+      "verbatim": "Body weight (difference -1.9 [-3.3, -0.5] kg, P = .008); diastolic blood pressure (difference -7.01 [-13.44, -0.59] mmHg, P = .034); total cholesterol (difference -26.89 [-44.34, -9.44] mg/dL, P = .004), low-density lipoprotein (LDL) cholesterol (-18.73 [-31.85, -5.60] mg/dL, P = .007), and nonhigh-density lipoprotein cholesterol decreased significantly more in the MIB-626 group than placebo.",
+      "key_results": "The authors explicitly frame this as physiologic/hypothesis-generating: 'These data provide the rationale for larger trials to assess the efficacy of NAD augmentation in improving cardiometabolic outcomes in older adults' - i.e. the authors themselves do not claim this is confirmatory.",
+      "figure": null,
+      "caveats": "Small trial (n=30, 2:1 randomization so placebo arm was only ~10 people); sponsor-affiliated co-authors (Metro International Biotech, maker of MIB-626); single 28-day trial, no independent replication of the lipid effect at this dose."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "28-day high-dose NMN (MIB-626, 2000 mg/day) reduced diastolic blood pressure by 7.01 mmHg (95% CI -13.44 to -0.59) versus placebo in overweight/obese middle-aged and older adults",
+      "effect_normalized": -7.01,
+      "normalization_method": "mean between-group difference (mmHg), original units retained",
+      "evidence_tier": "B",
+      "population": "30 overweight or obese adults aged >=45 years",
+      "conditional_on": "Diastolic BP only - systolic BP was not reported as significantly different in the abstract; co-occurred with weight loss and lipid reduction in the same arm",
+      "paper": {
+        "doi": "10.1210/clinem/dgad027",
+        "title": "Nicotinamide Adenine Dinucleotide Augmentation in Overweight or Obese Middle-Aged and Older Adults: A Physiologic Study",
+        "year": 2023,
+        "design": "randomized, placebo-controlled, double-blind physiologic RCT",
+        "n": 30
+      },
+      "verbatim": "Body weight (difference -1.9 [-3.3, -0.5] kg, P = .008); diastolic blood pressure (difference -7.01 [-13.44, -0.59] mmHg, P = .034); total cholesterol (difference -26.89 [-44.34, -9.44] mg/dL, P = .004), low-density lipoprotein (LDL) cholesterol (-18.73 [-31.85, -5.60] mg/dL, P = .007), and nonhigh-density lipoprotein cholesterol decreased significantly more in the MIB-626 group than placebo.",
+      "key_results": "Confidence interval upper bound (-0.59) sits close to the null, one of the weaker significant findings in this trial's set of positive results.",
+      "figure": null,
+      "caveats": "Small trial (n=30); sponsor-affiliated authorship; single trial, unreplicated; systolic BP not reported as significant."
+    },
+    {
+      "behavior_id": "nmn_supplementation",
+      "marker_id": "vo2max",
+      "direction": null,
+      "effect": "6-week NMN supplementation (300-1200 mg/day) combined with running training increased submaximal oxygen-uptake measures in a dose-dependent way, but did not change VO2max, O2-pulse, VO2 relative to work rate, or peak power versus placebo",
+      "effect_normalized": null,
+      "normalization_method": "not applicable - abstract reports direction and significance qualitatively, no numeric VO2max value given",
+      "evidence_tier": "B",
+      "population": "48 young and middle-aged recreationally trained runners (10 male, 2 female per arm), 4 dose arms",
+      "conditional_on": "All groups (including placebo) were undergoing 5-6 sessions/week running training concurrently, so this tests NMN as an add-on to training, not NMN alone; the positive submaximal-oxygen-utilization finding does not extend to peak VO2max itself",
+      "paper": {
+        "doi": "10.1186/s12970-021-00442-4",
+        "title": "Nicotinamide mononucleotide supplementation enhances aerobic capacity in amateur runners: a randomized, double-blind study",
+        "year": 2021,
+        "design": "randomized, double-blind, placebo-controlled, four-arm RCT",
+        "n": 48
+      },
+      "verbatim": "However, there was no difference in VO2max, O2-pulse, VO2 related to work rate, and peak power after the 6 week treatment from baseline in any of these groups.",
+      "key_results": "The paper's title ('enhances aerobic capacity') is built on submaximal measures (VO2, %VO2max, power at ventilatory thresholds) improving more in medium/high-dose groups, while the maximal-effort measures (VO2max, peak power) that most readers would associate with 'aerobic capacity' showed no group difference - a title-versus-data gap worth flagging.",
+      "figure": null,
+      "caveats": "No conflicts of interest declared; small per-arm sample (n=12 per group, further split 10M/2F); no numeric values given for the submaximal measures either, only 'increased to a higher degree', so that part of the claim cannot be quantified from the abstract."
+    },
+    {
+      "behavior_id": "coq10_supplementation",
+      "marker_id": "statin_muscle_symptoms",
+      "direction": "-",
+      "effect": "CoQ10 supplementation reduced statin-associated muscle pain (WMD -1.60, 95% CI -1.75 to -1.44), weakness (WMD -2.28), cramp (WMD -1.78), and tiredness (WMD -1.75) versus placebo, all P<0.001-0.006, but did not reduce plasma creatine kinase (WMD 0.09, 95% CI -0.06 to 0.24, P=0.23)",
+      "effect_normalized": -1.6,
+      "normalization_method": "pooled WMD on the muscle-pain symptom scale used per source trial, original units retained",
+      "evidence_tier": "A",
+      "population": "575 patients across 12 RCTs (294 CoQ10, 281 placebo), all on statin therapy with statin-associated muscle symptoms",
+      "conditional_on": "Studied specifically in patients already on statins with muscle symptoms attributed to statin therapy; the benefit is on subjective symptom scores, not on the objective creatine-kinase biomarker, which did not improve - a real dissociation between how patients feel and a lab marker of muscle damage",
+      "paper": {
+        "doi": "10.1161/JAHA.118.009835",
+        "title": "Effects of Coenzyme Q10 on Statin-Induced Myopathy: An Updated Meta-Analysis of Randomized Controlled Trials",
+        "year": 2018,
+        "design": "meta-analysis of RCTs",
+        "n": 575
+      },
+      "verbatim": "Compared with placebo, CoQ10 supplementation ameliorated statin-associated muscle symptoms, such as muscle pain (WMD, -1.60; 95% confidence interval [CI], -1.75 to -1.44; P<0.001), muscle weakness (WMD, -2.28; 95% CI, -2.79 to -1.77; P=0.006), muscle cramp (WMD, -1.78; 95% CI, -2.31 to -1.24; P<0.001), and muscle tiredness (WMD, -1.75; 95% CI, -2.31 to -1.19; P<0.001), whereas no reduction in the plasma creatine kinase level was observed after CoQ10 supplementation (WMD, 0.09; 95% CI, -0.06 to 0.24; P=0.23).",
+      "key_results": "Authors conclude CoQ10 'may be a complementary approach to manage statin-induced myopathy' - a hedged conclusion appropriate to symptom-only (not biomarker-confirmed) benefit. This is one of the more consistent positive findings in the CoQ10 literature and is specific to the statin-myopathy context, not a general muscle-performance claim.",
+      "figure": null,
+      "caveats": "The symptom scale underlying the WMD values is not clearly named in the abstract (likely a 0-10 VAS common to these trials but not confirmed); 12 trials of variable size and quality pooled without a stated overall GRADE certainty rating in the abstract."
+    },
+    {
+      "behavior_id": "coq10_supplementation",
+      "marker_id": "all_cause_mortality",
+      "direction": "-",
+      "effect": "2-year CoQ10 (300 mg/day) reduced all-cause mortality from 18% (placebo) to 10% (CoQ10), P=0.018, in patients with moderate to severe chronic heart failure on standard therapy",
+      "effect_normalized": 0.56,
+      "normalization_method": "relative risk calculated from the two reported proportions in the verbatim (10%/18% = 0.56); not a hazard ratio and not independently reported by the source for this specific secondary endpoint",
+      "evidence_tier": "B",
+      "population": "420 patients with moderate to severe chronic heart failure (NYHA class), multicenter, 2-year prospective RCT (Q-SYMBIO trial), on top of standard heart-failure therapy",
+      "conditional_on": "Studied only in patients with established moderate-to-severe heart failure already on standard therapy - not evidence for healthy adults or mild/subclinical cardiac disease; dose was 100 mg three times daily (300 mg/day total)",
+      "paper": {
+        "doi": "10.1016/j.jchf.2014.06.008",
+        "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial",
+        "year": 2014,
+        "design": "randomized, double-blind, multicenter RCT",
+        "n": 420
+      },
+      "verbatim": "The following secondary endpoints were significantly lower in the CoQ10 group compared with the placebo group: cardiovascular mortality (9% vs. 16%, p = 0.026), all-cause mortality (10% vs. 18%, p = 0.018), and incidence of hospital stays for HF (p = 0.033).",
+      "key_results": "The primary long-term endpoint (composite major adverse cardiovascular events) was reached by 15% of the CoQ10 group versus 26% of the placebo group (hazard ratio 0.50, 95% CI 0.32-0.80, P=0.003) - a directly reported hazard ratio for the composite endpoint, distinct from the plain-proportion mortality figures used for this edge. Short-term endpoints at 16 weeks (NYHA class, 6-minute walk test, NT-proBNP) showed no significant change, but NYHA class did improve significantly by 2 years (P=0.028). This is one of very few adequately powered, long-duration RCTs in the entire CoQ10 literature.",
+      "figure": null,
+      "caveats": "This is a single trial (albeit large and long by CoQ10 standards), not a meta-analysis; a subsequent Cochrane-style HTA review (Health Technol Assess 2022, DOI not separately verified here) found the mortality benefit plausible but called for confirmatory trials before broader clinical adoption, indicating the finding is regarded as promising rather than settled."
+    },
+    {
+      "behavior_id": "coq10_supplementation",
+      "marker_id": "cardiovascular_mortality",
+      "direction": "-",
+      "effect": "2-year CoQ10 (300 mg/day) reduced cardiovascular mortality from 16% (placebo) to 9% (CoQ10), P=0.026, in patients with moderate to severe chronic heart failure on standard therapy",
+      "effect_normalized": 0.56,
+      "normalization_method": "relative risk calculated from the two reported proportions in the verbatim (9%/16% = 0.56); not a hazard ratio and not independently reported by the source for this specific secondary endpoint",
+      "evidence_tier": "B",
+      "population": "420 patients with moderate to severe chronic heart failure, multicenter, 2-year prospective RCT (Q-SYMBIO trial), on top of standard heart-failure therapy",
+      "conditional_on": "Same trial and population as the all-cause-mortality edge above - these are not two independent confirmations, they are two outcomes from one trial",
+      "paper": {
+        "doi": "10.1016/j.jchf.2014.06.008",
+        "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial",
+        "year": 2014,
+        "design": "randomized, double-blind, multicenter RCT",
+        "n": 420
+      },
+      "verbatim": "The following secondary endpoints were significantly lower in the CoQ10 group compared with the placebo group: cardiovascular mortality (9% vs. 16%, p = 0.026), all-cause mortality (10% vs. 18%, p = 0.018), and incidence of hospital stays for HF (p = 0.033).",
+      "key_results": "See all_cause_mortality edge for the composite primary endpoint hazard ratio and short-term null findings from the same trial.",
+      "figure": null,
+      "caveats": "Single trial; heart-failure-specific population; not generalizable to primary prevention in healthy adults."
+    },
+    {
+      "behavior_id": "coq10_supplementation",
+      "marker_id": "blood_pressure",
+      "direction": "-",
+      "effect": "CoQ10 supplementation significantly reduced systolic blood pressure by 3.44 mmHg (95% CI -5.13 to -1.55) but had no significant effect on diastolic blood pressure (-1.13 mmHg, 95% CI -2.16 to 0.50) or heart rate (-0.10 bpm) across adults",
+      "effect_normalized": -3.44,
+      "normalization_method": "pooled WMD (mmHg), original units retained",
+      "evidence_tier": "A",
+      "population": "Adults across 45 RCTs (48 effect sizes) pooled; mixed healthy and cardiometabolic-risk populations",
+      "conditional_on": "Subgroup analysis found greater systolic BP reductions at lower doses (<200 mg/day) and longer interventions (>8 weeks); diastolic BP and heart rate were not significantly affected regardless of dose or duration",
+      "paper": {
+        "doi": "10.1016/j.ijcrp.2025.200424",
+        "title": "Effects of coenzyme Q10 administration on blood pressure and heart rate in adults: A systematic review and meta-analysis of randomized controlled trials",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": null
+      },
+      "verbatim": "The pooled analysis of 45 RCTs (48 effect sizes) showed that Q10 administration significantly reduced systolic BP (WMD: -3.44 mmHg; 95 %CI: [-5.13 to -1.55], p < 0.01), while no significant effect was observed on diastolic BP (WMD: -1.13 mmHg; 95 %CI: [-2.16 - 0.50], p = 0.23) and HR (WMD: -0.10 bpm; 95 %CI: [-2.09 - 1.89], p = 0.44).",
+      "key_results": "This is the largest and most current CoQ10-blood-pressure synthesis found (45 RCTs), and it partially disagrees with the diastolic-BP finding in the smaller MIB-626 NMN trial elsewhere in this file - the two supplements act on different BP components in the trials reviewed here, they should not be conflated.",
+      "figure": null,
+      "caveats": "No conflicts of interest declared by the review authors; effect size (3.44 mmHg systolic) is modest and heterogeneous across dose bands; individual trial quality not detailed in the abstract."
+    },
+    {
+      "behavior_id": "coq10_supplementation",
+      "marker_id": "vo2max",
+      "direction": null,
+      "effect": "Meta-analysis found CoQ10 supplementation had no significant effect on maximal oxygen uptake (SMD -0.156, 95% CI -0.79 to 0.478, P=0.630) or blood lactate (SMD -0.68, P=0.271) after exercise, despite reducing markers of oxidative stress and muscle damage",
+      "effect_normalized": -0.156,
+      "normalization_method": "SMD, unitless, as reported by source",
+      "evidence_tier": "A",
+      "population": "433 subjects across 14 RCTs examining post-exercise oxidative stress and muscle damage",
+      "conditional_on": "Studied mostly in exercising/athletic populations around a single bout or short training block, not in sedentary adults or clinical cardiometabolic populations; the null applies specifically to maximal-oxygen-uptake and lactate metabolism, not to the (positive) muscle-damage and oxidative-stress outcomes from the same review",
+      "paper": {
+        "doi": "10.1177/03000605251411151",
+        "title": "Effects of coenzyme Q10 analogs on oxidative stress, muscle, and metabolism after exercise: A meta-analysis and systematic review",
+        "year": 2026,
+        "design": "meta-analysis of RCTs",
+        "n": 433
+      },
+      "verbatim": "The metabolism-related blood lactate and maximal oxygen uptake levels were not affected by coenzyme Q10 (standardized mean difference: -0.68, 95% confidence interval: -1.89 to 0.53, p = 0.271; standardized mean difference: -0.156, 95% confidence interval: -0.79 to 0.478, p = 0.630).",
+      "key_results": "The same meta-analysis found CoQ10 elevated blood CoQ10 concentration (SMD 2.71), reduced blood malondialdehyde (SMD -0.289, P=0.024, an oxidative-stress marker), and reduced blood creatine kinase (SMD -1.532, P=0.023, a muscle-damage marker) after exercise - so CoQ10's exercise-related benefit in this synthesis is concentrated in oxidative-stress and muscle-damage biomarkers, not in aerobic capacity itself. A separate, broader 2025 review (Br J Nutr, DOI 10.1017/S0007114525106211) of 24 studies similarly concluded CoQ10 gives only 'small and inconsistent' exercise-performance benefits that became unstable after removing outlier trials, with no numeric pooled effect stated in its abstract - consistent with the null reported here.",
+      "figure": null,
+      "caveats": "No conflicts of interest declared; population is exercise/athletic-performance studies, not the cardiometabolic or heart-failure populations of the other CoQ10 edges in this file, so this null should not be read as contradicting the Q-SYMBIO mortality findings."
+    },
+    {
+      "behavior_id": "coq10_supplementation",
+      "marker_id": "sperm_parameters",
+      "direction": "+",
+      "effect": "CoQ10 supplementation significantly improved sperm concentration (MD +10.22x10^6/mL), seminal volume (MD +0.17 mL), total sperm motility (MD +4.95%), and seminal CoQ10 levels, and increased clinical pregnancy odds (OR 6.02) in men with idiopathic male infertility",
+      "effect_normalized": 10.22,
+      "normalization_method": "MD (x10^6/mL sperm concentration), original units retained; other outcomes reported alongside in original units",
+      "evidence_tier": "A",
+      "population": "781 participants (430 treatment, 351 control) across 9 RCTs, men with idiopathic male infertility",
+      "conditional_on": "Population restricted to men with a specific diagnosis of idiopathic (unexplained) male infertility, not fertile men or men with a known infertility cause; treatment duration over 3 months was needed to significantly improve sperm morphology specifically",
+      "paper": {
+        "doi": "10.5534/wjmh.250159",
+        "title": "Efficacy and Safety of Coenzyme Q10 in Idiopathic Male Infertility: A Systematic Review and Meta-Analysis of Randomized Trials",
+        "year": 2025,
+        "design": "meta-analysis of RCTs",
+        "n": 781
+      },
+      "verbatim": "CoQ10 supplementation significantly improved sperm concentration (mean differences [MD]: 10.22×10⁶/mL [3.51-16.93], p=0.003), seminal volume (MD: 0.17 mL [0.03-0.31], p=0.02), total sperm motility (MD: 4.95% [1.15-8.75], p=0.01), and seminal CoQ10 levels (MD: 37.04 ng/ml [31.24-42.84], p<0.001).",
+      "key_results": "The same meta-analysis found CoQ10 significantly increased clinical pregnancy odds (odds ratio 6.02, 95% CI 1.97-18.41, P=0.002) and, in subgroup analysis, treatment duration over 3 months significantly improved sperm morphology specifically (P<0.05). Only three studies reported on adverse effects, all describing none or mild transient effects.",
+      "figure": null,
+      "caveats": "Authors report no conflicts of interest; population is specifically diagnosed idiopathic male infertility, so this finding should not be generalized to fertile or subfertile men without that diagnosis; a related network meta-analysis (Reprod Sci 2025, PMID 40813743, in men with unexplained infertility) found L-carnitine, not CoQ10, gave the largest motility improvement, suggesting CoQ10's relative ranking among antioxidants for this indication is not settled."
+    }
+  ],
+  "cut_candidates": [
+    {
+      "candidate": "NMN and blood NAD+ / anti-aging claims sourced from mouse or in vitro studies (e.g. the mechanistic rationale cited in Akasaka 2023 and Fukamizu 2022 abstracts that NMN 'counteracts age-associated changes in animal models')",
+      "reason": "Explicitly animal-only evidence; importing it as though it applied to humans would misrepresent the current human evidence base, which this file keeps separate."
+    },
+    {
+      "candidate": "NMN and subjective fatigue/drowsiness (Kim et al. 2022, Nutrients, PMID 35215405, 'Jikaku-sho shirabe' fatigue questionnaire and drowsiness subscale)",
+      "reason": "No marker in the existing 60-item catalogue or a natural home in any of the 14 existing goals covers subjective fatigue as distinct from sleep quality (PSQI) or mood; the trial's only significant findings were a 5-times-sit-to-stand improvement and a drowsiness reduction specific to afternoon dosing (d=0.64), a narrow, unreplicated, time-of-day-specific result. Forcing it onto m_psqi or perceived_stress would misrepresent what was actually measured. Cut rather than stretched."
+    },
+    {
+      "candidate": "NMN safety-only trials with no efficacy marker (Fukamizu et al. 2022, Sci Rep, PMID 36002548; 1250 mg/day for 4 weeks, n=31)",
+      "reason": "This trial reports only that no adverse safety signal exceeded physiological variation; it contains no marker-level efficacy result to attach to any goal. Referenced qualitatively in this file's context but not shipped as an edge."
+    },
+    {
+      "candidate": "CoQ10 and migraine frequency/duration (Sazali et al. 2021, BMJ Open, PMID 33402403: significant reduction in frequency [MD -1.52/month] and duration [MD -0.19 days], no significant reduction in severity; n=371, 6 RCTs)",
+      "reason": "This is a real, tier-A, positive finding, but migraine/headache has no corresponding marker or goal in the existing 14-goal graph (the closest goals - mood/anxiety, cognition - do not cover headache disorders, and forcing migraine onto either would misrepresent both the marker and the goal's stated definition). Per the task's instruction to attach only to existing goals, this edge is cut rather than mis-homed. A contradicting 2019 meta-analysis (Can J Neurol Sci, PMID 30764890) found CoQ10 did NOT significantly reduce migraine frequency or severity, so the evidence is not even fully consistent."
+    },
+    {
+      "candidate": "CoQ10 for diminished ovarian reserve / IVF outcomes in women (PMID 39129455)",
+      "reason": "This is female reproductive physiology; the existing 'Female reproductive and hormonal health' goal's marker set (vasomotor symptoms, menstrual pain, PMS, PCOS androgens, menstrual regularity) does not include IVF/ovarian-reserve outcomes, and stretching one of those markers to cover oocyte counts and embryo quality would misrepresent both. Noted here rather than forced into an edge."
+    },
+    {
+      "candidate": "CoQ10 heart-failure NYHA functional class improvement as its own edge (Q-SYMBIO, P=0.028 at 2 years)",
+      "reason": "No numeric magnitude of NYHA class change is given in the abstract (only a p-value), so no effect size could be derived beyond what is already reported qualitatively in the key_results of the all_cause_mortality edge; a separate edge would duplicate the same trial without adding a quantifiable claim."
+    }
+  ]
+}
