@@ -1,13 +1,13 @@
 ---
 title: "Every Health Claim, Tied to the Marker It Moves"
-subtitle: "318 rows across 14 goals, each carrying the paper it came from, the population it was measured in, and what the finding is conditional on."
+subtitle: "316 rows across 14 goals, each carrying the paper it came from, the population it was measured in, and what the finding is conditional on."
 authors:
   - "Michael Wan"
 affiliations:
   - "Independent Analysis"
 published: "2026-09-13"
 thumbnail: "/img/health-evidence/thumbnail.svg"
-abstract: "Health advice arrives as a flat list: eat this, take that, sleep more. A flat list hides the three things that decide whether a claim is worth acting on - which endpoint actually moved, how strong the evidence behind it is, and whether two pieces of advice are really the same lever pulled twice. This is that literature rebuilt as a graph: behavior to biomarker to goal, walkable from either end. Effect sizes are compared only within a marker, where the units match. Null results are recorded as findings. Nothing is ever summed, and every row carries the paper's own result sentence. The dataset behind it currently holds 318 rows across 14 goals, drawn from 227 papers, including 65 results that were measured and came back null."
+abstract: "Health advice arrives as a flat list: eat this, take that, sleep more. A flat list hides the three things that decide whether a claim is worth acting on - which endpoint actually moved, how strong the evidence behind it is, and whether two pieces of advice are really the same lever pulled twice. This is that literature rebuilt as a graph: behavior to biomarker to goal, walkable from either end. Effect sizes are compared only within a marker, where the units match. Null results are recorded as findings. Nothing is ever summed, and every row carries the paper's own result sentence. The dataset behind it currently holds 316 rows across 14 goals, drawn from 225 papers, including 65 results that were measured and came back null."
 tags:
   - "explainer"
   - "interactive"
@@ -342,6 +342,12 @@ category: "business"
   /* An evidence gap, not a measured null. Distinct from the grey "=" so the page
      never claims a thing was tested when nobody has tested it. */
   .hx-dir-gap { color: var(--color-purple); }
+  /* The source wording, kept under its translation. Small and set back, because it is
+     there for a reader checking a figure against the paper, not for reading twice. */
+  .hx-orig {
+    display: block; margin-top: 4px; font-size: 0.82em; color: var(--color-gray);
+    border-left: 2px solid var(--color-border); padding-left: 8px;
+  }
   .hx-srcflag {
     font-size: 0.72rem; font-weight: 600; color: var(--color-gray);
     background: var(--color-surface); border-radius: 3px; padding: 2px 6px;
@@ -686,4 +692,4 @@ Where two behaviors land on the same marker, the tree shows them converging. Tha
 
 **This describes literature, not what you should do.** Every row says what a study found in a specific population. If a row looks wrong, the quoted sentence and the DOI are right there — check it.
 
-<script src="/js/health-evidence-explorer.js?v=66"></script>
+<script src="/js/health-evidence-explorer.js?v=67"></script>

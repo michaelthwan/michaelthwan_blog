@@ -247,6 +247,26 @@
     return node[field] || '';
   }
 
+  // The study design is the same handful of phrases over and over - "meta-analysis of
+  // RCTs" covers 72 rows - so it is translated once in a lookup table rather than carried
+  // on every edge.
+  function trDesign(design) {
+    if (state.lang !== 'zh-TW' || !design) return design;
+    var table = (state.i18n && state.i18n.designs) || {};
+    return table[design] || design;
+  }
+
+  // Translated text, with the English kept underneath it.
+  //
+  // A quoted result sentence stays in the language the paper was written in - that is the
+  // evidence, and translating it would put words in the authors' mouths. Everything else
+  // is ours to translate, but the original still has to be reachable: a reader checking a
+  // number against the source needs the words the source used.
+  function withOriginal(translated, original) {
+    if (!original || translated === original) return esc(translated || '');
+    return esc(translated) + '<span class="hx-orig">' + esc(original) + '</span>';
+  }
+
   function trEdge(edge, field) {
     if (state.lang !== 'en' && state.i18n && state.i18n.edges) {
       var table = state.i18n.edges;
@@ -552,8 +572,10 @@
       return '<span class="hx-effect hx-effect-null">' + t('studiedNoEffect') + '</span>';
     }
     if (!edge.effect) return '';
-    return '<span class="hx-effect" title="' + esc(edge.effect) + '">' +
-      esc(shortEffect(edge.effect)) + '</span>';
+    var txt = trEdge(edge, 'effect') || edge.effect;
+    var tip = txt === edge.effect ? txt : txt + '\n\n' + edge.effect;
+    return '<span class="hx-effect" title="' + esc(tip) + '">' +
+      esc(shortEffect(txt)) + '</span>';
   }
 
   // Marks an edge whose stated effect contains a figure that does not appear in its own
@@ -806,7 +828,10 @@
       esc(m ? tr(m, 'name') : edge.marker_id) + '</span></div>';
 
     h += '<dl class="hx-facts">';
-    if (edge.effect) h += '<dt>' + t('effectReported') + '</dt><dd>' + esc(edge.effect) + '</dd>';
+    if (edge.effect) {
+      h += '<dt>' + t('effectReported') + '</dt><dd>' +
+        withOriginal(trEdge(edge, 'effect') || edge.effect, edge.effect) + '</dd>';
+    }
     if (edge.effect_normalized !== undefined && edge.effect_normalized !== null && edge.effect_normalized !== '') {
       h += '<dt>' + t('normalised') + '</dt><dd>' + esc(edge.effect_normalized) +
         (edge.normalization_method ? ' <span class="hx-muted">(' + esc(edge.normalization_method) + ')</span>' : '') +
@@ -823,10 +848,10 @@
     }
     h += '<dt>' + t('evidence') + '</dt><dd>' + tierBadge(edge.evidence_tier, edge) + ' ' +
       esc(tierLabel(edge.evidence_tier)) +
-      (p.design ? ' <span class="hx-muted">&middot; ' + esc(p.design) + '</span>' : '') +
+      (p.design ? ' <span class="hx-muted">&middot; ' + esc(trDesign(p.design)) + '</span>' : '') +
       (p.n ? ' <span class="hx-muted">&middot; n = ' + esc(p.n) + '</span>' : '') + '</dd>';
-    if (edge.population) h += '<dt>' + t('population') + '</dt><dd>' + esc(trEdge(edge, 'population')) + '</dd>';
-    if (edge.conditional_on) h += '<dt>' + t('conditional') + '</dt><dd class="hx-cond-strong">' + esc(trEdge(edge, 'conditional_on')) + '</dd>';
+    if (edge.population) h += '<dt>' + t('population') + '</dt><dd>' + withOriginal(trEdge(edge, 'population'), edge.population) + '</dd>';
+    if (edge.conditional_on) h += '<dt>' + t('conditional') + '</dt><dd class="hx-cond-strong">' + withOriginal(trEdge(edge, 'conditional_on'), edge.conditional_on) + '</dd>';
     h += '</dl>';
 
     if (edge.verbatim) {
@@ -925,7 +950,7 @@
         esc(t('fullText')) + '</a>' + (extra.license ? ' <span class="hx-muted">&middot; ' + esc(extra.license) + '</span>' : '') +
         '</p>';
     }
-    if (edge.caveats) h += '<p class="hx-caveat"><strong>' + t('caveats') + '</strong> ' + esc(trEdge(edge, 'caveats')) + '</p>';
+    if (edge.caveats) h += '<p class="hx-caveat"><strong>' + t('caveats') + '</strong> ' + withOriginal(trEdge(edge, 'caveats'), edge.caveats) + '</p>';
 
     var goals = ((m && m.goal_ids) || []).map(function (gid) {
       var g = byId(state.data.nodes.goals, gid);

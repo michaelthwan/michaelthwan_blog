@@ -219,6 +219,7 @@ GROUP_ORDER = [
     ("supplement", "Supplements: other"),
     ("medical", "Medical and therapeutic"),
     ("mind", "Mind and social"),
+    ("hygiene", "Oral and hand hygiene"),
     ("environment", "Environment and exposure"),
 ]
 
@@ -243,6 +244,30 @@ DROP_BEHAVIORS = {
                       "beside vitamin D and fish oil.",
     "nsaids_dysmenorrhea": "A prescription-strength analgesic regimen, not a behaviour a "
                             "reader adopts. Same misgrouping.",
+    "blood_pressure_control": "Intensive antihypertensive treatment to a systolic target of "
+                              "120 mmHg. Nobody reaches this without first being diagnosed and "
+                              "treated for hypertension, so it is not a decision a reader "
+                              "arrives at - it is one their doctor makes for them once they "
+                              "are already in the system. Same reasoning as metformin for PCOS.",
+    "diabetes_status": "Having diabetes or not is a health condition, not something a reader "
+                       "chooses to do. The finding it carried - that diabetes raises the risk "
+                       "of incident periodontitis - is real, but a page about what to do is "
+                       "the wrong shape for it: there is no behaviour on the other end of the "
+                       "arrow. It had also fallen into the mind-and-social group, which made "
+                       "no sense either.",
+}
+
+# Nodes whose name describes a state when the row underneath is about a decision. The page
+# admits a behaviour only if a reader can decide it, so where the paper measured the decision
+# and the node was named after the diagnosis, the name is what is wrong, not the row.
+RENAME_BEHAVIORS = {
+    "alcohol_use_disorder": {
+        "name": "Heavy drinking (>168 g/week, or >48 g/day at least weekly)",
+        "dose_or_intensity": "Heavy intake, >168 g/week or >48 g/day at least weekly, against "
+                             "non-heavy drinkers. The source also reports a clinical alcohol "
+                             "use disorder diagnosis separately; that is a diagnosis rather "
+                             "than a decision and is not what this row reports.",
+    },
 }
 
 MERGE_BEHAVIORS = {
@@ -250,6 +275,26 @@ MERGE_BEHAVIORS = {
     "social_isolation": "loneliness_social_isolation",
     "smoking_and_cessation": "smoking",
     "vitamin_d_supplementation": "vitamin_d",
+    # Below: nodes that named one behaviour twice. The test applied was whether the
+    # BEHAVIOUR differs - dose, formulation, species, protocol - not whether the papers
+    # differ. Two nodes that describe the same thing and differ only in which outcome
+    # somebody measured are redundant, because the marker axis already carries the outcome.
+    # None of these pairs shared a DOI or a marker, so nothing is double-counted by merging
+    # them; the reader simply stops seeing one substance listed twice under two names.
+    "glp1_ra": "glp1_receptor_agonists",           # both semaglutide, same doses
+    "probiotics_psychobiotics": "probiotics",      # "psychobiotic" is a claim of purpose
+    "free_sugar_intake": "added_sugar",            # the same exposure, two spellings
+    "fat_loss": "weight_loss_fatloss",
+    "calcium_pms": "calcium_supplementation",      # the PMS population lives in conditional_on
+    "omega3_marine": "omega3_supplementation",     # both marine EPA/DHA
+    #
+    # Deliberately NOT merged, because the behaviour really is different:
+    #   mindfulness_meditation vs mindfulness_based_interventions - MBSR is a defined
+    #     eight-week programme, not the same thing as meditation training in general
+    #   sleep_duration vs short_sleep_duration - one is experimental restriction, the
+    #     other habitual short sleep in cohorts; they cannot be pooled
+    #   curcumin +/- piperine, marine vs ALA omega-3, EPA vs DHA, the ginseng species,
+    #     creatine chronic vs single dose, acute vs chronic aerobic exercise
 }
 
 
@@ -315,6 +360,14 @@ SUPPLEMENT_KINDS = [
     ("valerian", "supplement_botanical"),
 ]
 
+# Dental and hand hygiene. These arrive tagged "habit", which falls through to the mind
+# group, so they have to be claimed by name before that fallback runs.
+HYGIENE_RULES = [
+    "toothpaste", "toothbrush", "brushing", "floss", "interdental",
+    "mouthrinse", "mouthwash", "chlorhexidine", "scale and polish", "scaling",
+    "hand hygiene", "handwash",
+]
+
 GROUP_RULES_STRONG = [
     ("bariatric", "medical"),
     ("glp-1", "medical"),
@@ -357,6 +410,9 @@ def group_of(behavior):
     for needle, grp in GROUP_RULES:
         if needle in low:
             return grp
+
+    if any(w in low for w in HYGIENE_RULES):
+        return "hygiene"
 
     return CATEGORY_GROUP.get(behavior.get("category"), "mind")
 
@@ -865,6 +921,14 @@ def apply_verification_overrides(edges):
                 e["direction"] = o["direction"]
             if o.get("up_is_good") is not None:
                 e["up_is_good"] = o["up_is_good"]
+            # Which result a row quotes is itself a correctable thing. One paper can report
+            # the effect of a diagnosis and the effect of the behaviour separately, and a row
+            # that quotes the first while claiming to be about the second says something the
+            # paper did not.
+            for field in ("effect", "verbatim", "caveats"):
+                if o.get(field):
+                    e[field + "_corrected_from"] = e.get(field)
+                    e[field] = o[field]
             for field in ("conditional_on", "population"):
                 if o.get(field):
                     e[field + "_corrected_from"] = e.get(field)
@@ -1085,6 +1149,11 @@ def merge():
 
     for dup in MERGE_BEHAVIORS:
         behaviors.pop(dup, None)
+
+    for bid, new_name in RENAME_BEHAVIORS.items():
+        if bid in behaviors:
+            behaviors[bid]["renamed_from"] = behaviors[bid].get("name")
+            behaviors[bid].update(new_name)
 
     dropped = 0
     for bid, reason in DROP_BEHAVIORS.items():

@@ -2822,17 +2822,6 @@
     "family_label": "Sleep loss"
    },
    {
-    "id": "fat_loss",
-    "name": "Diet-induced fat loss",
-    "category": "diet",
-    "dose_or_intensity": "hypocaloric diet, active weight-loss phase (weeks 0-12)",
-    "group": "food",
-    "group_label": "Food, diet and body weight",
-    "group_rank": 2,
-    "family": "body_fat",
-    "family_label": "Body fat"
-   },
-   {
     "id": "zinc",
     "name": "Zinc supplementation",
     "category": "supplement",
@@ -3045,7 +3034,7 @@
     "dose_or_intensity": "~5000 lux, 0.5-2 h upon waking",
     "group": "environment",
     "group_label": "Environment and exposure",
-    "group_rank": 14,
+    "group_rank": 15,
     "family": "light",
     "family_label": "Light exposure"
    },
@@ -3056,7 +3045,7 @@
     "dose_or_intensity": "~2 h pre-sleep device use, unfiltered vs blue-blocked",
     "group": "environment",
     "group_label": "Environment and exposure",
-    "group_rank": 14,
+    "group_rank": 15,
     "family": "light",
     "family_label": "Light exposure"
    },
@@ -3202,17 +3191,6 @@
     "group_rank": 2
    },
    {
-    "id": "omega3_marine",
-    "name": "Marine omega-3 (EPA/DHA) supplementation",
-    "category": "supplement",
-    "dose_or_intensity": "EPA/DHA supplementation, categorized low (<1000 mg/d), medium (1000-2000 mg/d), high (>2000 mg/d); short (<=8wk), medium (>8-12wk), long (>12wk) term",
-    "group": "supplement_fatty_acid",
-    "group_label": "Supplements: fatty acids",
-    "group_rank": 6,
-    "family": "omega3",
-    "family_label": "Omega-3"
-   },
-   {
     "id": "omega3_ala",
     "name": "Plant omega-3 (alpha-linolenic acid) supplementation",
     "category": "supplement",
@@ -3305,7 +3283,7 @@
     "dose_or_intensity": "4 sessions/week, 20-30 min/session, ~79C, 13% relative humidity, 8-week intervention",
     "group": "environment",
     "group_label": "Environment and exposure",
-    "group_rank": 14
+    "group_rank": 15
    },
    {
     "id": "creatine_monohydrate",
@@ -3477,15 +3455,6 @@
     "group_rank": 5
    },
    {
-    "id": "blood_pressure_control",
-    "name": "Intensive blood pressure control (systolic <120 mmHg)",
-    "category": "habit",
-    "dose_or_intensity": "Intensive antihypertensive treatment to systolic BP <120 mmHg vs standard <140 mmHg target",
-    "group": "medical",
-    "group_label": "Medical and therapeutic",
-    "group_rank": 12
-   },
-   {
     "id": "mindfulness_based_interventions",
     "name": "Mindfulness-based stress reduction / mindfulness-based interventions",
     "category": "habit",
@@ -3559,15 +3528,6 @@
     "group_rank": 8
    },
    {
-    "id": "probiotics_psychobiotics",
-    "name": "Probiotics / psychobiotics",
-    "category": "supplement",
-    "dose_or_intensity": "Probiotic, prebiotic, or synbiotic supplementation, various strains and durations",
-    "group": "supplement_biotic",
-    "group_label": "Supplements: live cultures",
-    "group_rank": 9
-   },
-   {
     "id": "loneliness_social_isolation",
     "name": "Loneliness / social isolation",
     "category": "habit",
@@ -3580,14 +3540,13 @@
    },
    {
     "id": "alcohol_use_disorder",
-    "name": "Alcohol use disorder / heavy alcohol intake",
+    "name": "Heavy drinking (>168 g/week, or >48 g/day at least weekly)",
     "category": "habit",
-    "dose_or_intensity": "Clinical AUD diagnosis or heavy intake (>168 g/week or >48 g/day at least weekly) vs non-heavy/abstinent",
-    "group": "drink",
-    "group_label": "Drink and stimulants",
-    "group_rank": 3,
-    "family": "alcohol",
-    "family_label": "Alcohol"
+    "dose_or_intensity": "Heavy intake, >168 g/week or >48 g/day at least weekly, against non-heavy drinkers. The source also reports a clinical alcohol use disorder diagnosis separately; that is a diagnosis rather than a decision and is not what this row reports.",
+    "renamed_from": "Alcohol use disorder / heavy alcohol intake",
+    "group": "mind",
+    "group_label": "Mind and social",
+    "group_rank": 13
    },
    {
     "id": "time_in_nature",
@@ -3596,7 +3555,7 @@
     "dose_or_intensity": "Structured outdoor nature-based interventions (gardening, green exercise, nature-based therapy), 20-90 min sessions over 8-12 weeks",
     "group": "environment",
     "group_label": "Environment and exposure",
-    "group_rank": 14
+    "group_rank": 15
    },
    {
     "id": "physical_activity_volume",
@@ -3667,7 +3626,7 @@
     "dose_or_intensity": "Long-term ambient PM2.5 concentration (per 5 ug/m3) or NO2 as a traffic-pollution proxy (per 10 ug/m3)",
     "group": "environment",
     "group_label": "Environment and exposure",
-    "group_rank": 14,
+    "group_rank": 15,
     "family": "air_pollution",
     "family_label": "Air pollution"
    },
@@ -3723,15 +3682,6 @@
     "group": "supplement_micronutrient",
     "group_label": "Supplements: vitamins and minerals",
     "group_rank": 5
-   },
-   {
-    "id": "glp1_ra",
-    "name": "GLP-1 receptor agonist (semaglutide)",
-    "category": "supplement",
-    "dose_or_intensity": "Once-weekly subcutaneous semaglutide 2.4 mg vs placebo in adults with biopsy-confirmed MASH and fibrosis stage 2-3, interim analysis at week 72 of a 240-week trial",
-    "group": "medical",
-    "group_label": "Medical and therapeutic",
-    "group_rank": 12
    },
    {
     "id": "saturated_fat",
@@ -3816,9 +3766,9 @@
     "name": "Hand hygiene interventions",
     "category": "habit",
     "dose_or_intensity": "Hand-washing/hand-hygiene promotion programmes, alone or combined with education, across community and household RCTs",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "impact_exercise",
@@ -4042,7 +3992,7 @@
     "dose_or_intensity": "Heating pad/patch vs analgesic medication, no treatment, or unheated placebo, pooled across 6 RCTs",
     "group": "environment",
     "group_label": "Environment and exposure",
-    "group_rank": 14
+    "group_rank": 15
    },
    {
     "id": "exercise_dysmenorrhea",
@@ -4060,15 +4010,6 @@
     "name": "Vitamin B6 (pyridoxine) for PMS",
     "category": "supplement",
     "dose_or_intensity": "Up to 100 mg/day vs placebo, pooled across 9 RCTs",
-    "group": "supplement_micronutrient",
-    "group_label": "Supplements: vitamins and minerals",
-    "group_rank": 5
-   },
-   {
-    "id": "calcium_pms",
-    "name": "Calcium supplementation for PMS",
-    "category": "supplement",
-    "dose_or_intensity": "Oral calcium vs control, pooled across 6 RCTs (2013-2020)",
     "group": "supplement_micronutrient",
     "group_label": "Supplements: vitamins and minerals",
     "group_rank": 5
@@ -4118,92 +4059,72 @@
     "name": "Fluoride toothpaste (concentration)",
     "category": "habit",
     "dose_or_intensity": "Regular toothbrushing with fluoride toothpaste at concentrations from non-fluoride up to 2800 ppm; dose-response strongest between non-fluoride and ~1450-1500 ppm",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "toothbrushing_frequency",
     "name": "Toothbrushing frequency",
     "category": "habit",
     "dose_or_intensity": "Self-reported frequency, compared as >=2 times/day vs <2 times/day and >=1 time/day vs <1 time/day, in children and adults",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "powered_toothbrushing",
     "name": "Powered toothbrushing (vs manual)",
     "category": "habit",
     "dose_or_intensity": "Everyday unsupervised use of a powered toothbrush vs manual toothbrush, >=4 weeks; rotation-oscillation type has the largest evidence base",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "flossing",
     "name": "Dental floss (in addition to toothbrushing)",
     "category": "habit",
     "dose_or_intensity": "Daily or near-daily flossing added to toothbrushing vs toothbrushing alone, in adults, trials of 1-6 months",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "interdental_brushes",
     "name": "Interdental brushes (in addition to toothbrushing)",
     "category": "habit",
     "dose_or_intensity": "Daily interdental brush use added to toothbrushing vs toothbrushing alone, or vs floss, in adults",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "chlorhexidine_mouthwash",
     "name": "Chlorhexidine mouthrinse (adjunctive)",
     "category": "habit",
     "dose_or_intensity": "Chlorhexidine mouthrinse used as an adjunct to mechanical oral hygiene for >=4 weeks; no evidence that concentration or once- vs twice-daily rinsing changes effect size",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
-   },
-   {
-    "id": "free_sugar_intake",
-    "name": "Free/added dietary sugar intake",
-    "category": "diet",
-    "dose_or_intensity": "Amount of free sugars intake as percentage of total energy (E); WHO guideline thresholds of <10% E and <5% E examined",
-    "group": "food",
-    "group_label": "Food, diet and body weight",
-    "group_rank": 2,
-    "family": "sugar",
-    "family_label": "Sugar"
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "xylitol_products",
     "name": "Xylitol-containing products (toothpaste, gum, lozenges, syrup)",
     "category": "diet",
     "dose_or_intensity": "10% xylitol fluoride toothpaste used 2.5-3 years (strongest evidence); also lozenges, sucking tablets, syrup (2.67-8 g/day), and wipes in children, infants, and adults -- chewing gum specifically not isolated as its own pooled category in the available evidence",
-    "group": "food",
-    "group_label": "Food, diet and body weight",
-    "group_rank": 2
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "professional_scaling",
     "name": "Routine professional scale and polish",
     "category": "habit",
     "dose_or_intensity": "Six-monthly or twelve-monthly professional scaling/polishing vs no scheduled treatment, in adults without severe periodontitis who are regular dental attenders",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
-   },
-   {
-    "id": "diabetes_status",
-    "name": "Diabetes (type 1/2/gestational) status",
-    "category": "habit",
-    "dose_or_intensity": "Diagnosed diabetes vs no diabetes, longitudinal incidence of periodontitis; dose-response by glycemic control (HbA1c) level specifically was not established by any single source meeting the DOI/verbatim bar in this search",
-    "group": "mind",
-    "group_label": "Mind and social",
-    "group_rank": 13
+    "group": "hygiene",
+    "group_label": "Oral and hand hygiene",
+    "group_rank": 14
    },
    {
     "id": "nmn_supplementation",
@@ -4361,7 +4282,7 @@
    "evidence_label": "Single adequately powered randomised trial"
   },
   {
-   "behavior_id": "fat_loss",
+   "behavior_id": "weight_loss_fatloss",
    "marker_id": "serum_testosterone",
    "direction": "+",
    "effect": "+0.68 +/- 0.30 nmol/L testosterone, P=0.037; SHBG +4.6 +/- 0.5 nmol/L, P<0.001 (weeks 0-12)",
@@ -4392,8 +4313,8 @@
     "0.68",
     "4.6"
    ],
-   "legacy_key": "fat_loss::serum_testosterone::10.1371/journal.pone.0161297",
-   "edge_id": "fat_loss::serum_testosterone::10.1371/journal.pone.0161297::f815bc71",
+   "legacy_key": "weight_loss_fatloss::serum_testosterone::10.1371/journal.pone.0161297",
+   "edge_id": "weight_loss_fatloss::serum_testosterone::10.1371/journal.pone.0161297::f815bc71",
    "valence": "good",
    "usefulness": {
     "tier": "D",
@@ -6641,7 +6562,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "omega3_marine",
+   "behavior_id": "omega3_supplementation",
    "marker_id": "triglycerides",
    "direction": "-",
    "effect": "High-dose (>2000 mg/day), long-term (>12 weeks) marine omega-3 supplementation reduced triglycerides by 56.78 mg/dL (+/-3.44); high-dose short-term (<=8 weeks) reduced them by 50.87 mg/dL (+/-3.04)",
@@ -6667,8 +6588,8 @@
    "unsupported_numbers": [
     "50.87"
    ],
-   "legacy_key": "omega3_marine::triglycerides::10.3390/nu17203279",
-   "edge_id": "omega3_marine::triglycerides::10.3390/nu17203279::6b977925",
+   "legacy_key": "omega3_supplementation::triglycerides::10.3390/nu17203279",
+   "edge_id": "omega3_supplementation::triglycerides::10.3390/nu17203279::6b977925",
    "quote_spliced": true,
    "quote_spliced_coverage": 0.527,
    "valence": "good",
@@ -8998,10 +8919,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "C",
-    "score": 3.09,
+    "score": 3.34,
     "why": [
      "Single adequately powered randomised trial (+2)",
-     "effect size ranks 0th percentile among the 3 scored rows on this marker (+0.5, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
      "measured in 2,262 participants (+0.59)"
     ]
    },
@@ -9083,48 +9004,6 @@
    },
    "evidence_tag": "META-RCT",
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
-  },
-  {
-   "behavior_id": "blood_pressure_control",
-   "marker_id": "global_cognition_older",
-   "direction": "+",
-   "effect": "HR = 0.81 (95% CI, 0.69-0.95) for reduced risk of mild cognitive impairment; HR = 0.83 (95% CI, 0.67-1.04, not significant) for the primary probable-dementia outcome",
-   "effect_normalized": 0.81,
-   "normalization_method": "hazard ratio for MCI incidence (secondary outcome); primary dementia outcome was not statistically significant",
-   "evidence_tier": "B",
-   "population": "9,361 adults aged 50+ with hypertension, without diabetes or prior stroke, SPRINT MIND randomized trial",
-   "conditional_on": "Significant benefit was on the secondary outcome (mild cognitive impairment), not the trial's primary outcome (probable dementia), which showed a favorable but non-significant trend; the trial was stopped early for cardiovascular benefit, which the authors note likely left it underpowered for the dementia endpoint specifically",
-   "paper": {
-    "doi": "10.1001/jama.2018.21442",
-    "title": "Effect of Intensive vs Standard Blood Pressure Control on Probable Dementia: A Randomized Clinical Trial",
-    "year": 2019,
-    "design": "randomized clinical trial (SPRINT MIND)",
-    "n": 9361,
-    "n_kind": "participants",
-    "n_value": 9361,
-    "n_label": "9,361"
-   },
-   "verbatim": "During a total median follow-up of 5.11 years, adjudicated probable dementia occurred in 149 participants in the intensive treatment group vs 176 in the standard treatment group (7.2 vs 8.6 cases per 1000 person-years; hazard ratio [HR], 0.83; 95% CI, 0.67-1.04). Intensive BP control significantly reduced the risk of mild cognitive impairment (14.6 vs 18.3 cases per 1000 person-years; HR, 0.81; 95% CI, 0.69-0.95) and the combined rate of mild cognitive impairment or probable dementia (20.2 vs 24.1 cases per 1000 person-years; HR, 0.85; 95% CI, 0.74-0.97).",
-   "key_results": "SPRINT MIND randomized 9,361 hypertensive adults aged 50+ to an intensive (<120 mmHg) or standard (<140 mmHg) systolic blood pressure target. Over a median 5.11-year follow-up, intensive treatment significantly reduced the risk of mild cognitive impairment (HR 0.81) and the combined MCI-or-dementia outcome (HR 0.85), but the reduction in the trial's pre-specified primary outcome, probable dementia, did not reach statistical significance (HR 0.83, CI crossing 1). The trial was stopped early (August 2015) for cardiovascular benefit and all-cause mortality, which the authors state likely left too few dementia cases to detect a true effect on that specific, harder-to-diagnose endpoint.",
-   "figure": null,
-   "caveats": "The primary, hardest endpoint (adjudicated probable dementia) was null; only the secondary MCI endpoint reached significance; outcome is a clinical diagnosis/adjudication rather than a continuous MMSE/MoCA test score, so this edge operationalizes 'global cognition' via validated case-ascertainment rather than a raw test score, unlike the multivitamin, ginkgo, and omega-3 edges above.",
-   "legacy_key": "blood_pressure_control::global_cognition_older::10.1001/jama.2018.21442",
-   "edge_id": "blood_pressure_control::global_cognition_older::10.1001/jama.2018.21442::f4532f9a",
-   "valence_reviewed": true,
-   "review_note": "HR 0.81 is a REDUCED risk of mild cognitive impairment. The word impairment names the outcome, not the verdict; the finding is favourable.",
-   "verified_note_source": "valence-scan-2026-09-16",
-   "valence": "good",
-   "usefulness": {
-    "tier": "B",
-    "score": 4.24,
-    "why": [
-     "Single adequately powered randomised trial (+2)",
-     "effect size ranks 100th percentile among the 3 scored rows on this marker (+1.5, pulled toward the middle because 3 rows is a thin comparison)",
-     "measured in 9,361 participants (+0.74)"
-    ]
-   },
-   "evidence_tag": "RCT",
-   "evidence_label": "Single adequately powered randomised trial"
   },
   {
    "behavior_id": "creatine_monohydrate",
@@ -10147,7 +10026,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "probiotics_psychobiotics",
+   "behavior_id": "probiotics",
    "marker_id": "depressive_symptoms",
    "direction": "-",
    "effect": "SMD = -0.53 (95% CI: -0.67 to -0.39), Z = 7.33, p < 0.001",
@@ -10170,8 +10049,8 @@
    "key_results": "A total of 72 RCTs were included (3,319 intervention and 2,778 control participants), with 63 studies examining depression. The meta-analysis demonstrated significant reductions compared to placebo in depression (SMD=-0.53). Subgroup analyses indicated that probiotics, prebiotics, and synbiotics each independently alleviated depression. The impact varied by population, intervention duration, and probiotic types. Given the high heterogeneity and limited methodological quality of the included studies, further large-scale and high-quality RCTs with long-term follow-up are needed.",
    "figure": null,
    "caveats": "High heterogeneity and limited methodological quality across included studies per the authors' own conclusion; pools a mixed population that is broader (and likely more responsive) than clinically diagnosed MDD alone, where the He 2023 meta-analysis below found no significant effect.",
-   "legacy_key": "probiotics_psychobiotics::depressive_symptoms::10.1186/s12888-025-07644-z",
-   "edge_id": "probiotics_psychobiotics::depressive_symptoms::10.1186/s12888-025-07644-z::2cc083f3",
+   "legacy_key": "probiotics::depressive_symptoms::10.1186/s12888-025-07644-z",
+   "edge_id": "probiotics::depressive_symptoms::10.1186/s12888-025-07644-z::2cc083f3",
    "valence": "good",
    "usefulness": {
     "tier": "A",
@@ -10186,7 +10065,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "probiotics_psychobiotics",
+   "behavior_id": "probiotics",
    "marker_id": "depressive_symptoms",
    "direction": null,
    "effect": "Overall effect on depressive symptoms was negligible and not statistically significant (no pooled effect size reported)",
@@ -10209,8 +10088,8 @@
    "key_results": "Of 635 records initially identified, 4 studies were ultimately included, conducted across diverse regions, primarily involving females, with assessment periods of 1-2 months. For depressive symptoms specifically, the overall effect was negligible and not statistically significant, while cognitive outcomes showed significant improvement. A heterogeneity test indicated consistent findings across studies (I2=0%). Egger's test suggested no significant publication bias, though caution is advised given the limited number of studies.",
    "figure": null,
    "caveats": "Very small evidence base (only 4 RCTs) specific to clinically diagnosed MDD patients; illustrates that the positive pooled probiotics-depression effect seen in mixed/subclinical populations (Zhang 2025 above) does not clearly replicate in a small, clinically-diagnosed-only sample, though the small n here limits how much weight this null should carry on its own.",
-   "legacy_key": "probiotics_psychobiotics::depressive_symptoms::10.1097/MD.0000000000036005",
-   "edge_id": "probiotics_psychobiotics::depressive_symptoms::10.1097/MD.0000000000036005::fb5cb1fa",
+   "legacy_key": "probiotics::depressive_symptoms::10.1097/MD.0000000000036005",
+   "edge_id": "probiotics::depressive_symptoms::10.1097/MD.0000000000036005::fb5cb1fa",
    "valence": "none",
    "usefulness": {
     "tier": "NULL",
@@ -10223,7 +10102,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "probiotics_psychobiotics",
+   "behavior_id": "probiotics",
    "marker_id": "anxiety_symptoms",
    "direction": "-",
    "effect": "SMD = -0.44 (95% CI: -0.59 to -0.28), p < 0.001",
@@ -10246,8 +10125,8 @@
    "key_results": "49 studies (2,124 intervention and 1,788 control participants) examined anxiety using probiotic/prebiotic/synbiotic interventions. The meta-analysis demonstrated a significant reduction compared to placebo in anxiety (SMD=-0.44). Both probiotics, prebiotics, and synbiotics independently alleviated anxiety in subgroup analyses. Given high heterogeneity and limited methodological quality, further large-scale, high-quality RCTs with long-term follow-up are needed to validate these outcomes.",
    "figure": null,
    "caveats": "Same heterogeneity/methodological-quality caveat as the depression edge from this paper.",
-   "legacy_key": "probiotics_psychobiotics::anxiety_symptoms::10.1186/s12888-025-07644-z",
-   "edge_id": "probiotics_psychobiotics::anxiety_symptoms::10.1186/s12888-025-07644-z::dc8bfe49",
+   "legacy_key": "probiotics::anxiety_symptoms::10.1186/s12888-025-07644-z",
+   "edge_id": "probiotics::anxiety_symptoms::10.1186/s12888-025-07644-z::dc8bfe49",
    "valence": "good",
    "usefulness": {
     "tier": "B",
@@ -10309,7 +10188,7 @@
    "behavior_id": "alcohol_use_disorder",
    "marker_id": "depressive_symptoms",
    "direction": "+",
-   "effect": "Relative risk (RR) = 1.57 (95% CI 1.41-1.76) for subsequent depressive symptoms in those with alcohol use disorder",
+   "effect": "RR = 1.13 (95% CI 1.05-1.22) for subsequent depressive symptoms in heavy drinkers, significant only when the comparison group is restricted to non-heavy drinkers; the association became non-significant once publication bias and confounding were taken into account",
    "effect_normalized": 1.57,
    "normalization_method": "pooled relative risk, cohort meta-analysis",
    "evidence_tier": "C",
@@ -10325,12 +10204,17 @@
     "n_value": 338426,
     "n_label": "338,426"
    },
-   "verbatim": "AUD was associated with significantly increased risk of subsequent depressive symptoms [relative risk (RR) = 1.57, 95% confidence interval (CI) = 1.41-1.76]. Regarding alcohol intake, heavy drinking had an increased risk of depressive symptoms; however, the association was only significant when controls were limited to non-heavy drinkers (RR = 1.13, 95% CI = 1.05-1.22). Taking into consideration the possibility of publication bias and confounding factors made the association non-significant.",
+   "verbatim": "Regarding alcohol intake, heavy drinking had an increased risk of depressive symptoms; however, the association was only significant when controls were limited to non-heavy drinkers (RR = 1.13, 95% CI = 1.05-1.22). Taking into consideration the possibility of publication bias and confounding factors made the association non-significant.",
    "key_results": "42 studies with 338,426 participants and follow-up of 1-40 years were analyzed. AUD was associated with significantly increased risk of subsequent depressive symptoms (RR=1.57). Heavy drinking's association with depressive symptoms was significant only versus non-heavy drinkers and became non-significant once publication bias and confounding were considered. A J-shaped association was observed in both categorical and dose-response analyses: light-to-moderate drinking had significantly decreased risk of depression, while heavy drinking did not show a significant association compared with non-drinkers once bias was accounted for.",
    "figure": null,
-   "caveats": "The relationship is J-shaped, not monotonic: this edge captures only the clinically diagnosed AUD estimate (RR=1.57, robust), while the heavy-drinking-vs-non-heavy-drinker estimate (RR=1.13) became non-significant after accounting for publication bias and confounding, and light-to-moderate intake showed a protective association in the same paper. As in Goal B's alcohol/CRP handling, this non-monotonic curve is not compressed into a single number; only the robust AUD-specific estimate is shipped as a quantified edge.",
+   "caveats": "The much-quoted figure from this paper, RR 1.57, is for a clinical diagnosis of alcohol use disorder, not for drinking. This row reports what the same paper found for the behaviour, which is a great deal weaker and does not survive adjustment for publication bias. The 338,426 participants are real; the finding they support at this end is not a strong one.",
    "legacy_key": "alcohol_use_disorder::depressive_symptoms::10.1111/add.14935",
    "edge_id": "alcohol_use_disorder::depressive_symptoms::10.1111/add.14935::44d05933",
+   "review_note": "This row previously quoted the paper's alcohol use disorder figure (RR 1.57) under a node named after the diagnosis. A diagnosis is not something a reader decides, and the same paper reports the drinking separately. The row now quotes the drinking, and the node is named after it. The weaker number is the honest one for the question this page asks.",
+   "effect_corrected_from": "Relative risk (RR) = 1.57 (95% CI 1.41-1.76) for subsequent depressive symptoms in those with alcohol use disorder",
+   "verbatim_corrected_from": "AUD was associated with significantly increased risk of subsequent depressive symptoms [relative risk (RR) = 1.57, 95% confidence interval (CI) = 1.41-1.76]. Regarding alcohol intake, heavy drinking had an increased risk of depressive symptoms; however, the association was only significant when controls were limited to non-heavy drinkers (RR = 1.13, 95% CI = 1.05-1.22). Taking into consideration the possibility of publication bias and confounding factors made the association non-significant.",
+   "caveats_corrected_from": "The relationship is J-shaped, not monotonic: this edge captures only the clinically diagnosed AUD estimate (RR=1.57, robust), while the heavy-drinking-vs-non-heavy-drinker estimate (RR=1.13) became non-significant after accounting for publication bias and confounding, and light-to-moderate intake showed a protective association in the same paper. As in Goal B's alcohol/CRP handling, this non-monotonic curve is not compressed into a single number; only the robust AUD-specific estimate is shipped as a quantified edge.",
+   "verified_note_source": "inclusion-rule-2026-09-16",
    "valence": "bad",
    "usefulness": {
     "tier": "B",
@@ -10566,14 +10450,17 @@
    "verified_note_source": "valence-scan-2026-09-16",
    "legacy_key": "smoking_cessation::all_cause_mortality::10.1056/NEJMsa1211128",
    "edge_id": "smoking_cessation::all_cause_mortality::10.1056/NEJMsa1211128::45e30093",
+   "quote_spliced": true,
+   "quote_spliced_coverage": 0.661,
    "valence": "good",
    "usefulness": {
     "tier": "D",
-    "score": 2.0,
+    "score": 1.5,
     "why": [
      "Prospective cohort study (+1)",
      "effect size ranks 29th percentile among the 15 scored rows on this marker (+0)",
-     "measured in 202,248 participants (+1)"
+     "measured in 202,248 participants (+1)",
+     "a quote-integrity flag is open on this row (-0.5)"
     ]
    },
    "evidence_tag": "COHORT",
@@ -12260,7 +12147,7 @@
    "evidence_label": "Single adequately powered randomised trial"
   },
   {
-   "behavior_id": "glp1_ra",
+   "behavior_id": "glp1_receptor_agonists",
    "marker_id": "liver_stiffness_fibrosis",
    "direction": "-",
    "effect": "Semaglutide 2.4 mg produced a reduction in liver fibrosis without worsening of steatohepatitis in 36.8% of patients vs 22.4% with placebo (difference 14.4 percentage points, 95% CI 7.5-21.3)",
@@ -12286,8 +12173,8 @@
    "unsupported_numbers": [
     "2.4"
    ],
-   "legacy_key": "glp1_ra::liver_stiffness_fibrosis::10.1056/NEJMoa2413258",
-   "edge_id": "glp1_ra::liver_stiffness_fibrosis::10.1056/NEJMoa2413258::8385d86e",
+   "legacy_key": "glp1_receptor_agonists::liver_stiffness_fibrosis::10.1056/NEJMoa2413258",
+   "edge_id": "glp1_receptor_agonists::liver_stiffness_fibrosis::10.1056/NEJMoa2413258::8385d86e",
    "valence_reviewed": true,
    "review_note": "Fibrosis reduced WITHOUT worsening of steatohepatitis. Same negation; favourable.",
    "verified_note_source": "valence-scan-2026-09-16",
@@ -12306,7 +12193,7 @@
    "evidence_label": "Single adequately powered randomised trial"
   },
   {
-   "behavior_id": "omega3_marine",
+   "behavior_id": "omega3_supplementation",
    "marker_id": "liver_fat_steatosis",
    "direction": "-",
    "effect": "Omega-3 PUFA supplementation showed a significant benefit for liver fat compared with control across pooled RCTs in NAFLD patients",
@@ -12329,8 +12216,8 @@
    "key_results": "The same pooled analysis found benefit across seven different outcomes simultaneously (liver fat, ALT, AST, GGT, triglycerides, insulin resistance, glucose), a broad pattern of improvement rather than an isolated single-marker effect, though the authors caution that a broad win across many correlated markers in the presence of substantial heterogeneity should be interpreted cautiously rather than as seven independent confirmations.",
    "figure": null,
    "caveats": "No publication bias was detected, but significant heterogeneity across the 18 trials was present and not resolved by subgroup or regression analysis; the authors explicitly call for larger, better-designed RCTs before treating this as confirmed. No specific numeric effect size for liver fat is given in the abstract.",
-   "legacy_key": "omega3_marine::liver_fat_steatosis::10.1097/MD.0000000000012271",
-   "edge_id": "omega3_marine::liver_fat_steatosis::10.1097/MD.0000000000012271::59330aac",
+   "legacy_key": "omega3_supplementation::liver_fat_steatosis::10.1097/MD.0000000000012271",
+   "edge_id": "omega3_supplementation::liver_fat_steatosis::10.1097/MD.0000000000012271::59330aac",
    "quote_spliced": true,
    "quote_spliced_coverage": 0.731,
    "valence": "good",
@@ -12348,7 +12235,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "omega3_marine",
+   "behavior_id": "omega3_supplementation",
    "marker_id": "alt_ast",
    "direction": "-",
    "effect": "Omega-3 PUFA supplementation showed a significant benefit for ALT and AST compared with control across pooled RCTs in NAFLD patients",
@@ -12371,8 +12258,8 @@
    "key_results": "A separate 2024 meta-analysis of plant-based (ALA) omega-3 specifically (DOI 10.1093/nutrit/nuad054, 6 RCTs, 362 NAFLD patients) corroborates the ALT direction, finding plant-based n-3 reduced ALT by a mean difference of 8.04 IU/L (95% CI 1.38-14.70) alongside reduced triglycerides, though that review notes the effect appeared alongside concurrent lifestyle interventions in some trials, making the omega-3-specific contribution harder to isolate.",
    "figure": null,
    "caveats": "Same heterogeneity and no-numeric-effect-size caveats as the liver_fat_steatosis edge from the same source paper. The corroborating plant-based-omega-3 review is a smaller, separate trial set (6 RCTs) and should be read as directionally supportive rather than as independent replication of the marine-omega-3 estimate.",
-   "legacy_key": "omega3_marine::alt_ast::10.1097/MD.0000000000012271",
-   "edge_id": "omega3_marine::alt_ast::10.1097/MD.0000000000012271::79114680",
+   "legacy_key": "omega3_supplementation::alt_ast::10.1097/MD.0000000000012271",
+   "edge_id": "omega3_supplementation::alt_ast::10.1097/MD.0000000000012271::79114680",
    "quote_spliced": true,
    "quote_spliced_coverage": 0.731,
    "valence": "good",
@@ -14808,7 +14695,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "calcium_pms",
+   "behavior_id": "calcium_supplementation",
    "marker_id": "pms_symptoms",
    "direction": "-",
    "effect": "Calcium reduced the severity of PMS complaints vs control groups (p=0.002, I2=76.2%); no significant difference vs other active treatments (p=0.416, I2=54.7%)",
@@ -14832,8 +14719,8 @@
    "figure": null,
    "caveats": "The retrieved abstract text reports only p-values and I2 heterogeneity statistics, not a pooled effect size (SMD/MD) or participant count, which limits how precisely this benefit can be compared to other edges in this file; high heterogeneity in both pooled comparisons.",
    "quote_elided": true,
-   "legacy_key": "calcium_pms::pms_symptoms::10.23950/jcmk/15827",
-   "edge_id": "calcium_pms::pms_symptoms::10.23950/jcmk/15827::0f0d11f4",
+   "legacy_key": "calcium_supplementation::pms_symptoms::10.23950/jcmk/15827",
+   "edge_id": "calcium_supplementation::pms_symptoms::10.23950/jcmk/15827::0f0d11f4",
    "valence": "good",
    "usefulness": {
     "tier": "B",
@@ -15447,7 +15334,7 @@
    "evidence_label": "Meta-analysis or systematic review of randomised trials"
   },
   {
-   "behavior_id": "free_sugar_intake",
+   "behavior_id": "added_sugar",
    "marker_id": "caries_increment",
    "direction": "+",
    "effect": "Moderate-quality evidence that caries is lower when free-sugars intake is below 10% of energy; a significant relationship was also seen at the stricter <5% energy threshold but of very low quality; 42 of 50 studies in children and 5 of 5 in adults reported at least one positive sugar-caries association",
@@ -15470,8 +15357,8 @@
    "key_results": "This review directly underpinned the World Health Organization's guideline recommending free sugars intake below 10% of total energy, with a conditional recommendation for below 5%. 'Data variability limited meta-analysis,' so the review reports a qualitative/vote-counting synthesis rather than a single pooled effect size, unlike most of the RCT-based edges in this dataset.",
    "figure": null,
    "caveats": "No pooled quantitative effect size is available because data variability across designs precluded meta-analysis; only 3 of 55 included studies were true intervention trials; the stricter <5% E finding is explicitly graded very low quality by the authors' own GRADE assessment, so it is presented here as suggestive rather than established.",
-   "legacy_key": "free_sugar_intake::caries_increment::10.1177/0022034513508954",
-   "edge_id": "free_sugar_intake::caries_increment::10.1177/0022034513508954::9f02ed90",
+   "legacy_key": "added_sugar::caries_increment::10.1177/0022034513508954",
+   "edge_id": "added_sugar::caries_increment::10.1177/0022034513508954::9f02ed90",
    "valence": "bad",
    "usefulness": {
     "tier": "C",
@@ -15555,51 +15442,12 @@
    "edge_id": "smoking::periodontal_attachment::10.1016/j.amepre.2018.02.014::812b4018",
    "valence": "bad",
    "usefulness": {
-    "tier": "B",
-    "score": 4.25,
-    "why": [
-     "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 0th percentile among the 2 scored rows on this marker (+0.75, pulled toward the middle because 2 rows is a thin comparison)",
-     "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
-    ]
-   },
-   "evidence_tag": "META-RCT",
-   "evidence_label": "Meta-analysis or systematic review of randomised trials"
-  },
-  {
-   "behavior_id": "diabetes_status",
-   "marker_id": "periodontal_attachment",
-   "direction": "+",
-   "effect": "In 28 pooled longitudinal studies, baseline diabetes status was associated with higher newly incident periodontitis, though with only modest pooled risk-ratio differences between groups; the reverse direction (periodontitis predicting incident type 2 diabetes) was stronger and more consistent (18-25% higher incidence)",
-   "effect_normalized": null,
-   "normalization_method": "not applicable - the abstract reports the diabetes-to-periodontitis pooled RR only qualitatively as 'modest', without a single point estimate and CI for that direction",
-   "evidence_tier": "A",
-   "population": "28 longitudinal studies, 16 countries, >300,000 participants; type 1, type 2, and gestational diabetes vs incident periodontitis, dental caries, tooth loss/edentulism",
-   "conditional_on": "The association is bidirectional and asymmetric: evidence is more consistent for periodontitis/edentulism predicting incident type 2 diabetes (periodontitis: 18-25% higher incidence; tooth loss: HR 1.12-1.20; edentulism: RR 1.30) than for diabetes predicting incident periodontitis, which showed only 'modest' pooled differences; evidence on diabetes and dental caries was too scarce and heterogeneous to pool; no dose-response by glycemic control (HbA1c) level was reported",
-   "paper": {
-    "doi": "10.1016/S2468-2667(26)00149-0",
-    "title": "Oral health and diabetes: a systematic review and meta-analysis",
-    "year": 2026,
-    "design": "systematic review and meta-analysis of prospective longitudinal cohort studies",
-    "n": 300000,
-    "n_kind": "participants",
-    "n_value": 300000,
-    "n_label": "300,000"
-   },
-   "verbatim": "A bidirectional temporal association in incidence patterns was observed between diabetes and periodontitis. Individuals with periodontitis at baseline showed a 18-25% higher occurrence of newly incident type 2 diabetes during follow-up, and baseline diabetes status was associated with a higher newly incident cases of periodontitis, with pooled RRs indicating modest differences between groups.",
-   "key_results": "Interpretation: 'People with diabetes are more likely to be diagnosed with periodontitis than people without diabetes, but with less consistent evidence [than the reverse direction].' Evidence on dental caries was scarce and heterogeneous, precluding meta-analysis, and no longitudinal evidence was found for oral cancer. Tooth loss was also associated with newly incident type 2 diabetes (HR 1.12-1.20), and edentulous individuals had higher incident type 2 diabetes (RR 1.30).",
-   "figure": null,
-   "caveats": "This article carries a Lancet Public Health retraction-and-republication note (originally published as DOI 10.1016/S2468-2667(26)00150-7, retracted and republished as the current DOI 10.1016/S2468-2667(26)00149-0 cited here); the abstract does not give a single pooled numeric RR/CI for the diabetes-to-periodontitis direction specifically, only a qualitative 'modest' descriptor, so effect_normalized is left null rather than invented. This edge captures diabetes STATUS/diagnosis, not glycemic CONTROL level -- the original candidate 'diabetes control' is narrowed accordingly; no HbA1c dose-response meta-analysis meeting the DOI/verbatim bar was found (see cut_candidates).",
-   "legacy_key": "diabetes_status::periodontal_attachment::10.1016/S2468-2667(26)00149-0",
-   "edge_id": "diabetes_status::periodontal_attachment::10.1016/S2468-2667(26)00149-0::b77c1f0e",
-   "valence": "bad",
-   "usefulness": {
     "tier": "A",
-    "score": 5.25,
+    "score": 4.5,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
-     "measured in 300,000 participants (+1)"
+     "only scored row on this marker, so no relative ranking (+1)",
+     "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
    "evidence_tag": "META-RCT",
@@ -16969,10 +16817,10 @@
    "valence": "good",
    "usefulness": {
     "tier": "A",
-    "score": 4.5,
+    "score": 4.75,
     "why": [
      "Meta-analysis or systematic review of randomised trials (+3)",
-     "effect size ranks 50th percentile among the 3 scored rows on this marker (+1, pulled toward the middle because 3 rows is a thin comparison)",
+     "effect size ranks 100th percentile among the 2 scored rows on this marker (+1.25, pulled toward the middle because 2 rows is a thin comparison)",
      "the paper does not state a participant count, so the size term is left at its midpoint (+0.5)"
     ]
    },
@@ -17415,6 +17263,16 @@
   {
    "label": "NSAIDs for dysmenorrhoea",
    "reason": "A prescription-strength analgesic regimen, not a behaviour a reader adopts. Same misgrouping.",
+   "goal": "removed from the explorer"
+  },
+  {
+   "label": "Intensive blood pressure control (systolic <120 mmHg)",
+   "reason": "Intensive antihypertensive treatment to a systolic target of 120 mmHg. Nobody reaches this without first being diagnosed and treated for hypertension, so it is not a decision a reader arrives at - it is one their doctor makes for them once they are already in the system. Same reasoning as metformin for PCOS.",
+   "goal": "removed from the explorer"
+  },
+  {
+   "label": "Diabetes (type 1/2/gestational) status",
+   "reason": "Having diabetes or not is a health condition, not something a reader chooses to do. The finding it carried - that diabetes raises the risk of incident periodontitis - is real, but a page about what to do is the wrong shape for it: there is no behaviour on the other end of the arrow. It had also fallen into the mind-and-social group, which made no sense either.",
    "goal": "removed from the explorer"
   }
  ]

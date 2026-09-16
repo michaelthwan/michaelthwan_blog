@@ -176,15 +176,6 @@
       "source": "valence-scan-2026-09-16"
     },
     {
-      "behavior_id": "blood_pressure_control",
-      "marker_id": "global_cognition_older",
-      "flags": {
-        "valence_reviewed": true
-      },
-      "review_note": "HR 0.81 is a REDUCED risk of mild cognitive impairment. The word impairment names the outcome, not the verdict; the finding is favourable.",
-      "source": "valence-scan-2026-09-16"
-    },
-    {
       "behavior_id": "processed_red_meat",
       "marker_id": "cancer_incidence_mortality",
       "flags": {
@@ -203,7 +194,7 @@
       "source": "valence-scan-2026-09-16"
     },
     {
-      "behavior_id": "glp1_ra",
+      "behavior_id": "glp1_receptor_agonists",
       "marker_id": "liver_stiffness_fibrosis",
       "flags": {
         "valence_reviewed": true
@@ -341,6 +332,15 @@
       },
       "review_note": "No trial in this review assessed interproximal caries at all. The row carried the same grey mark as a measured null, which claims the opposite of the truth: not that flossing was tested and did nothing, but that nobody has tested it. Marked as an evidence gap.",
       "source": "null-review-2026-09-16"
+    },
+    {
+      "behavior_id": "alcohol_use_disorder",
+      "marker_id": "depressive_symptoms",
+      "effect": "RR = 1.13 (95% CI 1.05-1.22) for subsequent depressive symptoms in heavy drinkers, significant only when the comparison group is restricted to non-heavy drinkers; the association became non-significant once publication bias and confounding were taken into account",
+      "verbatim": "Regarding alcohol intake, heavy drinking had an increased risk of depressive symptoms; however, the association was only significant when controls were limited to non-heavy drinkers (RR = 1.13, 95% CI = 1.05-1.22). Taking into consideration the possibility of publication bias and confounding factors made the association non-significant.",
+      "caveats": "The much-quoted figure from this paper, RR 1.57, is for a clinical diagnosis of alcohol use disorder, not for drinking. This row reports what the same paper found for the behaviour, which is a great deal weaker and does not survive adjustment for publication bias. The 338,426 participants are real; the finding they support at this end is not a strong one.",
+      "review_note": "This row previously quoted the paper's alcohol use disorder figure (RR 1.57) under a node named after the diagnosis. A diagnosis is not something a reader decides, and the same paper reports the drinking separately. The row now quotes the drinking, and the node is named after it. The weaker number is the honest one for the question this page asks.",
+      "source": "inclusion-rule-2026-09-16"
     }
   ]
 }

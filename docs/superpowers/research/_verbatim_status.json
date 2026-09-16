@@ -1,14 +1,14 @@
 {
  "_note": "Longest contiguous run of each quoted sentence found in its paper's PubMed abstract, as a fraction of the quote. 1.0 is a clean quotation. Around 0.5 usually means two non-adjacent sentences spliced together. A low score can also mean the sentence came from the full text, which the abstract never contained, so treat these as leads rather than verdicts. Written by scripts/check_verbatim.py.",
  "buckets": {
-  "exact": 257,
+  "exact": 254,
   "partial": 4,
-  "spliced": 46,
+  "spliced": 45,
   "absent": 10,
   "no_abstract": 3
  },
  "kinds": {
-  "spliced": 41,
+  "spliced": 40,
   "beyond_abstract": 7,
   "no_numbers": 4,
   "near": 4,
@@ -135,7 +135,7 @@
    "band": "spliced",
    "kind": "spliced"
   },
-  "omega3_marine::triglycerides::10.3390/nu17203279::6b977925": {
+  "omega3_supplementation::triglycerides::10.3390/nu17203279::6b977925": {
    "doi": "10.3390/nu17203279",
    "coverage": 0.527,
    "band": "spliced",
@@ -183,7 +183,7 @@
    "band": "spliced",
    "kind": "spliced"
   },
-  "smoking::all_cause_mortality::10.1056/NEJMsa1211128::45e30093": {
+  "smoking_cessation::all_cause_mortality::10.1056/NEJMsa1211128::45e30093": {
    "doi": "10.1056/NEJMsa1211128",
    "coverage": 0.661,
    "band": "spliced",
@@ -219,13 +219,13 @@
    "band": "spliced",
    "kind": "spliced"
   },
-  "omega3_marine::liver_fat_steatosis::10.1097/MD.0000000000012271::59330aac": {
+  "omega3_supplementation::liver_fat_steatosis::10.1097/MD.0000000000012271::59330aac": {
    "doi": "10.1097/MD.0000000000012271",
    "coverage": 0.731,
    "band": "spliced",
    "kind": "spliced"
   },
-  "omega3_marine::alt_ast::10.1097/MD.0000000000012271::79114680": {
+  "omega3_supplementation::alt_ast::10.1097/MD.0000000000012271::79114680": {
    "doi": "10.1097/MD.0000000000012271",
    "coverage": 0.731,
    "band": "spliced",
@@ -320,12 +320,6 @@
    "coverage": 0.68,
    "band": "spliced",
    "kind": "no_numbers"
-  },
-  "nsaids_dysmenorrhea::menstrual_pain::10.1002/14651858.CD001751.pub3::72fa6fe1": {
-   "doi": "10.1002/14651858.CD001751.pub3",
-   "coverage": 0.527,
-   "band": "spliced",
-   "kind": "spliced"
   },
   "exercise_dysmenorrhea::menstrual_pain::10.1002/14651858.CD004142.pub4::282a8f14": {
    "doi": "10.1002/14651858.CD004142.pub4",
