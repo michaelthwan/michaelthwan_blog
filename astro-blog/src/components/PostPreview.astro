@@ -31,15 +31,12 @@ const primaryTag = post.data.tags?.[0];
             </div>
             <h3 class="post-title">{post.data.title}</h3>
             <p class="post-abstract">{post.data.abstract}</p>
-            <p class="post-authors">
-                {post.data.authors.slice(0, 3).map((author, i) => (
-                    <Fragment>
-                        <span set:html={author.replace(' ', '&nbsp;')} />
-                        {i < Math.min(post.data.authors.length, 3) - 1 && ', '}
-                    </Fragment>
-                ))}
-                {post.data.authors.length > 3 && <em>, et&nbsp;al.</em>}
-            </p>
+            <!-- No byline on the card. It used to print post.data.authors, which on the six
+                 paper-explainer posts is the original paper's authors - so a card read as
+                 though Devlin or Brin had written this blog. Printing the site owner instead
+                 just repeats one name down the whole page. On a single-author blog the byline
+                 carries no information either way; the article page keeps it under "Authors",
+                 where for an explainer it correctly names the paper's authors. -->
         </div>
     </a>
 </article>
