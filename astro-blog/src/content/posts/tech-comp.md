@@ -64,9 +64,68 @@ The left cluster (blue-gray) peaks around **$100-140K**. The middle cluster (ora
 
 So what *are* these markets, and how do you tell which one an employer belongs to?
 
-## The Three Tiers (Plus One)
+Four of them, it turns out. The sorting question is not prestige or difficulty — it is **who a company benchmarks its pay against**. "Whose offers does this company try to match?" sorts almost every employer cleanly:
 
-Following Gergely Orosz's taxonomy, we can classify the tech labor market into three tiers, defined less by prestige than by **who a company benchmarks its pay against**. That single question — "whose offers does this company try to match?" — sorts almost every employer cleanly:
+<div class="d-table-wrapper">
+<table class="comp-comparison-table">
+    <thead>
+        <tr>
+            <th>Market</th>
+            <th>Benchmarks against</th>
+            <th>US median</th>
+            <th>Typical names</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="tier-label"><span class="tc-badge tc-badge-t1">Tier 1</span> Traditional</td>
+            <td>Local employers</td>
+            <td>$132K</td>
+            <td>Accenture, IBM, banks</td>
+        </tr>
+        <tr>
+            <td class="tier-label"><span class="tc-badge tc-badge-t2">Tier 2</span> Competitive Tech</td>
+            <td>Other tech brands</td>
+            <td>$253K</td>
+            <td>Adobe, Shopify, Uber</td>
+        </tr>
+        <tr>
+            <td class="tier-label"><span class="tc-badge tc-badge-t3">Tier 3</span> Big Tech+</td>
+            <td>Each other, globally</td>
+            <td>$339K</td>
+            <td>Google, Netflix, Citadel</td>
+        </tr>
+        <tr>
+            <td class="tier-label"><span class="tc-badge tc-badge-t4">Tier 4</span> AI Labs</td>
+            <td>Each other's poaching</td>
+            <td>$579K</td>
+            <td>OpenAI, Anthropic, xAI</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+That is the whole taxonomy. Before reading why it exists, go push on it.
+
+## Explore It Yourself
+
+The explorer below is the argument in one control panel: pick a country and an experience level, and watch the four markets pull apart or collapse into each other.
+
+<div id="comp-tier-explorer"></div>
+
+**Click any tier card to open it** and see which companies make up that slice, with each company's median for the selected level. It opens at **Senior**, the most representative view; hover a bar for exact counts per bin.
+
+Three things worth trying before you read on:
+
+- **Click Tier 3.** Quant firms (Citadel, Jane Street) and top scaleups (Databricks) sit *above* the Big Tech names inside the same tier — a tier is a market, not a ranking.
+- **Switch to Staff.** The tiers separate almost completely. The gap is not a constant; it grows with seniority.
+- **Switch to Entry.** They overlap so much the multimodal shape nearly disappears. Early in a career, which market you're in matters least.
+
+The rest of this article explains what you just saw: who exactly is in each tier, what creates the gap, why it widens with level, and what changed in 2026.
+
+## The Four Tiers, Up Close
+
+Gergely Orosz's original taxonomy defines the first three; the fourth is what 2026 added. The surprises are mostly about who lands where:
 
 ### Tier 1 — Traditional / Local Tech
 
@@ -200,14 +259,6 @@ Is this an American artifact, or does the market structure travel? Canada is the
 </div>
 
 The discount is roughly 24-26% for the three classic tiers, aligning with exchange rate and cost-of-living adjustments. The AI-lab tier is the exception: **frontier labs benchmark globally rather than locally**, so the Canada discount shrinks — a Toronto offer from a frontier lab (or homegrown Cohere) is much closer to US parity than a Toronto offer from a bank. Which market you're in even determines how much your *country* matters.
-
-## Interactive: Salary Tier Explorer
-
-Use the controls below to explore the distribution by country and experience level (it opens at **Senior**, the most representative view). Hover over bars to see exact counts per bin — and **click any tier card to open it up and see which companies make up that slice**, with each company's median for the selected level.
-
-<div id="comp-tier-explorer"></div>
-
-Try clicking **Tier 3** — you'll see the quant firms (Citadel, Jane Street) and top scaleups (Databricks) sitting above the Big Tech names inside the same tier. At **Staff** level the tiers separate almost completely; at **Entry** level they overlap far more.
 
 ## What Changed in 2025-26
 
