@@ -1,13 +1,13 @@
 ---
 title: "Every Health Claim, Tied to the Marker It Moves"
-subtitle: "316 rows across 14 goals, each carrying the paper it came from, the population it was measured in, and what the finding is conditional on."
+subtitle: "225 papers, 316 findings, 14 health goals. Every finding names the paper behind it, the people it was measured in, and the condition it holds under."
 authors:
   - "Michael Wan"
 affiliations:
   - "Independent Analysis"
 published: "2026-09-13"
 thumbnail: "/img/health-evidence/thumbnail.svg"
-abstract: "Health advice arrives as a flat list: eat this, take that, sleep more. A flat list hides the three things that decide whether a claim is worth acting on - which endpoint actually moved, how strong the evidence behind it is, and whether two pieces of advice are really the same lever pulled twice. This is that literature rebuilt as a graph: behavior to biomarker to goal, walkable from either end. Effect sizes are compared only within a marker, and only against rows reported on the same scale. Null results are recorded as findings. Nothing is ever summed, and every row carries the paper's own result sentence. The dataset behind it currently holds 316 rows across 14 goals, drawn from 225 papers, including 65 results that were measured and came back null."
+abstract: "Health advice arrives as a flat list: eat this, take that, sleep more. A flat list hides the three things that decide whether a claim is worth acting on - which endpoint actually moved, how strong the evidence behind it is, and whether two pieces of advice are really the same lever pulled twice. This is that literature rebuilt as a graph: behavior to biomarker to goal, walkable from either end. Effect sizes are compared only within a marker, and only against findings reported on the same scale. Null results are recorded as findings too. Nothing is ever summed, and every finding carries the paper's own result sentence. The dataset behind it currently holds 316 findings drawn from 225 papers across 14 health goals, including 65 that were measured and came back null."
 tags:
   - "explainer"
   - "interactive"
