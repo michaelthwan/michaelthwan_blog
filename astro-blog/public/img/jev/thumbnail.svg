@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Reliability diagram: bars of actual accuracy fall below the diagonal of perfect calibration, showing an overconfident model">
+  <rect width="800" height="600" fill="#fafafa"/>
+  <!-- axes -->
+  <line x1="120" y1="500" x2="700" y2="500" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="120" y1="500" x2="120" y2="80" stroke="#9ca3af" stroke-width="2"/>
+  <text x="410" y="560" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#6b7280" font-style="italic">stated confidence</text>
+  <text x="60" y="290" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#6b7280" font-style="italic" transform="rotate(-90 60 290)">how often right</text>
+  <!-- bars: accuracy below diagonal (overconfident) -->
+  <g fill="#0969da">
+    <rect x="130" y="462" width="46" height="38" opacity="0.9"/>
+    <rect x="188" y="432" width="46" height="68" opacity="0.9"/>
+    <rect x="246" y="410" width="46" height="90" opacity="0.9"/>
+    <rect x="304" y="386" width="46" height="114" opacity="0.9"/>
+    <rect x="362" y="366" width="46" height="134" opacity="0.9"/>
+    <rect x="420" y="344" width="46" height="156" opacity="0.9"/>
+    <rect x="478" y="322" width="46" height="178" opacity="0.9"/>
+    <rect x="536" y="300" width="46" height="200" opacity="0.9"/>
+    <rect x="594" y="266" width="46" height="234" opacity="0.9"/>
+    <rect x="652" y="200" width="46" height="300" opacity="0.9"/>
+  </g>
+  <!-- gap to diagonal -->
+  <g fill="#bc4c00" opacity="0.28">
+    <rect x="188" y="416" width="46" height="16"/>
+    <rect x="246" y="374" width="46" height="36"/>
+    <rect x="304" y="332" width="46" height="54"/>
+    <rect x="362" y="290" width="46" height="76"/>
+    <rect x="420" y="248" width="46" height="96"/>
+    <rect x="478" y="206" width="46" height="116"/>
+    <rect x="536" y="164" width="46" height="136"/>
+    <rect x="594" y="122" width="46" height="144"/>
+    <rect x="652" y="84" width="46" height="116"/>
+  </g>
+  <!-- diagonal -->
+  <line x1="120" y1="500" x2="700" y2="80" stroke="#1f2328" stroke-width="3" stroke-dasharray="10 8"/>
+</svg>
