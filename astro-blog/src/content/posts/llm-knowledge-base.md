@@ -75,6 +75,32 @@ thumbnail: "/img/llm-knowledge-base/thumbnail.svg"
   .kb-badge-green { background: #d1fae5; color: #065f46; }
   .kb-badge-yellow { background: #fef3c7; color: #92400e; }
   .kb-badge-red { background: #fee2e2; color: #b91c1c; }
+
+  /* ── Dark mode ────────────────────────────────────────────── */
+  :root[data-theme="dark"] .kb-tab { background: var(--color-canvas-subtle); border-color: var(--color-border); color: var(--color-gray); }
+  :root[data-theme="dark"] .kb-tab:hover { background: var(--color-surface); color: var(--color-text); }
+  :root[data-theme="dark"] .kb-tab--active { background: var(--color-surface); color: var(--color-text); }
+  :root[data-theme="dark"] .kb-panel { background: var(--color-surface); border-color: var(--color-border); }
+  :root[data-theme="dark"] .kb-summary { color: var(--color-text); }
+  :root[data-theme="dark"] .kb-tool { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  :root[data-theme="dark"] .kb-tool-desc { color: var(--color-gray); }
+  :root[data-theme="dark"] .kb-pitfalls li { color: var(--color-gray); }
+  /* Stage accent colors are set inline by the JS for a white page; lighten them. */
+  :root[data-theme="dark"] .kb-col-title, :root[data-theme="dark"] .kb-tool-name { filter: brightness(2); }
+
+  :root[data-theme="dark"] .kb-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .kb-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .kb-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+
+  :root[data-theme="dark"] .kb-stat { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  :root[data-theme="dark"] .kb-stat-val { color: var(--color-text); }
+
+  :root[data-theme="dark"] .kb-compare th { background: var(--color-surface); color: var(--color-text); border-bottom-color: var(--color-border); }
+  :root[data-theme="dark"] .kb-compare td { color: var(--color-text); border-bottom-color: var(--color-border); }
+
+  :root[data-theme="dark"] .kb-badge-green { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .kb-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .kb-badge-red { background: rgba(239,68,68,0.18); color: #fca5a5; }
 </style>
 
 ## Introduction

@@ -301,7 +301,7 @@ Edit any cell in the matrix below, then step through the algorithm to watch it c
 
 <div id="sinkhorn-interactive" class="interactive-container" style="max-width:580px;margin:2em auto">
     <h3 style="margin-top:0">Sinkhorn-Knopp in Action</h3>
-    <p class="interactive-desc" style="color:#555;font-size:0.93em;margin-bottom:1.2em">
+    <p class="interactive-desc" style="color:var(--color-gray);font-size:0.93em;margin-bottom:1.2em">
         Start with any non-negative matrix. Each step alternates between row-normalizing
         and column-normalizing. Watch the sums (shown beside each row and column) converge to 1.
     </p>
@@ -310,17 +310,17 @@ Edit any cell in the matrix below, then step through the algorithm to watch it c
         <button id="sk-step-btn" style="padding:6px 18px;font-size:0.9em;cursor:pointer;border:1px solid #1565c0;background:#1565c0;color:#fff;border-radius:4px">Step</button>
         <button id="sk-play-btn" style="padding:6px 18px;font-size:0.9em;cursor:pointer;border:1px solid #1565c0;background:#fff;color:#1565c0;border-radius:4px">Play</button>
         <button id="sk-reset-btn" style="padding:6px 18px;font-size:0.9em;cursor:pointer;border:1px solid #aaa;background:#fff;color:#555;border-radius:4px">Reset</button>
-        <label style="font-size:0.85em;color:#555;margin-left:4px">Speed:
+        <label style="font-size:0.85em;color:var(--color-gray);margin-left:4px">Speed:
             <input type="range" id="sk-speed" min="100" max="1500" value="600" style="vertical-align:middle;margin-left:4px">
         </label>
     </div>
-    <div id="sk-status" style="margin-top:0.8em;font-size:0.88em;color:#555;min-height:1.4em"></div>
+    <div id="sk-status" style="margin-top:0.8em;font-size:0.88em;color:var(--color-gray);min-height:1.4em"></div>
     <div id="sk-conv-bar-wrap" style="margin-top:0.5em;display:flex;align-items:center;gap:10px">
-        <span style="font-size:0.82em;color:#888;white-space:nowrap">Max deviation:</span>
-        <div style="flex:1;background:#e8e8e8;border-radius:4px;height:8px;max-width:240px">
+        <span style="font-size:0.82em;color:var(--color-gray);white-space:nowrap">Max deviation:</span>
+        <div style="flex:1;background:var(--color-border);border-radius:4px;height:8px;max-width:240px">
             <div id="sk-conv-bar" style="height:8px;border-radius:4px;background:#1565c0;transition:width 0.3s;width:100%"></div>
         </div>
-        <span id="sk-conv-val" style="font-size:0.82em;color:#555;min-width:42px"></span>
+        <span id="sk-conv-val" style="font-size:0.82em;color:var(--color-gray);min-width:42px"></span>
     </div>
 </div>
 

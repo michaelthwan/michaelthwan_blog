@@ -142,7 +142,10 @@
 
       if (advOut[i]) {
         advOut[i].textContent = (a >= 0 ? "+" : "") + a.toFixed(2);
-        advOut[i].style.color = degenerate ? "#9ca3af" : a >= 0 ? "#4338ca" : "#64748b";
+        advOut[i].classList.remove("rsn-adv-up", "rsn-adv-down", "rsn-adv-neutral");
+        advOut[i].classList.add(
+          degenerate ? "rsn-adv-neutral" : a >= 0 ? "rsn-adv-up" : "rsn-adv-down"
+        );
       }
 
       if (rowBoxes[i]) {

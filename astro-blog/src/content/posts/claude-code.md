@@ -36,6 +36,25 @@ thumbnail: "/img/claude-code/plan-mode.png"
   .cc-badge-green  { background: #d1fae5; color: #065f46; }
   .cc-badge-yellow { background: #fef3c7; color: #92400e; }
   .cc-badge-red    { background: #fee2e2; color: #b91c1c; }
+
+  /* ── Dark mode ────────────────────────────────────────────── */
+  :root[data-theme="dark"] .cc-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .cc-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .cc-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+  :root[data-theme="dark"] .cc-callout code { background: rgba(255,255,255,0.08); }
+
+  :root[data-theme="dark"] .cc-badge-green  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .cc-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .cc-badge-red    { background: rgba(239,68,68,0.18); color: #fca5a5; }
+
+  :root[data-theme="dark"] .d-callout.warning { background: rgba(245,158,11,0.12); }
+
+  /* .wf-* workflow diagram sits inside the .d-figure-content light island;
+     its own rules in styles.css use var(--color-text-light)/var(--color-gray),
+     which turn near-white in dark mode and vanish on the island's light bg. */
+  :root[data-theme="dark"] .wf-step { color: #1f2328; }
+  :root[data-theme="dark"] .wf-arrow { color: #57606a; }
+  :root[data-theme="dark"] .wf-feedback { color: #57606a; }
 </style>
 
 ## The Mindset Shift

@@ -39,6 +39,12 @@ thumbnail: "/img/flash-attention/flash_recap_diagram.png"
   .fa-badge-green  { background: #d1fae5; color: #065f46; }
   .fa-badge-yellow { background: #fef3c7; color: #92400e; }
   .fa-badge-red    { background: #fee2e2; color: #b91c1c; }
+  :root[data-theme="dark"] .fa-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .fa-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .fa-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+  :root[data-theme="dark"] .fa-badge-green  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .fa-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .fa-badge-red    { background: rgba(239,68,68,0.18); color: #fca5a5; }
 </style>
 
 One idea runs through this whole article: **on a modern GPU, the memory hierarchy _is_ the algorithm**. FlashAttention computes the exact same softmax attention as the textbook version. It is faster only because it moves less data. Keep that framing in mind and every design choice below follows from it.

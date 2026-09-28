@@ -25,6 +25,11 @@ thumbnail: "/img/ai-war/thumbnail.svg"
   .aw-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
   .aw-callout-bull { border-color: #3d9970; background: #eefaf3; color: #1b5e3f; }
   .aw-callout-bear { border-color: #c0392b; background: #fdeeec; color: #922b21; }
+  [data-theme="dark"] .aw-callout-eq   { background: rgba(126,87,194,0.14); color: #d1b3ff; }
+  [data-theme="dark"] .aw-callout-co   { background: rgba(61,153,112,0.14); color: #86efac; }
+  [data-theme="dark"] .aw-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+  [data-theme="dark"] .aw-callout-bull { background: rgba(61,153,112,0.14); color: #86efac; }
+  [data-theme="dark"] .aw-callout-bear { background: rgba(192,57,43,0.16); color: #fca5a5; }
 
   /* Deal-type badge pills */
   .aw-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.02em; white-space: nowrap; }
@@ -32,12 +37,19 @@ thumbnail: "/img/ai-war/thumbnail.svg"
   .aw-badge-co    { background: #d9f2e4; color: #1b5e3f; }
   .aw-badge-infra { background: #dceafe; color: #1e40af; }
   .aw-badge-mix   { background: #fdecd2; color: #92400e; }
+  [data-theme="dark"] .aw-badge-eq    { background: rgba(126,87,194,0.24); color: #d1b3ff; }
+  [data-theme="dark"] .aw-badge-co    { background: rgba(27,94,63,0.28); color: #86efac; }
+  [data-theme="dark"] .aw-badge-infra { background: rgba(30,64,175,0.26); color: #93c5fd; }
+  [data-theme="dark"] .aw-badge-mix   { background: rgba(245,158,11,0.20); color: #fcd34d; }
 
   /* Stat row */
   .aw-stats { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0; }
   .aw-stat { flex: 1; min-width: 120px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; text-align: center; background: #f9fafb; }
   .aw-stat-val { font-size: 1.5rem; font-weight: 800; color: #111827; line-height: 1.05; }
   .aw-stat-label { font-size: 0.68rem; color: #9ca3af; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
+  [data-theme="dark"] .aw-stat { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  [data-theme="dark"] .aw-stat-val { color: var(--color-text); }
+  [data-theme="dark"] .aw-stat-label { color: var(--color-gray); }
 
   /* Circular-loop flow */
   .aw-loop { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 22px 0; }
@@ -46,6 +58,11 @@ thumbnail: "/img/ai-war/thumbnail.svg"
   .aw-loop-step .aw-loop-t { font-size: 0.9rem; font-weight: 700; color: #111827; margin: 3px 0; }
   .aw-loop-step .aw-loop-d { font-size: 0.82rem; color: #6b7280; line-height: 1.45; }
   .aw-loop-arrow { align-self: center; color: #b7a4dd; font-weight: 700; font-size: 1.1rem; }
+  [data-theme="dark"] .aw-loop-step { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  [data-theme="dark"] .aw-loop-step .aw-loop-n { color: var(--color-gray); }
+  [data-theme="dark"] .aw-loop-step .aw-loop-t { color: var(--color-text); }
+  [data-theme="dark"] .aw-loop-step .aw-loop-d { color: var(--color-gray); }
+  [data-theme="dark"] .aw-loop-arrow { color: #b7a4dd; }
 
   /* Deal-structure definition cards */
   .aw-defs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
@@ -53,6 +70,9 @@ thumbnail: "/img/ai-war/thumbnail.svg"
   .aw-def { border: 1px solid #e5e7eb; border-radius: 8px; padding: 13px 15px; background: #f9fafb; }
   .aw-def-name { font-size: 0.86rem; font-weight: 700; color: #111827; margin-bottom: 4px; }
   .aw-def-desc { font-size: 0.83rem; color: #4b5563; line-height: 1.5; }
+  [data-theme="dark"] .aw-def { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  [data-theme="dark"] .aw-def-name { color: var(--color-text); }
+  [data-theme="dark"] .aw-def-desc { color: var(--color-gray); }
 </style>
 
 Money in AI no longer flows in one direction. Chipmakers invest in the labs that buy their chips. Clouds invest in the labs that rent their servers. Labs pay their own shareholders hundreds of billions for compute — and are sometimes paid back in their supplier's stock. The result is a web of dependencies unlike anything in tech history, and one property runs through all of it: **the same capital keeps changing hands**.

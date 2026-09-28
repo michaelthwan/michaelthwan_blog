@@ -22,15 +22,37 @@ thumbnail: "/img/tech-comp/trimodal-thumbnail.svg"
   .tc-callout-key  { border-color: #7e57c2; background: #f4f0fb; color: #4527a0; }
   .tc-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
   .tc-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  [data-theme="dark"] .tc-callout-key  { background: rgba(126,87,194,0.14); color: #d1b3ff; }
+  [data-theme="dark"] .tc-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  [data-theme="dark"] .tc-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
 
   .tc-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
   .tc-badge-t1 { background: #eceff1; color: #455a64; }
   .tc-badge-t2 { background: #fdecd7; color: #b45309; }
   .tc-badge-t3 { background: #dcf0e1; color: #1b5e3f; }
   .tc-badge-t4 { background: #ece3f8; color: #5b3a9e; }
+  [data-theme="dark"] .tc-badge-t1 { background: rgba(255,255,255,0.14); color: #cfd8dc; }
+  [data-theme="dark"] .tc-badge-t2 { background: rgba(245,158,11,0.20); color: #fcd34d; }
+  [data-theme="dark"] .tc-badge-t3 { background: rgba(27,94,63,0.28); color: #86efac; }
+  [data-theme="dark"] .tc-badge-t4 { background: rgba(126,87,194,0.24); color: #d1b3ff; }
 
   .tc-takeaway { font-size: 0.9rem; color: #4b5563; line-height: 1.6; margin: 10px 0 26px; padding-left: 12px; border-left: 2px solid #e5e7eb; }
   .tc-takeaway strong { color: #111827; }
+  [data-theme="dark"] .tc-takeaway { color: var(--color-gray); border-left-color: var(--color-border); }
+  [data-theme="dark"] .tc-takeaway strong { color: var(--color-text); }
+
+  /* Shared comp-* interactive/chart components hard-code light backgrounds
+     in styles.css; overridden here since they only appear on this post. */
+  [data-theme="dark"] #comp-tier-explorer { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  [data-theme="dark"] .comp-select-group select { background: var(--color-surface); border-color: var(--color-border); color: var(--color-text); }
+  [data-theme="dark"] .comp-canvas-wrap { background: var(--color-surface); }
+  [data-theme="dark"] .comp-stat-card { background: var(--color-surface); }
+  [data-theme="dark"] .comp-stat-card.selected { outline-color: rgba(255,255,255,0.35); }
+  [data-theme="dark"] .comp-company-panel { background: var(--color-surface); }
+  [data-theme="dark"] .comp-co-icon { background: var(--color-canvas-subtle); }
+  [data-theme="dark"] .comp-co-box-wrap { background: var(--color-canvas-subtle); }
+  [data-theme="dark"] .comp-comparison-table th,
+  [data-theme="dark"] .comp-comparison-table td { border-bottom-color: var(--color-border); }
 </style>
 
 <p class="d-note">

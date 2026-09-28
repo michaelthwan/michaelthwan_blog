@@ -128,6 +128,15 @@ thumbnail: "/img/claude-code-leak/thumbnail.svg"
   .cl-badge-gray   { background: #e5e7eb; color: #374151; }
   .eng-icon svg { display: block; width: 20px; height: 20px; stroke: #6b7280; }
 
+  /* ── Dark mode ────────────────────────────────────────────── */
+  :root[data-theme="dark"] .lk-stat-label { color: var(--color-gray-light); }
+  :root[data-theme="dark"] .cl-callout-key  { background: rgba(99,102,241,0.14); color: #a5b4fc; }
+  :root[data-theme="dark"] .cl-callout-warn { background: rgba(245,158,11,0.12); color: #fcd34d; }
+  :root[data-theme="dark"] .cl-callout code { background: rgba(255,255,255,0.08); }
+  :root[data-theme="dark"] .cl-badge-red    { background: rgba(239,68,68,0.18); color: #fca5a5; }
+  :root[data-theme="dark"] .cl-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .cl-badge-gray   { background: var(--color-surface); color: var(--color-gray); }
+
   @media (max-width: 600px) {
     .lk-grid, .eng-grid { grid-template-columns: 1fr; }
     .lk-stats { gap: 8px; }

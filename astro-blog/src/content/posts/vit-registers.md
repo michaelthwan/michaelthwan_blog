@@ -37,6 +37,11 @@ thumbnail: "/img/vit-registers/fig1-attention-comparison.png"
   .vr-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
   .vr-badge-green { background: #d1fae5; color: #065f46; }
   .vr-badge-red   { background: #fee2e2; color: #b91c1c; }
+  :root[data-theme="dark"] .vr-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .vr-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .vr-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+  :root[data-theme="dark"] .vr-badge-green { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .vr-badge-red   { background: rgba(239,68,68,0.18); color: #fca5a5; }
 </style>
 
 One idea holds this whole story together: **the artifacts are the model asking for scratch space.** A large ViT needs somewhere to stash global information mid-computation, has no dedicated slot for it, and so hijacks the least useful patch tokens. The fix is to simply hand it the scratch space it was improvising. Everything below is that arc — the symptom, the diagnosis, the one-line cure.

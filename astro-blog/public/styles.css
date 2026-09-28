@@ -526,7 +526,7 @@ body {
 
 .d-article strong {
     font-weight: 600;
-    color: var(--color-text);
+    color: inherit;
 }
 
 .d-article em {
@@ -4922,3 +4922,77 @@ pre code {
     .aiw-wrap { padding: 12px; }
     .aiw-hint { display: none; }
 }
+
+
+/* ============================================
+   DARK MODE - SHARED ARTICLE COMPONENTS
+   Boxes that hard-code a light background either get a dark
+   surface, or stay a light "island" with dark text (figures,
+   whose images and inline SVGs are drawn for a white page).
+   ============================================ */
+[data-theme="dark"] .astro-code,
+[data-theme="dark"] .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+}
+
+[data-theme="dark"] .d-equation-panel,
+[data-theme="dark"] .d-example-box,
+[data-theme="dark"] .algo-box,
+[data-theme="dark"] #flash-algorithm-interactive {
+    background: var(--color-canvas-subtle);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+[data-theme="dark"] .d-equation-legend { border-top-color: var(--color-border); }
+
+[data-theme="dark"] .takeaway {
+    background: var(--color-blue-bg);
+    color: var(--color-text);
+}
+
+[data-theme="dark"] .takeaway-num { color: var(--color-blue); }
+[data-theme="dark"] .d-table .highlight-row { background: var(--color-surface); }
+[data-theme="dark"] .d-callout.warning { background: var(--color-orange-bg); }
+[data-theme="dark"] .algo-step { background: var(--color-canvas-subtle); border-left-color: var(--color-border); }
+[data-theme="dark"] .algo-step.bad { background: rgba(248, 81, 73, 0.10); border-left-color: var(--color-red); }
+[data-theme="dark"] .step-num { background: var(--color-border); color: var(--color-text); }
+[data-theme="dark"] .algo-step.bad .step-num { background: rgba(248, 81, 73, 0.25); color: var(--color-red-light); }
+
+/* Light island: restore the light-mode palette inside figures, so
+   anything drawn with site variables keeps its light-mode contrast. */
+[data-theme="dark"] .d-figure-content {
+    --color-text: #1f2328;
+    --color-text-light: #1f2328;
+    --color-gray: #59636e;
+    --color-gray-light: #818b98;
+    --color-border: #d1d9e0;
+    --color-surface: #f6f8fa;
+    --color-canvas-subtle: #f6f8fa;
+    --color-bg: #ffffff;
+    --color-blue: #0969da;
+    --color-blue-bg: #ddf4ff;
+    --color-orange: #bc4c00;
+    --color-orange-bg: #fff1e5;
+    --color-green: #1a7f37;
+    --color-green-bg: #dafbe1;
+    --color-red: #cf222e;
+    --color-purple: #8250df;
+    --color-blue-dark: #0969da;
+    --color-orange-dark: #bc4c00;
+    --color-green-dark: #1a7f37;
+    --color-red-light: #fa4549;
+    background: #f6f8fa;
+    border-color: #d1d9e0;
+    color: #1f2328;
+}
+
+/* DeepSeek V4 attention explorer */
+[data-theme="dark"] .v4-explorer-shell { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+[data-theme="dark"] .v4-mode-toggle { background: var(--color-bg); border-color: var(--color-border); }
+[data-theme="dark"] .v4-mode-btn.active { background: var(--color-blue-bg); color: var(--color-blue); }
+[data-theme="dark"] .v4-explorer-copy { background: var(--color-bg); border-left-color: var(--color-blue); }
+[data-theme="dark"] .v4-stat-card,
+[data-theme="dark"] .v4-bar-block { background: var(--color-bg); border-color: var(--color-border); }
+[data-theme="dark"] .v4-bar-cell { background: #30363d; }
+[data-theme="dark"] .v4-bar-track-dense .v4-bar-cell { background: #484f58; }

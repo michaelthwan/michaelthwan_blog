@@ -111,11 +111,11 @@
     // Legend panel beside the matrix
     const legend = document.createElement('div');
     legend.style.cssText =
-      'font-size:0.82em;color:#666;line-height:1.7;padding-top:4px;min-width:160px';
+      'font-size:0.82em;color:var(--color-gray);line-height:1.7;padding-top:4px;min-width:160px';
     legend.innerHTML =
       '<div><span style="display:inline-block;width:12px;height:12px;background:#c8e6c9;border-radius:2px;vertical-align:middle;margin-right:5px"></span>sum ≈ 1 (converged)</div>' +
       '<div><span style="display:inline-block;width:12px;height:12px;background:#ffcdd2;border-radius:2px;vertical-align:middle;margin-right:5px"></span>sum ≠ 1 (not yet)</div>' +
-      '<div style="margin-top:8px;color:#888"><em>Cell color intensity<br>shows value magnitude.</em></div>';
+      '<div style="margin-top:8px;color:var(--color-gray)"><em>Cell color intensity<br>shows value magnitude.</em></div>';
     gridArea.appendChild(legend);
   }
 
@@ -147,7 +147,8 @@
         const g = 255 - Math.round(intensity * 0.3);
         const b = 255 - Math.round(intensity * 0);
         inputs[i][j].style.background = `rgb(${r},${g},${b + Math.round(intensity * 0.8)})`;
-        inputs[i][j].style.color = intensity > 100 ? '#fff' : '#333';
+        // The darkest cell is still a light blue, so dark text reads on every cell.
+        inputs[i][j].style.color = '#1f2328';
       }
     }
   }

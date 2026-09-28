@@ -10,17 +10,48 @@ document.addEventListener('DOMContentLoaded', () => {
     initFlashAlgorithmInteractive();
     initCompStaticCharts();
     initCompTierExplorer();
+    THEME_REDRAW_CALLBACKS.push(initCompStaticCharts);
+
+    // Canvas charts are drawn with theme-aware colors read from CSS variables
+    // at draw time; when the page theme toggles, re-run every registered
+    // redraw callback so canvases repaint with the new palette.
+    const themeObserver = new MutationObserver(() => {
+        THEME_REDRAW_CALLBACKS.forEach(fn => {
+            try { fn(); } catch (e) { /* ignore charts not currently mounted */ }
+        });
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 });
 
 /* ============================================
    CANVAS UTILITIES
    ============================================ */
 
+// Redraw callbacks registered by each chart module; invoked whenever
+// data-theme flips so canvases (which paint colors as pixels, not CSS)
+// stay readable in both themes.
+const THEME_REDRAW_CALLBACKS = [];
+
+/**
+ * Read a CSS custom property's current value (theme-resolved) from :root.
+ */
+function cssVar(name, fallback) {
+    const val = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return val || fallback || '';
+}
+
+function isDarkTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'dark';
+}
+
 /**
  * Clear canvas with a background color and draw L-shaped axes
  */
 function clearAndDrawAxes(ctx, width, height, padding, opts = {}) {
-    const { bgColor = '#fafafa', axisColor = '#ccc' } = opts;
+    const {
+        bgColor = cssVar('--color-canvas-subtle', '#fafafa'),
+        axisColor = cssVar('--color-border', '#ccc')
+    } = opts;
 
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, width, height);
@@ -38,7 +69,7 @@ function clearAndDrawAxes(ctx, width, height, padding, opts = {}) {
  * Draw evenly spaced labels along the X axis
  */
 function drawXLabels(ctx, labels, positions, y, opts = {}) {
-    const { color = '#999', font = '11px Inter, sans-serif', align = 'center' } = opts;
+    const { color = cssVar('--color-gray', '#999'), font = '11px Inter, sans-serif', align = 'center' } = opts;
     ctx.fillStyle = color;
     ctx.font = font;
     ctx.textAlign = align;
@@ -181,6 +212,7 @@ function initPositionalEncodingViz() {
     }
 
     updateSelection(0);
+    THEME_REDRAW_CALLBACKS.push(() => drawWaveChart(canvas, selectedPosition));
 }
 
 function computePE(pos, dim, dModel) {
@@ -201,7 +233,7 @@ function drawWaveChart(canvas, pos) {
 
     // Draw zero line
     const zeroY = padding.top + chartHeight / 2;
-    ctx.strokeStyle = '#ddd';
+    ctx.strokeStyle = cssVar('--color-border', '#ddd');
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
     ctx.moveTo(padding.left, zeroY);
@@ -210,7 +242,7 @@ function drawWaveChart(canvas, pos) {
     ctx.setLineDash([]);
 
     // Y-axis labels
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = cssVar('--color-gray', '#999');
     ctx.font = '10px Inter, sans-serif';
     ctx.textAlign = 'right';
     ctx.fillText('+1', padding.left - 5, padding.top + 4);
@@ -219,13 +251,15 @@ function drawWaveChart(canvas, pos) {
 
     // Compute values and draw bars
     const barWidth = chartWidth / PE_CONFIG.numDimensions;
+    const barOrange = cssVar('--color-orange', '#e07b39');
+    const barBlue = cssVar('--color-blue', '#4a90a4');
 
     for (let dim = 0; dim < PE_CONFIG.numDimensions; dim++) {
         const val = computePE(pos, dim, PE_CONFIG.dModel);
         const x = padding.left + dim * barWidth;
         const barHeight = (val / 2) * chartHeight;
 
-        ctx.fillStyle = dim % 2 === 0 ? '#e07b39' : '#4a90a4';
+        ctx.fillStyle = dim % 2 === 0 ? barOrange : barBlue;
 
         if (val >= 0) {
             ctx.fillRect(x + 1, zeroY - barHeight, barWidth - 2, barHeight);
@@ -351,7 +385,7 @@ function initNormDistributionViz() {
         const chartWidth = width - padding.left - padding.right;
         const chartHeight = height - padding.top - padding.bottom;
 
-        clearAndDrawAxes(ctx, width, height, padding, { bgColor: '#fff' });
+        clearAndDrawAxes(ctx, width, height, padding);
 
         // Create histogram bins
         const numBins = NORM_CONFIG.maxNorm / NORM_CONFIG.binWidth;
@@ -363,10 +397,13 @@ function initNormDistributionViz() {
         });
 
         const maxBinCount = Math.max(...bins);
+        const thresholdColor = cssVar('--color-red', '#c62828');
+        const outlierColor = cssVar('--color-red-light', '#ef5350');
+        const normalColor = isDarkTheme() ? '#4caf50' : '#66bb6a';
 
         // Draw threshold line
         const thresholdX = padding.left + (threshold / NORM_CONFIG.maxNorm) * chartWidth;
-        ctx.strokeStyle = '#c62828';
+        ctx.strokeStyle = thresholdColor;
         ctx.lineWidth = 2;
         ctx.setLineDash([5, 5]);
         ctx.beginPath();
@@ -376,7 +413,7 @@ function initNormDistributionViz() {
         ctx.setLineDash([]);
 
         // Draw threshold label
-        ctx.fillStyle = '#c62828';
+        ctx.fillStyle = thresholdColor;
         ctx.font = '11px Inter, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(`threshold = ${threshold}`, thresholdX, padding.top - 5);
@@ -393,7 +430,7 @@ function initNormDistributionViz() {
             const y = height - padding.bottom - barHeight;
 
             const isOutlier = binStart >= threshold;
-            ctx.fillStyle = isOutlier ? '#ef5350' : '#66bb6a';
+            ctx.fillStyle = isOutlier ? outlierColor : normalColor;
             ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
 
             if (isOutlier) outlierCount += count;
@@ -417,7 +454,7 @@ function initNormDistributionViz() {
         drawXLabels(ctx, labels, positions, height - padding.bottom + 15);
 
         // X-axis title
-        ctx.fillStyle = '#666';
+        ctx.fillStyle = cssVar('--color-gray', '#666');
         ctx.font = '11px Inter, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('Token Norm', padding.left + chartWidth / 2, height - 5);
@@ -432,6 +469,7 @@ function initNormDistributionViz() {
     }
 
     drawChart();
+    THEME_REDRAW_CALLBACKS.push(drawChart);
 }
 
 function generateBimodalNormData() {
@@ -919,7 +957,7 @@ function drawStackedHistogram(canvas, bins, opts = {}) {
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
 
-    clearAndDrawAxes(ctx, width, height, padding, { bgColor: opts.bg || '#fff' });
+    clearAndDrawAxes(ctx, width, height, padding, { bgColor: opts.bg || cssVar('--color-canvas-subtle', '#fafafa') });
 
     if (!bins || bins.length === 0) return;
 
@@ -974,7 +1012,7 @@ function drawStackedHistogram(canvas, bins, opts = {}) {
         ctx.globalAlpha = highlight && highlight !== t ? 0.35 : 1;
         ctx.fillStyle = colors[ti];
         ctx.fillRect(lx, 6, 10, 10);
-        ctx.fillStyle = '#555';
+        ctx.fillStyle = cssVar('--color-text', '#555');
         ctx.textAlign = 'left';
         ctx.fillText(name, lx + 13, 15);
         lx += ctx.measureText(name).width + 24;
@@ -992,7 +1030,7 @@ function drawStackedHistogram(canvas, bins, opts = {}) {
     drawXLabels(ctx, labels, positions, height - padding.bottom + 16);
 
     // Axis titles
-    ctx.fillStyle = '#666';
+    ctx.fillStyle = cssVar('--color-gray', '#666');
     ctx.font = '11px Inter, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText(opts.xLabel || 'Total Compensation (USD)', padding.left + chartW / 2, height - 4);
@@ -1056,7 +1094,7 @@ function drawTierMedians(canvas) {
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
 
-    clearAndDrawAxes(ctx, width, height, padding, { bgColor: '#fff' });
+    clearAndDrawAxes(ctx, width, height, padding);
 
     const stats = COMP_DATA.usStats;
     const maxVal = Math.max(...COMP_TIERS.map(t => stats[t].p75));
@@ -1089,7 +1127,7 @@ function drawTierMedians(canvas) {
         ctx.lineTo(x + 3 * barW / 4, p25Y);
         ctx.stroke();
 
-        ctx.fillStyle = '#333';
+        ctx.fillStyle = cssVar('--color-text', '#333');
         ctx.font = 'bold 12px Inter, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(fmtK(stats[t].median), x + barW / 2, y - 8);
@@ -1099,7 +1137,7 @@ function drawTierMedians(canvas) {
     const tierPositions = COMP_TIERS.map((_, i) => padding.left + (i * 2 + 1.5) * barW);
     drawXLabels(ctx, tierLabels, tierPositions, height - padding.bottom + 16);
 
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = cssVar('--color-gray', '#999');
     ctx.font = '10px Inter, sans-serif';
     ctx.textAlign = 'center';
     COMP_TIERS.forEach((t, i) => {
@@ -1121,7 +1159,7 @@ function drawEquityBreakdown(canvas) {
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
 
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = cssVar('--color-canvas-subtle', '#fafafa');
     ctx.fillRect(0, 0, width, height);
 
     const barH = chartH / (COMP_TIERS.length * 2 + 1);
@@ -1165,7 +1203,7 @@ function drawEquityBreakdown(canvas) {
     ].forEach(item => {
         ctx.fillStyle = item.color;
         ctx.fillRect(lx, legendY, 12, 12);
-        ctx.fillStyle = '#666';
+        ctx.fillStyle = cssVar('--color-gray', '#666');
         ctx.font = '11px Inter, sans-serif';
         ctx.textAlign = 'left';
         ctx.fillText(item.label, lx + 16, legendY + 10);
@@ -1187,7 +1225,7 @@ function drawLevelComparison(canvas) {
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
 
-    clearAndDrawAxes(ctx, width, height, padding, { bgColor: '#fff' });
+    clearAndDrawAxes(ctx, width, height, padding);
 
     const levels = COMP_DATA.levels;
     const ls = COMP_DATA.usLevelStats;
@@ -1207,7 +1245,7 @@ function drawLevelComparison(canvas) {
             ctx.fillStyle = colors[ti];
             ctx.fillRect(x, y, barW - 2, barH);
 
-            ctx.fillStyle = '#333';
+            ctx.fillStyle = cssVar('--color-text', '#333');
             ctx.font = '9px Inter, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(fmtK(val), x + (barW - 2) / 2, y - 5);
@@ -1216,7 +1254,7 @@ function drawLevelComparison(canvas) {
 
     const levelPositions = levels.map((_, i) => padding.left + i * groupW + groupW / 2);
     drawXLabels(ctx, levels, levelPositions, height - padding.bottom + 16);
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = cssVar('--color-gray', '#999');
     ctx.font = '10px Inter, sans-serif';
     ctx.textAlign = 'center';
     levels.forEach((level, i) => {
@@ -1231,7 +1269,7 @@ function drawLevelComparison(canvas) {
         const name = `Tier ${t} — ${COMP_DATA.tiers[t].short}`;
         ctx.fillStyle = colors[ti];
         ctx.fillRect(lx, 6, 10, 10);
-        ctx.fillStyle = '#555';
+        ctx.fillStyle = cssVar('--color-text', '#555');
         ctx.textAlign = 'left';
         ctx.fillText(name, lx + 13, 15);
         lx += ctx.measureText(name).width + 24;
@@ -1467,4 +1505,5 @@ function initCompTierExplorer() {
     });
 
     update();
+    THEME_REDRAW_CALLBACKS.push(drawChart);
 }

@@ -34,12 +34,21 @@ thumbnail: "/img/pagerank/thumbnail.svg"
   .prk-badge-green  { background: #d1fae5; color: #065f46; }
   .prk-badge-yellow { background: #fef3c7; color: #92400e; }
   .prk-badge-red    { background: #fee2e2; color: #b91c1c; }
+  :root[data-theme="dark"] .prk-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .prk-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .prk-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+  :root[data-theme="dark"] .prk-badge-green  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .prk-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .prk-badge-red    { background: rgba(239,68,68,0.18); color: #fca5a5; }
   .prk-iter { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 16px 0; }
   .prk-iter th { background: #f9fafb; padding: 7px 10px; text-align: right; font-weight: 700; font-size: 0.75rem; color: #374151; border-bottom: 2px solid #e5e7eb; }
   .prk-iter th:first-child { text-align: left; }
   .prk-iter td { padding: 6px 10px; border-bottom: 1px solid #f3f4f6; color: #374151; text-align: right; font-variant-numeric: tabular-nums; }
   .prk-iter td:first-child { text-align: left; font-weight: 700; }
   .prk-iter tr:last-child td { border-bottom: none; background: #f9fafb; }
+  :root[data-theme="dark"] .prk-iter th { background: var(--color-surface); color: var(--color-text); border-bottom-color: var(--color-border); }
+  :root[data-theme="dark"] .prk-iter td { color: var(--color-text); border-bottom-color: var(--color-border); }
+  :root[data-theme="dark"] .prk-iter tr:last-child td { background: var(--color-surface); }
   /* ── Figure system: one visual language for every diagram ── */
   .prk-fig-edge { stroke: #9ca3af; stroke-width: 1.6; fill: none; }
   .prk-fig-edge-faint { stroke: #d1d5db; stroke-width: 1.4; fill: none; }

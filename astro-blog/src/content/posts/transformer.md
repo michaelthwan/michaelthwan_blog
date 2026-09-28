@@ -34,22 +34,38 @@ thumbnail: "/img/transformer/fig1-architecture.png"
   .tf-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
   .tf-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
   .tf-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
+  [data-theme="dark"] .tf-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  [data-theme="dark"] .tf-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  [data-theme="dark"] .tf-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
   .tf-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.02em; }
   .tf-badge-green  { background: #d1fae5; color: #065f46; }
   .tf-badge-yellow { background: #fef3c7; color: #92400e; }
   .tf-badge-red    { background: #fee2e2; color: #b91c1c; }
+  [data-theme="dark"] .tf-badge-green  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  [data-theme="dark"] .tf-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  [data-theme="dark"] .tf-badge-red    { background: rgba(239,68,68,0.18); color: #fca5a5; }
   .tf-worked { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 18px; margin: 22px 0; background: #fafafa; font-size: 0.9rem; }
   .tf-worked h4 { margin: 0 0 10px; font-size: 0.95rem; }
   .tf-worked table { width: 100%; border-collapse: collapse; margin: 8px 0; font-variant-numeric: tabular-nums; }
   .tf-worked td, .tf-worked th { padding: 4px 8px; text-align: center; border-bottom: 1px solid #eee; }
   .tf-worked th:first-child, .tf-worked td:first-child { text-align: left; }
-  @media (prefers-color-scheme: dark) {
-    .tf-callout-tip  { background: #052e21; color: #6ee7b7; }
-    .tf-callout-warn { background: #2e2205; color: #fcd34d; }
-    .tf-callout-note { background: #1e1b4b; color: #c7d2fe; }
-    .tf-worked { background: #18181b; border-color: #333; }
-    .tf-worked td, .tf-worked th { border-color: #2a2a2a; }
-  }
+  [data-theme="dark"] .tf-worked { background: var(--color-canvas-subtle); border-color: var(--color-border); color: var(--color-text); }
+  [data-theme="dark"] .tf-worked td, [data-theme="dark"] .tf-worked th { border-color: var(--color-border); }
+
+  /* Shared script.js interactives (pe-/norm-/tiling-/matrix-) hard-code light
+     backgrounds in styles.css; override them here for dark mode since they
+     only appear on this post. */
+  [data-theme="dark"] .pe-interactive-wrapper { background: var(--color-canvas-subtle); border-color: var(--color-border); }
+  [data-theme="dark"] .pe-grid { background: var(--color-border); }
+  [data-theme="dark"] .pe-value-item { background: var(--color-surface); border-color: var(--color-border); }
+  [data-theme="dark"] .pe-values { border-top-color: var(--color-border); }
+  [data-theme="dark"] .norm-explorer-wrapper { background: var(--color-canvas-subtle); }
+  [data-theme="dark"] .norm-chart-container { background: var(--color-surface); border-color: var(--color-border); }
+  [data-theme="dark"] .tiling-play-btn { background: var(--color-surface); border-color: var(--color-border); color: var(--color-text); }
+  [data-theme="dark"] .tiling-play-btn:hover { background: var(--color-canvas-subtle); }
+  [data-theme="dark"] .tiling-panel { background: var(--color-surface); border-color: var(--color-border); }
+  [data-theme="dark"] .tiling-description { background: var(--color-surface); border-color: var(--color-border); }
+  [data-theme="dark"] .matrix-cell.empty { background: var(--color-border); }
 </style>
 
 ## Introduction

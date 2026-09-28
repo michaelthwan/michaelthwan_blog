@@ -22,9 +22,38 @@ thumbnail: "/img/sp500/thumbnail.svg"
   .sp-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
   .sp-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
   .sp-callout-key  { border-color: #1b5e20; background: #eefaf0; color: #1b4d20; }
+  [data-theme="dark"] .sp-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  [data-theme="dark"] .sp-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+  [data-theme="dark"] .sp-callout-key  { background: rgba(27,94,32,0.22); color: #86efac; }
 
   .sp-takeaway { font-size: 0.9rem; color: #4b5563; line-height: 1.6; margin: 10px 0 26px; padding-left: 12px; border-left: 2px solid #e5e7eb; }
   .sp-takeaway strong { color: #111827; }
+  [data-theme="dark"] .sp-takeaway { color: var(--color-gray); border-left-color: var(--color-border); }
+  [data-theme="dark"] .sp-takeaway strong { color: var(--color-text); }
+
+  /* Bull/bear inline callouts in figure captions */
+  .sp-cap-bull { color: #1b5e20; }
+  .sp-cap-bear { color: #b71c1c; }
+  [data-theme="dark"] .sp-cap-bull { color: #86efac; }
+  [data-theme="dark"] .sp-cap-bear { color: #fca5a5; }
+
+  /* Milestone timeline chips (public/js/sp500-charts.js) sit directly on
+     the page, not inside the white .sp500-chart-wrap island. */
+  [data-theme="dark"] .sp500-tl-item { border-color: var(--color-border); color: var(--color-gray); }
+  [data-theme="dark"] .sp500-tl-year { color: var(--color-gray-light); }
+  [data-theme="dark"] .sp500-tl-item.is-bull:hover,
+  [data-theme="dark"] .sp500-tl-item.is-bull:focus-visible { border-color: #3fb950; background: rgba(63,185,80,0.14); color: #86efac; }
+  [data-theme="dark"] .sp500-tl-item.is-bear:hover,
+  [data-theme="dark"] .sp500-tl-item.is-bear:focus-visible { border-color: #f85149; background: rgba(248,81,73,0.14); color: #fca5a5; }
+  [data-theme="dark"] .sp500-linked-heading:hover { color: #58a6ff; }
+
+  /* Bull/bear stats tables render directly on the page */
+  [data-theme="dark"] .sp500-stats-table th,
+  [data-theme="dark"] .sp500-stats-table td { border-bottom-color: var(--color-border); }
+  [data-theme="dark"] .sp500-bull-header { color: #86efac; border-bottom-color: #3fb950 !important; }
+  [data-theme="dark"] .sp500-bear-header { color: #fca5a5; border-bottom-color: #f85149 !important; }
+  [data-theme="dark"] .sp500-gain { color: #86efac; }
+  [data-theme="dark"] .sp500-loss { color: #fca5a5; }
 </style>
 
 <p class="d-note">
@@ -68,7 +97,7 @@ With those caveats on the table, let's walk through the three major eras — wat
         <canvas id="sp500-era1"></canvas>
     </div>
     <div class="d-figure-caption">
-        <strong>Figure 2.</strong> S&P 500, 1926–1958. <span style="color:#1b5e20">Green</span> labels mark bull runs (dot at the peak); <span style="color:#b71c1c">red</span> labels mark declines (dot at the trough). The Great Depression wiped out 85% of value — the worst decline in market history.
+        <strong>Figure 2.</strong> S&P 500, 1926–1958. <span class="sp-cap-bull">Green</span> labels mark bull runs (dot at the peak); <span class="sp-cap-bear">red</span> labels mark declines (dot at the trough). The Great Depression wiped out 85% of value — the worst decline in market history.
     </div>
 </div>
 

@@ -276,6 +276,35 @@ The five chapters below trace the full arc — from why agents are unreliable, t
     line-height: 1.7;
     color: #94A3B8;
   }
+
+  /* ── Dark mode ────────────────────────────────────────────── */
+  :root[data-theme="dark"] .rm-box {
+    background: var(--color-canvas-subtle);
+    border-color: #D97706;
+    color: var(--color-text);
+  }
+  :root[data-theme="dark"] .rm-box:hover {
+    background: var(--color-surface);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  :root[data-theme="dark"] .rm-box.active {
+    background: var(--color-surface);
+    border-color: #FCD34D;
+    box-shadow: 0 0 0 2px #92400E;
+  }
+  :root[data-theme="dark"] .rm-title span { color: var(--color-accent); border-color: var(--color-accent); }
+  :root[data-theme="dark"] .rm-spine { background: var(--color-accent); }
+  :root[data-theme="dark"] .rm-dot { background: var(--color-accent); border-color: var(--color-bg); box-shadow: 0 0 0 2px var(--color-accent); }
+  :root[data-theme="dark"] .rm-row::before { border-top-color: var(--color-border); }
+  :root[data-theme="dark"] .rm-lbl { color: var(--color-gray-light); }
+  :root[data-theme="dark"] .rm-legend { border-top-color: var(--color-border); }
+  :root[data-theme="dark"] .rm-leg { color: var(--color-gray); }
+  :root[data-theme="dark"] .rm-sw { background: var(--color-canvas-subtle); border-color: #D97706; }
+  :root[data-theme="dark"] .rm-sw.ch { background: #78350F; border-color: #FBBF24; }
+  :root[data-theme="dark"] .rm-sw.b { background: #0c1a2e; border-color: #3b82f6; }
+  :root[data-theme="dark"] .rm-sw.g { background: #052e16; border-color: #16a34a; }
+  :root[data-theme="dark"] .rm-sw.hint { color: var(--color-gray-light); }
+  :root[data-theme="dark"] .rm-panel-close { color: #94A3B8; }
 </style>
 
 <div id="rm-root"></div>
@@ -305,6 +334,18 @@ The five chapters below trace the full arc — from why agents are unreliable, t
   .aer-badge-high { background: #D1FAE5; color: #065F46; }
   .aer-badge-med  { background: #FEF3C7; color: #92400E; }
   .aer-badge-low  { background: #FEE2E2; color: #B91C1C; }
+
+  /* ── Dark mode ────────────────────────────────────────────── */
+  :root[data-theme="dark"] .aer-callout-key  { background: rgba(29,78,216,0.16); color: #93c5fd; }
+  :root[data-theme="dark"] .aer-callout-warn { background: rgba(217,119,6,0.14); color: #fcd34d; }
+  :root[data-theme="dark"] .aer-callout-cost { background: rgba(124,58,237,0.16); color: #c4b5fd; }
+
+  :root[data-theme="dark"] .aer-table th { background: var(--color-surface); color: var(--color-text); border-bottom-color: var(--color-border); }
+  :root[data-theme="dark"] .aer-table td { color: var(--color-gray); border-bottom-color: var(--color-border); }
+
+  :root[data-theme="dark"] .aer-badge-high { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .aer-badge-med  { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .aer-badge-low  { background: rgba(239,68,68,0.18); color: #fca5a5; }
 </style>
 
 ## Chapter Notes

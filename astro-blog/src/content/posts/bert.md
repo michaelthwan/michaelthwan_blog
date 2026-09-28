@@ -36,11 +36,12 @@ thumbnail: "/img/bert/fig1-pretraining-finetuning.png"
   .bt-badge-green  { background: #d1fae5; color: #065f46; }
   .bt-badge-yellow { background: #fef3c7; color: #92400e; }
   .bt-badge-red    { background: #fee2e2; color: #b91c1c; }
-  @media (prefers-color-scheme: dark) {
-    .bt-callout-tip  { background: #052e21; color: #6ee7b7; }
-    .bt-callout-warn { background: #2e2205; color: #fcd34d; }
-    .bt-callout-note { background: #1e1b4b; color: #c7d2fe; }
-  }
+  :root[data-theme="dark"] .bt-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .bt-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .bt-callout-note { background: rgba(99,102,241,0.12); color: #c7d2fe; }
+  :root[data-theme="dark"] .bt-badge-green  { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .bt-badge-yellow { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  :root[data-theme="dark"] .bt-badge-red    { background: rgba(239,68,68,0.18); color: #fca5a5; }
 </style>
 
 ## Introduction

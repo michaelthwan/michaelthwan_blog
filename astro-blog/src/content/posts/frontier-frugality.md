@@ -74,8 +74,22 @@ thumbnail: "/img/frontier-frugality/thumbnail.svg"
   :root[data-theme="dark"] .ff-stat { background: #262c3a; border-color: #3a4150; }
   :root[data-theme="dark"] .ff-stat-value, :root[data-theme="dark"] .ff-scenario-cost { color: #eceff4; }
   :root[data-theme="dark"] .ff-scenario-label { color: #aab2c0; }
+  :root[data-theme="dark"] .ff-factor-line { color: #c7cdd8; }
+  :root[data-theme="dark"] .ff-factor-line strong { color: #6ea8ff; }
+  :root[data-theme="dark"] .ff-stat-label { color: #9aa3b2; }
   :root[data-theme="dark"] .ff-scenario-track { background: #3a4150; }
   :root[data-theme="dark"] .ff-control select { background: #262c3a; border-color: #3a4150; color: #eceff4; }
+
+  :root[data-theme="dark"] .ff-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
+  :root[data-theme="dark"] .ff-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
+  :root[data-theme="dark"] .ff-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+
+  :root[data-theme="dark"] .ff-badge-mech { background: rgba(59,130,246,0.20); color: #93c5fd; }
+  :root[data-theme="dark"] .ff-badge-arch { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  :root[data-theme="dark"] .ff-badge-knob { background: rgba(245,158,11,0.18); color: #fcd34d; }
+
+  :root[data-theme="dark"] .ff-table th { border-bottom-color: var(--color-border); }
+  :root[data-theme="dark"] .ff-table td { border-bottom-color: var(--color-surface); }
 
   @media (max-width: 560px) {
     .ff-scenario-row { grid-template-columns: 104px 1fr 72px; }
