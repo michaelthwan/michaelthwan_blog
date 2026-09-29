@@ -30,6 +30,9 @@ thumbnail: "/img/deepseek-mhc/thumbnail.svg"
     border-radius: 4px; }
   .mhc-badge-win { background: #d1fae5; color: #065f46; }
   [data-theme="dark"] .mhc-badge-win { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+
+  /* Heat cells inside the benchmark table must win over the mHC column's highlight-row/good styling */
+  .d-table.mhc-tbl td.heat.highlight-row { background: color-mix(in srgb, var(--heat) calc(var(--v, 0) * 55%), transparent); }
 </style>
 
 <p class="d-note">
@@ -196,12 +199,13 @@ Here's a concrete $3 \times 3$ example:
 <table class="d-table" style="text-align:center">
 <thead><tr><th></th><th>out 1</th><th>out 2</th><th>out 3</th><th style="color:#27ae60">&#x3A3; row</th></tr></thead>
 <tbody>
-<tr><td><strong>in 1</strong></td><td>0.75</td><td>0.14</td><td>0.11</td><td class="good">1.00</td></tr>
-<tr><td><strong>in 2</strong></td><td>0.10</td><td>0.72</td><td>0.18</td><td class="good">1.00</td></tr>
-<tr><td><strong>in 3</strong></td><td>0.15</td><td>0.14</td><td>0.71</td><td class="good">1.00</td></tr>
+<tr><td><strong>in 1</strong></td><td class="heat hot" style="--v:0.75">0.75</td><td class="heat" style="--v:0.14">0.14</td><td class="heat" style="--v:0.11">0.11</td><td class="good">1.00</td></tr>
+<tr><td><strong>in 2</strong></td><td class="heat" style="--v:0.10">0.10</td><td class="heat hot" style="--v:0.72">0.72</td><td class="heat" style="--v:0.18">0.18</td><td class="good">1.00</td></tr>
+<tr><td><strong>in 3</strong></td><td class="heat" style="--v:0.15">0.15</td><td class="heat" style="--v:0.14">0.14</td><td class="heat hot" style="--v:0.71">0.71</td><td class="good">1.00</td></tr>
 <tr style="color:#27ae60"><td><strong>&#x3A3; col</strong></td><td class="good">1.00</td><td class="good">1.00</td><td class="good">1.00</td><td>—</td></tr>
 </tbody>
 </table>
+<div class="dv-note" style="text-align:center">Darker = larger weight.</div>
 </div>
 
 Intuitively, a doubly stochastic matrix is a **conservative router**: no stream receives more total weight than it sends, and vice versa. Information is redistributed, not amplified.
@@ -234,7 +238,7 @@ The key property is the **spectral norm**. For any $W \in \mathcal{B}_n$, its sp
 
 $$\|W\|_2 \leq 1$$
 
-This follows from the Perron-Frobenius theorem: doubly stochastic matrices have leading eigenvalue exactly 1, and no eigenvalue exceeds 1 in magnitude. When you multiply by $W$ at every layer, the signal cannot grow. The 3,000× amplitude spike that broke vanilla Hyperconnections cannot happen inside $\mathcal{B}_n$.
+This follows from the Perron-Frobenius theorem: doubly stochastic matrices have leading eigenvalue exactly 1, and no eigenvalue exceeds 1 in magnitude. When you multiply by $W$ at every layer, the signal cannot grow. The <strong class="hi">3,000×</strong> amplitude spike that broke vanilla Hyperconnections cannot happen inside $\mathcal{B}_n$.
 
 <div class="d-callout">
     <strong>The geometric fix:</strong> Constraining $W$ to the Birkhoff polytope makes it
@@ -293,7 +297,7 @@ The answer is the **Sinkhorn-Knopp algorithm** (1967). After each gradient step 
     </div>
 </div>
 
-Each step is a single element-wise division. The algorithm converges to the unique doubly stochastic matrix closest to the input in KL divergence. In practice, 3–10 alternations suffice to reduce the maximum row/column deviation from 1 to below $10^{-3}$.
+Each step is a single element-wise division. The algorithm converges to the unique doubly stochastic matrix closest to the input in KL divergence. In practice, <strong class="hi">3–10 alternations</strong> suffice to reduce the maximum row/column deviation from 1 to below $10^{-3}$.
 
 ### Interactive: Sinkhorn-Knopp Visualizer
 
@@ -379,7 +383,7 @@ DeepSeek evaluated mHC at 3B, 9B, and 27B parameter scales using a MoE architect
 **Benchmark results (27B model, same token budget):**
 
 <div class="d-table-wrapper">
-<table class="d-table">
+<table class="d-table mhc-tbl">
 <thead>
 <tr>
     <th>Benchmark</th>
@@ -390,16 +394,30 @@ DeepSeek evaluated mHC at 3B, 9B, and 27B parameter scales using a MoE architect
 </tr>
 </thead>
 <tbody>
-<tr><td>BBH (EM)</td><td>43.8</td><td>48.9</td><td class="good highlight-row"><strong>51.0</strong></td><td><span class="mhc-badge mhc-badge-win">+7.2</span></td></tr>
-<tr><td>DROP (F1)</td><td>47.0</td><td>51.6</td><td class="good highlight-row"><strong>53.9</strong></td><td><span class="mhc-badge mhc-badge-win">+6.9</span></td></tr>
-<tr><td>GSM8K (EM)</td><td>46.7</td><td>53.2</td><td class="good highlight-row"><strong>53.8</strong></td><td><span class="mhc-badge mhc-badge-win">+7.1</span></td></tr>
-<tr><td>HellaSwag (Acc.)</td><td>73.7</td><td>74.3</td><td class="good highlight-row"><strong>74.7</strong></td><td><span class="mhc-badge mhc-badge-win">+1.0</span></td></tr>
-<tr><td>MATH (EM)</td><td>22.0</td><td>26.4</td><td class="good highlight-row"><strong>26.0</strong></td><td><span class="mhc-badge mhc-badge-win">+4.0</span></td></tr>
-<tr><td>MMLU (Acc.)</td><td>59.0</td><td>63.0</td><td class="good highlight-row"><strong>63.4</strong></td><td><span class="mhc-badge mhc-badge-win">+4.4</span></td></tr>
-<tr><td>PIQA (Acc.)</td><td>78.5</td><td>79.9</td><td class="good highlight-row"><strong>80.5</strong></td><td><span class="mhc-badge mhc-badge-win">+2.0</span></td></tr>
-<tr><td>TriviaQA (EM)</td><td>54.3</td><td>56.3</td><td class="good highlight-row"><strong>57.6</strong></td><td><span class="mhc-badge mhc-badge-win">+3.3</span></td></tr>
+<tr><td>BBH (EM)</td><td class="heat" style="--v:0.438">43.8</td><td class="heat" style="--v:0.489">48.9</td><td class="heat good highlight-row" style="--v:0.510"><strong>51.0</strong></td><td><span class="mhc-badge mhc-badge-win">+7.2</span></td></tr>
+<tr><td>DROP (F1)</td><td class="heat" style="--v:0.470">47.0</td><td class="heat" style="--v:0.516">51.6</td><td class="heat good highlight-row" style="--v:0.539"><strong>53.9</strong></td><td><span class="mhc-badge mhc-badge-win">+6.9</span></td></tr>
+<tr><td>GSM8K (EM)</td><td class="heat" style="--v:0.467">46.7</td><td class="heat" style="--v:0.532">53.2</td><td class="heat good highlight-row" style="--v:0.538"><strong>53.8</strong></td><td><span class="mhc-badge mhc-badge-win">+7.1</span></td></tr>
+<tr><td>HellaSwag (Acc.)</td><td class="heat hot" style="--v:0.737">73.7</td><td class="heat hot" style="--v:0.743">74.3</td><td class="heat hot good highlight-row" style="--v:0.747"><strong>74.7</strong></td><td><span class="mhc-badge mhc-badge-win">+1.0</span></td></tr>
+<tr><td>MATH (EM)</td><td class="heat" style="--v:0.220">22.0</td><td class="heat" style="--v:0.264">26.4</td><td class="heat good highlight-row" style="--v:0.260"><strong>26.0</strong></td><td><span class="mhc-badge mhc-badge-win">+4.0</span></td></tr>
+<tr><td>MMLU (Acc.)</td><td class="heat" style="--v:0.590">59.0</td><td class="heat hot" style="--v:0.630">63.0</td><td class="heat hot good highlight-row" style="--v:0.634"><strong>63.4</strong></td><td><span class="mhc-badge mhc-badge-win">+4.4</span></td></tr>
+<tr><td>PIQA (Acc.)</td><td class="heat hot" style="--v:0.785">78.5</td><td class="heat hot" style="--v:0.799">79.9</td><td class="heat hot good highlight-row" style="--v:0.805"><strong>80.5</strong></td><td><span class="mhc-badge mhc-badge-win">+2.0</span></td></tr>
+<tr><td>TriviaQA (EM)</td><td class="heat" style="--v:0.543">54.3</td><td class="heat" style="--v:0.563">56.3</td><td class="heat good highlight-row" style="--v:0.576"><strong>57.6</strong></td><td><span class="mhc-badge mhc-badge-win">+3.3</span></td></tr>
 </tbody>
 </table>
+<div class="dv-note" style="margin-bottom:1.2em">Baseline, HC and mHC columns: darker = larger score, all on a shared 0-100 scale.</div>
+</div>
+
+<div class="dv">
+  <div class="dv-title">mHC gain over the Pre-LN baseline, in points (27B model, same token budget)</div>
+  <div class="dv-row"><div class="dv-label">BBH (EM)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:90.0%" title="BBH (EM): +7.2 points"></div></div><span class="dv-val"><b>+7.2</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">DROP (F1)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:86.2%" title="DROP (F1): +6.9 points"></div></div><span class="dv-val"><b>+6.9</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">GSM8K (EM)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:88.8%" title="GSM8K (EM): +7.1 points"></div></div><span class="dv-val"><b>+7.1</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">HellaSwag (Acc.)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:12.5%" title="HellaSwag (Acc.): +1.0 points"></div></div><span class="dv-val"><b>+1.0</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">MATH (EM)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:50.0%" title="MATH (EM): +4.0 points"></div></div><span class="dv-val"><b>+4.0</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">MMLU (Acc.)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:55.0%" title="MMLU (Acc.): +4.4 points"></div></div><span class="dv-val"><b>+4.4</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">PIQA (Acc.)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:25.0%" title="PIQA (Acc.): +2.0 points"></div></div><span class="dv-val"><b>+2.0</b> pts</span></div></div>
+  <div class="dv-row"><div class="dv-label">TriviaQA (EM)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:41.2%" title="TriviaQA (EM): +3.3 points"></div></div><span class="dv-val"><b>+3.3</b> pts</span></div></div>
+  <div class="dv-note">Bars scaled so 8 points fill the track. Values are the "&Delta; vs base" column of the table above.</div>
 </div>
 
 <div class="d-callout">

@@ -71,7 +71,7 @@ One idea sits underneath all of them. **The loop is the product—everything els
 
 If the loop is the product, the fastest way to get more done is to run more loops. That is the whole idea here.
 
-The top tip from the team, unanimously: **run multiple Claude sessions at once.** 3–5 is the baseline. Boris himself runs 5 locally and 5–10 on the web simultaneously.
+The top tip from the team, unanimously: **run multiple Claude sessions at once.** <strong class="hi">3–5</strong> is the baseline. Boris himself runs <strong class="hi">5</strong> locally and <strong class="hi">5–10</strong> on the web simultaneously.
 
 ### Git worktrees
 

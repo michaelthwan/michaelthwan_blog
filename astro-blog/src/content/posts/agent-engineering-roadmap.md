@@ -436,7 +436,7 @@ Deploy $ARGUMENTS: run tests → build → push → verify.
 
 ### 4. Harness Engineering — the repository is the memory
 
-OpenAI's headline lesson: **treat `AGENTS.md` as a table of contents, not an encyclopedia.** Keep it near ~100 lines — a map with pointers into a structured `docs/` directory — rather than one monolithic instruction file. A giant `AGENTS.md` crowds out the actual task context, rots the moment code changes, and pushes the agent to pattern-match locally instead of navigating on purpose.
+OpenAI's headline lesson: **treat `AGENTS.md` as a table of contents, not an encyclopedia.** Keep it near <strong class="hi">~100 lines</strong> — a map with pointers into a structured `docs/` directory — rather than one monolithic instruction file. A giant `AGENTS.md` crowds out the actual task context, rots the moment code changes, and pushes the agent to pattern-match locally instead of navigating on purpose.
 
 Underneath that tactic sits a deeper principle: **anything not in the repository does not exist for the agent.** Architecture decisions in a Slack thread, review feedback in a closed PR, a convention everyone "just knows" — from the running agent's point of view, none of it is real unless it can read it in-context. The harness discipline is to encode that knowledge into versioned files, then let custom linters and scheduled doc-gardening agents keep it from drifting.
 

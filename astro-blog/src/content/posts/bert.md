@@ -136,7 +136,7 @@ The core pre-training objective of BERT is the **Masked Language Model**.
 ### The procedure
 
 1. Take a sentence (or sentence pair)
-2. Randomly select 15% of tokens to "mask"
+2. Randomly select <strong class="hi">15%</strong> of tokens to "mask"
 3. Of those selected tokens:
    - 80% → replace with `[MASK]` token
    - 10% → replace with a random word
@@ -360,7 +360,7 @@ Each input token is represented as the sum of three embeddings:
 $$\text{Input} = E_{\text{token}} + E_{\text{segment}} + E_{\text{position}}$$
 </div>
 
-- **Token embedding**: WordPiece vocabulary of 30,000 tokens
+- **Token embedding**: WordPiece vocabulary of <strong class="hi">30,000 tokens</strong>
 - **Segment embedding**: Which sentence (A or B) this token belongs to
 - **Position embedding**: Learned (not sinusoidal like the original Transformer)
 
@@ -392,7 +392,7 @@ The breakthrough of BERT is how simple fine-tuning becomes. For most tasks:
 
 1. Take the pre-trained BERT model
 2. Add a single task-specific layer on top
-3. Fine-tune *all* parameters on your labeled data (3-4 epochs)
+3. Fine-tune *all* parameters on your labeled data <strong class="hi">(3-4 epochs)</strong>
 
 <figure class="d-figure">
     <div class="d-figure-content">
@@ -475,7 +475,7 @@ Fine-tuning is fast: minutes to hours on a single GPU for most datasets.
 
 ## Results
 
-BERT achieved state-of-the-art on 11 NLP benchmarks at the time of publication.
+BERT achieved state-of-the-art on <strong class="hi">11 NLP benchmarks</strong> at the time of publication.
 
 ### GLUE Benchmark
 
@@ -491,36 +491,72 @@ BERT achieved state-of-the-art on 11 NLP benchmarks at the time of publication.
         <tbody>
             <tr>
                 <td>MNLI (accuracy)</td>
-                <td>80.6</td>
-                <td class="good"><strong>86.7</strong></td>
+                <td class="heat hot" style="--v:0.81">80.6</td>
+                <td class="good heat hot" style="--v:0.87"><strong>86.7</strong></td>
             </tr>
             <tr>
                 <td>QQP (F1)</td>
-                <td>66.1</td>
-                <td class="good"><strong>72.1</strong></td>
+                <td class="heat hot" style="--v:0.66">66.1</td>
+                <td class="good heat hot" style="--v:0.72"><strong>72.1</strong></td>
             </tr>
             <tr>
                 <td>QNLI (accuracy)</td>
-                <td>87.4</td>
-                <td class="good"><strong>92.7</strong></td>
+                <td class="heat hot" style="--v:0.87">87.4</td>
+                <td class="good heat hot" style="--v:0.93"><strong>92.7</strong></td>
             </tr>
             <tr>
                 <td>SST-2 (accuracy)</td>
-                <td>93.5</td>
-                <td class="good"><strong>94.9</strong></td>
+                <td class="heat hot" style="--v:0.94">93.5</td>
+                <td class="good heat hot" style="--v:0.95"><strong>94.9</strong></td>
             </tr>
             <tr>
                 <td>CoLA (Matthew's corr)</td>
-                <td>35.0</td>
-                <td class="good"><strong>60.5</strong></td>
+                <td class="heat" style="--v:0.35">35.0</td>
+                <td class="good heat hot" style="--v:0.60"><strong>60.5</strong></td>
             </tr>
             <tr class="highlight-row">
                 <td><strong>GLUE Average</strong></td>
-                <td>72.8</td>
-                <td class="good"><strong>80.5</strong></td>
+                <td class="heat hot" style="--v:0.73">72.8</td>
+                <td class="good heat hot" style="--v:0.81"><strong>80.5</strong></td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div class="dv">
+  <div class="dv-title">GLUE scores: previous state of the art versus BERT-Large</div>
+  <div class="dv-legend"><span><i style="background:var(--dv-muted)"></i>Previous SOTA</span><span><i style="background:var(--dv-blue)"></i>BERT-Large</span></div>
+  <div class="dv-row"><div class="dv-label">MNLI (accuracy)</div>
+    <div class="dv-bar" style="flex-direction:column;align-items:stretch;gap:3px">
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill muted" style="width:80.6%" title="MNLI (accuracy), Previous SOTA: 80.6"></div></div><span class="dv-val"><b>80.6</b></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill blue" style="width:86.7%" title="MNLI (accuracy), BERT-Large: 86.7"></div></div><span class="dv-val"><b>86.7</b></span></div>
+    </div></div>
+  <div class="dv-row"><div class="dv-label">QQP (F1)</div>
+    <div class="dv-bar" style="flex-direction:column;align-items:stretch;gap:3px">
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill muted" style="width:66.1%" title="QQP (F1), Previous SOTA: 66.1"></div></div><span class="dv-val"><b>66.1</b></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill blue" style="width:72.1%" title="QQP (F1), BERT-Large: 72.1"></div></div><span class="dv-val"><b>72.1</b></span></div>
+    </div></div>
+  <div class="dv-row"><div class="dv-label">QNLI (accuracy)</div>
+    <div class="dv-bar" style="flex-direction:column;align-items:stretch;gap:3px">
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill muted" style="width:87.4%" title="QNLI (accuracy), Previous SOTA: 87.4"></div></div><span class="dv-val"><b>87.4</b></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill blue" style="width:92.7%" title="QNLI (accuracy), BERT-Large: 92.7"></div></div><span class="dv-val"><b>92.7</b></span></div>
+    </div></div>
+  <div class="dv-row"><div class="dv-label">SST-2 (accuracy)</div>
+    <div class="dv-bar" style="flex-direction:column;align-items:stretch;gap:3px">
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill muted" style="width:93.5%" title="SST-2 (accuracy), Previous SOTA: 93.5"></div></div><span class="dv-val"><b>93.5</b></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill blue" style="width:94.9%" title="SST-2 (accuracy), BERT-Large: 94.9"></div></div><span class="dv-val"><b>94.9</b></span></div>
+    </div></div>
+  <div class="dv-row"><div class="dv-label">CoLA (Matthew's corr)</div>
+    <div class="dv-bar" style="flex-direction:column;align-items:stretch;gap:3px">
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill muted" style="width:35.0%" title="CoLA (Matthew's corr), Previous SOTA: 35.0"></div></div><span class="dv-val"><b>35.0</b></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill blue" style="width:60.5%" title="CoLA (Matthew's corr), BERT-Large: 60.5"></div></div><span class="dv-val"><b>60.5</b></span></div>
+    </div></div>
+  <div class="dv-row"><div class="dv-label">GLUE Average</div>
+    <div class="dv-bar" style="flex-direction:column;align-items:stretch;gap:3px">
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill muted" style="width:72.8%" title="GLUE Average, Previous SOTA: 72.8"></div></div><span class="dv-val"><b>72.8</b></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><div class="dv-track"><div class="dv-fill blue" style="width:80.5%" title="GLUE Average, BERT-Large: 80.5"></div></div><span class="dv-val"><b>80.5</b></span></div>
+    </div></div>
+  <div class="dv-note">Scores from the table above; bar length is the score out of 100 (each task uses the metric named in its label).</div>
 </div>
 
 ### SQuAD (Question Answering)
@@ -564,7 +600,7 @@ Every position can attend to every other position. Information flows in all dire
 
 ### 2. Deep pre-training
 
-12-24 layers of Transformer, pre-trained on billions of words. The model learns rich representations of language structure, syntax, and semantics—all before seeing a single labeled example.
+<strong class="hi">12-24 layers</strong> of Transformer, pre-trained on billions of words. The model learns rich representations of language structure, syntax, and semantics—all before seeing a single labeled example.
 
 ### 3. Simple fine-tuning
 
@@ -578,7 +614,7 @@ No task-specific architecture needed. The same pre-trained model works for class
 
 ### Sequence length
 
-BERT is limited to 512 tokens due to memory constraints. For long documents, you need to truncate or use sliding windows.
+BERT is limited to <strong class="hi">512 tokens</strong> due to memory constraints. For long documents, you need to truncate or use sliding windows.
 
 ### The [MASK] token
 

@@ -69,7 +69,7 @@ thumbnail: "/img/tech-comp/trimodal-thumbnail.svg"
 
 ## The Salary Gap is Real
 
-Two software engineers with the same title, same years of experience, and similar technical skills can earn wildly different amounts — sometimes 4x apart. This isn't noise or negotiation luck. It's **structural**.
+Two software engineers with the same title, same years of experience, and similar technical skills can earn wildly different amounts — sometimes <strong class="hi">4x</strong> apart. This isn't noise or negotiation luck. It's **structural**.
 
 What does "structural" look like in data? Plot total compensation for thousands of software engineers and you don't see a single bell curve. You see **three overlapping distributions** — a trimodal pattern that reflects three separate labor markets operating side by side. And as of 2026, a fourth, smaller spike has appeared above all of them.
 
@@ -102,25 +102,25 @@ Four of them, it turns out. The sorting question is not prestige or difficulty �
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t1">Tier 1</span> Traditional</td>
             <td>Local employers</td>
-            <td>$132K</td>
+            <td class="heat" style="--v:0.23">$132K</td>
             <td>Accenture, IBM, banks</td>
         </tr>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t2">Tier 2</span> Competitive Tech</td>
             <td>Other tech brands</td>
-            <td>$253K</td>
+            <td class="heat" style="--v:0.44">$253K</td>
             <td>Adobe, Shopify, Uber</td>
         </tr>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t3">Tier 3</span> Big Tech+</td>
             <td>Each other, globally</td>
-            <td>$339K</td>
+            <td class="heat" style="--v:0.59">$339K</td>
             <td>Google, Netflix, Citadel</td>
         </tr>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t4">Tier 4</span> AI Labs</td>
             <td>Each other's poaching</td>
-            <td>$579K</td>
+            <td class="heat hot" style="--v:1.0">$579K</td>
             <td>OpenAI, Anthropic, xAI</td>
         </tr>
     </tbody>
@@ -169,9 +169,19 @@ The classic top of the market: companies with massive revenue per employee that 
 
 ### Tier 4 — Frontier AI Labs (the 2026 spike)
 
-This is the new development. Orosz's framework is still officially trimodal, but 2026 compensation benchmarks increasingly describe a *de facto* fourth mode: frontier AI labs paying **2-3x strong Big Tech medians**. levels.fyi puts OpenAI's SWE median around **$800K**; Anthropic lands somewhere in the **$420-600K** range depending on which population you count. Equity — often private, infrequently liquid — makes up more than half of these packages, reaching 60-70% at the biggest labs.
+This is the new development. Orosz's framework is still officially trimodal, but 2026 compensation benchmarks increasingly describe a *de facto* fourth mode: frontier AI labs paying <strong class="hi">2-3x strong Big Tech medians</strong>. levels.fyi puts OpenAI's SWE median around **$800K**; Anthropic lands somewhere in the **$420-600K** range depending on which population you count. Equity — often private, infrequently liquid — makes up more than half of these packages, reaching 60-70% at the biggest labs.
 
 **Examples:** OpenAI, Anthropic, Google DeepMind, xAI, Thinking Machines Lab, Mistral AI, Cohere.
+
+<div class="dv">
+  <div class="dv-title">Median total compensation at the companies named above (US$ thousands)</div>
+  <div class="dv-row"><div class="dv-label">OpenAI (Tier 4)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:100%" title="OpenAI: $800K"></div></div><span class="dv-val"><b>$800K</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Databricks (Tier 3)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:61.3%" title="Databricks: ~$490K"></div></div><span class="dv-val"><b>~$490K</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Netflix (Tier 3)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:57.5%" title="Netflix: ~$460K"></div></div><span class="dv-val"><b>~$460K</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Google (Tier 3, all levels)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:36.9%" title="Google: ~$295K"></div></div><span class="dv-val"><b>~$295K</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Goldman Sachs SWE (Tier 1)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:21.3%" title="Goldman Sachs SWE: ~$170K"></div></div><span class="dv-val"><b>~$170K</b></span></div></div>
+  <div class="dv-note">Figures as quoted in the Tier 1, Tier 3 and Tier 4 sections above (levels.fyi); bars share one scale and the populations differ. Anthropic's $420-600K range is left out because it is a range.</div>
+</div>
 
 <div class="d-figure">
     <div class="d-figure-content" style="background: white; padding: 8px;">
@@ -182,7 +192,7 @@ This is the new development. Orosz's framework is still officially trimodal, but
     </div>
 </div>
 
-The median Tier 3 engineer earns **$339K** — roughly **2.6x** the median Tier 1 engineer at **$132K**. Tier 2 at **$253K** is nearly double Tier 1. And the AI-lab spike at **$579K** median sits another 70% above Tier 3. These aren't small differences.
+The median Tier 3 engineer earns **$339K** — roughly <strong class="hi">2.6x</strong> the median Tier 1 engineer at **$132K**. Tier 2 at **$253K** is nearly double Tier 1. And the AI-lab spike at <strong class="hi">$579K</strong> median sits another 70% above Tier 3. These aren't small differences.
 
 <div class="tc-callout tc-callout-note">
   <strong>Caveat: medians hide the overlap.</strong> The tiers are distributions, not walls. A strong Tier 2 offer can beat a weak Tier 3 one, and the P25 whiskers in Figure 2 overlap the next tier down at every boundary. The tier tells you the <em>market</em> a company bids in, not the exact number you'll get.
@@ -222,7 +232,7 @@ Does the gap stay constant as you climb? No — it **widens dramatically** at se
 
 Why does the gap widen? Because **equity grants at the top scale superlinearly with level**. A senior engineer at a Tier 3 company might get $200K/year in RSUs; a staff engineer $300-400K. Meanwhile, the Tier 1 equivalent gets a modest raise in base salary. Same mechanism as before — the tiers that pay in ownership can scale ownership; the tiers that pay in salary cannot.
 
-The market data confirms the widening is *accelerating*: in the levels.fyi 2025 year-end report, Staff-level pay rose **+7.5%** year over year while Entry-level rose just **+1.6%**. The top of the curve is pulling away from the bottom even before you count the AI labs.
+The market data confirms the widening is *accelerating*: in the levels.fyi 2025 year-end report, Staff-level pay rose <strong class="hi">+7.5%</strong> year over year while Entry-level rose just **+1.6%**. The top of the curve is pulling away from the bottom even before you count the AI labs.
 
 ## US vs Canada
 
@@ -254,33 +264,33 @@ Is this an American artifact, or does the market structure travel? Canada is the
     <tbody>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t1">Tier 1</span> Traditional</td>
-            <td>$132K</td>
-            <td>$98K</td>
-            <td>74%</td>
+            <td class="heat" style="--v:0.23">$132K</td>
+            <td class="heat" style="--v:0.17">$98K</td>
+            <td class="dbar" style="--v:0.74">74%</td>
         </tr>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t2">Tier 2</span> Competitive</td>
-            <td>$253K</td>
-            <td>$194K</td>
-            <td>76%</td>
+            <td class="heat" style="--v:0.44">$253K</td>
+            <td class="heat" style="--v:0.34">$194K</td>
+            <td class="dbar" style="--v:0.76">76%</td>
         </tr>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t3">Tier 3</span> Big Tech+</td>
-            <td>$339K</td>
-            <td>$254K</td>
-            <td>75%</td>
+            <td class="heat" style="--v:0.59">$339K</td>
+            <td class="heat" style="--v:0.44">$254K</td>
+            <td class="dbar" style="--v:0.75">75%</td>
         </tr>
         <tr>
             <td class="tier-label"><span class="tc-badge tc-badge-t4">Tier 4</span> AI Labs</td>
-            <td>$579K</td>
-            <td>$494K</td>
-            <td>85%</td>
+            <td class="heat hot" style="--v:1.0">$579K</td>
+            <td class="heat hot" style="--v:0.85">$494K</td>
+            <td class="dbar" style="--v:0.85">85%</td>
         </tr>
     </tbody>
 </table>
 </div>
 
-The discount is roughly 24-26% for the three classic tiers, aligning with exchange rate and cost-of-living adjustments. The AI-lab tier is the exception: **frontier labs benchmark globally rather than locally**, so the Canada discount shrinks — a Toronto offer from a frontier lab (or homegrown Cohere) is much closer to US parity than a Toronto offer from a bank. Which market you're in even determines how much your *country* matters.
+The discount is roughly <strong class="hi">24-26%</strong> for the three classic tiers, aligning with exchange rate and cost-of-living adjustments. The AI-lab tier is the exception: **frontier labs benchmark globally rather than locally**, so the Canada discount shrinks — a Toronto offer from a frontier lab (or homegrown Cohere) is much closer to US parity than a Toronto offer from a bank. Which market you're in even determines how much your *country* matters.
 
 ## What Changed in 2025-26
 

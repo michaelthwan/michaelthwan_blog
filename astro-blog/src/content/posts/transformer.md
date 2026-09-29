@@ -294,9 +294,9 @@ The query is $q = [1,\ 0]$, and the three keys and values are:
 <table>
 <thead><tr><th>Token</th><th>Key $k\_j$</th><th>$q\cdot k\_j$</th><th>÷ $\sqrt{2}$</th><th>softmax</th><th>Value $v\_j$</th></tr></thead>
 <tbody>
-<tr><td>the</td><td>[1, 0]</td><td>1.00</td><td>0.71</td><td><strong>0.51</strong></td><td>[2, 0]</td></tr>
-<tr><td>cat</td><td>[0.5, 1]</td><td>0.50</td><td>0.35</td><td>0.36</td><td>[0, 3]</td></tr>
-<tr><td>sat</td><td>[-1, 0.5]</td><td>-1.00</td><td>-0.71</td><td>0.13</td><td>[1, 1]</td></tr>
+<tr><td>the</td><td>[1, 0]</td><td>1.00</td><td>0.71</td><td class="heat" style="--v:0.51"><strong>0.51</strong></td><td>[2, 0]</td></tr>
+<tr><td>cat</td><td>[0.5, 1]</td><td>0.50</td><td>0.35</td><td class="heat" style="--v:0.36">0.36</td><td>[0, 3]</td></tr>
+<tr><td>sat</td><td>[-1, 0.5]</td><td>-1.00</td><td>-0.71</td><td class="heat" style="--v:0.13">0.13</td><td>[1, 1]</td></tr>
 </tbody>
 </table>
 <p style="margin:8px 0 0;">Weighted sum of values:
@@ -349,7 +349,7 @@ Each head can learn to attend to different things:
 - Another might focus on **semantically similar words**
 
 The paper uses $h = 8$ heads with $d_k = d_v = 64$ (for $d_{\text{model}} = 512$).
-Each head works in a smaller 64-dimensional subspace, so eight heads cost about the
+Each head works in a smaller <strong class="hi">64-dimensional</strong> subspace, so eight heads cost about the
 same as one full-width head—**the model gets several views of the sequence for the
 price of one.**
 
@@ -573,9 +573,9 @@ The paper visualizes what individual attention heads learn in a trained Transfor
 ## Training and Results
 
 **Setup:**
-- Data: WMT 2014 English-German (4.5M pairs) and English-French (36M pairs)
-- Hardware: 8 NVIDIA P100 GPUs
-- Time: Base model 12 hours; Big model 3.5 days
+- Data: WMT 2014 English-German <strong class="hi">(4.5M pairs)</strong> and English-French <strong class="hi">(36M pairs)</strong>
+- Hardware: <strong class="hi">8 NVIDIA P100 GPUs</strong>
+- Time: <strong class="hi">Base model 12 hours; Big model 3.5 days</strong>
 
 <div class="d-table-wrapper">
     <table class="d-table">

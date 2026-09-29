@@ -277,7 +277,7 @@ The LLM writes and maintains all files in `wiki/`. You rarely touch them directl
 
 ### At What Scale Does This Work Without RAG?
 
-At ~100 concept articles and ~400K total words, the index-routing approach works well without any vector database or retrieval system. The LLM reads `index.md` (a few KB), selects 3-8 relevant articles, and reads those in full. A modern LLM's 200K context window comfortably fits this.
+At <strong class="hi">~100 concept articles</strong> and <strong class="hi">~400K total</strong> words, the index-routing approach works well without any vector database or retrieval system. The LLM reads `index.md` (a few KB), selects <strong class="hi">3-8</strong> relevant articles, and reads those in full. A modern LLM's <strong class="hi">200K</strong> context window comfortably fits this.
 
 <table class="kb-compare">
   <thead>
@@ -493,6 +493,6 @@ This is not yet a standard workflow — the tooling (synthetic data pipelines, L
 - **Treat the LLM as a compiler, not an assistant.** It processes a corpus and produces structured output — you don't write the wiki, it does.
 - **Keep raw/ immutable.** All LLM writes go to wiki/. This gives you a clean audit trail and makes re-compilation possible.
 - **The index.md is the system's backbone.** Degrade the index and Q&A degrades. Maintain it on every compilation pass.
-- **No RAG required at moderate scale.** Index routing + large context windows handle ~100-200 articles comfortably.
+- **No RAG required at moderate scale.** Index routing + large context windows handle <strong class="hi">~100-200 articles</strong> comfortably.
 - **File everything back.** Every output, every query answer, every linting result — filed to wiki/outputs/. The compounding effect is the whole point.
 - **Obsidian is just the viewer.** The LLM does all writes. Use Obsidian's graph view and Canvas to develop spatial intuition about the knowledge structure, not as a writing environment.

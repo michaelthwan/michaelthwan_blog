@@ -59,7 +59,7 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 
 Read this as: score every query against every key ($QK^T$), squash the scores into a probability distribution per row (softmax), then take a weighted average of the value vectors. The $N \times N$ score matrix in the middle is the expensive object — it grows with the square of the sequence.
 
-Here is the twist. **The bottleneck is not the arithmetic — it is the memory access.** An NVIDIA A100 can do 312 TFLOPS of matrix math, but its main memory delivers data far slower than the tensor cores can consume it. So the chip spends most of its time waiting for numbers to arrive, not multiplying them.
+Here is the twist. **The bottleneck is not the arithmetic — it is the memory access.** An NVIDIA A100 can do <strong class="hi">312 TFLOPS</strong> of matrix math, but its main memory delivers data far slower than the tensor cores can consume it. So the chip spends most of its time waiting for numbers to arrive, not multiplying them.
 
 <div class="fa-callout fa-callout-note">
     <strong>Standard attention is IO-bound, not compute-bound.</strong> We spend more wall-clock time shuttling the score matrix between memory tiers than doing the actual multiplications. Cutting data movement — not FLOPs — is what makes it fast.
@@ -123,13 +123,13 @@ GPUs have two main memory types:
 - **Bandwidth:** ~19 TB/s
 - **Role:** Fast scratch space for active computation
 
-The key numbers: SRAM is **~10x faster** but **~1000x smaller** than HBM.
+The key numbers: SRAM is <strong class="hi">~10x faster</strong> but <strong class="hi">~1000x smaller</strong> than HBM.
 
 <div class="fa-callout fa-callout-warn">
     <strong>The size-speed trade-off is the whole game.</strong> SRAM is fast enough to keep the tensor cores fed, but at ~20&nbsp;MB it cannot hold a large attention matrix. HBM is big enough for anything, but at 1.5&nbsp;TB/s it starves the cores. FlashAttention's job is to do as much work as possible while the data is still in SRAM, and touch HBM as rarely as possible.
 </div>
 
-To make the gap concrete: a 4K-token attention matrix in fp16 is $4096 \times 4096 \times 2 \approx 34$&nbsp;MB per head. Writing it to HBM and reading it back is ~68&nbsp;MB of traffic at 1.5&nbsp;TB/s ≈ **45 microseconds of pure data movement** — before a single useful multiply. Multiply that by many heads and layers and the copies, not the math, set the runtime.
+To make the gap concrete: a 4K-token attention matrix in fp16 is $4096 \times 4096 \times 2 \approx 34$&nbsp;MB per head. Writing it to HBM and reading it back is ~68&nbsp;MB of traffic at 1.5&nbsp;TB/s ≈ <strong class="hi">45 microseconds</strong> of pure data movement — before a single useful multiply. Multiply that by many heads and layers and the copies, not the math, set the runtime.
 
 ## Standard Attention: The Memory Problem
 
@@ -335,7 +335,7 @@ The critical property: the $N \times N$ attention matrix $S$ is **never fully ma
 $$\text{HBM accesses} = O\left(\frac{N^2 d^2}{M}\right)$$
 </div>
 
-Where $M$ is SRAM size. The $N^2$ term from standard attention is gone — replaced by a term that _shrinks_ as SRAM grows. Bigger fast cache means bigger tiles, means fewer trips to HBM. For typical values ($d = 64$, $M = 100$KB), this is **5-20x fewer** HBM accesses, and the exact same output.
+Where $M$ is SRAM size. The $N^2$ term from standard attention is gone — replaced by a term that _shrinks_ as SRAM grows. Bigger fast cache means bigger tiles, means fewer trips to HBM. For typical values ($d = 64$, $M = 100$KB), this is <strong class="hi">5-20x fewer</strong> HBM accesses, and the exact same output.
 
 ## Why It Works: Arithmetic Intensity
 
@@ -427,7 +427,7 @@ The original algorithm fixed the memory problem. The follow-ups chase the remain
 **FlashAttention-2** (2023) improves parallelism:
 - Better work partitioning across GPU thread blocks, so more of the GPU stays busy
 - Fewer non-matmul FLOPs (rescaling and exp are slow relative to tensor-core matmuls)
-- Roughly 2× faster than FlashAttention-1, reaching ~50-70% of the A100's theoretical peak
+- Roughly <strong class="hi">2× faster</strong> than FlashAttention-1, reaching ~50-70% of the A100's theoretical peak
 
 <figure class="d-figure">
     <div class="d-figure-content">

@@ -111,8 +111,8 @@ The three most-watched explainer videos, from Caleb Writes Code, Krish Naik, and
 
 Speed and cost are the headline numbers in almost every piece of coverage.
 
-- **Latency.** TypeSafe quotes 70 to 500 ms end to end, and 40x to 200x faster than LLMs at the same level of frontier intelligence. Its launch post credits a new architecture and a parallel sampler that answers everything in a single query.
-- **Price.** $0.042 per million input tokens. Output is free, because a handful of typed values is, in TypeSafe's words, "too cheap to meter". LLM APIs usually charge several times more for output than for input.
+- **Latency.** TypeSafe quotes <strong class="hi">70 to 500 ms</strong> end to end, and 40x to 200x faster than LLMs at the same level of frontier intelligence. Its launch post credits a new architecture and a parallel sampler that answers everything in a single query.
+- **Price.** <strong class="hi">$0.042</strong> per million input tokens. Output is free, because a handful of typed values is, in TypeSafe's words, "too cheap to meter". LLM APIs usually charge several times more for output than for input.
 
 Free output changes how you ask. A 1,000-token ticket costs about $0.000042 whether you ask one question or twenty, and TypeSafe says the questions in a call are answered in parallel. Its docs call the resulting pattern **speculative fan-out**: send many questions in one call, including ones you might not need, and let your code decide which answers matter.
 
@@ -167,15 +167,15 @@ The open-source `jev-phishing-bench` (September 17) ran phishing detection on 2,
   <figcaption>Two ways to use Jev on the same task, with numbers from jev-phishing-bench as reported by Beri. The write-up gives only examples of the five narrow questions, so the diagram shows two examples and three placeholders.</figcaption>
 </figure>
 
-Asked one broad question ("is this phishing?"), Jev scored **62.6%** against Haiku's **81.3%**. It caught 43.2% of the actual phishing emails and falsely flagged 18.0% of legitimate ones.
+Asked one broad question ("is this phishing?"), Jev scored <strong class="hi">62.6%</strong> against Haiku's **81.3%**. It caught 43.2% of the actual phishing emails and falsely flagged 18.0% of legitimate ones.
 
-Split into five narrow questions (for example, does a link point to a URL shortener or free hosting, and does the sender use a free email address) and combined by a logistic regression, Jev reached **95.0%** against Haiku's **93.2%** on the same setup, a gap that is not statistically significant. The catch is the regression: it was fitted on 1,000 labelled emails. In Beri's words, the 95% is "Jev plus your labelled data plus a regression you maintain." Fan-out is cheap with Jev. Turning five answers into one good decision is still your job.
+Split into five narrow questions (for example, does a link point to a URL shortener or free hosting, and does the sender use a free email address) and combined by a logistic regression, Jev reached <strong class="hi">95.0%</strong> against Haiku's **93.2%** on the same setup, a gap that is not statistically significant. The catch is the regression: it was fitted on 1,000 labelled emails. In Beri's words, the 95% is "Jev plus your labelled data plus a regression you maintain." Fan-out is cheap with Jev. Turning five answers into one good decision is still your job.
 
 ### Calibration off the benchmark
 
-Calibration is usually summarized as **expected calibration error (ECE)**: the average gap between claimed confidence and actual accuracy, where 0 is perfect. On public benchmarks, Jev's ECE came in at **0.024 to 0.032**, which is good. A study on September 19, run through Vercel's AI gateway, used 900 synthetic support tickets unlike those benchmarks. There, ECE rose to **0.107**, about 4.4 times the noise floor. Choice and Score answers were overconfident. Yes/no answers were underconfident.
+Calibration is usually summarized as **expected calibration error (ECE)**: the average gap between claimed confidence and actual accuracy, where 0 is perfect. On public benchmarks, Jev's ECE came in at **0.024 to 0.032**, which is good. A study on September 19, run through Vercel's AI gateway, used 900 synthetic support tickets unlike those benchmarks. There, ECE rose to <strong class="hi">0.107</strong>, about 4.4 times the noise floor. Choice and Score answers were overconfident. Yes/no answers were underconfident.
 
-The worst case is the most instructive. On questions that depended on an internal policy missing from the ticket text, Jev was right **44.7%** of the time while assigning its answers an average probability of **0.74**. No training objective can calibrate a model on information it was never shown.
+The worst case is the most instructive. On questions that depended on an internal policy missing from the ticket text, Jev was right <strong class="hi">44.7%</strong> of the time while assigning its answers an average probability of **0.74**. No training objective can calibrate a model on information it was never shown.
 
 A pre-registered study published as `priorbench/jev` (September 20) found a related pattern over 5,721 calls. Jev scored 95.9% zero-shot on its 400-item benchmark, but accuracy above the threshold stayed **flat from 0.50 to 0.95**, then jumped to **100% at 0.99**. The 0.99 band covered 60.2% of traffic. In practice, confidence below 0.99 did not separate good answers from bad.
 
@@ -225,11 +225,12 @@ With overconfident probabilities, the router looks excellent on cost and latency
 <table class="jev-table">
 <thead><tr><th>Setup (phishing test)</th><th>Cost per 1,000 emails</th><th>Relative</th></tr></thead>
 <tbody>
-<tr><td>Jev, five questions in one call</td><td class="jev-num">$0.038</td><td class="jev-num">1x</td></tr>
-<tr><td>Haiku 4.5, one question</td><td class="jev-num">$0.462</td><td class="jev-num">12x</td></tr>
-<tr><td>Haiku 4.5, five signals</td><td class="jev-num">$1.02</td><td class="jev-num">27x</td></tr>
+<tr><td>Jev, five questions in one call</td><td class="jev-num heat" style="--v:0.04">$0.038</td><td class="jev-num dbar" style="--v:0.04">1x</td></tr>
+<tr><td>Haiku 4.5, one question</td><td class="jev-num heat" style="--v:0.45">$0.462</td><td class="jev-num dbar" style="--v:0.44">12x</td></tr>
+<tr><td>Haiku 4.5, five signals</td><td class="jev-num heat hot" style="--v:1.00">$1.02</td><td class="jev-num dbar" style="--v:1.00">27x</td></tr>
 </tbody>
 </table>
+<div class="dv-note">Shading and bars: darker or longer = larger cost; both columns scale to the most expensive setup.</div>
 </div>
 
 The cost advantage is real, but smaller than the headline suggests. TypeSafe itself discloses that its 444.6x figure measures **agreement with the average of two frontier models** (GPT-6 Astra and Fable 5.1), which is a different thing from correctness. A separate test by Good Start Labs, over 6,003 rubric checks and published by Langfuse, measured agreement with Claude instead. DeepSeek V4.1 Flash agreed 93.5% of the time and Jev 91.5%, at $260 per million verdicts against Jev's $160. On that test DeepSeek V4.1 Flash cost 1.6 times as much as Jev, far from hundreds. TypeSafe also says it cannot prove its price is unsubsidized.

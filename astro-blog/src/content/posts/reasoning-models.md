@@ -255,12 +255,22 @@ Two things worth noticing while playing. First, only *relative* standing matters
 
 DeepSeek-R1-Zero is the cleanest experiment in the paper: base model, GRPO, rule-based rewards, and **no supervised examples of reasoning whatsoever**. Nobody showed the model a single worked chain of thought. What happened over thousands of RL steps is the most striking result in the reasoning-model literature.
 
-**Accuracy climbed from guessing to o1-level.** On AIME 2024, pass@1 rose from 15.6% to **71.0%**, and to **86.7%** with majority voting over 64 samples — matching OpenAI's o1-0912 (74.4% pass@1).
+**Accuracy climbed from guessing to o1-level.** On AIME 2024, pass@1 rose from 15.6% to <strong class="hi">71.0%,</strong> and to <strong class="hi">86.7%</strong> with majority voting over 64 samples — matching OpenAI's o1-0912 (74.4% pass@1).
 
 <figure>
   <img src="/img/reasoning-models/fig-accuracy.svg" alt="AIME 2024 accuracy of DeepSeek-R1-Zero rising over RL training steps from 15.6% to 71.0%, crossing near the o1-0912 reference line" style="max-width: 620px; width: 100%; margin: 0 auto; display: block;" />
   <figcaption>AIME 2024 pass@1 during R1-Zero's RL training, redrawn from Figure 2 of the DeepSeek-R1 paper (arXiv:2501.12948). Exact endpoints (15.6% &rarr; 71.0%) are from the paper; intermediate points are smoothed for clarity. Dashed line: o1-0912 at 74.4%.</figcaption>
 </figure>
+
+<div class="dv">
+  <div class="dv-title">AIME 2024 accuracy in %, DeepSeek-R1-Zero versus o1-0912</div>
+  <div class="dv-legend"><span><i style="background:var(--dv-blue)"></i>pass@1</span><span><i style="background:var(--dv-orange)"></i>majority voting over 64 samples</span></div>
+  <div class="dv-row"><div class="dv-label">R1-Zero, start of RL</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:15.6%" title="R1-Zero, start of RL, pass@1: 15.6%"></div></div><span class="dv-val"><b>15.6</b>%</span></div></div>
+  <div class="dv-row"><div class="dv-label">R1-Zero, after RL</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:71.0%" title="R1-Zero, after RL, pass@1: 71.0%"></div></div><span class="dv-val"><b>71.0</b>%</span></div></div>
+  <div class="dv-row"><div class="dv-label">o1-0912</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:74.4%" title="o1-0912, pass@1: 74.4%"></div></div><span class="dv-val"><b>74.4</b>%</span></div></div>
+  <div class="dv-row"><div class="dv-label">R1-Zero, after RL</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:86.7%" title="R1-Zero, after RL, majority voting over 64 samples: 86.7%"></div></div><span class="dv-val"><b>86.7</b>%</span></div></div>
+  <div class="dv-note">Bars drawn on a 0-100% scale. Values from the paragraph and figure above (DeepSeek-R1 paper).</div>
+</div>
 
 **The model chose to think longer.** Nothing in the reward mentions length. Yet average response length grew steadily from a few hundred tokens to many thousands, because longer deliberation — exploring, checking, backtracking — is what wins reward on hard problems. Thinking time was *discovered*, not programmed.
 
@@ -286,7 +296,7 @@ The authors call this the **"aha moment"** — for the model and, they admit, fo
     The reasoning power comes from RLVR; the polish comes from everything around it.
 </div>
 
-The full R1 pipeline pushed AIME 2024 to **79.8%** pass@1 and MATH-500 to **97.3%** — on par with OpenAI's o1-1217 — plus a 2,029 Codeforces rating (96.3rd percentile among human competitors).
+The full R1 pipeline pushed AIME 2024 to <strong class="hi">79.8%</strong> pass@1 and MATH-500 to <strong class="hi">97.3%</strong> — on par with OpenAI's o1-1217 — plus a 2,029 Codeforces rating (96.3rd percentile among human competitors).
 
 ## Test-Time Compute: The Second Scaling Axis
 
@@ -301,7 +311,7 @@ This changes the economics of intelligence. Capability is no longer fixed at tra
 
 ### Distillation: reasoning in small models
 
-The second surprise in the R1 paper is how well reasoning **transfers by imitation**. DeepSeek generated ~800k samples with R1 and fine-tuned small open models on them — plain supervised learning, no RL at all:
+The second surprise in the R1 paper is how well reasoning **transfers by imitation**. DeepSeek generated <strong class="hi">~800k</strong> samples with R1 and fine-tuned small open models on them — plain supervised learning, no RL at all:
 
 <div class="rsn-table-wrap">
 <table class="rsn-table">
@@ -309,10 +319,10 @@ The second surprise in the R1 paper is how well reasoning **transfers by imitati
 <tr><th>Model</th><th>AIME 2024 (pass@1)</th><th>Note</th></tr>
 </thead>
 <tbody>
-<tr><td>GPT-4o-0513</td><td class="rsn-num">9.3%</td><td>frontier non-reasoning model</td></tr>
-<tr><td>R1-Distill-Qwen-7B</td><td class="rsn-num">55.5%</td><td>7B student of R1</td></tr>
-<tr><td>R1-Distill-Qwen-32B</td><td class="rsn-num">72.6%</td><td>above o1-mini (63.6%)</td></tr>
-<tr><td>DeepSeek-R1 (671B MoE)</td><td class="rsn-num">79.8%</td><td>the teacher</td></tr>
+<tr><td>GPT-4o-0513</td><td class="rsn-num dbar" style="--v:0.093">9.3%</td><td>frontier non-reasoning model</td></tr>
+<tr><td>R1-Distill-Qwen-7B</td><td class="rsn-num dbar" style="--v:0.555">55.5%</td><td>7B student of R1</td></tr>
+<tr><td>R1-Distill-Qwen-32B</td><td class="rsn-num dbar" style="--v:0.726">72.6%</td><td>above o1-mini (63.6%)</td></tr>
+<tr><td>DeepSeek-R1 (671B MoE)</td><td class="rsn-num dbar" style="--v:0.798">79.8%</td><td>the teacher</td></tr>
 </tbody>
 </table>
 </div>

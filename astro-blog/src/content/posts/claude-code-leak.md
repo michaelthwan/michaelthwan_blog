@@ -152,9 +152,9 @@ thumbnail: "/img/claude-code-leak/thumbnail.svg"
 
 ## What Happened
 
-On March 31, 2026, Anthropic pushed Claude Code **v2.1.88** to npm. A build engineer had forgotten to exclude source map files in `.npmignore`. The result: a **59.8 MB `.map` file** was bundled into the package, pointing to a Cloudflare R2 bucket containing the complete, unobfuscated TypeScript source.
+On March 31, 2026, Anthropic pushed Claude Code **v2.1.88** to npm. A build engineer had forgotten to exclude source map files in `.npmignore`. The result: a <strong class="hi">59.8 MB `.map` file</strong> was bundled into the package, pointing to a Cloudflare R2 bucket containing the complete, unobfuscated TypeScript source.
 
-Security researcher **Chaofan Shou** (Berkeley CS PhD, CTO of Fastland) spotted it within hours and posted the download link on X. Korean developer **Sigrid Jin** — a power user previously profiled by WSJ for consuming record-breaking Claude token counts — was awake at 4 AM rewriting the core logic in Python using multi-agent AI tooling. His `cloncode` project hit **70,000 GitHub stars** before dawn, reportedly the fastest-growing repository in GitHub history.
+Security researcher **Chaofan Shou** (Berkeley CS PhD, CTO of Fastland) spotted it within hours and posted the download link on X. Korean developer **Sigrid Jin** — a power user previously profiled by WSJ for consuming record-breaking Claude token counts — was awake at 4 AM rewriting the core logic in Python using multi-agent AI tooling. His `cloncode` project hit <strong class="hi">70,000 GitHub stars</strong> before dawn, reportedly the fastest-growing repository in GitHub history.
 
 Anthropic confirmed the breach, pulled the package, and issued DMCA takedowns. The code had already spread.
 
@@ -289,7 +289,15 @@ Researchers found 20 fully-built features hidden behind internal flags. Here are
 
 ## Under the Hood
 
-Claude Code is not a CLI that wraps an API. The numbers make this clear: `main.tsx` runs to **4,700 lines**, the agent loop engine `Query.ts` to **1,700+**, the API client `cloud.ts` to **3,600+**. It uses TSX + React Ink for terminal rendering, a custom Zustand-style state manager, and a prompt compiler with six priority levels. It's a framework — specifically, an Agent Runtime.
+Claude Code is not a CLI that wraps an API. The numbers make this clear: `main.tsx` runs to <strong class="hi">4,700</strong> lines, the agent loop engine `Query.ts` to <strong class="hi">1,700+,</strong> the API client `cloud.ts` to <strong class="hi">3,600+.</strong> It uses TSX + React Ink for terminal rendering, a custom Zustand-style state manager, and a prompt compiler with six priority levels. It's a framework — specifically, an Agent Runtime.
+
+<div class="dv">
+  <div class="dv-title">Lines of code in the three core files (as stated above)</div>
+  <div class="dv-row"><div class="dv-label">main.tsx</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:100%" title="main.tsx: 4,700 lines"></div></div><span class="dv-val"><b>4,700</b> lines</span></div></div>
+  <div class="dv-row"><div class="dv-label">cloud.ts (API client)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:76.6%" title="cloud.ts: 3,600+ lines"></div></div><span class="dv-val"><b>3,600+</b> lines</span></div></div>
+  <div class="dv-row"><div class="dv-label">Query.ts (agent loop)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:36.2%" title="Query.ts: 1,700+ lines"></div></div><span class="dv-val"><b>1,700+</b> lines</span></div></div>
+  <div class="dv-note">Line counts as given in the paragraph above; "+" marks a lower bound. Bars are scaled to the longest file.</div>
+</div>
 
 ### The ReAct Loop
 

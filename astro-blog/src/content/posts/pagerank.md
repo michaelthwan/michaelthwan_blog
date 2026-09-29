@@ -49,6 +49,9 @@ thumbnail: "/img/pagerank/thumbnail.svg"
   :root[data-theme="dark"] .prk-iter th { background: var(--color-surface); color: var(--color-text); border-bottom-color: var(--color-border); }
   :root[data-theme="dark"] .prk-iter td { color: var(--color-text); border-bottom-color: var(--color-border); }
   :root[data-theme="dark"] .prk-iter tr:last-child td { background: var(--color-surface); }
+  .prk-iter td.heat { background: color-mix(in srgb, var(--heat) calc(var(--v, 0) * 55%), transparent); }
+  .prk-iter tr:last-child td.heat, :root[data-theme="dark"] .prk-iter tr:last-child td.heat { background: color-mix(in srgb, var(--heat) calc(var(--v, 0) * 55%), transparent); }
+  .prk-iter td.heat.hot, :root[data-theme="dark"] .prk-iter td.heat.hot { font-weight: 700; }
   /* ── Figure system: one visual language for every diagram ── */
   .prk-fig-edge { stroke: #9ca3af; stroke-width: 1.6; fill: none; }
   .prk-fig-edge-faint { stroke: #d1d5db; stroke-width: 1.4; fill: none; }
@@ -219,7 +222,7 @@ $$\mathbf{r}^{(t+1)} = \mathbf{M}\,\mathbf{r}^{(t)}$$
 </div>
 
 Initialize $\mathbf{r}^{(0)} = \mathbf{1}/N$ (uniform). After enough iterations,
-$\mathbf{r}^{(t)}$ stops changing. In practice, 50–100 iterations suffice for web-scale
+$\mathbf{r}^{(t)}$ stops changing. In practice, <strong class="hi">50–100 iterations</strong> suffice for web-scale
 graphs.
 
 Read the update literally: **each page hands its current rank to its neighbours, split evenly, and every page's new rank is whatever landed in its inbox.** Do that repeatedly and the ranks settle.
@@ -241,14 +244,15 @@ Collect the inboxes: $A$ gets $0.333$ (from $C$); $B$ gets $0.167$ (from $A$); $
     <tr><th>Iteration</th><th>$r\_A$</th><th>$r\_B$</th><th>$r\_C$</th></tr>
   </thead>
   <tbody>
-    <tr><td>0</td><td>0.333</td><td>0.333</td><td>0.333</td></tr>
-    <tr><td>1</td><td>0.333</td><td>0.167</td><td>0.500</td></tr>
-    <tr><td>2</td><td>0.500</td><td>0.167</td><td>0.333</td></tr>
-    <tr><td>3</td><td>0.333</td><td>0.250</td><td>0.417</td></tr>
-    <tr><td>4</td><td>0.417</td><td>0.167</td><td>0.417</td></tr>
-    <tr><td>→ ∞</td><td>0.400</td><td>0.200</td><td>0.400</td></tr>
+    <tr><td>0</td><td class="heat hot" style="--v:0.67">0.333</td><td class="heat hot" style="--v:0.67">0.333</td><td class="heat hot" style="--v:0.67">0.333</td></tr>
+    <tr><td>1</td><td class="heat hot" style="--v:0.67">0.333</td><td class="heat" style="--v:0.33">0.167</td><td class="heat hot" style="--v:1.00">0.500</td></tr>
+    <tr><td>2</td><td class="heat hot" style="--v:1.00">0.500</td><td class="heat" style="--v:0.33">0.167</td><td class="heat hot" style="--v:0.67">0.333</td></tr>
+    <tr><td>3</td><td class="heat hot" style="--v:0.67">0.333</td><td class="heat" style="--v:0.50">0.250</td><td class="heat hot" style="--v:0.83">0.417</td></tr>
+    <tr><td>4</td><td class="heat hot" style="--v:0.83">0.417</td><td class="heat" style="--v:0.33">0.167</td><td class="heat hot" style="--v:0.83">0.417</td></tr>
+    <tr><td>→ ∞</td><td class="heat hot" style="--v:0.80">0.400</td><td class="heat" style="--v:0.40">0.200</td><td class="heat hot" style="--v:0.80">0.400</td></tr>
   </tbody>
 </table>
+<div class="dv-note">Shading: darker = larger rank, on one shared scale where 0.500 is darkest.</div>
 
 The early values overshoot and wobble, but the swing shrinks every pass and the vector settles at $[0.4, 0.2, 0.4]$ — **exactly the numbers drawn in the first figure**. $A$ and $C$ tie for the lead; $B$, whose only endorsement is half of $A$'s vote, is the clear loser at every step. That is PageRank: importance flows toward pages that sit on many well-fed paths.
 
@@ -372,7 +376,7 @@ $B$ and $C$ link only to each other — a closed loop that rank can enter but ne
 
 ## The Google Matrix
 
-Brin and Page added a **damping factor** $\beta$ (typically 0.85). With probability
+Brin and Page added a **damping factor** $\beta$ (typically <strong class="hi">0.85</strong>). With probability
 $\beta$, the surfer follows a link as before. With probability $1 - \beta$, the surfer
 ignores the current page entirely and **teleports** to a uniformly random page.
 
@@ -432,7 +436,7 @@ The full per-node formula becomes:
 $$\boxed{r_j = \sum_{i \to j} \beta\,\frac{r_i}{d_i} + \frac{1-\beta}{N}}$$
 </div>
 
-In words: a page's rank is **85% votes, 15% universal basic income**. The first term is the familiar vote-passing, discounted by $\beta$; the second is a small constant floor every page receives from teleporting surfers, links or no links. With $\beta = 0.85$ and a billion pages, that floor is $0.15/10^9$ — tiny, but strictly positive, and that positivity is what makes everything work.
+In words: a page's rank is <strong class="hi">85% votes, 15% universal basic income</strong>. The first term is the familiar vote-passing, discounted by $\beta$; the second is a small constant floor every page receives from teleporting surfers, links or no links. With $\beta = 0.85$ and a billion pages, that floor is $0.15/10^9$ — tiny, but strictly positive, and that positivity is what makes everything work.
 
 Teleportation fixes both problems at once:
 

@@ -115,9 +115,9 @@ The industry stacks into four tiers, and almost every deal on the map is a wire 
 
 Nearly every dollar on the map is ultimately pulled toward one of two labs. They raised the most, and they committed the most — often to the very investors who funded them.
 
-**OpenAI** converted its Microsoft partnership into a formal 27% stake during its October 2025 restructuring, then went on a spending spree that dwarfs the money it raised: **$300B** to Oracle, **$250B** to Azure, 10 GW of custom chips from Broadcom, and 6 GW of GPUs from AMD. Nvidia committed up to **$100B** in return for 10 GW of its own systems. The most unusual deal runs backwards: AMD granted OpenAI warrants for roughly 10% of *AMD itself*, vesting as OpenAI deploys AMD hardware — a supplier paying its customer in equity to win the order.
+**OpenAI** converted its Microsoft partnership into a formal 27% stake during its October 2025 restructuring, then went on a spending spree that dwarfs the money it raised: <strong class="hi">$300B</strong> to Oracle, **$250B** to Azure, 10 GW of custom chips from Broadcom, and 6 GW of GPUs from AMD. Nvidia committed up to <strong class="hi">$100B</strong> in return for 10 GW of its own systems. The most unusual deal runs backwards: AMD granted OpenAI warrants for roughly 10% of *AMD itself*, vesting as OpenAI deploys AMD hardware — a supplier paying its customer in equity to win the order.
 
-**Anthropic** built the opposite structure: instead of one anchor partner, it took money from three rival hyperscalers. Amazon invested **$13B** with **$20B** more pledged; Google committed up to **$40B**; and in January 2026, Microsoft and Nvidia added roughly **$15B** at a **$350B** valuation. Each investment came bundled with a spending commitment flowing back — over **$100B** to AWS, **$200B** to Google Cloud, and about **$30B** to Azure. By mid-2026 Anthropic had raised again at a **$965B** valuation, with memory-chip makers Samsung, Micron, and SK Hynix joining the cap table.
+**Anthropic** built the opposite structure: instead of one anchor partner, it took money from three rival hyperscalers. Amazon invested **$13B** with **$20B** more pledged; Google committed up to **$40B**; and in January 2026, Microsoft and Nvidia added roughly **$15B** at a **$350B** valuation. Each investment came bundled with a spending commitment flowing back — over **$100B** to AWS, **$200B** to Google Cloud, and about **$30B** to Azure. By mid-2026 Anthropic had raised again at a <strong class="hi">$965B</strong> valuation, with memory-chip makers Samsung, Micron, and SK Hynix joining the cap table.
 
 The shapes differ, but the mechanic is the same: **money arrives as investment and leaves as a compute bill, often to the same counterparty**. That is the pattern worth decoding before reading the rest of the map.
 
@@ -148,15 +148,15 @@ Why do deals take these shapes rather than plain cash-for-goods? Because compute
 
 ## The compute layer: everyone builds, everyone rents
 
-The compute layer is where the biggest absolute numbers live. Stargate — the **$500B** venture owned by SoftBank, OpenAI, Oracle, and MGX — plans roughly 7 GW of capacity across the US, UAE, Norway, and Argentina. Oracle, a founding equity partner, is also its lead builder, and OpenAI's **$300B** contract transformed Oracle's cloud business overnight — while forcing Oracle to borrow heavily to pour the concrete.
+The compute layer is where the biggest absolute numbers live. Stargate — the <strong class="hi">$500B</strong> venture owned by SoftBank, OpenAI, Oracle, and MGX — plans roughly 7 GW of capacity across the US, UAE, Norway, and Argentina. Oracle, a founding equity partner, is also its lead builder, and OpenAI's **$300B** contract transformed Oracle's cloud business overnight — while forcing Oracle to borrow heavily to pour the concrete.
 
-The strangest compute story is Colossus. After SpaceX absorbed xAI in February 2026, it began renting out its Memphis supercomputer like real estate: the entire 300 MW, 220,000-GPU Colossus 1 site went to *Anthropic* — a direct competitor of xAI's Grok — for **$1.25B** a month, while Google signed up for **$920M** per month of capacity through 2029. **Even the fiercest rivals in the model layer are customers of each other one layer down.** Compute is fungible; brand loyalty stops at the rack.
+The strangest compute story is Colossus. After SpaceX absorbed xAI in February 2026, it began renting out its Memphis supercomputer like real estate: the entire 300 MW, 220,000-GPU Colossus 1 site went to *Anthropic* — a direct competitor of xAI's Grok — for <strong class="hi">$1.25B</strong> a month, while Google signed up for **$920M** per month of capacity through 2029. **Even the fiercest rivals in the model layer are customers of each other one layer down.** Compute is fungible; brand loyalty stops at the rack.
 
 ## The silicon layer: Nvidia's money boomerang
 
 Nvidia sits at the bottom of the map and touches nearly every arrow above it. Its investment portfolio — up to **$100B** in OpenAI, ~**$10B** in Anthropic, **$2B** in xAI, **$5B** in Intel — reads like a list of its own largest customers. **Money leaves Nvidia as equity and returns as GPU purchase orders.** That round trip is the single most-discussed loop on the map.
 
-The counterweight is Broadcom, the quiet winner of the war. It co-designs Google's TPUs (a long-term agreement running through 2031), builds Meta's custom accelerators through 2029, and is producing 10 GW of custom chips for OpenAI. Its overall AI revenue is projected near **$46B** for 2026. Every hyperscaler's plan to *reduce* Nvidia dependence runs through Broadcom — which is why Broadcom wins no matter who wins the model layer.
+The counterweight is Broadcom, the quiet winner of the war. It co-designs Google's TPUs (a long-term agreement running through 2031), builds Meta's custom accelerators through 2029, and is producing 10 GW of custom chips for OpenAI. Its overall AI revenue is projected near <strong class="hi">$46B</strong> for 2026. Every hyperscaler's plan to *reduce* Nvidia dependence runs through Broadcom — which is why Broadcom wins no matter who wins the model layer.
 
 ## The circularity problem
 
@@ -228,6 +228,21 @@ The same web supports opposite conclusions. What separates them is not the deals
 | Google → SpaceX (Colossus) | <span class="aw-badge aw-badge-co">Compute</span> | $920M / month |
 | Meta capex 2026 | <span class="aw-badge aw-badge-infra">Infrastructure</span> | $125–145B |
 
+</div>
+
+<div class="dv">
+  <div class="dv-title">Headline deal size from the table above, in billions of US dollars</div>
+  <div class="dv-legend"><span><i style="background:var(--dv-blue)"></i>Equity</span><span><i style="background:var(--dv-orange)"></i>Compute</span><span><i style="background:var(--dv-aqua)"></i>Infrastructure</span></div>
+  <div class="dv-row"><div class="dv-label">Stargate (infrastructure)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill aqua" style="width:100.0%" title="Stargate (infrastructure): $500B target"></div></div><span class="dv-val"><b>$500B</b> target</span></div></div>
+  <div class="dv-row"><div class="dv-label">OpenAI to Oracle (compute)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:60.0%" title="OpenAI to Oracle (compute): $300B / 5 yrs"></div></div><span class="dv-val"><b>$300B</b> / 5 yrs</span></div></div>
+  <div class="dv-row"><div class="dv-label">OpenAI to Microsoft Azure (compute)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:50.0%" title="OpenAI to Microsoft Azure (compute): $250B"></div></div><span class="dv-val"><b>$250B</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Anthropic to Google Cloud (compute)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:40.0%" title="Anthropic to Google Cloud (compute): $200B / 5 yrs"></div></div><span class="dv-val"><b>$200B</b> / 5 yrs</span></div></div>
+  <div class="dv-row"><div class="dv-label">Microsoft to OpenAI (equity)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:27.0%" title="Microsoft to OpenAI (equity): ≈$135B"></div></div><span class="dv-val"><b>≈$135B</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Anthropic to AWS (compute)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:20.0%" title="Anthropic to AWS (compute): $100B+ / decade"></div></div><span class="dv-val"><b>$100B+</b> / decade</span></div></div>
+  <div class="dv-row"><div class="dv-label">Nvidia to OpenAI (equity)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:20.0%" title="Nvidia to OpenAI (equity): up to $100B"></div></div><span class="dv-val"><b>up to $100B</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Google to Anthropic (equity)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:8.0%" title="Google to Anthropic (equity): up to $40B"></div></div><span class="dv-val"><b>up to $40B</b></span></div></div>
+  <div class="dv-row"><div class="dv-label">Microsoft + Nvidia to Anthropic (equity)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:3.0%" title="Microsoft + Nvidia to Anthropic (equity): ≈$15B"></div></div><span class="dv-val"><b>≈$15B</b></span></div></div>
+  <div class="dv-note">Bars share one scale. Time horizons differ (five years, a decade, or open-ended), so read this as order of magnitude. Left out because they are not a single dollar total: Amazon to Anthropic ($13B + $20B pledged), OpenAI-AMD (6 GW), the SpaceX monthly rentals and Meta capex (a range).</div>
 </div>
 
 *Figures reflect public reporting as of July 2026. Committed amounts are multi-year and often milestone-contingent — treat them as order-of-magnitude, not booked revenue. Private valuations are last-round marks, not cash-flow-based. The map is a snapshot; deals of this size change monthly.*

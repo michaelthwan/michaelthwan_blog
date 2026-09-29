@@ -51,7 +51,7 @@ thumbnail: "/img/deepseek-v4/thumbnail.png?v=2"
 
 The headline is easy to miss.
 
-Yes, `DeepSeek-V4-Pro` is large at `1.6T` total parameters with `49B` active, and `DeepSeek-V4-Flash` is still huge at `284B` total with `13B` active. But the more important point is that both models support a `1M-token` context window, and the paper is explicit about why that matters: DeepSeek sees **test-time scaling** and **long-horizon agentic work** as the next frontier.
+Yes, `DeepSeek-V4-Pro` is large at <strong class="hi">`1.6T`</strong> total parameters with `49B` active, and `DeepSeek-V4-Flash` is still huge at `284B` total with `13B` active. But the more important point is that both models support a <strong class="hi">`1M-token`</strong> context window, and the paper is explicit about why that matters: DeepSeek sees **test-time scaling** and **long-horizon agentic work** as the next frontier.
 
 That changes the way we should read the release. V4 is not just a bigger open model. It is a model trying to make **very long context economically usable by default**.
 
@@ -66,8 +66,8 @@ That changes the way we should read the release. V4 is not just a bigger open mo
 
 The right half of that figure is the real story. DeepSeek reports that at `1M` context:
 
-- `V4-Pro` needs only `27%` of the single-token inference FLOPs of `DeepSeek-V3.2`
-- `V4-Pro` needs only `10%` of the KV cache
+- `V4-Pro` needs only <strong class="hi">`27%`</strong> of the single-token inference FLOPs of `DeepSeek-V3.2`
+- `V4-Pro` needs only <strong class="hi">`10%`</strong> of the KV cache
 - `V4-Flash` goes even lower on both curves
 
 If those gains hold in practice, the model can spend more of its budget on actual reasoning instead of just hauling around context.

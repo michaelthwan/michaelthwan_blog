@@ -134,7 +134,7 @@ Before the explanation, the evidence. The authors characterize the specks along 
 
 ### Clue 1: they are loud
 
-Each output token is a vector. Measure its length (its norm) for every patch across many images, and the patches split into two groups. Most sit in a tight band. A small group has norms many times larger. In DINOv2 ViT-g, about **2.4%** of patch tokens exceed a norm of 150; the bright specks in Figure 1 are exactly these high-norm tokens.
+Each output token is a vector. Measure its length (its norm) for every patch across many images, and the patches split into two groups. Most sit in a tight band. A small group has norms many times larger. In DINOv2 ViT-g, about <strong class="hi">2.4%</strong> of patch tokens exceed a norm of 150; the bright specks in Figure 1 are exactly these high-norm tokens.
 
 <figure class="d-figure">
     <div class="d-figure-content">
@@ -277,7 +277,7 @@ A register has no pixels behind it and no output job. It starts as a learned vec
 2. **Train as usual.** Registers join every attention operation.
 3. **Discard them at the output.** Downstream tasks use [CLS] and the patch tokens as before.
 
-The cost is small: with 4 registers, compute grows by under 2%; with 16, by up to 6%. The real cost is elsewhere: the paper's models are **trained from scratch** with registers, because the hijacking habit is learned in pretraining.
+The cost is small: with 4 registers, compute grows by <strong class="hi">under 2%</strong>; with 16, by up to 6%. The real cost is elsewhere: the paper's models are **trained from scratch** with registers, because the hijacking habit is learned in pretraining.
 
 ### How many registers?
 
@@ -342,7 +342,31 @@ The clearest win is for methods that **read the attention and feature maps direc
     </table>
 </div>
 
-The metric is corloc: the share of images where the predicted box overlaps a real object enough to count. For DINOv2, object discovery jumps by 15 to 20 points on every benchmark, and DeiT-III more than doubles. OpenCLIP is the exception and gets slightly worse, a reminder that registers fix one specific failure rather than everything.
+<div class="dv">
+  <div class="dv-title">LOST object discovery on VOC 2007 (corloc, %): without versus with registers</div>
+  <div class="dv-legend"><span><i style="background:var(--dv-blue)"></i>Without registers</span><span><i style="background:var(--dv-orange)"></i>With registers</span></div>
+  <div class="dv-row"><div class="dv-label">DINOv2, no registers</div>
+    <div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:35.3%" title="DINOv2 without registers: 35.3"></div></div>
+    <span class="dv-val"><b>35.3</b> %</span></div></div>
+  <div class="dv-row"><div class="dv-label">DINOv2, with registers</div>
+    <div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:55.4%" title="DINOv2 with registers: 55.4"></div></div>
+    <span class="dv-val"><b>55.4</b> %</span></div></div>
+  <div class="dv-row"><div class="dv-label">DeiT-III, no registers</div>
+    <div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:11.7%" title="DeiT-III without registers: 11.7"></div></div>
+    <span class="dv-val"><b>11.7</b> %</span></div></div>
+  <div class="dv-row"><div class="dv-label">DeiT-III, with registers</div>
+    <div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:27.1%" title="DeiT-III with registers: 27.1"></div></div>
+    <span class="dv-val"><b>27.1</b> %</span></div></div>
+  <div class="dv-row"><div class="dv-label">OpenCLIP, no registers</div>
+    <div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:38.8%" title="OpenCLIP without registers: 38.8"></div></div>
+    <span class="dv-val"><b>38.8</b> %</span></div></div>
+  <div class="dv-row"><div class="dv-label">OpenCLIP, with registers</div>
+    <div class="dv-bar"><div class="dv-track"><div class="dv-fill orange" style="width:37.1%" title="OpenCLIP with registers: 37.1"></div></div>
+    <span class="dv-val"><b>37.1</b> %</span></div></div>
+  <div class="dv-note">Bars start at 0 and run to 100%. Values are the VOC 2007 column of the table above; VOC 2012 and COCO 20k follow the same pattern.</div>
+</div>
+
+The metric is corloc: the share of images where the predicted box overlaps a real object enough to count. For DINOv2, object discovery jumps by <strong class="hi">15 to 20 points</strong> on every benchmark, and DeiT-III more than doubles. OpenCLIP is the exception and gets slightly worse, a reminder that registers fix one specific failure rather than everything.
 
 <div class="vr-callout vr-callout-tip">
     <strong>The capability was already there.</strong> LOST was designed around the original DINO, which has no specks.
@@ -390,7 +414,7 @@ A 2025 follow-up, *Vision Transformers Don't Need Trained Registers* (Jiang et a
 
 **2. Three clues point to it.** The tokens are loud (norms many times larger), they sit on patches that copy their neighbours, and they appear only in big models, mid-network, after a third of training.
 
-**3. Probes confirm the trade.** High-norm tokens forget where they are (22.8% vs 41.7% position accuracy) and know more about the whole image (69.0% vs 65.8%).
+**3. Probes confirm the trade.** High-norm tokens forget where they are (<strong class="hi">22.8%</strong> vs <strong class="hi">41.7%</strong> position accuracy) and know more about the whole image (69.0% vs 65.8%).
 
 **4. Registers are the fix.** A few learnable tokens that are discarded at the output give the model legitimate scratch space. One removes the artifacts; four is the default, at under 2% extra compute.
 

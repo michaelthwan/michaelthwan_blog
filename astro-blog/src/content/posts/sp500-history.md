@@ -67,7 +67,7 @@ thumbnail: "/img/sp500/thumbnail.svg"
 
 ## The Big Picture
 
-A hundred dollars invested in the S&P 500 on January 1, 1926, with dividends reinvested, would have grown to approximately **$1.48 million** by 2024 — a compounded annual growth rate of **10.3%**. That single number masks a century of crashes, wars, pandemics, and policy experiments. The theme of this whole article lives in that tension: **every crash felt terminal while it was happening, and the system compounded anyway.**
+A hundred dollars invested in the S&P 500 on January 1, 1926, with dividends reinvested, would have grown to approximately <strong class="hi">$1.48 million</strong> by 2024 — a compounded annual growth rate of <strong class="hi">10.3%</strong>. That single number masks a century of crashes, wars, pandemics, and policy experiments. The theme of this whole article lives in that tension: **every crash felt terminal while it was happening, and the system compounded anyway.**
 
 How does a line survive an 85% collapse and still end up at $1.48 million? The chart below shows the full journey. On a logarithmic scale, the long-term trend is unmistakable: **an upward march punctuated by sharp but temporary setbacks.** Hover over the line to see exact values at any point.
 
@@ -107,7 +107,7 @@ The S&P 500 rose two-and-a-half-fold between January 1926 and its September 1929
 
 ### The Great Depression (-85%)
 
-Then came the crash. From September 1929 to June 1932, the S&P 500 fell from a monthly average of 31.3 to 4.8 — an **85% decline** that remains the worst bear market in U.S. history (on daily closes, the drop was 86%, from 31.86 to 4.40). The index wouldn't recover to its 1929 peak until **September 1954**, a full 25 years later.
+Then came the crash. From September 1929 to June 1932, the S&P 500 fell from a monthly average of 31.3 to 4.8 — an <strong class="hi">85% decline</strong> that remains the worst bear market in U.S. history (on daily closes, the drop was 86%, from 31.86 to 4.40). The index wouldn't recover to its 1929 peak until **September 1954**, a full 25 years later.
 
 The decline wasn't a single event. It came in waves: an initial 34% crash in the fall of 1929, a deceptive +24% rebound into April 1930, then a grinding two-year, 81% descent as bank failures cascaded through the economy. By 1932, unemployment reached 25% and GDP had contracted by a third.
 
@@ -221,7 +221,7 @@ Russia's invasion of Ukraine in 2022, combined with post-pandemic inflation and 
 
 ## Bull vs. Bear: By the Numbers
 
-Three eras of anecdotes invite a statistical question: across all 43 swings, are the ups actually bigger than the downs — or does it just feel that way in hindsight? The answer is unambiguous: **bull markets are longer and larger than bear markets.** Measured on monthly averages with a 15% reversal threshold, the average bull run gains 115% over 3.3 years. The average decline loses 30% over 1.2 years.
+Three eras of anecdotes invite a statistical question: across all 43 swings, are the ups actually bigger than the downs — or does it just feel that way in hindsight? The answer is unambiguous: **bull markets are longer and larger than bear markets.** Measured on monthly averages with a 15% reversal threshold, the average bull run gains <strong class="hi">115%</strong> over 3.3 years. The average decline loses 30% over 1.2 years.
 
 <div class="d-table-wrapper">
 <table class="sp500-stats-table">
@@ -238,23 +238,25 @@ Three eras of anecdotes invite a statistical question: across all 43 swings, are
             <td><strong>Shortest</strong></td>
             <td>1932 Summer Rally</td>
             <td>3 Months</td>
-            <td class="sp500-gain">+73%</td>
+            <td class="sp500-gain dbar" style="--v:0.141">+73%</td>
         </tr>
         <tr>
             <td><strong>Average</strong></td>
             <td>—</td>
             <td>3.3 Years</td>
-            <td class="sp500-gain">+115%</td>
+            <td class="sp500-gain dbar" style="--v:0.223">+115%</td>
         </tr>
         <tr>
             <td><strong>Longest</strong></td>
             <td>Post-Black Monday (1987–2000)</td>
             <td>12.7 Years</td>
-            <td class="sp500-gain">+516%</td>
+            <td class="sp500-gain dbar" style="--v:1.0">+516%</td>
         </tr>
     </tbody>
 </table>
 </div>
+
+<div class="dv"><div class="dv-note">Bars in the Gain and Loss columns of both tables share one scale (+516% fills the cell); longer means larger, not better or worse. Duration is left uncoded because it mixes months and years.</div></div>
 
 <div class="d-table-wrapper">
 <table class="sp500-stats-table">
@@ -271,19 +273,19 @@ Three eras of anecdotes invite a statistical question: across all 43 swings, are
             <td><strong>Shortest</strong></td>
             <td>COVID Crash (2020)</td>
             <td>2 Months</td>
-            <td class="sp500-loss">-19%</td>
+            <td class="sp500-loss dbar" style="--v:0.037">-19%</td>
         </tr>
         <tr>
             <td><strong>Average</strong></td>
             <td>—</td>
             <td>1.2 Years</td>
-            <td class="sp500-loss">-30%</td>
+            <td class="sp500-loss dbar" style="--v:0.058">-30%</td>
         </tr>
         <tr>
             <td><strong>Longest</strong></td>
             <td>Great Depression</td>
             <td>2.8 Years</td>
-            <td class="sp500-loss">-85%</td>
+            <td class="sp500-loss dbar" style="--v:0.165">-85%</td>
         </tr>
     </tbody>
 </table>
@@ -305,6 +307,16 @@ How long does it take to recover from a crash? The answer varies enormously:
 - **Housing crisis (2007):** 5.4 years
 - **Great Depression (1929):** 25 years — though dividends reinvested cut this significantly
 
+<div class="dv">
+  <div class="dv-title">Years to recover to the pre-crash peak, by crash</div>
+  <div class="dv-row"><div class="dv-label">Great Depression (1929)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:100%" title="Great Depression: 25 years"></div></div><span class="dv-val"><b>25</b> years</span></div></div>
+  <div class="dv-row"><div class="dv-label">Black Monday (1987)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:8%" title="Black Monday: just under 2 years"></div></div><span class="dv-val"><b>~2</b> years</span></div></div>
+  <div class="dv-row"><div class="dv-label">Dot-com bust (2000)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:28%" title="Dot-com bust: about 7 years"></div></div><span class="dv-val"><b>~7</b> years</span></div></div>
+  <div class="dv-row"><div class="dv-label">Housing crisis (2007)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:21.6%" title="Housing crisis: 5.4 years"></div></div><span class="dv-val"><b>5.4</b> years</span></div></div>
+  <div class="dv-row"><div class="dv-label">COVID crash (2020)</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:2%" title="COVID crash: 6 months"></div></div><span class="dv-val"><b>6</b> months</span></div></div>
+  <div class="dv-note">Values from the list above; Black Monday is drawn at 2 years ("just under 2") and the dot-com bust at 7 ("about 7"). Bars share one scale in years.</div>
+</div>
+
 The trend is toward **faster recoveries**, likely because modern central banks intervene more aggressively than their predecessors. The Federal Reserve's toolkit has expanded dramatically since the 1930s.
 
 ## Valuation Through the Decades
@@ -320,7 +332,7 @@ If crashes can't be timed, is there *anything* in the data that says something a
     </div>
 </div>
 
-The pattern is striking. The two highest CAPE readings in history — **44 in late 1999** and **39 in late 2021** — both preceded significant drawdowns. The lowest readings — single digits in 1932, 1942, and 1982 — marked the starting points of some of the greatest bull markets ever. In mid-1982, with CAPE below 7, the next 18 years would deliver a **more than 13-fold increase** in the S&P 500.
+The pattern is striking. The two highest CAPE readings in history — <strong class="hi">44 in late 1999</strong> and **39 in late 2021** — both preceded significant drawdowns. The lowest readings — single digits in 1932, 1942, and 1982 — marked the starting points of some of the greatest bull markets ever. In mid-1982, with CAPE below 7, the next 18 years would deliver a <strong class="hi">more than 13-fold increase</strong> in the S&P 500.
 
 But CAPE is not a timing tool. By late 1996 the ratio had surpassed its 1929 peak of 27 — already "expensive" by historical standards — and the market still **doubled** over the following three years before the dot-com crash.
 

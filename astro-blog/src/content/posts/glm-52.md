@@ -48,7 +48,7 @@ For most of the last two years, the story of frontier AI was a story of closed l
 
 GLM-5.2 is the model that makes that framing feel out of date.
 
-Released by the Chinese lab Zhipu AI under a permissive **MIT license** — no regional limits, no usage restrictions — GLM-5.2 is, by Z.ai's evaluations, **the highest-ranked open-source model**. It quadruples its predecessor's context window from 200K to **1M tokens**, and on long-horizon coding tasks it slots in **between Claude Opus 4.7 and 4.8** while beating GPT-5.5. You can download the weights, run them on your own hardware, and use them commercially.
+Released by the Chinese lab Zhipu AI under a permissive **MIT license** — no regional limits, no usage restrictions — GLM-5.2 is, by Z.ai's evaluations, **the highest-ranked open-source model**. It quadruples its predecessor's context window from 200K to <strong class="hi">1M tokens,</strong> and on long-horizon coding tasks it slots in **between Claude Opus 4.7 and 4.8** while beating GPT-5.5. You can download the weights, run them on your own hardware, and use them commercially.
 
 The most direct way to see what changed is to look at agentic coding performance as a function of how much the model is allowed to "think":
 
@@ -212,7 +212,7 @@ $$
 $$
 </div>
 
-The reduction factor is therefore $\dfrac{D + \alpha n}{D + \alpha n / g}$. When the context $n$ is small, the indexer is negligible and the two are basically equal. But as $n$ grows, the $\alpha n$ term dominates and the ratio approaches $g$. At a 1M-token context with $g = 4$, GLM-5.2 reports a **2.9× reduction in per-token FLOPs** — most of the way to the theoretical 4× ceiling.
+The reduction factor is therefore $\dfrac{D + \alpha n}{D + \alpha n / g}$. When the context $n$ is small, the indexer is negligible and the two are basically equal. But as $n$ grows, the $\alpha n$ term dominates and the ratio approaches $g$. At a 1M-token context with $g = 4$, GLM-5.2 reports a <strong class="hi">2.9× reduction in per-token FLOPs</strong> — most of the way to the theoretical 4× ceiling.
 
 <div class="g52-callout g52-callout-warn">
     <strong>The cost of sharing is staleness.</strong> A layer reusing indices from three layers back can miss a token that only just became relevant. GLM-5.2's answer is empirical: it trains with IndexShare from mid-training (at a 128K sequence length) so the model <em>learns</em> to work within the constraint. The result still <strong>outperforms</strong> the previous version on long-context benchmarks while using less compute.
@@ -261,7 +261,7 @@ IndexShare cuts the indexing cost, but two more changes do the heavy lifting for
 
 **KVShare** lets the Multi-Token Prediction module reuse the main model's KV cache instead of maintaining its own — important because, past 200K tokens, the bottleneck is no longer compute but **KV-cache capacity**.
 
-**Multi-Token Prediction (MTP)** is GLM-5.2's speculative-decoding engine. A small MTP head drafts several future tokens at once, which the main model then verifies in a single pass — accepted drafts are free speed. GLM-5.2 retrains this head with two goals: minimize the draft loss and maximize the acceptance rate. With the number of MTP steps set to 7, the **acceptance length rises ~20% over the baseline** (from 4.56 to 5.47 accepted tokens per step in coding scenarios — see the right panel of Figure 2). IndexShare is applied to the MTP layer too: the indexer runs on the first speculative step and the rest reuse its indices.
+**Multi-Token Prediction (MTP)** is GLM-5.2's speculative-decoding engine. A small MTP head drafts several future tokens at once, which the main model then verifies in a single pass — accepted drafts are free speed. GLM-5.2 retrains this head with two goals: minimize the draft loss and maximize the acceptance rate. With the number of MTP steps set to 7, the <strong class="hi">acceptance length rises ~20% over the baseline</strong> (from 4.56 to 5.47 accepted tokens per step in coding scenarios — see the right panel of Figure 2). IndexShare is applied to the MTP layer too: the indexer runs on the first speculative step and the rest reuse its indices.
 
 <figure class="d-figure">
     <div class="d-figure-content">
@@ -291,7 +291,7 @@ These tricks compound. Because GLM-5.1 simply runs out of context past 200K, the
 
 ## Benchmark Results
 
-Across eight standard LLM benchmarks evaluated at maximum thinking effort, GLM-5.2 improves on GLM-5.1 by a wide margin and closes much of the gap to the closed-source frontier. The clearest single jump is on **Terminal-Bench 2.1 (81.0 vs. 63.5)**, landing within a few points of Claude Opus 4.8 (85.0). On **SWE-bench Pro** it scores 62.1 (vs. 58.4 for GLM-5.1), and it leads the comparison set on **MCP-Atlas (77.0)**.
+Across eight standard LLM benchmarks evaluated at maximum thinking effort, GLM-5.2 improves on GLM-5.1 by a wide margin and closes much of the gap to the closed-source frontier. The clearest single jump is on <strong class="hi">Terminal-Bench 2.1 (81.0 vs. 63.5),</strong> landing within a few points of Claude Opus 4.8 (85.0). On **SWE-bench Pro** it scores 62.1 (vs. 58.4 for GLM-5.1), and it leads the comparison set on **MCP-Atlas (77.0)**.
 
 <div class="d-table-wrapper" style="max-width:620px;margin:1.4em auto">
 <table class="d-table" style="text-align:left">
@@ -299,14 +299,25 @@ Across eight standard LLM benchmarks evaluated at maximum thinking effort, GLM-5
 <tr><th>Benchmark</th><th>GLM-5.2</th><th>Key comparison</th><th>Where it lands</th></tr>
 </thead>
 <tbody>
-<tr><td>Terminal-Bench 2.1</td><td>81.0</td><td>Opus 4.8: 85.0</td><td><span class="g52-badge g52-badge-close">Within ~4</span></td></tr>
-<tr><td>MCP-Atlas</td><td>77.0</td><td>Leads the set</td><td><span class="g52-badge g52-badge-lead">Best</span></td></tr>
-<tr><td>SWE-bench Pro</td><td>62.1</td><td>GLM-5.1: 58.4</td><td><span class="g52-badge g52-badge-lead">Beats prior</span></td></tr>
-<tr><td>FrontierSWE (20h)</td><td>74.4</td><td>GPT-5.5: 72.6 · Opus 4.8: 75.1</td><td><span class="g52-badge g52-badge-close">Beats GPT-5.5</span></td></tr>
-<tr><td>PostTrainBench</td><td>34.3</td><td>GPT-5.5: 25.0</td><td><span class="g52-badge g52-badge-lead">Beats GPT-5.5</span></td></tr>
-<tr><td>SWE-Marathon</td><td>13.0</td><td>GPT-5.5: 12.0</td><td><span class="g52-badge g52-badge-close">Edges GPT-5.5</span></td></tr>
+<tr><td>Terminal-Bench 2.1</td><td class="heat hot" style="--v:0.810">81.0</td><td>Opus 4.8: 85.0</td><td><span class="g52-badge g52-badge-close">Within ~4</span></td></tr>
+<tr><td>MCP-Atlas</td><td class="heat hot" style="--v:0.770">77.0</td><td>Leads the set</td><td><span class="g52-badge g52-badge-lead">Best</span></td></tr>
+<tr><td>SWE-bench Pro</td><td class="heat hot" style="--v:0.621">62.1</td><td>GLM-5.1: 58.4</td><td><span class="g52-badge g52-badge-lead">Beats prior</span></td></tr>
+<tr><td>FrontierSWE (20h)</td><td class="heat hot" style="--v:0.744">74.4</td><td>GPT-5.5: 72.6 · Opus 4.8: 75.1</td><td><span class="g52-badge g52-badge-close">Beats GPT-5.5</span></td></tr>
+<tr><td>PostTrainBench</td><td class="heat" style="--v:0.343">34.3</td><td>GPT-5.5: 25.0</td><td><span class="g52-badge g52-badge-lead">Beats GPT-5.5</span></td></tr>
+<tr><td>SWE-Marathon</td><td class="heat" style="--v:0.130">13.0</td><td>GPT-5.5: 12.0</td><td><span class="g52-badge g52-badge-close">Edges GPT-5.5</span></td></tr>
 </tbody>
 </table>
+</div>
+
+<div class="dv-note" style="max-width:620px;margin:-0.6em auto 1.2em">GLM-5.2 column: darker = larger score, all on a shared 0-100 scale.</div>
+
+<div class="dv">
+  <div class="dv-title">FrontierSWE (max 20 hours), score in %</div>
+  <div class="dv-row"><div class="dv-label">Claude Opus 4.8</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:75.1%" title="Claude Opus 4.8: 75.1%"></div></div><span class="dv-val"><b>75.1</b>%</span></div></div>
+  <div class="dv-row"><div class="dv-label">GLM-5.2</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:74.4%" title="GLM-5.2: 74.4%"></div></div><span class="dv-val"><b>74.4</b>%</span></div></div>
+  <div class="dv-row"><div class="dv-label">GPT-5.5</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:72.6%" title="GPT-5.5: 72.6%"></div></div><span class="dv-val"><b>72.6</b>%</span></div></div>
+  <div class="dv-row"><div class="dv-label">Claude Opus 4.7</div><div class="dv-bar"><div class="dv-track"><div class="dv-fill blue" style="width:63.0%" title="Claude Opus 4.7: 63.0%"></div></div><span class="dv-val"><b>63.0</b>%</span></div></div>
+  <div class="dv-note">Bars drawn on a 0-100% scale. Scores as reported in Figure 8 (Z.ai).</div>
 </div>
 
 <figure class="d-figure">
