@@ -725,9 +725,8 @@ const eventAnnotationPlugin = {
         const boxH = 20;
         const placed = [];
 
-        // Pass 1: anchor each event to the nearest rendered data point and
-        // resolve label overlaps by pushing boxes away from the line.
-        const resolved = events.map(event => {
+        // Anchor each event to the nearest rendered data point.
+        const anchors = events.map(event => {
             let nearestIdx = 0;
             let minDist = Infinity;
             for (let i = 0; i < dataset.length; i++) {
@@ -737,48 +736,84 @@ const eventAnnotationPlugin = {
                     nearestIdx = i;
                 }
             }
-            const xPixel = renderedPoints[nearestIdx].x;
-            const yPixel = renderedPoints[nearestIdx].y;
+            return { x: renderedPoints[nearestIdx].x, y: renderedPoints[nearestIdx].y };
+        });
+
+        // How badly a candidate box collides with other labels, the price
+        // line and the event dots. Labels are the worst, then the line.
+        const LINE_MARGIN = 5;
+        const DOT_MARGIN = 7;
+        const collisionCost = (bx, by, bw) => {
+            let cost = 0;
+            for (const p of placed) {
+                if (bx < p.x + p.w + 3 && bx + bw + 3 > p.x &&
+                    by < p.y + p.h + 3 && by + boxH + 3 > p.y) cost += 2000;
+            }
+            for (const pt of renderedPoints) {
+                if (pt.x < bx - LINE_MARGIN || pt.x > bx + bw + LINE_MARGIN) continue;
+                if (pt.y > by - LINE_MARGIN && pt.y < by + boxH + LINE_MARGIN) { cost += 400; break; }
+            }
+            for (const a of anchors) {
+                if (a.x > bx - DOT_MARGIN && a.x < bx + bw + DOT_MARGIN &&
+                    a.y > by - DOT_MARGIN && a.y < by + boxH + DOT_MARGIN) cost += 500;
+            }
+            return cost;
+        };
+
+        // Pass 1: search offsets around each point, preferring the event's
+        // side (bulls above, bears below), short connectors and a straight
+        // leader line, and take the cheapest collision-free spot.
+        const resolved = events.map((event, idx) => {
+            const { x: xPixel, y: yPixel } = anchors[idx];
             const isBull = event.type === 'bull';
-
-            const dy = event.dy || (isBull ? -35 : 28);
-            const dx = event.dx || 0;
             const boxW = ctx.measureText(event.label).width + pad * 2;
+            const preferUp = (event.dy || (isBull ? -1 : 1)) < 0;
 
-            let boxX = xPixel + dx - boxW / 2;
-            if (boxX < chartArea.left) boxX = chartArea.left + 2;
-            if (boxX + boxW > chartArea.right) boxX = chartArea.right - boxW - 2;
-
-            let boxY = yPixel + dy - boxH / 2;
-            const step = (dy < 0 ? -1 : 1) * (boxH + 3);
-            const overlaps = (bx, by) => placed.some(p =>
-                bx < p.x + p.w + 2 && bx + boxW + 2 > p.x &&
-                by < p.y + p.h + 2 && by + boxH + 2 > p.y);
-            let guard = 0;
-            while (overlaps(boxX, boxY) && guard < 20) {
-                boxY += step;
-                guard++;
+            let best = null;
+            for (const up of [preferUp, !preferUp]) {
+                for (let dist = 16; dist <= 190; dist += 10) {
+                    for (const dx of [0, -0.35, 0.35, -0.7, 0.7, -1.05, 1.05]) {
+                        let bx = xPixel + dx * boxW - boxW / 2;
+                        bx = Math.max(chartArea.left + 2, Math.min(bx, chartArea.right - boxW - 2));
+                        const by = up ? yPixel - dist - boxH : yPixel + dist;
+                        if (by < chartArea.top + 2 || by + boxH > chartArea.bottom - 2) continue;
+                        const score = collisionCost(bx, by, boxW) +
+                            dist + Math.abs(dx) * 40 + (up === preferUp ? 0 : 120);
+                        if (!best || score < best.score) best = { bx, by, score };
+                    }
+                }
             }
-            // Clamp vertically inside the plot area
-            if (boxY < chartArea.top + 2) boxY = chartArea.top + 2;
-            if (boxY + boxH > chartArea.bottom - 2) boxY = chartArea.bottom - boxH - 2;
-            // If clamping re-introduced an overlap, nudge back toward the line
-            guard = 0;
-            while (overlaps(boxX, boxY) && guard < 20) {
-                boxY -= step;
-                guard++;
-            }
+            if (!best) best = { bx: xPixel - boxW / 2, by: yPixel - boxH / 2 };
 
-            placed.push({ x: boxX, y: boxY, w: boxW, h: boxH });
-            return { event, xPixel, yPixel, boxX, boxY, boxW, isBull };
+            placed.push({ x: best.bx, y: best.by, w: boxW, h: boxH });
+            return { event, xPixel, yPixel, boxX: best.bx, boxY: best.by, boxW, isBull };
         });
 
         // Pass 2: draw connectors, dots, and labels. When a spotlight is
         // active, draw dimmed events first so the highlighted one sits on top.
+        // On narrow charts there is no room for every label: draw dots only,
+        // and show a label box just for the spotlighted event (the milestone
+        // chips below each chart list every event).
+        const compact = chartArea.right - chartArea.left < 520;
+
         const drawOne = ({ event, xPixel, yPixel, boxX, boxY, boxW, isBull }) => {
             const c = isBull ? palette.bull : palette.bear;
             const isSpot = spotlight !== null && event.label === spotlight;
             const isDim = spotlight !== null && !isSpot;
+
+            if (compact && !isSpot) {
+                ctx.globalAlpha = isDim ? 0.35 : 1;
+                ctx.beginPath();
+                ctx.arc(xPixel, yPixel, 5.5, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(xPixel, yPixel, 4, 0, Math.PI * 2);
+                ctx.fillStyle = c.dot;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+                return;
+            }
 
             ctx.globalAlpha = isDim ? 0.18 : 1;
 
@@ -1022,17 +1057,22 @@ function createEraChart(canvasId, startYear, endYear, events, title) {
                     max: endYear,
                     ticks: {
                         stepSize: 2,
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
-                        color: '#999',
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
+                        color: '#57606a',
                         callback: v => v % 2 === 0 ? v : ''
                     },
                     grid: {
-                        color: 'rgba(0,0,0,0.04)',
+                        color: 'rgba(0,0,0,0.07)',
                         drawTicks: true
                     }
                 },
                 y: {
                     type: 'logarithmic',
+                    // Extra room above peaks and below troughs for the labels.
+                    afterDataLimits(scale) {
+                        scale.min = scale.min / 1.45;
+                        scale.max = scale.max * 1.45;
+                    },
                     title: {
                         display: true,
                         text: 'S&P 500',
@@ -1040,11 +1080,11 @@ function createEraChart(canvasId, startYear, endYear, events, title) {
                         color: '#777'
                     },
                     grid: {
-                        color: 'rgba(0,0,0,0.04)'
+                        color: 'rgba(0,0,0,0.07)'
                     },
                     ticks: {
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
-                        color: '#999',
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
+                        color: '#57606a',
                         callback: function(value) {
                             const vals = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000];
                             if (vals.includes(value)) return value.toLocaleString();
@@ -1154,24 +1194,28 @@ function createOverviewChart(canvasId) {
                     },
                     ticks: {
                         stepSize: 5,
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
-                        color: '#999',
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
+                        color: '#57606a',
                         callback: v => v % 10 === 0 ? v : ''
                     },
-                    grid: { color: 'rgba(0,0,0,0.04)' }
+                    grid: { color: 'rgba(0,0,0,0.07)' }
                 },
                 y: {
                     type: 'logarithmic',
+                    afterDataLimits(scale) {
+                        scale.min = scale.min / 1.6;
+                        scale.max = scale.max * 1.35;
+                    },
                     title: {
                         display: true,
                         text: 'S&P 500 (Log Scale)',
                         font: { size: 12, family: 'Inter, system-ui, sans-serif' },
                         color: '#777'
                     },
-                    grid: { color: 'rgba(0,0,0,0.04)' },
+                    grid: { color: 'rgba(0,0,0,0.07)' },
                     ticks: {
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
-                        color: '#999',
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
+                        color: '#57606a',
                         callback: function(value) {
                             const vals = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000];
                             if (vals.includes(value)) return value.toLocaleString();
@@ -1343,11 +1387,11 @@ function createCapeChart(canvasId) {
                     },
                     ticks: {
                         stepSize: 5,
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
-                        color: '#999',
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
+                        color: '#57606a',
                         callback: v => v % 10 === 0 ? v : ''
                     },
-                    grid: { color: 'rgba(0,0,0,0.04)' }
+                    grid: { color: 'rgba(0,0,0,0.07)' }
                 },
                 yCape: {
                     type: 'linear',
@@ -1360,10 +1404,10 @@ function createCapeChart(canvasId) {
                     },
                     min: 0,
                     max: 50,
-                    grid: { color: 'rgba(0,0,0,0.04)' },
+                    grid: { color: 'rgba(0,0,0,0.07)' },
                     ticks: {
                         stepSize: 5,
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
                         color: '#e65100'
                     }
                 },
@@ -1378,7 +1422,7 @@ function createCapeChart(canvasId) {
                     },
                     grid: { drawOnChartArea: false },
                     ticks: {
-                        font: { size: 10, family: 'Inter, system-ui, sans-serif' },
+                        font: { size: 11, family: 'Inter, system-ui, sans-serif' },
                         color: '#1565c0',
                         callback: function(value) {
                             const vals = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000];

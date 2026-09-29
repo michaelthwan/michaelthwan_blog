@@ -1,6 +1,6 @@
 ---
 title: "Vision Transformers Need Registers"
-subtitle: "Why large ViTs develop mysterious high-norm tokens in background regions, and how adding simple register tokens fixes everything."
+subtitle: "Why large ViTs light up random specks of background, what those specks are secretly doing, and how four extra tokens make them go away."
 authors:
   - "Timothée Darcet"
   - "Maxime Oquab"
@@ -12,7 +12,7 @@ affiliations:
 published: "2023-09-28"
 doi: "arXiv:2309.16588"
 doiUrl: "https://arxiv.org/abs/2309.16588"
-abstract: "Large Vision Transformers develop artifacts—high-norm tokens in low-information areas used for internal computation. Adding learnable register tokens eliminates these artifacts and improves dense prediction tasks."
+abstract: "Large Vision Transformers show bright specks in their attention maps, on patches of plain background. The specks are patches the model has hijacked as scratch space for image-wide information, because it has nowhere else to put it. Adding a few empty 'register' tokens gives it that space: the specks disappear, attention maps become clean, and methods that read those maps work again."
 tags:
   - "explainer"
 category: "ml"
@@ -22,8 +22,8 @@ thumbnail: "/img/vit-registers/fig1-attention-comparison.png"
 <p class="d-note">
     This article explains the ICLR 2024 paper
     <a href="https://arxiv.org/abs/2309.16588">Vision Transformers Need Registers</a>
-    by Darcet et al., which discovered a surprising phenomenon in large ViT models
-    and proposed an elegantly simple fix.
+    by Darcet et al. Figures marked "from the paper" are the authors' own; the probing chart and the interactive
+    are drawn for this article from the paper's numbers and attention maps.
 </p>
 
 <style>
@@ -34,539 +34,373 @@ thumbnail: "/img/vit-registers/fig1-attention-comparison.png"
   .vr-callout-tip  { border-color: #10b981; background: #f0fdf4; color: #065f46; }
   .vr-callout-warn { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
   .vr-callout-note { border-color: #6366f1; background: #eef2ff; color: #3730a3; }
-  .vr-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
-  .vr-badge-green { background: #d1fae5; color: #065f46; }
-  .vr-badge-red   { background: #fee2e2; color: #b91c1c; }
   :root[data-theme="dark"] .vr-callout-tip  { background: rgba(16,185,129,0.10); color: #6ee7b7; }
   :root[data-theme="dark"] .vr-callout-warn { background: rgba(245,158,11,0.10); color: #fcd34d; }
   :root[data-theme="dark"] .vr-callout-note { background: rgba(99,102,241,0.12); color: #a5b4fc; }
-  :root[data-theme="dark"] .vr-badge-green { background: rgba(16,185,129,0.18); color: #6ee7b7; }
-  :root[data-theme="dark"] .vr-badge-red   { background: rgba(239,68,68,0.18); color: #fca5a5; }
+
+  /* Image rows (input / without / with) */
+  .vr-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .vr-cellfig { text-align: center; }
+  .vr-cellfig img { width: 150px; height: auto; display: block; border-radius: 3px; }
+  .vr-cellfig span { display: block; font-size: 12px; color: #57606a; margin-top: 5px; }
+  .vr-row-small .vr-cellfig img { width: 104px; }
+
+  /* Probing chart */
+  .vr-box {
+    border: 1px solid var(--color-border); border-radius: 10px; padding: 18px 20px;
+    margin: 24px 0; background: var(--color-surface);
+  }
+  .vr-box h3 { margin-top: 0; }
+  .vr-desc { color: var(--color-gray); font-size: 0.9rem; margin: 0 0 14px 0; }
+  .vr-probe { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .vr-probe-title { font-weight: 700; font-size: 0.95rem; }
+  .vr-probe-sub { font-size: 0.8rem; color: var(--color-gray); margin-bottom: 10px; }
+  .vr-probe-row { display: grid; grid-template-columns: 96px 1fr 48px; gap: 8px; align-items: center; margin: 7px 0; font-size: 0.85rem; }
+  .vr-probe-track { height: 16px; background: var(--color-border); border-radius: 3px; position: relative; }
+  .vr-probe-bar { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; }
+  .vr-probe-bar.normal { background: var(--color-blue); }
+  .vr-probe-bar.hijacked { background: var(--color-orange); }
+  .vr-probe-bar.cls { background: var(--color-gray); }
+  .vr-probe-val { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+  .vr-probe-axis { display: grid; grid-template-columns: 96px 1fr 48px; gap: 8px; font-size: 0.72rem; color: var(--color-gray); }
+  .vr-probe-axis div { display: flex; justify-content: space-between; }
+  .vr-probe-note { font-size: 0.85rem; color: var(--color-gray); margin-top: 14px; }
+
+  /* Interactive */
+  .vr-controls { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; font-size: 0.85rem; }
+  .vr-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; }
+  .vr-seg button {
+    border: 0; padding: 5px 12px; font: inherit; font-size: 0.85rem; cursor: pointer;
+    background: var(--color-bg); color: var(--color-text);
+  }
+  .vr-seg button + button { border-left: 1px solid var(--color-border); }
+  .vr-seg button.vr-on { background: var(--color-accent-emphasis); color: #fff; font-weight: 600; }
+  .vr-ctl-label { font-weight: 600; margin-right: 6px; }
+  .vr-hijack-layout { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: start; }
+  .vr-maps { display: flex; gap: 10px; align-items: flex-start; }
+  .vr-maps figure { margin: 0; text-align: center; font-size: 12px; color: var(--color-gray); }
+  .vr-maps img { display: block; border-radius: 4px; }
+  .vr-stage { position: relative; width: 260px; height: 260px; cursor: crosshair; }
+  .vr-stage img { width: 260px; height: 260px; image-rendering: pixelated; }
+  #vr-hijack-overlay { position: absolute; inset: 0; pointer-events: none; }
+  .vr-ring {
+    position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px;
+    border: 2px solid #ff8c1a; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+  }
+  .vr-slots { display: flex; gap: 6px; margin: 6px 0 12px; }
+  .vr-slot {
+    width: 44px; height: 30px; border: 1.5px dashed var(--color-border); border-radius: 5px;
+    display: flex; align-items: center; justify-content: center; font-size: 0.72rem; color: var(--color-gray);
+  }
+  .vr-slot.vr-slot-on { border-style: solid; border-color: #d4a017; background: rgba(212,160,23,0.18); color: var(--color-text); font-weight: 600; }
+  .vr-side h4 { margin: 0 0 2px; font-size: 0.85rem; }
+  .vr-count { font-size: 0.9rem; margin: 10px 0; }
+  .vr-hover { font-size: 0.85rem; color: var(--color-gray); min-height: 3.6em; border-left: 3px solid var(--color-border); padding-left: 10px; }
+  .vr-takeaway { margin-top: 14px; font-size: 0.9rem; line-height: 1.55; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 6px; padding: 10px 12px; }
+
+  @media (max-width: 680px) {
+    .vr-probe { grid-template-columns: 1fr; }
+    .vr-hijack-layout { grid-template-columns: 1fr; }
+    .vr-maps { justify-content: center; }
+    .vr-maps figure:first-child { display: none; }
+  }
 </style>
 
-One idea holds this whole story together: **the artifacts are the model asking for scratch space.** A large ViT needs somewhere to stash global information mid-computation, has no dedicated slot for it, and so hijacks the least useful patch tokens. The fix is to simply hand it the scratch space it was improvising. Everything below is that arc — the symptom, the diagnosis, the one-line cure.
+## A speck of sky that will not stay quiet
 
-## The Mystery: Artifacts in Vision Transformers
-
-Something strange happens in large Vision Transformers. When you visualize their attention maps or feature norms, you see scattered "spikes"—patches with abnormally high values appearing in seemingly random locations, mostly in uniform background regions.
+Ask a Vision Transformer where it is looking, and you expect its attention to settle on the object. The usual way to ask is to plot the attention of [CLS], the extra token whose output summarizes the image. For the original DINO model, that is what happens. For the big modern ViTs that everyone builds on, something else shows up too: a handful of bright specks scattered over plain background, far from anything interesting.
 
 <figure class="d-figure">
     <div class="d-figure-content">
-        <img src="/img/vit-registers/fig1-attention-comparison.png" alt="Attention maps with and without registers" style="max-width: 100%; height: auto;">
-    </div>
-    <figcaption class="d-figure-caption">
-        <strong>Figure 1 from the paper:</strong> Attention maps from DeiT-III, OpenCLIP, and DINOv2 models. Left column shows artifacts as bright spots scattered across images. Right column shows clean attention maps after adding registers.
-    </figcaption>
-</figure>
-
-These aren't random glitches. They appear consistently across different training paradigms:
-
-- **DeiT-III** (supervised on labels)
-- **OpenCLIP** (supervised on text-image pairs)
-- **DINOv2** (self-supervised)
-
-The only model that *doesn't* show these artifacts? The original DINO. Understanding why reveals something fundamental about how Vision Transformers process information.
-
-## Characterizing the Artifacts
-
-### They Have Extremely High Norms
-
-The artifacts correspond to tokens whose output feature vectors have roughly **10x higher norm** than normal patches. When you plot the distribution of token norms across many images, you see a clear bimodal pattern:
-
-<figure class="d-figure">
-    <div class="d-figure-content">
-        <img src="/img/vit-registers/fig7-before-after.png" alt="Bimodal distribution of token norms" style="max-width: 100%; height: auto;">
-    </div>
-    <figcaption class="d-figure-caption">
-        <strong>Figure 7 from the paper:</strong> Distribution of token norms across DINOv2, CLIP, and DeiT-III models. Without registers (left of each pair), a clear bimodal distribution shows ~2-3% of tokens with anomalously high norms. With registers (right), the distribution becomes unimodal.
-    </figcaption>
-</figure>
-
-<div class="vr-callout vr-callout-note">
-    <strong>The population splits cleanly in two.</strong> About 2-3% of tokens become "outliers" with norms exceeding 150, while normal tokens stay below 100. A clean bimodal split like this is a signature of two distinct roles, not one noisy population — the first hint that the outliers are doing a different job.
-</div>
-
-### They Appear in Low-Information Regions
-
-Where do these high-norm tokens appear? Not randomly—they concentrate in **patches that look similar to their neighbors**. Areas of uniform color, texture, or background.
-
-<figure class="d-figure">
-    <div class="d-figure-content">
-        <div class="artifact-location-viz">
-            <div class="location-row">
-                <div class="location-item">
-                    <div class="location-icon high-similarity"></div>
-                    <span>High neighbor similarity</span>
-                </div>
-                <span class="location-arrow">→</span>
-                <div class="location-item">
-                    <div class="location-icon high-norm"></div>
-                    <span>High-norm token likely</span>
-                </div>
-            </div>
-            <div class="location-row">
-                <div class="location-item">
-                    <div class="location-icon low-similarity"></div>
-                    <span>Low neighbor similarity</span>
-                </div>
-                <span class="location-arrow">→</span>
-                <div class="location-item">
-                    <div class="location-icon normal"></div>
-                    <span>Normal token</span>
-                </div>
-            </div>
+        <div class="vr-row">
+            <div class="vr-cellfig"><img src="/img/vit-registers/sample-orig.png" alt="Input image: a moth on a flower head"><span>Input</span></div>
+            <div class="vr-cellfig"><img src="/img/vit-registers/dinov2-0reg-attn.png" alt="DINOv2 attention map with bright specks in the background"><span>DINOv2</span></div>
+            <div class="vr-cellfig"><img src="/img/vit-registers/dinov2-4reg-attn.png" alt="DINOv2 with registers: clean attention map focused on the moth and flower"><span>DINOv2 + registers</span></div>
         </div>
     </div>
     <figcaption class="d-figure-caption">
-        Outlier tokens appear where patches are redundant—conveying little unique information.
+        <strong>Figure 1.</strong> Attention of the final layer's [CLS] token, from the paper. Without registers (middle), bright specks
+        appear in the empty background. The same model trained with four register tokens (right) attends to the moth and the flower.
     </figcaption>
 </figure>
 
-### They Emerge Mid-Network, Mid-Training, in Large Models
+This is not one model's quirk. The specks appear in DeiT-III (trained on labels), OpenCLIP (trained on image-text pairs) and DINOv2 (self-supervised). Three different training methods, the same symptom.
 
-The artifacts don't exist from the start. They develop under specific conditions:
+The paper's answer, and the idea that holds this whole post together: **the specks are the model making its own scratch space.** It needs somewhere to keep information about the whole image while it computes, it has no slot for that, so it takes over patches it thinks nobody will miss. The fix is to give it the slots.
+
+## Three clues about the specks
+
+Before the explanation, the evidence. The authors characterize the specks along three lines, and each one points the same way.
+
+### Clue 1: they are loud
+
+Each output token is a vector. Measure its length (its norm) for every patch across many images, and the patches split into two groups. Most sit in a tight band. A small group has norms many times larger. In DINOv2 ViT-g, about **2.4%** of patch tokens exceed a norm of 150; the bright specks in Figure 1 are exactly these high-norm tokens.
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/vit-registers/fig7-before-after.png" alt="Token norm distributions for DINOv2, CLIP and DeiT-III, each without and with registers" style="max-width: 100%; height: auto;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 2.</strong> Output token norms, from the paper. In each pair, the left column is the model as trained normally: a dense band
+        plus a long tail of high-norm outliers. The right column is the same model trained with registers, which we return to later.
+    </figcaption>
+</figure>
+
+A population that splits cleanly in two usually means two different jobs, not one noisy job.
+
+### Clue 2: they sit on boring patches
+
+Where do the high-norm tokens appear? The authors compare each patch with its neighbours in the input. The high-norm patches are almost identical to the patches around them: a stretch of sky, a smooth wall, an out-of-focus background.
+
+<figure class="d-figure">
+    <div class="d-figure-content">
+        <img src="/img/vit-registers/fig5-similarity.png" alt="Density of cosine similarity to neighbouring patches: artifact patches pile up near 1.0" style="max-width: 360px; width: 100%; height: auto; margin: 0 auto; display: block;">
+    </div>
+    <figcaption class="d-figure-caption">
+        <strong>Figure 3.</strong> Similarity between each patch and its neighbours, from the paper. Artifact patches (orange) pile up near 1.0:
+        they are near-copies of what surrounds them, so they carry almost no information of their own.
+    </figcaption>
+</figure>
+
+In other words, the model picks the patches that are **redundant**. Losing what they say costs almost nothing, because their neighbours say the same thing.
+
+### Clue 3: they appear only when the model is big and well trained
+
+The specks are not there from the start.
 
 <figure class="d-figure">
     <div class="d-figure-content" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
-        <img src="/img/vit-registers/fig4a-layers.png" alt="Norms by layer" style="flex: 1; min-width: 200px; max-width: 280px; height: auto;">
-        <img src="/img/vit-registers/fig4b-training.png" alt="Norms by training iteration" style="flex: 1; min-width: 200px; max-width: 280px; height: auto;">
-        <img src="/img/vit-registers/fig4c-model-size.png" alt="Norms by model size" style="flex: 1; min-width: 200px; max-width: 280px; height: auto;">
+        <img src="/img/vit-registers/fig4a-layers.png" alt="Token norms by layer: a second high-norm band splits off around layer 15" style="flex: 1; min-width: 200px; max-width: 280px; height: auto;">
+        <img src="/img/vit-registers/fig4b-training.png" alt="Token norms over training: outliers appear after about a third of training" style="flex: 1; min-width: 200px; max-width: 280px; height: auto;">
+        <img src="/img/vit-registers/fig4c-model-size.png" alt="Token norms by model size: only large models have outliers" style="flex: 1; min-width: 200px; max-width: 280px; height: auto;">
     </div>
     <figcaption class="d-figure-caption">
-        <strong>Figure 4 from the paper:</strong> (a) Norms spike around layer 15 of 40. (b) Artifacts appear only after ~1/3 of training. (c) Only ViT-Large and bigger models exhibit them.
+        <strong>Figure 4.</strong> From the paper, for DINOv2. (a) A second, high-norm band splits off around layer 15 of 40.
+        (b) It appears only after about a third of training. (c) Only the Large, Huge and Giant models show it.
     </figcaption>
 </figure>
 
-<div class="d-table-wrapper">
-    <table class="d-table">
-        <thead>
-            <tr>
-                <th>Condition</th>
-                <th>Artifacts Present?</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Early layers (1-10)</td>
-                <td><span class="vr-badge vr-badge-green">None</span></td>
-            </tr>
-            <tr>
-                <td>Middle layers (15+)</td>
-                <td><span class="vr-badge vr-badge-red">Present</span></td>
-            </tr>
-            <tr>
-                <td>Early training (&lt;33%)</td>
-                <td><span class="vr-badge vr-badge-green">None</span></td>
-            </tr>
-            <tr>
-                <td>Late training (&gt;33%)</td>
-                <td><span class="vr-badge vr-badge-red">Present</span></td>
-            </tr>
-            <tr>
-                <td>Small models (ViT-S/B)</td>
-                <td><span class="vr-badge vr-badge-green">None</span></td>
-            </tr>
-            <tr>
-                <td>Large models (ViT-L/H/g)</td>
-                <td><span class="vr-badge vr-badge-red">Present</span></td>
-            </tr>
-        </tbody>
-    </table>
+A behavior that needs depth, training time and capacity is not a bug in the data or the code. It is something the model **learns to do** once it is strong enough to benefit from it.
+
+## What the specks are doing
+
+So the model deliberately overwrites a few redundant patches. With what? The authors answer with **linear probes**: small linear classifiers trained on frozen token vectors, which test what information a token still holds. They probe normal patches and high-norm patches for two kinds of information.
+
+<div class="vr-box">
+  <h3>What a patch token still knows</h3>
+  <p class="vr-desc">Linear-probe results from Table 1 of the paper, DINOv2 ViT-g. Longer bars mean the information is still in the token.</p>
+  <div class="vr-probe">
+    <div>
+      <div class="vr-probe-title">Local: where is this patch?</div>
+      <div class="vr-probe-sub">position prediction accuracy</div>
+      <div class="vr-probe-row"><span>Normal patch</span><div class="vr-probe-track"><div class="vr-probe-bar normal" style="width: 41.7%"></div></div><span class="vr-probe-val">41.7%</span></div>
+      <div class="vr-probe-row"><span>High-norm patch</span><div class="vr-probe-track"><div class="vr-probe-bar hijacked" style="width: 22.8%"></div></div><span class="vr-probe-val">22.8%</span></div>
+      <div class="vr-probe-axis"><span></span><div><span>0</span><span>50</span><span>100%</span></div><span></span></div>
+    </div>
+    <div>
+      <div class="vr-probe-title">Global: what is in the image?</div>
+      <div class="vr-probe-sub">ImageNet classification accuracy</div>
+      <div class="vr-probe-row"><span>Normal patch</span><div class="vr-probe-track"><div class="vr-probe-bar normal" style="width: 65.8%"></div></div><span class="vr-probe-val">65.8%</span></div>
+      <div class="vr-probe-row"><span>High-norm patch</span><div class="vr-probe-track"><div class="vr-probe-bar hijacked" style="width: 69.0%"></div></div><span class="vr-probe-val">69.0%</span></div>
+      <div class="vr-probe-row"><span>[CLS] token</span><div class="vr-probe-track"><div class="vr-probe-bar cls" style="width: 86.0%"></div></div><span class="vr-probe-val">86.0%</span></div>
+      <div class="vr-probe-axis"><span></span><div><span>0</span><span>50</span><span>100%</span></div><span></span></div>
+    </div>
+  </div>
+  <p class="vr-probe-note">A third probe agrees with the first: reconstructing the patch's own pixels is harder from a high-norm token (error 25.23) than from a normal one (18.38).</p>
 </div>
 
-This pattern suggests the artifacts are an *emergent* behavior—something the model learns to do when it has enough capacity and training time.
-
-## The Hypothesis: Recycled Tokens for Global Computation
-
-Why would a model create these strange high-norm tokens? The paper proposes a compelling explanation:
+Read the two panels as a trade. The high-norm tokens got **worse** at their own job: knowing where they are and what pixels they cover. They got **better** at a job that was never theirs: describing the whole image. The model has erased a local patch and written a global summary in its place.
 
 <div class="vr-callout vr-callout-warn">
-    <strong>Hypothesis: the artifacts are improvised scratch space.</strong> Large, well-trained ViTs learn to identify low-information patches and repurpose them as internal "registers" for storing and computing global image information. The model is not malfunctioning — it is solving a real need with the only resource it has: your input tokens.
+    <strong>Why would a model need to do this?</strong> A transformer's only memory is its tokens. The [CLS] token already has
+    an output job, and every patch token is supposed to describe its own square of the image. There is no free slot for
+    intermediate, image-wide computation. A large model that would benefit from one makes its own, by recycling the
+    tokens whose content it can most afford to lose.
 </div>
 
-### Evidence: What Do Outlier Tokens Encode?
+## Try it: find the hijacked patches
 
-The authors probe what information these tokens contain:
+The maps below are the real attention maps from the paper, at patch resolution. The circles mark patches that are far brighter than their surroundings and that go dark in the model trained with registers, detected automatically from the two maps. Switch to the model trained with registers and watch where the global information goes.
 
-**Local information (patch position, pixel reconstruction):**
-- Normal tokens: 41.7% position accuracy, 18.38 reconstruction error
-- Outlier tokens: 22.8% position accuracy, 25.23 reconstruction error
+<div id="vr-hijack" class="vr-box interactive-container">
+  <h3>Where does the global summary go?</h3>
+  <div class="vr-controls">
+    <div><span class="vr-ctl-label">Model</span><span class="vr-seg"><button type="button" data-model="dinov2">DINOv2</button><button type="button" data-model="deit3">DeiT-III</button></span></div>
+    <div><span class="vr-ctl-label">Registers</span><span class="vr-seg"><button type="button" data-reg="0">0</button><button type="button" data-reg="4">4</button></span></div>
+  </div>
+  <div class="vr-hijack-layout">
+    <div class="vr-maps">
+      <figure><img src="/img/vit-registers/sample-orig.png" alt="Input image" width="110" height="110"><figcaption>Input</figcaption></figure>
+      <figure>
+        <div class="vr-stage">
+          <img id="vr-hijack-map" src="/img/vit-registers/dinov2-0reg-attn.png" alt="Attention map">
+          <div id="vr-hijack-overlay"></div>
+        </div>
+        <figcaption>[CLS] attention</figcaption>
+      </figure>
+    </div>
+    <div class="vr-side">
+      <h4>Register tokens</h4>
+      <div class="vr-slots"><div class="vr-slot">reg 1</div><div class="vr-slot">reg 2</div><div class="vr-slot">reg 3</div><div class="vr-slot">reg 4</div></div>
+      <div id="vr-hijack-count" class="vr-count"></div>
+      <div id="vr-hijack-hover" class="vr-hover"></div>
+    </div>
+  </div>
+  <div id="vr-hijack-takeaway" class="vr-takeaway"></div>
+</div>
 
-**Global information (image classification):**
-- Normal tokens: 65.8% ImageNet accuracy
-- Outlier tokens: 69.0% ImageNet accuracy
-- [CLS] token: 86.0% ImageNet accuracy
+DeiT-III shows the problem more strongly than DINOv2. Its specks are larger and there are more of them, which is also why methods that read its attention maps struggled most, as the results below show.
+
+## The fix: give the model registers
+
+If the model is improvising scratch space, hand it some. The paper adds a few extra learnable tokens, called **registers**, to the input sequence.
 
 <figure class="d-figure">
     <div class="d-figure-content">
-        <div class="info-comparison">
-            <div class="info-bar-group">
-                <div class="info-label">Local Info (Position)</div>
-                <div class="info-bars">
-                    <div class="info-bar normal" style="width: 41.7%">
-                        <span>Normal: 41.7%</span>
-                    </div>
-                    <div class="info-bar outlier" style="width: 22.8%">
-                        <span>Outlier: 22.8%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="info-bar-group">
-                <div class="info-label">Global Info (Classification)</div>
-                <div class="info-bars">
-                    <div class="info-bar normal" style="width: 65.8%">
-                        <span>Normal: 65.8%</span>
-                    </div>
-                    <div class="info-bar outlier" style="width: 69.0%">
-                        <span>Outlier: 69.0%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <img src="/img/vit-registers/register-architecture.png" alt="Architecture: register tokens are appended to the patch and CLS tokens at the input, and their outputs are thrown away" style="max-width: 100%; height: auto;">
     </div>
     <figcaption class="d-figure-caption">
-        Outlier tokens discard local spatial information but retain (and slightly improve) global image understanding.
+        <strong>Figure 5.</strong> From the paper. Register tokens (yellow) enter the transformer next to the patches and [CLS].
+        They take part in every attention layer, and their outputs are discarded.
     </figcaption>
 </figure>
 
-Read the numbers as a swap. The outlier tokens got **worse** at their original job — reporting where they are and what pixels they cover (position accuracy drops 41.7% → 22.8%). They got **better** at a job that was never theirs: summarizing the whole image (classification 65.8% → 69.0%). **The model overwrote a local patch with a global summary.** They are functioning as informal registers, built by hijacking patches that "shouldn't matter."
-
-## The Problem: Why This Matters
-
-If the model works, why care about these artifacts?
-
-### 1. Corrupted Feature Maps
-
-Dense prediction tasks (segmentation, depth estimation, object detection) rely on spatially coherent feature maps. Artifacts introduce noise:
-
-<figure class="d-figure">
-    <div class="d-figure-content" style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/sample-orig.png" alt="Original image" style="width: 120px; height: auto;">
-            <div style="font-size: 11px; color: #666; margin-top: 4px;">Input</div>
-        </div>
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/dinov2-0reg-attn.png" alt="DINOv2 without registers" style="width: 120px; height: auto;">
-            <div style="font-size: 11px; color: #666; margin-top: 4px;">DINOv2 (artifacts)</div>
-        </div>
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/dinov2-4reg-attn.png" alt="DINOv2 with registers" style="width: 120px; height: auto;">
-            <div style="font-size: 11px; color: #666; margin-top: 4px;">DINOv2 + registers</div>
-        </div>
-    </div>
-    <figcaption class="d-figure-caption">
-        Attention maps showing artifacts (bright scattered pixels in background) that disappear when registers are added.
-    </figcaption>
-</figure>
-
-### 2. Broken Object Discovery
-
-Methods like LOST (Large-scale Object diScovery from self-supervised Transformers) use attention maps to find objects. Artifacts catastrophically break these methods for large models—which is why researchers were stuck using smaller, less capable models.
-
-### 3. Uninterpretable Attention
-
-Attention visualization is a key tool for understanding what models "see." Artifacts make attention maps nearly useless for interpretation.
-
-## The Solution: Explicit Register Tokens
-
-The fix is remarkably simple: **give the model dedicated tokens for internal computation**.
-
-<div class="d-equation-panel">
-    <div class="d-equation-title">Register Token Formulation</div>
-    <div class="d-equation-main">
-        $$\text{Input} = [\texttt{CLS}; \texttt{reg}_1; \ldots; \texttt{reg}_N; \texttt{patch}_1; \ldots; \texttt{patch}_M]$$
-    </div>
-    <div class="d-equation-legend">
-        <div class="d-legend-item">
-            <span class="d-legend-dot cls"></span>
-            <span><strong>[CLS]</strong>: Classification token (as usual)</span>
-        </div>
-        <div class="d-legend-item">
-            <span class="d-legend-dot register"></span>
-            <span><strong>[reg]</strong>: New learnable register tokens</span>
-        </div>
-        <div class="d-legend-item">
-            <span class="d-legend-dot patch"></span>
-            <span><strong>[patch]</strong>: Image patch embeddings</span>
-        </div>
-    </div>
+<div class="d-math-block">
+$$
+\text{input} = [\texttt{CLS};\ \texttt{reg}_1, \ldots, \texttt{reg}_N;\ \texttt{patch}_1, \ldots, \texttt{patch}_M]
+$$
 </div>
 
-In words: prepend a handful of extra tokens that are not patches and not the class token. They have no pixels behind them and no output job. They exist only to give attention heads a legitimate place to read and write global information — the scratch pad the model was previously carving out of the background.
+A register has no pixels behind it and no output job. It starts as a learned vector, is updated by attention like every other token, and is thrown away at the end. Its only purpose is to give attention heads a legitimate place to read and write image-wide information. The recipe is three steps:
 
-### How Registers Work
+1. **Append $N$ learnable tokens** to the input, next to [CLS].
+2. **Train as usual.** Registers join every attention operation.
+3. **Discard them at the output.** Downstream tasks use [CLS] and the patch tokens as before.
 
-1. **Add N learnable tokens** to the input sequence (after [CLS], before patches)
-2. **Train normally**—registers participate in all attention operations
-3. **Discard registers at output**—only use [CLS] and patch tokens for downstream tasks
+The cost is small: with 4 registers, compute grows by under 2%; with 16, by up to 6%. The real cost is elsewhere: the paper's models are **trained from scratch** with registers, because the hijacking habit is learned in pretraining.
+
+### How many registers?
 
 <figure class="d-figure">
     <div class="d-figure-content">
-        <div class="register-diagram">
-            <div class="register-stage">
-                <div class="stage-label">Input</div>
-                <div class="token-sequence">
-                    <span class="token cls">[CLS]</span>
-                    <span class="token reg">reg₁</span>
-                    <span class="token reg">reg₂</span>
-                    <span class="token reg">reg₃</span>
-                    <span class="token reg">reg₄</span>
-                    <span class="token patch">p₁</span>
-                    <span class="token patch">p₂</span>
-                    <span class="token patch">...</span>
-                    <span class="token patch">pₘ</span>
-                </div>
-            </div>
-            <div class="register-arrow">↓ Transformer Layers ↓</div>
-            <div class="register-stage">
-                <div class="stage-label">Output</div>
-                <div class="token-sequence">
-                    <span class="token cls used">[CLS]</span>
-                    <span class="token reg discarded">reg₁</span>
-                    <span class="token reg discarded">reg₂</span>
-                    <span class="token reg discarded">reg₃</span>
-                    <span class="token reg discarded">reg₄</span>
-                    <span class="token patch used">p₁</span>
-                    <span class="token patch used">p₂</span>
-                    <span class="token patch used">...</span>
-                    <span class="token patch used">pₘ</span>
-                </div>
-            </div>
-            <div class="register-legend">
-                <span class="legend-item"><span class="box used"></span> Used for downstream</span>
-                <span class="legend-item"><span class="box discarded"></span> Discarded</span>
-            </div>
-        </div>
+        <img src="/img/vit-registers/fig8-performance-ablation.png" alt="ImageNet accuracy, segmentation mIoU and depth error against the number of registers" style="max-width: 100%; height: auto;">
     </div>
     <figcaption class="d-figure-caption">
-        Register tokens participate in attention but are discarded at output. They provide dedicated workspace for global computation.
+        <strong>Figure 6.</strong> From the paper: ImageNet accuracy, segmentation mIoU and depth error against the number of registers (0 to 16).
     </figcaption>
 </figure>
 
-### How Many Registers?
+A single register already removes the artifacts. Beyond that, the tasks disagree: segmentation peaks around 4 registers, depth around 8, and ImageNet keeps improving up to 16. The paper uses **4** as its default, a middle ground at under 2% extra compute.
+
+## What changes with registers
+
+### The loud tokens go quiet
+
+Look back at Figure 2, right column of each pair. With registers, the high-norm tail shrinks sharply in all three models, and for DINOv2 and CLIP it vanishes into a single band. The specks in Figure 1 disappear with it.
+
+### Dense tasks: small, mostly positive changes
+
+<div class="d-table-wrapper">
+    <table class="d-table">
+        <thead>
+            <tr><th>Model</th><th>ImageNet (acc)</th><th>ADE20k seg. (mIoU)</th><th>NYUd depth (RMSE, lower is better)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>DeiT-III</td><td>84.7 → 84.7</td><td>38.9 → <span class="good">39.1</span></td><td>0.511 → 0.512</td></tr>
+            <tr><td>OpenCLIP</td><td>78.2 → 78.1</td><td>26.6 → <span class="good">26.7</span></td><td>0.702 → <span class="good">0.661</span></td></tr>
+            <tr class="highlight-row"><td><strong>DINOv2</strong></td><td>84.3 → <span class="good">84.8</span></td><td>46.6 → <span class="good">47.9</span></td><td>0.378 → <span class="good">0.366</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+Linear-probe results from the paper. mIoU is the overlap between predicted and true segmentation masks (higher is better); RMSE is the depth error (lower is better). The gains are modest, largest for DINOv2, and not universal: DeiT-III's depth error barely moves. Registers are mainly a fix for the feature maps, not a general accuracy boost.
+
+### Object discovery: the big change
+
+The clearest win is for methods that **read the attention and feature maps directly**. LOST finds the main object in an image without any labels, by starting from the least-connected patch and growing outward. A bright speck on the background can hijack that seed.
 
 <figure class="d-figure">
-    <div class="d-figure-content" style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
-        <img src="/img/vit-registers/fig8-performance-ablation.png" alt="Performance vs number of registers" style="flex: 1; min-width: 280px; max-width: 400px; height: auto;">
-        <img src="/img/vit-registers/fig8-ablation.png" alt="Overhead vs number of registers" style="flex: 0 0 auto; max-width: 200px; height: auto;">
+    <div class="d-figure-content">
+        <img src="/img/vit-registers/fig1-attention-comparison.png" alt="LOST score, seed similarity and seed expansion maps for DeiT-III, CLIP and DINOv2, with and without registers" style="max-width: 100%; height: auto;">
     </div>
     <figcaption class="d-figure-caption">
-        <strong>Figure 8 from the paper:</strong> Left: Performance on ImageNet, segmentation, and depth tasks vs. number of registers—4 registers is optimal. Right: Computational overhead is minimal (~2% FLOPs for 4 registers, negligible parameters).
+        <strong>Figure 7.</strong> From the paper (Figure 13): the intermediate maps of LOST. Without registers, DeiT-III's maps are
+        covered in speckle; with registers they outline the bird.
     </figcaption>
 </figure>
 
 <div class="d-table-wrapper">
     <table class="d-table">
         <thead>
-            <tr>
-                <th>Registers</th>
-                <th>Artifacts</th>
-                <th>Performance</th>
-                <th>Overhead</th>
-            </tr>
+            <tr><th>Model (corloc, %)</th><th>VOC 2007</th><th>VOC 2012</th><th>COCO 20k</th></tr>
         </thead>
         <tbody>
-            <tr>
-                <td>0</td>
-                <td><span class="vr-badge vr-badge-red">Present</span></td>
-                <td>Baseline</td>
-                <td>0%</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><span class="vr-badge vr-badge-green">Eliminated</span></td>
-                <td>Slight drop</td>
-                <td>~0.5%</td>
-            </tr>
-            <tr class="highlight-row">
-                <td><strong>4</strong></td>
-                <td><span class="vr-badge vr-badge-green">Eliminated</span></td>
-                <td class="good"><strong>Optimal</strong></td>
-                <td><strong>&lt;2%</strong></td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td><span class="vr-badge vr-badge-green">Eliminated</span></td>
-                <td>Saturated</td>
-                <td>~6%</td>
-            </tr>
+            <tr><td>DeiT-III</td><td>11.7 → <span class="good">27.1</span></td><td>13.1 → <span class="good">32.7</span></td><td>10.7 → <span class="good">25.1</span></td></tr>
+            <tr><td>OpenCLIP</td><td>38.8 → 37.1</td><td>44.3 → 42.0</td><td>31.0 → 27.9</td></tr>
+            <tr class="highlight-row"><td><strong>DINOv2</strong></td><td>35.3 → <span class="good"><strong>55.4</strong></span></td><td>40.2 → <span class="good"><strong>60.0</strong></span></td><td>26.9 → <span class="good"><strong>42.0</strong></span></td></tr>
         </tbody>
     </table>
 </div>
 
-**The sweet spot is 4 registers**: artifacts completely gone, optimal downstream performance, and less than 2% computational overhead.
-
-The one real cost is not compute — it is that **registers must be present from the start of training**. You cannot bolt them onto a pretrained checkpoint and expect the artifacts to migrate; the model learned its hijacking behavior during pretraining. Fixing an existing model means retraining it, which for a DINOv2-scale run is the actual price of this "free" fix.
-
-## Results: Registers Fix Everything
-
-### Artifact Elimination
-
-<figure class="d-figure">
-    <div class="d-figure-content">
-        <img src="/img/vit-registers/fig7-before-after.png" alt="Norm distribution before and after registers" style="max-width: 100%; height: auto;">
-    </div>
-    <figcaption class="d-figure-caption">
-        <strong>Figure 7 from the paper:</strong> Distribution of output norms across all three training methods. With registers, the bimodal distribution becomes unimodal—artifacts are completely eliminated.
-    </figcaption>
-</figure>
-
-### Dense Prediction Tasks
-
-Performance on semantic segmentation (ADE20k) and depth estimation (NYUd):
-
-<div class="d-table-wrapper">
-    <table class="d-table">
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>ImageNet</th>
-                <th>ADE20k (mIoU)</th>
-                <th>NYUd (RMSE↓)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>DeiT-III</td>
-                <td>84.7 → 84.7</td>
-                <td>38.9 → <span class="good">39.1</span></td>
-                <td>0.511 → <span class="good">0.512</span></td>
-            </tr>
-            <tr>
-                <td>OpenCLIP</td>
-                <td>78.2 → 78.1</td>
-                <td>26.6 → <span class="good">26.7</span></td>
-                <td>0.702 → <span class="good">0.661</span></td>
-            </tr>
-            <tr class="highlight-row">
-                <td><strong>DINOv2</strong></td>
-                <td>84.3 → <span class="good">84.8</span></td>
-                <td>46.6 → <span class="good">47.9</span></td>
-                <td>0.378 → <span class="good">0.366</span></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-Registers maintain or improve performance across the board. DINOv2 sees the largest gains.
-
-### Object Discovery Unlocked
-
-The most dramatic improvement comes from object discovery methods like LOST:
-
-<div class="d-table-wrapper">
-    <table class="d-table">
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>VOC 2007</th>
-                <th>VOC 2012</th>
-                <th>COCO 20k</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>DeiT-III</td>
-                <td>11.7 → <span class="good">27.1</span></td>
-                <td>13.1 → <span class="good">32.7</span></td>
-                <td>10.7 → <span class="good">25.1</span></td>
-            </tr>
-            <tr class="highlight-row">
-                <td><strong>DINOv2</strong></td>
-                <td>35.3 → <span class="good"><strong>55.4</strong></span></td>
-                <td>40.2 → <span class="good"><strong>60.0</strong></span></td>
-                <td>26.9 → <span class="good"><strong>42.0</strong></span></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+The metric is corloc: the share of images where the predicted box overlaps a real object enough to count. For DINOv2, object discovery jumps by 15 to 20 points on every benchmark, and DeiT-III more than doubles. OpenCLIP is the exception and gets slightly worse, a reminder that registers fix one specific failure rather than everything.
 
 <div class="vr-callout vr-callout-tip">
-    <strong>+20 points on VOC 2007.</strong> Registers let large models work with object discovery methods that previously only worked on smaller models. The capability was there all along — the artifacts were burying it.
+    <strong>The capability was already there.</strong> LOST was designed around the original DINO, which has no specks.
+    The stronger models had better features all along; the specks were burying them.
 </div>
 
-## What Do Registers Learn?
+### What the registers learn
 
-Without any explicit supervision, registers spontaneously specialize:
+Nobody tells the registers what to do. Still, their attention patterns come out different from each other, and some settle on particular objects in the scene.
 
 <figure class="d-figure">
-    <div class="d-figure-content" style="display: flex; gap: 8px; justify-content: center; align-items: flex-end; flex-wrap: wrap;">
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/fig9-reg-attn-mug.png" alt="Input image" style="width: 100px; height: auto;">
-            <div style="font-size: 10px; color: #666; margin-top: 4px;">Input</div>
-        </div>
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/fig9-reg-attn-cls.png" alt="CLS attention" style="width: 100px; height: auto;">
-            <div style="font-size: 10px; color: #666; margin-top: 4px;">[CLS]</div>
-        </div>
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/fig9-reg-attn-reg0.png" alt="Register 0 attention" style="width: 100px; height: auto;">
-            <div style="font-size: 10px; color: #666; margin-top: 4px;">Reg 0</div>
-        </div>
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/fig9-reg-attn-reg6.png" alt="Register 6 attention" style="width: 100px; height: auto;">
-            <div style="font-size: 10px; color: #666; margin-top: 4px;">Reg 6</div>
-        </div>
-        <div style="text-align: center;">
-            <img src="/img/vit-registers/fig9-reg-attn-reg8.png" alt="Register 8 attention" style="width: 100px; height: auto;">
-            <div style="font-size: 10px; color: #666; margin-top: 4px;">Reg 8</div>
+    <div class="d-figure-content">
+        <div class="vr-row vr-row-small">
+            <div class="vr-cellfig"><img src="/img/vit-registers/fig9-reg-attn-mug.png" alt="Input image"><span>Input</span></div>
+            <div class="vr-cellfig"><img src="/img/vit-registers/fig9-reg-attn-cls.png" alt="CLS token attention"><span>[CLS]</span></div>
+            <div class="vr-cellfig"><img src="/img/vit-registers/fig9-reg-attn-reg0.png" alt="Register 0 attention"><span>Register 0</span></div>
+            <div class="vr-cellfig"><img src="/img/vit-registers/fig9-reg-attn-reg6.png" alt="Register 6 attention"><span>Register 6</span></div>
+            <div class="vr-cellfig"><img src="/img/vit-registers/fig9-reg-attn-reg8.png" alt="Register 8 attention"><span>Register 8</span></div>
         </div>
     </div>
     <figcaption class="d-figure-caption">
-        <strong>Figure 9 from the paper:</strong> Different registers develop distinct attention patterns. Each register spontaneously specializes—some focus on the object, others on edges or background regions.
+        <strong>Figure 8.</strong> From the paper: attention maps of [CLS] and three registers on the same image. Registers sometimes settle on
+        different parts of the scene, without any supervision telling them to.
     </figcaption>
 </figure>
 
-Each register develops its own "role" in processing the image—some attend to central objects, others to boundaries, others to textures. The model figures out how to use this extra computational workspace on its own.
+## The same story in language models
 
-## Interactive: Norm Distribution Explorer
-
-Explore how token norms distribute across a ViT's output. Adjust the threshold to see how many tokens would be classified as "outliers."
-
-<figure class="d-figure">
-    <div class="d-figure-content norm-explorer-wrapper">
-        <div id="norm-distribution-interactive"></div>
-    </div>
-    <figcaption class="d-figure-caption">
-        <strong>Interactive:</strong> The bimodal distribution of token norms. Most tokens cluster around norm ~50, but ~2-3% have norms exceeding 150. Drag the threshold to classify outliers.
-    </figcaption>
-</figure>
-
-## Why This Matters Beyond ViTs
-
-This paper reveals something fundamental about how Transformers process information:
-
-1. **Emergence of internal structure**: Given enough capacity and training, models develop their own computational primitives—even without being told to.
-
-2. **The cost of implicit computation**: When models repurpose input tokens for computation, it corrupts the representational space. Explicit workspace is better.
-
-3. **Simple fixes for complex problems**: The solution isn't architectural surgery—it's just adding 4 tokens. Sometimes the best interventions are minimal.
+The pattern is not unique to vision.
 
 <div class="vr-callout vr-callout-note">
-    <strong>The same story plays out in language models as "attention sinks."</strong> LLMs dump a large share of their attention onto a few tokens — usually the first token or an early newline — that carry little semantic meaning. Xiao et al. (2023) showed these sinks are load-bearing: evict them from the KV cache and streaming generation falls apart. The mechanism matches the ViT artifacts exactly. A softmax attention head must send its weights <em>somewhere</em> even when it wants to attend to nothing, so the model designates a throwaway token as the dumping ground. Registers are the vision-side fix; the language-side echo is <strong>learnable "sink tokens"</strong> deliberately added so real tokens stop being commandeered. Same disease, same cure: give the model explicit scratch space instead of letting it steal some.
+    <strong>Attention sinks.</strong> Large language models put a big share of their attention on a few tokens, usually the
+    first one, that carry little meaning. Xiao et al. (2023) showed these "sinks" are load-bearing: drop them from the cache
+    and streaming generation falls apart. A softmax attention head must put its weight <em>somewhere</em> even when it has
+    nothing to attend to, so the model designates a throwaway token for it. Their fix, a dedicated learnable sink token, is
+    the language-model version of a register. Same disease, same cure: give the model explicit scratch space instead of
+    letting it take some.
 </div>
+
+A 2025 follow-up, *Vision Transformers Don't Need Trained Registers* (Jiang et al.), removes the main cost. It traces the high-norm tokens to a small set of neurons and redirects their activity into an extra, untrained token at test time. That mimics registers on models already trained without them, with no retraining.
 
 ## Takeaways
 
-1. **Large Vision Transformers develop artifacts**—high-norm tokens in low-information regions that serve as informal registers for global computation.
+**1. The specks are scratch space.** Large ViTs overwrite a few redundant background patches with image-wide information. Those tokens become high-norm outliers and show up as bright specks.
 
-2. **Adding explicit register tokens eliminates these artifacts** with negligible overhead (<2% FLOPs, ~0.1% parameters).
+**2. Three clues point to it.** The tokens are loud (norms many times larger), they sit on patches that copy their neighbours, and they appear only in big models, mid-network, after a third of training.
 
-3. **Registers improve dense prediction tasks** and unlock object discovery methods for large models.
+**3. Probes confirm the trade.** High-norm tokens forget where they are (22.8% vs 41.7% position accuracy) and know more about the whole image (69.0% vs 65.8%).
 
-4. **4 registers is the sweet spot**—enough to eliminate artifacts and optimize performance.
+**4. Registers are the fix.** A few learnable tokens that are discarded at the output give the model legitimate scratch space. One removes the artifacts; four is the default, at under 2% extra compute.
 
-5. **Registers spontaneously specialize** into different functional roles without supervision.
-
-The paper demonstrates that understanding *why* neural networks develop certain behaviors—even strange ones—can lead to simple, principled improvements.
+**5. The payoff is clean feature maps.** Dense-task gains are modest, but methods that read attention maps directly, like LOST, improve by 15 to 20 points on DINOv2.
 
 <section class="d-bibliography">
 
 ## References
 
-1. Darcet, T., Oquab, M., Mairal, J., & Bojanowski, P. (2024).
-   [Vision Transformers Need Registers](https://arxiv.org/abs/2309.16588).
-   ICLR 2024.
+1. Darcet, T., Oquab, M., Mairal, J., & Bojanowski, P. (2024). [Vision Transformers Need Registers](https://arxiv.org/abs/2309.16588). ICLR 2024.
 
 2. Oquab, M., et al. (2023). DINOv2: Learning Robust Visual Features without Supervision.
 
@@ -578,6 +412,8 @@ The paper demonstrates that understanding *why* neural networks develop certain 
 
 6. Xiao, G., Tian, Y., Chen, B., Han, S., & Lewis, M. (2023). [Efficient Streaming Language Models with Attention Sinks](https://arxiv.org/abs/2309.17453).
 
+7. Jiang, N., Dravid, A., Efros, A., & Gandelsman, Y. (2025). [Vision Transformers Don't Need Trained Registers](https://arxiv.org/abs/2506.08010).
+
 </section>
 
 <footer class="d-appendix">
@@ -586,3 +422,5 @@ This article is a Distill-style explanation of the Vision Transformers Need Regi
 [Read the original paper →](https://arxiv.org/abs/2309.16588)
 
 </footer>
+
+<script src="/js/vit-registers.js"></script>
