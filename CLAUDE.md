@@ -85,6 +85,25 @@ Single stylesheet: `public/styles.css`. Organized by labeled comment sections:
 - When covering a paper or cited work, prefer the original author's figures for architecture diagrams, results, and key visuals whenever possible.
 - Use Distill-style interactives to explain or reinforce the original material, not to replace the source figure when the source figure is the canonical reference.
 
+## Takeaways and Visual Data Style
+
+- **Takeaways / big points** use the shared numbered key-insight style (approved 2026-09-29). Markup, styled globally by `.takeaways` in `public/styles.css`:
+
+  ```html
+  <div class="takeaways">
+      <div class="takeaway">
+          <span class="takeaway-num">1</span>
+          <div class="takeaway-content">
+              <strong>One-sentence headline that states the claim.</strong> One supporting sentence (about 25 words or fewer).
+          </div>
+      </div>
+      <!-- 3-5 items, roughly equal length -->
+  </div>
+  ```
+
+  Put a "Key Takeaways" (or "Executive Summary") heading above it; for long posts also put a short executive summary with the takeaways at the top. Do not build filled or colored card boxes for takeaways or summaries; the site prefers thin rules and typography.
+- **Make numbers visual.** Numeric table columns get `.heat` cells (`style="--v:0..1"`, add `hot` (bold) when `--v >= 0.6`) or `.dbar` data bars; darker means larger. Comparisons across three or more categories on one metric get a `.dv` horizontal bar chart (`.dv-row` / `.dv-fill.blue|orange|aqua|...`). Wrap at most about six headline numbers per post in `<strong class="hi">`. All of these classes live in `public/styles.css` (section "Heat cells and data bars" and "Data-viz kit"); `src/content/posts/frontier-frugality.md` is the reference implementation. Categorical colors are assigned in fixed order (blue, orange, aqua, yellow, magenta, green, violet, red), never cycled.
+
 ## Math Formulas
 
 - Use LaTeX (`$...$` inline, `$$...$$` display) — KaTeX is loaded on all article pages.

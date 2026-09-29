@@ -3245,34 +3245,41 @@ pre code {
     font-size: 14px;
 }
 
-/* Takeaways */
+/* Takeaways: numbered gutter, headline lead-in, muted body, hairline rows */
 .takeaways {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin: 24px 0;
+    margin: 28px 0 32px;
+    border-top: 1px solid var(--color-border);
 }
 
 .takeaway {
-    display: flex;
-    gap: 16px;
-    padding: 16px;
-    background: #f0f7ff;
-    border-radius: 8px;
-    border-left: 4px solid #1976d2;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .takeaway-num {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 700;
-    color: #1976d2;
-    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--color-accent);
 }
 
 .takeaway-content {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-gray);
+}
+
+.takeaway-content strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
 }
 
 /* FlashAttention Algorithm Interactive */
@@ -4946,12 +4953,6 @@ pre code {
 }
 [data-theme="dark"] .d-equation-legend { border-top-color: var(--color-border); }
 
-[data-theme="dark"] .takeaway {
-    background: var(--color-blue-bg);
-    color: var(--color-text);
-}
-
-[data-theme="dark"] .takeaway-num { color: var(--color-blue); }
 [data-theme="dark"] .d-table .highlight-row { background: var(--color-surface); }
 [data-theme="dark"] .d-callout.warning { background: var(--color-orange-bg); }
 [data-theme="dark"] .algo-step { background: var(--color-canvas-subtle); border-left-color: var(--color-border); }
@@ -4996,3 +4997,73 @@ pre code {
 [data-theme="dark"] .v4-bar-block { background: var(--color-bg); border-color: var(--color-border); }
 [data-theme="dark"] .v4-bar-cell { background: #30363d; }
 [data-theme="dark"] .v4-bar-track-dense .v4-bar-cell { background: #484f58; }
+
+/* Heat cells and data bars: sequential single-hue encoding for table values.
+   Set style="--v:0..1" on a cell. Darker = larger; the tint is capped at 55% so body-colored text always stays readable. Add class "hot" once --v > ~0.6 to bold the number. */
+:root { --heat: #2a78d6; }
+[data-theme="dark"] { --heat: #3987e5; }
+
+.heat {
+    background: color-mix(in srgb, var(--heat) calc(var(--v, 0) * 55%), transparent);
+    font-variant-numeric: tabular-nums;
+}
+
+.heat.hot {
+    font-weight: 700;
+}
+
+/* Table cells default to a muted gray in dark mode; keep coded cells at full text contrast. */
+.heat,
+.dbar {
+    color: var(--color-text) !important;
+}
+
+.dbar {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--heat) 45%, transparent) calc(var(--v, 0) * 100%), transparent 0);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Data-viz kit: shared by all posts. Palette: sequential blue (--heat), categorical blue / orange / aqua / yellow / magenta / green / violet / red. */
+.dv {
+    --dv-blue: #2a78d6; --dv-orange: #eb6834; --dv-aqua: #1baf7a; --dv-yellow: #eda100;
+    --dv-magenta: #e87ba4; --dv-green: #008300; --dv-violet: #4a3aa7; --dv-red: #e34948;
+    --dv-muted: #b6bcc6; --dv-track: rgba(128, 136, 148, 0.16);
+    margin: 22px 0;
+    font-size: 0.85rem;
+}
+[data-theme="dark"] .dv {
+    --dv-blue: #3987e5; --dv-orange: #d95926; --dv-aqua: #199e70; --dv-yellow: #c98500;
+    --dv-magenta: #d55181; --dv-green: #008300; --dv-violet: #9085e9; --dv-red: #e66767;
+    --dv-muted: #4a5260;
+}
+.dv-title { font-size: 0.82rem; font-weight: 600; margin-bottom: 8px; }
+.dv-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0 0 8px; color: var(--color-gray); font-size: 0.78rem; }
+.dv-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.dv-note { color: var(--color-gray); font-size: 0.8rem; margin-top: 8px; }
+.dv-row { display: grid; grid-template-columns: minmax(96px, 168px) 1fr; gap: 4px 12px; align-items: center; margin: 8px 0; }
+.dv-label { font-weight: 600; }
+.dv-bar { display: flex; align-items: center; gap: 8px; }
+.dv-track { flex: 1; height: 14px; background: var(--dv-track); border-radius: 4px; overflow: hidden; }
+.dv-fill { height: 100%; min-width: 3px; border-radius: 0 4px 4px 0; background: var(--dv-blue); }
+.dv-val { width: 96px; flex: none; color: var(--color-gray); font-variant-numeric: tabular-nums; font-size: 0.78rem; }
+.dv-val b { color: var(--color-text); }
+.dv-fill.blue { background: var(--dv-blue); }
+.dv-fill.orange { background: var(--dv-orange); }
+.dv-fill.aqua { background: var(--dv-aqua); }
+.dv-fill.yellow { background: var(--dv-yellow); }
+.dv-fill.magenta { background: var(--dv-magenta); }
+.dv-fill.green { background: var(--dv-green); }
+.dv-fill.violet { background: var(--dv-violet); }
+.dv-fill.red { background: var(--dv-red); }
+.dv-fill.muted { background: var(--dv-muted); }
+@media (max-width: 560px) {
+    .dv-row { grid-template-columns: 1fr; margin: 12px 0; }
+}
+
+/* Highlight for a post's headline numbers; use sparingly. */
+.hi {
+    background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: 700;
+}
