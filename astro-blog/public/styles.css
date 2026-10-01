@@ -5067,3 +5067,7 @@ pre code {
     border-radius: 4px;
     font-weight: 700;
 }
+
+/* Field colors: the three topic-tree fields (src/data/topics.ts), same values as the data-viz kit */
+:root { --field-blue: #2a78d6; --field-orange: #eb6834; --field-aqua: #1baf7a; }
+[data-theme="dark"] { --field-blue: #3987e5; --field-orange: #d95926; --field-aqua: #199e70; }

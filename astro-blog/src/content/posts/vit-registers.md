@@ -10,6 +10,7 @@ affiliations:
   - "Meta AI Research"
   - "Inria"
 published: "2023-09-28"
+written: "2026-02-04"
 doi: "arXiv:2309.16588"
 doiUrl: "https://arxiv.org/abs/2309.16588"
 abstract: "Large Vision Transformers show bright specks in their attention maps, on patches of plain background. The specks are patches the model has hijacked as scratch space for image-wide information, because it has nowhere else to put it. Adding a few empty 'register' tokens gives it that space: the specks disappear, attention maps become clean, and methods that read those maps work again."

@@ -8,6 +8,9 @@ const posts = defineCollection({
     authors: z.array(z.string()),
     affiliations: z.array(z.string()),
     published: z.string(),
+    // When this post was written. Only set when `published` means something else
+    // (paper explainers carry the paper's date); the date views sort by this.
+    written: z.string().optional(),
     doi: z.string().optional(),
     doiUrl: z.string().optional(),
     abstract: z.string(),

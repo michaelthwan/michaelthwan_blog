@@ -3,37 +3,8 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
-// Topic tree. Order inside each branch is reading order (foundations first), not date.
-// A post whose slug is not listed here still shows up, under its category's "Unsorted" branch.
-const tree = [
-    {
-        id: 'ml', name: 'AI, ML & Agents', color: 'var(--kt-blue)',
-        desc: 'How the models work, from the papers underneath to this year\'s frontier.',
-        branches: [
-            { name: 'Foundations', desc: 'The papers the rest builds on', slugs: ['transformer', 'bert', 'flash-attention', 'vit-registers'] },
-            { name: 'Frontier models', desc: 'Reasoning, open weights, and what comes after text', slugs: ['reasoning-models', 'deepseek-v4', 'deepseek-mhc', 'glm-52', 'jev'] },
-            { name: 'Search & ranking', desc: 'Ordering the web', slugs: ['pagerank'] },
-        ],
-    },
-    {
-        id: 'dev', name: 'Building with Agents', color: 'var(--kt-orange)',
-        desc: 'Tools, harnesses, and the cost of putting agents to work.',
-        branches: [
-            { name: 'Claude Code', desc: 'One agent, inside and out', slugs: ['claude-code', 'claude-code-leak'] },
-            { name: 'Agent practice', desc: 'Harnesses, budgets, and memory', slugs: ['agent-engineering-roadmap', 'frontier-frugality', 'llm-knowledge-base'] },
-        ],
-    },
-    {
-        id: 'business', name: 'Business & Analysis', color: 'var(--kt-aqua)',
-        desc: 'Money, markets, and evidence, read through data.',
-        branches: [
-            { name: 'AI economy', desc: 'Who pays whom, and who gets paid', slugs: ['ai-investment-war', 'tech-comp'] },
-            { name: 'Markets', desc: 'A century of the index', slugs: ['sp500-history'] },
-            { name: 'Health evidence', desc: 'Claims traced to papers', slugs: ['health-evidence-explorer'] },
-        ],
-    },
-];
+import { tree } from '../data/topics';
+import { writtenDate, paperYear, fmt } from '../data/postDates';
 
 const posts = await getCollection('posts');
 const bySlug = new Map(posts.map(p => [p.slug, p]));
@@ -50,12 +21,15 @@ const roots = tree.map(root => {
 
 const branchCount = roots.reduce((n, r) => n + r.branches.length, 0);
 
+// Dates are when each post was written; an explainer's paper year goes in the tooltip.
 const now = Date.now();
-function dateOf(post) { return new Date(post.data.published); }
 function shortDate(post) {
-    const d = dateOf(post);
-    if (isNaN(d.getTime())) return post.data.published;
-    return d.toLocaleDateString('en-US', { month: 'short' }) + " '" + String(d.getFullYear()).slice(2);
+    const w = writtenDate(post);
+    return w.valid ? fmt(w.date, { month: 'short' }) + " '" + String(w.date.getUTCFullYear()).slice(2) : w.raw;
+}
+function tooltip(post) {
+    const paper = paperYear(post);
+    return paper ? `${post.data.subtitle} (Paper, ${paper})` : post.data.subtitle;
 }
 // "GLM-5.2: The Open-Weight Model..." -> bold "GLM-5.2", muted tail; truncation then eats the tail first
 function splitTitle(post) {
@@ -64,8 +38,8 @@ function splitTitle(post) {
     return i > 0 ? [t.slice(0, i), t.slice(i + 2)] : [t, ''];
 }
 function isNew(post) {
-    const t = dateOf(post).getTime();
-    return !isNaN(t) && now - t < 21 * 24 * 3600 * 1000;
+    const w = writtenDate(post);
+    return w.valid && now - w.date.getTime() < 21 * 24 * 3600 * 1000;
 }
 ---
 
@@ -109,7 +83,7 @@ function isNew(post) {
                                 <ul>
                                     {branch.posts.map(post => (
                                         <li class="kt-leaf-item">
-                                            <a class="kt-leaf" href={`/posts/${post.slug}`} title={post.data.subtitle}>
+                                            <a class="kt-leaf" href={`/posts/${post.slug}`} title={tooltip(post)}>
                                                 <span class="kt-leaf-title">
                                                     <span class="kt-leaf-head">{splitTitle(post)[0]}</span>
                                                     {splitTitle(post)[1] && <span class="kt-leaf-tail">{splitTitle(post)[1]}</span>}
@@ -132,10 +106,6 @@ function isNew(post) {
 </Base>
 
 <style>
-    /* Field colors: same values as the data-viz kit (.dv) in styles.css */
-    .kt { --kt-blue: #2a78d6; --kt-orange: #eb6834; --kt-aqua: #1baf7a; }
-    :global([data-theme="dark"]) .kt { --kt-blue: #3987e5; --kt-orange: #d95926; --kt-aqua: #199e70; }
-
     .kt {
         max-width: 1464px;
         padding-top: 40px;

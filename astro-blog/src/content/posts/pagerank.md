@@ -7,6 +7,7 @@ authors:
 affiliations:
   - "Stanford University"
 published: "1998-01-29"
+written: "2026-03-07"
 doi: "Stanford:1999-66"
 doiUrl: "http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf"
 abstract: "PageRank measures a page's importance by counting not just how many pages link to it, but how important those linking pages are — a recursive definition solved by treating the web as a Markov chain and finding its stationary distribution via power iteration."

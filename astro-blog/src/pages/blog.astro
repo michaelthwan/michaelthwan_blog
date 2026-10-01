@@ -3,75 +3,486 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import PostPreview from '../components/PostPreview.astro';
+import { tree, placeOf } from '../data/topics';
+import { writtenDate, paperYear, fmt } from '../data/postDates';
 
-// Get all posts sorted by date (newest first)
-const allPosts = (await getCollection('posts')).sort((a, b) => {
-  return new Date(b.data.published).getTime() - new Date(a.data.published).getTime();
-});
+const posts = (await getCollection('posts'))
+    .map(post => {
+        const w = writtenDate(post);
+        const { root, branch } = placeOf(post.slug, post.data.category);
+        return {
+            post, root, branch,
+            time: w.valid ? w.date.getTime() : 0,
+            paper: paperYear(post),
+            month: w.valid ? fmt(w.date, { month: 'long', year: 'numeric' }) : 'Undated',
+            monthName: w.valid ? fmt(w.date, { month: 'long' }) : 'Undated',
+            monthYear: w.valid ? String(w.date.getUTCFullYear()) : '',
+            // Day number for the list; a month-only date gets none rather than a made-up "1"
+            dayNum: w.valid && w.hasDay ? String(w.date.getUTCDate()) : '',
+            day: !w.valid ? w.raw : fmt(w.date, w.hasDay ? { month: 'short', day: 'numeric' } : { month: 'short' }),
+            full: !w.valid ? w.raw : fmt(w.date, w.hasDay ? { year: 'numeric', month: 'short', day: 'numeric' } : { year: 'numeric', month: 'long' }),
+        };
+    })
+    .sort((a, b) => b.time - a.time);
 
-const categoryTitles: Record<string, string> = {
-    ml: 'Machine Learning, AI & Agents',
-    dev: 'Development',
-    business: 'Business & Industry',
-};
+// The newest post leads the page and also stays in the list, so month counts match what is listed.
+// While a field filter is on, the lead block hides.
+const lead = posts[0];
 
-// Featured: most recent post overall, shown large; excluded from its column
-const featured = allPosts[0];
-const rest = allPosts.slice(1);
-
-const mlPosts = rest.filter(post => post.data.category === 'ml');
-const devPosts = rest.filter(post => post.data.category === 'dev');
-const businessPosts = rest.filter(post => post.data.category === 'business');
-
-// Format date for display
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-  return date.toLocaleDateString('en-US', options).replace(',', '.');
+const months = [];
+for (const item of posts) {
+    let m = months[months.length - 1];
+    if (!m || m.month !== item.month) months.push(m = { month: item.month, name: item.monthName, year: item.monthYear, items: [] });
+    m.items.push(item);
 }
 
-const columns = [
-    { posts: mlPosts, className: 'ml-column', title: categoryTitles.ml, desc: 'Paper explainers, model architectures, agent systems, and the mechanics behind modern AI' },
-    { posts: devPosts, className: 'dev-column', title: categoryTitles.dev, desc: 'Tools, workflows, and practical engineering insights' },
-    { posts: businessPosts, className: 'business-column', title: categoryTitles.business, desc: 'Compensation, industry trends, and career strategy through data' },
-];
+const fields = tree.map(r => ({ ...r, count: posts.filter(p => p.root.id === r.id).length }));
 ---
 
 <Base title="Michael Wan Interactive Insights" isHomepage={true}>
     <Header />
 
-    <main class="journal l-page">
-        {featured && (
-            <section class="featured-section">
-                <PostPreview
-                    post={featured}
-                    formatDate={formatDate}
-                    featured={true}
-                    categoryLabel={categoryTitles[featured.data.category]}
-                />
-            </section>
+    <main class="bd l-page">
+        <header class="bd-head">
+            <div>
+                <h1>Writing</h1>
+                <p>Newest first, by the date each post was written.</p>
+            </div>
+            <div class="bd-head-meta">
+                <span><strong>{posts.length}</strong> posts</span>
+                <span><strong>{months.length}</strong> months</span>
+                <nav class="bd-switch" aria-label="Blog view">
+                    <a href="/tree">By topic</a>
+                    <a href="/blog" aria-current="page">By date</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="bd-filter" role="group" aria-label="Filter by field">
+            <button type="button" data-field="all" aria-pressed="true">All <span>{posts.length}</span></button>
+            {fields.map(f => (
+                <button type="button" data-field={f.id} aria-pressed="false" style={`--c: ${f.color}`}>
+                    <i aria-hidden="true"></i>{f.short} <span>{f.count}</span>
+                </button>
+            ))}
+        </div>
+
+        {lead && (
+            <a class="bd-lead" href={`/posts/${lead.post.slug}`} style={`--c: ${lead.root.color}`}>
+                <div class="bd-lead-img">
+                    {lead.post.data.thumbnail && <img src={lead.post.data.thumbnail} alt="" />}
+                </div>
+                <div class="bd-lead-text">
+                    <div class="bd-kicker">
+                        <span class="bd-latest">Latest</span>
+                        <span class="bd-place"><i aria-hidden="true"></i>{lead.root.short}{lead.branch && ` · ${lead.branch.name}`}</span>
+                        <span class="bd-lead-date">{lead.full}</span>
+                        {lead.paper && <span class="bd-paper">Paper · {lead.paper}</span>}
+                    </div>
+                    <h2>{lead.post.data.title}</h2>
+                    <p class="bd-lead-sub">{lead.post.data.subtitle}</p>
+                    <p class="bd-lead-abs">{lead.post.data.abstract}</p>
+                    <span class="bd-read">Read the post <span aria-hidden="true">&rarr;</span></span>
+                </div>
+            </a>
         )}
 
-        <div class="index-columns">
-            {columns.map(col => (
-                <section class={`index-column ${col.className}`}>
-                    <div class="column-header">
-                        <h2>{col.title}</h2>
-                        <p class="column-desc">{col.desc}</p>
-                    </div>
-                    <div class="posts-list">
-                        {col.posts.map(post => (
-                            <PostPreview post={post} formatDate={formatDate} />
-                        ))}
-                        {col.posts.length === 0 && (
-                            <p class="empty-column">No articles yet</p>
-                        )}
-                    </div>
-                </section>
-            ))}
+        <div class="bd-months">
+            {months.map((m, i) => {
+                return (
+                    <section class="bd-month">
+                        <div class="bd-month-label">
+                            <div class="bd-month-sticky">
+                                <h2 class:list={[{ current: i === 0 }]}>{m.name}</h2>
+                                <span class="bd-month-sub">{m.year && `${m.year} · `}<span class="bd-month-count">{m.items.length} {m.items.length === 1 ? 'post' : 'posts'}</span></span>
+                                <div class="bd-mix" aria-hidden="true">
+                                    {tree.map(r => {
+                                        const n = m.items.filter(it => it.root.id === r.id).length;
+                                        return n > 0 && <span style={`flex: ${n}; background: ${r.color}`}></span>;
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        <ol class="bd-rows">
+                            {m.items.map(item => (
+                                <li class="bd-row" data-field={item.root.id} style={`--c: ${item.root.color}`}>
+                                    <a href={`/posts/${item.post.slug}`}>
+                                        <time class="bd-day">{item.dayNum}</time>
+                                        <div class="bd-row-text">
+                                            <h3>{item.post.data.title}</h3>
+                                            <p>{item.post.data.subtitle}</p>
+                                            <span class="bd-place"><i aria-hidden="true"></i>{item.root.short}{item.branch && <span class="bd-branch">· {item.branch.name}</span>}<span class="bd-place-day">  ·  {item.day}</span></span>
+                                            {item.paper && <span class="bd-paper">Paper · {item.paper}</span>}
+                                        </div>
+                                        <div class="bd-thumb">
+                                            {item.post.data.thumbnail && <img src={item.post.data.thumbnail} alt="" loading="lazy" />}
+                                        </div>
+                                    </a>
+                                </li>
+                            ))}
+                        </ol>
+                    </section>
+                );
+            })}
         </div>
     </main>
 
     <Footer />
 </Base>
+
+<script>
+    const main = document.querySelector('.bd');
+    const buttons = main.querySelectorAll('.bd-filter button');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+        const field = btn.dataset.field;
+        buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        main.classList.toggle('filtered', field !== 'all');
+        main.querySelectorAll('.bd-month').forEach(group => {
+            let n = 0;
+            group.querySelectorAll('.bd-row').forEach(row => {
+                const show = field === 'all' || row.dataset.field === field;
+                row.hidden = !show;
+                if (show) n++;
+            });
+            group.hidden = n === 0;
+            const count = group.querySelector('.bd-month-count');
+            count.textContent = `${n} ${n === 1 ? 'post' : 'posts'}`;
+        });
+    }));
+</script>
+
+<style>
+    .bd {
+        max-width: 1120px;
+        padding-top: 40px;
+        padding-bottom: 72px;
+    }
+
+    /* Head: same shape as /tree so the two views read as one page with two lenses */
+    .bd-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--color-border);
+    }
+    .bd-head h1 {
+        font-family: var(--font-display);
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin: 0 0 6px;
+        color: var(--color-text);
+    }
+    .bd-head p {
+        margin: 0;
+        color: var(--color-gray);
+        font-size: 15px;
+    }
+    .bd-head-meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--color-gray);
+    }
+    .bd-head-meta strong {
+        color: var(--color-text);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+    .bd-switch {
+        display: inline-flex;
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        padding: 2px;
+    }
+    .bd-switch a {
+        padding: 3px 12px;
+        border-radius: 999px;
+        color: var(--color-gray);
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .bd-switch a:hover { color: var(--color-text); }
+    .bd-switch a[aria-current="page"] {
+        background: var(--color-text);
+        color: var(--color-bg);
+    }
+
+    /* Field filter */
+    .bd-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 18px 0 32px;
+    }
+    .bd-filter button {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 13px;
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--color-gray);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .bd-filter button span {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--color-gray-light);
+    }
+    .bd-filter button i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+    }
+    .bd-filter button:hover { color: var(--color-text); }
+    .bd-filter button[aria-pressed="true"] {
+        border-color: var(--c, var(--color-text));
+        color: var(--color-text);
+        background: color-mix(in srgb, var(--c, var(--color-text)) 8%, transparent);
+    }
+
+    /* Field label: dot + "Field · Branch" */
+    .bd-place {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-gray);
+    }
+    .bd-place i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--c);
+        flex: none;
+    }
+
+    /* Lead: the newest post, large */
+    .bd-lead {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 36px;
+        align-items: center;
+        padding-bottom: 40px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid var(--color-border);
+        color: inherit;
+        text-decoration: none;
+    }
+    .bd.filtered .bd-lead { display: none; }
+    .bd-lead:hover { text-decoration: none; }
+    .bd-lead-img {
+        aspect-ratio: 16 / 10;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--color-canvas-subtle);
+    }
+    .bd-lead-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    .bd-lead:hover .bd-lead-img img { transform: scale(1.02); }
+    .bd-kicker {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        margin-bottom: 14px;
+    }
+    .bd-latest {
+        font-size: 11.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--c);
+    }
+    .bd-lead-date {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--color-gray-light);
+    }
+    .bd-lead h2 {
+        font-family: var(--font-display);
+        font-size: 32px;
+        line-height: 1.15;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin: 0 0 12px;
+        padding: 0;
+        border: none;
+        color: var(--color-text);
+    }
+    .bd-lead-sub {
+        font-size: 16.5px;
+        line-height: 1.5;
+        color: var(--color-text);
+        margin: 0 0 12px;
+    }
+    .bd-lead-abs {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--color-gray);
+        margin: 0 0 18px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .bd-read {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--c);
+    }
+    .bd-read span { display: inline-block; transition: transform 0.15s; }
+    .bd-lead:hover .bd-read span { transform: translateX(3px); }
+
+    /* Months: sticky label on the left, rows on the right */
+    .bd-month {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 0 28px;
+        padding-top: 28px;
+    }
+    .bd-month[hidden] { display: none; }
+    .bd-month-sticky {
+        position: sticky;
+        top: 24px;
+        padding-top: 14px;
+    }
+    .bd-month h2 {
+        font-family: var(--font-display);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.1;
+        margin: 0 0 6px;
+        padding: 0;
+        border: none;
+        color: var(--color-gray-light);
+        font-variant-numeric: tabular-nums;
+    }
+    .bd-month h2.current { color: var(--color-text); }
+    .bd-month-sub {
+        font-size: 12.5px;
+        color: var(--color-gray);
+    }
+    /* Field mix of the month, as one stacked bar */
+    .bd-mix {
+        display: flex;
+        gap: 2px;
+        width: 96px;
+        height: 4px;
+        margin-top: 10px;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .bd-rows {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .bd-row { margin: 0; }
+    .bd-row a {
+        border-top: 1px solid var(--color-border);
+        display: grid;
+        grid-template-columns: 32px minmax(0, 1fr) 128px;
+        gap: 20px;
+        align-items: center;
+        padding: 14px 0;
+        color: inherit;
+        text-decoration: none;
+    }
+    .bd-day {
+        align-self: start;
+        padding-top: 1px;
+        text-align: right;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        color: var(--color-gray-light);
+        white-space: nowrap;
+    }
+    .bd-row h3 {
+        font-family: var(--font-display);
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0 0 4px;
+        color: var(--color-text);
+        transition: color 0.12s;
+    }
+    .bd-row a:hover h3 { color: var(--c); }
+    .bd-row-text p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--color-gray);
+        margin: 0 0 7px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .bd-place-day { display: none; }
+    /* Explainers: the covered paper's year, kept apart from the writing date */
+    .bd-paper {
+        margin-left: 12px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--color-gray-light);
+        white-space: nowrap;
+    }
+    .bd-kicker .bd-paper { margin-left: 0; }
+    .bd-thumb {
+        aspect-ratio: 16 / 10;
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--color-canvas-subtle);
+    }
+    .bd-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    @media (max-width: 760px) {
+        .bd { padding-top: 24px; }
+        .bd-head h1 { font-size: 28px; }
+        .bd-lead { grid-template-columns: 1fr; gap: 18px; }
+        .bd-lead h2 { font-size: 26px; }
+        .bd-month { grid-template-columns: 1fr; padding-top: 20px; }
+        .bd-month-sticky {
+            position: static;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 0 0 4px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .bd-month h2 { font-size: 21px; }
+        .bd-mix { margin: 0 0 0 auto; align-self: center; }
+        .bd-row a { grid-template-columns: minmax(0, 1fr) 88px; gap: 14px; }
+        .bd-day { display: none; }
+        .bd-branch { display: none; }
+        .bd-place-day { display: inline; white-space: pre; font-weight: 400; text-transform: none; letter-spacing: 0; }
+        .bd-row-text p { -webkit-line-clamp: 1; }
+    }
+</style>
