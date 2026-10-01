@@ -1,0 +1,381 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Topic tree. Order inside each branch is reading order (foundations first), not date.
+// A post whose slug is not listed here still shows up, under its category's "Unsorted" branch.
+const tree = [
+    {
+        id: 'ml', name: 'AI, ML & Agents', color: 'var(--kt-blue)',
+        desc: 'How the models work, from the papers underneath to this year\'s frontier.',
+        branches: [
+            { name: 'Foundations', desc: 'The papers the rest builds on', slugs: ['transformer', 'bert', 'flash-attention', 'vit-registers'] },
+            { name: 'Frontier models', desc: 'Reasoning, open weights, and what comes after text', slugs: ['reasoning-models', 'deepseek-v4', 'deepseek-mhc', 'glm-52', 'jev'] },
+            { name: 'Search & ranking', desc: 'Ordering the web', slugs: ['pagerank'] },
+        ],
+    },
+    {
+        id: 'dev', name: 'Building with Agents', color: 'var(--kt-orange)',
+        desc: 'Tools, harnesses, and the cost of putting agents to work.',
+        branches: [
+            { name: 'Claude Code', desc: 'One agent, inside and out', slugs: ['claude-code', 'claude-code-leak'] },
+            { name: 'Agent practice', desc: 'Harnesses, budgets, and memory', slugs: ['agent-engineering-roadmap', 'frontier-frugality', 'llm-knowledge-base'] },
+        ],
+    },
+    {
+        id: 'business', name: 'Business & Analysis', color: 'var(--kt-aqua)',
+        desc: 'Money, markets, and evidence, read through data.',
+        branches: [
+            { name: 'AI economy', desc: 'Who pays whom, and who gets paid', slugs: ['ai-investment-war', 'tech-comp'] },
+            { name: 'Markets', desc: 'A century of the index', slugs: ['sp500-history'] },
+            { name: 'Health evidence', desc: 'Claims traced to papers', slugs: ['health-evidence-explorer'] },
+        ],
+    },
+];
+
+const posts = await getCollection('posts');
+const bySlug = new Map(posts.map(p => [p.slug, p]));
+const placed = new Set(tree.flatMap(r => r.branches.flatMap(b => b.slugs)));
+
+const roots = tree.map(root => {
+    const branches = root.branches
+        .map(b => ({ ...b, posts: b.slugs.map(s => bySlug.get(s)).filter(Boolean) }))
+        .filter(b => b.posts.length > 0);
+    const unsorted = posts.filter(p => p.data.category === root.id && !placed.has(p.slug));
+    if (unsorted.length) branches.push({ name: 'Unsorted', desc: 'Not yet placed in the tree', slugs: [], posts: unsorted });
+    return { ...root, branches, count: branches.reduce((n, b) => n + b.posts.length, 0) };
+});
+
+const branchCount = roots.reduce((n, r) => n + r.branches.length, 0);
+
+const now = Date.now();
+function dateOf(post) { return new Date(post.data.published); }
+function shortDate(post) {
+    const d = dateOf(post);
+    if (isNaN(d.getTime())) return post.data.published;
+    return d.toLocaleDateString('en-US', { month: 'short' }) + " '" + String(d.getFullYear()).slice(2);
+}
+// "GLM-5.2: The Open-Weight Model..." -> bold "GLM-5.2", muted tail; truncation then eats the tail first
+function splitTitle(post) {
+    const t = post.data.title;
+    const i = t.indexOf(': ');
+    return i > 0 ? [t.slice(0, i), t.slice(i + 2)] : [t, ''];
+}
+function isNew(post) {
+    const t = dateOf(post).getTime();
+    return !isNaN(t) && now - t < 21 * 24 * 3600 * 1000;
+}
+---
+
+<Base title="Tree of Knowledge · Michael Wan Interactive Insights" isHomepage={true}>
+    <Header />
+
+    <main class="kt l-page">
+        <header class="kt-head">
+            <div class="kt-head-text">
+                <h1>Tree of Knowledge</h1>
+                <p>Every post placed by what it is about, read from the roots up. One row per post.</p>
+            </div>
+            <div class="kt-head-meta">
+                <span><strong>{posts.length}</strong> posts</span>
+                <span><strong>{roots.length}</strong> fields</span>
+                <span><strong>{branchCount}</strong> branches</span>
+                <nav class="kt-switch" aria-label="Blog view">
+                    <a href="/tree" aria-current="page">By topic</a>
+                    <a href="/blog">By date</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="kt-forest">
+            {roots.map(root => (
+                <section class="kt-root" style={`--c: ${root.color}`}>
+                    <div class="kt-root-head">
+                        <span class="kt-root-dot" aria-hidden="true"></span>
+                        <h2>{root.name}</h2>
+                        <span class="kt-count">{root.count}</span>
+                    </div>
+                    <p class="kt-root-desc">{root.desc}</p>
+
+                    <ul class="kt-tree">
+                        {root.branches.map(branch => (
+                            <li class="kt-branch">
+                                <div class="kt-branch-label">
+                                    <span class="kt-branch-name">{branch.name}</span>
+                                    <span class="kt-branch-desc">{branch.desc}</span>
+                                </div>
+                                <ul>
+                                    {branch.posts.map(post => (
+                                        <li class="kt-leaf-item">
+                                            <a class="kt-leaf" href={`/posts/${post.slug}`} title={post.data.subtitle}>
+                                                <span class="kt-leaf-title">
+                                                    <span class="kt-leaf-head">{splitTitle(post)[0]}</span>
+                                                    {splitTitle(post)[1] && <span class="kt-leaf-tail">{splitTitle(post)[1]}</span>}
+                                                </span>
+                                                {isNew(post) && <span class="kt-new">new</span>}
+                                                <span class="kt-leaf-date">{shortDate(post)}</span>
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            ))}
+        </div>
+    </main>
+
+    <Footer />
+</Base>
+
+<style>
+    /* Field colors: same values as the data-viz kit (.dv) in styles.css */
+    .kt { --kt-blue: #2a78d6; --kt-orange: #eb6834; --kt-aqua: #1baf7a; }
+    :global([data-theme="dark"]) .kt { --kt-blue: #3987e5; --kt-orange: #d95926; --kt-aqua: #199e70; }
+
+    .kt {
+        max-width: 1464px;
+        padding-top: 40px;
+        padding-bottom: 72px;
+    }
+
+    /* Page head: title left, counts + view switch right, one thin rule under it */
+    .kt-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+        margin-bottom: 36px;
+        border-bottom: 1px solid var(--color-border);
+    }
+    .kt-head h1 {
+        font-family: var(--font-display);
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin: 0 0 6px;
+        color: var(--color-text);
+    }
+    .kt-head p {
+        margin: 0;
+        color: var(--color-gray);
+        font-size: 15px;
+    }
+    .kt-head-meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 13px;
+        color: var(--color-gray);
+        flex-wrap: wrap;
+    }
+    .kt-head-meta strong {
+        color: var(--color-text);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+    .kt-switch {
+        display: inline-flex;
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        padding: 2px;
+    }
+    .kt-switch a {
+        padding: 3px 12px;
+        border-radius: 999px;
+        color: var(--color-gray);
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .kt-switch a:hover { color: var(--color-text); }
+    .kt-switch a[aria-current="page"] {
+        background: var(--color-text);
+        color: var(--color-bg);
+    }
+
+    /* Forest: one column per field */
+    .kt-forest {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+        gap: 40px 36px;
+        align-items: start;
+    }
+
+    .kt-root { min-width: 0; }
+
+    .kt-root-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .kt-root-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--c);
+        flex: none;
+    }
+    .kt-root-head h2 {
+        font-family: var(--font-display);
+        font-size: 19px;
+        font-weight: 600;
+        margin: 0;
+        color: var(--color-text);
+        border: none;
+        padding: 0;
+    }
+    .kt-count {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--color-gray-light);
+    }
+    .kt-root-desc {
+        margin: 6px 0 14px 22px;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--color-gray);
+    }
+
+    /* Tree connectors. Each li draws its own vertical segment (::before) and elbow (::after);
+       the last child stops its vertical at the elbow so the line ends there. */
+    .kt-tree,
+    .kt-tree ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .kt-tree { margin-left: 5px; }
+    .kt-tree ul { margin-left: 10px; }
+
+    .kt-tree li {
+        position: relative;
+        padding-left: 22px;
+        margin: 0;
+    }
+    .kt-tree li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-left: 1px solid var(--line, var(--color-border));
+    }
+    .kt-tree li::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: var(--elbow);
+        width: 16px;
+        border-top: 1px solid var(--line, var(--color-border));
+    }
+    .kt-tree li:last-child::before { bottom: auto; height: var(--elbow); }
+
+    /* Root-to-branch lines carry the field color, faintly */
+    .kt-branch {
+        --elbow: 15px;
+        --line: color-mix(in srgb, var(--c) 55%, transparent);
+        padding-bottom: 10px;
+    }
+    .kt-branch:last-child { padding-bottom: 0; }
+    .kt-leaf-item {
+        --elbow: 17px;
+        --line: var(--color-border);
+    }
+
+    .kt-branch-label {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        height: 30px;
+        line-height: 30px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .kt-branch-name {
+        position: relative;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-text);
+    }
+    .kt-branch-name::before {
+        content: '';
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--c);
+        margin-right: 8px;
+        vertical-align: 1px;
+    }
+    .kt-branch-desc {
+        font-size: 12.5px;
+        color: var(--color-gray-light);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Leaf: one pill per post */
+    .kt-leaf {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 30px;
+        margin: 2px 0;
+        padding: 0 14px;
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        background: var(--color-bg);
+        color: var(--color-text);
+        text-decoration: none;
+        font-size: 13.5px;
+        transition: border-color 0.12s, background-color 0.12s;
+    }
+    .kt-leaf:hover,
+    .kt-leaf:focus-visible {
+        border-color: var(--c);
+        background: color-mix(in srgb, var(--c) 7%, var(--color-bg));
+        text-decoration: none;
+        outline: none;
+    }
+    .kt-leaf-title {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .kt-leaf-head { font-weight: 500; }
+    .kt-leaf-tail {
+        margin-left: 8px;
+        color: var(--color-gray);
+    }
+    .kt-leaf-date {
+        flex: none;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--color-gray-light);
+        font-variant-numeric: tabular-nums;
+    }
+    .kt-new {
+        flex: none;
+        font-size: 10.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--c);
+    }
+
+    @media (max-width: 600px) {
+        .kt { padding-top: 24px; }
+        .kt-head h1 { font-size: 28px; }
+        .kt-branch-desc { display: none; }
+    }
+</style>
