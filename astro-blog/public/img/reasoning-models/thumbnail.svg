@@ -1,35 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Group-relative advantage: reward bars above and below a mean line">
-  <rect width="800" height="600" fill="#ffffff"/>
-  <rect x="0" y="0" width="800" height="600" fill="#fafafa"/>
-
-  <!-- baseline / group mean -->
-  <line x1="90" y1="330" x2="710" y2="330" stroke="#9ca3af" stroke-width="2" stroke-dasharray="7 6"/>
-  <text x="90" y="315" font-family="Georgia, serif" font-size="22" fill="#6b7280" font-style="italic">group mean reward</text>
-
-  <!-- bars: 6 sampled responses, deviation from mean -->
-  <!-- positive (above mean) = accent indigo; negative (below) = neutral gray -->
-  <g>
-    <rect x="120" y="200" width="60" height="130" rx="4" fill="#4f46e5"/>
-    <rect x="215" y="255" width="60" height="75"  rx="4" fill="#4f46e5"/>
-    <rect x="310" y="330" width="60" height="70"  rx="4" fill="#cbd5e1"/>
-    <rect x="405" y="150" width="60" height="180" rx="4" fill="#4f46e5"/>
-    <rect x="500" y="330" width="60" height="120" rx="4" fill="#cbd5e1"/>
-    <rect x="595" y="330" width="60" height="45"  rx="4" fill="#cbd5e1"/>
-  </g>
-
-  <!-- small up/down markers -->
-  <g fill="#4f46e5" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">
-    <text x="150" y="185">+</text>
-    <text x="245" y="240">+</text>
-    <text x="435" y="135">+</text>
-  </g>
-  <g fill="#94a3b8" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">
-    <text x="340" y="425">&#8722;</text>
-    <text x="530" y="475">&#8722;</text>
-    <text x="625" y="400">&#8722;</text>
-  </g>
-
-  <!-- title -->
-  <text x="400" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#1f2937" font-weight="700">Reinforcement learning for reasoning</text>
-  <text x="400" y="565" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#6b7280">group-relative advantage &#183; verifiable rewards</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <rect width="400" height="250" fill="#fafafa"/>
+  <text x="200" y="26" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Reasoning RL: sample answers, reward the right ones</text>
+  <rect x="18" y="98" width="62" height="44" rx="6" fill="#fff" stroke="#bbb"/>
+  <text x="49" y="124" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">prompt</text>
+  <path d="M80,120 C100,120 100,62 118,62" fill="none" stroke="#bbb" stroke-width="1.2"/>
+  <rect x="122" y="59" width="34" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="161" y="59" width="22" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="188" y="59" width="40" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="233" y="59" width="18" height="6" rx="3" fill="#d6dbe1"/>
+  <circle cx="262" cy="62" r="8" fill="#eb6834"/>
+  <path d="M258.5,58.5 l7,7 M265.5,58.5 l-7,7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="315" y="57" width="15" height="10" rx="2" fill="#eb6834"/>
+  <text x="334" y="65.5" fill="#eb6834" font-family="ui-monospace, Consolas, monospace" font-size="9">&#8722;0.25</text>
+  <path d="M80,120 C100,120 100,100 118,100" fill="none" stroke="#bbb" stroke-width="1.2"/>
+  <rect x="122" y="97" width="34" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="161" y="97" width="22" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="188" y="97" width="40" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="233" y="97" width="18" height="6" rx="3" fill="#d6dbe1"/>
+  <circle cx="262" cy="100" r="8" fill="#1baf7a"/>
+  <path d="M258,100 l3,3 l5,-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="330" y="95" width="45" height="10" rx="2" fill="#2a78d6"/>
+  <text x="326" y="103.5" fill="#2a78d6" font-family="ui-monospace, Consolas, monospace" font-size="9" text-anchor="end">+0.75</text>
+  <path d="M80,120 C100,120 100,138 118,138" fill="none" stroke="#bbb" stroke-width="1.2"/>
+  <rect x="122" y="135" width="34" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="161" y="135" width="22" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="188" y="135" width="40" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="233" y="135" width="18" height="6" rx="3" fill="#d6dbe1"/>
+  <circle cx="262" cy="138" r="8" fill="#eb6834"/>
+  <path d="M258.5,134.5 l7,7 M265.5,134.5 l-7,7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="315" y="133" width="15" height="10" rx="2" fill="#eb6834"/>
+  <text x="334" y="141.5" fill="#eb6834" font-family="ui-monospace, Consolas, monospace" font-size="9">&#8722;0.25</text>
+  <path d="M80,120 C100,120 100,176 118,176" fill="none" stroke="#bbb" stroke-width="1.2"/>
+  <rect x="122" y="173" width="34" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="161" y="173" width="22" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="188" y="173" width="40" height="6" rx="3" fill="#d6dbe1"/>
+  <rect x="233" y="173" width="18" height="6" rx="3" fill="#d6dbe1"/>
+  <circle cx="262" cy="176" r="8" fill="#eb6834"/>
+  <path d="M258.5,172.5 l7,7 M265.5,172.5 l-7,7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="315" y="171" width="15" height="10" rx="2" fill="#eb6834"/>
+  <text x="334" y="179.5" fill="#eb6834" font-family="ui-monospace, Consolas, monospace" font-size="9">&#8722;0.25</text>
+  <line x1="330" y1="50" x2="330" y2="188" stroke="#999" stroke-width="1"/>
+  <text x="330" y="45" fill="#888" font-family="Inter, system-ui, sans-serif" font-size="9.5" text-anchor="middle">score vs group average</text>
+  <text x="200" y="226" fill="#888" font-family="Inter, system-ui, sans-serif" font-size="10" text-anchor="middle">GRPO: the group of samples is its own baseline</text>
 </svg>

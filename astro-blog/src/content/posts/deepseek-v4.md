@@ -12,7 +12,7 @@ tags:
   - "explainer"
   - "llm"
   - "deepseek"
-thumbnail: "/img/deepseek-v4/thumbnail.png?v=2"
+thumbnail: "/img/deepseek-v4/thumbnail.svg"
 ---
 
 <style>

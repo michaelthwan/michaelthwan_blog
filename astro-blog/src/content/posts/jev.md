@@ -71,6 +71,41 @@ thumbnail: "/img/jev/thumbnail.svg"
     on simulated data tuned to one of those evaluations; it is not Jev output. Sources retrieved September 27, 2026.
 </p>
 
+## Key Takeaways
+
+<div class="takeaways">
+    <div class="takeaway">
+        <span class="takeaway-num">1</span>
+        <div class="takeaway-content">
+            <strong>Jev makes snap decisions, not text.</strong> Typed questions go in, probability distributions come out in 70 to 500 ms, and output is not billed. Reasoning and writing stay with the LLM.
+        </div>
+    </div>
+    <div class="takeaway">
+        <span class="takeaway-num">2</span>
+        <div class="takeaway-content">
+            <strong>Its place is next to an LLM, not instead of one.</strong> It routes requests to tools, agents, and queues, and checks outputs as a guardrail: high-volume jobs where speed and price matter most.
+        </div>
+    </div>
+    <div class="takeaway">
+        <span class="takeaway-num">3</span>
+        <div class="takeaway-content">
+            <strong>A threshold is only as good as its calibration.</strong> A router acts on Jev alone above a cutoff. That cutoff is a real error budget only if a 0.95 answer is right 95% of the time.
+        </div>
+    </div>
+    <div class="takeaway">
+        <span class="takeaway-num">4</span>
+        <div class="takeaway-content">
+            <strong>Calibration held on benchmarks and slipped off them.</strong> Calibration error was 0.024 to 0.032 on public benchmarks but 0.107 on unfamiliar tickets; below 0.99, confidence did not separate good answers from bad.
+        </div>
+    </div>
+    <div class="takeaway">
+        <span class="takeaway-num">5</span>
+        <div class="takeaway-content">
+            <strong>Fan-out is cheap, not free of work.</strong> One broad phishing question scored 62.6%. Five narrow questions plus a regression fitted on 1,000 labelled emails reached 95.0%.
+        </div>
+    </div>
+</div>
+
 ## Software wants decisions, not essays
 
 An agent receives a request. Before it does anything useful, it must decide which tool to call. A support system receives a ticket and must pick a queue. A chatbot drafts a reply and must decide whether it is safe to send. None of these steps needs a paragraph. Each needs a **typed answer**, fast, and an honest sense of **how likely that answer is to be right**.
@@ -249,18 +284,6 @@ Put the pitch, the coverage, and the tests side by side and a narrower, still us
 **Where it does not fit.** Anything that needs generated text or reasoning; that stays with the LLM. Image inputs, which Jev does not accept yet. Decisions that depend on context missing from the state. And any router that trusts a threshold below about 0.99 without first checking calibration on its own data.
 
 **What would change the picture.** A technical report with calibration metrics across domains; tests on real rather than synthetic traffic; and evidence that the price holds without a subsidy. Until then, treat Jev like any new classifier: shadow it against labelled data, fit a temperature if needed, and let measured accuracy set the threshold.
-
-## Key takeaways
-
-**1. Jev is a System 1 model, not an LLM replacement.** Typed questions in, probability distributions out, 70 to 500 ms, output not billed. It makes the snap decisions; the LLM keeps the reasoning and the writing.
-
-**2. Its natural place is in front of and behind an LLM.** Router for tools, agents, and queues; guardrail for outputs. Both are high-volume, and both are cheap with Jev.
-
-**3. The threshold is where calibration matters.** A router acts on Jev's answer only above $\tau$. That is a real error budget only if the probabilities are honest, which is what RLCD claims to deliver.
-
-**4. Outside tests found the claim holds on benchmarks and slips off them.** ECE was 0.024 to 0.032 on public benchmarks and 0.107 on out-of-distribution tickets. In a pre-registered study, confidence below 0.99 did not separate good answers from bad.
-
-**5. Fan-out is cheap, not free of work.** The best phishing result (95.0%) needed five narrow questions *plus* a regression fitted on 1,000 labels. One broad question scored 62.6%.
 
 <section class="d-bibliography">
 

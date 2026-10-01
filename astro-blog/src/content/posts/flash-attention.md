@@ -11,13 +11,14 @@ affiliations:
   - "Stanford University"
   - "University at Buffalo"
 published: "2022-05-27"
+written: "2026-02-04"
 doi: "arXiv:2205.14135"
 doiUrl: "https://arxiv.org/abs/2205.14135"
 abstract: "Understanding how FlashAttention achieves 2-4x speedups by respecting GPU memory hierarchy, using tiling to minimize HBM access, and leveraging online softmax for numerical stability."
 tags:
   - "explainer"
 category: "ml"
-thumbnail: "/img/flash-attention/flash_recap_diagram.png"
+thumbnail: "/img/flash-attention/thumbnail.svg"
 ---
 
 <p class="d-note">

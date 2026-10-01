@@ -9,13 +9,14 @@ authors:
 affiliations:
   - "Google AI Language"
 published: "2018-10-11"
+written: "2026-02-03"
 doi: "arXiv:1810.04805"
 doiUrl: "https://arxiv.org/abs/1810.04805"
 abstract: "Pre-training deep bidirectional representations for language understanding. How masked language modeling enables a single model to master almost any NLP task."
 tags:
   - "explainer"
 category: "ml"
-thumbnail: "/img/bert/fig1-pretraining-finetuning.png"
+thumbnail: "/img/bert/thumbnail.svg"
 ---
 
 <p class="d-note">

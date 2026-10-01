@@ -1,23 +1,83 @@
-<svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
-  <rect width="480" height="300" fill="#faf9f5"/>
-  <!-- layer stack illustrating IndexShare: first of each group filled -->
-  <g transform="translate(40,70)">
-    <g>
-      <rect x="0"   y="0" width="60" height="32" rx="5" fill="#98342a"/>
-      <rect x="72"  y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
-      <rect x="144" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
-      <rect x="216" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
-    </g>
-    <g transform="translate(0,46)">
-      <rect x="0"   y="0" width="60" height="32" rx="5" fill="#98342a"/>
-      <rect x="72"  y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
-      <rect x="144" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
-      <rect x="216" y="0" width="60" height="32" rx="5" fill="#f2efe7" stroke="#e0dacb"/>
-    </g>
-    <text x="0" y="118" font-size="13" fill="#6e675b">⌕ compute index&#160;&#160;&#160;↺ reuse</text>
-  </g>
-  <text x="40" y="44" font-size="34" font-weight="700" fill="#1f1c17">GLM-5.2</text>
-  <text x="300" y="44" font-size="13" font-weight="600" fill="#98342a">MIT · 1M ctx</text>
-  <text x="40" y="248" font-size="16" font-weight="600" fill="#3a352d">IndexShare: long-context, cheaply</text>
-  <text x="40" y="272" font-size="13" fill="#6e675b">744B MoE · 40B active · ~2.9× fewer FLOPs</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <rect width="400" height="250" fill="#fafafa"/>
+  <text x="200" y="26" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">GLM-5.2: pick the tokens once, share across layers</text>
+  <line x1="141" y1="74" x2="141" y2="172" stroke="#2a78d6" stroke-opacity=".3" stroke-dasharray="2,3"/>
+  <line x1="186" y1="74" x2="186" y2="172" stroke="#2a78d6" stroke-opacity=".3" stroke-dasharray="2,3"/>
+  <line x1="201" y1="74" x2="201" y2="172" stroke="#2a78d6" stroke-opacity=".3" stroke-dasharray="2,3"/>
+  <line x1="261" y1="74" x2="261" y2="172" stroke="#2a78d6" stroke-opacity=".3" stroke-dasharray="2,3"/>
+  <line x1="306" y1="74" x2="306" y2="172" stroke="#2a78d6" stroke-opacity=".3" stroke-dasharray="2,3"/>
+  <line x1="321" y1="74" x2="321" y2="172" stroke="#2a78d6" stroke-opacity=".3" stroke-dasharray="2,3"/>
+  <text x="24" y="63" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Layer 1</text>
+  <text x="24" y="76" fill="#eb6834" font-family="Inter, system-ui, sans-serif" font-size="9">computes index</text>
+  <rect x="120" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="135" y="52" width="12" height="22" rx="2" fill="#2a78d6"/>
+  <rect x="150" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="165" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="180" y="52" width="12" height="22" rx="2" fill="#2a78d6"/>
+  <rect x="195" y="52" width="12" height="22" rx="2" fill="#2a78d6"/>
+  <rect x="210" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="225" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="240" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="255" y="52" width="12" height="22" rx="2" fill="#2a78d6"/>
+  <rect x="270" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="285" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="300" y="52" width="12" height="22" rx="2" fill="#2a78d6"/>
+  <rect x="315" y="52" width="12" height="22" rx="2" fill="#2a78d6"/>
+  <rect x="330" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="345" y="52" width="12" height="22" rx="2" fill="#eceff3"/>
+  <text x="24" y="103" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Layer 2</text>
+  <text x="24" y="116" fill="#999" font-family="Inter, system-ui, sans-serif" font-size="9">reuses index</text>
+  <rect x="120" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="135" y="92" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="150" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="165" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="180" y="92" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="195" y="92" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="210" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="225" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="240" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="255" y="92" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="270" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="285" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="300" y="92" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="315" y="92" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="330" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="345" y="92" width="12" height="22" rx="2" fill="#eceff3"/>
+  <text x="24" y="143" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Layer 3</text>
+  <text x="24" y="156" fill="#999" font-family="Inter, system-ui, sans-serif" font-size="9">reuses index</text>
+  <rect x="120" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="135" y="132" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="150" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="165" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="180" y="132" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="195" y="132" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="210" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="225" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="240" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="255" y="132" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="270" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="285" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="300" y="132" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="315" y="132" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="330" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="345" y="132" width="12" height="22" rx="2" fill="#eceff3"/>
+  <text x="24" y="183" fill="#333" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Layer 4</text>
+  <text x="24" y="196" fill="#999" font-family="Inter, system-ui, sans-serif" font-size="9">reuses index</text>
+  <rect x="120" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="135" y="172" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="150" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="165" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="180" y="172" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="195" y="172" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="210" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="225" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="240" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="255" y="172" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="270" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="285" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="300" y="172" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="315" y="172" width="12" height="22" rx="2" fill="#8fb8e8"/>
+  <rect x="330" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <rect x="345" y="172" width="12" height="22" rx="2" fill="#eceff3"/>
+  <text x="200" y="226" fill="#888" font-family="Inter, system-ui, sans-serif" font-size="10" text-anchor="middle">one top-k selection reused by later layers: less indexing work at 1M tokens</text>
 </svg>
