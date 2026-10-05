@@ -1,0 +1,1056 @@
+{
+ "version": "2026-10-03d",
+ "groups": [
+  "languages",
+  "data_engineering",
+  "ml_modelling",
+  "llm_genai",
+  "cloud_infra",
+  "product_analytics",
+  "soft_skills"
+ ],
+ "skills": [
+  {
+   "id": "python",
+   "label": "Python",
+   "group": "languages",
+   "pattern": "\\bpython\\b"
+  },
+  {
+   "id": "sql",
+   "label": "SQL",
+   "group": "languages",
+   "pattern": "\\bsql\\b|\\bt-sql\\b|\\bpl/sql\\b"
+  },
+  {
+   "id": "r_lang",
+   "label": "R",
+   "group": "languages",
+   "pattern": "(?-i:\\bR\\b)(?=[^.\\n]{0,30}\\b(?:python|sql|julia|sas|stata|matlab|scala|programming|language|statistical|packages?|scripting)\\b)|(?<=python/)(?-i:R\\b)|(?<=python[- ]or )(?-i:R\\b)|(?<=python, )(?-i:R\\b)|(?<=python[- ]and )(?-i:R\\b)|(?<=sql, )(?-i:R\\b)|(?<=sql/)(?-i:R\\b)|(?<=sql[- ]or )(?-i:R\\b)|\\brstudio\\b|\\btidyverse\\b|\\bggplot2?\\b|\\bdplyr\\b"
+  },
+  {
+   "id": "java",
+   "label": "Java / Spring",
+   "group": "languages",
+   "pattern": "\\bjava\\b(?!\\s*script)|(?-i:\\bSpring[- ]Boot\\b)|(?<=[,/(]\\s)(?-i:Spring\\b)(?!\\s+Health)"
+  },
+  {
+   "id": "scala",
+   "label": "Scala",
+   "group": "languages",
+   "pattern": "\\bscala\\b"
+  },
+  {
+   "id": "golang",
+   "label": "Go",
+   "group": "languages",
+   "pattern": "\\bgolang\\b|(?-i:\\bGo\\b)(?=\\s*[,/);]|\\s+(?:and|or)\\b|\\s+(?:services|microservices|backend|programming|language|code)\\b)|(?<=\\bor\\s)(?-i:Go\\b)|(?<=,\\s)(?-i:Go\\b)(?=\\.)|(?<=\\bwith\\s)(?-i:Go\\b)(?=\\.)|(?<=\\bin\\s)(?-i:Go\\b)(?=\\.)"
+  },
+  {
+   "id": "cpp",
+   "label": "C++",
+   "group": "languages",
+   "pattern": "\\bc\\+\\+(?!\\w)"
+  },
+  {
+   "id": "rust",
+   "label": "Rust",
+   "group": "languages",
+   "pattern": "(?-i:\\bRust\\b)"
+  },
+  {
+   "id": "javascript",
+   "label": "JavaScript / Node.js",
+   "group": "languages",
+   "pattern": "\\bjavascript\\b|\\bnode\\.?js\\b|(?-i:\\bJS\\b)|\\bes6\\+?|\\becmascript\\b|(?-i:\\bNode\\b)(?=\\s*[,/)]|\\s+(?:and|or)\\b)"
+  },
+  {
+   "id": "typescript",
+   "label": "TypeScript",
+   "group": "languages",
+   "pattern": "\\btypescript\\b"
+  },
+  {
+   "id": "kotlin",
+   "label": "Kotlin",
+   "group": "languages",
+   "pattern": "\\bkotlin\\b"
+  },
+  {
+   "id": "csharp_dotnet",
+   "label": "C# / .NET",
+   "group": "languages",
+   "pattern": "(?<!\\w)c#(?!\\w)|(?<![\\w.])\\.net\\b|\\bdotnet\\b|\\basp\\.net\\b"
+  },
+  {
+   "id": "mobile_development",
+   "label": "Mobile development (iOS, Android, Swift)",
+   "group": "languages",
+   "pattern": "(?-i:\\bSwift(?:UI)?\\b)|(?-i:\\biOS\\b)|\\bandroid\\b|\\breact[- ]native\\b|\\bflutter\\b|\\bobjective-c\\b|\\bmobile[- ](?:apps?|applications?|development|engineering|platforms?|clients?)\\b"
+  },
+  {
+   "id": "ruby",
+   "label": "Ruby / Rails",
+   "group": "languages",
+   "pattern": "(?-i:\\bRuby\\b)|\\bruby[- ]on[- ]rails\\b|(?-i:\\bRails\\b)"
+  },
+  {
+   "id": "react_frontend",
+   "label": "React / frontend",
+   "group": "languages",
+   "pattern": "\\breact(?:\\.?js)?\\b(?!\\s+(?:to|quickly|fast))|\\bfront-?end[- ](?:development|engineering|code|frameworks?|technologies|stack|applications?|architecture|performance|web|ui|components?|tooling|systems?|experience)\\b|\\bfull[- ]stack[- ](?:development|applications?|engineering|web|experience)\\b|\\bvue(?:\\.?js)?\\b|\\bangular\\b|\\bnext\\.js\\b|\\bhtml\\b|\\bcss\\b"
+  },
+  {
+   "id": "python_web_frameworks",
+   "label": "FastAPI / Django / Flask",
+   "group": "languages",
+   "pattern": "\\bfastapi\\b|\\bdjango\\b|(?-i:\\bFlask\\b)"
+  },
+  {
+   "id": "spark",
+   "label": "Apache Spark / PySpark",
+   "group": "data_engineering",
+   "pattern": "\\bpyspark\\b|\\bspark\\s*sql\\b|\\bapache[- ]spark\\b|(?-i:\\bSpark\\b)(?!\\s+(?:curiosity|innovation|ideas|joy|change|conversations?))"
+  },
+  {
+   "id": "kafka",
+   "label": "Kafka / event streams / messaging",
+   "group": "data_engineering",
+   "pattern": "\\bkafka\\b|\\bredpanda\\b|\\bkinesis\\b|\\bpub/?sub\\b|\\bpulsar\\b|\\bnats\\b|\\brabbitmq\\b|\\bsqs\\b|\\bmessage[- ](?:queues?|brokers?|bus)\\b|\\basynchronous[- ]messaging\\b"
+  },
+  {
+   "id": "flink",
+   "label": "Flink / stream processing",
+   "group": "data_engineering",
+   "pattern": "\\bflink\\b|\\bstream(?:ing)? processing\\b|\\bspark[- ]streaming\\b|\\bapache[- ]beam\\b|(?-i:\\bBeam\\b)"
+  },
+  {
+   "id": "streaming_realtime",
+   "label": "Real-time / streaming data",
+   "group": "data_engineering",
+   "pattern": "\\breal-?time[- ](?:data|pipelines?|streaming|analytics|processing|ingestion|events?)\\b|\\bnear[- ]real[- ]?time\\b|\\b(?:data|event) streaming\\b|\\bstreaming[- ](?:data|pipelines?|systems?|architectures?|ingestion|jobs?|workloads?|applications?)\\b|\\bevent-driven\\b"
+  },
+  {
+   "id": "orchestration",
+   "label": "Workflow orchestration (Airflow, Dagster, Prefect)",
+   "group": "data_engineering",
+   "pattern": "\\bairflow\\b|\\bdagster\\b|\\bprefect\\b|\\bluigi\\b|\\bmwaa\\b|\\b(?:workflow|pipeline|data|etl) orchestration\\b|(?<!intelligent )(?<!agent )(?<!agentic )\\borchestration[- ](?:tools?|platforms?|frameworks?)\\b(?![^.\\n]{0,20}\\bagents?\\b)|\\bargo[- ]workflows\\b|\\bkubeflow[- ]pipelines\\b|\\bdags?\\b"
+  },
+  {
+   "id": "dbt",
+   "label": "dbt",
+   "group": "data_engineering",
+   "pattern": "\\bdbt\\b|\\bdata[- ]build[- ]tool\\b"
+  },
+  {
+   "id": "semantic_layer",
+   "label": "Semantic / metrics layer",
+   "group": "data_engineering",
+   "pattern": "\\bsemantic[- ](?:layers?|models?|modell?ing)\\b|\\bmetrics? (?:layers?|stores?)\\b|\\blookml\\b|\\bmetricflow\\b|\\bcube\\.dev\\b|\\bheadless[- ]bi\\b|\\bmetric[- ]definitions?\\b"
+  },
+  {
+   "id": "data_modelling",
+   "label": "Data modelling (dimensional, star schema)",
+   "group": "data_engineering",
+   "pattern": "\\bdata[- ]modell?ing\\b|\\bdata[- ]models?\\b|\\bdimensional[- ]modell?ing\\b|\\bstar[- ]schemas?\\b|\\bsnowflake[- ]schemas?\\b|\\bkimball\\b|\\bdata[- ]vault\\b|\\bfact[- ](?:and[- ]dimension )?tables?\\b|\\bdimension[- ]tables?\\b|\\banalytical[- ]models?\\b|\\bschema[- ]design\\b"
+  },
+  {
+   "id": "data_quality",
+   "label": "Data quality / contracts / testing",
+   "group": "data_engineering",
+   "pattern": "\\bdata[- ]quality\\b|\\bdata[- ]contracts?\\b|\\bgreat[- ]expectations\\b|\\bdbt[- ]tests?\\b|\\bdata[- ](?:validation|testing|observability|integrity|monitoring|accuracy|consistency|completeness|reconciliation)\\b|\\bmonte[- ]carlo\\b|\\bsoda[- ](?:core|cloud)\\b|\\bquality[- ]checks?\\b|\\bdata[- ]reliability\\b|\\bdata[- ]freshness\\b|\\bschema[- ]drift\\b"
+  },
+  {
+   "id": "etl_elt",
+   "label": "ETL / ELT pipelines",
+   "group": "data_engineering",
+   "pattern": "\\betl\\b|\\belt\\b|\\bdata[- ]pipelines?\\b|\\bingestion\\b|\\bpipeline[- ]development\\b"
+  },
+  {
+   "id": "ingestion_tools",
+   "label": "Managed ingestion (Fivetran, Airbyte)",
+   "group": "data_engineering",
+   "pattern": "\\bfivetran\\b|\\bairbyte\\b|\\bstitch[- ]data\\b|\\bsnowpipe\\b|\\bdebezium\\b|\\brudderstack\\b|\\bsnowplow\\b"
+  },
+  {
+   "id": "cdc",
+   "label": "Change data capture",
+   "group": "data_engineering",
+   "pattern": "\\bchange[- ]data[- ]capture\\b|(?-i:\\bCDC\\b)"
+  },
+  {
+   "id": "reverse_etl",
+   "label": "Reverse ETL",
+   "group": "data_engineering",
+   "pattern": "\\breverse[- ]etl\\b|\\bhightouch\\b"
+  },
+  {
+   "id": "snowflake",
+   "label": "Snowflake",
+   "group": "data_engineering",
+   "pattern": "(?-i:\\bSnowflake\\b)(?!\\s+schema)"
+  },
+  {
+   "id": "bigquery",
+   "label": "BigQuery",
+   "group": "data_engineering",
+   "pattern": "\\bbigquery\\b"
+  },
+  {
+   "id": "redshift",
+   "label": "Redshift",
+   "group": "data_engineering",
+   "pattern": "\\bredshift\\b"
+  },
+  {
+   "id": "databricks",
+   "label": "Databricks",
+   "group": "data_engineering",
+   "pattern": "\\bdatabricks\\b"
+  },
+  {
+   "id": "data_warehouse",
+   "label": "Data warehousing",
+   "group": "data_engineering",
+   "pattern": "\\bdata ?warehous(?:e|es|ing)\\b|\\bcloud[- ]warehouses?\\b|\\bedw\\b|\\bolap\\b|(?-i:\\bMPP\\b)|\\bcolumnar[- ](?:databases?|stores?|storage)\\b"
+  },
+  {
+   "id": "lakehouse_formats",
+   "label": "Lakehouse / table formats (Delta, Iceberg)",
+   "group": "data_engineering",
+   "pattern": "\\blakehouse\\b|\\bdelta[- ]lake\\b|\\bapache[- ]iceberg\\b|(?-i:\\bIceberg\\b)|\\bhudi\\b|\\bdata[- ]lakes?\\b|\\bparquet\\b|\\bunity[- ]catalog\\b"
+  },
+  {
+   "id": "query_engines",
+   "label": "Trino / Presto / Hive",
+   "group": "data_engineering",
+   "pattern": "\\btrino\\b|\\bpresto\\b|\\bhive\\b|\\bhadoop\\b|\\bathena\\b|\\bduckdb\\b|\\bclickhouse\\b|\\bdruid\\b|\\bpinot\\b"
+  },
+  {
+   "id": "relational_db",
+   "label": "Relational DBs (Postgres, MySQL)",
+   "group": "data_engineering",
+   "pattern": "\\bpostgres(?:ql)?\\b|\\bmysql\\b|\\brelational[- ]databases?\\b|\\brdbms\\b|(?-i:\\bRDS\\b)|\\boracle[- ](?:db|database)\\b|\\bsql[- ]server\\b|\\baurora\\b|\\bcockroachdb\\b|\\bspanner\\b"
+  },
+  {
+   "id": "nosql",
+   "label": "NoSQL / search stores (DynamoDB, MongoDB, Elasticsearch)",
+   "group": "data_engineering",
+   "pattern": "\\bnosql\\b|\\bnon-relational\\b|\\bdynamodb\\b|\\bmongo(?:db)?\\b|\\bcassandra\\b|\\bbigtable\\b|\\bscylla(?:db)?\\b|\\bcouchbase\\b|\\belasticsearch\\b|\\bopensearch\\b|\\bsolr\\b|\\bkey-value[- ](?:stores?|systems?|databases?)\\b|\\bdocument[- ](?:stores?|databases?)\\b"
+  },
+  {
+   "id": "redis_caching",
+   "label": "Redis / caching",
+   "group": "data_engineering",
+   "pattern": "\\bredis\\b|\\bmemcached\\b|\\bcaching[- ](?:layers?|strateg\\w+|systems?|infrastructure)\\b|\\bdistributed[- ]cach\\w+\\b|\\bcdn[- ]caching\\b"
+  },
+  {
+   "id": "graph_db",
+   "label": "Graph databases",
+   "group": "data_engineering",
+   "pattern": "\\bneo4j\\b|\\btigergraph\\b|\\bjanusgraph\\b|\\bgraph[- ]databases?\\b|\\bknowledge[- ]graphs?\\b"
+  },
+  {
+   "id": "query_optimisation",
+   "label": "SQL / query performance tuning",
+   "group": "data_engineering",
+   "pattern": "\\bquery[- ](?:optimi[sz]ation|performance|tuning|plans?)\\b|\\boptimi[sz]\\w* (?:\\w+ ){0,2}queries\\b|\\b(?:sql|database|warehouse) performance\\b|\\bwindow(?:ing)? functions?\\b|\\b(?:table|data|query) partitioning\\b|\\bdatabase[- ]indexing\\b|\\bctes?\\b"
+  },
+  {
+   "id": "data_governance",
+   "label": "Data governance / catalog / lineage",
+   "group": "data_engineering",
+   "pattern": "\\bdata[- ]governance\\b|\\bgovernance[- ](?:layers?|frameworks?|policies|standards|processes|practices|models?)\\b|\\bdata[- ]catalog(?:s|ue)?\\b|\\bdata[- ]dictionar(?:y|ies)\\b|\\bdata[- ]lineage\\b|\\blineage\\b|\\bmetadata[- ](?:management|catalog\\w*|layer)\\b|\\bopenmetadata\\b|\\bdatahub\\b|\\bcollibra\\b|\\balation\\b|\\bdata[- ]stewardship\\b|\\bdata[- ]ownership\\b"
+  },
+  {
+   "id": "data_privacy",
+   "label": "Data privacy / protection (GDPR, PII)",
+   "group": "data_engineering",
+   "pattern": "\\bdata[- ]privacy\\b(?!\\s*(?:&|and) arbitration)|(?<!EU )\\bgdpr\\b|\\bccpa\\b|(?-i:\\bPII\\b)|(?-i:\\bPHI\\b)|\\bhipaa\\b|\\bpersonally[- ]identifiable\\b|\\bde-identif(?:y|ied|ication)\\b|\\banonymi[sz]ation\\b|\\bprivacy[- ](?:regulations?|laws?|compliance|standards|controls|engineering|by[- ]design|requirements|policies|reviews?|practices)\\b|\\bdata[- ](?:residency|sovereignty|protection|handling|retention|minimi[sz]ation)\\b|\\bsensitive[- ](?:data|information)\\b|\\bconfidential[- ]data\\b|\\bclassified[- ](?:data|information)\\b|(?-i:\\bCUI\\b)"
+  },
+  {
+   "id": "batch_processing",
+   "label": "Batch / distributed data processing",
+   "group": "data_engineering",
+   "pattern": "\\bbatch[- ](?:processing|pipelines?|jobs?|and[- ](?:real-time|streaming))\\b|\\bdistributed[- ](?:data[- ]processing|computing|compute)\\b|\\bmapreduce\\b|\\bbig[- ]data\\b|\\blarge-scale[- ]data\\b|\\bpetabyte"
+  },
+  {
+   "id": "data_platform",
+   "label": "Data platform / data products",
+   "group": "data_engineering",
+   "pattern": "\\bdata[- ]platforms?\\b|\\bdata[- ]infrastructure\\b|\\bdata[- ]mesh\\b|\\bdata[- ]products?\\b|\\bmodern[- ]data[- ]stack\\b"
+  },
+  {
+   "id": "machine_learning",
+   "label": "Machine learning (general)",
+   "group": "ml_modelling",
+   "pattern": "(?:\\bmachine[- ]learning\\b|(?-i:\\bML\\b)|\\bml/ai\\b|\\bai/ml\\b)(?!\\s+(?:ops\\b|engineers?|teams?|researchers?|scientists?|org\\w*|practitioners)\\b)"
+  },
+  {
+   "id": "predictive_modelling",
+   "label": "Predictive modelling / classification",
+   "group": "ml_modelling",
+   "pattern": "\\b(?:predictive|prescriptive)(?: (?:or|and) (?:predictive|prescriptive))? (?:model(?:s|l?ing)?|analytics)\\b|\\bclassification[- ](?:models?|problems|tasks)\\b|\\bclassifiers?\\b|\\bclustering\\b|\\b(?:un)?supervised[- ]learning\\b|\\bpropensity[- ]models?\\b|\\bchurn[- ](?:models?|prediction)\\b"
+  },
+  {
+   "id": "deep_learning",
+   "label": "Deep learning / neural nets / transformers",
+   "group": "ml_modelling",
+   "pattern": "\\bdeep[- ]learning\\b|\\bneural[- ]net(?:work)?s?\\b|\\bcnns?\\b|\\brnns?\\b|\\blstms?\\b|\\btransformer[- ](?:models?|architectures?)\\b|\\battention[- ]mechanisms?\\b|\\bmixture[- ]of[- ]experts\\b|(?-i:\\bMoE\\b)"
+  },
+  {
+   "id": "pytorch",
+   "label": "PyTorch",
+   "group": "ml_modelling",
+   "pattern": "\\bpytorch\\b|\\btorch\\b"
+  },
+  {
+   "id": "tensorflow_keras",
+   "label": "TensorFlow / Keras",
+   "group": "ml_modelling",
+   "pattern": "\\btensorflow\\b|\\bkeras\\b"
+  },
+  {
+   "id": "jax",
+   "label": "JAX",
+   "group": "ml_modelling",
+   "pattern": "(?-i:\\bJAX\\b)"
+  },
+  {
+   "id": "classical_ml_libs",
+   "label": "Classical ML libs (scikit-learn, XGBoost)",
+   "group": "ml_modelling",
+   "pattern": "\\bscikit-learn\\b|\\bsklearn\\b|\\bxgboost\\b|\\blightgbm\\b|\\bcatboost\\b|\\bgradient[- ]boost(?:ed|ing)\\b|\\brandom[- ]forests?\\b|\\btree-based[- ]models?\\b"
+  },
+  {
+   "id": "statistics",
+   "label": "Statistics / statistical modelling",
+   "group": "ml_modelling",
+   "pattern": "\\bstatistical[- ](?:model\\w*|analys[ie]s|methods?|inference|rigou?r|significance|techniques|tests?|testing|power|learning|concepts|foundations?|knowledge|approaches|skills|software|packages|tools)\\b|(?<!science, )(?<!science[- ]or )(?<!science/)(?<!in )(?<!mathematics, )(?<!math, )(?<!economics, )\\bstatistics\\b(?!,? (?:\\w+ ){0,2}(?:economics|mathematics|math|physics|computer[- ]science|engineering|operations[- ]research|or[- ](?:a )?related|or[- ]equivalent))|\\b(?:linear|logistic) regression\\b|\\bregression[- ](?:models?|analysis|modell?ing)\\b|\\bhypothesis[- ]test(?:s|ing)?\\b|\\bbayesian\\b|\\bprobability\\b(?!,? (?:\\w+ ){0,2}(?:statistics|mathematics))"
+  },
+  {
+   "id": "causal_inference",
+   "label": "Causal inference",
+   "group": "ml_modelling",
+   "pattern": "\\bcausal[- ](?:inference|analysis|modell?ing|methods|impact|effects?)\\b|\\bdifference-in-differences\\b|\\bdiff-in-diff\\b|\\bsynthetic[- ]control\\b|\\bpropensity[- ]scor(?:e|ing)\\b|\\binstrumental[- ]variables?\\b|\\buplift[- ]modell?ing\\b|\\bquasi-experiment(?:s|al)?\\b"
+  },
+  {
+   "id": "optimisation_or",
+   "label": "Optimisation / operations research",
+   "group": "ml_modelling",
+   "pattern": "(?<!inference )(?<!query )(?<!performance )(?<!cost )(?<!gpu )\\boptimi[sz]ation[- ](?:problems?|models?|algorithms?|methods|techniques|solvers?)\\b|\\b(?:linear|integer|mixed[- ]integer|convex|stochastic|combinatorial|multi-objective) (?:programming|optimi[sz]ation)\\b|\\bmathematical[- ]optimi[sz]ation\\b|\\bmulti-objective\\b|\\bgurobi\\b|\\bcplex\\b|\\bor-tools\\b|\\bconstraint[- ](?:programming|solving)\\b|\\bconversion[- ]optimi[sz]ation\\b|\\b(?:matching|routing|dispatch|marketplace) (?:optimi[sz]ation|algorithms?)\\b|(?<!, )(?<!or )(?<!and )\\boperations[- ]research\\b(?![,/]| or )"
+  },
+  {
+   "id": "forecasting",
+   "label": "Forecasting / time series",
+   "group": "ml_modelling",
+   "pattern": "\\bforecast(?:s|ing)?\\b|\\btime[- ]series[- ](?:forecast\\w*|models?|modell?ing|analysis|methods|techniques|problems)\\b"
+  },
+  {
+   "id": "recommender_systems",
+   "label": "Recommender / ranking systems",
+   "group": "ml_modelling",
+   "pattern": "\\brecommend(?:er|ation) (?:systems?|engines?|models?)\\b|\\branking[- ](?:models?|systems?)\\b|\\bpersonali[sz]ation\\b|\\bsearch[- ]ranking\\b|\\bfeeds? ranking\\b"
+  },
+  {
+   "id": "nlp",
+   "label": "NLP / language understanding",
+   "group": "ml_modelling",
+   "pattern": "(?-i:\\bNLP\\b)|\\bnatural[- ]language[- ]processing\\b|\\btext[- ]classification\\b|\\bnamed[- ]entity\\b|\\b(?:natural[- ]language|language|query) understanding\\b"
+  },
+  {
+   "id": "computer_vision",
+   "label": "Computer vision",
+   "group": "ml_modelling",
+   "pattern": "\\bcomputer[- ]vision\\b|\\bimage[- ](?:classification|recognition|segmentation)\\b|\\bobject[- ]detection\\b|\\bperception[- ](?:models?|systems?|stack|algorithms)\\b"
+  },
+  {
+   "id": "graph_ml",
+   "label": "Graph ML / GNNs",
+   "group": "ml_modelling",
+   "pattern": "\\bgnns?\\b|\\bgraph[- ]neural[- ]networks?\\b|\\bgraph[- ](?:ml|machine[- ]learning|learning)\\b|\\bgeometric[- ]deep[- ]learning\\b"
+  },
+  {
+   "id": "reinforcement_learning",
+   "label": "Reinforcement learning / bandits",
+   "group": "ml_modelling",
+   "pattern": "\\breinforcement[- ]learning\\b|(?-i:\\bRL\\b)|\\bmulti-armed[- ]bandits?\\b|\\bbandits?\\b"
+  },
+  {
+   "id": "anomaly_detection",
+   "label": "Anomaly / fraud / risk detection",
+   "group": "ml_modelling",
+   "pattern": "\\banomaly[- ]detection\\b|\\bfraud\\b(?!ulent)(?!\\s+detection[- ]tool)|\\boutlier[- ]detection\\b|\\brisk[- ]models?\\b|(?-i:\\bAML\\b)|\\bcredit[- ]risk\\b"
+  },
+  {
+   "id": "feature_engineering",
+   "label": "Feature engineering",
+   "group": "ml_modelling",
+   "pattern": "\\bfeature[- ]engineering\\b|\\bfeature[- ](?:pipelines?|extraction|selection|development)\\b|\\bvelocity[- ]features\\b"
+  },
+  {
+   "id": "model_evaluation",
+   "label": "Model evaluation / validation",
+   "group": "ml_modelling",
+   "pattern": "\\bmodel[- ](?:evaluation|validation|performance|quality|accuracy)\\b|\\boffline[- ](?:evaluation|metrics)\\b|\\bprecision[- ]and[- ]recall\\b|\\bauc\\b|\\bcross-validation\\b|\\bbacktest(?:s|ing)?\\b"
+  },
+  {
+   "id": "model_training",
+   "label": "Model training / development",
+   "group": "ml_modelling",
+   "pattern": "\\bmodel[- ](?:training|development)\\b|\\btrain(?:ing)? (?:and[- ](?:deploy|serv)\\w*|models?|pipelines?)\\b|\\btraining[- ]jobs?\\b|\\bhyperparameter\\w*\\b"
+  },
+  {
+   "id": "distributed_training",
+   "label": "Distributed training",
+   "group": "ml_modelling",
+   "pattern": "\\bdistributed[- ]training\\b|\\bmulti-gpu\\b|\\bmulti-node\\b|\\bnccl\\b|\\bdeepspeed\\b|\\bfsdp\\b|\\bmegatron\\b|\\bdata[- ]parallel(?:ism)?\\b|\\bmodel[- ]parallel(?:ism)?\\b|\\bhorovod\\b|(?-i:\\bRay\\b)"
+  },
+  {
+   "id": "gpu_training_optimisation",
+   "label": "Low-level GPU training optimisation",
+   "group": "ml_modelling",
+   "pattern": "\\bmixed[- ]precision\\b|\\bkernel[- ](?:fusion|optimi[sz]ation|development)\\b|\\bcustom[- ](?:cuda |gpu )?kernels\\b|\\b(?:cuda|triton|gpu) kernels?\\b|\\bflash ?attention\\b|(?-i:\\b(?:BF16|FP16|FP8|bf16|fp16|fp8)\\b)|\\b(?:activation|gradient) checkpointing\\b|\\btraining[- ](?:throughput|efficiency)\\b|(?-i:\\bMFU\\b)|\\bmodel[- ]flops[- ]utili[sz]ation\\b|\\bdata ?loaders?\\b|\\bdata[- ]loading\\b|\\bstreaming[- ]datasets?\\b|\\bwebdataset\\b|\\btorch\\.compile\\b"
+  },
+  {
+   "id": "mlops",
+   "label": "MLOps / ML platform",
+   "group": "ml_modelling",
+   "pattern": "\\bmlops\\b|\\bml ?ops\\b|\\bllmops\\b|\\bml[- ]platforms?\\b|\\bmachine[- ]learning[- ]platforms?\\b|\\bml[- ]infrastructure\\b|\\b(?:ml|machine[- ]learning|model) lifecycle\\b|\\bml[- ]systems\\b|\\bproduction[- ]ml\\b|\\bml[- ]in[- ]production\\b"
+  },
+  {
+   "id": "experiment_tracking",
+   "label": "Experiment tracking / model registry (MLflow, W&B)",
+   "group": "ml_modelling",
+   "pattern": "\\bmlflow\\b|\\bweights[- ](?:&|and) biases\\b|\\bw&b\\b|\\bwandb\\b|\\bexperiment[- ]tracking\\b|\\bmodel[- ]regist(?:ry|ries)\\b|\\bmodel[- ]versioning\\b|\\bcomet\\.?ml\\b|\\bneptune\\.ai\\b"
+  },
+  {
+   "id": "feature_store",
+   "label": "Feature stores",
+   "group": "ml_modelling",
+   "pattern": "\\bfeature[- ]stores?\\b|\\bfeast\\b|\\btecton\\b|\\bfeature[- ]platforms?\\b"
+  },
+  {
+   "id": "ml_pipelines",
+   "label": "ML pipelines (Kubeflow, SageMaker, Vertex)",
+   "group": "ml_modelling",
+   "pattern": "\\bkubeflow\\b|\\bsagemaker\\b|\\bvertex[- ]ai\\b(?!\\s+agent)|\\bazure[- ]ml\\b|\\bazure[- ]machine[- ]learning\\b|\\bml[- ]pipelines?\\b|\\bmachine[- ]learning[- ]pipelines?\\b|\\btfx\\b|\\bmetaflow\\b|\\bzenml\\b|\\bflyte\\b"
+  },
+  {
+   "id": "cicd_for_ml",
+   "label": "CI/CD for ML / continuous training",
+   "group": "ml_modelling",
+   "pattern": "\\bcontinuous[- ]training\\b|\\bct/cd\\b|\\bml[- ]ci/cd\\b|\\b(?:ci/cd|continuous[- ](?:integration|delivery|deployment))\\b[^.\\n]{0,80}\\b(?:ml|models?|machine[- ]learning|mlops)\\b|\\b(?:ml|models?|machine[- ]learning|mlops)\\b[^.\\n]{0,40}\\bci/cd\\b|\\b(?:training|retraining) automation\\b|\\bautomated[- ](?:model )?(?:re)?training\\b|\\bmodel[- ]deployment[- ]pipelines?\\b"
+  },
+  {
+   "id": "model_monitoring",
+   "label": "Model / drift monitoring",
+   "group": "ml_modelling",
+   "pattern": "\\b(?:models?|data|production|predictions?|features?|ml|concept|distribution|training-serving)\\b[^.\\n]{0,40}\\bdrift\\b|\\bdrift\\b[^.\\n]{0,40}\\b(?:models?|predictions?|retrain\\w*)\\b|\\bdrift[- ](?:detection|monitoring)\\b|\\bdetect(?:ing)? drift\\b|\\bmodel[- ]monitoring\\b|\\bmonitor(?:ing)? (?:\\w+ ){0,2}(?:models?|model[- ]performance|model[- ]health|predictions)\\b|\\btrack(?:ing)? (?:model[- ](?:performance|health|quality)|models?[- ]in[- ]production)\\b|\\bmodel[- ](?:observability|health)\\b|\\bml[- ]observability\\b|\\bevidently\\b|\\barize\\b|\\bwhylabs\\b|\\bfiddler\\b|\\bmodel[- ]degradation\\b"
+  },
+  {
+   "id": "model_deployment",
+   "label": "Model deployment / productionisation",
+   "group": "ml_modelling",
+   "pattern": "\\b(?:deploy(?:ing|ment[- ]of)?|productioni[sz]\\w+|ship(?:ping)?|operationali[sz]\\w+) (?:\\w+ ){0,2}models?\\b|\\bmodels? (?:deployment|into[- ]production|to[- ]production|in[- ]production)\\b|\\bmodel[- ]rollouts?\\b|\\bproductioni[sz](?:ation|ing)\\b|\\bshadow[- ](?:deployments?|mode)\\b|\\bcanary\\b"
+  },
+  {
+   "id": "responsible_ai",
+   "label": "Responsible AI / fairness / explainability",
+   "group": "ml_modelling",
+   "pattern": "\\bresponsible[- ]ai\\b|\\bfairness\\b|\\bexplainab(?:le|ility)\\b|\\binterpretability\\b|\\bbias[- ](?:detection|mitigation)\\b|\\bshap\\b|\\bmodel[- ]risk\\b|\\bmodel[- ]governance\\b"
+  },
+  {
+   "id": "llms",
+   "label": "LLMs (general)",
+   "group": "llm_genai",
+   "pattern": "\\bllms?\\b|\\blarge[- ]language[- ]models?\\b|\\bfoundation[- ]models?\\b|\\bllm-based\\b|\\bai/llm\\b"
+  },
+  {
+   "id": "generative_ai",
+   "label": "Generative AI",
+   "group": "llm_genai",
+   "pattern": "\\bgenerative[- ]ai\\b|\\bgen ?ai\\b"
+  },
+  {
+   "id": "rag",
+   "label": "RAG / retrieval",
+   "group": "llm_genai",
+   "pattern": "\\brag\\b|\\bretrieval[- ]augmented\\b|\\bretrieval[- ](?:pipelines?|systems?|strateg(?:y|ies)|quality)\\b|\\bsemantic[- ]search\\b|\\bhybrid[- ]search\\b|\\bre-?ranking\\b"
+  },
+  {
+   "id": "vector_db_embeddings",
+   "label": "Vector DBs / embeddings",
+   "group": "llm_genai",
+   "pattern": "\\bvector[- ](?:databases?|dbs?|stores?|search|indexes?)\\b|\\bembeddings?\\b|\\bpinecone\\b|\\bweaviate\\b|\\bmilvus\\b|\\bqdrant\\b|\\bpgvector\\b|\\bfaiss\\b|\\bchroma(?:db)?\\b"
+  },
+  {
+   "id": "ai_agents",
+   "label": "AI agents / agentic systems",
+   "group": "llm_genai",
+   "pattern": "\\bai[- ]agents?\\b|\\bagentic\\b|\\bmulti-agent\\b|\\bautonomous[- ]agents?\\b|\\bagent[- ](?:frameworks?|systems?|workflows?|orchestration|architectures?)\\b|\\bllm[- ]agents?\\b|\\bbuild(?:ing)? agents\\b"
+  },
+  {
+   "id": "prompt_engineering",
+   "label": "Prompt / context engineering",
+   "group": "llm_genai",
+   "pattern": "\\bprompt[- ](?:engineering|design|optimi[sz]ation|templates?|management)\\b|\\bprompting\\b|\\bcontext[- ]engineering\\b|\\bprompts\\b"
+  },
+  {
+   "id": "llm_evaluation",
+   "label": "LLM evals",
+   "group": "llm_genai",
+   "pattern": "\\bevals?\\b|\\b(?:llm|ai|agent|genai|rag) evaluations?\\b|\\bevaluation[- ](?:sets?|datasets?|harness(?:es)?)\\b|\\bjudge[- ]models?\\b|\\bllm[- ]as[- ](?:a[- ])?judge\\b|\\bllm[- ]judge\\b|\\bevaluation[- ](?:frameworks?|pipelines?|suites?|strateg(?:y|ies)|methodolog(?:y|ies))\\b(?=[^.\\n]{0,60}\\b(?:llms?|ai|genai|agents?|agentic|prompts?|rag|chatbots?|copilots?|generative)\\b)|\\b(?:llms?|ai|genai|agents?|agentic|prompts?|rag|chatbots?|copilots?|generative)\\b[^.\\n]{0,60}\\bevaluation[- ](?:frameworks?|pipelines?|suites?|strateg(?:y|ies)|methodolog(?:y|ies))\\b|\\bevaluation,? (?:and )?guardrails\\b"
+  },
+  {
+   "id": "fine_tuning",
+   "label": "Fine-tuning / post-training",
+   "group": "llm_genai",
+   "pattern": "\\bfine[- ]?tun(?:e|es|ed|ing)\\b|\\blora\\b|\\bqlora\\b|\\bpeft\\b|\\brlhf\\b|\\bdpo\\b|\\bpost-training\\b|\\binstruction[- ]tuning\\b|\\bdistillation\\b|\\bsft\\b"
+  },
+  {
+   "id": "llm_frameworks",
+   "label": "LLM frameworks (LangChain, LlamaIndex, HF)",
+   "group": "llm_genai",
+   "pattern": "\\blangchain\\b|\\blanggraph\\b|\\bllama ?index\\b|\\bdspy\\b|\\bsemantic[- ]kernel\\b|\\bautogen\\b|\\bcrewai\\b|\\bagents[- ]sdk\\b|\\bagent[- ]sdk\\b|\\bhugging ?face\\b"
+  },
+  {
+   "id": "llm_apis",
+   "label": "LLM provider APIs (OpenAI, Anthropic, Gemini)",
+   "group": "llm_genai",
+   "pattern": "\\bopenai(?: api)?\\b|\\bclaude[- ](?:api|models?|sdk)\\b|\\banthropic(?:'s)? (?:api|models?)\\b|\\bgpt-?[45]\\w*\\b|\\bgpt[- ]models?\\b|\\bgemini\\b(?!\\s+cli)|\\bbedrock\\b|\\bllama\\b(?!\\.cpp)|\\bmistral\\b|\\bai[- ]apis?\\b|\\bllm[- ]apis?\\b|\\bllm[- ]providers?\\b"
+  },
+  {
+   "id": "mcp_tool_use",
+   "label": "MCP / tool calling",
+   "group": "llm_genai",
+   "pattern": "(?-i:\\bMCP\\b)|\\bmodel[- ]context[- ]protocol\\b|\\btool[- ](?:calling|use)\\b|\\bfunction[- ]calling\\b"
+  },
+  {
+   "id": "ai_coding_tools",
+   "label": "AI coding tools (Cursor, Claude Code, Copilot)",
+   "group": "llm_genai",
+   "pattern": "\\bclaude[- ]code\\b|(?-i:\\bCursor\\b)|\\bcopilot\\b|(?-i:\\bCodex\\b)|\\bwindsurf\\b|\\b(?:ai|llm)[- ]assisted[- ](?:coding|development|engineering|programming)\\b|\\bai[- ]coding[- ](?:tools|assistants?|agents?)\\b|\\bcoding[- ](?:assistants?|agents?)\\b|\\bvibe[- ]coding\\b"
+  },
+  {
+   "id": "ai_safety_guardrails",
+   "label": "AI safety / guardrails",
+   "group": "llm_genai",
+   "pattern": "\\bguardrails?\\b(?=[^.\\n]{0,60}\\b(?:llms?|ai|genai|agents?|agentic|prompts?|rag|chatbots?|copilots?|generative)\\b)|\\b(?:llms?|ai|genai|agents?|agentic|prompts?|rag|chatbots?|copilots?|generative)\\b[^.\\n]{0,60}\\bguardrails?\\b|\\b(?:prompt|response|input|output|safety|content) (?:and[- ](?:prompt|response|input|output) )?guardrails\\b|\\bai[- ]safety\\b|\\bred[- ]team(?:ing)?\\b|\\bjailbreaks?\\b|\\bprompt[- ]injection\\b|\\bhallucinations?\\b|\\bcontent[- ]moderation\\b"
+  },
+  {
+   "id": "multimodal",
+   "label": "Multimodal / speech",
+   "group": "llm_genai",
+   "pattern": "\\bmulti-?modal\\b|\\bvision-language\\b|\\bspeech[- ](?:recognition|models?)\\b|\\btext-to-speech\\b|\\basr\\b|\\bdiffusion[- ]models?\\b"
+  },
+  {
+   "id": "aws",
+   "label": "AWS",
+   "group": "cloud_infra",
+   "pattern": "(?-i:\\bAWS\\b)|\\bamazon[- ]web[- ]services\\b|\\bec2\\b|\\bs3\\b"
+  },
+  {
+   "id": "gcp",
+   "label": "GCP",
+   "group": "cloud_infra",
+   "pattern": "(?-i:\\bGCP\\b)|\\bgoogle[- ]cloud\\b"
+  },
+  {
+   "id": "azure",
+   "label": "Azure",
+   "group": "cloud_infra",
+   "pattern": "\\bazure\\b"
+  },
+  {
+   "id": "kubernetes",
+   "label": "Kubernetes",
+   "group": "cloud_infra",
+   "pattern": "\\bkubernetes\\b|\\bk8s\\b|\\beks\\b|\\bgke\\b|\\baks\\b|\\bopenshift\\b"
+  },
+  {
+   "id": "docker_containers",
+   "label": "Docker / containers",
+   "group": "cloud_infra",
+   "pattern": "\\bdocker\\b|\\bcontaineri[sz](?:ed|ation)\\b|\\bcontainers\\b|\\bcontainer-related\\b|\\bcontainer[- ](?:orchestration|images?|runtimes?|security)\\b"
+  },
+  {
+   "id": "terraform_iac",
+   "label": "Terraform / IaC",
+   "group": "cloud_infra",
+   "pattern": "\\bterraform\\b|\\binfrastructure[- ]as[- ]code\\b|\\biac\\b|\\bpulumi\\b|\\bcloudformation\\b|\\bansible\\b|\\bcdk\\b"
+  },
+  {
+   "id": "helm_gitops",
+   "label": "Helm / GitOps / Argo",
+   "group": "cloud_infra",
+   "pattern": "\\bhelm\\b|\\bgitops\\b|\\bargo ?cd\\b|\\bargo\\b(?!\\s+workflows)|\\bflux ?cd\\b"
+  },
+  {
+   "id": "ci_cd",
+   "label": "CI/CD",
+   "group": "cloud_infra",
+   "pattern": "\\bci/cd\\b|\\bcontinuous[- ](?:integration|delivery|deployment)\\b|\\bci[- ]pipelines?\\b|\\bgithub[- ]actions\\b|\\bjenkins\\b|\\bcircleci\\b|\\bbuildkite\\b|\\bgitlab[- ]ci\\b|\\bdeployment[- ]pipelines?\\b|\\bbuild[- ]pipelines?\\b|\\b(?:build|release)(?:, \\w+)*,? and \\w+ pipelines\\b|\\bbuild[- ]and[- ]deploy[- ]systems\\b|\\brelease[- ]engineering\\b|\\bbazel\\b"
+  },
+  {
+   "id": "git_version_control",
+   "label": "Git / version control",
+   "group": "cloud_infra",
+   "pattern": "\\bgit\\b|\\bversion[- ]control\\b|\\bgithub\\b(?!\\s+copilot)|\\bbitbucket\\b"
+  },
+  {
+   "id": "linux",
+   "label": "Linux / shell",
+   "group": "cloud_infra",
+   "pattern": "\\blinux\\b|\\bunix\\b|\\bbash\\b|\\bshell[- ]script(?:ing|s)?\\b"
+  },
+  {
+   "id": "automation_scripting",
+   "label": "Workflow / process automation",
+   "group": "cloud_infra",
+   "pattern": "\\b(?:workflow|process|business[- ]process|infrastructure|reporting|test|operational) automations?\\b|\\bautomat(?:e|es|ing) (?:\\w+ ){0,1}(?:manual|repetitive|routine|workflows?|processes|reporting|operations|tasks)\\b|\\beliminate[- ]manual[- ](?:work|processes|steps)\\b|\\bscripting\\b"
+  },
+  {
+   "id": "observability",
+   "label": "Observability / monitoring (Prometheus, Grafana, Datadog)",
+   "group": "cloud_infra",
+   "pattern": "\\bobservability\\b|\\bprometheus\\b|\\bgrafana\\b|\\bdatadog\\b|\\bopentelemetry\\b|\\bsplunk\\b|\\bnew[- ]relic\\b|\\belk\\b|\\balerting\\b|\\blogging\\b|\\b(?:system|service|production|infrastructure|application|performance|platform) monitoring\\b|\\bmonitoring[- ](?:and|&|,) (?:alerting|logging|observability|tracing)\\b|\\bmonitoring[- ](?:tools|systems|stack|infrastructure|dashboards)\\b"
+  },
+  {
+   "id": "on_call_incident",
+   "label": "On-call / incident response",
+   "group": "cloud_infra",
+   "pattern": "\\bon-call\\b|\\bon[- ]call[- ]rotation\\b|\\bincident[- ](?:response|management)\\b|\\bpost-?mortems?\\b|\\bpost-incident\\b|\\bpager ?duty\\b"
+  },
+  {
+   "id": "sre_reliability",
+   "label": "SRE / reliability (SLOs)",
+   "group": "cloud_infra",
+   "pattern": "(?-i:\\bSRE\\b)|\\bsite[- ]reliability\\b|\\bslos?\\b|\\bslas?\\b|\\bslis?\\b|\\bhigh[- ]availability\\b|\\bhighly[- ]available\\b|\\bfailover\\b|\\bfault[- ]toleran(?:t|ce)\\b|\\bdisaster[- ]recovery\\b|\\b(?:system|systems|service|platform|infrastructure|production|operational) reliability\\b|\\breliability[- ]engineering\\b|\\breliability[- ]and[- ](?:scalability|performance)\\b|\\b(?:scalability|performance),? (?:and )?reliability\\b"
+  },
+  {
+   "id": "capacity_planning",
+   "label": "Capacity planning",
+   "group": "cloud_infra",
+   "pattern": "\\bcapacity[- ](?:planning|management|forecasting|models?|modell?ing)\\b"
+  },
+  {
+   "id": "serverless",
+   "label": "Serverless (Lambda, Cloud Functions)",
+   "group": "cloud_infra",
+   "pattern": "\\bserverless\\b|\\baws[- ]lambda\\b|(?-i:\\bLambda\\b)|\\bcloud[- ]functions\\b|\\bcloud[- ]run\\b|\\bstep[- ]functions\\b"
+  },
+  {
+   "id": "microservices",
+   "label": "Microservices / service architecture",
+   "group": "cloud_infra",
+   "pattern": "\\bmicroservices?\\b|\\bservice-oriented\\b|\\bservice[- ]mesh\\b|\\bistio\\b"
+  },
+  {
+   "id": "distributed_systems",
+   "label": "Distributed systems",
+   "group": "cloud_infra",
+   "pattern": "\\bdistributed[- ](?:\\w+ ){0,2}systems?\\b|\\bconcurrency\\b|\\bconsensus[- ](?:algorithms?|protocols?)\\b|\\bpaxos\\b|\\braft\\b|\\bhigh-throughput\\b|\\blow-latency\\b"
+  },
+  {
+   "id": "system_design",
+   "label": "System design / architecture",
+   "group": "cloud_infra",
+   "pattern": "\\bsystems? design\\b|\\bsoftware[- ]architecture\\b|\\barchitectur(?:e|al) (?:and[- ](?:\\w+ )?)?(?:decisions|design|reviews?|discussions|direction|patterns)\\b|\\bdesign[- ](?:reviews?|documents?|docs?)\\b|\\breview(?:ing)? designs\\b|\\btechnical[- ]designs?\\b|\\brfcs?\\b"
+  },
+  {
+   "id": "api_design",
+   "label": "API design (REST, gRPC, GraphQL)",
+   "group": "cloud_infra",
+   "pattern": "\\brest(?:ful)?(?: apis?| services| endpoints)\\b|\\bapi[- ]design\\b|\\bapis\\b|\\bapi\\b|\\bgrpc\\b|\\bgraphql\\b|\\bopenapi\\b|\\bprotobuf\\b|\\bwebhooks?\\b|\\bsdks?\\b"
+  },
+  {
+   "id": "testing_qa",
+   "label": "Software testing (unit/integration)",
+   "group": "cloud_infra",
+   "pattern": "(?<!a/b )(?<!ab )(?<!hypothesis )(?<!acceptance )(?<!user )(?<!data )(?<!penetration )(?<!split )\\btesting\\b|\\b(?:write|writes|writing|wrote|add|adding|maintain\\w*|with|include|including) (?:\\w+ ){0,2}(?<!statistical )(?<!significance )(?<!hypothesis )tests\\b|\\btested[- ](?:production )?code\\b|\\bregression[- ](?:suites?|tests?)\\b|\\btest[- ](?:suites?|coverage|automation|frameworks?|harness(?:es)?|plans? and)\\b|\\bunit[- ]tests?\\b|\\bintegration[- ]tests?\\b|\\bend-to-end[- ]tests?\\b|\\bautomated[- ]tests?\\b|\\btdd\\b|\\btest-driven\\b|\\bpytest\\b|\\bjunit\\b|\\bjest\\b|\\bplaywright\\b|\\bcypress\\b|\\bwell-tested\\b|(?<![-=\\w(])qa\\b(?!=)(?!,\\s*(?:product|support|ux|design|engineering|pm))(?!\\s+(?:teams?|engineers?|partners|counterparts)\\b)"
+  },
+  {
+   "id": "code_review",
+   "label": "Code review",
+   "group": "cloud_infra",
+   "pattern": "\\bcode[- ]reviews?\\b|\\breview(?:ing)? code\\b|\\bpull[- ]requests?\\b|\\bmerge[- ]requests?\\b|\\bpr[- ]reviews?\\b|\\breview(?:ing)? (?:\\w+ ){0,2}(?:changes|prs|merge[- ]requests|diffs)\\b"
+  },
+  {
+   "id": "security_iam",
+   "label": "Security / IAM / authn-authz",
+   "group": "cloud_infra",
+   "pattern": "\\biam\\b|\\brbac\\b|\\baccess[- ]control\\b|\\bidentity[- ]and[- ]access\\b|\\bsecurity[- ]best[- ]practices\\b|\\bencryption\\b|\\bcryptograph\\w*\\b|\\bsecrets[- ]management\\b|\\bleast[- ]privilege\\b|\\bzero[- ]trust\\b|\\bsoc ?2\\b|\\bthreat[- ]model\\w*\\b|\\bappsec\\b|\\bowasp\\b|\\bsecure[- ](?:coding|software[- ]development|development)\\b|\\bvulnerabilit(?:y|ies)\\b|\\bsiem\\b|\\bsecurity[- ]operations\\b|\\bauthentication\\b|\\bauthorization\\b|(?-i:\\bSSO\\b)|\\bsingle[- ]sign-on\\b|\\boauth\\b|\\boidc\\b|\\bsaml\\b"
+  },
+  {
+   "id": "networking",
+   "label": "Networking",
+   "group": "cloud_infra",
+   "pattern": "\\bnetworking\\b(?!\\s+events?)|\\btcp/ip\\b|(?<![-\\w])dns\\b|\\bload[- ]balanc\\w+\\b|\\bvpcs?\\b|\\bcdn\\b"
+  },
+  {
+   "id": "performance_engineering",
+   "label": "Performance engineering / profiling",
+   "group": "cloud_infra",
+   "pattern": "\\bperformance[- ](?:optimi[sz]ation|engineering|tuning|profiling|bottlenecks?)\\b|\\bprofiling\\b|\\bbenchmarking\\b|\\bhigh-performance\\b(?!\\s+(?:culture|teams?|environment|organi[sz]ation|work))|\\blatency\\b|\\bsystems[- ]programming\\b|\\bmemory[- ]management\\b"
+  },
+  {
+   "id": "cloud_cost_finops",
+   "label": "Cloud cost optimisation / FinOps",
+   "group": "cloud_infra",
+   "pattern": "\\bfinops\\b|\\bcloud[- ](?:cost|spend)\\w*\\b|\\bcost[- ](?:optimi[sz]ation|efficien\\w+|management|controls?)\\b|\\bcompute[- ]costs?\\b|\\binfrastructure[- ]costs?\\b"
+  },
+  {
+   "id": "model_serving",
+   "label": "Model serving (KServe, BentoML, Triton, vLLM)",
+   "group": "cloud_infra",
+   "pattern": "\\bmodel[- ]serving\\b|\\bserving[- ](?:infrastructure|systems?|stack|platforms?|layer)\\b|\\binference[- ](?:servers?|services?|endpoints?|platforms?|infrastructure|systems?|stack|engines?)\\b|\\bkserve\\b|\\bkfserving\\b|\\bseldon\\b|\\bbentoml\\b|\\btriton\\b|\\bvllm\\b|\\bsglang\\b|\\btgi\\b|\\btext[- ]generation[- ]inference\\b|\\btorchserve\\b|\\btensorflow[- ]serving\\b|\\bray[- ]serve\\b|\\bonline[- ]inference\\b|\\breal-time[- ]inference\\b|\\bmodel[- ]endpoints?\\b|\\bserv(?:e|ing) (?:ml |llms? |the )?models?\\b"
+  },
+  {
+   "id": "gpu_management",
+   "label": "GPU scheduling / management",
+   "group": "cloud_infra",
+   "pattern": "\\bgpu[- ](?:clusters?|scheduling|schedulers?|utili[sz]ation|allocation|management|infrastructure|orchestration|resources|capacity|fleets?|nodes|workloads|compute|provisioning)\\b|\\bslurm\\b|\\brun:ai\\b|\\bgpu[- ]operator\\b|\\bcuda\\b|\\bgpus?\\b|\\btpus?\\b"
+  },
+  {
+   "id": "inference_optimisation",
+   "label": "Inference cost / latency optimisation",
+   "group": "cloud_infra",
+   "pattern": "\\binference[- ](?:cost|costs|latency|optimi[sz]ation|efficiency|throughput|performance|speed)\\b|\\b(?:latency|cost)(?:[- ]and[- ]|/| or )(?:cost|latency|throughput)\\b|\\bquantiz(?:ation|ed|e)\\b|\\btensorrt\\b|\\bspeculative[- ]decoding\\b|\\bkv[- ]cache\\b|\\bcontinuous[- ]batching\\b|\\bdynamic[- ]batching\\b|\\bmodel[- ]compression\\b|\\btokens? per[- ]second\\b|\\bcost[- ]per[- ](?:token|query|request|inference)\\b|\\btime[- ]to[- ]first[- ]token\\b|\\bonnx\\b|\\boptimi[sz](?:e|ing|ation[- ]of) (?:model )?inference\\b"
+  },
+  {
+   "id": "ab_testing",
+   "label": "A/B testing / experimentation",
+   "group": "product_analytics",
+   "pattern": "\\ba/b\\b|\\bab[- ]tests?\\b|\\bsplit[- ]tests?\\b|\\bexperimentation[- ](?:platforms?|frameworks?|design|programs?|culture|infrastructure|systems?|tools?|methodolog\\w+|best[- ]practices|strategy)\\b|\\bproduct[- ](?:\\w+ ){0,2}experimentation\\b|\\bexperiment(?:al)? design\\b|\\bdesign(?:ing)? (?:and[- ](?:implement|analy[sz]|run)\\w* )?(?:online |controlled )?experiments\\b|\\b(?:run|running|analy[sz]e|analy[sz]ing|launch\\w*) (?:\\w+ ){0,2}experiments\\b|\\bcontrolled[- ]experiments\\b|\\bonline[- ]experiments?\\b|\\bmultivariate[- ]test\\w*\\b"
+  },
+  {
+   "id": "metrics_kpis",
+   "label": "Metric / KPI definition",
+   "group": "product_analytics",
+   "pattern": "\\bkpis?\\b|\\bkey[- ]performance[- ]indicators?\\b|\\bnorth[- ]star[- ]metrics?\\b|\\bdefin(?:e|ing|ition[- ]of) (?:key |success |business |product )?metrics\\b|\\bsuccess[- ]metrics\\b|\\bbusiness[- ]metrics\\b|\\bproduct[- ]metrics\\b|\\bmetrics[- ]frameworks?\\b|\\bokrs?\\b"
+  },
+  {
+   "id": "dashboards_reporting",
+   "label": "Dashboards / reporting",
+   "group": "product_analytics",
+   "pattern": "(?<!sla )(?<!slo )(?<!grafana )(?<!monitoring )(?<!observability )(?<!operational )(?<!traces, )(?<!traces[- ]and )(?<!alerts, )(?<!alerting, )\\bdashboards?\\b(?![^.\\n]{0,25}\\b(?:alerts?|alerting|traces|on-call)\\b)|\\breporting\\b(?!\\s+(?:to|into|directly|line|lines|structure|relationship)\\b)|\\bscorecards?\\b"
+  },
+  {
+   "id": "data_analysis",
+   "label": "Data analysis (general)",
+   "group": "product_analytics",
+   "pattern": "\\bdata[- ]analys[ie]s\\b|\\banaly[sz](?:e|ing) (?:large |complex )?(?:data|datasets|data[- ]sets)\\b|\\bdata[- ]analytics\\b|\\banalytical[- ]skills\\b"
+  },
+  {
+   "id": "tableau",
+   "label": "Tableau",
+   "group": "product_analytics",
+   "pattern": "\\btableau\\b"
+  },
+  {
+   "id": "looker",
+   "label": "Looker",
+   "group": "product_analytics",
+   "pattern": "\\blooker\\b"
+  },
+  {
+   "id": "power_bi",
+   "label": "Power BI",
+   "group": "product_analytics",
+   "pattern": "\\bpower ?bi\\b"
+  },
+  {
+   "id": "other_bi_tools",
+   "label": "Other BI tools (Sigma, Hex, Mode, Metabase)",
+   "group": "product_analytics",
+   "pattern": "(?<!Six )(?-i:\\bSigma\\b)|(?-i:\\bHex\\b)|(?-i:\\bMode\\b)(?=\\s*[,/)]|\\s+analytics|\\s+(?:and|or)\\b)|\\bmetabase\\b|\\bsuperset\\b|\\bthoughtspot\\b|\\bqlik\\b|\\bdomo\\b"
+  },
+  {
+   "id": "bi_general",
+   "label": "Business intelligence (general)",
+   "group": "product_analytics",
+   "pattern": "\\bbi[- ]tools?\\b|\\bbusiness[- ]intelligence\\b|(?-i:\\bBI\\b)"
+  },
+  {
+   "id": "spreadsheets",
+   "label": "Excel / Google Sheets",
+   "group": "product_analytics",
+   "pattern": "(?-i:\\bExcel\\b)(?!\\s+(?:at|in|as|when|with)\\b)|\\bgoogle[- ]sheets\\b|\\bspreadsheets?\\b|\\bvlookups?\\b|\\bpivot[- ]tables?\\b"
+  },
+  {
+   "id": "data_visualisation",
+   "label": "Data visualisation / storytelling",
+   "group": "product_analytics",
+   "pattern": "\\bvisuali[sz]ations?\\b|\\bvisuali[sz]ation[- ]tools?\\b|\\bdata[- ]storytelling\\b|\\bstorytelling\\b|\\bvisuali[sz]e[- ]data\\b"
+  },
+  {
+   "id": "product_analytics",
+   "label": "Product analytics (funnels, retention, cohorts)",
+   "group": "product_analytics",
+   "pattern": "\\bproduct[- ]analytics\\b|\\bfunnels?\\b|\\bretention\\b(?!\\s+(?:bonus|policy|policies))|\\bcohorts?\\b|\\bchurn\\b|\\bengagement[- ]metrics\\b|\\buser[- ]behaviou?r\\b|\\bamplitude\\b|\\bmixpanel\\b|\\binstrumentation\\b|\\bevent[- ]tracking\\b|\\bltv\\b|\\blifetime[- ]value\\b"
+  },
+  {
+   "id": "segmentation_marketing",
+   "label": "Segmentation / marketing analytics",
+   "group": "product_analytics",
+   "pattern": "\\bsegmentation\\b|\\battribution\\b|\\bmarketing[- ]analytics\\b|\\bmarketing[- ]mix\\b|\\bcustomer[- ]segments?\\b|\\bcampaign[- ](?:performance|analytics|measurement)\\b|\\bgrowth[- ]analytics\\b"
+  },
+  {
+   "id": "financial_analysis",
+   "label": "Financial modelling / FP&A",
+   "group": "product_analytics",
+   "pattern": "\\bfinancial[- ](?:models?|modell?ing|analysis|planning|reporting|statements?)\\b|\\bfp&a\\b|\\bbudgeting\\b|\\bbudget[- ](?:planning|forecast\\w*|variance|management|vs\\.? actuals?)\\b|\\bunit[- ]economics\\b|\\bp&l\\b|\\brevenue[- ](?:recognition|analytics|reporting|forecast\\w*)\\b|\\bmonth-end\\b|\\bclose[- ]process\\b|\\baccounting[- ](?:systems?|principles|processes|close|operations|data|standards|policies)\\b|(?-i:\\bGAAP\\b)"
+  },
+  {
+   "id": "gtm_sales_ops",
+   "label": "GTM / sales & revenue operations",
+   "group": "product_analytics",
+   "pattern": "\\bgo-to-market\\b|(?<!NASDAQ: )(?-i:\\bGTM\\b)|\\bsales[- ]operations\\b|\\brevops\\b|\\brevenue[- ]operations\\b|\\bsales[- ](?:analytics|strategy|pipeline|planning|forecast\\w*)\\b|\\bterritory[- ]planning\\b|\\bquota\\b"
+  },
+  {
+   "id": "crm_salesforce",
+   "label": "CRM (Salesforce, HubSpot)",
+   "group": "product_analytics",
+   "pattern": "\\bsalesforce\\b|\\bhubspot\\b(?!\\s+data)|\\bcrm[- ](?:systems?|platforms?|administration|admin|data|tools?|integrations?|workflows?|configuration|experience)\\b|\\bcpq\\b"
+  },
+  {
+   "id": "erp_systems",
+   "label": "ERP / planning / finance systems (NetSuite, SAP, Workday, Anaplan)",
+   "group": "product_analytics",
+   "pattern": "(?-i:\\bERP\\b)|\\bnetsuite\\b|(?-i:\\bSAP\\b)|\\bworkday\\b|\\boracle[- ](?:fusion|ebs|financials|cloud)\\b|\\bcoupa\\b|\\bzuora\\b|\\bkyriba\\b|\\bavalara\\b|\\bhris\\b|\\banaplan\\b|(?-i:\\bPigment\\b)|\\badaptive[- ]planning\\b|(?-i:\\b(?:EPM|MES|WMS|PLM|QMS)\\b)"
+  },
+  {
+   "id": "requirements_gathering",
+   "label": "Requirements gathering / analysis",
+   "group": "product_analytics",
+   "pattern": "\\brequirements? (?:gathering|elicitation|analysis|documentation|definition|traceability)\\b|\\bbusiness[- ]requirements?\\b|\\bfunctional[- ]requirements?\\b|\\b(?:gather|gathering|elicit\\w*|defin(?:e|ing)|document(?:ing)?|captur(?:e|ing)) (?:\\w+ ){0,2}requirements\\b|\\bbrds?\\b|\\bfunctional[- ]spec(?:ification)?s?\\b|\\btechnical[- ]requirements\\b|\\bgap[- ]analys[ie]s\\b|\\btranslat\\w+ (?:\\w+ ){0,2}(?:business|ambiguous|stakeholder|product) (?:needs|requirements|problems|questions|goals)\\b"
+  },
+  {
+   "id": "process_mapping",
+   "label": "Process mapping / improvement",
+   "group": "product_analytics",
+   "pattern": "\\bprocess[- ](?:mapping|maps|flows?|improvements?|design|re-?engineering|optimi[sz]ation|documentation)\\b|\\bbpmn\\b|\\bbusiness[- ]process(?:es)?\\b|\\bcurrent[- ]state\\b|\\bfuture[- ]state\\b|\\bsix[- ]sigma\\b|\\bvisio\\b|\\blucidchart\\b"
+  },
+  {
+   "id": "change_management",
+   "label": "Change management / change control",
+   "group": "product_analytics",
+   "pattern": "\\bchange[- ]management\\b|\\bchange[- ]control\\b|\\borgani[sz]ational[- ]change\\b|\\bchange[- ]enablement\\b|\\badoption[- ](?:plans?|strateg(?:y|ies))\\b"
+  },
+  {
+   "id": "uat_testing",
+   "label": "UAT / acceptance testing",
+   "group": "product_analytics",
+   "pattern": "(?-i:\\bUAT\\b)|\\buser[- ]acceptance\\b|\\btest[- ](?:cases|scripts|plans)\\b|\\bsystem[- ]testing\\b"
+  },
+  {
+   "id": "agile_jira",
+   "label": "Agile / Jira",
+   "group": "product_analytics",
+   "pattern": "\\bagile[- ](?:methodolog\\w+|development|practices|teams?|delivery|frameworks?|ceremonies|environment)\\b|\\bscrum\\b|\\bkanban\\b|\\bjira\\b(?!\\s+tickets)|\\bconfluence\\b|\\buser[- ]stories\\b|\\bsprint[- ](?:planning|ceremonies|reviews?|cycles?)\\b|\\bbacklog[- ](?:grooming|refinement|management|prioriti[sz]ation)\\b"
+  },
+  {
+   "id": "itsm_servicenow",
+   "label": "IT service management (ServiceNow, JSM)",
+   "group": "product_analytics",
+   "pattern": "\\bservicenow\\b|(?-i:\\bITSM\\b)|\\bjira[- ]service[- ]management\\b|\\bit[- ]service[- ]management\\b|\\bitil\\b"
+  },
+  {
+   "id": "system_integration",
+   "label": "Enterprise integrations / iPaaS",
+   "group": "product_analytics",
+   "pattern": "\\bsystem[- ]integrations?\\b|\\benterprise[- ]integrations?\\b|\\bipaas\\b|\\bmulesoft\\b|\\bboomi\\b|\\bceligo\\b|\\bworkato\\b|\\bzapier\\b|\\bintegrations? (?:between|across|with) (?:systems|platforms|tools)\\b"
+  },
+  {
+   "id": "compliance_audit",
+   "label": "Compliance / audit (SOX, NIST)",
+   "group": "product_analytics",
+   "pattern": "(?-i:\\bSOX\\b)|\\bsarbanes\\b|\\binternal[- ]controls?\\b|(?<!bias )\\baudit(?:s|ing)?\\b(?! (?:notice|of[- ](?:this|the) (?:tool|aedt)))|\\bregulatory[- ](?:compliance|requirements|reporting)\\b|\\bcompliance[- ](?:requirements|frameworks?|controls)\\b|\\bpci(?:[- ]dss)?\\b|\\bnist\\b|\\bfedramp\\b|\\biso ?27001\\b|(?-i:\\bGRC\\b)|(?-i:\\bCMMC\\b)"
+  },
+  {
+   "id": "root_cause_analysis",
+   "label": "Root-cause / deep-dive analysis",
+   "group": "product_analytics",
+   "pattern": "\\broot[- ]cause\\b|\\bdeep[- ]dives?\\b|\\bad[- ]hoc[- ](?:analys[ie]s|queries|requests|reporting|reports)\\b|\\bexploratory[- ](?:data )?analys[ie]s\\b|(?-i:\\bEDA\\b)"
+  },
+  {
+   "id": "product_sense",
+   "label": "Product sense / product strategy",
+   "group": "product_analytics",
+   "pattern": "\\bproduct[- ](?:sense|strategy|roadmaps?|intuition|thinking|decisions|vision|discovery)\\b|\\bproduct[- ]minded\\b|\\b(?:shape|influence|inform|drive) (?:the )?product[- ](?:direction|roadmap)\\b"
+  },
+  {
+   "id": "domain_healthcare",
+   "label": "Healthcare / claims data",
+   "group": "product_analytics",
+   "pattern": "\\bhealth ?care[- ](?:data|industry|domain|experience|claims)\\b|\\bhealth[- ](?:insurance|plans?) (?:experience|industry|domain|data|claims)\\b|\\bclaims[- ]data\\b|\\bclinical[- ]data\\b|\\bicd(?:-10)?\\b|\\bcpt\\b|\\behr\\b|\\bemr[- ](?:data|systems?|integrations?)\\b|\\belectronic[- ](?:medical|health)[- ]records?\\b|\\bhl7\\b|\\bfhir\\b|\\bndc\\b|\\bmedical[- ]claims\\b"
+  },
+  {
+   "id": "domain_finance",
+   "label": "Finance / payments / fintech domain",
+   "group": "product_analytics",
+   "pattern": "\\bfintech\\b|\\bpayments? (?:systems?|infrastructure|processing|domain|industry|data|platforms?|flows?|rails|networks?)\\b|\\b(?:equities|options|crypto) trading\\b|\\btrading[- ](?:systems?|platforms?|products?)\\b|\\bbrokerage\\b|\\bcapital[- ]markets\\b|\\bbanking\\b|\\bkyc\\b|(?-i:\\bAML\\b)|\\banti-money[- ]laundering\\b|\\bsanctions[- ](?:screening|compliance)\\b|\\bcrypto(?:currenc(?:y|ies))?\\b|\\bblockchain\\b|\\bweb3\\b|\\blending\\b|\\bunderwriting\\b|\\bfinancial[- ]services\\b|\\btreasury\\b"
+  },
+  {
+   "id": "pricing_billing",
+   "label": "Pricing / billing / order-to-cash",
+   "group": "product_analytics",
+   "pattern": "\\bbilling\\b(?!\\s+address)|\\bpricing[- ](?:strateg(?:y|ies)|and[- ]packaging|experimentation|analytics|analysis|models?|engines?|systems?|domains?|logic)\\b|\\bsubscription[- ](?:management|billing|lifecycle)\\b|\\bmetering\\b|\\binvoic(?:e|es|ing)\\b|\\b(?:lead|quote|order)-to-cash\\b|\\bprocure-to-pay\\b|\\bmonetization[- ](?:strateg(?:y|ies)|flows?|systems?|models?)\\b"
+  },
+  {
+   "id": "stakeholder_communication",
+   "label": "Stakeholder communication",
+   "group": "soft_skills",
+   "pattern": "\\bstakeholders?\\b|\\bcommunicat(?:e|ing) (?:complex|technical|findings|results|insights|clearly)\\b|\\bcommunication[- ](?:and \\w+ )?skills\\b|\\bcommunicator\\b|\\bverbal[- ](?:and[- ]written )?communication\\b|\\bexcellent[- ]communication\\b|\\bstrong[- ]communication\\b"
+  },
+  {
+   "id": "cross_functional",
+   "label": "Cross-functional collaboration",
+   "group": "soft_skills",
+   "pattern": "\\bcross[- ]?functional(?:ly)?\\b|\\bcross-(?:team|organi[sz]ational|discipline|disciplinary)\\b|\\b(?:partner|collaborat)\\w* (?:closely |directly |tightly )?(?:with|across) (?:[\\w&/-]+,? ){0,5}(?:teams?|disciplines|functions|product(?: managers?| management| teams?)?|engineering|engineers|developers|testers|data[- ](?:science|scientists|engineering|engineers|teams?|analysts|platform)|design(?:ers)?|finance|operations|support|legal|marketing|sales|business[- ](?:teams|stakeholders|partners|leaders|units|users)|research(?:ers)?|scientists|analysts|managers|leaders|leadership|stakeholders|partners|go-to-market|gtm|security|compliance|risk|ux|qa|sre|devops|infrastructure|platform)\\b|\\bwork(?:s|ing)? (?:closely |directly |hand-in-hand |side-by-side )?(?:with|across) (?:the |our )?(?:[\\w&/-]+,? ){0,4}(?:teams?|disciplines|functions|product(?: managers?| management| teams?)?|engineering|engineers|developers|testers|data[- ](?:science|scientists|engineering|engineers|teams?|analysts|platform)|design(?:ers)?|finance|operations|support|legal|marketing|sales|business[- ](?:teams|stakeholders|partners|leaders|units|users)|research(?:ers)?|scientists|analysts|managers|leaders|leadership|stakeholders|partners|go-to-market|gtm|security|compliance|risk|ux|qa|sre|devops|infrastructure|platform)\\b"
+  },
+  {
+   "id": "non_technical_audiences",
+   "label": "Explaining to non-technical audiences",
+   "group": "soft_skills",
+   "pattern": "\\bnon[- ]?technical[- ](?:audiences?|stakeholders|partners|users|teams|people|colleagues|leaders|business|counterparts|customers)\\b|\\b(?:diverse|varied|mixed|broad|wide) (?:range[- ]of )?audiences?\\b|\\b(?:technical|complex) (?:concepts|findings|ideas|topics|information|results) (?:to|for|into) (?:non[- ]?technical|business|executive|diverse|a[- ]diverse|a[- ]broad|senior)\\b|\\b(?:translat|convey|explain|distill)\\w* (?:\\w+ ){0,2}(?:complex|technical|analytical) (?:concepts|findings|ideas|results|insights|topics|information)\\b|\\bexecutive[- ](?:audiences?|presentations?|summaries)\\b|\\bpresent(?:ing)? (?:findings|results|insights|recommendations)\\b"
+  },
+  {
+   "id": "mentoring",
+   "label": "Mentoring / coaching",
+   "group": "soft_skills",
+   "pattern": "\\bmentor(?:s|ing|ed|ship)?\\b|\\bcoach(?:ing|es)?\\b|\\bupskill(?:ing)?\\b"
+  },
+  {
+   "id": "technical_leadership",
+   "label": "Technical leadership",
+   "group": "soft_skills",
+   "pattern": "\\btechnical[- ](?:leader(?:ship|s)?|lead|direction|vision|strategy)\\b|\\btech[- ]lead\\b|\\blead[- ](?:the )?(?:design|architecture|technical)\\b|\\blead(?:ing)? technical[- ](?:projects|initiatives|efforts|work|decisions)\\b|\\bengineering[- ]standards\\b"
+  },
+  {
+   "id": "ownership_autonomy",
+   "label": "Ownership / autonomy",
+   "group": "soft_skills",
+   "pattern": "\\bownership\\b(?!\\s*:?\\s*equity)(?!\\s+(?:stake|field))|\\bown(?:s|ing)? (?:the )?(?:end-to-end|full|entire|projects?|problems?)\\b|\\b(?:with|high|full|significant|degree[- ]of) autonomy\\b|\\bautonomously\\b|\\bindependently\\b|\\bindependent[- ](?:judgment|worker|contributor)\\b|\\bself-(?:starter|directed|sufficient|motivat\\w+)\\b|\\bminimal[- ](?:supervision|guidance|direction)\\b|\\bbias[- ](?:for|to(?:wards?)?)[- ]action\\b"
+  },
+  {
+   "id": "written_documentation",
+   "label": "Written documentation",
+   "group": "soft_skills",
+   "pattern": "\\bdocumentation\\b|\\bwritten[- ](?:and[- ](?:verbal|oral) )?communication\\b|\\b(?:written[- ]and[- ]verbal|verbal[- ]and[- ]written|written[- ]and[- ]oral)\\b|\\bwriting[- ]skills\\b|\\bclear(?:ly)? writ(?:ing|ten|e)\\b|\\bdesign[- ]documents?\\b|\\btechnical[- ](?:writing|reports?|specs?|specifications)\\b|\\brunbooks?\\b|\\bwrite[- ]ups?\\b|\\bmemos?\\b|\\bdocument(?:ing)? (?:\\w+ ){0,3}(?:patterns|processes|decisions|requirements|designs?|architectures?|procedures|workflows|findings)\\b"
+  },
+  {
+   "id": "ambiguity",
+   "label": "Comfort with ambiguity / fast pace",
+   "group": "soft_skills",
+   "pattern": "\\bambigu(?:ity|ous)\\b|\\bfast-paced\\b|\\bfast-moving\\b|\\bchanging[- ]priorities\\b|\\bcompeting[- ]priorities\\b|\\bzero[- ]to[- ]one\\b|\\b0[- ]to[- ]1\\b|\\bgreenfield\\b"
+  },
+  {
+   "id": "project_management",
+   "label": "Project management / delivery",
+   "group": "soft_skills",
+   "pattern": "\\bproject[- ]management\\b|\\bmanag(?:e|ing) (?:\\w+ ){0,1}(?:projects|timelines|scope|deliverables)\\b|\\blead(?:ing)? (?:\\w+ ){0,2}projects\\b|\\bscop(?:e|ing)(?:,| and) (?:estimat\\w+|plan\\w*)\\b|\\bscop(?:e|ing) (?:projects|work|technical[- ]delivery)\\b|\\b(?:own|owning|owns) (?:the )?delivery\\b|\\bprogram[- ]management\\b|\\brelease[- ]planning\\b|\\b(?:deliver|hit|meet|meeting|track|set)\\w* (?:\\w+ ){0,2}(?:milestones|deadlines)\\b|\\b(?:adherence[- ]to|tight) deadlines\\b|\\bproject[- ]plans?\\b|\\bproject[- ]delivery\\b"
+  },
+  {
+   "id": "customer_facing",
+   "label": "Customer-facing / client work",
+   "group": "soft_skills",
+   "pattern": "\\b(?:customer|client)[- ]facing\\b(?!\\s+(?:apis?|surfaces?|applications?|apps?|web|mobile|software|products?|features?|ml|models?|dashboards?|systems?|services?|experiences?|tools?|platforms?))|\\bwork(?:ing)? (?:directly |closely |hands-on )?with[- ](?:strategic |enterprise |external )?customers\\b|\\bembed[- ](?:deeply )?with[- ](?:strategic )?customers\\b|\\bcustomer[- ]empathy\\b|\\bcustomer[- ]requirements\\b|\\bpre-?sales\\b|\\bclient[- ](?:engagements?|relationships?)\\b"
+  },
+  {
+   "id": "problem_framing",
+   "label": "Problem framing / trade-offs",
+   "group": "soft_skills",
+   "pattern": "\\bproblem[- ]solving\\b|\\bfram(?:e|ing) (?:the )?(?:problems?|questions?)\\b|\\bfirst[- ]principles\\b|\\bstructured[- ]thinking\\b|\\bopen-ended[- ](?:problems|questions|goals)\\b|\\btrade-?offs?\\b"
+  },
+  {
+   "id": "prioritisation",
+   "label": "Prioritisation",
+   "group": "soft_skills",
+   "pattern": "\\bprioriti[sz]\\w* (?:\\w+ ){0,2}(?:work|tasks|projects|requests|investments|initiatives|features|roadmaps?|backlogs?|competing|across|among|between|deliverables|opportunities|requirements|efforts|assignments|demands|workloads)\\b|\\b(?:ability|able) to[- ]prioriti[sz]e\\b|\\b(?:manag|balanc|juggl)\\w* (?:\\w+ ){0,2}priorities\\b|\\bcompeting[- ]priorities\\b|\\bprioriti[sz]ation\\b"
+  },
+  {
+   "id": "influence",
+   "label": "Influence / alignment",
+   "group": "soft_skills",
+   "pattern": "\\binfluenc(?:e|ing) (?:without[- ]authority|stakeholders|leadership|senior|cross-functional|others|partners|(?:\\w+ ){0,2}(?:decisions|strategy|direction|roadmaps?|priorities))\\b|\\b(?:drive|driving|driven|build|building|built|create|creating) (?:\\w+ ){0,1}(?:alignment|consensus)\\b|\\balign(?:ing)? stakeholders\\b|\\bwithout[- ](?:relying[- ]on )?(?:formal |direct )?authority\\b|\\bpersua\\w+\\b"
+  },
+  {
+   "id": "enablement_training",
+   "label": "Enablement / teaching others",
+   "group": "soft_skills",
+   "pattern": "\\benablement\\b|\\btrain(?:ing)? (?:users|teams|stakeholders|end[- ]users|others|customers)\\b|\\b(?:user|end-user) training\\b|\\btraining[- ](?:paths|programs|materials?|sessions)\\b|\\bworkshops?\\b|\\bknowledge[- ]sharing\\b|\\bshare[- ]knowledge\\b|\\bdata[- ]literacy\\b|\\bdemocrati[sz]\\w+\\b"
+  },
+  {
+   "id": "prototyping",
+   "label": "Rapid prototyping / proof of concept",
+   "group": "soft_skills",
+   "pattern": "\\bprototyp(?:e|es|ing|ed)\\b|\\bproofs?[- ]of[- ]concepts?\\b|(?-i:\\bP[oO][cC]s?\\b)|(?-i:\\bMVPs?\\b)"
+  },
+  {
+   "id": "attention_to_detail",
+   "label": "Attention to detail / rigor",
+   "group": "soft_skills",
+   "pattern": "\\battention[- ]to[- ]detail\\b|\\bdetail[- ]oriented\\b|\\bmeticulous\\b|\\banalytical[- ]rigou?r\\b|\\brigorous[- ](?:analys\\w+|testing|thinking|approach|methods?)\\b|\\bhigh-quality,? accurate\\b"
+  },
+  {
+   "id": "continuous_learning",
+   "label": "Curiosity / continuous learning",
+   "group": "soft_skills",
+   "pattern": "\\bcurious(?:ity)? (?:about|to[- ](?:learn|explore))\\b|\\bcontinuous(?:ly)? learn\\w*\\b|\\blearn(?:ing)? (?:new \\w+ )?quickly\\b|\\bquickly[- ]learn\\w*\\b|\\b(?:quick|fast) learner\\b|\\bgrowth[- ]mindset\\b|\\bstay[- ](?:current|up[- ]to[- ]date|on[- ]top)\\b|\\bkeep[- ]up[- ]with\\b"
+  },
+  {
+   "id": "business_acumen",
+   "label": "Business acumen / impact orientation",
+   "group": "soft_skills",
+   "pattern": "\\bbusiness[- ]acumen\\b|\\bbusiness[- ]impact\\b|\\bbusiness[- ]outcomes\\b|\\bbusiness[- ]context\\b|\\bcommercial[- ](?:awareness|acumen)\\b|\\bmeasurable[- ](?:impact|outcomes|results)\\b|\\broi\\b"
+  },
+  {
+   "id": "ai_fluency_workflow",
+   "label": "Uses AI tools in daily work",
+   "group": "soft_skills",
+   "pattern": "\\b(?:use|using|uses) (?:agentic |generative )?ai\\b(?![^.\\n]{0,80}\\b(?:recruit\\w*|application[- ]process|hiring|screening|interview\\w*|transcription|candidates?|resumes?|notes?|note-taking|applicants?))|(?<!enterprise )\\bai[- ]tools\\b(?![^.\\n]{0,80}\\b(?:recruit\\w*|hiring|interview\\w*|screening|resumes?|notes?|applicants?|stipend|benefits?|licenses?))|\\bai[- ]fluency\\b|\\bleverag\\w+ (?:agentic |generative )?ai\\b(?![^.\\n]{0,80}\\b(?:recruit\\w*|hiring|interview\\w*|resumes?|applicants?))|\\bai-assisted\\b(?![^.\\n]{0,80}\\b(?:recruit\\w*|hiring|interview\\w*|resumes?|applicants?))|\\bai-augmented\\b"
+  }
+ ],
+ "out_of_taxonomy": [
+  {
+   "concept": "industry domains other than finance/payments and healthcare (e-commerce/marketplace economics, supply chain/manufacturing, HR/people analytics, games, ads, robotics/autonomy)",
+   "reason": "each recurs in only 1-3 JDs per sample and mostly reflects the employer, not a transferable skill; finance and healthcare are kept as domain_finance / domain_healthcare because they recur and carry regulated-data skills"
+  },
+  {
+   "concept": "embedded / firmware, hardware enclaves, edge platforms",
+   "reason": "seen once each; too rare across the 10 titles to compare prevalence"
+  },
+  {
+   "concept": "enterprise application support (troubleshooting, configuration, implementations), vendor evaluation",
+   "reason": "phrasing is too generic for a precise regex; partly covered by erp_systems and system_integration"
+  },
+  {
+   "concept": "generic organisational / teamwork skills, public speaking",
+   "reason": "not concrete enough to count reliably; covered in part by stakeholder_communication and project_management"
+  },
+  {
+   "concept": "SDLC (software development lifecycle) as a named skill",
+   "reason": "removed in v2026-10-03b: in train and precision JDs it mostly appeared in company or product blurbs ('complete SDLC for millions of developers'), not as an ask; actual practices are covered by ci_cd, testing_qa, code_review, agile_jira"
+  },
+  {
+   "concept": "facilitation (workshops, sessions)",
+   "reason": "tried in v2026-10-03c; matched 1 of 113 train JDs, below the 2-JD floor; workshops are partly covered by enablement_training"
+  },
+  {
+   "concept": "dataset creation / versioned datasets, human-in-the-loop infrastructure",
+   "reason": "single mentions in the gate-2 holdout; not recurring in train"
+  },
+  {
+   "concept": "CS fundamentals (data structures and algorithms)",
+   "reason": "dropped in v2026-10-03: in train JDs the words mostly appeared in company blurbs ('innovative algorithms'), 3 JDs after fixing"
+  }
+ ],
+ "changelog": [
+  {
+   "version": "2026-10-03d",
+   "change": "customer_facing no longer matches the phrase 'forward deployed' (it matched the FDE job title itself); prototyping accepts capitalised POC. Found by the FDE-specific review, data/jd/taxonomy/gate_fde_report.md."
+  }
+ ]
+}

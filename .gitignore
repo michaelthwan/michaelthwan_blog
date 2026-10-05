@@ -3,3 +3,6 @@
 
 __pycache__/
 *.pyc
+
+# Scraped job postings and levels.fyi pages for the title-overlap study (large, re-fetchable)
+/data/

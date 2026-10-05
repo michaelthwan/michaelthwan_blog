@@ -1,0 +1,1252 @@
+{
+  "15five": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 1
+  },
+  "360learning": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 39
+  },
+  "abcellera": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 30
+  },
+  "achievers": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 13
+  },
+  "acryldata": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 7
+  },
+  "adesa": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 91
+  },
+  "adyen": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 220
+  },
+  "affirm": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 189
+  },
+  "airbnb": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 154
+  },
+  "airtable": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 4
+  },
+  "aledade": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 32
+  },
+  "alloy": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 23
+  },
+  "alpaca": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 71
+  },
+  "altaml": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 6
+  },
+  "anthropic": {
+    "ats": "greenhouse",
+    "group": "ai",
+    "n_jobs": 639
+  },
+  "anyscale": {
+    "ats": "lever",
+    "group": "ai",
+    "n_jobs": 1
+  },
+  "arcadia": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 16
+  },
+  "asana": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 97
+  },
+  "aspectbiosystems": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 13
+  },
+  "assemblyai": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 10
+  },
+  "assent": {
+    "ats": "smartrecruiters",
+    "group": "canada",
+    "n_jobs": 22
+  },
+  "attentive": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 32
+  },
+  "axios": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 36
+  },
+  "bark": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 1
+  },
+  "betterment": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 29
+  },
+  "bird": {
+    "ats": "greenhouse",
+    "group": "nontech",
+    "n_jobs": 30
+  },
+  "branch": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 5
+  },
+  "braze": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 349
+  },
+  "brex": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 282
+  },
+  "bruin": {
+    "ats": "greenhouse",
+    "group": "data_more",
+    "n_jobs": 4
+  },
+  "bungie": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 2
+  },
+  "calendly": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 10
+  },
+  "calm": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 2
+  },
+  "canva": {
+    "ats": "smartrecruiters",
+    "group": "us_large",
+    "n_jobs": 131
+  },
+  "carta": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 75
+  },
+  "carvana": {
+    "ats": "greenhouse",
+    "group": "nontech",
+    "n_jobs": 1818
+  },
+  "checkr": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 46
+  },
+  "chime": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 66
+  },
+  "circleci": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 12
+  },
+  "classpass": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 35
+  },
+  "cloudflare": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 405
+  },
+  "clutch": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 76
+  },
+  "coalition": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 42
+  },
+  "cockroachlabs": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 19
+  },
+  "coinbase": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 229
+  },
+  "collibra": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 32
+  },
+  "contentsquare": {
+    "ats": "lever",
+    "group": "data_more",
+    "n_jobs": 29
+  },
+  "coreweave": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 311
+  },
+  "cornerstone": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 3
+  },
+  "cresta": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 88
+  },
+  "cultureamp": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 32
+  },
+  "current": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 7
+  },
+  "cybereason": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 5
+  },
+  "d2l": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 16
+  },
+  "databricks": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 886
+  },
+  "datadog": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 444
+  },
+  "dataiku": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 21
+  },
+  "deepgenomics": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 3
+  },
+  "descript": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 11
+  },
+  "digitalextremes": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 9
+  },
+  "diligent": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 6
+  },
+  "discord": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 51
+  },
+  "dominodatalab": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 22
+  },
+  "dotmatics": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 30
+  },
+  "dragos": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 55
+  },
+  "dremio": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 5
+  },
+  "dropbox": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 39
+  },
+  "duolingo": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 59
+  },
+  "elastic": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 392
+  },
+  "epicgames": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 147
+  },
+  "eqbank": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 89
+  },
+  "everlaw": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 40
+  },
+  "faire": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 80
+  },
+  "fastly": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 43
+  },
+  "figma": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 162
+  },
+  "findem": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 4
+  },
+  "fivetran": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 181
+  },
+  "flatironhealth": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 29
+  },
+  "flexport": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 199
+  },
+  "flipp": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 11
+  },
+  "forward": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 5
+  },
+  "fourkites": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 13
+  },
+  "freshworks": {
+    "ats": "smartrecruiters",
+    "group": "us_mid",
+    "n_jobs": 123
+  },
+  "fullscript": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 15
+  },
+  "galileo": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 14
+  },
+  "gameloft": {
+    "ats": "smartrecruiters",
+    "group": "canada",
+    "n_jobs": 55
+  },
+  "geotab": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 70
+  },
+  "ghost": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 6
+  },
+  "gitlab": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 211
+  },
+  "glean": {
+    "ats": "smartrecruiters",
+    "group": "ai_native",
+    "n_jobs": 1
+  },
+  "glossier": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 27
+  },
+  "gong": {
+    "ats": "smartrecruiters",
+    "group": "us_mid",
+    "n_jobs": 9
+  },
+  "gopuff": {
+    "ats": "lever",
+    "group": "consumer_media",
+    "n_jobs": 795
+  },
+  "gusto": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 94
+  },
+  "healthie": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 21
+  },
+  "healthverity": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 19
+  },
+  "hiretual": {
+    "ats": "smartrecruiters",
+    "group": "us_mid",
+    "n_jobs": 47
+  },
+  "honeycomb": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 20
+  },
+  "hootsuite": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 11
+  },
+  "huntress": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 39
+  },
+  "imbue": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 1
+  },
+  "imply": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 5
+  },
+  "indigo": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 2
+  },
+  "insomniac": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 8
+  },
+  "instacart": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 131
+  },
+  "intercom": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 108
+  },
+  "invisible": {
+    "ats": "greenhouse",
+    "group": "ai_more",
+    "n_jobs": 5
+  },
+  "jamcity": {
+    "ats": "lever",
+    "group": "consumer_media",
+    "n_jobs": 17
+  },
+  "jfrog": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 61
+  },
+  "keboola": {
+    "ats": "lever",
+    "group": "data_more",
+    "n_jobs": 2
+  },
+  "kepler": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 19
+  },
+  "klaviyo": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 133
+  },
+  "knak": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 8
+  },
+  "kodiak": {
+    "ats": "greenhouse",
+    "group": "nontech",
+    "n_jobs": 69
+  },
+  "komodohealth": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 28
+  },
+  "labelbox": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 9
+  },
+  "later": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 42
+  },
+  "lattice": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 12
+  },
+  "launchdarkly": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 59
+  },
+  "liftoff": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 23
+  },
+  "lightningai": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 54
+  },
+  "logrocket": {
+    "ats": "lever",
+    "group": "data_more",
+    "n_jobs": 9
+  },
+  "lucidmotors": {
+    "ats": "greenhouse",
+    "group": "nontech",
+    "n_jobs": 438
+  },
+  "lyft": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 192
+  },
+  "lyrahealth": {
+    "ats": "lever",
+    "group": "health_industrial",
+    "n_jobs": 562
+  },
+  "m1finance": {
+    "ats": "smartrecruiters",
+    "group": "fintech",
+    "n_jobs": 1
+  },
+  "magellan": {
+    "ats": "smartrecruiters",
+    "group": "canada",
+    "n_jobs": 416
+  },
+  "magnetforensics": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 40
+  },
+  "matillion": {
+    "ats": "lever",
+    "group": "data_vendors",
+    "n_jobs": 19
+  },
+  "medium": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 1
+  },
+  "melio": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 21
+  },
+  "mercury": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 61
+  },
+  "metabase": {
+    "ats": "lever",
+    "group": "data_vendors",
+    "n_jobs": 18
+  },
+  "mindtickle": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 17
+  },
+  "mixpanel": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 63
+  },
+  "modernhealth": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 11
+  },
+  "mongodb": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 390
+  },
+  "motional": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 74
+  },
+  "motive": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 7
+  },
+  "naughtydog": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 15
+  },
+  "nebius": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 364
+  },
+  "neon": {
+    "ats": "lever",
+    "group": "data_vendors",
+    "n_jobs": 12
+  },
+  "netlify": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 5
+  },
+  "netskope": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 150
+  },
+  "newrelic": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 47
+  },
+  "nexla": {
+    "ats": "greenhouse",
+    "group": "data_more",
+    "n_jobs": 4
+  },
+  "nextdoor": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 19
+  },
+  "nium": {
+    "ats": "lever",
+    "group": "fintech",
+    "n_jobs": 20
+  },
+  "nuro": {
+    "ats": "greenhouse",
+    "group": "nontech",
+    "n_jobs": 102
+  },
+  "observeai": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 12
+  },
+  "offerup": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 7
+  },
+  "okta": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 368
+  },
+  "onemedical": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 406
+  },
+  "orca": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 2
+  },
+  "orchestra": {
+    "ats": "greenhouse",
+    "group": "data_more",
+    "n_jobs": 33
+  },
+  "oscar": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 246
+  },
+  "oura": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 80
+  },
+  "outreach": {
+    "ats": "lever",
+    "group": "us_mid",
+    "n_jobs": 26
+  },
+  "pagerduty": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 53
+  },
+  "pathai": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 16
+  },
+  "peloton": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 57
+  },
+  "pendo": {
+    "ats": "greenhouse",
+    "group": "data_more",
+    "n_jobs": 23
+  },
+  "pinterest": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 168
+  },
+  "pinwheel": {
+    "ats": "smartrecruiters",
+    "group": "us_mid",
+    "n_jobs": 1
+  },
+  "planetscale": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 12
+  },
+  "pointclickcare": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 76
+  },
+  "poka": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 4
+  },
+  "porter": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 5
+  },
+  "project44": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 35
+  },
+  "public": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 2
+  },
+  "quantummetric": {
+    "ats": "lever",
+    "group": "data_more",
+    "n_jobs": 9
+  },
+  "qwilr": {
+    "ats": "smartrecruiters",
+    "group": "canada",
+    "n_jobs": 1
+  },
+  "reddit": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 152
+  },
+  "redwoodmaterials": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 137
+  },
+  "relativity": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 350
+  },
+  "remote": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 2
+  },
+  "riotgames": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 164
+  },
+  "ritual": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 15
+  },
+  "ro": {
+    "ats": "lever",
+    "group": "midsize",
+    "n_jobs": 56
+  },
+  "robinhood": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 162
+  },
+  "roblox": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 254
+  },
+  "roku": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 233
+  },
+  "rover": {
+    "ats": "lever",
+    "group": "consumer_media",
+    "n_jobs": 36
+  },
+  "rumble": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 3
+  },
+  "salesloft": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 29
+  },
+  "samsara": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 245
+  },
+  "scaleai": {
+    "ats": "greenhouse",
+    "group": "ai",
+    "n_jobs": 192
+  },
+  "scopely": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 168
+  },
+  "seatgeek": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 37
+  },
+  "seekout": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 2
+  },
+  "semafor": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 19
+  },
+  "servicenow": {
+    "ats": "smartrecruiters",
+    "group": "us_large",
+    "n_jobs": 706
+  },
+  "sezzle": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 238
+  },
+  "shakepay": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 9
+  },
+  "shield": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 1
+  },
+  "shieldai": {
+    "ats": "lever",
+    "group": "health_industrial",
+    "n_jobs": 596
+  },
+  "showpad": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 32
+  },
+  "sigmacomputing": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 69
+  },
+  "sila": {
+    "ats": "lever",
+    "group": "health_industrial",
+    "n_jobs": 209
+  },
+  "singlestore": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 40
+  },
+  "smartsheet": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 92
+  },
+  "snorkelai": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 41
+  },
+  "sociabble": {
+    "ats": "smartrecruiters",
+    "group": "canada",
+    "n_jobs": 3
+  },
+  "socure": {
+    "ats": "smartrecruiters",
+    "group": "us_mid",
+    "n_jobs": 1
+  },
+  "sofi": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 56
+  },
+  "solidpower": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 3
+  },
+  "sonarsource": {
+    "ats": "lever",
+    "group": "us_large",
+    "n_jobs": 124
+  },
+  "speechmatics": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 14
+  },
+  "spotify": {
+    "ats": "lever",
+    "group": "nontech",
+    "n_jobs": 82
+  },
+  "squarespace": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 33
+  },
+  "starburst": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 30
+  },
+  "streamnative": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 1
+  },
+  "stripe": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 716
+  },
+  "suki": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 11
+  },
+  "sumologic": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 9
+  },
+  "sweetgreen": {
+    "ats": "greenhouse",
+    "group": "nontech",
+    "n_jobs": 64
+  },
+  "sysdig": {
+    "ats": "lever",
+    "group": "us_large",
+    "n_jobs": 29
+  },
+  "telesat": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 54
+  },
+  "tenstorrent": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 129
+  },
+  "theathletic": {
+    "ats": "lever",
+    "group": "nontech",
+    "n_jobs": 12
+  },
+  "tinybird": {
+    "ats": "lever",
+    "group": "data_vendors",
+    "n_jobs": 1
+  },
+  "together": {
+    "ats": "smartrecruiters",
+    "group": "ai",
+    "n_jobs": 28
+  },
+  "truveta": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 39
+  },
+  "tucows": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 1
+  },
+  "twilio": {
+    "ats": "greenhouse",
+    "group": "large",
+    "n_jobs": 125
+  },
+  "twitch": {
+    "ats": "greenhouse",
+    "group": "consumer_media",
+    "n_jobs": 50
+  },
+  "typeface": {
+    "ats": "greenhouse",
+    "group": "ai_native",
+    "n_jobs": 13
+  },
+  "unbounce": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 1
+  },
+  "vectara": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 5
+  },
+  "veeva": {
+    "ats": "lever",
+    "group": "health_industrial",
+    "n_jobs": 937
+  },
+  "vercel": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 85
+  },
+  "videotron": {
+    "ats": "smartrecruiters",
+    "group": "canada",
+    "n_jobs": 105
+  },
+  "voltus": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 17
+  },
+  "waabi": {
+    "ats": "lever",
+    "group": "health_industrial",
+    "n_jobs": 92
+  },
+  "warp": {
+    "ats": "greenhouse",
+    "group": "ai_more",
+    "n_jobs": 6
+  },
+  "watershed": {
+    "ats": "greenhouse",
+    "group": "health_industrial",
+    "n_jobs": 8
+  },
+  "wattpad": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 17
+  },
+  "waveapps": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 7
+  },
+  "wayfair": {
+    "ats": "smartrecruiters",
+    "group": "large",
+    "n_jobs": 1
+  },
+  "wealthfront": {
+    "ats": "lever",
+    "group": "fintech",
+    "n_jobs": 23
+  },
+  "webflow": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 25
+  },
+  "wise": {
+    "ats": "greenhouse",
+    "group": "fintech",
+    "n_jobs": 16
+  },
+  "workleap": {
+    "ats": "greenhouse",
+    "group": "canada",
+    "n_jobs": 4
+  },
+  "yugabyte": {
+    "ats": "greenhouse",
+    "group": "data_vendors",
+    "n_jobs": 16
+  },
+  "zensurance": {
+    "ats": "lever",
+    "group": "canada",
+    "n_jobs": 11
+  },
+  "zilliz": {
+    "ats": "lever",
+    "group": "data_vendors",
+    "n_jobs": 12
+  },
+  "zocdoc": {
+    "ats": "greenhouse",
+    "group": "midsize",
+    "n_jobs": 58
+  },
+  "zoominfo": {
+    "ats": "greenhouse",
+    "group": "us_mid",
+    "n_jobs": 95
+  },
+  "zoox": {
+    "ats": "lever",
+    "group": "nontech",
+    "n_jobs": 234
+  },
+  "zscaler": {
+    "ats": "greenhouse",
+    "group": "us_large",
+    "n_jobs": 364
+  }
+}
