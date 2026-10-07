@@ -6,7 +6,7 @@ authors:
 affiliations:
   - "Michael Wan Interactive Insights"
 published: "2026-10-04"
-abstract: "Ten tech titles, from Software Engineer and Forward Deployed Engineer to Business Analyst, measured two ways: the skills their 2026 job postings ask for, and the base salary those postings disclose, set against base and total compensation reported on levels.fyi. Analytics Engineer and Data Analyst, or ML and MLOps Engineer, share most of their skills yet differ by 35% to 60% in posted base salary. Forward Deployed Engineer turns out to be its own job, closest to AI Engineer. Includes a pay explorer and a skill picker that scores your profile against each title."
+abstract: "Ten tech titles, from Software Engineer and Forward Deployed Engineer to Business Analyst, measured two ways: the skills their 2026 job postings ask for, and the base salary those postings disclose, set against base and total compensation reported on levels.fyi. Analytics Engineer and Data Analyst, or ML and MLOps Engineer, share most of their skills yet differ by 35% to 60% in posted base salary. Forward Deployed Engineer turns out to be its own job, closest to AI Engineer. Includes a pay explorer that compares posted base with levels.fyi base and TC by country, level and title."
 tags:
   - "data"
   - "careers"
@@ -35,7 +35,6 @@ thumbnail: "/img/title-overlap/thumbnail.svg"
   .tov-ico { display: inline-block; width: 13px; height: 13px; margin-right: 6px; vertical-align: -1px;
     background-color: currentColor; opacity: 0.75;
     -webkit-mask: var(--ico) center / contain no-repeat; mask: var(--ico) center / contain no-repeat; }
-  .tov-skill .tov-ico { margin-right: 0; }
   .tov-pay-explorer { margin: 20px 0 10px; }
   .tov-pe-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 16px; margin-bottom: 8px; }
   .tov-pe-controls .tov-pe-chips { margin: 0; }
@@ -79,18 +78,6 @@ thumbnail: "/img/title-overlap/thumbnail.svg"
   .tov-math .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
   .tov-figcap { color: var(--color-gray); font-size: 0.82rem; line-height: 1.5; margin: -6px 0 22px; }
 
-  .tov-picker { margin: 22px 0; padding: 18px 0; border-top: 1px solid var(--color-border, #e5e7eb); border-bottom: 1px solid var(--color-border, #e5e7eb); }
-  .tov-picker h4 { margin: 0 0 4px; font-size: 1rem; }
-  .tov-picker-desc { color: var(--color-gray); font-size: 0.85rem; margin: 0 0 14px; }
-  .tov-picker-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: 0.8rem; }
-  .tov-picker-tools button { font: inherit; padding: 3px 10px; border: 1px solid var(--color-border, #d1d5db); border-radius: 4px; background: transparent; color: var(--color-text); cursor: pointer; }
-  .tov-picker-tools button:hover { border-color: var(--color-gray); }
-  .tov-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px 18px; max-height: 340px; overflow-y: auto; padding-right: 6px; }
-  .tov-group-name { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-gray); margin: 2px 0 4px; }
-  .tov-skill { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; line-height: 1.7; cursor: pointer; }
-  .tov-skill input { accent-color: #2a78d6; margin: 0; }
-  .tov-result-title { font-size: 0.82rem; font-weight: 600; margin: 18px 0 6px; }
-  .tov-picker .dv-val { width: 150px; }
 </style>
 
 ## Executive summary
@@ -295,6 +282,7 @@ Hierarchical clustering on the same numbers gives the two families. Analytics En
 The explorer shows three distributions for each title, each labelled with what it measures. **Posted base** is the midpoint of the base-salary range in each posting. **levels.fyi base** is the base salary people report for the title. **levels.fyi TC** is their total compensation: base plus equity and bonus. Each bar is a box plot: the thin line runs from the 10th to the 90th percentile, the box covers the middle half, and the tick marks the median.
 
 <div class="dv tov-pay-explorer" id="tov-pay-explorer"></div>
+<script src="/js/title-overlap.js"></script>
 <p class="tov-figcap">Filter by country, level, series (posted base, levels.fyi base, levels.fyi TC) and title. Canada is in CAD, so compare within a country. levels.fyi has no dedicated page for six of these titles; we used the closest job-title page under Software Engineer, listed in the limits section.</p>
 
 Three things to read carefully.
@@ -337,17 +325,6 @@ High overlap does not bring pay together:
 Software Engineer and FDE are within 7% of each other on posted base, and on levels.fyi FDE is 9% higher on base and 10% higher on TC. FDE's posted base is 19% above AI Engineer's, its closest neighbour on skills (18% on levels.fyi base, 35% on TC). Lower in the table, Data Scientist and Data Analyst share less (0.78) but differ the most of any listed pair: 98% on posted base, 50% on levels.fyi base.
 
 In this sample, a title that adds an engineering or modelling signature to a shared core is paid at the engineering title's level, and the gap widens once equity is counted. The data show the association, not the reason for it.
-
-## Try it: which title fits your skills?
-
-Pick the skills you have. For each title, the score is the share of that title's 15 most-requested skills you cover, weighted by how often postings ask for each one. The pay shown is the title's US posted base (median).
-
-<div class="tov-picker" id="tov-picker">
-  <h4>Skill picker</h4>
-  <p class="tov-picker-desc">Loading skill data...</p>
-</div>
-
-<script src="/js/title-overlap.js"></script>
 
 ## Limits
 

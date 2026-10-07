@@ -226,9 +226,6 @@ def main():
         "disagree": fig_disagree(analysis, comp),
     }
     write_thumbnail(analysis, order)
-    # The skill picker reads the same icon list.
-    with open(os.path.join(DATA, "title-icons.json"), "w", encoding="utf-8") as f:
-        json.dump(sorted(ICONS), f)
     with open(POST, encoding="utf-8") as f:
         text = f.read()
     for name, html in figs.items():
