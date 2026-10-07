@@ -59,12 +59,21 @@ thumbnail: "/img/title-overlap/thumbnail.svg"
   .tov-pe-box { position: absolute; top: 0; bottom: 0; background: var(--s); opacity: 0.55; border-radius: 2px; }
   .tov-pe-med { position: absolute; top: -1px; bottom: -1px; width: 2px; margin-left: -1px; background: var(--s); }
   .tov-pe-val { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tov-pe-axis { display: grid; grid-template-columns: 104px 92px 1fr 172px; column-gap: 10px; height: 16px; font-size: 0.68rem; color: var(--color-gray); font-variant-numeric: tabular-nums; }
+  .tov-pe-scale { grid-column: 3; position: relative; }
+  .tov-pe-tick { position: absolute; top: 2px; transform: translateX(-50%); white-space: nowrap; }
+  .tov-pe-tick-first { transform: none; }
+  .tov-pe-tick-last { transform: translateX(-100%); }
+  .tov-pe-grid { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(128, 136, 148, 0.28); }
   .tov-pe-faded .tov-pe-track, .tov-pe-thin .tov-pe-track { opacity: 0.4; }
   @media (max-width: 560px) {
     .tov-pe-group { grid-template-columns: 78px 1fr; }
     .tov-pe-title { grid-column: 1 / -1; grid-row: auto !important; }
     .tov-pe-series { grid-column: 1; }
     .tov-pe-val { grid-column: 2; margin-bottom: 3px; }
+    .tov-pe-axis { grid-template-columns: 78px 1fr; }
+    .tov-pe-axis > span:nth-child(2), .tov-pe-axis > span:last-child { display: none; }
+    .tov-pe-scale { grid-column: 2; }
   }
   .tov-flag-strong { color: var(--dv-orange); border-bottom-color: var(--dv-orange); }
   .tov-math .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }

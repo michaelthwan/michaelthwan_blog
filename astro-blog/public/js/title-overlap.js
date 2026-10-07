@@ -296,7 +296,25 @@
                     if (d.p90) vmax = Math.max(vmax, d.p90);
                 });
             });
-            vmax = Math.ceil(vmax / 50000) * 50000 || 1;
+            // x-axis: the smallest step that keeps the scale to about six ticks.
+            var step = [25000, 50000, 100000, 200000].filter(function (st) { return vmax / st <= 6; })[0] || 200000;
+            vmax = Math.ceil(vmax / step) * step || step;
+            var ticks = [];
+            for (var tv = 0; tv <= vmax; tv += step) ticks.push(tv);
+            var gridHtml = ticks.slice(1, -1).map(function (tv) {
+                return '<div class="tov-pe-grid" style="left:' + (100 * tv / vmax).toFixed(2) + '%"></div>';
+            }).join('');
+            function axisRow() {
+                var a = document.createElement('div');
+                a.className = 'tov-pe-axis';
+                a.setAttribute('aria-hidden', 'true');
+                a.innerHTML = '<span></span><span></span><div class="tov-pe-scale">' + ticks.map(function (tv, i) {
+                    var edge = i === 0 ? ' tov-pe-tick-first' : i === ticks.length - 1 ? ' tov-pe-tick-last' : '';
+                    return '<span class="tov-pe-tick' + edge + '" style="left:' + (100 * tv / vmax).toFixed(2) + '%">' +
+                        (tv === 0 ? '0' : k(tv)) + '</span>';
+                }).join('') + '</div><span></span>';
+                return a;
+            }
             // Sort by posted base median when shown, else by the first visible series.
             var sortKey = state.show.post ? 'post' : (keys[0] ? keys[0].key : 'post');
             titles.sort(function (a, b) {
@@ -304,6 +322,7 @@
             });
 
             out.innerHTML = '';
+            out.appendChild(axisRow());
             titles.forEach(function (t) {
                 var group = document.createElement('div');
                 group.className = 'tov-pe-group';
@@ -317,7 +336,7 @@
                     var row = document.createElement('div');
                     row.className = 'tov-pe-row ' + s.cls + (d.faded ? ' tov-pe-faded' : '') +
                         (d.flag === 'very low n' ? ' tov-pe-thin' : '');
-                    var html = '<span class="tov-pe-series">' + s.label + '</span><div class="tov-pe-track">';
+                    var html = '<span class="tov-pe-series">' + s.label + '</span><div class="tov-pe-track">' + gridHtml;
                     if (!d.empty) {
                         var pc = function (x) { return (100 * x / vmax).toFixed(2) + '%'; };
                         html += '<div class="tov-pe-whisker" style="left:' + pc(d.p10) + ';width:' + pc(d.p90 - d.p10) + '"></div>' +
@@ -337,6 +356,7 @@
                 name.style.gridRow = 'span ' + Math.max(1, group.querySelectorAll('.tov-pe-row').length);
                 out.appendChild(group);
             });
+            out.appendChild(axisRow());
 
             var cur = state.country === 'CA' ? 'CAD' : 'USD';
             note.innerHTML = 'Annual pay in ' + cur + ', scale 0 to ' + k(vmax) + '. Thin line: P10 to P90; box: P25 to P75; tick: median. ' +
